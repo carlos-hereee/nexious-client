@@ -26,7 +26,7 @@ const App = ({ children }: ChildProps) => {
   // };
   // let menu = undefined
   // let logo = un
-
+console.log('meneu :>> ', menu);
   // waiting server response
   if (isLoading) return <Loading message="Loading app assets.." />;
   return (

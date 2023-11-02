@@ -9,8 +9,8 @@ import { AdminState } from "./utils/context/admin/AdminContext";
 import { isDev } from "@app/config";
 import App from "./App";
 import AppRouter from "./AppRouter"; 
-import "./index.css";
 import "nexious-library/@index.css";
+import "./index.css";
 
 const elementRoot: Element | DocumentFragment | null = document.getElementById("root");
 
