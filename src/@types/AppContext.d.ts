@@ -1,21 +1,6 @@
 declare module "app-context" {
   import { CalendarProps, MenuProps, SectionProps } from "app-types";
   import { FormValueProps } from "app-forms";
-  // only app props
-  export interface AppProps {
-    appName: string;
-    theme: string;
-    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
-    landing: any;
-    appId: string;
-    ownerId: string;
-    adminIds: string[];
-    newsletter: SectionProps;
-    media: SectionProps;
-    logo: { [key: string]: string };
-    menu: MenuProps[];
-    calendar: CalendarProps;
-  }
   // app context schema
   export interface AppSchema {
     // auth schema
@@ -24,7 +9,6 @@ declare module "app-context" {
     appName: string;
     welcomeMessage: string;
     theme: string;
-    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
     landing: any;
     appId: string;
     ownerId: string;
@@ -55,8 +39,8 @@ declare module "app-context" {
     newsletter: SectionProps;
     media: SectionProps;
     logo: { [key: string]: string };
-    menu: MenuProps[];
     appMenu: MenuProps[];
+    menu: MenuProps[];
     calendar: CalendarProps;
   }
 }

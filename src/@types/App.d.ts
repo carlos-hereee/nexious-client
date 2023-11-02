@@ -16,9 +16,9 @@ declare module "app-types" {
     menuId: string;
     isToggle: boolean;
     isPrivate: boolean;
-    active: { [key: string]: string };
-    theme?: string;
-    alternatives: { [key: string]: string }[];
+    // TODO: include actual keys, and values
+    active: { [key: string]: string | undefined };
+    alternatives: { [key: string]: string | undefined }[];
   }
   export interface CalendarProps {
     name: string;

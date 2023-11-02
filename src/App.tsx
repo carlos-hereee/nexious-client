@@ -14,6 +14,7 @@ const App = ({ children }: ChildProps) => {
     logo,
     appMenu,
     updateMenu,
+    setTheme,
     // language
   } = useContext(AppContext);
   const navigate = useNavigate();
@@ -33,10 +34,13 @@ const App = ({ children }: ChildProps) => {
   // console.log('meneu :>> ', appMenu);
   const handleMenu = (menuItem: MenuProps) => {
     let oldValues = [...appMenu];
-    const { active, alternatives, menuId, isPrivate } = menuItem;
+    const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       navigate("/" + active.link || "");
+      // check theme Id
+    } else if (isToggle && active.themeId && active.name) {
+      setTheme(active.name);
     } else {
       // find menu item
       const menuItemIdx = oldValues.findIndex((val) => val.menuId === menuId);
