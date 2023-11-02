@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
-    "target": "ES2022", // if code runs on the browser /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    "target": "ESNext", // if code runs on the browser /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "allowSyntheticDefaultImports": true, // e.i import package from 'library'
     "jsx": "react-jsx" /* Specify what JSX code is generated. */,
@@ -16,7 +16,6 @@
       "@pages/*": ["pages/*"],
       "@type/*": ["utils/types/*"],
       "@data/*": ["data/*"]
-      // "@configs/*": ["config.tsx"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "forceConsistentCasingInFileNames": true,
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,

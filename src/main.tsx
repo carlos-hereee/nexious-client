@@ -8,7 +8,7 @@ import { CalendarState } from "./utils/context/calendar/CalendarContext";
 import { AdminState } from "./utils/context/admin/AdminContext";
 import { isDev } from "@app/config";
 import App from "./App";
-import AppRouter from "./AppRouter";
+import AppRouter from "./AppRouter"; 
 import "./index.css";
 import "nexious-library/@index.css";
 
