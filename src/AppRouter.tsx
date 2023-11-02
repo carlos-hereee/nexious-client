@@ -24,13 +24,15 @@ import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
 import Homepage from "./pages/Homepage";
 import AppSettings from "./components/app/AppSettings";
+import Login from "./pages/Login";
 
 const AppRouter: React.FC = () => {
   const { accessToken, changePassword } = useContext(AuthContext);
   const { emergencyPasswordChangeIsRequired } = useContext(AuthContext);
 
   // emergency password change
-  if (emergencyPasswordChangeIsRequired) return <ChangePassword handleClick={changePassword} />;
+  if (emergencyPasswordChangeIsRequired)
+    return <ChangePassword handleClick={changePassword} />;
 
   return (
     <Routes>
@@ -40,6 +42,7 @@ const AppRouter: React.FC = () => {
       <Route path="/offline" element={<Offline />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/" element={<Homepage />} />
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>

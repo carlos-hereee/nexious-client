@@ -1,7 +1,7 @@
 import { AppStateProps } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
 
-type ReducerAction = { type: APP_ACTIONS; payload?: any };
+type ReducerAction = { type: APP_ACTIONS; payload: any };
 type AppReducerProps = (state: AppStateProps, action: ReducerAction) => AppStateProps;
 
 export const reducer: AppReducerProps = (state, action) => {
@@ -34,6 +34,8 @@ export const reducer: AppReducerProps = (state, action) => {
       return { ...state, logo: action.payload };
     case APP_ACTIONS.SET_MENU:
       return { ...state, menu: action.payload };
+    case APP_ACTIONS.SET_APP_MENU:
+      return { ...state, appMenu: action.payload };
     // case APP_ACTIONS.SET_EDIT_APP:
     //   return { ...state, editApp: action.payload };
     // case APP_ACTIONS.COMING_SOON:

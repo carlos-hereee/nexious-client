@@ -24,6 +24,31 @@
   },
   "appMenu": [
     {
+      "isToggle": true,
+      "isPrivate": false,
+      "menuId": "themelist-1",
+      "active": {
+        "name": "dark-mode",
+        "value": "dark-mode",
+        "themeId": "theme-dark-mode",
+        "uid": "theme-dark-mode"
+      },
+      "alternatives": [
+        {
+          "name": "light-mode",
+          "value": "light-mode",
+          "themeId": "theme-light-mode",
+          "uid": "theme-light-mode"
+        },
+        {
+          "name": "dark-mode",
+          "value": "dark-mode",
+          "themeId": "theme-dark-mode",
+          "uid": "theme-dark-mode"
+        }
+      ]
+    },
+    {
       "isToggle": false,
       "isPrivate": true,
       "menuId": "auth-1",
@@ -54,21 +79,7 @@
   ],
   "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
-  "theme": "light-mode",
+  "theme": "",
   "landing": {},
-  "themeList": [
-    {
-      "name": "light-mode",
-      "value": "light-mode",
-      "themeId": "theme-light-mode",
-      "uid": "theme-light-mode"
-    },
-    {
-      "name": "dark-mode",
-      "value": "dark-mode",
-      "themeId": "theme-dark-mode",
-      "uid": "theme-dark-mode"
-    }
-  ],
   "logo": {}
 }

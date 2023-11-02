@@ -10,6 +10,8 @@ import { AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
 import { getAppList } from "./helpers/getAppList";
 import { getAppWithName } from "./helpers/getWithAppName";
+import { updateMenu } from "./dispatch/updateMenu";
+import { updateTheme } from "./dispatch/updateTheme";
 // import { uploadImage } from "./helpers/uploadImage";
 // import { getLatestAppData } from "./helpers/getLatestAppData";
 // import { getFiles } from "./helpers/getFiles";
@@ -80,7 +82,7 @@ export const AppState = ({ children }: ChildProps) => {
         appId: state.appId,
         landing: state.landing,
         theme: state.theme,
-        themeList: state.themeList,
+        // themeList: state.themeList,
         adminIds: state.adminIds,
         calendar: state.calendar,
         media: state.media,
@@ -91,14 +93,14 @@ export const AppState = ({ children }: ChildProps) => {
         welcomeMessage: state.welcomeMessage,
         newsletter: state.newsletter,
         updateAppData: (a) => updateAppData({ dispatch, values: a }),
-        updateMenu: (a) => dispatch({ type: APP_ACTIONS.SET_MENU, payload: a }),
         getAppWithName: (appName) =>
           getAppWithName({
             appName,
             updateApp: (e) => updateAppData({ dispatch, values: e }),
           }),
-        setTheme: (a) => dispatch({ type: APP_ACTIONS.SET_THEME, payload: a }),
         getAppList: () => getAppList({ dispatch }),
+        updateMenu: (a) => updateMenu({ dispatch, data: a }),
+        setTheme: (a) => updateTheme({ dispatch, data: a }),
 
         // language: state.language,
         // menu: state.menu,

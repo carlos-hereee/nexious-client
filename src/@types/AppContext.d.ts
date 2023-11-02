@@ -5,7 +5,7 @@ declare module "app-context" {
   export interface AppProps {
     appName: string;
     theme: string;
-    themeList: { name: string; value: string; themeId: string; uid?: string }[];
+    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
     landing: any;
     appId: string;
     ownerId: string;
@@ -24,7 +24,7 @@ declare module "app-context" {
     appName: string;
     welcomeMessage: string;
     theme: string;
-    themeList: { name: string; value: string; themeId: string; uid?: string }[];
+    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
     landing: any;
     appId: string;
     ownerId: string;
@@ -39,7 +39,7 @@ declare module "app-context" {
     getAppList: () => void;
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
-    updateMenu: (appName:MenuProps[]) => void;
+    updateMenu: (menu: MenuProps[]) => void;
   }
   export interface AppStateProps {
     apps: { [key: string]: any }[];
@@ -47,7 +47,7 @@ declare module "app-context" {
     appName: string;
     welcomeMessage: string;
     theme: string;
-    themeList: { name: string; value: string; themeId: string; uid?: string }[];
+    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
     landing: any;
     appId: string;
     ownerId: string;

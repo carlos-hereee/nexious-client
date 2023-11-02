@@ -6,6 +6,12 @@ import Login from "./Login";
 const Homepage: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
   if (accessToken) return <UserPlayground />;
-  return <Login />;
+
+  return (
+    <>
+      {/* <h2 className="heading">Nexious login</h2> */}
+      <Login />
+    </>
+  );
 };
 export default Homepage;
