@@ -16,7 +16,7 @@ declare module "app-types" {
     menuId: string;
     isToggle: boolean;
     isPrivate: boolean;
-    active: string;
+    active: { [key: string]: string };
     theme?: string;
     alternatives: { [key: string]: string }[];
   }

@@ -85,13 +85,18 @@ export const AppState = ({ children }: ChildProps) => {
         calendar: state.calendar,
         media: state.media,
         menu: state.menu,
+        appMenu: state.appMenu,
         ownerId: state.ownerId,
         logo: state.logo,
         welcomeMessage: state.welcomeMessage,
         newsletter: state.newsletter,
         updateAppData: (a) => updateAppData({ dispatch, values: a }),
+        updateMenu: (a) => dispatch({ type: APP_ACTIONS.SET_MENU, payload: a }),
         getAppWithName: (appName) =>
-          getAppWithName({ appName, updateApp: (e) => updateAppData({ dispatch, values: e }) }),
+          getAppWithName({
+            appName,
+            updateApp: (e) => updateAppData({ dispatch, values: e }),
+          }),
         setTheme: (a) => dispatch({ type: APP_ACTIONS.SET_THEME, payload: a }),
         getAppList: () => getAppList({ dispatch }),
 

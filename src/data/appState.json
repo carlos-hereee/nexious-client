@@ -22,6 +22,36 @@
     "details": "",
     "sections": []
   },
+  "appMenu": [
+    {
+      "isToggle": false,
+      "isPrivate": true,
+      "menuId": "auth-1",
+      "active": {
+        "label": "Login",
+        "icon": "login",
+        "name": "login",
+        "uid": "login-uid-1",
+        "link": "login"
+      },
+      "alternatives": [
+        {
+          "label": "Login",
+          "icon": "login",
+          "name": "login",
+          "uid": "login-uid-1",
+          "link": "login"
+        },
+        {
+          "label": "Dashboard",
+          "icon": "user",
+          "name": "dashboard",
+          "uid": "dash-uid-1",
+          "link": "dashboard"
+        }
+      ]
+    }
+  ],
   "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "theme": "light-mode",

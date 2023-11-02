@@ -31,6 +31,7 @@ declare module "app-context" {
     adminIds: string[];
     newsletter: SectionProps;
     media: SectionProps;
+    appMenu: MenuProps[];
     menu: MenuProps[];
     logo: { [key: string]: string };
     calendar: CalendarProps;
@@ -38,6 +39,7 @@ declare module "app-context" {
     getAppList: () => void;
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
+    updateMenu: (appName:MenuProps[]) => void;
   }
   export interface AppStateProps {
     apps: { [key: string]: any }[];
@@ -54,6 +56,7 @@ declare module "app-context" {
     media: SectionProps;
     logo: { [key: string]: string };
     menu: MenuProps[];
+    appMenu: MenuProps[];
     calendar: CalendarProps;
   }
 }
