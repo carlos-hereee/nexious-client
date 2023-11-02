@@ -1,0 +1,137 @@
+{
+  "isLoading": false,
+  "formErrors": { "initAppFormError": "" },
+  "appNameForm": {
+    "initialValues": { "appName": "", "logo": "" },
+    "labels": { "appName": "Enter app name", "logo": "Add new app logo" },
+    "placeholders": { "appName": "Enter appname ..", "logo": "Choose file" },
+    "types": { "appName": "text", "logo": "file" },
+    "heading": "",
+    "fieldHeading": {}
+  },
+  "pagesForm": {
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "title": "", "body": "", "hasSection": false, "hasCta": false },
+    "types": {
+      "title": "text",
+      "body": "textarea",
+      "name": "text",
+      "hasSection": "checkbox",
+      "hasCta": "checkbox"
+    },
+    "labels": {
+      "name": "Enter page name",
+      "title": "Enter page heading",
+      "body": "Enter page body text",
+      "hasSection": "This part cta the app has sub sections",
+      "hasCta": "This part of the app has a call to action"
+    },
+    "placeholders": {
+      "title": "Page headline",
+      "hero": "",
+      "body": "Text body",
+      "name": "Page name",
+      "hasSection": "",
+      "hasCta": ""
+    }
+  },
+  "sectionForm": {
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "title": "", "body": "" },
+    "labels": { "title": "Section title", "body": "Section details" },
+    "placeholders": { "title": "", "body": "" },
+    "types": { "title": "", "body": "" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove"
+  },
+  "ctaForm": {
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "label": "", "link": "" },
+    "labels": { "label": "Enter display data", "link": "What page or url does it point to" },
+    "placeholders": { "label": "", "link": "" },
+    "types": { "label": "", "link": "" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove"
+  },
+  "landingPageForm": {
+    "initialValues": {
+      "title": "",
+      "tagline": "",
+      "body": "",
+      "hasCta": false,
+      "hasSections": false
+    },
+    "types": {
+      "title": "text",
+      "tagline": "text",
+      "body": "textarea",
+      "cta": "text",
+      "hasSections": "checkbox",
+      "hasCta": "checkbox",
+      "sections": "text"
+    },
+    "labels": {
+      "title": "Page heading",
+      "tagline": "What's your app's tagline?",
+      "body": "Enter page details",
+      "hasCta": "This part of the app has a Call To Action",
+      "hasSections": "This part of the app has a sub section",
+      "label": "Enter display data",
+      "link": "What page or url does it point to"
+    },
+    "placeholders": {
+      "title": "",
+      "tagline": "",
+      "body": "",
+      "cta": "",
+      "hasSection": "",
+      "hasCta": ""
+    },
+    "heading": "Update landing page data",
+    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" }
+  },
+  "heroForm": {
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
+    "labels": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
+    "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
+    "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
+  },
+  "landingPageFormOrder": ["title", "tagline", "body", "hasCta", "cta", "hasSections", "sections"],
+  "sectionEntryOrganizer": [
+    {
+      "name": "hasCta",
+      "form": {
+        "initialValues": { "label": "", "link": "" },
+        "labels": { "label": "Enter display data", "link": "What page or url does it point to" },
+        "placeholders": { "label": "", "link": "" },
+        "types": { "label": "", "link": "" },
+        "fieldHeading": {},
+        "heading": "",
+        "additionLabel": "Add another",
+        "removalLabel": "Remove"
+      },
+      "canMultiply": true,
+      "skipIfFalse": "cta"
+    },
+    {
+      "name": "hasSections",
+      "form": {
+        "initialValues": { "title": "", "body": "" },
+        "labels": { "title": "Section title", "body": "Section details" },
+        "placeholders": { "title": "", "body": "" },
+        "types": { "title": "", "body": "" },
+        "fieldHeading": {},
+        "additionLabel": "Add another",
+        "heading": "",
+        "removalLabel": "Remove"
+      },
+      "canMultiply": true,
+      "skipIfFalse": "sections"
+    }
+  ]
+}

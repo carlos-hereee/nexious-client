@@ -1,0 +1,116 @@
+{
+  "isLoading": true,
+  "isOffline": false,
+  "accessToken": "",
+  "emergencyPasswordChangeIsRequired": false,
+  "authErrors": {
+    "emergencyPasswordChangeIsRequired": false,
+    "signInError": "",
+    "signUpError": ""
+  },
+  "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "" },
+  "userForm": {
+    "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },
+    "labels": {
+      "username": "Username: ",
+      "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
+      "phone": "Phone number: **Adding your phone number is optional.",
+      "nickname": "Nickname: **Adding nickname is optional."
+    },
+    "placeholders": {
+      "username": "",
+      "email": "",
+      "phone": "",
+      "nickname": "What would you like everyone to call you?"
+    },
+    "types": { "username": "text", "email": "text" },
+    "fieldHeading": {},
+    "heading": ""
+  },
+  "signUpForm": {
+    "initialValues": {
+      "username": "qwerty",
+      "password": "secretPassword",
+      "confirmPassword": "secretPassword"
+    },
+    "labels": {
+      "username": "Username: ",
+      "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
+      "phone": "Phone number: **Adding your phone number is optional.",
+      "nickname": "Nickname: **Adding nickname is optional."
+    },
+    "placeholders": {
+      "username": "",
+      "email": "",
+      "phone": "",
+      "nickname": "What would you like everyone to call you?"
+    },
+    "types": { "username": "text", "email": "text" },
+    "fieldHeading": {},
+    "heading": ""
+  },
+  "loginForm": {
+    "initialValues": { "username": "qwerty", "password": "secretPassword" },
+    "labels": {
+      "username": "Username: ",
+      "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
+      "phone": "Phone number: **Adding your phone number is optional.",
+      "nickname": "Nickname: **Adding nickname is optional."
+    },
+    "placeholders": {
+      "username": "",
+      "email": "",
+      "phone": "",
+      "nickname": "What would you like everyone to call you?"
+    },
+    "types": { "username": "text", "email": "text" },
+    "fieldHeading": {},
+    "heading": ""
+  },
+  "passwordChangeForm": {
+    "initialValues": {
+      "username": "qwerty",
+      "oldPassword": "secretPassword",
+      "newPassword": "strongPassword",
+      "confirmNewPassword": "strongPassword"
+    },
+    "labels": {
+      "username": "Username: ",
+      "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
+      "phone": "Phone number: **Adding your phone number is optional.",
+      "nickname": "Nickname: **Adding nickname is optional."
+    },
+    "placeholders": {
+      "username": "",
+      "email": "",
+      "phone": "",
+      "nickname": "What would you like everyone to call you?"
+    },
+    "types": { "username": "text", "email": "text" },
+    "fieldHeading": {},
+    "heading": ""
+  },
+  "forgotPasswordForm": {
+    "initialValues": {
+      "username": "qwerty",
+      "newPassword": "secretPassword",
+      "confirmNewPassword": "secretPassword"
+    },
+    "labels": {
+      "username": "Username: ",
+      "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
+      "phone": "Phone number: **Adding your phone number is optional.",
+      "nickname": "Nickname: **Adding nickname is optional."
+    },
+    "placeholders": {
+      "username": "",
+      "email": "",
+      "phone": "",
+      "nickname": "What would you like everyone to call you?"
+    },
+    "types": { "username": "text", "email": "text" },
+    "fieldHeading": {},
+    "heading": ""
+  },
+  "ownedApps": []
+}

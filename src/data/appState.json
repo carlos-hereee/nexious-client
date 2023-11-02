@@ -1,0 +1,44 @@
+{
+  "isLoading": true,
+  "apps": [],
+  "appName": "",
+  "appId": "",
+  "ownerId": "",
+  "welcomeMessage": "Welcome back!",
+  "adminIds": [""],
+  "newsletter": {
+    "title": "",
+    "subtitle": "",
+    "data": "",
+    "theme": "",
+    "details": "",
+    "sections": []
+  },
+  "media": {
+    "title": "",
+    "subtitle": "",
+    "data": "",
+    "theme": "",
+    "details": "",
+    "sections": []
+  },
+  "menu": [],
+  "calendar": { "name": "", "calendarId": "", "events": [{}] },
+  "theme": "light-mode",
+  "landing": {},
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "themeId": "theme-light-mode",
+      "uid": "theme-light-mode"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
+    }
+  ],
+  "logo": {}
+}

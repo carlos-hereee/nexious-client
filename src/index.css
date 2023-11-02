@@ -1,0 +1,75 @@
+/* #root {
+  max-width: 1200px;
+  margin: auto;
+} */
+
+form {
+  width: 100%;
+}
+
+.testimonial-form {
+  display: flex;
+  flex-direction: row;
+}
+.testimonial-form-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.meet-the-team .card-hero-header {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.contact-cards {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+}
+.m-tb {
+  margin: 1rem 0;
+}
+.hero-user {
+  aspect-ratio: 1/1;
+}
+.hero-card {
+  text-align: left;
+}
+@media only screen and (max-width: 500px) {
+  .hero-card-heading {
+    margin: 0;
+    width: 100%;
+  }
+  .feature-card {
+    max-width: 100%;
+  }
+}
+.hero-card .hero-card-heading {
+  margin: 0;
+}
+.team-roster {
+  display: flex;
+  border: 1px solid #fafafa;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 450px;
+  min-width: 250px;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+.contact-icons {
+  margin: auto;
+  object-fit: contain;
+  max-width: 100px;
+  min-height: 150px;
+}
+.logout-btn {
+  margin: 5rem auto;
+}
+
+.select-field {
+  display: flex;
+  align-items: center;
+}
