@@ -8,7 +8,6 @@ export const login = async (props: AuthReducerProps) => {
   try {
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post("/auth/login", credentials);
-    console.log("data", data);
     data.user && updateUser(data.user);
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data?.accessToken || "" });
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });

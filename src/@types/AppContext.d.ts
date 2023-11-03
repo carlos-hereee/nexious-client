@@ -5,7 +5,7 @@ declare module "app-context" {
   export interface AppSchema {
     // auth schema
     isLoading: boolean;
-    apps: { [key: string]: any }[];
+    appList: { [key: string]: any }[];
     appName: string;
     welcomeMessage: string;
     theme: string;
@@ -26,7 +26,7 @@ declare module "app-context" {
     updateMenu: (menu: MenuProps[]) => void;
   }
   export interface AppStateProps {
-    apps: { [key: string]: any }[];
+    appList: { [key: string]: any }[];
     isLoading: boolean;
     appName: string;
     welcomeMessage: string;

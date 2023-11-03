@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { PaginateForm } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@app/utils/context/admin/AdminContext";
@@ -8,17 +8,10 @@ import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const BuildApp = () => {
   const { landingPageForm, appNameForm, initApp, formErrors } = useContext(AdminContext);
-  const { apps } = useContext(AppContext);
+  const { appList } = useContext(AppContext);
   const { ownedApps } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   // if()
-  //   console.log("====================================");
-  //   console.log("render");
-  //   console.log("====================================");
-  //   // () => navigate("/");
-  // }, [ownedApps.length]);
   const paginate: FormValueProps[] = [
     {
       formName: "appName",
@@ -30,7 +23,7 @@ const BuildApp = () => {
       submitLabel: "Save and continue",
       schema: {
         required: ["appName", "logo"],
-        unique: [{ name: "appName", list: apps.map((app) => app.appName) }],
+        unique: [{ name: "appName", list: appList?.map((app) => app.appName) || [] }],
       },
       onSubmit: initApp,
     },
@@ -44,15 +37,18 @@ const BuildApp = () => {
       placeholders: landingPageForm.placeholders,
     },
   ];
+  console.log("appList :>> ", appList);
   // console.log("formErrors", formErrors);
   // console.log("apps", apps);
   return (
     <div className="container">
-      <PaginateForm
-        paginate={paginate}
-        onCancel={() => navigate("/")}
-        responseError={formErrors.initAppFormError}
-      />
+      {paginate && paginate.length > 0 && (
+        <PaginateForm
+          paginate={paginate}
+          onCancel={() => navigate("/")}
+          responseError={formErrors.initAppFormError}
+        />
+      )}
     </div>
   );
 };

@@ -58,7 +58,13 @@ const App = ({ children }: ChildProps) => {
     <div
       className={theme ? `${theme} app-container elbow-space` : "app-container elbow-space"}
     >
-      <Header menu={appMenu} logo={logo} updateMenu={handleMenu} />
+      <Header
+        menu={appMenu}
+        logo={logo}
+        updateMenu={handleMenu}
+        heading={appName}
+        theme={theme}
+      />
       {children}
       <Footer appName={appName} />
     </div>

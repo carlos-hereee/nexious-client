@@ -77,7 +77,7 @@ export const AppState = ({ children }: ChildProps) => {
     <AppContext.Provider
       value={{
         isLoading: state.isLoading,
-        apps: state.apps,
+        appList: state.appList,
         appName: state.appName,
         appId: state.appId,
         landing: state.landing,

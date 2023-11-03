@@ -47,7 +47,7 @@ const UserPlayground = () => {
       navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
     }
   };
-  console.log("ownedApps", ownedApps);
+  // console.log("ownedApps", ownedApps);
   return (
     <div className="container">
       <WelcomeBanner />
@@ -60,18 +60,23 @@ const UserPlayground = () => {
         >
           + Create a new app
         </button>
-        {ownedApps.length > 0 ? (
+        {ownedApps && ownedApps.length > 0 ? (
           ownedApps.map((app) => (
             <div key={app.appId} className="card-row pad-t">
               <Hero hero={app.logo || {}} onImageClick={() => handleEdit(app)} />
               <div className="flex-column elbow-space mb-2">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
                 <div>
-                  {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
+                  {error && error[app.appId] && (
+                    <p className="error-message">{error[app.appId]}</p>
+                  )}
                 </div>
                 <div className="flex-row flex-wrap">
                   <Button label="Edit app" onClick={() => handleEdit(app)} />
-                  <Button label="Advanced settings" onClick={() => handleAdvancedSetting(app)} />
+                  <Button
+                    label="Advanced settings"
+                    onClick={() => handleAdvancedSetting(app)}
+                  />
                   <Button label="See live" onClick={() => handleSeeLive(app)} />
                 </div>
               </div>
