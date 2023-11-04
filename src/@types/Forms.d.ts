@@ -46,12 +46,13 @@ declare module "app-forms" {
     values: FormValueProps;
     updateUser: (key: FormValueProps) => void;
     updateAppData: (key: FormValueProps) => void;
+    updateAppList: (key: any) => void;
   };
   export type DeleteAppProps = {
     dispatch: React.Dispatch<any>;
     appId: string;
-    updateUser: (key: any) => void;
-    updateAppData: (key: any) => void;
+    updateUser: (key: FormValueProps) => void;
+    updateAppData: (key: FormValueProps) => void;
     updateAppList: (key: any) => void;
   };
   export type EditAppProps = {

@@ -40,7 +40,8 @@ export const AdminState = ({ children }: ChildProps) => {
         formErrors: state.formErrors,
         themeList: state.themeList,
         languageList: state.languageList,
-        initApp: (values) => initApp({ dispatch, values, updateUser, updateAppData }),
+        initApp: (values) =>
+          initApp({ dispatch, values, updateUser, updateAppData, updateAppList }),
         deleteApp: (appId) =>
           deleteApp({ dispatch, appId, updateUser, updateAppData, updateAppList }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, updateAppData }),
