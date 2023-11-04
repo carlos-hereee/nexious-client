@@ -66,7 +66,7 @@ const EditApp = () => {
         desiredOrder: landingPageFormOrder,
         hasEntry: sectionEntryOrganizer,
       });
-      console.log("landingValues", landingValues);
+      // console.log("landingValues", landingValues);
       // reset values; avoid redundant data
       setAppValues([]);
       includeEditValues([
@@ -90,6 +90,30 @@ const EditApp = () => {
           addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
+        // TODO: add newsletter data
+        // {
+        //   values:{ landingValues},
+        //   form: landingPageForm,
+        //   formId: "landing",
+        //   addEntries: sectionEntryOrganizer,
+        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+        // },
+        // TODO: add social medias
+        // {
+        //   values:{ landingValues},
+        //   form: landingPageForm,
+        //   formId: "landing",
+        //   addEntries: sectionEntryOrganizer,
+        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+        // },
+        // TODO: add calendar
+        // {
+        //   values:{ landingValues},
+        //   form: landingPageForm,
+        //   formId: "landing",
+        //   addEntries: sectionEntryOrganizer,
+        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+        // },
       ]);
     }
   }, [appName]);
