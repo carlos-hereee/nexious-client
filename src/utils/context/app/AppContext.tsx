@@ -37,7 +37,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, appState);
-  // const { accessToken, user } = useContext(AuthContext);
+  const { accessToken, user } = useContext(AuthContext);
   // const navigate = useNavigate();
   // const queryParams = useLocation();
 
@@ -57,21 +57,20 @@ export const AppState = ({ children }: ChildProps) => {
   useEffect(() => {
     getAppList({ dispatch });
   }, []);
-  // useEffect(() => {
-  //   // user is login
-  //   if (accessToken) {
-
-  //     // navigate admin and regular users
-  //     // if (user && user.role === "admin") navigate("/admin-dashboard");
-  //     // if (user.role === "admin") navigate("/add-page");
-  //     // else navigate("/dashboard");
-  //     // if (state.menu) {
-  //     //   const { altMenu, idx } = toggleMenuItemLogin(state.menu, accessToken);
-  //     //   dispatch({ type: "SET_MENU", payload: altMenu });
-  //     //   // altMenu[idx].active.link && navigate(`/${altMenu[idx].active.link}`);
-  //     // }
-  //   }
-  // }, [accessToken]);
+  useEffect(() => {
+    // user is login
+    let oldValues = [...state.appMenu];
+    const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
+    if (accessToken) {
+      // find auth menu
+      const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
+      // find dashboard menu item
+      const dashboard = authMenuItem.alternatives.filter((alt) => alt.name === "dashboard")[0];
+      oldValues[authMenuItemIdx].active = dashboard;
+      dispatch({ type: APP_ACTIONS.SET_APP_MENU, payload: oldValues });
+    } else {
+    }
+  }, [accessToken]);
 
   return (
     <AppContext.Provider
@@ -98,7 +97,7 @@ export const AppState = ({ children }: ChildProps) => {
             appName,
             updateApp: (e) => updateAppData({ dispatch, values: e }),
           }),
-        getAppList: () => getAppList({ dispatch }),
+        // getAppList: () => getAppList({ dispatch }),
         updateMenu: (a) => updateMenu({ dispatch, data: a }),
         setTheme: (a) => updateTheme({ dispatch, data: a }),
 
