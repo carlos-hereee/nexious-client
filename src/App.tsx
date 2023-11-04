@@ -4,13 +4,14 @@ import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "./utils/context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
+import { AdminContext } from "./utils/context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading } = useContext(AuthContext);
-  const { appName, theme, appLogo, appMenu, updateMenu, setTheme, languageId } =
-    useContext(AppContext);
+  const { theme, updateMenu, setTheme } = useContext(AppContext);
+  const { appLogo, appMenu, appName } = useContext(AdminContext);
   const navigate = useNavigate();
-  // console.log("logo", logo);
+
   useEffect(() => {
     if (appName) document.title = appName;
   }, [appName]);

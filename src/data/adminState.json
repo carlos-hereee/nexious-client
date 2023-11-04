@@ -6,15 +6,7 @@
       "appName": "",
       "logo": "",
       "theme": "",
-      "language": "",
-      "newsletterTitle": "",
-      "newsletterSubtitle": "",
-      "newsletterEmail": "",
-      "newsletterHero": "",
-      "mediaTitle": "",
-      "mediaSubtitle": "",
-      "mediaDetails": "",
-      "mediaHero": ""
+      "language": ""
     },
     "labels": {
       "appName": "Enter app name",
@@ -233,6 +225,69 @@
       "value": "es-US (Espanol)",
       "locale": "es-US",
       "uid": "language-spanish-en"
+    }
+  ],
+  "appName": "Nexs Tech",
+  "appLogo": {
+    "url": "/icons/logo.svg",
+    "alt": "industry-brand"
+  },
+  "appMenu": [
+    {
+      "isToggle": true,
+      "isPrivate": false,
+      "menuId": "themelist-1",
+      "active": {
+        "name": "dark-mode",
+        "value": "dark-mode",
+        "label": "dark-mode",
+        "themeId": "theme-dark-mode",
+        "uid": "theme-dark-mode"
+      },
+      "alternatives": [
+        {
+          "name": "light-mode",
+          "value": "light-mode",
+          "label": "light-mode",
+          "themeId": "theme-light-mode",
+          "uid": "theme-light-mode"
+        },
+        {
+          "name": "dark-mode",
+          "value": "dark-mode",
+          "label": "dark-mode",
+          "themeId": "theme-dark-mode",
+          "uid": "theme-dark-mode"
+        }
+      ]
+    },
+    {
+      "isToggle": false,
+      "isPrivate": true,
+      "menuId": "auth-1",
+      "active": {
+        "label": "Login",
+        "icon": "login",
+        "name": "login",
+        "uid": "login-uid-1",
+        "link": "login"
+      },
+      "alternatives": [
+        {
+          "label": "Login",
+          "icon": "login",
+          "name": "login",
+          "uid": "login-uid-1",
+          "link": "login"
+        },
+        {
+          "label": "Dashboard",
+          "icon": "user",
+          "name": "dashboard",
+          "uid": "dash-uid-1",
+          "link": "dashboard"
+        }
+      ]
     }
   ]
 }

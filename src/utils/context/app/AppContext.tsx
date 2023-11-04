@@ -57,20 +57,6 @@ export const AppState = ({ children }: ChildProps) => {
   useEffect(() => {
     getAppList({ dispatch });
   }, []);
-  useEffect(() => {
-    // user is login
-    let oldValues = [...state.appMenu];
-    const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
-    if (accessToken) {
-      // find auth menu
-      const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
-      // find dashboard menu item
-      const dashboard = authMenuItem.alternatives.filter((alt) => alt.name === "dashboard")[0];
-      oldValues[authMenuItemIdx].active = dashboard;
-      dispatch({ type: APP_ACTIONS.SET_APP_MENU, payload: oldValues });
-    } else {
-    }
-  }, [accessToken]);
 
   return (
     <AppContext.Provider
@@ -86,10 +72,8 @@ export const AppState = ({ children }: ChildProps) => {
         calendar: state.calendar,
         media: state.media,
         menu: state.menu,
-        appMenu: state.appMenu,
         ownerId: state.ownerId,
         logo: state.logo,
-        appLogo: state.appLogo,
         languageId: state.languageId,
         welcomeMessage: state.welcomeMessage,
         newsletter: state.newsletter,

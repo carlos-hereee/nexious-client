@@ -10,6 +10,8 @@ export const reducer: AdminReducerProps = (state, action) => {
       return { ...state, isLoading: action.payload };
     case ADMIN_ACTIONS.SET_FORM_ERRORS:
       return { ...state, formErrors: { ...state.formErrors, ...action.payload } };
+    case ADMIN_ACTIONS.SET_APP_MENU:
+      return { ...state, appMenu: action.payload };
     default:
       return state;
   }

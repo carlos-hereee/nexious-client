@@ -15,14 +15,11 @@ declare module "app-context" {
     adminIds: string[];
     newsletter: SectionProps;
     media: SectionProps;
-    appMenu: MenuProps[];
     menu: MenuProps[];
     logo: { [key: string]: string };
-    appLogo: { [key: string]: string };
     languageId: string;
     calendar: CalendarProps;
     setTheme: (key: string) => void;
-    // getAppList: () => void;
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;
@@ -34,7 +31,6 @@ declare module "app-context" {
     appName: string;
     welcomeMessage: string;
     theme: string;
-    // themeList: { name: string; value: string; themeId: string; uid?: string }[];
     landing: any;
     appId: string;
     ownerId: string;
@@ -42,10 +38,8 @@ declare module "app-context" {
     newsletter: SectionProps;
     media: SectionProps;
     logo: { [key: string]: string };
-    appMenu: MenuProps[];
     menu: MenuProps[];
     calendar: CalendarProps;
-    appLogo: { [key: string]: string };
     languageId: string;
   }
 }

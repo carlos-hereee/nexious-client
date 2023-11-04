@@ -59,6 +59,7 @@ const EditApp = () => {
     return reorderedObject;
   };
   console.log("logo :>> ", logo);
+  console.log("appName :>> ", appName);
   useEffect(() => {
     if (appName) {
       const landingValues = organizeValues({
