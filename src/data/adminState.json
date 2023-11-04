@@ -2,17 +2,31 @@
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
   "appNameForm": {
-    "initialValues": { "appName": "", "logo": "" },
-    "labels": { "appName": "Enter app name", "logo": "Add new app logo" },
-    "placeholders": { "appName": "Enter appname ..", "logo": "Choose file" },
-    "types": { "appName": "text", "logo": "file" },
+    "initialValues": { "appName": "", "logo": "", "theme": "" },
+    "labels": {
+      "appName": "Enter app name",
+      "logo": "Add new app logo",
+      "theme": "Select custom themes to your app"
+    },
+    "placeholders": {
+      "appName": "Enter appname ..",
+      "logo": "Choose file",
+      "theme": "Choose a theme"
+    },
+    "types": { "appName": "text", "logo": "file", "theme": "datalist" },
     "heading": "",
     "fieldHeading": {}
   },
   "pagesForm": {
     "heading": "",
     "fieldHeading": {},
-    "initialValues": { "name": "", "title": "", "body": "", "hasSection": false, "hasCta": false },
+    "initialValues": {
+      "name": "",
+      "title": "",
+      "body": "",
+      "hasSection": false,
+      "hasCta": false
+    },
     "types": {
       "title": "text",
       "body": "textarea",
@@ -101,13 +115,24 @@
     "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
-  "landingPageFormOrder": ["title", "tagline", "body", "hasCta", "cta", "hasSections", "sections"],
+  "landingPageFormOrder": [
+    "title",
+    "tagline",
+    "body",
+    "hasCta",
+    "cta",
+    "hasSections",
+    "sections"
+  ],
   "sectionEntryOrganizer": [
     {
       "name": "hasCta",
       "form": {
         "initialValues": { "label": "", "link": "" },
-        "labels": { "label": "Enter display data", "link": "What page or url does it point to" },
+        "labels": {
+          "label": "Enter display data",
+          "link": "What page or url does it point to"
+        },
         "placeholders": { "label": "", "link": "" },
         "types": { "label": "", "link": "" },
         "fieldHeading": {},
@@ -132,6 +157,22 @@
       },
       "canMultiply": true,
       "skipIfFalse": "sections"
+    }
+  ],
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "themeId": "theme-light-mode",
+      "uid": "theme-light-mode"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
     }
   ]
 }

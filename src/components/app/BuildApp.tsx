@@ -5,7 +5,7 @@ import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AppContext } from "@app/utils/context/app/AppContext";
 
 const BuildApp = () => {
-  const { appNameForm, initApp } = useContext(AdminContext);
+  const { appNameForm, initApp, themeList } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
   // const { ownedApps } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const BuildApp = () => {
   return (
     <div className="container">
       <Form
-        initialValues={{ appName: "", logo: "" }}
+        initialValues={{ appName: "", logo: "", theme: "light-mode,dark-mode," }}
         onSubmit={initApp}
         heading="Initialize your app!"
         submitLabel="Save and continue"
@@ -21,6 +21,7 @@ const BuildApp = () => {
         labels={appNameForm.labels}
         placeholders={appNameForm.placeholders}
         onCancel={() => navigate("/")}
+        dataList={{ theme: themeList }}
         schema={{
           required: ["appName", "logo"],
           unique: [{ name: "appName", list: appList?.map((app) => app.appName) || [] }],
