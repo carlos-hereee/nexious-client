@@ -24,6 +24,7 @@ declare module "app-context" {
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;
+    updateAppList: (appList: { [key: string]: any }[]) => void;
   }
   export interface AppStateProps {
     appList: { [key: string]: any }[];

@@ -52,6 +52,7 @@ declare module "app-forms" {
     appId: string;
     updateUser: (key: any) => void;
     updateAppData: (key: any) => void;
+    updateAppList: (key: any) => void;
   };
   export type EditAppProps = {
     dispatch: React.Dispatch<any>;

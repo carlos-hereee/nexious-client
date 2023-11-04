@@ -14,7 +14,7 @@ import { AuthContext } from "../auth/AuthContext";
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
-  const { updateAppData } = useContext(AppContext);
+  const { updateAppData, updateAppList } = useContext(AppContext);
   const { updateUser } = useContext(AuthContext);
   // const navigate = useNavigate();
 
@@ -41,7 +41,8 @@ export const AdminState = ({ children }: ChildProps) => {
         themeList: state.themeList,
         languageList: state.languageList,
         initApp: (values) => initApp({ dispatch, values, updateUser, updateAppData }),
-        deleteApp: (appId) => deleteApp({ dispatch, appId, updateUser, updateAppData }),
+        deleteApp: (appId) =>
+          deleteApp({ dispatch, appId, updateUser, updateAppData, updateAppList }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, updateAppData }),
         editAppName: (values, appId) =>
           editAppName({ dispatch, values, appId, updateAppData }),

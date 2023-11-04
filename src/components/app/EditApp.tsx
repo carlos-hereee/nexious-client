@@ -10,7 +10,7 @@ const EditApp = () => {
   const { appNameForm, landingPageForm, editAppName, editLandingPage } =
     useContext(AdminContext);
   const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
-  const { appName, landing, appId } = useContext(AppContext);
+  const { appName, landing, appId, logo } = useContext(AppContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
@@ -22,7 +22,7 @@ const EditApp = () => {
     let canSkip: string[] = [];
     for (let i = 0; i < desiredOrder.length; i++) {
       const key = desiredOrder[i];
-      // continue to next iteration if key is skippable
+      // continue to next iteration of key is skippable
       if (!canSkip.includes(key) && hasEntry) {
         // if entry value found; get the index of the appropriate entry
         const entryIdx = hasEntry.findIndex((entry) => entry.name === key);
@@ -58,7 +58,7 @@ const EditApp = () => {
     }
     return reorderedObject;
   };
-  console.log("landing :>> ", landing);
+  console.log("logo :>> ", logo);
   useEffect(() => {
     if (appName) {
       const landingValues = organizeValues({
@@ -71,7 +71,7 @@ const EditApp = () => {
       setAppValues([]);
       includeEditValues([
         {
-          values: { appName, logo: "" },
+          values: { appName, logo: logo.url || "" },
           form: appNameForm,
           formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
@@ -130,7 +130,7 @@ const EditApp = () => {
     setLoadingFormState(false);
   };
   // console.log("landing", landing);
-  console.log("appValues :>> ", appValues);
+  // console.log("appValues :>> ", appValues);
   if (isLoadingFormState) return <Loading message="Loading app data" />;
   return (
     <div>

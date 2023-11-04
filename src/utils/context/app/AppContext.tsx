@@ -92,6 +92,7 @@ export const AppState = ({ children }: ChildProps) => {
         welcomeMessage: state.welcomeMessage,
         newsletter: state.newsletter,
         updateAppData: (a) => updateAppData({ dispatch, values: a }),
+        updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
         getAppWithName: (appName) =>
           getAppWithName({
             dispatch,
