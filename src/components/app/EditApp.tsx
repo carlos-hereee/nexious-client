@@ -29,32 +29,31 @@ const EditApp = () => {
         const entryIdx = hasEntry.findIndex((entry) => entry.name === key);
         const target = hasEntry[entryIdx]?.skipIfFalse;
         if (entryIdx >= 0 && target) {
-          // init target with empty array
-          reorderedObject[target] = [];
           // skip appropriate value
           target && canSkip.push(target);
-          if (!values[key]) reorderedObject[key] = values[key];
-          else {
-            console.log("hasEntry", hasEntry[entryIdx]);
-            // app proves entries to include
+          // check if original has value
+          if (!values[key]) {
+            reorderedObject[key] = values[key] === undefined ? false : values[key];
+          } else {
+            // init target with empty array
+            reorderedObject[target] = [];
+            // entries should be include
             const form = hasEntry[entryIdx].form;
             let entryValues = Object.keys(form.initialValues).map((val) => {
+              // add shared key
               if (values[val]) {
-                // add shared key
                 return { [val]: values[val] };
               } else {
                 return { [val]: "" };
-                // console.log("val", val);
-                // console.log("values", values);
-                // console.log("values", values[target]);
               }
             });
-            console.log("entryValues", entryValues);
             reorderedObject[target].push(...entryValues);
             reorderedObject[key] = values[key];
           }
           // otherwise theres no match;
-        } else if (values.hasOwnProperty(key)) reorderedObject[key] = values[key];
+        }
+        // otherwise value is not defined
+        else reorderedObject[key] = "";
       }
     }
     return reorderedObject;
@@ -67,7 +66,7 @@ const EditApp = () => {
         desiredOrder: landingPageFormOrder,
         hasEntry: sectionEntryOrganizer,
       });
-      // console.log("landingValues", landingValues);
+      console.log("landingValues", landingValues);
       // reset values; avoid redundant data
       setAppValues([]);
       includeEditValues([
