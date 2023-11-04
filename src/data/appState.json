@@ -5,6 +5,7 @@
   "appId": "",
   "ownerId": "",
   "welcomeMessage": "Welcome back!",
+  "languageId": "",
   "adminIds": [""],
   "newsletter": {
     "title": "",
@@ -84,8 +85,9 @@
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "theme": "dark-mode",
   "landing": {},
-  "logo": {
+  "appLogo": {
     "url": "/icons/logo.svg",
     "alt": "industry-brand"
-  }
+  },
+  "logo": {}
 }

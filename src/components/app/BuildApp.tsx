@@ -1,18 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Form } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AppContext } from "@app/utils/context/app/AppContext";
-// import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const BuildApp = () => {
   const { appNameForm, initApp, themeList, languageList } = useContext(AdminContext);
   const { appList, theme } = useContext(AppContext);
-  // const { ownedApps } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // console.log("ownedApps :>> ", ownedApps);
-  // useEffect()
   return (
     <div className="container">
       <Form

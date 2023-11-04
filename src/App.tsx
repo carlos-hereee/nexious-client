@@ -7,31 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading } = useContext(AuthContext);
-  const {
-    appName,
-    theme,
-    menu,
-    logo,
-    appMenu,
-    updateMenu,
-    setTheme,
-    // language
-  } = useContext(AppContext);
+  const { appName, theme, appLogo, appMenu, updateMenu, setTheme, languageId } =
+    useContext(AppContext);
   const navigate = useNavigate();
   // console.log("logo", logo);
   useEffect(() => {
     if (appName) document.title = appName;
   }, [appName]);
 
-  // const handleUpdateMenu = (e) => {
-  //   // if (!language || language.uid !== e[0].active.uid) {
-  //   //   // updateLanguage(e[0].active);
-  //   // }
-  //   updateMenu(e);
-  // };
-  // let menu = undefined
-  // let logo = un
-  // console.log('meneu :>> ', appMenu);
   const handleMenu = (menuItem: MenuProps) => {
     let oldValues = [...appMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
@@ -60,7 +43,7 @@ const App = ({ children }: ChildProps) => {
     >
       <Header
         menu={appMenu}
-        logo={logo}
+        logo={appLogo}
         updateMenu={handleMenu}
         heading={appName}
         theme={theme}

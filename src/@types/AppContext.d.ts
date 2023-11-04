@@ -18,6 +18,8 @@ declare module "app-context" {
     appMenu: MenuProps[];
     menu: MenuProps[];
     logo: { [key: string]: string };
+    appLogo: { [key: string]: string };
+    languageId: string;
     calendar: CalendarProps;
     setTheme: (key: string) => void;
     // getAppList: () => void;
@@ -43,5 +45,7 @@ declare module "app-context" {
     appMenu: MenuProps[];
     menu: MenuProps[];
     calendar: CalendarProps;
+    appLogo: { [key: string]: string };
+    languageId: string;
   }
 }

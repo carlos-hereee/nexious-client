@@ -9,7 +9,6 @@ const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
   const { theme, getAppWithName } = useContext(AppContext);
   const [error, setError] = useState<{ [key: string]: any }>({});
-
   const navigate = useNavigate();
 
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
