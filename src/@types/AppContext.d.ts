@@ -20,7 +20,7 @@ declare module "app-context" {
     logo: { [key: string]: string };
     calendar: CalendarProps;
     setTheme: (key: string) => void;
-    getAppList: () => void;
+    // getAppList: () => void;
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;

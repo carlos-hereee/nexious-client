@@ -9,7 +9,7 @@ import { AuthContext } from "@app/utils/context/auth/AuthContext";
 const BuildApp = () => {
   const { landingPageForm, appNameForm, initApp, formErrors } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const { ownedApps } = useContext(AuthContext);
+  // const { ownedApps } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const paginate: FormValueProps[] = [
@@ -37,7 +37,7 @@ const BuildApp = () => {
       placeholders: landingPageForm.placeholders,
     },
   ];
-  console.log("appList :>> ", appList);
+  // console.log("appList :>> ", appList);
   // console.log("formErrors", formErrors);
   // console.log("apps", apps);
   return (
