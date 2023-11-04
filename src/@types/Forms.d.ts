@@ -32,7 +32,7 @@ declare module "app-forms" {
   export interface InitPaginateFormProps {
     values: FormValueProps;
     form: FormProps;
-    formName: string;
+    formId: string;
     withFileUpload?: boolean;
     addEntries?: AddEntryProps[];
     onSubmit?: (key: FormValueProps) => void;
@@ -60,7 +60,7 @@ declare module "app-forms" {
     updateAppData: (key: FormValueProps) => void;
   };
   export type GetAppNameReducerProps = {
-    dispatch?: React.Dispatch<any>;
+    dispatch: React.Dispatch<any>;
     appName: string;
     updateApp: (key: FormValueProps) => void;
   };

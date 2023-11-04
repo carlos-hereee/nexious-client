@@ -58,11 +58,11 @@ const AppRouter: React.FC = () => {
       <Route element={<PrivateRoute />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/add-page" element={<AddPage />} />
         <Route path="/build-app" element={<BuildApp />} />
       </Route>
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>
+        <Route path="/add-page" element={<AddPage />} />
         <Route path="/edit-app/" element={<EditApp />} />
         <Route path="/settings/app/" element={<AppSettings />} />
       </Route>

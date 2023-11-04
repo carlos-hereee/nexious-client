@@ -58,6 +58,7 @@ const EditApp = () => {
     }
     return reorderedObject;
   };
+  console.log("landing :>> ", landing);
   useEffect(() => {
     if (appName) {
       const landingValues = organizeValues({
@@ -72,14 +73,14 @@ const EditApp = () => {
         {
           values: { appName, logo: "" },
           form: appNameForm,
-          formName: "appName",
+          formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
           withFileUpload: true,
         },
         {
           values: landingValues,
           form: landingPageForm,
-          formName: "landing",
+          formId: "landing",
           addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
@@ -108,7 +109,7 @@ const EditApp = () => {
   };
   const includeEditValues = (data: InitPaginateFormProps[]) => {
     data.forEach((formData) => {
-      const { values, formName, addEntries, onSubmit, withFileUpload } = formData;
+      const { values, formId, addEntries, onSubmit, withFileUpload } = formData;
       const { heading, labels, placeholders, types, fieldHeading } = formData.form;
       const addEntry = addEntries ? includeEntries(addEntries) : undefined;
       // const initialValues = reOrderValues(values)
@@ -116,7 +117,7 @@ const EditApp = () => {
         initialValues: values,
         placeholders,
         fieldHeading,
-        formName,
+        formId,
         heading,
         labels,
         types,
@@ -129,6 +130,7 @@ const EditApp = () => {
     setLoadingFormState(false);
   };
   // console.log("landing", landing);
+  console.log("appValues :>> ", appValues);
   if (isLoadingFormState) return <Loading message="Loading app data" />;
   return (
     <div>

@@ -20,6 +20,7 @@ const UserPlayground = () => {
       });
     } else {
       let name = app.appName.split(" ").join("+");
+      getAppWithName(name);
       navigate({ pathname: "/app", search: `?appName=${name}` });
     }
   };
@@ -31,6 +32,7 @@ const UserPlayground = () => {
       });
     } else {
       let name = app.appName.split(" ").join("+");
+      getAppWithName(name);
       navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
     }
   };

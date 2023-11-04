@@ -94,6 +94,7 @@ export const AppState = ({ children }: ChildProps) => {
         updateAppData: (a) => updateAppData({ dispatch, values: a }),
         getAppWithName: (appName) =>
           getAppWithName({
+            dispatch,
             appName,
             updateApp: (e) => updateAppData({ dispatch, values: e }),
           }),

@@ -2,20 +2,62 @@
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
   "appNameForm": {
-    "initialValues": { "appName": "", "logo": "", "theme": "", "language": "" },
+    "initialValues": {
+      "appName": "",
+      "logo": "",
+      "theme": "",
+      "language": "",
+      "newsletterTitle": "",
+      "newsletterSubtitle": "",
+      "newsletterEmail": "",
+      "newsletterHero": "",
+      "mediaTitle": "",
+      "mediaSubtitle": "",
+      "mediaDetails": "",
+      "mediaHero": ""
+    },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
-      "theme": "Select custom themes to your app",
-      "language": "What is the primary language of your app? (can be changed later)"
+      "theme": "Select custom themes for your app",
+      "language": "What is the primary language of your app? (can be changed later)",
+      "newsletterTitle": "Title",
+      "newsletterSubtitle": "Subtitle",
+      "newsletterEmail": "Email",
+      "newsletterHero": "Image",
+      "mediaTitle": "Enter custom greeting",
+      "mediaSubtitle": "Custom sub heading",
+      "mediaDetails": "Details",
+      "mediaHero": "Add image"
     },
     "placeholders": {
       "appName": "Enter appname ..",
       "logo": "Choose file",
       "theme": "Choose a theme",
-      "language": "English"
+      "language": "English",
+      "newsletterTitle": "Enter custom greeting",
+      "newsletterSubtitle": "Enter custom sub heading",
+      "newsletterEmail": "Enter newsletter email",
+      "newsletterHero": "Add image",
+      "mediaTitle": "Enter custom greeting",
+      "mediaSubtitle": "Custom sub heading",
+      "mediaDetails": "",
+      "mediaHero": ""
     },
-    "types": { "appName": "text", "logo": "file", "theme": "datalist", "language": "select" },
+    "types": {
+      "appName": "text",
+      "logo": "file",
+      "theme": "datalist",
+      "language": "select",
+      "newsletterTitle": "text",
+      "newsletterSubtitle": "text",
+      "newsletterEmail": "text",
+      "newsletterHero": "file",
+      "mediaTitle": "text",
+      "mediaSubtitle": "text",
+      "mediaDetails": "text",
+      "mediaHero": "file"
+    },
     "heading": "",
     "fieldHeading": {}
   },
