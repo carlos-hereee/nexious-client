@@ -7,7 +7,8 @@ import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 
 const EditApp = () => {
-  const { appNameForm, landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
+  const { appNameForm, landingPageForm, editAppName, editLandingPage } =
+    useContext(AdminContext);
   const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
   const { appName, landing, appId } = useContext(AppContext);
 
@@ -64,7 +65,7 @@ const EditApp = () => {
         desiredOrder: landingPageFormOrder,
         hasEntry: sectionEntryOrganizer,
       });
-      console.log("landingValues", landingValues);
+      // console.log("landingValues", landingValues);
       // reset values; avoid redundant data
       setAppValues([]);
       includeEditValues([

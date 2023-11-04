@@ -2,18 +2,20 @@
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
   "appNameForm": {
-    "initialValues": { "appName": "", "logo": "", "theme": "" },
+    "initialValues": { "appName": "", "logo": "", "theme": "", "language": "" },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
-      "theme": "Select custom themes to your app"
+      "theme": "Select custom themes to your app",
+      "language": "What is the primary language of your app? (can be changed later)"
     },
     "placeholders": {
       "appName": "Enter appname ..",
       "logo": "Choose file",
-      "theme": "Choose a theme"
+      "theme": "Choose a theme",
+      "language": "English"
     },
-    "types": { "appName": "text", "logo": "file", "theme": "datalist" },
+    "types": { "appName": "text", "logo": "file", "theme": "datalist", "language": "select" },
     "heading": "",
     "fieldHeading": {}
   },
@@ -173,6 +175,22 @@
       "label": "dark-mode",
       "themeId": "theme-dark-mode",
       "uid": "theme-dark-mode"
+    }
+  ],
+  "languageList": [
+    {
+      "name": "english",
+      "label": "English",
+      "value": "en-US (English)",
+      "locale": "en-US",
+      "uid": "language-english-en"
+    },
+    {
+      "name": "spanish",
+      "label": "Espanol",
+      "value": "es-US (Espanol)",
+      "locale": "es-US",
+      "uid": "language-spanish-en"
     }
   ]
 }

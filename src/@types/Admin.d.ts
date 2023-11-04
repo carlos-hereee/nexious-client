@@ -11,6 +11,7 @@ declare module "app-admin" {
     landingPageFormOrder: string[];
     formErrors: { initAppFormError: string };
     themeList: { [key: string]: string }[];
+    languageList: { [key: string]: string }[];
     sectionEntryOrganizer: {
       name: string;
       form: FormProps;
@@ -30,6 +31,7 @@ declare module "app-admin" {
     ctaForm: FormProps;
     landingPageFormOrder: string[];
     themeList: { [key: string]: string }[];
+    languageList: { [key: string]: string }[];
     sectionEntryOrganizer: {
       name: string;
       form: FormProps;

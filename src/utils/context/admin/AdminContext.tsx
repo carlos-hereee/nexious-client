@@ -39,6 +39,7 @@ export const AdminState = ({ children }: ChildProps) => {
         sectionEntryOrganizer: state.sectionEntryOrganizer,
         formErrors: state.formErrors,
         themeList: state.themeList,
+        languageList: state.languageList,
         initApp: (values) => initApp({ dispatch, values, updateUser, updateAppData }),
         deleteApp: (appId) => deleteApp({ dispatch, appId, updateUser, updateAppData }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, updateAppData }),
