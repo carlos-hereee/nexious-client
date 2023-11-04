@@ -67,7 +67,7 @@ export const AppState = ({ children }: ChildProps) => {
         appId: state.appId,
         landing: state.landing,
         theme: state.theme,
-        // themeList: state.themeList,
+        themeList: state.themeList,
         adminIds: state.adminIds,
         calendar: state.calendar,
         media: state.media,

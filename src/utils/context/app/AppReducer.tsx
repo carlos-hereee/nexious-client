@@ -36,6 +36,8 @@ export const reducer: AppReducerProps = (state, action) => {
       return { ...state, menu: action.payload };
     case APP_ACTIONS.SET_APP_MENU:
       return { ...state, appMenu: action.payload };
+    case APP_ACTIONS.SET_LANGUAGE_ID:
+      return { ...state, languageId: action.payload };
     // case APP_ACTIONS.SET_EDIT_APP:
     //   return { ...state, editApp: action.payload };
     // case APP_ACTIONS.COMING_SOON:

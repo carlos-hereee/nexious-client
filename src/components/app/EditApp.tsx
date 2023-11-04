@@ -7,10 +7,11 @@ import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 
 const EditApp = () => {
-  const { appNameForm, landingPageForm, editAppName, editLandingPage } =
-    useContext(AdminContext);
+  const { landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
   const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
-  const { appName, landing, appId, logo } = useContext(AppContext);
+  const { themeList, languageList, appNameForm } = useContext(AdminContext);
+  const { appName, landing, appId, logo, theme } = useContext(AppContext);
+  const { themeList: themes, languageId } = useContext(AppContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
@@ -58,8 +59,7 @@ const EditApp = () => {
     }
     return reorderedObject;
   };
-  console.log("logo :>> ", logo);
-  console.log("appName :>> ", appName);
+
   useEffect(() => {
     if (appName) {
       const landingValues = organizeValues({
@@ -72,11 +72,17 @@ const EditApp = () => {
       setAppValues([]);
       includeEditValues([
         {
-          values: { appName, logo: logo.url || "" },
+          values: {
+            appName,
+            logo: logo.url || "",
+            theme: themes.join(","),
+            language: languageId,
+          },
           form: appNameForm,
           formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
           withFileUpload: true,
+          dataList: { theme: themeList, language: languageList },
         },
         {
           values: landingValues,
@@ -111,6 +117,7 @@ const EditApp = () => {
   const includeEditValues = (data: InitPaginateFormProps[]) => {
     data.forEach((formData) => {
       const { values, formId, addEntries, onSubmit, withFileUpload } = formData;
+      const { dataList } = formData;
       const { heading, labels, placeholders, types, fieldHeading } = formData.form;
       const addEntry = addEntries ? includeEntries(addEntries) : undefined;
       // const initialValues = reOrderValues(values)
@@ -125,6 +132,8 @@ const EditApp = () => {
         addEntry,
         onSubmit,
         withFileUpload,
+        dataList,
+        theme,
       };
       setAppValues((prev) => [...prev, payload]);
     });

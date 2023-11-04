@@ -10,7 +10,6 @@ import { editLandingPage } from "./helpers/editLandingPage";
 import { AppContext } from "../app/AppContext";
 import { deleteApp } from "./helpers/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
-import { APP_ACTIONS } from "@app/utils/types/AppActions";
 import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);

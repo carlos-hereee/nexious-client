@@ -35,6 +35,8 @@ declare module "app-forms" {
     formId: string;
     withFileUpload?: boolean;
     addEntries?: AddEntryProps[];
+    theme?: string;
+    dataList?: { [key: string]: { [key: string]: string }[] };
     onSubmit?: (key: FormValueProps) => void;
   }
   export type UpdateAppProps = {

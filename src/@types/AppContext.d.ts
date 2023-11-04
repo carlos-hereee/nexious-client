@@ -17,6 +17,7 @@ declare module "app-context" {
     media: SectionProps;
     menu: MenuProps[];
     logo: { [key: string]: string };
+    themeList: { [key: string]: string }[];
     languageId: string;
     calendar: CalendarProps;
     setTheme: (key: string) => void;
@@ -41,5 +42,6 @@ declare module "app-context" {
     menu: MenuProps[];
     calendar: CalendarProps;
     languageId: string;
+    themeList: { [key: string]: string }[];
   }
 }
