@@ -67,7 +67,7 @@
       "title": "text",
       "hero": "file",
       "details": "text",
-      "subtitle": "select",
+      "subtitle": "text",
       "email": "text"
     },
     "desiredOrder": ["title", "subtitle", "hero", "details", "email"]

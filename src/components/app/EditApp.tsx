@@ -88,7 +88,10 @@ const EditApp = () => {
         // otherwise value is not defined
         else reorderedObject[key] = "";
       } // otherwise value is not defined
-      else reorderedObject[key] = "";
+      else {
+        if (values[key]) reorderedObject[key] = values[key];
+        else reorderedObject[key] = "";
+      }
     }
     return reorderedObject;
   };
@@ -129,7 +132,6 @@ const EditApp = () => {
           addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
-        // TODO: add newsletter data
         {
           values: newsletterValues,
           form: newsletterForm,

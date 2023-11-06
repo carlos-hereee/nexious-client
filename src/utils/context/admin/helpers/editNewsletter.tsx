@@ -10,5 +10,7 @@ export const editNewsletter = async (props: EditAppProps) => {
     const { data } = await axiosAuth.post(`/app/update-newsletter/${appId}`, values);
     handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
-  } catch (error) {}
+  } catch (error) {
+    console.log("error :>> ", error);
+  }
 };
