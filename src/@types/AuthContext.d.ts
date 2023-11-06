@@ -45,6 +45,8 @@ declare module "auth-context" {
     signUpForm: FormProps;
     passwordChangeForm: FormProps;
     forgotPasswordForm: FormProps;
+    theme: string;
+    locale: string;
   }
   // export interface
   export interface AuthSchema {
@@ -53,6 +55,8 @@ declare module "auth-context" {
     isOffline: boolean;
     emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
+    theme: string;
+    locale: string;
     ownedApps: { appId: string; logo?: {}; appName: string }[];
     authErrors: AuthErrorProps;
     user: UserSchema;
@@ -72,5 +76,6 @@ declare module "auth-context" {
     fetchUser: (values: UserSchema) => void;
     forgotPassword: (values: FormProps) => void;
     changePassword: (values: UserSchema) => void;
+    setTheme: (key: string) => void;
   }
 }

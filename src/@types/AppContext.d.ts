@@ -8,7 +8,7 @@ declare module "app-context" {
     appList: { [key: string]: any }[];
     appName: string;
     welcomeMessage: string;
-    theme: string;
+    // theme: string;
     landing: any;
     appId: string;
     ownerId: string;
@@ -18,9 +18,8 @@ declare module "app-context" {
     menu: MenuProps[];
     logo: { [key: string]: string };
     themeList: { [key: string]: string }[];
-    languageId: string;
+    locale: string;
     calendar: CalendarProps;
-    setTheme: (key: string) => void;
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;
@@ -31,7 +30,7 @@ declare module "app-context" {
     isLoading: boolean;
     appName: string;
     welcomeMessage: string;
-    theme: string;
+    // theme: string;
     landing: any;
     appId: string;
     ownerId: string;
@@ -41,7 +40,7 @@ declare module "app-context" {
     logo: { [key: string]: string };
     menu: MenuProps[];
     calendar: CalendarProps;
-    languageId: string;
+    locale: string;
     themeList: { [key: string]: string }[];
   }
 }

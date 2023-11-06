@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./utils/context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading } = useContext(AuthContext);
-  const { theme, updateMenu, setTheme } = useContext(AppContext);
+  const { isLoading, theme, setTheme } = useContext(AuthContext);
+  const { updateMenu } = useContext(AppContext);
   const { appLogo, appMenu, appName, updateLanguage } = useContext(AdminContext);
   const navigate = useNavigate();
 

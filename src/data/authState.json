@@ -3,6 +3,8 @@
   "isOffline": false,
   "accessToken": "",
   "emergencyPasswordChangeIsRequired": false,
+  "theme": "",
+  "locale": "",
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,
     "signInError": "",

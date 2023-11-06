@@ -3,10 +3,12 @@ import { Form } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AppContext } from "@app/utils/context/app/AppContext";
+import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const BuildApp = () => {
   const { initAppForm: form, initApp, themeList, languageList } = useContext(AdminContext);
-  const { appList, theme } = useContext(AppContext);
+  const { appList } = useContext(AppContext);
+  const { theme } = useContext(AuthContext);
   const navigate = useNavigate();
 
   return (

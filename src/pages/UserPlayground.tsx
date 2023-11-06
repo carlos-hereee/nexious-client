@@ -7,7 +7,7 @@ import WelcomeBanner from "@app/components/app/WelcomeBanner";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { theme, getAppWithName } = useContext(AppContext);
+  const { getAppWithName } = useContext(AppContext);
   const [error, setError] = useState<{ [key: string]: any }>({});
   const navigate = useNavigate();
 
@@ -48,17 +48,14 @@ const UserPlayground = () => {
       navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
     }
   };
-  // console.log("ownedApps", ownedApps);
+  const handleBuild = () => navigate("/build-app");
+  console.log("ownedApps", ownedApps);
   return (
     <div className="container">
       <WelcomeBanner />
       <div className="container">
         <h2 className="heading">All your apps: </h2>
-        <button
-          type="button"
-          className={`btn-main w-max ${theme ? "btn-" + theme : ""}`}
-          onClick={() => navigate("/build-app")}
-        >
+        <button type="button" className="btn-main w-max" onClick={handleBuild}>
           + Create a new app
         </button>
         {ownedApps && ownedApps.length > 0 ? (

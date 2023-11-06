@@ -5,7 +5,7 @@ import authState from "../../../data/authState.json";
 import { login } from "./helpers/login";
 import { register } from "./helpers/register";
 import { logOut } from "./helpers/logout";
-import { updateUser } from "./helpers/updateUser";
+import { updateUser } from "./dispatch/updateUser";
 import { changePassword } from "./helpers/changePassword";
 import { getAccessToken } from "./helpers/getAccessToken";
 import { forgotPassword } from "./helpers/forgotPassword";
@@ -13,6 +13,7 @@ import { fetchUser } from "./helpers/fetchUser";
 import { ChildProps } from "app-types";
 import { AuthSchema } from "auth-context";
 import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { updateTheme } from "./dispatch/updateTheme";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -31,6 +32,8 @@ export const AuthState = ({ children }: ChildProps) => {
         authErrors: state.authErrors,
         accessToken: state.accessToken,
         user: state.user,
+        theme: state.theme,
+        locale: state.locale,
         userForm: state.userForm,
         loginForm: state.loginForm,
         signUpForm: state.signUpForm,
@@ -46,6 +49,7 @@ export const AuthState = ({ children }: ChildProps) => {
         fetchUser: (a) => fetchUser(dispatch, a),
         changePassword: (e) => changePassword(dispatch, e),
         forgotPassword: (a) => forgotPassword(dispatch, a),
+        setTheme: (a) => updateTheme({ dispatch, data: a }),
         login: (e) =>
           login({
             dispatch,

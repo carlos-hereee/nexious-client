@@ -5,13 +5,15 @@ import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AddEntryProps, FormValueProps, InitPaginateFormProps } from "app-forms";
 import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const EditApp = () => {
   const { landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
   const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
   const { themeList, languageList, initAppForm } = useContext(AdminContext);
-  const { appName, landing, appId, logo, theme } = useContext(AppContext);
-  const { themeList: themes, languageId } = useContext(AppContext);
+  const { appName, landing, appId, logo } = useContext(AppContext);
+  const { themeList: themes, locale } = useContext(AppContext);
+  const { theme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
@@ -105,7 +107,7 @@ const EditApp = () => {
             appName,
             logo: logo.url || "",
             theme: themes.join(","),
-            language: languageId,
+            language: locale,
           },
           form: initAppForm,
           formId: "appName",

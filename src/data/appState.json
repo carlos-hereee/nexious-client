@@ -6,7 +6,7 @@
   "appId": "",
   "ownerId": "",
   "welcomeMessage": "Welcome back!",
-  "languageId": "",
+  "locale": "",
   "adminIds": [""],
   "newsletter": {
     "title": "",
@@ -26,7 +26,6 @@
   },
   "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
-  "theme": "dark-mode",
   "landing": {},
   "logo": {}
 }

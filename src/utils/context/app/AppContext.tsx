@@ -11,7 +11,6 @@ import { APP_ACTIONS } from "@app/utils/types/AppActions";
 import { getAppList } from "./helpers/getAppList";
 import { getAppWithName } from "./helpers/getWithAppName";
 import { updateMenu } from "./dispatch/updateMenu";
-import { updateTheme } from "./dispatch/updateTheme";
 // import { uploadImage } from "./helpers/uploadImage";
 // import { getLatestAppData } from "./helpers/getLatestAppData";
 // import { getFiles } from "./helpers/getFiles";
@@ -37,7 +36,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, user } = useContext(AuthContext);
+  // const { accessToken, user } = useContext(AuthContext);
   // const navigate = useNavigate();
   // const queryParams = useLocation();
 
@@ -66,7 +65,7 @@ export const AppState = ({ children }: ChildProps) => {
         appName: state.appName,
         appId: state.appId,
         landing: state.landing,
-        theme: state.theme,
+        // theme: state.theme,
         themeList: state.themeList,
         adminIds: state.adminIds,
         calendar: state.calendar,
@@ -74,7 +73,7 @@ export const AppState = ({ children }: ChildProps) => {
         menu: state.menu,
         ownerId: state.ownerId,
         logo: state.logo,
-        languageId: state.languageId,
+        locale: state.locale,
         welcomeMessage: state.welcomeMessage,
         newsletter: state.newsletter,
         updateAppData: (a) => updateAppData({ dispatch, values: a }),
@@ -87,7 +86,6 @@ export const AppState = ({ children }: ChildProps) => {
           }),
         // getAppList: () => getAppList({ dispatch }),
         updateMenu: (a) => updateMenu({ dispatch, data: a }),
-        setTheme: (a) => updateTheme({ dispatch, data: a }),
 
         // language: state.language,
         // menu: state.menu,
