@@ -35,6 +35,8 @@ export const reducer: AuthReducerProps = (state, action) => {
       return { ...state, user: action.payload };
     case AUTH_ACTIONS.UPDATE_SHIPPING_DETAILS:
       return { ...state, shippingDetails: action.payload };
+    case AUTH_ACTIONS.SET_THEME:
+      return { ...state, theme: action.payload };
     case AUTH_ACTIONS.SET_CHANGE_PASSWORD:
       return {
         ...state,

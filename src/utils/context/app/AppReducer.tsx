@@ -8,8 +8,6 @@ export const reducer: AppReducerProps = (state, action) => {
   switch (action.type) {
     case APP_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
-    case APP_ACTIONS.SET_THEME:
-      return { ...state, theme: action.payload };
     case APP_ACTIONS.SET_THEME_LIST:
       return { ...state, themeList: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:

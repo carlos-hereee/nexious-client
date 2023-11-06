@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./utils/context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme } = useContext(AuthContext);
   const { updateMenu } = useContext(AppContext);
   const { appLogo, appMenu, appName, updateLanguage } = useContext(AdminContext);
+  const { isLoading, theme, setTheme } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,12 +40,11 @@ const App = ({ children }: ChildProps) => {
       updateMenu(oldValues);
     }
   };
+  console.log("theme :>> ", theme);
   // waiting server response
   if (isLoading) return <Loading message="Loading app assets.." />;
   return (
-    <div
-      className={theme ? `${theme} app-container elbow-space` : "app-container elbow-space"}
-    >
+    <div className={`app-container elbow-space${theme ? " " + theme : ""}`}>
       <Header
         menu={appMenu}
         logo={appLogo}

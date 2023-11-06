@@ -3,7 +3,7 @@
   "isOffline": false,
   "accessToken": "",
   "emergencyPasswordChangeIsRequired": false,
-  "theme": "",
+  "theme": "dark-mode",
   "locale": "",
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,
