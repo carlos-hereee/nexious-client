@@ -12,6 +12,7 @@ import { deleteApp } from "./helpers/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
 import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { updateLanguage } from "./helpers/updateLanguage";
+import { editNewsletter } from "./helpers/editNewsletter";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -55,10 +56,10 @@ export const AdminState = ({ children }: ChildProps) => {
         initAppForm: state.initAppForm,
         pagesForm: state.pagesForm,
         sectionForm: state.sectionForm,
+        newsletterForm: state.newsletterForm,
         landingPageForm: state.landingPageForm,
         heroForm: state.heroForm,
         ctaForm: state.ctaForm,
-        landingPageFormOrder: state.landingPageFormOrder,
         sectionEntryOrganizer: state.sectionEntryOrganizer,
         formErrors: state.formErrors,
         themeList: state.themeList,
@@ -72,6 +73,8 @@ export const AdminState = ({ children }: ChildProps) => {
         initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
         deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
+        editNewsletter: (values, appId) =>
+          editNewsletter({ dispatch, values, appId, handleAppAssets }),
         editAppName: (values, appId) =>
           editAppName({ dispatch, values, appId, handleAppAssets }),
         editLandingPage: (values, appId) =>

@@ -18,6 +18,7 @@ declare module "app-context" {
     menu: MenuProps[];
     logo: { [key: string]: string };
     themeList: { [key: string]: string }[];
+    languageList: { [key: string]: string }[];
     locale: string;
     calendar: CalendarProps;
     updateAppData: (key: FormValueProps) => void;
@@ -29,6 +30,7 @@ declare module "app-context" {
     appList: { [key: string]: any }[];
     isLoading: boolean;
     appName: string;
+    languageList: { [key: string]: string }[];
     welcomeMessage: string;
     // theme: string;
     landing: any;

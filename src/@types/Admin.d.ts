@@ -8,8 +8,9 @@ declare module "app-admin" {
     sectionForm: FormProps;
     landingPageForm: FormProps;
     heroForm: FormProps;
+    newsletterForm: FormProps;
     ctaForm: FormProps;
-    landingPageFormOrder: string[];
+    // landingPageFormOrder: string[];
     formErrors: { initAppFormError: string };
     themeList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
@@ -31,9 +32,10 @@ declare module "app-admin" {
     pagesForm: FormProps;
     sectionForm: FormProps;
     landingPageForm: FormProps;
+    newsletterForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
-    landingPageFormOrder: string[];
+    // landingPageFormOrder:;
     themeList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
@@ -52,5 +54,6 @@ declare module "app-admin" {
     updateAppMenu: (menu: MenuProps[]) => void;
     updateLanguage: (locale: string, appName: string) => void;
     editLandingPage: (values: FormValueProps, appId: string) => void;
+    editNewsletter: (values: FormValueProps, appId: string) => void;
   }
 }

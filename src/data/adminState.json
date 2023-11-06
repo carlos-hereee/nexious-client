@@ -39,6 +39,39 @@
       "locale": "select"
     }
   },
+  "newsletterForm": {
+    "heading": "Configure your newsletter details here!",
+    "submitLabel": "Save and continue",
+    "fieldHeading": {},
+    "initialValues": {
+      "title": "",
+      "subtitle": "",
+      "hero": "",
+      "details": "",
+      "email": ""
+    },
+    "labels": {
+      "title": "Title",
+      "hero": "Add background image",
+      "subtitle": "Subtitle",
+      "details": "Disclaimer data",
+      "email": "Forwarding email"
+    },
+    "placeholders": {
+      "title": "",
+      "hero": "Choose file",
+      "subtitle": "",
+      "laguageList": ""
+    },
+    "types": {
+      "title": "text",
+      "hero": "file",
+      "details": "text",
+      "subtitle": "select",
+      "email": "text"
+    },
+    "desiredOrder": ["title", "subtitle", "hero", "details", "email"]
+  },
   "pagesForm": {
     "heading": "",
     "fieldHeading": {},
@@ -97,6 +130,7 @@
       "title": "",
       "tagline": "",
       "body": "",
+      "hero": "",
       "hasCta": false,
       "hasSections": false
     },
@@ -107,12 +141,14 @@
       "cta": "text",
       "hasSections": "checkbox",
       "hasCta": "checkbox",
+      "hero": "file",
       "sections": "text"
     },
     "labels": {
       "title": "Page heading",
       "tagline": "What's your app's tagline?",
       "body": "Enter page details",
+      "hero": "Add background image",
       "hasCta": "This part of the app has a Call To Action",
       "hasSections": "This part of the app has a sub section",
       "label": "Enter display data",
@@ -124,10 +160,21 @@
       "body": "",
       "cta": "",
       "hasSection": "",
-      "hasCta": ""
+      "hasCta": "",
+      "hero": "file"
     },
     "heading": "Update landing page data",
-    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" }
+    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
+    "desiredOrder": [
+      "title",
+      "tagline",
+      "hero",
+      "body",
+      "hasCta",
+      "cta",
+      "hasSections",
+      "sections"
+    ]
   },
   "heroForm": {
     "heading": "",
@@ -137,15 +184,7 @@
     "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
-  "landingPageFormOrder": [
-    "title",
-    "tagline",
-    "body",
-    "hasCta",
-    "cta",
-    "hasSections",
-    "sections"
-  ],
+
   "sectionEntryOrganizer": [
     {
       "name": "hasCta",

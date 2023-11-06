@@ -3,7 +3,6 @@ import { APP_ACTIONS } from "@app/utils/types/AppActions";
 
 export const updateAppData = (props: UpdateAppProps) => {
   const { dispatch, values } = props;
-  console.log("values :>> ", values);
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   // if values exists other wise use default type
   dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: values?.logo || {} });

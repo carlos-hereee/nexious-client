@@ -11,6 +11,7 @@ declare module "app-forms" {
     placeholders: { [key: string]: string | undefined };
     types: { [key: string]: string | undefined };
     fieldHeading: { [key: string]: string | undefined };
+    desiredOrder?: string[];
     submitLabel?: string;
     additionLabel?: string;
     removalLabel?: string;

@@ -7,7 +7,7 @@
   "ownerId": "",
   "welcomeMessage": "Welcome back!",
   "locale": "",
-  "adminIds": [""],
+  "adminIds": [],
   "newsletter": {
     "title": "",
     "subtitle": "",
@@ -27,5 +27,21 @@
   "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "landing": {},
-  "logo": {}
+  "logo": {},
+  "languageList": [
+    {
+      "name": "english",
+      "label": "English",
+      "value": "en-US (English)",
+      "locale": "en-US",
+      "uid": "language-english-en"
+    },
+    {
+      "name": "spanish",
+      "label": "Espanol",
+      "value": "es-US (Espanol)",
+      "locale": "es-US",
+      "uid": "language-spanish-en"
+    }
+  ]
 }

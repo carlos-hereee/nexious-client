@@ -49,7 +49,7 @@ const UserPlayground = () => {
     }
   };
   const handleBuild = () => navigate("/build-app");
-  console.log("ownedApps", ownedApps);
+  // console.log("ownedApps", ownedApps);
   return (
     <div className="container">
       <WelcomeBanner />
@@ -61,7 +61,7 @@ const UserPlayground = () => {
         {ownedApps && ownedApps.length > 0 ? (
           ownedApps.map((app) => (
             <div key={app.appId} className="card-row pad-t">
-              <Hero hero={app.logo || {}} onImageClick={() => handleEdit(app)} />
+              <Hero hero={app.logo || {}} theme="logo" onImageClick={() => handleEdit(app)} />
               <div className="flex-column elbow-space mb-2">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
                 <div>

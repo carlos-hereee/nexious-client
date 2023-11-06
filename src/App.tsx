@@ -40,7 +40,7 @@ const App = ({ children }: ChildProps) => {
       updateMenu(oldValues);
     }
   };
-  console.log("theme :>> ", theme);
+  // console.log("theme :>> ", theme);
   // waiting server response
   if (isLoading) return <Loading message="Loading app assets.." />;
   return (

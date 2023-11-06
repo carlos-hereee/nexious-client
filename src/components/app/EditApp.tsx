@@ -9,15 +9,16 @@ import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const EditApp = () => {
   const { landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
-  const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
-  const { themeList, languageList, initAppForm } = useContext(AdminContext);
-  const { appName, landing, appId, logo } = useContext(AppContext);
-  const { themeList: themes, locale } = useContext(AppContext);
+  const { sectionEntryOrganizer, newsletterForm, editNewsletter } = useContext(AdminContext);
+  const { initAppForm } = useContext(AdminContext);
+  const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
+  const { languageList, newsletter } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
   const navigate = useNavigate();
+
   /**
    * labels{
    *  "newsletterTitle": "Title",
@@ -86,7 +87,8 @@ const EditApp = () => {
         }
         // otherwise value is not defined
         else reorderedObject[key] = "";
-      }
+      } // otherwise value is not defined
+      else reorderedObject[key] = "";
     }
     return reorderedObject;
   };
@@ -95,10 +97,14 @@ const EditApp = () => {
     if (appName) {
       const landingValues = organizeValues({
         values: landing,
-        desiredOrder: landingPageFormOrder,
+        desiredOrder: landingPageForm.desiredOrder || [],
         hasEntry: sectionEntryOrganizer,
       });
-      // console.log("landingValues", landingValues);
+      const newsletterValues = organizeValues({
+        values: newsletter,
+        desiredOrder: newsletterForm.desiredOrder || [],
+      });
+      console.log("newsletterValues", newsletterValues);
       // reset values; avoid redundant data
       setAppValues([]);
       includeEditValues([
@@ -106,14 +112,15 @@ const EditApp = () => {
           values: {
             appName,
             logo: logo.url || "",
-            theme: themes.join(","),
-            language: locale,
+            theme: themes.map((t) => t.value).join(","),
+            locale,
+            language: languageList.map((l) => l.value).join(","),
           },
           form: initAppForm,
           formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
           withFileUpload: true,
-          dataList: { theme: themeList, language: languageList },
+          dataList: { theme: themes, locale: languageList, language: languageList },
         },
         {
           values: landingValues,
@@ -123,13 +130,12 @@ const EditApp = () => {
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
         // TODO: add newsletter data
-        // {
-        //   values:{ landingValues},
-        //   form: landingPageForm,
-        //   formId: "landing",
-        //   addEntries: sectionEntryOrganizer,
-        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
-        // },
+        {
+          values: newsletterValues,
+          form: newsletterForm,
+          formId: "newsletter",
+          onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
+        },
         // TODO: add social medias
         // {
         //   values:{ landingValues},
