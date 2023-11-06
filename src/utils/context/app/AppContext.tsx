@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import appState from "@data/appState.json";
 import { ChildProps } from "app-types";
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { updateAppData } from "./helpers/updateAppData";
+import { updateAppData } from "./dispatch/updateAppData";
 import { AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
 import { getAppList } from "./helpers/getAppList";

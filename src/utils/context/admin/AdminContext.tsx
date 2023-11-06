@@ -45,7 +45,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const handleAppAssets = (values: any) => {
     values.app && updateAppData(values.app);
-    values.appList && updateAppData(values.appList);
+    values.appList && updateAppList(values.appList);
     values.user && updateUser(values.user);
   };
 
@@ -60,6 +60,7 @@ export const AdminState = ({ children }: ChildProps) => {
         landingPageForm: state.landingPageForm,
         heroForm: state.heroForm,
         ctaForm: state.ctaForm,
+        socialMediaForm: state.socialMediaForm,
         sectionEntryOrganizer: state.sectionEntryOrganizer,
         formErrors: state.formErrors,
         themeList: state.themeList,

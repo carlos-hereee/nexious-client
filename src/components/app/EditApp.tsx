@@ -8,11 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const EditApp = () => {
-  const { landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
-  const { sectionEntryOrganizer, newsletterForm, editNewsletter } = useContext(AdminContext);
-  const { initAppForm } = useContext(AdminContext);
+  const { sectionEntryOrganizer, newsletterForm } = useContext(AdminContext);
+  const { landingPageForm, initAppForm, socialMediaForm } = useContext(AdminContext);
+  const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
+  const { editSocialMedia } = useContext(AdminContext);
   const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
-  const { languageList, newsletter } = useContext(AppContext);
+  const { languageList, newsletter, media } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
@@ -107,7 +108,10 @@ const EditApp = () => {
         values: newsletter,
         desiredOrder: newsletterForm.desiredOrder || [],
       });
-      console.log("newsletterValues", newsletterValues);
+      const mediaValues = organizeValues({
+        values: media,
+        desiredOrder: socialMediaForm.desiredOrder || [],
+      });
       // reset values; avoid redundant data
       setAppValues([]);
       includeEditValues([
@@ -138,14 +142,14 @@ const EditApp = () => {
           formId: "newsletter",
           onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
         },
-        // TODO: add social medias
-        // {
-        //   values:{ landingValues},
-        //   form: landingPageForm,
-        //   formId: "landing",
-        //   addEntries: sectionEntryOrganizer,
-        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
-        // },
+        // TODO: add social media
+        {
+          values: mediaValues,
+          form: socialMediaForm,
+          formId: "medias",
+          // addEntries: sectionEntryOrganizer,
+          onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
+        },
         // TODO: add calendar
         // {
         //   values:{ landingValues},

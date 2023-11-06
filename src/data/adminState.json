@@ -39,6 +39,91 @@
       "locale": "select"
     }
   },
+  "landingPageForm": {
+    "heading": "Update landing page data",
+    "submitLabel": "Save and continue",
+    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
+    "initialValues": {
+      "title": "",
+      "tagline": "",
+      "body": "",
+      "hero": "",
+      "hasCta": false,
+      "hasSections": false
+    },
+    "types": {
+      "title": "text",
+      "tagline": "text",
+      "body": "textarea",
+      "cta": "text",
+      "hasSections": "checkbox",
+      "hasCta": "checkbox",
+      "hero": "file",
+      "sections": "text"
+    },
+    "labels": {
+      "title": "Page heading",
+      "tagline": "What's your app's tagline?",
+      "body": "Enter page details",
+      "hero": "Add background image",
+      "hasCta": "This part of the app has a Call To Action",
+      "hasSections": "This part of the app has a sub section",
+      "label": "Enter display data",
+      "link": "What page or url does it point to"
+    },
+    "placeholders": {
+      "title": "",
+      "tagline": "",
+      "body": "",
+      "cta": "",
+      "hasSection": "",
+      "hasCta": "",
+      "hero": "file"
+    },
+    "desiredOrder": [
+      "title",
+      "tagline",
+      "hero",
+      "body",
+      "hasCta",
+      "cta",
+      "hasSections",
+      "sections"
+    ]
+  },
+  "socialMediaForm": {
+    "heading": "Link your social media here!",
+    "submitLabel": "Save and continue",
+    "fieldHeading": {},
+    "initialValues": {
+      "title": "",
+      "subtitle": "",
+      "hero": "",
+      "details": "",
+      "email": ""
+    },
+    "labels": {
+      "title": "Title",
+      "hero": "Add background image",
+      "subtitle": "Subtitle",
+      "details": "Disclaimer data",
+      "email": "Forwarding email"
+    },
+    "placeholders": {
+      "title": "",
+      "hero": "Choose file",
+      "subtitle": "",
+      "laguageList": ""
+    },
+    "types": {
+      "title": "text",
+      "hero": "file",
+      "details": "text",
+      "subtitle": "text",
+      "email": "text"
+    },
+    "desiredOrder": ["title", "subtitle", "hero", "details", "email"]
+  },
   "newsletterForm": {
     "heading": "Configure your newsletter details here!",
     "submitLabel": "Save and continue",
@@ -125,57 +210,6 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove"
   },
-  "landingPageForm": {
-    "initialValues": {
-      "title": "",
-      "tagline": "",
-      "body": "",
-      "hero": "",
-      "hasCta": false,
-      "hasSections": false
-    },
-    "types": {
-      "title": "text",
-      "tagline": "text",
-      "body": "textarea",
-      "cta": "text",
-      "hasSections": "checkbox",
-      "hasCta": "checkbox",
-      "hero": "file",
-      "sections": "text"
-    },
-    "labels": {
-      "title": "Page heading",
-      "tagline": "What's your app's tagline?",
-      "body": "Enter page details",
-      "hero": "Add background image",
-      "hasCta": "This part of the app has a Call To Action",
-      "hasSections": "This part of the app has a sub section",
-      "label": "Enter display data",
-      "link": "What page or url does it point to"
-    },
-    "placeholders": {
-      "title": "",
-      "tagline": "",
-      "body": "",
-      "cta": "",
-      "hasSection": "",
-      "hasCta": "",
-      "hero": "file"
-    },
-    "heading": "Update landing page data",
-    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
-    "desiredOrder": [
-      "title",
-      "tagline",
-      "hero",
-      "body",
-      "hasCta",
-      "cta",
-      "hasSections",
-      "sections"
-    ]
-  },
   "heroForm": {
     "heading": "",
     "fieldHeading": {},
@@ -184,7 +218,6 @@
     "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
-
   "sectionEntryOrganizer": [
     {
       "name": "hasCta",

@@ -14,7 +14,7 @@ declare module "app-context" {
     ownerId: string;
     adminIds: string[];
     newsletter: SectionProps;
-    media: SectionProps;
+    media: SectionProps[];
     menu: MenuProps[];
     logo: { [key: string]: string };
     themeList: { [key: string]: string }[];
@@ -38,8 +38,8 @@ declare module "app-context" {
     ownerId: string;
     adminIds: string[];
     newsletter: SectionProps;
-    media: SectionProps;
     logo: { [key: string]: string };
+    media: SectionProps[];
     menu: MenuProps[];
     calendar: CalendarProps;
     locale: string;

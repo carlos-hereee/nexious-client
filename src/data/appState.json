@@ -16,14 +16,7 @@
     "details": "",
     "sections": []
   },
-  "media": {
-    "title": "",
-    "subtitle": "",
-    "data": "",
-    "theme": "",
-    "details": "",
-    "sections": []
-  },
+  "media": [],
   "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "landing": {},

@@ -9,6 +9,7 @@ declare module "app-admin" {
     landingPageForm: FormProps;
     heroForm: FormProps;
     newsletterForm: FormProps;
+    socialMediaForm: FormProps;
     ctaForm: FormProps;
     // landingPageFormOrder: string[];
     formErrors: { initAppFormError: string };
@@ -33,6 +34,7 @@ declare module "app-admin" {
     sectionForm: FormProps;
     landingPageForm: FormProps;
     newsletterForm: FormProps;
+    socialMediaForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
     // landingPageFormOrder:;
