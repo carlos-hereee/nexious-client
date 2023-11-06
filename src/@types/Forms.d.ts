@@ -38,8 +38,10 @@ declare module "app-forms" {
     withFileUpload?: boolean;
     addEntries?: AddEntryProps[];
     theme?: string;
+    previewLabel?: string;
     dataList?: { [key: string]: { [key: string]: string }[] };
     onSubmit?: (key: FormValueProps) => void;
+    onViewPreview?: (key: FormValueProps[]) => void;
   }
   export type UpdateAppProps = {
     dispatch: React.Dispatch<any>;

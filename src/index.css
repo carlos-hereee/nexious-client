@@ -6,6 +6,10 @@
 /* form {
   width: 100%;
 } */
+.edit-app{
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .testimonial-form {
   display: flex;

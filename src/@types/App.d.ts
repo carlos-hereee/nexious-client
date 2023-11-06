@@ -44,4 +44,9 @@ declare module "app-types" {
     values: FormValueProps;
     desiredData: string[];
   }
+  export interface HeaderProps {
+    language: string;
+    locale: string;
+    theme: string;
+  }
 }

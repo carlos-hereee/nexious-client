@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Loading, PaginateForm } from "nexious-library";
+import { Header, Loading, PaginateForm } from "nexious-library";
 import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AddEntryProps, FormValueProps, InitPaginateFormProps } from "app-forms";
 import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/utils/context/auth/AuthContext";
+import { formatHeaderValues } from "@app/utils/app/formatHeaderValues";
 
 const EditApp = () => {
   const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
@@ -18,6 +19,8 @@ const EditApp = () => {
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
+  const [active, setActive] = useState<string>("");
+  const [preview, setPreview] = useState<FormValueProps>([]);
   const navigate = useNavigate();
 
   const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
@@ -63,6 +66,10 @@ const EditApp = () => {
     }
     return reorderedObject;
   };
+  const handlePreview = (formId: string, values: FormValueProps[]) => {
+    setActive(formId);
+    setPreview(values);
+  };
 
   useEffect(() => {
     if (appName) {
@@ -97,6 +104,8 @@ const EditApp = () => {
           form: initAppForm,
           formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
+          onViewPreview: (e: FormValueProps[]) => handlePreview("appName", e),
+          previewLabel: "See changes",
           withFileUpload: true,
           dataList: { theme: themes, locale: languageList, language: languageList },
         },
@@ -131,6 +140,9 @@ const EditApp = () => {
     }
   }, [appName]);
 
+  console.log("preview :>> ", preview);
+  console.log("active :>> ", active);
+
   const includeEntries = (entries: AddEntryProps[]) => {
     let payload: { [key: string]: any } = {};
     entries.forEach((entry) => {
@@ -153,7 +165,7 @@ const EditApp = () => {
   const includeEditValues = (data: InitPaginateFormProps[]) => {
     data.forEach((formData) => {
       const { values, formId, addEntries, onSubmit, withFileUpload } = formData;
-      const { dataList } = formData;
+      const { dataList, onViewPreview, previewLabel } = formData;
       const { heading, labels, placeholders, types, fieldHeading } = formData.form;
       const addEntry = addEntries ? includeEntries(addEntries) : undefined;
       // const initialValues = reOrderValues(values)
@@ -170,6 +182,8 @@ const EditApp = () => {
         withFileUpload,
         dataList,
         theme,
+        previewLabel,
+        onViewPreview,
       };
       setAppValues((prev) => [...prev, payload]);
     });
@@ -179,9 +193,22 @@ const EditApp = () => {
   // console.log("appValues :>> ", appValues);
   if (isLoadingFormState) return <Loading message="Loading app data" />;
   return (
-    <div>
-      <h2 className="heading">Editing app: {appName}</h2>
-      <PaginateForm paginate={appValues} onCancel={() => navigate("/")} />
+    <div className="edit-app">
+      <div className="container">
+        <h2 className="heading">Editing app: {appName}</h2>
+        <PaginateForm paginate={appValues} onCancel={() => navigate("/")} />
+      </div>
+      {active === "appName" && (
+        <Header
+          logo={{ url: preview.logo }}
+          heading={preview.appName}
+          menu={formatHeaderValues({
+            language: preview.language || "",
+            locale: preview.locale || "",
+            theme: preview.theme || "",
+          })}
+        />
+      )}
     </div>
   );
 };
