@@ -2,17 +2,18 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import { reducer } from "./AdminReducer";
 import { AdminSchema } from "app-admin";
 import { ChildProps } from "app-types";
-import { initApp } from "./helpers/initApp";
-import { editApp } from "./helpers/editApp";
+import { initApp } from "./requests/initApp";
+import { editApp } from "./requests/editApp";
 import adminState from "@data/adminState.json";
-import { editAppName } from "./helpers/editAppName";
-import { editLandingPage } from "./helpers/editLandingPage";
+import { editAppName } from "./requests/editAppName";
+import { editLandingPage } from "./requests/editLandingPage";
 import { AppContext } from "../app/AppContext";
-import { deleteApp } from "./helpers/deleteApp";
+import { deleteApp } from "./requests/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
 import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
-import { updateLanguage } from "./helpers/updateLanguage";
-import { editNewsletter } from "./helpers/editNewsletter";
+import { updateLanguage } from "./requests/updateLanguage";
+import { editNewsletter } from "./requests/editNewsletter";
+import { editSocialMedia } from "./requests/editSocialMedia";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -80,6 +81,8 @@ export const AdminState = ({ children }: ChildProps) => {
           editAppName({ dispatch, values, appId, handleAppAssets }),
         editLandingPage: (values, appId) =>
           editLandingPage({ dispatch, values, appId, handleAppAssets }),
+        editSocialMedia: (values, appId) =>
+          editSocialMedia({ dispatch, values, appId, handleAppAssets }),
       }}
     >
       {children}

@@ -20,37 +20,6 @@ const EditApp = () => {
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
   const navigate = useNavigate();
 
-  /**
-   * labels{
-   *  "newsletterTitle": "Title",
-      "newsletterSubtitle": "Subtitle",
-      "newsletterEmail": "Email",
-      "newsletterHero": "Image",
-      "mediaTitle": "Enter custom greeting",
-      "mediaSubtitle": "Custom sub heading",
-      "mediaDetails": "Details",
-      "mediaHero": "Add image"},
-      placehodlers {
-         "newsletterTitle": "Enter custom greeting",
-      "newsletterSubtitle": "Enter custom sub heading",
-      "newsletterEmail": "Enter newsletter email",
-      "newsletterHero": "Add image",
-      "mediaTitle": "Enter custom greeting",
-      "mediaSubtitle": "Custom sub heading",
-      "mediaDetails": "",
-      "mediaHero": "" }
-      types: {
-          "newsletterTitle": "text",
-      "newsletterSubtitle": "text",
-      "newsletterEmail": "text",
-      "newsletterHero": "file",
-      "mediaTitle": "text",
-      "mediaSubtitle": "text",
-      "mediaDetails": "text",
-      "mediaHero": "file"
-      }
-   */
-
   const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
     const { desiredOrder, hasEntry, values } = props;
     const reorderedObject: FormValueProps = {};
@@ -142,7 +111,6 @@ const EditApp = () => {
           formId: "newsletter",
           onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
         },
-        // TODO: add social media
         {
           values: mediaValues,
           form: socialMediaForm,

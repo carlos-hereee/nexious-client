@@ -57,5 +57,6 @@ declare module "app-admin" {
     updateLanguage: (locale: string, appName: string) => void;
     editLandingPage: (values: FormValueProps, appId: string) => void;
     editNewsletter: (values: FormValueProps, appId: string) => void;
+    editSocialMedia: (values: FormValueProps, appId: string) => void;
   }
 }
