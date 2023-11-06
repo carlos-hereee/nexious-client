@@ -24,7 +24,6 @@ export const formatHeaderValues = (props: HeaderProps) => {
 
   const loginMenuItem = formatMenuItem("login");
   const dashboardMenuItem = formatMenuItem("dashboard");
-
   const themePayload = {
     isToggle: true,
     isPrivate: false,
@@ -37,6 +36,7 @@ export const formatHeaderValues = (props: HeaderProps) => {
     isPrivate: false,
     menuId: uniqueId(),
     active: languageList.filter((list) => list.value === locale)[0],
+    // TODO:  add all client selected languages here
     alternatives: languageList.filter((list) => lList.includes(list.value)),
   };
   const authPayload = {

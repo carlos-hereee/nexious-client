@@ -7,6 +7,8 @@ import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/utils/context/auth/AuthContext";
 import { formatHeaderValues } from "@app/utils/app/formatHeaderValues";
+import { MenuProps } from "app-types";
+import { scrollToId } from "@app/utils/app/scrollToElement";
 
 const EditApp = () => {
   const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
@@ -15,12 +17,13 @@ const EditApp = () => {
   const { editSocialMedia, editCalendar } = useContext(AdminContext);
   const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
   const { languageList, newsletter, media, calendar } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
+  // const {  } = useContext(AppContext);
+  const { theme, setTheme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
   const [active, setActive] = useState<string>("");
-  const [preview, setPreview] = useState<FormValueProps>([]);
+  const [preview, setPreview] = useState<FormValueProps>({});
   const navigate = useNavigate();
 
   const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
@@ -102,9 +105,9 @@ const EditApp = () => {
             language: languageList.map((l) => l.value).join(","),
           },
           form: initAppForm,
-          formId: "appName",
+          formId: "initApp",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
-          onViewPreview: (e: FormValueProps[]) => handlePreview("appName", e),
+          onViewPreview: (e: FormValueProps[]) => handlePreview("initApp", e),
           previewLabel: "See changes",
           withFileUpload: true,
           dataList: { theme: themes, locale: languageList, language: languageList },
@@ -112,7 +115,7 @@ const EditApp = () => {
         {
           values: landingValues,
           form: landingPageForm,
-          formId: "landing",
+          formId: "landingPage",
           addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
@@ -140,8 +143,12 @@ const EditApp = () => {
     }
   }, [appName]);
 
-  console.log("preview :>> ", preview);
-  console.log("active :>> ", active);
+  useEffect(() => {
+    if (active) scrollToId(active);
+  }, [active]);
+
+  // console.log("preview :>> ", preview);
+  // console.log("active :>> ", active);
 
   const includeEntries = (entries: AddEntryProps[]) => {
     let payload: { [key: string]: any } = {};
@@ -181,7 +188,6 @@ const EditApp = () => {
         onSubmit,
         withFileUpload,
         dataList,
-        theme,
         previewLabel,
         onViewPreview,
       };
@@ -191,24 +197,31 @@ const EditApp = () => {
   };
   // console.log("landing", landing);
   // console.log("appValues :>> ", appValues);
+
+  const handleMenu = (menuItem: MenuProps) => {
+    const { active } = menuItem;
+    if (active?.themeId) setTheme(active.name || theme);
+  };
   if (isLoadingFormState) return <Loading message="Loading app data" />;
   return (
-    <div className="edit-app">
-      <div className="container">
-        <h2 className="heading">Editing app: {appName}</h2>
-        <PaginateForm paginate={appValues} onCancel={() => navigate("/")} />
+    <div className="container">
+      <h2 className="heading">Editing app: {appName}</h2>
+      <div className="edit-app">
+        <PaginateForm paginate={appValues} onCancel={() => navigate("/")} theme={theme} />
+        {active === "initApp" && (
+          <Header
+            logo={{ url: preview.logo }}
+            heading={preview.appName}
+            menu={formatHeaderValues({
+              language: preview.language || "",
+              locale: preview.locale || "",
+              theme: preview.theme || "",
+            })}
+            theme={theme}
+            updateMenu={handleMenu}
+          />
+        )}
       </div>
-      {active === "appName" && (
-        <Header
-          logo={{ url: preview.logo }}
-          heading={preview.appName}
-          menu={formatHeaderValues({
-            language: preview.language || "",
-            locale: preview.locale || "",
-            theme: preview.theme || "",
-          })}
-        />
-      )}
     </div>
   );
 };

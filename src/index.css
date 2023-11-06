@@ -6,10 +6,16 @@
 /* form {
   width: 100%;
 } */
-.edit-app{
+.edit-app {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  align-items: start;
+  justify-content: flex-start;
 }
+
+/* .edit-app header{
+} */
 
 .testimonial-form {
   display: flex;
