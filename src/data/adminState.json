@@ -106,7 +106,7 @@
       "title": "Title",
       "hero": "Add background image",
       "subtitle": "Subtitle",
-      "details": "Disclaimer data",
+      "details": "Social media url or username",
       "email": "Forwarding email"
     },
     "placeholders": {
@@ -146,7 +146,7 @@
       "title": "",
       "hero": "Choose file",
       "subtitle": "",
-      "laguageList": ""
+      "details": ""
     },
     "types": {
       "title": "text",
@@ -156,6 +156,28 @@
       "email": "text"
     },
     "desiredOrder": ["title", "subtitle", "hero", "details", "email"]
+  },
+  "calendarForm": {
+    "heading": "Configure your calendar details here!",
+    "submitLabel": "Save and continue",
+    "fieldHeading": {},
+    "initialValues": {
+      "title": "",
+      "email": ""
+    },
+    "labels": {
+      "title": "Title",
+      "email": "Forwarding email"
+    },
+    "placeholders": {
+      "title": "",
+      "email": ""
+    },
+    "types": {
+      "title": "text",
+      "email": "text"
+    },
+    "desiredOrder": ["title", "email"]
   },
   "pagesForm": {
     "heading": "",

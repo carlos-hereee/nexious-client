@@ -8,12 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/utils/context/auth/AuthContext";
 
 const EditApp = () => {
-  const { sectionEntryOrganizer, newsletterForm } = useContext(AdminContext);
+  const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
   const { landingPageForm, initAppForm, socialMediaForm } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
-  const { editSocialMedia } = useContext(AdminContext);
+  const { editSocialMedia, editCalendar } = useContext(AdminContext);
   const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
-  const { languageList, newsletter, media } = useContext(AppContext);
+  const { languageList, newsletter, media, calendar } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
@@ -53,15 +53,13 @@ const EditApp = () => {
             reorderedObject[target].push(...entryValues);
             reorderedObject[key] = values[key];
           }
-          // otherwise theres no match;
         }
         // otherwise value is not defined
         else reorderedObject[key] = "";
       } // otherwise value is not defined
-      else {
-        if (values[key]) reorderedObject[key] = values[key];
-        else reorderedObject[key] = "";
-      }
+      else if (values[key] && values[key].length > 0) {
+        reorderedObject[key] = values[key];
+      } else if (!canSkip.includes(key)) reorderedObject[key] = "";
     }
     return reorderedObject;
   };
@@ -80,6 +78,10 @@ const EditApp = () => {
       const mediaValues = organizeValues({
         values: media,
         desiredOrder: socialMediaForm.desiredOrder || [],
+      });
+      const calendarValues = organizeValues({
+        values: calendar,
+        desiredOrder: calendarForm.desiredOrder || [],
       });
       // reset values; avoid redundant data
       setAppValues([]);
@@ -118,14 +120,13 @@ const EditApp = () => {
           // addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
         },
-        // TODO: add calendar
-        // {
-        //   values:{ landingValues},
-        //   form: landingPageForm,
-        //   formId: "landing",
-        //   addEntries: sectionEntryOrganizer,
-        //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
-        // },
+        {
+          values: calendarValues,
+          form: calendarForm,
+          formId: "Calendar",
+          // addEntries: sectionEntryOrganizer,
+          onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+        },
       ]);
     }
   }, [appName]);

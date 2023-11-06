@@ -14,6 +14,7 @@ import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { updateLanguage } from "./requests/updateLanguage";
 import { editNewsletter } from "./requests/editNewsletter";
 import { editSocialMedia } from "./requests/editSocialMedia";
+import { editCalendar } from "./requests/editCalendar";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -56,6 +57,7 @@ export const AdminState = ({ children }: ChildProps) => {
         isLoading: state.isLoading,
         initAppForm: state.initAppForm,
         pagesForm: state.pagesForm,
+        calendarForm: state.calendarForm,
         sectionForm: state.sectionForm,
         newsletterForm: state.newsletterForm,
         landingPageForm: state.landingPageForm,
@@ -83,6 +85,8 @@ export const AdminState = ({ children }: ChildProps) => {
           editLandingPage({ dispatch, values, appId, handleAppAssets }),
         editSocialMedia: (values, appId) =>
           editSocialMedia({ dispatch, values, appId, handleAppAssets }),
+        editCalendar: (values, appId) =>
+          editCalendar({ dispatch, values, appId, handleAppAssets }),
       }}
     >
       {children}
