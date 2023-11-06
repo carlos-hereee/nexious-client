@@ -1,57 +1,43 @@
 {
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
-  "appNameForm": {
+  "initAppForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "fieldHeading": {
+      "appName": "App name",
+      "logo": "Logo",
+      "theme": "Themes",
+      "locale": "Language"
+    },
     "initialValues": {
-      "appName": "",
+      "appName": "Nexs Tech",
       "logo": "",
-      "theme": "",
+      "theme": "light-mode,dark-mode,",
+      "locale": "en-US",
       "language": ""
     },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
-      "theme": "Select custom themes for your app",
-      "language": "What is the primary language of your app? (can be changed later)",
-      "newsletterTitle": "Title",
-      "newsletterSubtitle": "Subtitle",
-      "newsletterEmail": "Email",
-      "newsletterHero": "Image",
-      "mediaTitle": "Enter custom greeting",
-      "mediaSubtitle": "Custom sub heading",
-      "mediaDetails": "Details",
-      "mediaHero": "Add image"
+      "theme": "Select custom themes to include for your app",
+      "locale": "What is the primary language of your app? (can be changed later)",
+      "language": "Increase your target audience by adding making it assecible to more people"
     },
     "placeholders": {
       "appName": "Enter appname ..",
       "logo": "Choose file",
       "theme": "Choose a theme",
-      "language": "English",
-      "newsletterTitle": "Enter custom greeting",
-      "newsletterSubtitle": "Enter custom sub heading",
-      "newsletterEmail": "Enter newsletter email",
-      "newsletterHero": "Add image",
-      "mediaTitle": "Enter custom greeting",
-      "mediaSubtitle": "Custom sub heading",
-      "mediaDetails": "",
-      "mediaHero": ""
+      "locale": "English",
+      "laguageList": ""
     },
     "types": {
       "appName": "text",
       "logo": "file",
       "theme": "datalist",
-      "language": "select",
-      "newsletterTitle": "text",
-      "newsletterSubtitle": "text",
-      "newsletterEmail": "text",
-      "newsletterHero": "file",
-      "mediaTitle": "text",
-      "mediaSubtitle": "text",
-      "mediaDetails": "text",
-      "mediaHero": "file"
-    },
-    "heading": "",
-    "fieldHeading": {}
+      "language": "datalist",
+      "locale": "select"
+    }
   },
   "pagesForm": {
     "heading": "",
@@ -233,6 +219,37 @@
     "alt": "industry-brand"
   },
   "appMenu": [
+    {
+      "isToggle": true,
+      "isPrivate": false,
+      "menuId": "language-1",
+      "active": {
+        "name": "english",
+        "label": "English",
+        "value": "en-US (English)",
+        "locale": "en-US",
+        "url": "icons/english.svg",
+        "uid": "lan-english"
+      },
+      "alternatives": [
+        {
+          "name": "english",
+          "label": "English",
+          "value": "en-US (English)",
+          "locale": "en-US",
+          "url": "icons/english.svg",
+          "uid": "lan-english"
+        },
+        {
+          "name": "espanol",
+          "locale": "es",
+          "label": "Espanol",
+          "value": "es-US (Espanol)",
+          "url": "icons/spanish.svg",
+          "uid": "lan-espanol"
+        }
+      ]
+    },
     {
       "isToggle": true,
       "isPrivate": false,

@@ -11,6 +11,7 @@ import { AppContext } from "../app/AppContext";
 import { deleteApp } from "./helpers/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
 import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { updateLanguage } from "./helpers/updateLanguage";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -40,11 +41,18 @@ export const AdminState = ({ children }: ChildProps) => {
     } else {
     }
   }, [accessToken]);
+
+  const handleAppAssets = (values: any) => {
+    values.app && updateAppData(values.app);
+    values.appList && updateAppData(values.appList);
+    values.user && updateUser(values.user);
+  };
+
   return (
     <AdminContext.Provider
       value={{
         isLoading: state.isLoading,
-        appNameForm: state.appNameForm,
+        initAppForm: state.initAppForm,
         pagesForm: state.pagesForm,
         sectionForm: state.sectionForm,
         landingPageForm: state.landingPageForm,
@@ -59,14 +67,15 @@ export const AdminState = ({ children }: ChildProps) => {
         appMenu: state.appMenu,
         appName: state.appName,
         updateAppMenu: (e) => dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: e }),
-        initApp: (values) => initApp({ dispatch, values, updateUser, updateAppList }),
-        deleteApp: (appId) =>
-          deleteApp({ dispatch, appId, updateUser, updateAppData, updateAppList }),
-        editApp: (values, appId) => editApp({ dispatch, values, appId, updateAppData }),
+        updateLanguage: (a, b) =>
+          updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
+        initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
+        deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
+        editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
         editAppName: (values, appId) =>
-          editAppName({ dispatch, values, appId, updateAppData }),
+          editAppName({ dispatch, values, appId, handleAppAssets }),
         editLandingPage: (values, appId) =>
-          editLandingPage({ dispatch, values, appId, updateAppData }),
+          editLandingPage({ dispatch, values, appId, handleAppAssets }),
       }}
     >
       {children}

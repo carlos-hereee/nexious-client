@@ -11,6 +11,7 @@ declare module "app-forms" {
     placeholders: { [key: string]: string | undefined };
     types: { [key: string]: string | undefined };
     fieldHeading: { [key: string]: string | undefined };
+    submitLabel?: string;
     additionLabel?: string;
     removalLabel?: string;
     canMultiply?: boolean;
@@ -46,22 +47,24 @@ declare module "app-forms" {
   export type BuildAppProps = {
     dispatch: React.Dispatch<any>;
     values: FormValueProps;
-    updateUser: (key: FormValueProps) => void;
-    // updateAppData: (key: FormValueProps) => void;
-    updateAppList: (key: any) => void;
+    handleAppAssets: (key: FormValueProps) => void;
   };
   export type DeleteAppProps = {
     dispatch: React.Dispatch<any>;
     appId: string;
-    updateUser: (key: FormValueProps) => void;
-    updateAppData: (key: FormValueProps) => void;
-    updateAppList: (key: any) => void;
+    handleAppAssets: (key: FormValueProps) => void;
   };
   export type EditAppProps = {
     dispatch: React.Dispatch<any>;
     values: FormValueProps;
     appId: string;
-    updateAppData: (key: FormValueProps) => void;
+    handleAppAssets: (key: FormValueProps) => void;
+  };
+  export type UpdateLanguageProps = {
+    dispatch: React.Dispatch<any>;
+    locale: string;
+    appName: string;
+    handleAppAssets: (key: FormValueProps) => void;
   };
   export type GetAppNameReducerProps = {
     dispatch: React.Dispatch<any>;

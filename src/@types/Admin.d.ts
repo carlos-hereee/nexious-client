@@ -3,7 +3,7 @@ declare module "app-admin" {
   import { FormProps, FormValueProps } from "app-forms";
   export interface AdminStateProps {
     isLoading: boolean;
-    appNameForm: FormProps;
+    initAppForm: FormProps;
     pagesForm: FormProps;
     sectionForm: FormProps;
     landingPageForm: FormProps;
@@ -27,7 +27,7 @@ declare module "app-admin" {
   export interface AdminSchema {
     isLoading: boolean;
     formErrors: { initAppFormError: string };
-    appNameForm: FormProps;
+    initAppForm: FormProps;
     pagesForm: FormProps;
     sectionForm: FormProps;
     landingPageForm: FormProps;
@@ -50,6 +50,7 @@ declare module "app-admin" {
     editAppName: (values: FormValueProps, appId: string) => void;
     deleteApp: (appId: string) => void;
     updateAppMenu: (menu: MenuProps[]) => void;
+    updateLanguage: (locale: string, appName: string) => void;
     editLandingPage: (values: FormValueProps, appId: string) => void;
   }
 }

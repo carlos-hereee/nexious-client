@@ -1,4 +1,5 @@
 declare module "reducer-dispatch-props" {
+  import { FormValueProps } from "app-forms";
   import { MenuProps } from "app-types";
   export interface DispatchProps {
     dispatch: React.Dispatch<any>;
@@ -18,5 +19,10 @@ declare module "reducer-dispatch-props" {
   export interface DispatchMenuProp {
     dispatch: React.Dispatch<any>;
     data: MenuProps[];
+  }
+  export interface DispatchAppAssets {
+    dispatch: React.Dispatch<any>;
+    data: FormValueProps;
+    handleAppAssets: (key: FormValueProps) => void;
   }
 }

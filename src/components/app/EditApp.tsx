@@ -9,13 +9,43 @@ import { useNavigate } from "react-router-dom";
 const EditApp = () => {
   const { landingPageForm, editAppName, editLandingPage } = useContext(AdminContext);
   const { landingPageFormOrder, sectionEntryOrganizer } = useContext(AdminContext);
-  const { themeList, languageList, appNameForm } = useContext(AdminContext);
+  const { themeList, languageList, initAppForm } = useContext(AdminContext);
   const { appName, landing, appId, logo, theme } = useContext(AppContext);
   const { themeList: themes, languageId } = useContext(AppContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
   const [appValues, setAppValues] = useState<FormValueProps[]>([]);
   const navigate = useNavigate();
+  /**
+   * labels{
+   *  "newsletterTitle": "Title",
+      "newsletterSubtitle": "Subtitle",
+      "newsletterEmail": "Email",
+      "newsletterHero": "Image",
+      "mediaTitle": "Enter custom greeting",
+      "mediaSubtitle": "Custom sub heading",
+      "mediaDetails": "Details",
+      "mediaHero": "Add image"},
+      placehodlers {
+         "newsletterTitle": "Enter custom greeting",
+      "newsletterSubtitle": "Enter custom sub heading",
+      "newsletterEmail": "Enter newsletter email",
+      "newsletterHero": "Add image",
+      "mediaTitle": "Enter custom greeting",
+      "mediaSubtitle": "Custom sub heading",
+      "mediaDetails": "",
+      "mediaHero": "" }
+      types: {
+          "newsletterTitle": "text",
+      "newsletterSubtitle": "text",
+      "newsletterEmail": "text",
+      "newsletterHero": "file",
+      "mediaTitle": "text",
+      "mediaSubtitle": "text",
+      "mediaDetails": "text",
+      "mediaHero": "file"
+      }
+   */
 
   const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
     const { desiredOrder, hasEntry, values } = props;
@@ -77,7 +107,7 @@ const EditApp = () => {
             theme: themes.join(","),
             language: languageId,
           },
-          form: appNameForm,
+          form: initAppForm,
           formId: "appName",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
           withFileUpload: true,

@@ -5,36 +5,26 @@ import { AdminContext } from "@app/utils/context/admin/AdminContext";
 import { AppContext } from "@app/utils/context/app/AppContext";
 
 const BuildApp = () => {
-  const { appNameForm, initApp, themeList, languageList } = useContext(AdminContext);
+  const { initAppForm: form, initApp, themeList, languageList } = useContext(AdminContext);
   const { appList, theme } = useContext(AppContext);
   const navigate = useNavigate();
 
   return (
     <div className="container">
       <Form
-        initialValues={{
-          appName: "",
-          logo: "",
-          theme: "light-mode,dark-mode,",
-          language: "",
-        }}
+        initialValues={form.initialValues}
         onSubmit={initApp}
-        heading="Initialize your app!"
-        submitLabel="Save and continue"
-        types={appNameForm.types}
-        labels={appNameForm.labels}
+        heading={form.heading}
+        submitLabel={form.submitLabel}
+        types={form.types}
+        labels={form.labels}
         theme={theme}
-        placeholders={appNameForm.placeholders}
+        placeholders={form.placeholders}
         onCancel={() => navigate("/")}
-        dataList={{ theme: themeList, language: languageList }}
-        fieldHeading={{
-          appName: "App name",
-          logo: "Logo",
-          theme: "Themes",
-          language: "Language",
-        }}
+        dataList={{ theme: themeList, locale: languageList, language: languageList }}
+        fieldHeading={form.fieldHeading}
         schema={{
-          required: ["appName", "logo", "language"],
+          required: ["appName", "logo", "locale"],
           unique: [{ name: "appName", list: appList?.map((app) => app.appName) || [] }],
         }}
       />

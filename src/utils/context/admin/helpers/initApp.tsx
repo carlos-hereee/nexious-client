@@ -4,13 +4,11 @@ import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
 
 export const initApp = async (props: BuildAppProps) => {
-  const { dispatch, updateUser, values, updateAppList } = props;
+  const { dispatch, values, handleAppAssets } = props;
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosMedia.post("/app/init-app/" + values.appName, values);
-    data.user && updateUser(data.user);
-    // data.app && updateAppData(data.app);
-    data.appList && updateAppList(data.appList);
+    handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error: any) {
     const response = error.response;
