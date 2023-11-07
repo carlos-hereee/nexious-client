@@ -4,48 +4,27 @@
   "initAppForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",
-    "fieldHeading": {
-      "appName": "App name",
-      "logo": "Logo",
-      "theme": "Themes",
-      "locale": "Language"
-    },
-    "initialValues": {
-      "appName": "Nexs Tech",
-      "logo": "",
-      "theme": "light-mode,dark-mode,",
-      "locale": "en-US",
-      "language": ""
-    },
+    "fieldHeading": { "appName": "App name", "logo": "Logo", "theme": "Themes" },
+    "initialValues": { "appName": "Nexs Tech", "logo": "", "theme": "light-mode,dark-mode," },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
-      "theme": "Select custom themes to include for your app",
-      "locale": "What is the primary language of your app? (can be changed later)",
-      "language": "Increase your target audience by adding making it assecible to more people"
+      "theme": "Select custom themes to include for your app"
     },
     "placeholders": {
       "appName": "Enter appname ..",
       "logo": "Choose file",
-      "theme": "Choose a theme",
-      "locale": "English",
-      "laguageList": ""
+      "theme": "Choose a theme"
     },
-    "types": {
-      "appName": "text",
-      "logo": "file",
-      "theme": "datalist",
-      "language": "datalist",
-      "locale": "select"
-    }
+    "types": { "appName": "text", "logo": "file", "theme": "datalist" }
   },
   "landingPageForm": {
     "heading": "Update landing page data",
     "submitLabel": "Save and continue",
     "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
     "initialValues": {
-      "title": "",
-      "tagline": "",
+      "title": "Fast and Easy",
+      "tagline": "App creation made simple",
       "body": "",
       "hero": "",
       "hasCta": false,
@@ -90,6 +69,20 @@
       "hasSections",
       "sections"
     ]
+  },
+  "languageForm": {
+    "heading": "Update language data",
+    "submitLabel": "Save and continue",
+    "fieldHeading": { "locale": "Language" },
+    "initialValues": { "locale": "en-US", "language": "" },
+    "labels": {
+      "locale": "What is the primary language of your app? (can be changed later)",
+      "language": "Increase your target audience by adding making it assecible to more people"
+    },
+    "types": { "language": "datalist", "locale": "select" },
+
+    "placeholders": { "locale": "English", "laguageList": "" },
+    "desiredOrder": ["locale", "language"]
   },
   "socialMediaForm": {
     "heading": "Link your social media here!",

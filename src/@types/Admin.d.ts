@@ -9,6 +9,7 @@ declare module "app-admin" {
     sectionForm: FormProps;
     landingPageForm: FormProps;
     heroForm: FormProps;
+    languageForm: FormProps;
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
     ctaForm: FormProps;
@@ -39,6 +40,7 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
+    languageForm: FormProps;
     // landingPageFormOrder:;
     themeList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
@@ -61,5 +63,6 @@ declare module "app-admin" {
     editNewsletter: (values: FormValueProps, appId: string) => void;
     editSocialMedia: (values: FormValueProps, appId: string) => void;
     editCalendar: (values: FormValueProps, appId: string) => void;
+    editLanguage: (values: FormValueProps, appId: string) => void;
   }
 }

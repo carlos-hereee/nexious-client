@@ -6,7 +6,7 @@ import { SectionProps } from "app-types";
 
 const Landing = () => {
   const { landing, media } = useContext(AppContext);
-  console.log("landing", landing);
+  // console.log("landing", landing);
 
   return (
     <div className="container">
@@ -16,9 +16,9 @@ const Landing = () => {
           <p className="text-max">{landing.body}</p>
         </div>
       )}
-      {media && media.sections && media.sections.length > 0 && (
+      {/* {media && media.sections && media.sections.length > 0 && (
         <Socials socials={media.sections} heading={media.title} />
-      )}
+      )} */}
       {landing?.sections && (
         <div className="feature-card-container m-tb">
           {landing.sections.map((af: SectionProps, idx: number) => (

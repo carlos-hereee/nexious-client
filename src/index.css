@@ -8,7 +8,8 @@
 } */
 .edit-app {
   width: 100%;
-  display: flex;
+  /* display: flex; */
+  gap: 1rem;
   flex-wrap: wrap;
   align-items: start;
   justify-content: flex-start;

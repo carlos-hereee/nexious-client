@@ -49,4 +49,7 @@ declare module "app-types" {
     locale: string;
     theme: string;
   }
+  export interface PreviewPageProps {
+    preview: FormValueProps;
+  }
 }

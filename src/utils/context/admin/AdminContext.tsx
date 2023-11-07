@@ -15,6 +15,7 @@ import { updateLanguage } from "./requests/updateLanguage";
 import { editNewsletter } from "./requests/editNewsletter";
 import { editSocialMedia } from "./requests/editSocialMedia";
 import { editCalendar } from "./requests/editCalendar";
+import { editLanguage } from "./requests/editLanguage";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -66,6 +67,7 @@ export const AdminState = ({ children }: ChildProps) => {
         socialMediaForm: state.socialMediaForm,
         sectionEntryOrganizer: state.sectionEntryOrganizer,
         formErrors: state.formErrors,
+        languageForm: state.languageForm,
         themeList: state.themeList,
         languageList: state.languageList,
         appLogo: state.appLogo,
@@ -87,6 +89,8 @@ export const AdminState = ({ children }: ChildProps) => {
           editSocialMedia({ dispatch, values, appId, handleAppAssets }),
         editCalendar: (values, appId) =>
           editCalendar({ dispatch, values, appId, handleAppAssets }),
+        editLanguage: (values, appId) =>
+          editLanguage({ dispatch, values, appId, handleAppAssets }),
       }}
     >
       {children}

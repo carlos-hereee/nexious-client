@@ -42,6 +42,10 @@ declare module "app-forms" {
     dataList?: { [key: string]: { [key: string]: string }[] };
     onSubmit?: (key: FormValueProps) => void;
     onViewPreview?: (key: FormValueProps[]) => void;
+    schema?: {
+      required?: string[];
+      unique?: { name: string; list: string[] }[];
+    };
   }
   export type UpdateAppProps = {
     dispatch: React.Dispatch<any>;

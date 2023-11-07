@@ -9,14 +9,16 @@ import { AuthContext } from "@app/utils/context/auth/AuthContext";
 import { formatHeaderValues } from "@app/utils/app/formatHeaderValues";
 import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
+import PreviewPage from "./PreviewPage";
 
 const EditApp = () => {
   const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
   const { landingPageForm, initAppForm, socialMediaForm } = useContext(AdminContext);
+  const { languageForm } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
-  const { editSocialMedia, editCalendar } = useContext(AdminContext);
+  const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
   const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
-  const { languageList, newsletter, media, calendar } = useContext(AppContext);
+  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
   // const {  } = useContext(AppContext);
   const { theme, setTheme } = useContext(AuthContext);
 
@@ -69,7 +71,7 @@ const EditApp = () => {
     }
     return reorderedObject;
   };
-  const handlePreview = (formId: string, values: FormValueProps[]) => {
+  const handlePreview = (formId: string, values: FormValueProps) => {
     setActive(formId);
     setPreview(values);
   };
@@ -101,23 +103,34 @@ const EditApp = () => {
             appName,
             logo: logo.url || "",
             theme: themes.map((t) => t.value).join(","),
-            locale,
-            language: languageList.map((l) => l.value).join(","),
           },
           form: initAppForm,
           formId: "initApp",
           onSubmit: (e: FormValueProps) => editAppName(e, appId),
-          onViewPreview: (e: FormValueProps[]) => handlePreview("initApp", e),
+          onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
           previewLabel: "See changes",
           withFileUpload: true,
           dataList: { theme: themes, locale: languageList, language: languageList },
+          schema: {
+            required: ["appName", "logo", "locale"],
+            unique: [
+              {
+                name: "appName",
+                list: appList?.map((app) => app.appName && app.appName !== appName) || [],
+              },
+            ],
+          },
         },
         {
           values: landingValues,
           form: landingPageForm,
           formId: "landingPage",
           addEntries: sectionEntryOrganizer,
+          withFileUpload: true,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+          onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
+          previewLabel: "See changes",
+          schema: { required: ["title", "tagline"] },
         },
         {
           values: newsletterValues,
@@ -138,6 +151,13 @@ const EditApp = () => {
           formId: "Calendar",
           // addEntries: sectionEntryOrganizer,
           onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+        },
+        // add languages in a different page
+        {
+          values: { locale, language: languageList.map((l) => l.value).join(",") },
+          form: languageForm,
+          formId: "languages",
+          onSubmit: (e: FormValueProps) => editLanguage(e, appId),
         },
       ]);
     }
@@ -171,7 +191,7 @@ const EditApp = () => {
   };
   const includeEditValues = (data: InitPaginateFormProps[]) => {
     data.forEach((formData) => {
-      const { values, formId, addEntries, onSubmit, withFileUpload } = formData;
+      const { values, formId, addEntries, onSubmit, withFileUpload, schema } = formData;
       const { dataList, onViewPreview, previewLabel } = formData;
       const { heading, labels, placeholders, types, fieldHeading } = formData.form;
       const addEntry = addEntries ? includeEntries(addEntries) : undefined;
@@ -190,6 +210,7 @@ const EditApp = () => {
         dataList,
         previewLabel,
         onViewPreview,
+        schema,
       };
       setAppValues((prev) => [...prev, payload]);
     });
@@ -206,12 +227,13 @@ const EditApp = () => {
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
-      <div className="edit-app">
+      <div className="preview-container">
         <PaginateForm
           paginate={appValues}
           theme={theme}
           onCancel={() => navigate("/")}
           onPageClick={() => setActive("")}
+          // page={1}
         />
         {active === "initApp" && (
           <Header
@@ -226,6 +248,7 @@ const EditApp = () => {
             updateMenu={handleMenu}
           />
         )}
+        {active === "landingPage" && <PreviewPage preview={preview} />}
       </div>
     </div>
   );
