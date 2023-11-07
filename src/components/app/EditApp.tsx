@@ -207,7 +207,12 @@ const EditApp = () => {
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
       <div className="edit-app">
-        <PaginateForm paginate={appValues} onCancel={() => navigate("/")} theme={theme} />
+        <PaginateForm
+          paginate={appValues}
+          theme={theme}
+          onCancel={() => navigate("/")}
+          onPageClick={() => setActive("")}
+        />
         {active === "initApp" && (
           <Header
             logo={{ url: preview.logo }}
