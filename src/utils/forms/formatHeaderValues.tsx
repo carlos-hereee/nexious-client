@@ -20,7 +20,7 @@ export const formatHeaderValues = (props: HeaderProps) => {
   const { language, locale, theme } = props;
   const { languageList, themeList } = appState;
   const tList = theme.split(",").filter((item) => item);
-  const lList = language.split(",").filter((item) => item);
+  const lList = language?.split(",").filter((item) => item);
 
   const loginMenuItem = formatMenuItem("login");
   const dashboardMenuItem = formatMenuItem("dashboard");
@@ -31,14 +31,14 @@ export const formatHeaderValues = (props: HeaderProps) => {
     active: themeList.filter((tl) => tl.value === tList[0])[0],
     alternatives: themeList.filter((tl) => tList.includes(tl.value)),
   };
-  const languagePayload = {
-    isToggle: true,
-    isPrivate: false,
-    menuId: uniqueId(),
-    active: languageList.filter((list) => list.value === locale)[0],
-    // TODO:  add all client selected languages here
-    alternatives: languageList.filter((list) => lList.includes(list.value)),
-  };
+  // const languagePayload = {
+  //   isToggle: true,
+  //   isPrivate: false,
+  //   menuId: uniqueId(),
+  //   active: languageList.filter((list) => list.value === locale)[0],
+  //   // TODO:  add all client selected languages here
+  //   alternatives: languageList.filter((list) => lList.includes(list.value)),
+  // };
   const authPayload = {
     isToggle: false,
     isPrivate: true,
@@ -47,5 +47,5 @@ export const formatHeaderValues = (props: HeaderProps) => {
     alternatives: [loginMenuItem, dashboardMenuItem],
   };
 
-  return [themePayload, languagePayload, authPayload];
+  return [themePayload, authPayload];
 };

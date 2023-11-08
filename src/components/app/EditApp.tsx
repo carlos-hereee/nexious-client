@@ -6,7 +6,7 @@ import { AddEntryProps, FormValueProps, InitPaginateFormProps } from "app-forms"
 import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/utils/context/auth/AuthContext";
-import { formatHeaderValues } from "@app/utils/app/formatHeaderValues";
+import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
 import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
 import PreviewPage from "./PreviewPage";
@@ -72,6 +72,8 @@ const EditApp = () => {
     return reorderedObject;
   };
   const handlePreview = (formId: string, values: FormValueProps) => {
+    setActive("");
+    setPreview({});
     setActive(formId);
     setPreview(values);
   };
@@ -227,29 +229,24 @@ const EditApp = () => {
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
-      <div className="preview-container">
-        <PaginateForm
-          paginate={appValues}
-          theme={theme}
-          onCancel={() => navigate("/")}
-          onPageClick={() => setActive("")}
-          // page={1}
-        />
-        {active === "initApp" && (
-          <Header
-            logo={{ url: preview.logo }}
-            heading={preview.appName}
-            menu={formatHeaderValues({
-              language: preview.language || "",
-              locale: preview.locale || "",
-              theme: preview.theme || "",
-            })}
-            theme={theme}
-            updateMenu={handleMenu}
-          />
-        )}
-        {active === "landingPage" && <PreviewPage preview={preview} />}
-      </div>
+      <PaginateForm
+        paginate={appValues}
+        theme={theme}
+        onCancel={() => navigate("/")}
+        onPageClick={() => setActive("")}
+        previewPage={
+          active === "initApp" ? (
+            <Header
+              logo={{ url: preview.logo, title: preview.appName || "" }}
+              menu={formatHeaderValues({ theme: preview.theme || "" })}
+              theme={theme}
+              updateMenu={handleMenu}
+            />
+          ) : (
+            active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
+          )
+        }
+      />
     </div>
   );
 };

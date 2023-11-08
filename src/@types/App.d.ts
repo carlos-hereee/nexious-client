@@ -45,11 +45,15 @@ declare module "app-types" {
     desiredData: string[];
   }
   export interface HeaderProps {
-    language: string;
-    locale: string;
+    language?: string;
+    locale?: string;
     theme: string;
   }
   export interface PreviewPageProps {
     preview: FormValueProps;
+    theme?: string;
+  }
+  export interface KeyStringProp {
+    [key: string]: string;
   }
 }
