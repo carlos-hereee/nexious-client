@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Form } from "nexious-library";
-import { AuthContext } from "../utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
 
 const Login = () => {

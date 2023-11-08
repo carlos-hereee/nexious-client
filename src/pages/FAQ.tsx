@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../utils/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 import { HeroCard } from "nexious-library";
 
 const FAQ = () => {

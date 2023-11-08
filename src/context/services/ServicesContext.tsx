@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { reducer } from "./ServicesReducer";
-import servicesState from "../../../data/servicesState.json";
+import servicesState from "@data/servicesState.json";
 import { bookEvent } from "./helpers/bookEvent";
 import { filter } from "./helpers/filter";
 import { addToBooked } from "./helpers/addToBooked";
@@ -47,7 +47,8 @@ export const ServicesState = ({ children }) => {
         onQuantityChange: (a, b) => onQuantityChange(dispatch, a, b),
         setIsUserReq: (a) => setIsUserReq(dispatch, a),
         setTotal: (a) => setTotal(dispatch, a),
-      }}>
+      }}
+    >
       {children}
     </ServicesContext.Provider>
   );

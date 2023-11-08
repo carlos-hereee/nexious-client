@@ -2,20 +2,21 @@
 // import { CalendarEventList, IconButton } from "@nxs-molecules";
 import { CardSection } from "nexious-library";
 import { IconButton } from "nexious-library";
-// import { setActive } from "../utils/context/services/helpers/setActive";
+// import { setActive } from "@context/services/helpers/setActive";
 import { useContext, useState } from "react";
-import { ServicesContext } from "../../utils/context/services/ServicesContext";
-import { CalendarContext } from "../../utils/context/calendar/CalendarContext";
-import { AppContext } from "../../utils/context/app/AppContext";
-import { findNextOpenApp } from "../../utils/app/findNextOpenApp";
-import { AuthContext } from "../../utils/context/auth/AuthContext";
+import { ServicesContext } from "@context/services/ServicesContext";
+import { CalendarContext } from "@context/calendar/CalendarContext";
+import { AppContext } from "@context/app/AppContext";
+import { findNextOpenApp } from "@utils/app/findNextOpenApp";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
 import { CartRow } from "nexious-library";
 
 const CalendarEvents = () => {
   const { handleCheckout, user } = useContext(AuthContext);
   const { active, services, setActive } = useContext(ServicesContext);
-  const { selectedDay, meeting, events, setMeeting, error, setError } = useContext(CalendarContext);
+  const { selectedDay, meeting, events, setMeeting, error, setError } =
+    useContext(CalendarContext);
 
   const findNextOpen = (e) => {
     const { error, event } = findNextOpenApp(events);

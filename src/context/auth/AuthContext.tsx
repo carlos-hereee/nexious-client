@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { createContext, useReducer, useEffect, useContext } from "react";
 import { reducer } from "./AuthReducer";
-import authState from "../../../data/authState.json";
+import authState from "@data/authState.json";
 import { login } from "./helpers/login";
 import { register } from "./helpers/register";
 import { logOut } from "./helpers/logout";

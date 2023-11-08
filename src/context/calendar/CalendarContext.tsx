@@ -6,8 +6,8 @@ import { setDay } from "./helpers/setDay";
 import { setMeeting } from "./helpers/setMeeting";
 import { bookNow } from "./helpers/bookNow";
 import { resetDay } from "./helpers/resetDay";
-import calendarState from "../../../data/calendarState.json";
-import { AppContext } from "../app/AppContext";
+import calendarState from "@data/calendarState.json";
+import { AppContext } from "@context/app/AppContext";
 import { updateEvents } from "./helpers/updateEvents";
 import { setError } from "./helpers/setError";
 import { addCalendarEvent } from "./helpers/addCalendarEvent";
@@ -43,7 +43,8 @@ export const CalendarState = ({ children }) => {
         findNextOpenApp: (a, b) => findNextOpenApp(dispatch, a, b),
         setError: (a) => setError(dispatch, a),
         addCalendarEvent: (a) => addCalendarEvent(dispatch, a),
-      }}>
+      }}
+    >
       {children}
     </CalendarContext.Provider>
   );

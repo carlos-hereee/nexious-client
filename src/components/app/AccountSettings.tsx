@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "../../utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Form } from "nexious-library";
 
 type AccountSettingProps = {
@@ -27,7 +27,11 @@ const AccountSettings: React.FC<AccountSettingProps> = ({ onClick }) => {
         submitLabel="Save and continue"
       />
       <h2 className="heading">More options:</h2>
-      <button className="btn-main btn-link" type="button" onClick={() => onClick("changePassword")}>
+      <button
+        className="btn-main btn-link"
+        type="button"
+        onClick={() => onClick("changePassword")}
+      >
         Change password
       </button>
     </div>

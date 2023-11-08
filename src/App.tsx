@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import { AuthContext } from "./utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
-import { AppContext } from "./utils/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "./utils/context/admin/AdminContext";
+import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
   const { updateMenu } = useContext(AppContext);

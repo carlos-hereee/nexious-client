@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
-import { AuthContext } from "../utils/context/auth/AuthContext";
-import { ServicesContext } from "../utils/context/services/ServicesContext";
+import { AuthContext } from "@context/auth/AuthContext";
+import { ServicesContext } from "@context/services/ServicesContext";
 import FeatureItems from "@components/app/FeatureItems";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "../utils/context/admin/AdminContext";
+import { AdminContext } from "@context/admin/AdminContext";
 
 const Dashboard = () => {
   const { user, logOut } = useContext(AuthContext);

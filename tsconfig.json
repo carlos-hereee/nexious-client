@@ -9,13 +9,30 @@
     "jsx": "react-jsx" /* Specify what JSX code is generated. */,
     "baseUrl": "src" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
-      "@app/*": ["*"],
-      "@context/*": ["utils/context/*"],
-      "@axios/*": ["utils/axios/*"],
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
-      "@type/*": ["utils/types/*"],
-      "@data/*": ["data/*"]
+      "@app/*": [
+        "*"
+      ],
+      "@context/*": [
+        "context/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@axios/*": [
+        "utils/axios/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@type/*": [
+        "utils/types/*"
+      ],
+      "@data/*": [
+        "data/*"
+      ]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "forceConsistentCasingInFileNames": true,
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
@@ -29,6 +46,12 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["src", ".eslintrc.json", "vite.config.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src",
+    ".eslintrc.json",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

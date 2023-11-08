@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../../utils/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import DangerZone from "./DangerZone";
 import { Button } from "nexious-library";

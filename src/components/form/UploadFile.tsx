@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { AppContext } from "../../utils/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 
 // TODO: UPload files
 // type FileEventTarget = EventTarget & { files: FileList };
@@ -46,11 +46,7 @@ const UploadFile = () => {
         onClick={imageClick}
       />
       {message && <p className="error-message">{message}</p>}
-      <button
-        type="button"
-        className="btn-main"
-        disabled={!currentImage}
-        onClick={upload}>
+      <button type="button" className="btn-main" disabled={!currentImage} onClick={upload}>
         Upload
       </button>
 
@@ -61,7 +57,8 @@ const UploadFile = () => {
           aria-valuenow={progress}
           aria-valuemin={0}
           aria-valuemax={100}
-          style={{ width: progress + "%" }}>
+          style={{ width: progress + "%" }}
+        >
           {progress}%
         </div>
       )}

@@ -2,7 +2,7 @@ import { Card, Navigation } from "nexious-library";
 import { Heading } from "nexious-library/@nxs-atoms";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ServicesContext } from "../../utils/context/services/ServicesContext";
+import { ServicesContext } from "@context/services/ServicesContext";
 
 const Container = ({ filter, filtered, isFiltered, data }) => {
   const { setActive } = useContext(ServicesContext);

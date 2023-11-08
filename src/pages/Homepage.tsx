@@ -1,4 +1,4 @@
-import { AuthContext } from "@app/utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { useContext } from "react";
 import UserPlayground from "./UserPlayground";
 import Login from "./Login";

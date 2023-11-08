@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import WelcomeMessage from "./WelcomeMessage";
-import { AuthContext } from "@app/utils/context/auth/AuthContext";
-import { AppContext } from "@app/utils/context/app/AppContext";
+import { AuthContext } from "@context/auth/AuthContext";
+import { AppContext } from "@context/app/AppContext";
 
 const WelcomeBanner = () => {
   const { user } = useContext(AuthContext);

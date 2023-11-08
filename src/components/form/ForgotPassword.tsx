@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { GoBackButton } from "nexious-library";
 import { Form } from "nexious-library";
 
@@ -24,7 +24,10 @@ const ForgotPassword: React.FC = () => {
           onSubmit={forgotPassword}
         />
       ) : (
-        <Form initialValues={{ username: "qwerty" }} onSubmit={(values) => fetchUser(values)} />
+        <Form
+          initialValues={{ username: "qwerty" }}
+          onSubmit={(values) => fetchUser(values)}
+        />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
-import { AuthContext } from "../context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 
 const PublicRoute = () => {
   const { isOffline } = useContext(AuthContext);

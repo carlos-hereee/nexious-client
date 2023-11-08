@@ -1,7 +1,7 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PageNotFound } from "nexious-library";
-import { AuthContext } from "./utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import Landing from "./pages/Landing";
 import Services from "./pages/Services";
 import Booking from "./pages/Booking";
@@ -33,7 +33,8 @@ const AppRouter: React.FC = () => {
 
   // emergency password change
   if (emergencyPasswordChangeIsRequired) {
-    return <ChangePassword handleClick={changePassword} />;
+    // return <ChangePassword handleClick={changePassword} />;
+    return <ChangePassword />;
   }
 
   useEffect(() => {

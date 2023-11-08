@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../utils/context/auth/AuthContext";
-import { AppContext } from "../utils/context/app/AppContext";
+import { AuthContext } from "@context/auth/AuthContext";
+import { AppContext } from "@context/app/AppContext";
 import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";

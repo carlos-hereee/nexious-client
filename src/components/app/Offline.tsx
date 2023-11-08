@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AuthContext } from "@app/utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Loading } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 

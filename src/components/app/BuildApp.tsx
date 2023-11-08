@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Form } from "nexious-library";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "@app/utils/context/admin/AdminContext";
-import { AppContext } from "@app/utils/context/app/AppContext";
-import { AuthContext } from "@app/utils/context/auth/AuthContext";
+import { AdminContext } from "@context/admin/AdminContext";
+import { AppContext } from "@context/app/AppContext";
+import { AuthContext } from "@context/auth/AuthContext";
 
 const BuildApp = () => {
   const { initAppForm: form, initApp, themeList, languageList } = useContext(AdminContext);

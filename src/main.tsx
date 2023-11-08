@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import { ServicesState } from "./utils/context/services/ServicesContext";
-import { AppState } from "./utils/context/app/AppContext";
-import { AuthState } from "./utils/context/auth/AuthContext";
-import { LogState } from "./utils/context/log/LogContext";
-import { CalendarState } from "./utils/context/calendar/CalendarContext";
-import { AdminState } from "./utils/context/admin/AdminContext";
+import { ServicesState } from "@context/services/ServicesContext";
+import { AppState } from "@context/app/AppContext";
+import { AuthState } from "@context/auth/AuthContext";
+import { LogState } from "@context/log/LogContext";
+import { CalendarState } from "@context/calendar/CalendarContext";
+import { AdminState } from "@context/admin/AdminContext";
 import { isDev } from "@app/config";
 import App from "./App";
 import AppRouter from "./AppRouter"; 

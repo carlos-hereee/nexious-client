@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "../utils/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 import { CardSection, Form, HeroCard } from "nexious-library";
 const Contact = () => {
   const { contact } = useContext(AppContext);
@@ -13,8 +13,8 @@ const Contact = () => {
         ))}
       </div>
       <p className="text-max">
-        For immediate assistance, use our convenient contact form below. We look forward to hearing
-        from you!
+        For immediate assistance, use our convenient contact form below. We look forward to
+        hearing from you!
       </p>
       <div className="w-100">
         <Form values={contact.form.initialValues} submit={handleSubmit} stretchInput />

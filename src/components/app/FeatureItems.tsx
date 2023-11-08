@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ServicesContext } from "../../utils/context/services/ServicesContext";
-import { AppContext } from "../../utils/context/app/AppContext";
+import { ServicesContext } from "@context/services/ServicesContext";
+import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import { CartRow } from "nexious-library/@nxs-molecules";
 

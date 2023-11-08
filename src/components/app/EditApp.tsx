@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Header, Loading, PaginateForm } from "nexious-library";
-import { AdminContext } from "@app/utils/context/admin/AdminContext";
+import { AdminContext } from "@context/admin/AdminContext";
 import { AddEntryProps, FormValueProps, InitPaginateFormProps } from "app-forms";
 import { ReorderFormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@app/utils/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
 import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
