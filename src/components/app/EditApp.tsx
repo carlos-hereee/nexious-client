@@ -10,237 +10,133 @@ import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
 import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
 import PreviewPage from "./PreviewPage";
+import { useFormOrganizer } from "@app/utils/hooks/useFormOrganizer";
 
 const EditApp = () => {
+  const { appName } = useContext(AppContext);
   const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
   const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
-  // const {  } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
-  const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
-  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
   const { theme, setTheme } = useContext(AuthContext);
-
-  const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
-  const [appValues, setAppValues] = useState<FormValueProps[]>([]);
-  const [active, setActive] = useState<string>("");
-  const [preview, setPreview] = useState<FormValueProps>({});
+  // initial data if any
+  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
+  const { landing, appId, logo, themeList, locale } = useContext(AppContext);
+  const { active, values, isLoadingFormState, preview } = useFormOrganizer();
+  const { handlePreview, organizeValues, setActive, setAppValues, integrateFormValues } =
+    useFormOrganizer();
   const navigate = useNavigate();
-
-  const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
-    const { desiredOrder, hasEntry, values } = props;
-    const reorderedObject: FormValueProps = {};
-    let canSkip: string[] = [];
-    for (let i = 0; i < desiredOrder.length; i++) {
-      const key = desiredOrder[i];
-      // continue to next iteration of key is skippable
-      if (!canSkip.includes(key) && hasEntry) {
-        // if entry value found; get the index of the appropriate entry
-        const entryIdx = hasEntry.findIndex((entry) => entry.name === key);
-        const target = hasEntry[entryIdx]?.skipIfFalse;
-        if (entryIdx >= 0 && target) {
-          // skip appropriate value
-          target && canSkip.push(target);
-          // check if original has value
-          if (!values[key]) {
-            reorderedObject[key] = values[key] === undefined ? false : values[key];
-          } else {
-            // init target with empty array
-            reorderedObject[target] = [];
-            // entries should be include
-            const form = hasEntry[entryIdx].form;
-            let entryValues = Object.keys(form.initialValues).map((val) => {
-              // add shared key
-              if (values[val]) {
-                return { [val]: values[val] };
-              } else {
-                return { [val]: "" };
-              }
-            });
-            reorderedObject[target].push(...entryValues);
-            reorderedObject[key] = values[key];
-          }
-        }
-        // otherwise value is not defined
-        else reorderedObject[key] = "";
-      } // otherwise value is not defined
-      else if (values[key] && values[key].length > 0) {
-        reorderedObject[key] = values[key];
-      } else if (!canSkip.includes(key)) reorderedObject[key] = "";
-    }
-    return reorderedObject;
-  };
-  const handlePreview = (formId: string, values: FormValueProps) => {
-    setActive("");
-    setPreview({});
-    setActive(formId);
-    setPreview(values);
-  };
-
-  useEffect(() => {
-    if (appName) {
-      const landingValues = organizeValues({
-        values: landing,
-        desiredOrder: landingForm.desiredOrder || [],
-        hasEntry: sectionEntryOrganizer,
-      });
-      const newsletterValues = organizeValues({
-        values: newsletter,
-        desiredOrder: newsletterForm.desiredOrder || [],
-      });
-      const mediaValues = organizeValues({
-        values: media,
-        desiredOrder: socialMediaForm.desiredOrder || [],
-      });
-      const calendarValues = organizeValues({
-        values: calendar,
-        desiredOrder: calendarForm.desiredOrder || [],
-      });
-      // reset values; avoid redundant data
-      setAppValues([]);
-      includeEditValues([
-        {
-          values: {
-            appName,
-            logo: logo.url || "",
-            theme: themes.map((t) => t.value).join(","),
-          },
-          form: initAppForm,
-          formId: "initApp",
-          onSubmit: (e: FormValueProps) => editAppName(e, appId),
-          onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
-          previewLabel: "See changes",
-          withFileUpload: true,
-          dataList: { theme: themes, locale: languageList, language: languageList },
-          schema: {
-            required: ["appName", "logo", "locale"],
-            unique: [
-              {
-                name: "appName",
-                list: appList?.map((app) => app.appName && app.appName !== appName) || [],
-              },
-            ],
-          },
-        },
-        {
-          values: landingValues,
-          form: landingForm,
-          formId: "landingPage",
-          addEntries: sectionEntryOrganizer,
-          withFileUpload: true,
-          onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
-          onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
-          previewLabel: "See changes",
-          schema: { required: ["title", "tagline"] },
-        },
-        {
-          values: newsletterValues,
-          form: newsletterForm,
-          formId: "newsletter",
-          onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
-        },
-        {
-          values: mediaValues,
-          form: socialMediaForm,
-          formId: "medias",
-          // addEntries: sectionEntryOrganizer,
-          onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
-        },
-        {
-          values: calendarValues,
-          form: calendarForm,
-          formId: "Calendar",
-          // addEntries: sectionEntryOrganizer,
-          onSubmit: (e: FormValueProps) => editCalendar(e, appId),
-        },
-        // add languages in a different page
-        {
-          values: { locale, language: languageList.map((l) => l.value).join(",") },
-          form: languageForm,
-          formId: "languages",
-          onSubmit: (e: FormValueProps) => editLanguage(e, appId),
-        },
-      ]);
-    }
-  }, [appName]);
 
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
 
-  // console.log("preview :>> ", preview);
-  // console.log("active :>> ", active);
+  useEffect(() => {
+    // const landingValues = organizeValues({
+    //   values: landing,
+    //   desiredOrder: landingForm.desiredOrder || [],
+    //   hasEntry: sectionEntryOrganizer,
+    // });
+    // const newsletterValues = organizeValues({
+    //   values: newsletter,
+    //   desiredOrder: newsletterForm.desiredOrder || [],
+    // });
+    // const mediaValues = organizeValues({
+    //   values: media,
+    //   desiredOrder: socialMediaForm.desiredOrder || [],
+    // });
+    // const calendarValues = organizeValues({
+    //   values: calendar,
+    //   desiredOrder: calendarForm.desiredOrder || [],
+    // });
+    // reset values; avoid redundant data
+    setAppValues([]);
+    integrateFormValues([
+      {
+        values: {
+          appName,
+          logo: logo.url || "",
+          theme: themeList.map((t) => t.value).join(","),
+        },
+        form: initAppForm,
+        formId: "initApp",
+        onSubmit: (e: FormValueProps) => editAppName(e, appId),
+        onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
+        previewLabel: "See changes",
+        withFileUpload: true,
+        dataList: { theme: themeList, locale: languageList, language: languageList },
+        schema: {
+          required: ["appName", "logo", "locale"],
+          unique: [
+            {
+              name: "appName",
+              list: appList?.map((app) => app.appName && app.appName !== appName) || [],
+            },
+          ],
+        },
+      },
+      // {
+      //   values: landingValues,
+      //   form: landingForm,
+      //   formId: "landingPage",
+      //   addEntries: sectionEntryOrganizer,
+      //   withFileUpload: true,
+      //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+      //   onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
+      //   previewLabel: "See changes",
+      //   schema: { required: ["title", "tagline"] },
+      // },
+      // {
+      //   values: newsletterValues,
+      //   form: newsletterForm,
+      //   formId: "newsletter",
+      //   onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
+      // },
+      // {
+      //   values: mediaValues,
+      //   form: socialMediaForm,
+      //   formId: "medias",
+      //   // addEntries: sectionEntryOrganizer,
+      //   onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
+      // },
+      // {
+      //   values: calendarValues,
+      //   form: calendarForm,
+      //   formId: "Calendar",
+      //   // addEntries: sectionEntryOrganizer,
+      //   onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+      // },
+      // // add languages in a different page
+      // {
+      //   values: { locale, language: languageList.map((l) => l.value).join(",") },
+      //   form: languageForm,
+      //   formId: "languages",
+      //   onSubmit: (e: FormValueProps) => editLanguage(e, appId),
+      // },
+    ]);
+    // setLoadingFormState(false);
+  }, []);
 
-  const includeEntries = (entries: AddEntryProps[]) => {
-    let payload: { [key: string]: any } = {};
-    entries.forEach((entry) => {
-      const { form, name, canMultiply, skipIfFalse } = entry;
-      const { initialValues, labels, placeholders, types } = form;
-      const { removalLabel, additionLabel } = form;
-      payload[name] = {
-        initialValues,
-        labels,
-        placeholders,
-        types,
-        canMultiply,
-        removalLabel,
-        additionLabel,
-        skipIfFalse,
-      };
-    });
-    return payload;
-  };
-  const includeEditValues = (data: InitPaginateFormProps[]) => {
-    data.forEach((formData) => {
-      const { values, formId, addEntries, onSubmit, withFileUpload, schema } = formData;
-      const { dataList, onViewPreview, previewLabel } = formData;
-      const { heading, labels, placeholders, types, fieldHeading } = formData.form;
-      const addEntry = addEntries ? includeEntries(addEntries) : undefined;
-      // const initialValues = reOrderValues(values)
-      const payload = {
-        initialValues: values,
-        placeholders,
-        fieldHeading,
-        formId,
-        heading,
-        labels,
-        types,
-        addEntry,
-        onSubmit,
-        withFileUpload,
-        dataList,
-        previewLabel,
-        onViewPreview,
-        schema,
-      };
-      setAppValues((prev) => [...prev, payload]);
-    });
-    setLoadingFormState(false);
-  };
-  // console.log("landing", landing);
-  // console.log("appValues :>> ", appValues);
+  const logoData = { url: preview?.logo || "", title: preview.appName || "" };
+  const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
 
   const handleMenu = (menuItem: MenuProps) => {
     const { active } = menuItem;
     if (active?.themeId) setTheme(active.name || theme);
   };
+
   if (isLoadingFormState) return <Loading message="Loading app data" />;
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
       <PaginateForm
-        paginate={appValues}
+        paginate={values}
         theme={theme}
         onCancel={() => navigate("/")}
         onPageClick={() => setActive("")}
         previewPage={
           active === "initApp" ? (
-            <Header
-              logo={{ url: preview.logo, title: preview.appName || "" }}
-              menu={formatHeaderValues({ theme: preview.theme || "" })}
-              theme={theme}
-              updateMenu={handleMenu}
-            />
+            <Header logo={logoData} menu={menuData} theme={theme} updateMenu={handleMenu} />
           ) : (
             active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
           )
