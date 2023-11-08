@@ -9,7 +9,7 @@ const PreviewPage: React.FC<PreviewPageProps> = (props) => {
   const sectionData = preview.hasSections ? formatSharedKeyData(preview.sections) : [];
   const ctaData = preview.hasCta ? formatSharedKeyData(preview.cta) : [];
 
-  console.log("sectionData :>> ", sectionData);
+  // console.log("sectionData :>> ", sectionData);
   return (
     <div className="container">
       <div className="container">
