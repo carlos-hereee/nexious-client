@@ -20,7 +20,7 @@ declare module "app-admin" {
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];
     appName: string;
-    sectionEntryOrganizer: {
+    sectionEntries: {
       name: string;
       form: FormProps;
       canMultiply: boolean;
@@ -47,7 +47,7 @@ declare module "app-admin" {
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];
     appName: string;
-    sectionEntryOrganizer: {
+    sectionEntries: {
       name: string;
       form: FormProps;
       canMultiply: boolean;

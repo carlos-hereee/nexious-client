@@ -24,6 +24,9 @@
   "landingForm": {
     "heading": "Update landing page data",
     "submitLabel": "Save and continue",
+    "formId": "landingPage",
+    "withFileUpload": true,
+    "previewLabel": "See changes",
     "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
     "initialValues": {
       "title": "Fast and Easy",
@@ -76,6 +79,8 @@
   "languageForm": {
     "heading": "Update language data",
     "submitLabel": "Save and continue",
+    "formId": "languages",
+    "previewLabel": "See changes",
     "fieldHeading": { "locale": "Language" },
     "initialValues": { "locale": "en-US", "language": "" },
     "labels": {
@@ -90,6 +95,8 @@
   "socialMediaForm": {
     "heading": "Link your social media here!",
     "submitLabel": "Save and continue",
+    "formId": "medias",
+    "previewLabel": "See changes",
     "fieldHeading": {},
     "initialValues": {
       "title": "",
@@ -123,6 +130,8 @@
   "newsletterForm": {
     "heading": "Configure your newsletter details here!",
     "submitLabel": "Save and continue",
+    "formId": "newsletter",
+    "previewLabel": "See changes",
     "fieldHeading": {},
     "initialValues": {
       "title": "",
@@ -156,27 +165,19 @@
   "calendarForm": {
     "heading": "Configure your calendar details here!",
     "submitLabel": "Save and continue",
+    "formId": "calendar",
+    "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": {
-      "title": "",
-      "email": ""
-    },
-    "labels": {
-      "title": "Title",
-      "email": "Forwarding email"
-    },
-    "placeholders": {
-      "title": "",
-      "email": ""
-    },
-    "types": {
-      "title": "text",
-      "email": "text"
-    },
+    "initialValues": { "title": "", "email": "" },
+    "labels": { "title": "Title", "email": "Forwarding email" },
+    "placeholders": { "title": "", "email": "" },
+    "types": { "title": "text", "email": "text" },
     "desiredOrder": ["title", "email"]
   },
   "pagesForm": {
     "heading": "",
+    "formId": "buildPage",
+    "previewLabel": "See changes",
     "fieldHeading": {},
     "initialValues": {
       "name": "",
@@ -210,6 +211,7 @@
   },
   "sectionForm": {
     "heading": "",
+    "formId": "sectionForm",
     "fieldHeading": {},
     "initialValues": { "title": "", "body": "" },
     "labels": { "title": "Section title", "body": "Section details" },
@@ -220,6 +222,7 @@
   },
   "ctaForm": {
     "heading": "",
+    "formId": "ctaForm",
     "fieldHeading": {},
     "initialValues": { "label": "", "link": "" },
     "labels": { "label": "Enter display data", "link": "What page or url does it point to" },
@@ -230,16 +233,20 @@
   },
   "heroForm": {
     "heading": "",
+    "formId": "heroForm",
     "fieldHeading": {},
     "initialValues": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "labels": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
-  "sectionEntryOrganizer": [
+  "sectionEntries": [
     {
       "name": "hasCta",
       "form": {
+        "formId": "ctaForm",
+        "heading": "",
+        "fieldHeading": {},
         "initialValues": { "label": "", "link": "" },
         "labels": {
           "label": "Enter display data",
@@ -247,8 +254,6 @@
         },
         "placeholders": { "label": "", "link": "" },
         "types": { "label": "", "link": "" },
-        "fieldHeading": {},
-        "heading": "",
         "additionLabel": "Add another",
         "removalLabel": "Remove"
       },
@@ -258,17 +263,14 @@
     {
       "name": "hasSections",
       "form": {
-        "initialValues": { "title": "", "hero": "", "body": "" },
-        "labels": {
-          "title": "Section title",
-          "body": "Section details",
-          "hero": "Add background image"
-        },
-        "placeholders": { "title": "", "body": "", "hero": "" },
-        "types": { "title": "text", "body": "text", "hero": "file" },
-        "fieldHeading": {},
-        "additionLabel": "Add another",
+        "formId": "sectionForm",
         "heading": "",
+        "fieldHeading": {},
+        "initialValues": { "title": "", "body": "" },
+        "labels": { "title": "Section title", "body": "Section details" },
+        "placeholders": { "title": "", "body": "" },
+        "types": { "title": "", "body": "" },
+        "additionLabel": "Add another",
         "removalLabel": "Remove"
       },
       "canMultiply": true,

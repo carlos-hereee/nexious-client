@@ -1,6 +1,6 @@
 import { FormValueProps, ReorderFormValueProps } from "app-forms";
 
-export const organizeValues = (props: ReorderFormValueProps): FormValueProps => {
+export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
   const { desiredOrder, hasEntry, values } = props;
   const reorderedObject: FormValueProps = {};
   let canSkip: string[] = [];

@@ -9,13 +9,13 @@ import { formatInitApp } from "../forms/formatInitApp";
 import { formatInitAppSchema } from "../forms/formatInitAppSchema";
 
 export const useFormOrganizer = (start?: string) => {
-  // const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
+  // const { sectionEntries, newsletterForm, calendarForm } = useContext(AdminContext);
   // const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
   // initial data if any
   const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
   const { landing, appId, logo, themeList, locale, appName } = useContext(AppContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
-  const [values, setAppValues] = useState<FormValueProps[]>([]);
+  const [formValues, setAppValues] = useState<FormValueProps[]>([]);
   const [active, setActive] = useState<string>(start || "");
   const [preview, setPreview] = useState<FormValueProps>({});
 
@@ -26,25 +26,24 @@ export const useFormOrganizer = (start?: string) => {
     setPreview(formValues);
   };
 
-  const integrateData = {
+  const integrateData: { [key: string]: any } = {
     initApp: {
-      initialValues: formatInitApp(appName, logo.url || "", themeList),
       schema: formatInitAppSchema({ formId: "initApp", appList, target: appName }),
       dataList: { theme: themeList },
       onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
     },
+    landingPage: {
+      schema: { required: ["title"] },
+      onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
+    },
   };
 
   const organizeValues = (props: InitValueProps) => {
-    const { form, onSubmit } = props;
+    const { form, onSubmit, initialValues, addEntries } = props;
     const { formId } = props.form;
-    if (formId === "initApp") {
-      const { initialValues, schema, dataList, onViewPreview } = integrateData[formId];
-      const payload = { ...form, formId, initialValues, schema, dataList };
-      setAppValues([]);
-      setAppValues((prev) => [...prev, { ...payload, onViewPreview, onSubmit }]);
-      setFormLoading(false);
-    }
+    const { schema, dataList, onViewPreview } = integrateData[formId];
+    const payload = { ...form, formId, initialValues, schema, dataList, addEntries };
+    return { ...payload, onViewPreview, onSubmit };
   };
   return {
     includeEntries,
@@ -52,7 +51,7 @@ export const useFormOrganizer = (start?: string) => {
     setActive,
     organizeValues,
     isFormLoading,
-    values,
+    formValues,
     active,
     preview,
     handlePreview,

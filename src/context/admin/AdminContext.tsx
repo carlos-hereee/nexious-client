@@ -57,7 +57,7 @@ export const AdminState = ({ children }: ChildProps) => {
         heroForm: state.heroForm,
         ctaForm: state.ctaForm,
         socialMediaForm: state.socialMediaForm,
-        sectionEntryOrganizer: state.sectionEntryOrganizer,
+        sectionEntries: state.sectionEntries,
         formErrors: state.formErrors,
         languageForm: state.languageForm,
         themeList: state.themeList,

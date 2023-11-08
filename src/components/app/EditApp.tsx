@@ -10,19 +10,29 @@ import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
 import PreviewPage from "./PreviewPage";
 import { useFormOrganizer } from "@app/utils/hooks/useFormOrganizer";
+import { formatInitApp } from "@app/utils/forms/formatInitApp";
+import { formatPage } from "@app/utils/forms/formatPage";
 
 const EditApp = () => {
   const { appName, appId } = useContext(AppContext);
-  const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
+  const { sectionEntries, newsletterForm, calendarForm } = useContext(AdminContext);
   const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
   const { theme, setTheme } = useContext(AuthContext);
   // initial data if any
-  // const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
-  // const { landing, appId, logo, themeList, locale } = useContext(AppContext);
-  const { active, values, isFormLoading, preview, organizeValues, setActive } =
-    useFormOrganizer();
+  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
+  const { landing, logo, themeList, locale } = useContext(AppContext);
+  const {
+    active,
+    formValues,
+    isFormLoading,
+    preview,
+    organizeValues,
+    setActive,
+    setFormLoading,
+    setAppValues,
+  } = useFormOrganizer();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,18 +40,34 @@ const EditApp = () => {
   }, [active]);
   useEffect(() => {
     if (appName) {
-      organizeValues({ form: initAppForm, onSubmit: handleInitSubmit });
+      const desiredOrder = landingForm.desiredOrder || [""];
+      const lValues = formatPage({ values: landing, desiredOrder, hasEntry: sectionEntries });
+      const paginateForm = [
+        {
+          initialValues: formatInitApp(appName, logo.url || "", themeList),
+          form: initAppForm,
+          onSubmit: (e: FormValueProps) => editAppName(e, appId),
+        },
+        {
+          initialValues: lValues,
+          form: landingForm,
+          addEntries: sectionEntries,
+          onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+        },
+      ];
+      const appData = paginateForm.map((data) => organizeValues(data));
+      if (appData) setAppValues(appData);
+      setFormLoading(false);
     }
   }, [appName]);
 
-  const handleInitSubmit = (e: FormValueProps) => editAppName(e, appId);
   // const handleViewPreview = (e: FormValueProps) => handlePreview()
 
   // useEffect(() => {
   //   // const landingValues = organizeValues({
   //   //   values: landing,
   //   //   desiredOrder: landingForm.desiredOrder || [],
-  //   //   hasEntry: sectionEntryOrganizer,
+  //   //   hasEntry: sectionEntries,
   //   // });
   //   // const newsletterValues = organizeValues({
   //   //   values: newsletter,
@@ -57,36 +83,14 @@ const EditApp = () => {
   //   // });
 
   //   // integrateFormValues([
-  //   //   {
-  //   //     values: {
-  //   //       appName,
-  //   //       logo: logo.url || "",
-  //   //       theme: themeList.map((t) => t.value).join(","),
-  //   //     },
-  //   //     form: initAppForm,
-  //   //     formId: "initApp",
-  //   //     onSubmit: (e: FormValueProps) => editAppName(e, appId),
-  //   //     onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
-  //   //     previewLabel: "See changes",
-  //   //     withFileUpload: true,
-  //   //     dataList: { theme: themeList },
-  //   //     schema: {
-  //   //       required: ["appName", "logo", "locale"],
-  //   //       unique: [
-  //   //         {
-  //   //           name: "appName",
-  //   //           list: appList?.map((app) => app.appName && app.appName !== appName) || [],
-  //   //         },
-  //   //       ],
-  //   //     },
-  //   //   },
+
   //   //   // {
   //   //   //   values: landingValues,
   //   //   //   form: landingForm,
   //   //   //   formId: "landingPage",
-  //   //   //   addEntries: sectionEntryOrganizer,
+  //   //   //   addEntries: sectionEntries,
   //   //   //   withFileUpload: true,
-  //   //   //   onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+  //   //   //   onSubmit: ,
   //   //   //   onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
   //   //   //   previewLabel: "See changes",
   //   //   //   schema: { required: ["title", "tagline"] },
@@ -101,14 +105,13 @@ const EditApp = () => {
   //   //   //   values: mediaValues,
   //   //   //   form: socialMediaForm,
   //   //   //   formId: "medias",
-  //   //   //   // addEntries: sectionEntryOrganizer,
+  //   //   //   // addEntries: sectionEntries,
   //   //   //   onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
   //   //   // },
   //   //   // {
   //   //   //   values: calendarValues,
   //   //   //   form: calendarForm,
-  //   //   //   formId: "Calendar",
-  //   //   //   // addEntries: sectionEntryOrganizer,
+  //   //   //   // addEntries: sectionEntries,
   //   //   //   onSubmit: (e: FormValueProps) => editCalendar(e, appId),
   //   //   // },
   //   //   // // add languages in a different page
@@ -130,13 +133,13 @@ const EditApp = () => {
     if (active?.themeId) setTheme(active.name || theme);
   };
 
-  console.log("values :>> ", values);
+  console.log("values :>> ", formValues);
   if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
       <PaginateForm
-        paginate={values}
+        paginate={formValues}
         theme={theme}
         onCancel={() => navigate("/")}
         onPageClick={() => setActive("")}
