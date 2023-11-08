@@ -4,6 +4,7 @@
   "initAppForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",
+    "formId": "initApp",
     "fieldHeading": { "appName": "App name", "logo": "Logo", "theme": "Themes" },
     "initialValues": { "appName": "Nexs Tech", "logo": "", "theme": "light-mode,dark-mode," },
     "labels": {
@@ -16,7 +17,9 @@
       "logo": "Choose file",
       "theme": "Choose a theme"
     },
-    "types": { "appName": "text", "logo": "file", "theme": "datalist" }
+    "types": { "appName": "text", "logo": "file", "theme": "datalist" },
+    "withFileUpload": true,
+    "previewLabel": "See changes"
   },
   "landingForm": {
     "heading": "Update landing page data",

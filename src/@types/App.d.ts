@@ -61,4 +61,9 @@ declare module "app-types" {
     hero?: string;
     body?: string;
   }
+  export type SchemaProps = {
+    formId: string;
+    appList?: KeyStringProp[];
+    target?: string;
+  };
 }

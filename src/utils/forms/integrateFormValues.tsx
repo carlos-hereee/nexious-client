@@ -29,5 +29,5 @@ export const integrateFormValues = (data: InitPaginateFormProps[]): FormValuePro
     // setAppValues((prev) => [...prev, payload]);
   });
   return values;
-  // setLoadingFormState(false);
+  // setFormLoading(false);
 };

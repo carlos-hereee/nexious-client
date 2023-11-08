@@ -5,6 +5,7 @@ declare module "app-forms" {
   }
   export type FormProps = {
     heading: string;
+    formId?: string;
     initialValues: { [key: string]: any };
     // optional data
     labels: { [key: string]: string | undefined };
@@ -15,7 +16,9 @@ declare module "app-forms" {
     submitLabel?: string;
     additionLabel?: string;
     removalLabel?: string;
+    previewLabel?: string;
     canMultiply?: boolean;
+    withFileUpload?: boolean;
   };
 
   export type RegisterFormProps = {
@@ -82,5 +85,9 @@ declare module "app-forms" {
     values: FormValueProps;
     desiredOrder: string[];
     hasEntry?: AddEntryProps[];
+  }
+  export interface InitValueProps {
+    form: FormProps;
+    onSubmit: (e: FormValueProps) => void;
   }
 }
