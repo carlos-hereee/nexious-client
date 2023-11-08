@@ -4,29 +4,42 @@ import { Card, HeroCard, urlFile } from "nexious-library";
 
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
   const { preview, theme } = props;
-  // console.log("preview :>> ", preview);
   const cardData = { title: preview.title || "", tagline: preview.tagline || "" };
   const heroData = { url: urlFile(preview.hero) };
-  const sectionData = preview.sections;
+  const sectionData = preview.hasSections ? formatSharedKeyData(preview.sections) : [];
   const ctaData = preview.hasCta ? formatSharedKeyData(preview.cta) : [];
-  // const ctaData = {}
-  console.log("ctaData :>> ", ctaData);
+
+  console.log("sectionData :>> ", sectionData);
   return (
     <div className="container">
       <div className="container">
         {preview.hero ? (
-          <HeroCard
-            data={cardData}
-            hero={heroData}
-            theme={theme}
-            cta={preview.hasCta ? ctaData : undefined}
-          />
+          <HeroCard data={cardData} hero={heroData} theme={theme} cta={ctaData} />
         ) : (
           <Card data={cardData} />
         )}
         {preview.body && <p className="text-max">{preview.body}</p>}
       </div>
-      {preview.hasSections && <Card data={sectionData} />}
+      {preview.hasSections && (
+        <div className={sectionData.length > 3 ? "sections-container" : "grid"}>
+          {sectionData.map((data) => {
+            const { hero, uid, body } = data;
+            if (hero) {
+              return (
+                <div key={uid} className="section-card">
+                  <HeroCard
+                    data={data}
+                    theme={theme}
+                    hero={{ url: hero, theme: "hero-thumbnail" }}
+                  />
+                  {body && <p className="text-max">{body}</p>}
+                </div>
+              );
+            }
+            return <Card data={data} key={uid} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };

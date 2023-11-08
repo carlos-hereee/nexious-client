@@ -22,15 +22,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
   const { updateAppData, updateAppList } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
-  // const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     user.role === "admin"
-  //       ? dispatch({ type: "IS_LOADING", payload: false })
-  //       : navigate("/dashboard");
-  //   }
-  // }, [user]);
   useEffect(() => {
     // user is login
     let oldValues = [...state.appMenu];
@@ -61,7 +53,7 @@ export const AdminState = ({ children }: ChildProps) => {
         calendarForm: state.calendarForm,
         sectionForm: state.sectionForm,
         newsletterForm: state.newsletterForm,
-        landingPageForm: state.landingPageForm,
+        landingForm: state.landingForm,
         heroForm: state.heroForm,
         ctaForm: state.ctaForm,
         socialMediaForm: state.socialMediaForm,
@@ -79,18 +71,17 @@ export const AdminState = ({ children }: ChildProps) => {
         initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
         deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
-        editNewsletter: (values, appId) =>
-          editNewsletter({ dispatch, values, appId, handleAppAssets }),
-        editAppName: (values, appId) =>
-          editAppName({ dispatch, values, appId, handleAppAssets }),
-        editLandingPage: (values, appId) =>
-          editLandingPage({ dispatch, values, appId, handleAppAssets }),
-        editSocialMedia: (values, appId) =>
-          editSocialMedia({ dispatch, values, appId, handleAppAssets }),
-        editCalendar: (values, appId) =>
-          editCalendar({ dispatch, values, appId, handleAppAssets }),
-        editLanguage: (values, appId) =>
-          editLanguage({ dispatch, values, appId, handleAppAssets }),
+        editNewsletter: (a, b) =>
+          editNewsletter({ dispatch, values: a, appId: b, handleAppAssets }),
+        editAppName: (a, b) => editAppName({ dispatch, values: a, appId: b, handleAppAssets }),
+        editLandingPage: (a, b) =>
+          editLandingPage({ dispatch, values: a, appId: b, handleAppAssets }),
+        editSocialMedia: (a, b) =>
+          editSocialMedia({ dispatch, values: a, appId: b, handleAppAssets }),
+        editCalendar: (a, b) =>
+          editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
+        editLanguage: (a, b) =>
+          editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
       }}
     >
       {children}

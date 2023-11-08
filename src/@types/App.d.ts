@@ -56,4 +56,9 @@ declare module "app-types" {
   export interface KeyStringProp {
     [key: string]: string;
   }
+  export interface SectionDataProps {
+    uid: string;
+    hero?: string;
+    body?: string;
+  }
 }

@@ -13,13 +13,12 @@ import PreviewPage from "./PreviewPage";
 
 const EditApp = () => {
   const { sectionEntryOrganizer, newsletterForm, calendarForm } = useContext(AdminContext);
-  const { landingPageForm, initAppForm, socialMediaForm } = useContext(AdminContext);
-  const { languageForm } = useContext(AdminContext);
+  const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
+  // const {  } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
   const { appName, landing, appId, logo, themeList: themes, locale } = useContext(AppContext);
   const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
-  // const {  } = useContext(AppContext);
   const { theme, setTheme } = useContext(AuthContext);
 
   const [isLoadingFormState, setLoadingFormState] = useState<boolean>(true);
@@ -82,7 +81,7 @@ const EditApp = () => {
     if (appName) {
       const landingValues = organizeValues({
         values: landing,
-        desiredOrder: landingPageForm.desiredOrder || [],
+        desiredOrder: landingForm.desiredOrder || [],
         hasEntry: sectionEntryOrganizer,
       });
       const newsletterValues = organizeValues({
@@ -125,7 +124,7 @@ const EditApp = () => {
         },
         {
           values: landingValues,
-          form: landingPageForm,
+          form: landingForm,
           formId: "landingPage",
           addEntries: sectionEntryOrganizer,
           withFileUpload: true,

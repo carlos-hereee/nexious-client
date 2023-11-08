@@ -7,7 +7,7 @@ declare module "app-admin" {
     pagesForm: FormProps;
     calendarForm: FormProps;
     sectionForm: FormProps;
-    landingPageForm: FormProps;
+    landingForm: FormProps;
     heroForm: FormProps;
     languageForm: FormProps;
     newsletterForm: FormProps;
@@ -35,7 +35,7 @@ declare module "app-admin" {
     pagesForm: FormProps;
     sectionForm: FormProps;
     calendarForm: FormProps;
-    landingPageForm: FormProps;
+    landingForm: FormProps;
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
     heroForm: FormProps;

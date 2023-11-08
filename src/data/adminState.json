@@ -18,7 +18,7 @@
     },
     "types": { "appName": "text", "logo": "file", "theme": "datalist" }
   },
-  "landingPageForm": {
+  "landingForm": {
     "heading": "Update landing page data",
     "submitLabel": "Save and continue",
     "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
@@ -255,10 +255,14 @@
     {
       "name": "hasSections",
       "form": {
-        "initialValues": { "title": "", "body": "" },
-        "labels": { "title": "Section title", "body": "Section details" },
-        "placeholders": { "title": "", "body": "" },
-        "types": { "title": "", "body": "" },
+        "initialValues": { "title": "", "hero": "", "body": "" },
+        "labels": {
+          "title": "Section title",
+          "body": "Section details",
+          "hero": "Add background image"
+        },
+        "placeholders": { "title": "", "body": "", "hero": "" },
+        "types": { "title": "text", "body": "text", "hero": "file" },
         "fieldHeading": {},
         "additionLabel": "Add another",
         "heading": "",
