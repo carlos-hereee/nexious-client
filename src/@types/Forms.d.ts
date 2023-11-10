@@ -4,19 +4,20 @@ declare module "app-forms" {
     password: string;
   }
   export type FormProps = {
-    heading: string;
     formId: string;
     initialValues: { [key: string]: any };
+    labels?: { [key: string]: string | undefined };
+    types?: { [key: string]: string | undefined };
     // optional data
-    labels: { [key: string]: string | undefined };
-    placeholders: { [key: string]: string | undefined };
-    types: { [key: string]: string | undefined };
+    placeholders?: { [key: string]: string | undefined };
+    heading?: string;
     fieldHeading: { [key: string]: string | undefined };
     desiredOrder?: string[];
     submitLabel?: string;
     additionLabel?: string;
     removalLabel?: string;
     previewLabel?: string;
+    groupName?: string;
     canMultiply?: boolean;
     withFileUpload?: boolean;
   };
@@ -29,7 +30,7 @@ declare module "app-forms" {
     [key: string]: any;
   };
   export interface SectionEntryOganizer {
-    [key: string]: { form: FormProps; canMultiply?: boolean; skipIfFalse?: string };
+    [key: string]: FormProps;
   }
   export interface InitPaginateFormProps {
     values: FormValueProps;

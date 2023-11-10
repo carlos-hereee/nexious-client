@@ -38,7 +38,6 @@ const EditApp = () => {
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
-  // console.log("landing :>> ", landing);
   useEffect(() => {
     if (appName) {
       const LDO = landingForm.desiredOrder || [""];

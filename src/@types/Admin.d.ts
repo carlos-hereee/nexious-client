@@ -20,12 +20,7 @@ declare module "app-admin" {
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];
     appName: string;
-    sectionEntries: {
-      name: string;
-      form: FormProps;
-      canMultiply: boolean;
-      skipIfFalse: string;
-    }[];
+    sectionEntries: SectionEntryOganizer;
   }
 
   export interface AdminSchema {

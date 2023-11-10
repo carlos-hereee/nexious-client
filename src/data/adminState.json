@@ -237,41 +237,37 @@
   },
   "sectionEntries": {
     "hasCta": {
-      "form": {
-        "formId": "ctaForm",
-        "heading": "",
-        "fieldHeading": {},
-        "initialValues": { "label": "", "link": "" },
-        "labels": {
-          "label": "Enter display data",
-          "link": "What page or url does it point to"
-        },
-        "placeholders": { "label": "", "link": "" },
-        "types": { "label": "", "link": "" },
-        "additionLabel": "Add another",
-        "removalLabel": "Remove"
+      "formId": "ctaForm",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "label": "", "link": "" },
+      "labels": {
+        "label": "Enter display data",
+        "link": "What page or url does it point to"
       },
+      "placeholders": { "label": "", "link": "" },
+      "types": { "label": "", "link": "" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
       "canMultiply": true,
-      "skipIfFalse": "cta"
+      "groupName": "cta"
     },
     "hasSections": {
-      "form": {
-        "formId": "sectionForm",
-        "heading": "",
-        "fieldHeading": {},
-        "initialValues": { "title": "", "body": "", "hero": "" },
-        "labels": {
-          "title": "Section title",
-          "body": "Section details",
-          "hero": "Add background image"
-        },
-        "placeholders": { "title": "", "body": "", "hero": "" },
-        "types": { "title": "", "body": "", "hero": "file" },
-        "additionLabel": "Add another",
-        "removalLabel": "Remove"
+      "formId": "sectionForm",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "title": "", "body": "", "hero": "" },
+      "labels": {
+        "title": "Section title",
+        "body": "Section details",
+        "hero": "Add background image"
       },
+      "placeholders": { "title": "", "body": "", "hero": "" },
+      "types": { "title": "", "body": "", "hero": "file" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
       "canMultiply": true,
-      "skipIfFalse": "sections"
+      "groupName": "sections"
     }
   },
   "themeList": [
