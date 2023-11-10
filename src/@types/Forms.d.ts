@@ -28,18 +28,15 @@ declare module "app-forms" {
   export type FormValueProps = {
     [key: string]: any;
   };
-  export interface AddEntryProps {
-    name: string;
-    form: FormProps;
-    canMultiply?: boolean;
-    skipIfFalse?: string;
+  export interface SectionEntryOganizer {
+    [key: string]: { form: FormProps; canMultiply?: boolean; skipIfFalse?: string };
   }
   export interface InitPaginateFormProps {
     values: FormValueProps;
     form: FormProps;
     formId: string;
     withFileUpload?: boolean;
-    addEntries?: AddEntryProps[];
+    addEntries?: SectionEntryOganizer[];
     theme?: string;
     previewLabel?: string;
     dataList?: { [key: string]: { [key: string]: string }[] };
@@ -84,12 +81,12 @@ declare module "app-forms" {
   export interface ReorderFormValueProps {
     values: FormValueProps;
     desiredOrder: string[];
-    hasEntry?: AddEntryProps[];
+    hasEntry?: SectionEntryOganizer;
   }
   export interface InitValueProps {
     form: FormProps;
     initialValues: FormValueProps;
-    addEntries?: AddEntryProps[];
+    addEntries?: SectionEntryOganizer;
     onSubmit: (e: FormValueProps) => void;
   }
 }

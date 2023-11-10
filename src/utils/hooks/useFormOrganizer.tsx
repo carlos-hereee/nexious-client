@@ -1,22 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { includeEntries } from "../forms/includeEntries";
-import { integrateFormValues } from "../forms/integrateFormValues";
-// import { organizeValues } from "../forms/organizeValues";
-import { AdminContext } from "@app/context/admin/AdminContext";
-import { FormProps, FormValueProps, InitValueProps } from "app-forms";
+import { useContext, useState } from "react";
+// import { includeEntries } from "../forms/includeEntries";
+import { FormValueProps, InitValueProps } from "app-forms";
 import { AppContext } from "@app/context/app/AppContext";
-import { formatInitApp } from "../forms/formatInitApp";
 import { formatInitAppSchema } from "../forms/formatInitAppSchema";
 
-export const useFormOrganizer = (start?: string) => {
-  // const { sectionEntries, newsletterForm, calendarForm } = useContext(AdminContext);
-  // const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
-  // initial data if any
-  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
-  const { landing, appId, logo, themeList, locale, appName } = useContext(AppContext);
+export const useFormOrganizer = () => {
+  const { appList, themeList, appName, languageList } = useContext(AppContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
   const [formValues, setAppValues] = useState<FormValueProps[]>([]);
-  const [active, setActive] = useState<string>(start || "");
+  const [active, setActive] = useState<string>("");
   const [preview, setPreview] = useState<FormValueProps>({});
 
   const handlePreview = (formId: string, formValues: FormValueProps) => {
@@ -26,7 +18,7 @@ export const useFormOrganizer = (start?: string) => {
     setPreview(formValues);
   };
 
-  const integrateData: { [key: string]: any } = {
+  const integrateData: { [key: string]: any | undefined } = {
     initApp: {
       schema: formatInitAppSchema({ formId: "initApp", appList, target: appName }),
       dataList: { theme: themeList },
@@ -36,18 +28,34 @@ export const useFormOrganizer = (start?: string) => {
       schema: { required: ["title"] },
       onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
     },
+    languages: {
+      schema: {},
+      onViewPreview: (e: FormValueProps) => handlePreview("languages", e),
+      dataList: { language: languageList, locale: languageList },
+    },
+    medias: {
+      schema: {},
+      onViewPreview: (e: FormValueProps) => handlePreview("medias", e),
+    },
+    newsletter: {
+      schema: {},
+      onViewPreview: (e: FormValueProps) => handlePreview("newsletter", e),
+    },
+    calendar: {
+      schema: {},
+      onViewPreview: (e: FormValueProps) => handlePreview("calendar", e),
+    },
   };
 
   const organizeValues = (props: InitValueProps) => {
     const { form, onSubmit, initialValues, addEntries } = props;
     const { formId } = props.form;
     const { schema, dataList, onViewPreview } = integrateData[formId];
-    const payload = { ...form, formId, initialValues, schema, dataList, addEntries };
+    // const addEntry = addEntries ? includeEntries(addEntries) : undefined;
+    const payload = { ...form, formId, initialValues, schema, dataList, addEntry: addEntries };
     return { ...payload, onViewPreview, onSubmit };
   };
   return {
-    includeEntries,
-    integrateFormValues,
     setActive,
     organizeValues,
     isFormLoading,

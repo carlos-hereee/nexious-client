@@ -38,10 +38,18 @@ const EditApp = () => {
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
+  // console.log("landing :>> ", landing);
   useEffect(() => {
     if (appName) {
-      const desiredOrder = landingForm.desiredOrder || [""];
-      const lValues = formatPage({ values: landing, desiredOrder, hasEntry: sectionEntries });
+      const LDO = landingForm.desiredOrder || [""];
+      const NDO = newsletterForm.desiredOrder || [""];
+      const SMO = socialMediaForm.desiredOrder || [""];
+      const CFO = calendarForm.desiredOrder || [""];
+      const lValues = formatPage({ values: landing, desiredOrder: LDO, hasEntry: sectionEntries });
+      const NValues = formatPage({ values: newsletter, desiredOrder: NDO });
+      const mediaValues = formatPage({ values: media, desiredOrder: SMO });
+      const calValues = formatPage({ values: calendar, desiredOrder: CFO });
+      // console.log("lValues :>> ", lValues);
       const paginateForm = [
         {
           initialValues: formatInitApp(appName, logo.url || "", themeList),
@@ -54,76 +62,32 @@ const EditApp = () => {
           addEntries: sectionEntries,
           onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
         },
+        {
+          initialValues: NValues,
+          form: newsletterForm,
+          onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
+        },
+        {
+          initialValues: mediaValues,
+          form: socialMediaForm,
+          onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
+        },
+        {
+          initialValues: calValues,
+          form: calendarForm,
+          onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+        },
+        {
+          initialValues: { locale, language: languageList.map((l) => l.value).join(",") },
+          form: languageForm,
+          onSubmit: (e: FormValueProps) => editLanguage(e, appId),
+        },
       ];
       const appData = paginateForm.map((data) => organizeValues(data));
       if (appData) setAppValues(appData);
       setFormLoading(false);
     }
   }, [appName]);
-
-  // const handleViewPreview = (e: FormValueProps) => handlePreview()
-
-  // useEffect(() => {
-  //   // const landingValues = organizeValues({
-  //   //   values: landing,
-  //   //   desiredOrder: landingForm.desiredOrder || [],
-  //   //   hasEntry: sectionEntries,
-  //   // });
-  //   // const newsletterValues = organizeValues({
-  //   //   values: newsletter,
-  //   //   desiredOrder: newsletterForm.desiredOrder || [],
-  //   // });
-  //   // const mediaValues = organizeValues({
-  //   //   values: media,
-  //   //   desiredOrder: socialMediaForm.desiredOrder || [],
-  //   // });
-  //   // const calendarValues = organizeValues({
-  //   //   values: calendar,
-  //   //   desiredOrder: calendarForm.desiredOrder || [],
-  //   // });
-
-  //   // integrateFormValues([
-
-  //   //   // {
-  //   //   //   values: landingValues,
-  //   //   //   form: landingForm,
-  //   //   //   formId: "landingPage",
-  //   //   //   addEntries: sectionEntries,
-  //   //   //   withFileUpload: true,
-  //   //   //   onSubmit: ,
-  //   //   //   onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
-  //   //   //   previewLabel: "See changes",
-  //   //   //   schema: { required: ["title", "tagline"] },
-  //   //   // },
-  //   //   // {
-  //   //   //   values: newsletterValues,
-  //   //   //   form: newsletterForm,
-  //   //   //   formId: "newsletter",
-  //   //   //   onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
-  //   //   // },
-  //   //   // {
-  //   //   //   values: mediaValues,
-  //   //   //   form: socialMediaForm,
-  //   //   //   formId: "medias",
-  //   //   //   // addEntries: sectionEntries,
-  //   //   //   onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
-  //   //   // },
-  //   //   // {
-  //   //   //   values: calendarValues,
-  //   //   //   form: calendarForm,
-  //   //   //   // addEntries: sectionEntries,
-  //   //   //   onSubmit: (e: FormValueProps) => editCalendar(e, appId),
-  //   //   // },
-  //   //   // // add languages in a different page
-  //   //   // {
-  //   //   //   values: { locale, language: languageList.map((l) => l.value).join(",") },
-  //   //   //   form: languageForm,
-  //   //   //   formId: "languages",
-  //   //   //   onSubmit: (e: FormValueProps) => editLanguage(e, appId),
-  //   //   // },
-  //   // ]);
-  //   // setFormLoading(false);
-  // }, []);
 
   const logoData = { url: preview?.logo || "", title: preview.appName || "" };
   const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
@@ -133,7 +97,7 @@ const EditApp = () => {
     if (active?.themeId) setTheme(active.name || theme);
   };
 
-  console.log("values :>> ", formValues);
+  // console.log("values :>> ", formValues);
   if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">

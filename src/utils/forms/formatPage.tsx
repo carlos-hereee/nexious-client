@@ -2,44 +2,31 @@ import { FormValueProps, ReorderFormValueProps } from "app-forms";
 
 export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
   const { desiredOrder, hasEntry, values } = props;
-  const reorderedObject: FormValueProps = {};
+  const reorderedObject: FormValueProps[] = [];
   let canSkip: string[] = [];
   for (let i = 0; i < desiredOrder.length; i++) {
     const key = desiredOrder[i];
-    // continue to next iteration of key is skippable
-    if (!canSkip.includes(key) && hasEntry) {
-      // if entry value found; get the index of the appropriate entry
-      const entryIdx = hasEntry.findIndex((entry) => entry.name === key);
-      const target = hasEntry[entryIdx]?.skipIfFalse;
-      if (entryIdx >= 0 && target) {
-        // skip appropriate value
-        target && canSkip.push(target);
+    if (hasEntry) {
+      const target = hasEntry[key]?.skipIfFalse;
+      if (target) {
+        canSkip.push(target);
         // check if original has value
-        if (!values[key]) {
-          reorderedObject[key] = values[key] === undefined ? false : values[key];
-        } else {
-          // init target with empty array
-          reorderedObject[target] = [];
-          // entries should be include
-          const form = hasEntry[entryIdx].form;
-          let entryValues = Object.keys(form.initialValues).map((val) => {
-            // add shared key
-            if (values[val]) {
-              return { [val]: values[val] };
-            } else {
-              return { [val]: "" };
-            }
+        if (!values[key]) reorderedObject.push(values[key] === undefined ? false : values[key]);
+        // entries should be include
+        else {
+          const form = hasEntry[key].form;
+          let entryValues = values[target].map((val: FormValueProps) => {
+            const keys = Object.keys(val);
+            const keyValues = keys.filter((k) => Object.keys(form.initialValues).includes(k));
+            return keyValues.map((k) => ({ [k]: val[k] }));
           });
-          reorderedObject[target].push(...entryValues);
-          reorderedObject[key] = values[key];
+          reorderedObject.push({ [key]: values[key] });
+          reorderedObject.push({ [target]: entryValues });
         }
-      }
-      // otherwise value is not defined
-      else reorderedObject[key] = "";
-    } // otherwise value is not defined
-    else if (values[key] && values[key].length > 0) {
-      reorderedObject[key] = values[key];
-    } else if (!canSkip.includes(key)) reorderedObject[key] = "";
+      } else if (!canSkip.includes(key)) reorderedObject.push({ [key]: values[key] || "" });
+    }
+    // otherwise value is not defined
+    else reorderedObject.push({ [key]: values[key] || "" });
   }
-  return reorderedObject;
+  return Object.assign({}, ...reorderedObject);
 };

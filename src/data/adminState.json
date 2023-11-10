@@ -29,8 +29,8 @@
     "previewLabel": "See changes",
     "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
     "initialValues": {
-      "title": "Fast and Easy",
-      "tagline": "App creation made simple",
+      "title": "",
+      "tagline": "",
       "body": "",
       "hero": "",
       "hasCta": false,
@@ -65,16 +65,7 @@
       "hasCta": "",
       "hero": "file"
     },
-    "desiredOrder": [
-      "title",
-      "tagline",
-      "hero",
-      "body",
-      "hasCta",
-      "cta",
-      "hasSections",
-      "sections"
-    ]
+    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
   },
   "languageForm": {
     "heading": "Update language data",
@@ -88,7 +79,6 @@
       "language": "Increase your target audience by adding making it assecible to more people"
     },
     "types": { "language": "datalist", "locale": "select" },
-
     "placeholders": { "locale": "English", "laguageList": "" },
     "desiredOrder": ["locale", "language"]
   },
@@ -213,10 +203,15 @@
     "heading": "",
     "formId": "sectionForm",
     "fieldHeading": {},
-    "initialValues": { "title": "", "body": "" },
-    "labels": { "title": "Section title", "body": "Section details" },
-    "placeholders": { "title": "", "body": "" },
-    "types": { "title": "", "body": "" },
+    "initialValues": { "title": "", "body": "", "heros": "" },
+    "labels": {
+      "title": "Section title",
+      "body": "Section details",
+      "heros": "Add background image"
+    },
+    "placeholders": { "title": "", "body": "", "heros": "" },
+    "types": { "title": "", "body": "", "heros": "file" },
+
     "additionLabel": "Add another",
     "removalLabel": "Remove"
   },
@@ -240,9 +235,8 @@
     "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
-  "sectionEntries": [
-    {
-      "name": "hasCta",
+  "sectionEntries": {
+    "hasCta": {
       "form": {
         "formId": "ctaForm",
         "heading": "",
@@ -260,23 +254,26 @@
       "canMultiply": true,
       "skipIfFalse": "cta"
     },
-    {
-      "name": "hasSections",
+    "hasSections": {
       "form": {
         "formId": "sectionForm",
         "heading": "",
         "fieldHeading": {},
-        "initialValues": { "title": "", "body": "" },
-        "labels": { "title": "Section title", "body": "Section details" },
-        "placeholders": { "title": "", "body": "" },
-        "types": { "title": "", "body": "" },
+        "initialValues": { "title": "", "body": "", "hero": "" },
+        "labels": {
+          "title": "Section title",
+          "body": "Section details",
+          "hero": "Add background image"
+        },
+        "placeholders": { "title": "", "body": "", "hero": "" },
+        "types": { "title": "", "body": "", "hero": "file" },
         "additionLabel": "Add another",
         "removalLabel": "Remove"
       },
       "canMultiply": true,
       "skipIfFalse": "sections"
     }
-  ],
+  },
   "themeList": [
     {
       "name": "light-mode",

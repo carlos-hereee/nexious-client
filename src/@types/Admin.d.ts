@@ -1,6 +1,6 @@
 declare module "app-admin" {
   import { MenuProps } from "app-types";
-  import { FormProps, FormValueProps } from "app-forms";
+  import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
   export interface AdminStateProps {
     isLoading: boolean;
     initAppForm: FormProps;
@@ -47,12 +47,7 @@ declare module "app-admin" {
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];
     appName: string;
-    sectionEntries: {
-      name: string;
-      form: FormProps;
-      canMultiply: boolean;
-      skipIfFalse: string;
-    }[];
+    sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
     editApp: (values: FormValueProps, appId: string) => void;
     editAppName: (values: FormValueProps, appId: string) => void;
