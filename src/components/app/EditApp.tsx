@@ -14,15 +14,15 @@ import { formatInitApp } from "@app/utils/forms/formatInitApp";
 import { formatPage } from "@app/utils/forms/formatPage";
 
 const EditApp = () => {
-  const { appName, appId } = useContext(AppContext);
   const { sectionEntries, newsletterForm, calendarForm } = useContext(AdminContext);
   const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
   const { theme, setTheme } = useContext(AuthContext);
   // initial data if any
-  const { languageList, newsletter, media, calendar, appList } = useContext(AppContext);
-  const { landing, logo, themeList, locale } = useContext(AppContext);
+  const { newsletter, media, calendar, landing, logo, locale } = useContext(AppContext);
+  const { appName, appId, themeList, languageList } = useContext(AppContext);
+  // const { iconList } = useContext(AppContext);
   const {
     active,
     formValues,
@@ -106,6 +106,12 @@ const EditApp = () => {
         theme={theme}
         onCancel={() => navigate("/")}
         onPageClick={() => setActive("")}
+        // dataList={{
+        //   icon: iconList,
+        //   theme: themeList,
+        //   language: languageList,
+        //   locale: languageList,
+        // }}
         previewPage={
           active === "initApp" ? (
             <Header logo={logoData} menu={menuData} theme={theme} updateMenu={handleMenu} />

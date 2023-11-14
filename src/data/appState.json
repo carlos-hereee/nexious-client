@@ -21,6 +21,15 @@
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "landing": {},
   "logo": {},
+  "iconList": [
+    {
+      "name": "confirm",
+      "label": "Confirm",
+      "value": "confirm",
+      "icon": "confirm",
+      "uid": "icon-1"
+    }
+  ],
   "languageList": [
     {
       "name": "english",

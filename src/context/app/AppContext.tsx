@@ -62,10 +62,10 @@ export const AppState = ({ children }: ChildProps) => {
       value={{
         isLoading: state.isLoading,
         appList: state.appList,
+        iconList: state.iconList,
         appName: state.appName,
         appId: state.appId,
         landing: state.landing,
-        // theme: state.theme,
         themeList: state.themeList,
         languageList: state.languageList,
         adminIds: state.adminIds,

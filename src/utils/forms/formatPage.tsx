@@ -6,7 +6,9 @@ export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
   let canSkip: string[] = [];
   for (let i = 0; i < desiredOrder.length; i++) {
     const key = desiredOrder[i];
-    if (hasEntry) {
+    if (key === "hero") {
+      reorderedObject.push({ [key]: values[key]?.hero || "" });
+    } else if (hasEntry) {
       const target = hasEntry[key]?.groupName;
       if (target) {
         canSkip.push(target);
@@ -17,9 +19,13 @@ export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
           const form = hasEntry[key];
           let entryValues = values[target].map((val: FormValueProps) => {
             const sharedKey = val.heroId || val._id;
-            const keys = Object.keys(val);
-            const keyValues = keys.filter((k) => Object.keys(form.initialValues).includes(k));
-            return Object.assign({}, ...keyValues.map((k) => ({ [k]: val[k], sharedKey })));
+            return Object.assign(
+              {},
+              ...Object.keys(form.initialValues).map((k) => {
+                if (k === "sectionHero") return { [k]: val.hero, sharedKey };
+                else return { [k]: val[k], sharedKey };
+              })
+            );
           });
           reorderedObject.push({ [key]: values[key] });
           reorderedObject.push({ [target]: entryValues });

@@ -1,5 +1,5 @@
 declare module "app-context" {
-  import { CalendarProps, MenuProps, SectionProps } from "app-types";
+  import { CalendarProps, KeyStringProp, MenuProps, SectionProps } from "app-types";
   import { FormValueProps } from "app-forms";
   // app context schema
   export interface AppSchema {
@@ -16,9 +16,10 @@ declare module "app-context" {
     newsletter: SectionProps;
     media: SectionProps[];
     menu: MenuProps[];
-    logo: { [key: string]: string };
-    themeList: { [key: string]: string }[];
-    languageList: { [key: string]: string }[];
+    logo: KeyStringProp;
+    themeList: KeyStringProp[];
+    languageList: KeyStringProp[];
+    iconList: KeyStringProp[];
     locale: string;
     calendar: CalendarProps;
     updateAppData: (key: FormValueProps) => void;
@@ -30,7 +31,8 @@ declare module "app-context" {
     appList: { [key: string]: any }[];
     isLoading: boolean;
     appName: string;
-    languageList: { [key: string]: string }[];
+    languageList: KeyStringProp[];
+    iconList: KeyStringProp[];
     welcomeMessage: string;
     // theme: string;
     landing: any;
@@ -38,11 +40,11 @@ declare module "app-context" {
     ownerId: string;
     adminIds: string[];
     newsletter: SectionProps;
-    logo: { [key: string]: string };
+    logo: KeyStringProp;
     media: SectionProps[];
     menu: MenuProps[];
     calendar: CalendarProps;
     locale: string;
-    themeList: { [key: string]: string }[];
+    themeList: KeyStringProp[];
   }
 }

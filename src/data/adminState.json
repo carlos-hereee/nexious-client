@@ -200,31 +200,38 @@
     }
   },
   "sectionForm": {
-    "heading": "",
     "formId": "sectionForm",
+    "heading": "",
     "fieldHeading": {},
-    "initialValues": { "title": "", "body": "", "heros": "" },
+    "initialValues": { "title": "", "body": "", "sectionHero": "" },
     "labels": {
       "title": "Section title",
       "body": "Section details",
-      "heros": "Add background image"
+      "sectionHero": "Add background image"
     },
-    "placeholders": { "title": "", "body": "", "heros": "" },
-    "types": { "title": "", "body": "", "heros": "file" },
-
+    "placeholders": { "title": "", "body": "", "sectionHero": "" },
+    "types": { "title": "text", "body": "text", "sectionHero": "file" },
     "additionLabel": "Add another",
-    "removalLabel": "Remove"
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "sections"
   },
   "ctaForm": {
-    "heading": "",
     "formId": "ctaForm",
+    "heading": "",
     "fieldHeading": {},
-    "initialValues": { "label": "", "link": "" },
-    "labels": { "label": "Enter display data", "link": "What page or url does it point to" },
-    "placeholders": { "label": "", "link": "" },
-    "types": { "label": "", "link": "" },
+    "initialValues": { "label": "", "link": "", "icon": "" },
+    "labels": {
+      "label": "Enter display data",
+      "link": "What page or url does it point to",
+      "icon": "Choose icon"
+    },
+    "placeholders": { "label": "", "link": "", "icon": "" },
+    "types": { "label": "", "link": "", "icon": "select" },
     "additionLabel": "Add another",
-    "removalLabel": "Remove"
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "cta"
   },
   "heroForm": {
     "heading": "",
@@ -240,13 +247,14 @@
       "formId": "ctaForm",
       "heading": "",
       "fieldHeading": {},
-      "initialValues": { "label": "", "link": "" },
+      "initialValues": { "label": "", "link": "", "icon": "" },
       "labels": {
         "label": "Enter display data",
-        "link": "What page or url does it point to"
+        "link": "What page or url does it point to",
+        "icon": "Choose icon"
       },
-      "placeholders": { "label": "", "link": "" },
-      "types": { "label": "", "link": "" },
+      "placeholders": { "label": "", "link": "", "icon": "" },
+      "types": { "label": "", "link": "", "icon": "select" },
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
@@ -256,14 +264,14 @@
       "formId": "sectionForm",
       "heading": "",
       "fieldHeading": {},
-      "initialValues": { "title": "", "body": "", "hero": "" },
+      "initialValues": { "title": "", "body": "", "sectionHero": "" },
       "labels": {
         "title": "Section title",
         "body": "Section details",
-        "hero": "Add background image"
+        "sectionHero": "Add background image"
       },
       "placeholders": { "title": "", "body": "", "hero": "" },
-      "types": { "title": "", "body": "", "hero": "file" },
+      "types": { "title": "text", "body": "text", "sectionHero": "file" },
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,

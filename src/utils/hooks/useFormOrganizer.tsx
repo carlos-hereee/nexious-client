@@ -5,7 +5,7 @@ import { AppContext } from "@app/context/app/AppContext";
 import { formatInitAppSchema } from "../forms/formatInitAppSchema";
 
 export const useFormOrganizer = () => {
-  const { appList, themeList, appName, languageList } = useContext(AppContext);
+  const { appList, themeList, appName, languageList, iconList } = useContext(AppContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
   const [formValues, setAppValues] = useState<FormValueProps[]>([]);
   const [active, setActive] = useState<string>("");
@@ -26,6 +26,7 @@ export const useFormOrganizer = () => {
     },
     landingPage: {
       schema: { required: ["title"] },
+      dataList: { icon: iconList },
       onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
     },
     languages: {
