@@ -14,7 +14,7 @@ import { formatInitApp } from "@app/utils/forms/formatInitApp";
 import { formatPage } from "@app/utils/forms/formatPage";
 
 const EditApp = () => {
-  const { sectionEntries, newsletterForm, calendarForm } = useContext(AdminContext);
+  const { sectionEntries, newsletterForm, calendarForm, mediaEntryForm } = useContext(AdminContext);
   const { landingForm, initAppForm, socialMediaForm, languageForm } = useContext(AdminContext);
   const { editAppName, editLandingPage, editNewsletter } = useContext(AdminContext);
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
@@ -34,7 +34,6 @@ const EditApp = () => {
     setAppValues,
   } = useFormOrganizer();
   const navigate = useNavigate();
-
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
@@ -46,7 +45,11 @@ const EditApp = () => {
       const CFO = calendarForm.desiredOrder || [""];
       const lValues = formatPage({ values: landing, desiredOrder: LDO, hasEntry: sectionEntries });
       const NValues = formatPage({ values: newsletter, desiredOrder: NDO });
-      const mediaValues = formatPage({ values: media, desiredOrder: SMO });
+      const mediaValues = formatPage({
+        values: media,
+        desiredOrder: SMO,
+        hasEntry: { hasMedias: mediaEntryForm },
+      });
       const calValues = formatPage({ values: calendar, desiredOrder: CFO });
       const paginateForm = [
         {
@@ -68,6 +71,7 @@ const EditApp = () => {
         {
           initialValues: mediaValues,
           form: socialMediaForm,
+          addEntries: { hasMedias: mediaEntryForm },
           onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
         },
         {
@@ -86,7 +90,7 @@ const EditApp = () => {
       setFormLoading(false);
     }
   }, [appName]);
-  console.log("newsletter :>> ", newsletter);
+  // console.log("newsletter :>> ", newsletter);
   const logoData = { url: preview?.logo || "", title: preview.appName || "" };
   const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
 

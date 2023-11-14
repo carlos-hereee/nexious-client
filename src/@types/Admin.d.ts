@@ -13,9 +13,11 @@ declare module "app-admin" {
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
     ctaForm: FormProps;
+    mediaEntryForm: FormProps;
     // landingPageFormOrder: string[];
     formErrors: { initAppFormError: string };
     themeList: { [key: string]: string }[];
+    mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];
@@ -35,9 +37,11 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
+    mediaEntryForm: FormProps;
     languageForm: FormProps;
     // landingPageFormOrder:;
     themeList: { [key: string]: string }[];
+    mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
     appMenu: MenuProps[];

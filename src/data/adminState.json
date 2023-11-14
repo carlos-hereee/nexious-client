@@ -87,35 +87,31 @@
     "submitLabel": "Save and continue",
     "formId": "medias",
     "previewLabel": "See changes",
-    "fieldHeading": {},
-    "initialValues": {
-      "title": "",
-      "subtitle": "",
-      "hero": "",
-      "details": "",
-      "email": ""
-    },
+    "fieldHeading": { "hasMedias": "Social Medias" },
+    "initialValues": { "title": "", "subtitle": "", "hero": "", "hasMedias": false },
     "labels": {
-      "title": "Title",
+      "title": "Page title",
       "hero": "Add background image",
       "subtitle": "Subtitle",
-      "details": "Social media url or username",
-      "email": "Forwarding email"
+      "hasMedias": "Add social media"
     },
-    "placeholders": {
-      "title": "",
-      "hero": "Choose file",
-      "subtitle": "",
-      "laguageList": ""
-    },
-    "types": {
-      "title": "text",
-      "hero": "file",
-      "details": "text",
-      "subtitle": "text",
-      "email": "text"
-    },
-    "desiredOrder": ["title", "subtitle", "hero", "details", "email"]
+    "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
+    "types": { "title": "text", "hero": "file", "subtitle": "text", "hasMedias": "checkbox" },
+    "desiredOrder": ["title", "subtitle", "hero", "hasMedias"]
+  },
+  "mediaEntryForm": {
+    "formId": "mediaEntryForm",
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "media": "", "link": "" },
+    "labels": { "media": "media", "link": "Username or URL" },
+    "placeholders": { "media": "", "link": "" },
+    "types": { "media": "select", "link": "text" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "medias",
+    "desiredOrder": ["media", "link"]
   },
   "newsletterForm": {
     "heading": "Configure your newsletter details here!",
@@ -385,6 +381,22 @@
           "link": "dashboard"
         }
       ]
+    }
+  ],
+  "mediaList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "themeId": "theme-light-mode",
+      "uid": "theme-light-mode"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
     }
   ]
 }

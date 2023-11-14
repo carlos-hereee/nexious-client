@@ -13,7 +13,9 @@ export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
       if (target) {
         canSkip.push(target);
         // check if original has value
-        if (!values[key]) reorderedObject.push(values[key] === undefined ? false : values[key]);
+        if (!values[key]) {
+          reorderedObject.push(values[key] === undefined ? { [key]: false } : values[key]);
+        }
         // entries should be include
         else {
           const form = hasEntry[key];

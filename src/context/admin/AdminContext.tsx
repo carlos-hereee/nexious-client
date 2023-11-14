@@ -51,6 +51,7 @@ export const AdminState = ({ children }: ChildProps) => {
         initAppForm: state.initAppForm,
         pagesForm: state.pagesForm,
         calendarForm: state.calendarForm,
+        mediaList: state.mediaList,
         sectionForm: state.sectionForm,
         newsletterForm: state.newsletterForm,
         landingForm: state.landingForm,
@@ -59,6 +60,7 @@ export const AdminState = ({ children }: ChildProps) => {
         socialMediaForm: state.socialMediaForm,
         sectionEntries: state.sectionEntries,
         formErrors: state.formErrors,
+        mediaEntryForm: state.mediaEntryForm,
         languageForm: state.languageForm,
         themeList: state.themeList,
         languageList: state.languageList,
@@ -78,10 +80,8 @@ export const AdminState = ({ children }: ChildProps) => {
           editLandingPage({ dispatch, values: a, appId: b, handleAppAssets }),
         editSocialMedia: (a, b) =>
           editSocialMedia({ dispatch, values: a, appId: b, handleAppAssets }),
-        editCalendar: (a, b) =>
-          editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
-        editLanguage: (a, b) =>
-          editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
+        editCalendar: (a, b) => editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
+        editLanguage: (a, b) => editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
       }}
     >
       {children}
