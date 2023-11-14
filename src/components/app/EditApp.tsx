@@ -48,7 +48,6 @@ const EditApp = () => {
       const NValues = formatPage({ values: newsletter, desiredOrder: NDO });
       const mediaValues = formatPage({ values: media, desiredOrder: SMO });
       const calValues = formatPage({ values: calendar, desiredOrder: CFO });
-      // console.log("lValues :>> ", lValues);
       const paginateForm = [
         {
           initialValues: formatInitApp(appName, logo.url || "", themeList),
@@ -87,7 +86,7 @@ const EditApp = () => {
       setFormLoading(false);
     }
   }, [appName]);
-
+  console.log("newsletter :>> ", newsletter);
   const logoData = { url: preview?.logo || "", title: preview.appName || "" };
   const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
 

@@ -123,34 +123,17 @@
     "formId": "newsletter",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": {
-      "title": "",
-      "subtitle": "",
-      "hero": "",
-      "details": "",
-      "email": ""
-    },
+    "withFileUpload": true,
+    "initialValues": { "title": "", "subtitle": "", "hero": "", "email": "" },
     "labels": {
       "title": "Title",
       "hero": "Add background image",
       "subtitle": "Subtitle",
-      "details": "Disclaimer data",
       "email": "Forwarding email"
     },
-    "placeholders": {
-      "title": "",
-      "hero": "Choose file",
-      "subtitle": "",
-      "details": ""
-    },
-    "types": {
-      "title": "text",
-      "hero": "file",
-      "details": "text",
-      "subtitle": "text",
-      "email": "text"
-    },
-    "desiredOrder": ["title", "subtitle", "hero", "details", "email"]
+    "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
+    "types": { "title": "text", "hero": "file", "details": "text", "email": "text" },
+    "desiredOrder": ["title", "subtitle", "hero", "email"]
   },
   "calendarForm": {
     "heading": "Configure your calendar details here!",
