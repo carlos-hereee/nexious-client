@@ -88,6 +88,7 @@
     "formId": "medias",
     "previewLabel": "See changes",
     "fieldHeading": { "hasMedias": "Social Medias" },
+    "withFileUpload": true,
     "initialValues": { "title": "", "subtitle": "", "hero": "", "hasMedias": false },
     "labels": {
       "title": "Page title",
@@ -385,18 +386,28 @@
   ],
   "mediaList": [
     {
-      "name": "light-mode",
-      "value": "light-mode",
-      "label": "light-mode",
-      "themeId": "theme-light-mode",
-      "uid": "theme-light-mode"
+      "name": "facebook",
+      "value": "facebook",
+      "label": "Facebook",
+      "icon": "facebook",
+      "themeId": "theme-facebook",
+      "uid": "theme-facebook"
     },
     {
-      "name": "dark-mode",
-      "value": "dark-mode",
-      "label": "dark-mode",
-      "themeId": "theme-dark-mode",
-      "uid": "theme-dark-mode"
+      "name": "x",
+      "value": "x",
+      "label": "x",
+      "icon": "x",
+      "themeId": "theme-x",
+      "uid": "theme-x"
+    },
+    {
+      "name": "instagram",
+      "value": "instagram",
+      "label": "instagram",
+      "icon": "instagram",
+      "themeId": "theme-instagram",
+      "uid": "theme-instagram"
     }
   ]
 }
