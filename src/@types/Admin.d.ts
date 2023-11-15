@@ -17,6 +17,7 @@ declare module "app-admin" {
     // landingPageFormOrder: string[];
     formErrors: { initAppFormError: string };
     themeList: { [key: string]: string }[];
+    calendarThemeList: { [key: string]: string }[];
     mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
@@ -39,7 +40,7 @@ declare module "app-admin" {
     ctaForm: FormProps;
     mediaEntryForm: FormProps;
     languageForm: FormProps;
-    // landingPageFormOrder:;
+    calendarThemeList: { [key: string]: string }[];
     themeList: { [key: string]: string }[];
     mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];

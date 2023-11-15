@@ -7,7 +7,7 @@ import { AdminContext } from "@app/context/admin/AdminContext";
 
 export const useFormOrganizer = () => {
   const { appList, themeList, appName, languageList, iconList } = useContext(AppContext);
-  const { mediaList } = useContext(AdminContext);
+  const { mediaList, calendarThemeList } = useContext(AdminContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
   const [formValues, setAppValues] = useState<FormValueProps[]>([]);
   const [active, setActive] = useState<string>("");
@@ -47,6 +47,7 @@ export const useFormOrganizer = () => {
     },
     calendar: {
       schema: {},
+      dataList: { theme: calendarThemeList },
       onViewPreview: (e: FormValueProps) => handlePreview("calendar", e),
     },
   };

@@ -54,6 +54,7 @@ export const AdminState = ({ children }: ChildProps) => {
         mediaList: state.mediaList,
         sectionForm: state.sectionForm,
         newsletterForm: state.newsletterForm,
+        calendarThemeList: state.calendarThemeList,
         landingForm: state.landingForm,
         heroForm: state.heroForm,
         ctaForm: state.ctaForm,

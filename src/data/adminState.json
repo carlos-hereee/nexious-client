@@ -6,7 +6,7 @@
     "submitLabel": "Save and continue",
     "formId": "initApp",
     "fieldHeading": { "appName": "App name", "logo": "Logo", "theme": "Themes" },
-    "initialValues": { "appName": "Nexs Tech", "logo": "", "theme": "light-mode,dark-mode," },
+    "initialValues": { "appName": "", "logo": "", "theme": "" },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
@@ -138,11 +138,11 @@
     "formId": "calendar",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "title": "", "email": "" },
-    "labels": { "title": "Title", "email": "Forwarding email" },
+    "initialValues": { "title": "", "email": "", "theme": "" },
+    "labels": { "title": "Name", "email": "Forwarding email", "theme": "Calendar theme" },
     "placeholders": { "title": "", "email": "" },
-    "types": { "title": "text", "email": "text" },
-    "desiredOrder": ["title", "email"]
+    "types": { "title": "text", "email": "text", "theme": "select" },
+    "desiredOrder": ["title", "email", "theme"]
   },
   "pagesForm": {
     "heading": "",
@@ -408,6 +408,29 @@
       "icon": "instagram",
       "themeId": "theme-instagram",
       "uid": "theme-instagram"
+    }
+  ],
+  "calendarThemeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "themeId": "theme-light",
+      "uid": "theme-light"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
+    },
+    {
+      "name": "seasonal",
+      "value": "seasonal",
+      "label": "seasonal",
+      "themeId": "theme-seasonal",
+      "uid": "theme-seasonal"
     }
   ]
 }

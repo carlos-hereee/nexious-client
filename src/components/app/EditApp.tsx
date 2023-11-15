@@ -37,19 +37,17 @@ const EditApp = () => {
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
+  console.log("calendar :>> ", calendar);
   useEffect(() => {
     if (appName) {
       const LDO = landingForm.desiredOrder || [""];
       const NDO = newsletterForm.desiredOrder || [""];
       const SMO = socialMediaForm.desiredOrder || [""];
       const CFO = calendarForm.desiredOrder || [""];
+      const mEntry = { hasMedias: mediaEntryForm };
       const lValues = formatPage({ values: landing, desiredOrder: LDO, hasEntry: sectionEntries });
       const NValues = formatPage({ values: newsletter, desiredOrder: NDO });
-      const mediaValues = formatPage({
-        values: media,
-        desiredOrder: SMO,
-        hasEntry: { hasMedias: mediaEntryForm },
-      });
+      const mediaValues = formatPage({ values: media, desiredOrder: SMO, hasEntry: mEntry });
       const calValues = formatPage({ values: calendar, desiredOrder: CFO });
       const paginateForm = [
         {

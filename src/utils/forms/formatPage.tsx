@@ -20,7 +20,7 @@ export const formatPage = (props: ReorderFormValueProps): FormValueProps => {
         else {
           const form = hasEntry[key];
           let entryValues = values[target].map((val: FormValueProps) => {
-            const sharedKey = val.heroId || val._id;
+            const sharedKey = val.sharedKey || val.heroId || val._id;
             return Object.assign(
               {},
               ...Object.keys(form.initialValues).map((k) => {
