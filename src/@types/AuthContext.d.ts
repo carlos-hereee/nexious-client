@@ -14,6 +14,7 @@ declare module "auth-context" {
     emergencyPasswordChangeIsRequired: boolean;
     signInError: string;
     signUpError: string;
+    forgotPasswordError: string;
   }
   export interface ReducerMethodProps {
     dispatch: React.Dispatch<any>;

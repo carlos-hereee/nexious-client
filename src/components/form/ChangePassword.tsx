@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 
 const ChangePassword = () => {
-  const { changePassword } = useContext(AuthContext);
+  // const { changePassword } = useContext(AuthContext);
   // const { passChangePlaceholders, changePasswordError, passChangeValues, passChangeLabels } =
   //   useContext(AuthContext);
 

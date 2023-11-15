@@ -6,7 +6,6 @@ export const getLatestAppData = async (dispatch: React.Dispatch<any>, appId: str
   try {
     dispatch({ type: "IS_LOADING", payload: false });
     const { data } = await axiosAuth.get(`/app/latest/${appId}`);
-    console.log("data", data);
     const { app } = data;
     app.menu && dispatch({ type: "SET_MENU", payload: app.menu });
     app.logo && dispatch({ type: "UPDATE_LOGO", payload: app.logo });

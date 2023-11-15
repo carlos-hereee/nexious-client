@@ -44,7 +44,10 @@
     "declarationMap": true /* Create sourcemaps for d.ts files. */,
     "inlineSources": true /* Include source code in the sourcemaps inside the emitted JavaScript. */,
     "resolveJsonModule": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": [
+      "vite/client"
+    ],
   },
   "include": [
     "src",

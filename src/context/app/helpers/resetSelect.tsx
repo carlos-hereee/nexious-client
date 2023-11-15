@@ -1,3 +1,3 @@
-export const resetSelect = () => {
-  dispatch({ type: "UPDATE_SELECTED", payload: {} });
-};
+// export const resetSelect = () => {
+//   dispatch({ type: "UPDATE_SELECTED", payload: {} });
+// };

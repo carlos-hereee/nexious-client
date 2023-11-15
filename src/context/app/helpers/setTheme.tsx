@@ -1,1 +1,1 @@
-export const setTheme = (dispatch, theme) => {};
+// export const setTheme = (dispatch, theme) => {};

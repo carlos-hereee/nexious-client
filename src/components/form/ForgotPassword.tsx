@@ -5,7 +5,13 @@ import { GoBackButton } from "nexious-library";
 import { Form } from "nexious-library";
 
 const ForgotPassword: React.FC = () => {
-  const { passwordChangeForm, fetchUser, forgotPassword, dummyData } = useContext(AuthContext);
+  const {
+    passwordChangeForm,
+    //  fetchUser,
+    forgotPassword,
+    // dummyData
+    user,
+  } = useContext(AuthContext);
   const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
   {
@@ -16,7 +22,7 @@ const ForgotPassword: React.FC = () => {
       <GoBackButton onClick={() => navigate("/")} />
       <h2 className="heading">Forgot password</h2>
       {authErrors && <p className="error-message">{authErrors.forgotPasswordError}</p>}
-      {dummyData.username ? (
+      {user.username ? (
         <Form
           initialValues={passwordChangeForm.initialValues}
           labels={passwordChangeForm.labels}
@@ -26,7 +32,7 @@ const ForgotPassword: React.FC = () => {
       ) : (
         <Form
           initialValues={{ username: "qwerty" }}
-          onSubmit={(values) => fetchUser(values)}
+          //  onSubmit={(values) => fetchUser(values)}
         />
       )}
     </div>

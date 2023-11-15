@@ -8,7 +8,8 @@
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,
     "signInError": "",
-    "signUpError": ""
+    "signUpError": "",
+    "forgotPasswordError": ""
   },
   "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "" },
   "userForm": {
