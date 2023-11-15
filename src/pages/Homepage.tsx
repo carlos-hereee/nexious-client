@@ -3,16 +3,19 @@ import { useContext } from "react";
 import UserPlayground from "./UserPlayground";
 import nexs from "@data/nexs.json";
 import PreviewPage from "@app/components/app/PreviewPage";
+import { useNavigate } from "react-router-dom";
 
 const Homepage: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
+  const navigate = useNavigate();
   if (accessToken) return <UserPlayground />;
-  console.log("nexs :>> ", nexs);
   return (
     <div className="container">
-      {/* <h2 className="heading">Nexious login</h2> */}
-      <PreviewPage preview={{ ...nexs, hasSections: true }} hero={nexs.hero} />
-      {/* <Login /> */}
+      <PreviewPage
+        preview={{ ...nexs, hasSections: true }}
+        hero={nexs.hero}
+        onClick={(e: any) => navigate(`/${e.link}`)}
+      />
     </div>
   );
 };

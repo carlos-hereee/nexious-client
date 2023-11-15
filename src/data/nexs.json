@@ -14,7 +14,8 @@
       "name": "started",
       "icon": "confirm",
       "uid": "button-check-123",
-      "label": "Get Started!"
+      "label": "Get Started!",
+      "link": "login"
     }
   ],
   "body": "Welcome to Nexious Tech, your one-stop destination for transforming your app idea into reality.",
