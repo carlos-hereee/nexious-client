@@ -1,4 +1,9 @@
-const WelcomeMessage = (props) => {
+type WelcomeMEssageProps = {
+  user: any;
+  message: string;
+};
+
+const WelcomeMessage: React.FC<WelcomeMEssageProps> = (props) => {
   const { user, message } = props;
   return (
     <div>

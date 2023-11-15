@@ -2,18 +2,18 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
-import Landing from "./pages/Landing";
-import Services from "./pages/Services";
-import Booking from "./pages/Booking";
-import Testimonials from "./pages/Testimonials";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import FAQ from "./pages/FAQ";
-import Checkout from "./pages/Checkout";
-import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./utils/router/PrivateRoute";
-import AdminDashboard from "./pages/AdminDashboard";
-import AddPage from "./pages/AddPages";
+import Landing from "./pages/Landing";
+// import Services from "./pages/Services";
+// import Booking from "./pages/Booking";
+// import Testimonials from "./pages/Testimonials";
+// import About from "./pages/About";
+// import Contact from "./pages/Contact";
+// import FAQ from "./pages/FAQ";
+// import Checkout from "./pages/Checkout";
+// import Dashboard from "./pages/Dashboard";
+// import AdminDashboard from "./pages/AdminDashboard";
+// import AddPage from "./pages/AddPages";
 import ChangePassword from "@components/form/ChangePassword";
 import Offline from "./components/app/Offline";
 import SignUp from "./pages/Signup";
@@ -54,23 +54,23 @@ const AppRouter: React.FC = () => {
       <Route path="/" element={<Homepage />} />
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
-        <Route path="/services" element={<Services />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/booking" element={<Booking />} />
-        <Route path="/about" element={<About />} />
+        {/* <Route path="/services" element={<Services />} /> */}
+        {/* <Route path="/testimonials" element={<Testimonials />} /> */}
+        {/* <Route path="/booking" element={<Booking />} /> */}
+        {/* <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/FAQ" element={<FAQ />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout" element={<Checkout />} /> */}
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        {/* <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/build-app" element={<BuildApp />} />
       </Route>
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>
-        <Route path="/add-page" element={<AddPage />} />
+        {/* <Route path="/add-page" element={<AddPage />} /> */}
         <Route path="/edit-app/" element={<EditApp />} />
         <Route path="/settings/app/" element={<AppSettings />} />
       </Route>
