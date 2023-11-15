@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Header, Loading, PaginateForm } from "nexious-library";
+import { Header, Loading, PaginateForm, Socials } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { FormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import { useFormOrganizer } from "@app/utils/hooks/useFormOrganizer";
 import { formatInitApp } from "@app/utils/forms/formatInitApp";
 import { formatPage } from "@app/utils/forms/formatPage";
 import Newsletter from "./Newsletter";
+import PreviewSocials from "./PreviewSocials";
 
 const EditApp = () => {
   const { sectionEntries, newsletterForm, calendarForm, mediaEntryForm } = useContext(AdminContext);
@@ -108,17 +109,13 @@ const EditApp = () => {
         theme={theme}
         onCancel={() => navigate("/")}
         onPageClick={() => setActive("")}
-        // dataList={{
-        //   icon: iconList,
-        //   theme: themeList,
-        //   language: languageList,
-        //   locale: languageList,
-        // }}
         previewPage={
           active === "initApp" ? (
             <Header logo={logoData} menu={menuData} theme={theme} updateMenu={handleMenu} />
           ) : active === "newsletter" ? (
             <Newsletter data={preview} />
+          ) : active === "medias" ? (
+            <PreviewSocials data={preview} />
           ) : (
             active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
           )

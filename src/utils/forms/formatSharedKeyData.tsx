@@ -7,7 +7,7 @@ type SharedPayloadProps = {
 
 export const formatSharedKeyData = (values: KeyStringProp[]): SectionDataProps[] => {
   // keep track of unique ids
-  const uniqueData: SharedPayloadProps = {};
+  let uniqueData: SharedPayloadProps = {};
   for (let item = 0; item < values.length; item++) {
     const { sharedKey, value, name } = values[item];
     // add unique data
