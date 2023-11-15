@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Header, Loading, PaginateForm, Socials } from "nexious-library";
+import { Header, Loading, PaginateForm, Socials, urlFile } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { FormValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
@@ -120,7 +120,13 @@ const EditApp = () => {
           ) : active === "calendar" ? (
             <PreviewCalendar events={preview} />
           ) : (
-            active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
+            active === "landingPage" && (
+              <PreviewPage
+                preview={preview}
+                hero={{ url: urlFile(preview.hero) }}
+                theme="landing-page"
+              />
+            )
           )
         }
       />

@@ -27,7 +27,7 @@ import AppSettings from "./components/app/AppSettings";
 import Login from "./pages/Login";
 
 const AppRouter: React.FC = () => {
-  const { accessToken, changePassword, ownedApps } = useContext(AuthContext);
+  const { accessToken, ownedApps } = useContext(AuthContext);
   const { emergencyPasswordChangeIsRequired } = useContext(AuthContext);
   const navigate = useNavigate();
 

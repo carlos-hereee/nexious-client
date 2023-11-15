@@ -17,6 +17,39 @@ import { editSocialMedia } from "./requests/editSocialMedia";
 import { editCalendar } from "./requests/editCalendar";
 import { editLanguage } from "./requests/editLanguage";
 
+/**
+ *     // app MenU: {
+    //   "isToggle": true,
+    //   "isPrivate": false,
+    //   "menuId": "language-1",
+    //   "active": {
+    //     "name": "english",
+    //     "label": "English",
+    //     "value": "en-US (English)",
+    //     "locale": "en-US",
+    //     "url": "icons/english.svg",
+    //     "uid": "lan-english"
+    //   },
+    //   "alternatives": [
+    //     {
+    //       "name": "english",
+    //       "label": "English",
+    //       "value": "en-US (English)",
+    //       "locale": "en-US",
+    //       "url": "icons/english.svg",
+    //       "uid": "lan-english"
+    //     },
+    //     {
+    //       "name": "espanol",
+    //       "locale": "es",
+    //       "label": "Espanol",
+    //       "value": "es-US (Espanol)",
+    //       "url": "icons/spanish.svg",
+    //       "uid": "lan-espanol"
+    //     }
+    //   ]
+    // },
+ */
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);

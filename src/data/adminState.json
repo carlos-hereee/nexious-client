@@ -299,37 +299,6 @@
     {
       "isToggle": true,
       "isPrivate": false,
-      "menuId": "language-1",
-      "active": {
-        "name": "english",
-        "label": "English",
-        "value": "en-US (English)",
-        "locale": "en-US",
-        "url": "icons/english.svg",
-        "uid": "lan-english"
-      },
-      "alternatives": [
-        {
-          "name": "english",
-          "label": "English",
-          "value": "en-US (English)",
-          "locale": "en-US",
-          "url": "icons/english.svg",
-          "uid": "lan-english"
-        },
-        {
-          "name": "espanol",
-          "locale": "es",
-          "label": "Espanol",
-          "value": "es-US (Espanol)",
-          "url": "icons/spanish.svg",
-          "uid": "lan-espanol"
-        }
-      ]
-    },
-    {
-      "isToggle": true,
-      "isPrivate": false,
       "menuId": "themelist-1",
       "active": {
         "name": "dark-mode",

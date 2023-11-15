@@ -1,16 +1,15 @@
 import { PreviewPageProps } from "app-types";
-import { Card, HeroCard, urlFile } from "nexious-library";
+import { Card, HeroCard } from "nexious-library";
 
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
-  const { preview, theme } = props;
+  const { preview, theme, hero, onClick } = props;
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
-  const heroData = { url: urlFile(preview.hero) };
 
   return (
     <div className="container">
       <div className="container">
         {preview.hero ? (
-          <HeroCard data={cardData} hero={heroData} theme={theme} cta={preview.cta} />
+          <HeroCard data={cardData} hero={hero} theme={theme} cta={preview.cta} onClick={onClick} />
         ) : (
           <Card data={cardData} />
         )}

@@ -28,9 +28,9 @@ declare module "app-types" {
   }
   export interface HeroProps {
     url: string;
-    link: string;
-    icon: string;
-    name: string;
+    link?: string;
+    icon?: string;
+    name?: string;
     small?: string;
     theme?: string;
     ping?: number;
@@ -52,6 +52,8 @@ declare module "app-types" {
   export interface PreviewPageProps {
     preview: FormValueProps;
     theme?: string;
+    hero: HeroProps;
+    onClick?: (key: any) => void;
   }
   export interface KeyStringProp {
     [key: string]: string;
