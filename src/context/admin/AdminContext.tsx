@@ -31,8 +31,8 @@ export const AdminState = ({ children }: ChildProps) => {
       // find auth menu
       const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
       // find dashboard menu item
-      const dashboard = authMenuItem.alternatives.filter((alt) => alt.name === "dashboard")[0];
-      oldValues[authMenuItemIdx].active = dashboard;
+      const logout = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
+      oldValues[authMenuItemIdx].active = logout;
       dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: oldValues });
     } else {
     }

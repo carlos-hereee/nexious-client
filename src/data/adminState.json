@@ -375,11 +375,11 @@
           "link": "login"
         },
         {
-          "label": "Dashboard",
-          "icon": "user",
-          "name": "dashboard",
-          "uid": "dash-uid-1",
-          "link": "dashboard"
+          "label": "Logout",
+          "icon": "logout",
+          "name": "logout",
+          "uid": "logout-uid-1",
+          "link": "logout"
         }
       ]
     }

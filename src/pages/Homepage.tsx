@@ -8,10 +8,10 @@ const Homepage: React.FC = () => {
   if (accessToken) return <UserPlayground />;
 
   return (
-    <>
+    <div className="container">
       {/* <h2 className="heading">Nexious login</h2> */}
       <Login />
-    </>
+    </div>
   );
 };
 export default Homepage;

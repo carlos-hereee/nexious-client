@@ -73,9 +73,9 @@ declare module "auth-context" {
     register: (values: RegisterFormProps) => void;
     logout: () => void;
     updateUser: (values: FormValueProps) => void;
-    fetchUser: (values: UserSchema) => void;
+    // fetchUser: (values: UserSchema) => void;
     forgotPassword: (values: FormProps) => void;
-    changePassword: (values: UserSchema) => void;
+    // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
   }
 }

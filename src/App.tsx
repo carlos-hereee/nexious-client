@@ -9,7 +9,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 const App = ({ children }: ChildProps) => {
   const { updateMenu } = useContext(AppContext);
   const { appLogo, appMenu, appName, updateLanguage } = useContext(AdminContext);
-  const { isLoading, theme, setTheme } = useContext(AuthContext);
+  const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +21,8 @@ const App = ({ children }: ChildProps) => {
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
-      navigate("/" + active.link || "");
+      if (active.name === "logout") logout();
+      else navigate("/" + active.link || "");
       // check theme Id
     } else if (isToggle && active?.themeId && active.name) {
       setTheme(active.name);
