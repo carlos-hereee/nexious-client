@@ -4,10 +4,12 @@ import { Card, HeroCard, urlFile } from "nexious-library";
 
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
   const { preview, theme } = props;
-  const cardData = { title: preview.title || "", tagline: preview.tagline || "" };
+  const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
   const heroData = { url: urlFile(preview.hero) };
-  const sectionData = preview.hasSections ? formatSharedKeyData(preview.sections) : [];
-  const ctaData = preview.hasCta ? formatSharedKeyData(preview.cta) : [];
+  console.log("preview :>> ", preview);
+  return;
+  const sectionData = preview.hasSections ? formatSharedKeyData(preview?.sections) : [];
+  const ctaData = preview.hasCta ? formatSharedKeyData(preview?.cta) : [];
 
   // console.log("sectionData :>> ", sectionData);
   return (
@@ -21,22 +23,17 @@ const PreviewPage: React.FC<PreviewPageProps> = (props) => {
         {preview.body && <p className="text-max">{preview.body}</p>}
       </div>
       {preview.hasSections && (
-        <div className={sectionData.length > 3 ? "sections-container" : "grid"}>
+        <div className={sectionData?.length > 3 ? "sections-container" : "grid"}>
           {sectionData.map((data) => {
             const { hero, uid, body } = data;
-            if (hero) {
-              return (
-                <div key={uid} className="section-card">
-                  <HeroCard
-                    data={data}
-                    theme={theme}
-                    hero={{ url: hero, theme: "hero-thumbnail" }}
-                  />
-                  {body && <p className="text-max">{body}</p>}
-                </div>
-              );
-            }
-            return <Card data={data} key={uid} />;
+            return hero ? (
+              <div key={uid} className="section-card">
+                <HeroCard data={data} theme={theme} hero={{ url: hero, theme: "hero-thumbnail" }} />
+                {body && <p className="text-max">{body}</p>}
+              </div>
+            ) : (
+              <Card data={data} key={uid} />
+            );
           })}
         </div>
       )}

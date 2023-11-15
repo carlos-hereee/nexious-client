@@ -12,6 +12,7 @@ import PreviewPage from "./PreviewPage";
 import { useFormOrganizer } from "@app/utils/hooks/useFormOrganizer";
 import { formatInitApp } from "@app/utils/forms/formatInitApp";
 import { formatPage } from "@app/utils/forms/formatPage";
+import Newsletter from "./Newsletter";
 
 const EditApp = () => {
   const { sectionEntries, newsletterForm, calendarForm, mediaEntryForm } = useContext(AdminContext);
@@ -37,7 +38,7 @@ const EditApp = () => {
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
-  console.log("calendar :>> ", calendar);
+  // console.log("calendar :>> ", calendar);
   useEffect(() => {
     if (appName) {
       const LDO = landingForm.desiredOrder || [""];
@@ -116,6 +117,8 @@ const EditApp = () => {
         previewPage={
           active === "initApp" ? (
             <Header logo={logoData} menu={menuData} theme={theme} updateMenu={handleMenu} />
+          ) : active === "newsletter" ? (
+            <Newsletter data={preview} />
           ) : (
             active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
           )
