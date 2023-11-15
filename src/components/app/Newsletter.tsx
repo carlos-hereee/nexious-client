@@ -5,7 +5,6 @@ type NewsletterProps = {
 };
 const Newsletter: React.FC<NewsletterProps> = (props) => {
   const { data } = props;
-  console.log("data :>> ", data);
   return (
     <div className="container-split">
       <div className="container">

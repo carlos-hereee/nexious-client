@@ -14,6 +14,7 @@ import { formatInitApp } from "@app/utils/forms/formatInitApp";
 import { formatPage } from "@app/utils/forms/formatPage";
 import Newsletter from "./Newsletter";
 import PreviewSocials from "./PreviewSocials";
+import PreviewCalendar from "./PreviewCalendar";
 
 const EditApp = () => {
   const { sectionEntries, newsletterForm, calendarForm, mediaEntryForm } = useContext(AdminContext);
@@ -74,16 +75,16 @@ const EditApp = () => {
           addEntries: { hasMedias: mediaEntryForm },
           onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
         },
-        {
-          initialValues: calValues,
-          form: calendarForm,
-          onSubmit: (e: FormValueProps) => editCalendar(e, appId),
-        },
-        {
-          initialValues: { locale, language: languageList.map((l) => l.value).join(",") },
-          form: languageForm,
-          onSubmit: (e: FormValueProps) => editLanguage(e, appId),
-        },
+        // {
+        //   initialValues: calValues,
+        //   form: calendarForm,
+        //   onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+        // },
+        // {
+        //   initialValues: { locale, language: languageList.map((l) => l.value).join(",") },
+        //   form: languageForm,
+        //   onSubmit: (e: FormValueProps) => editLanguage(e, appId),
+        // },
       ];
       const appData = paginateForm.map((data) => organizeValues(data));
       if (appData) setAppValues(appData);
@@ -116,6 +117,8 @@ const EditApp = () => {
             <Newsletter data={preview} />
           ) : active === "medias" ? (
             <PreviewSocials data={preview} />
+          ) : active === "calendar" ? (
+            <PreviewCalendar events={preview} />
           ) : (
             active === "landingPage" && <PreviewPage preview={preview} theme="landing-page" />
           )

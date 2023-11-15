@@ -11,10 +11,6 @@ const Offline = () => {
     // server comeback online
     navigate("/");
   }
-  return (
-    <div>
-      <Loading message="SERVER IS OFFLINE, COME AGAIN LATER" />
-    </div>
-  );
+  return <Loading message="SERVER IS OFFLINE, COME AGAIN LATER" />;
 };
 export default Offline;

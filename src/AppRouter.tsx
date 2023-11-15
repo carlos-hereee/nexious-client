@@ -39,7 +39,6 @@ const AppRouter: React.FC = () => {
 
   useEffect(() => {
     // navigate to user playground when the amount of owned apps changes
-    // console.log("naviaget to home new app aquired:>> ");
     navigate("/");
   }, [ownedApps.length]);
 

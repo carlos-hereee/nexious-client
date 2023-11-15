@@ -12,6 +12,7 @@
   },
   "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "" },
   "userForm": {
+    "formId": "user",
     "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },
     "labels": {
       "username": "Username: ",
@@ -30,6 +31,7 @@
     "heading": ""
   },
   "signUpForm": {
+    "formId": "singup",
     "initialValues": {
       "username": "qwerty",
       "password": "secretPassword",
@@ -53,6 +55,7 @@
   },
   "loginForm": {
     "initialValues": { "username": "qwerty", "password": "secretPassword" },
+    "formId": "singup",
     "labels": {
       "username": "Username: ",
       "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
@@ -70,6 +73,7 @@
     "heading": ""
   },
   "passwordChangeForm": {
+    "formId": "passwordChange",
     "initialValues": {
       "username": "qwerty",
       "oldPassword": "secretPassword",
@@ -93,6 +97,7 @@
     "heading": ""
   },
   "forgotPasswordForm": {
+    "formId": "forgotPassword",
     "initialValues": {
       "username": "qwerty",
       "newPassword": "secretPassword",
