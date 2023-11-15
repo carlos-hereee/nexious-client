@@ -10,7 +10,7 @@ const Homepage: React.FC = () => {
   const navigate = useNavigate();
   if (accessToken) return <UserPlayground />;
   return (
-    <div className="container">
+    <div className="landing">
       <PreviewPage
         preview={{ ...nexs, hasSections: true }}
         hero={nexs.hero}
