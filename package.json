@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "link": "npm link nexious-library && vite",
+    "link": "npm link nexious-library",
     "dev": "npm i nexious-library@latest && vite",
     "watch": "tsc -p tsconfig.json -w",
     "init-ts-project": "cd node_modules/nexious-library && npm run renameFile",
@@ -22,7 +22,6 @@
     "axios": "^1.4.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
-    "nexious-library": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
