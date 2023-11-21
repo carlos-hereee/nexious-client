@@ -17,7 +17,15 @@
     "details": "",
     "sections": []
   },
-  "media": {},
+  "media": {
+    "title": "Dont miss a thing! Follow us on our socials",
+    "subtitle": "",
+    "hero": { "heroId": "medias", "hero": "/icons/custom.svg", "url": "/icons/custom.svg" },
+    "medias": [
+      { "media": "facebook", "link": "https://facebook.com", "uid": "6554c3a2bb0a21f3bb3e07b4" },
+      { "media": "x", "link": "https://twitter.com/", "uid": "6554c3a2bb0a21f3bb3e07b5" }
+    ]
+  },
   "menu": [
     {
       "isToggle": true,
