@@ -7,17 +7,18 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
-  const { updateMenu } = useContext(AppContext);
-  const { appLogo, appMenu, appName, updateLanguage } = useContext(AdminContext);
+  const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
+  const { updateMenu, menu, logo, appName, media } = useContext(AppContext);
   const navigate = useNavigate();
 
+  console.log("media :>> ", media);
   useEffect(() => {
     if (appName) document.title = appName;
   }, [appName]);
 
   const handleMenu = (menuItem: MenuProps) => {
-    let oldValues = [...appMenu];
+    let oldValues = [...menu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
@@ -47,13 +48,13 @@ const App = ({ children }: ChildProps) => {
   return (
     <div className={`app-container elbow-space${theme ? " " + theme : ""}`}>
       <Header
-        menu={appMenu}
-        logo={{ ...appLogo, title: appName }}
+        menu={menu}
+        logo={{ ...logo, title: appName }}
         updateMenu={handleMenu}
         theme={theme}
       />
       {children}
-      <Footer appName={appName} />
+      <Footer appName={appName} media={media} hero={media.hero} />
     </div>
   );
 };

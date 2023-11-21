@@ -8,8 +8,12 @@ declare module "app-types" {
     subtitle?: string;
     details?: string;
     data?: string;
+    body?: string;
     theme?: string;
     uid?: string;
+    heroId?: string;
+    _id?: string;
+    hero?: AssetProps;
     sections?: { [key: string]: string }[];
   }
   export interface MenuProps {
@@ -40,6 +44,28 @@ declare module "app-types" {
       assetUrl: string;
     };
   }
+  export type AssetProps = {
+    url?: string;
+    alt?: string;
+    name?: string;
+    icon?: string;
+    media?: string;
+    small?: string;
+    label?: string;
+    link?: string;
+    credit?: {
+      artistName: string;
+      artistUrl: string;
+      assetUrl: string;
+    };
+    theme?: string;
+    // variable id
+    uid?: string;
+    sharedKey?: string;
+    title?: string;
+    assetId?: string;
+    logoId?: string;
+  };
   export interface FilterDesiredProps {
     values: FormValueProps;
     desiredData: string[];
