@@ -65,16 +65,11 @@ const UserPlayground = () => {
               <div className="flex-column elbow-space mb-2">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
                 <div>
-                  {error && error[app.appId] && (
-                    <p className="error-message">{error[app.appId]}</p>
-                  )}
+                  {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
                 </div>
                 <div className="flex-row flex-wrap">
                   <Button label="Edit app" onClick={() => handleEdit(app)} />
-                  <Button
-                    label="Advanced settings"
-                    onClick={() => handleAdvancedSetting(app)}
-                  />
+                  <Button label="Advanced settings" onClick={() => handleAdvancedSetting(app)} />
                   <Button label="See live" onClick={() => handleSeeLive(app)} />
                 </div>
               </div>

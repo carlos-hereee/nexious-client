@@ -46,7 +46,6 @@ const AppRouter: React.FC = () => {
     <Routes>
       {/* Public Routes */}
       {/* // if server not coaperating use offline data */}
-      <Route path="/app/" element={<Landing />} />
       <Route path="/offline" element={<Offline />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/sign-up" element={<SignUp />} />
@@ -54,6 +53,7 @@ const AppRouter: React.FC = () => {
       <Route path="/" element={<Homepage />} />
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
+        <Route path="/app/" element={<Landing />} />
         {/* <Route path="/services" element={<Services />} /> */}
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}

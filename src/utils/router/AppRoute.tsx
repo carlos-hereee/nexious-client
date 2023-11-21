@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { AuthContext } from "@context/auth/AuthContext";
+import { AppContext } from "@app/context/app/AppContext";
 
 const AppRoute = () => {
-  const { isOffline } = useContext(AuthContext);
-  if (isOffline) {
+  const { isOnline } = useContext(AppContext);
+  if (isOnline) {
     return <Outlet />;
   } else return <Navigate to="/offline" />;
 };

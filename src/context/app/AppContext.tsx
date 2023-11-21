@@ -70,6 +70,7 @@ export const AppState = ({ children }: ChildProps) => {
         languageList: state.languageList,
         adminIds: state.adminIds,
         calendar: state.calendar,
+        isOnline: state.isOnline,
         media: state.media,
         menu: state.menu,
         ownerId: state.ownerId,

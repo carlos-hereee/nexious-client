@@ -5,6 +5,7 @@ declare module "app-context" {
   export interface AppSchema {
     // auth schema
     isLoading: boolean;
+    isOnline: boolean;
     appList: { [key: string]: any }[];
     appName: string;
     welcomeMessage: string;
@@ -30,6 +31,7 @@ declare module "app-context" {
   export interface AppStateProps {
     appList: { [key: string]: any }[];
     isLoading: boolean;
+    isOnline: boolean;
     appName: string;
     languageList: KeyStringProp[];
     iconList: KeyStringProp[];
