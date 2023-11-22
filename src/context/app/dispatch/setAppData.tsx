@@ -1,7 +1,7 @@
-import { UpdateAppProps } from "app-forms";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
+import { AppFormDispatchProps } from "reducer-dispatch-props";
 
-export const setAppData = (props: UpdateAppProps) => {
+export const setAppData = (props: AppFormDispatchProps) => {
   const { dispatch, values } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   // if values exists other wise use default type

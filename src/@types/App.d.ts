@@ -5,20 +5,19 @@ declare module "app-types" {
     children: React.ReactNode;
   }
   export interface CallToActionProps {
-    link?: string;
-    label?: string;
-    icon?: string;
-    uid?: string;
+    link: string;
+    label: string;
+    icon: string;
+    uid: string;
   }
   export interface SectionProps {
     title: string;
+    uid: string;
     subtitle: string;
     details: string;
-    data?: string;
     body: string;
     theme?: string;
-    hero?: AssetProps;
-    sections?: KeyStringProp[];
+    hero: AssetProps;
   }
   export interface NewsletterProps {
     title: string;
@@ -31,7 +30,6 @@ declare module "app-types" {
     title: string;
     subtitle: string;
     details: string;
-    email: string;
     hero: AssetProps;
     medias: { media: string; link: string; uid: string }[];
   }
@@ -75,7 +73,6 @@ declare module "app-types" {
       assetUrl: string;
     };
   }
-  // export type ThemeListProps = {};
   export type AdminIdProps = {
     userId: string;
     role: string;
@@ -83,6 +80,7 @@ declare module "app-types" {
   export type AssetProps = {
     url: string;
     alt: string;
+    hero: string;
     name?: string;
     icon?: string;
     media?: string;
@@ -97,7 +95,6 @@ declare module "app-types" {
     theme?: string;
     // variable id
     uid: string;
-    hero: string;
     heroId: string;
     sharedKey?: string;
     title?: string;

@@ -1,6 +1,6 @@
 declare module "reducer-dispatch-props" {
   import { FormProps, FormValueProps } from "app-forms";
-  import { AppListProps, LandingProps } from "app-context";
+  import { AppListProps, AppProps, LandingProps } from "app-context";
   import { APP_ACTIONS } from "@app/utils/types/AppActions";
   import {
     AdminIdProps,
@@ -12,27 +12,31 @@ declare module "reducer-dispatch-props" {
     NewsletterProps,
   } from "app-types";
 
-  export interface DispatchProps {
-    dispatch: React.Dispatch<any>;
+  export interface AppDispatchProps {
+    dispatch: React.Dispatch<AppActionProps>;
+  }
+  export interface AppFormDispatchProps {
+    dispatch: React.Dispatch<AppActionProps>;
+    values: AppProps;
   }
   export interface DispatchStringProp {
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<unknown>;
     data: string;
   }
   export interface DispatchDataProp {
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<unknown>;
     data: { [key: string]: string };
   }
   export interface DispatchFormValueProp {
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<unknown>;
     values: FormProps;
   }
   export interface DispatchListProp {
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<unknown>;
     data: { [key: string]: string }[];
   }
   export interface DispatchMenuProp {
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<AppActionProps>;
     data: MenuProps[];
   }
   export interface DispatchAppAssets {

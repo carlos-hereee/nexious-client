@@ -1,6 +1,6 @@
 declare module "auth-context" {
-  // imports allowed here
   import { FormProps, FormValueProps, LoginFormProps, RegisterFormProps } from "app-forms";
+
   export interface UserSchema {
     id: string;
     userId: string;

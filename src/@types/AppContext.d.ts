@@ -5,33 +5,50 @@ declare module "app-context" {
     CalendarProps,
     CallToActionProps,
     KeyStringProp,
+    MediaProps,
     MenuItemProps,
     MenuProps,
+    NewsletterProps,
     SectionProps,
   } from "app-types";
   import { FormValueProps } from "app-forms";
 
+  export interface AppProps {
+    appName: string;
+    appId: string;
+    adminIds: AdminIdProps[];
+    logo: AssetProps;
+    locale: string;
+    languageList: MenuItemProps[];
+    isLoading: boolean;
+    isOnline: boolean;
+    appList: AppListProps[];
+    welcomeMessage: string;
+    landing: LandingProps;
+    ownerId: string;
+    newsletter: NewsletterProps;
+    media: MediaProps;
+    menu: MenuProps[];
+    activeMenu: MenuProps[];
+    themeList: MenuItemProps[];
+    iconList: MenuItemProps[];
+    calendar: CalendarProps;
+  }
   export interface AppListProps {
     appName: string;
     appId: string;
     adminIds: AdminIdProps[];
     logo: AssetProps;
   }
-  export interface AppProps {
-    appName: string;
-    appId: string;
-    adminIds: AdminIdProps[];
-    logo: AssetProps;
-  }
-
   export interface LandingProps {
     title: string;
     tagline: string;
     body: string;
     hasCta: boolean;
-    hasSection: boolean;
+    hasSections: boolean;
     hero: AssetProps;
     cta: CallToActionProps[];
+    sections: SectionProps[];
   }
   export interface AppStateProps {
     // auth schema
@@ -44,14 +61,14 @@ declare module "app-context" {
     appId: string;
     ownerId: string;
     adminIds: AdminIdProps[];
-    newsletter: SectionProps;
+    newsletter: NewsletterProps;
     media: SectionProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    logo: KeyStringProp;
+    logo: AssetProps;
     themeList: MenuItemProps[];
-    languageList: KeyStringProp[];
-    iconList: KeyStringProp[];
+    languageList: MenuItemProps[];
+    iconList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
   }
@@ -68,11 +85,11 @@ declare module "app-context" {
     appId: string;
     ownerId: string;
     adminIds: AdminIdProps[];
-    newsletter: SectionProps;
+    newsletter: NewsletterProps;
     media: SectionProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    logo: KeyStringProp;
+    logo: AssetProps;
     themeList: MenuItemProps[];
     languageList: KeyStringProp[];
     iconList: KeyStringProp[];

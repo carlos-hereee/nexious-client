@@ -1,5 +1,4 @@
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
-// import { AppReducerProps } from "reducer-dispatch-props";
 import initState from "@data/appState.json";
 import { AppActionProps } from "reducer-dispatch-props";
 

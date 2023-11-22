@@ -1,4 +1,6 @@
 declare module "app-forms" {
+  // import { AppDispatchProps } from "reducer-dispatch-props";
+
   export interface LoginFormProps {
     username: string;
     password: string;
@@ -48,10 +50,10 @@ declare module "app-forms" {
       unique?: { name: string; list: string[] }[];
     };
   }
-  export type UpdateAppProps = {
-    dispatch: React.Dispatch<any>;
-    values: FormValueProps;
-  };
+  // export type UpdateAppProps = {
+  //   dispatch: React.Dispatch<AppDispatchProps>;
+  //   values: FormValueProps;
+  // };
   export type BuildAppProps = {
     dispatch: React.Dispatch<any>;
     values: FormValueProps;

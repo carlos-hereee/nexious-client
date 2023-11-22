@@ -17,7 +17,7 @@ const PreviewPage: React.FC<PreviewPageProps> = (props) => {
       </div>
       {preview.hasSections && (
         <div className={preview.sections?.length > 3 ? "sections-container" : "grid"}>
-          {preview.sections.map((data: any) => {
+          {preview.sections.map((data) => {
             const { sectionHero, sharedKey, body, uid } = data;
             return sectionHero ? (
               <div key={uid || sharedKey} className="section-card">

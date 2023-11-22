@@ -6,6 +6,7 @@ import { SectionProps } from "app-types";
 const Landing = () => {
   const { landing } = useContext(AppContext);
 
+  // console.log("landing :>> ", landing);
   return (
     <div className="container">
       {landing && (
@@ -15,11 +16,11 @@ const Landing = () => {
         </div>
       )}
       {landing.sections && (
-        <div className="feature-card-container m-tb">
-          {landing.sections.map((af: SectionProps) => (
-            <div className="flex-d-column" key={af.uid || af.heroId}>
-              <HeroCard data={af} hero={af} />
-              {af.body && <p className="text-max">{af.body}</p>}
+        <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
+          {landing.sections.map((section: SectionProps) => (
+            <div className="flex-d-column" key={section.uid}>
+              <HeroCard data={section} hero={section.hero} />
+              {section.body && <p className="text-max">{section.body}</p>}
             </div>
           ))}
         </div>

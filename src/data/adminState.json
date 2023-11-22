@@ -290,10 +290,6 @@
       "uid": "language-spanish-en"
     }
   ],
-  "appLogo": {
-    "url": "/icons/logo.svg",
-    "alt": "industry-brand"
-  },
   "appMenu": [
     {
       "isToggle": true,
