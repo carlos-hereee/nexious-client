@@ -1,20 +1,18 @@
 {
   "isLoading": true,
   "isOnline": true,
-  "appList": [],
+  "appList": [{}],
   "themeList": [
     {
       "name": "light-mode",
       "value": "light-mode",
       "label": "light-mode",
-      "themeId": "theme-light-mode",
       "uid": "theme-light-mode"
     },
     {
       "name": "dark-mode",
       "value": "dark-mode",
       "label": "dark-mode",
-      "themeId": "theme-dark-mode",
       "uid": "theme-dark-mode"
     }
   ],
@@ -23,14 +21,13 @@
   "ownerId": "",
   "welcomeMessage": "Welcome back!",
   "locale": "",
-  "adminIds": [],
+  "adminIds": [{}],
   "newsletter": {
-    "title": "",
-    "subtitle": "",
-    "data": "",
-    "theme": "",
-    "details": "",
-    "sections": []
+    "title": "Join the newsletter",
+    "subtitle": "Suscribe to get the latest content by email",
+    "details": "Unsubscribe at any time.",
+    "email": "",
+    "hero": {}
   },
   "media": {
     "title": "Dont miss a thing! Follow us on our socials",
@@ -45,11 +42,14 @@
     {
       "isToggle": true,
       "isPrivate": false,
+      "uid": "themelist-1",
       "menuId": "themelist-1",
       "active": {
         "name": "dark-mode",
         "value": "dark-mode",
         "label": "dark-mode",
+        "icon": "",
+        "link": "",
         "themeId": "theme-dark-mode",
         "uid": "theme-dark-mode"
       },
@@ -59,6 +59,8 @@
           "value": "light-mode",
           "label": "light-mode",
           "themeId": "theme-light-mode",
+          "icon": "",
+          "link": "",
           "uid": "theme-light-mode"
         },
         {
@@ -66,6 +68,7 @@
           "value": "dark-mode",
           "label": "dark-mode",
           "themeId": "theme-dark-mode",
+          "icon": "",
           "uid": "theme-dark-mode"
         }
       ]
@@ -73,6 +76,7 @@
     {
       "isToggle": false,
       "isPrivate": true,
+      "uid": "auth-1",
       "menuId": "auth-1",
       "active": {
         "label": "Login",
@@ -103,10 +107,13 @@
     {
       "isToggle": true,
       "isPrivate": false,
+      "uid": "themelist-1",
       "menuId": "themelist-1",
       "active": {
         "name": "dark-mode",
         "value": "dark-mode",
+        "icon": "",
+        "link": "",
         "label": "dark-mode",
         "themeId": "theme-dark-mode",
         "uid": "theme-dark-mode"
@@ -117,11 +124,15 @@
           "value": "light-mode",
           "label": "light-mode",
           "themeId": "theme-light-mode",
+          "icon": "",
+          "link": "",
           "uid": "theme-light-mode"
         },
         {
           "name": "dark-mode",
           "value": "dark-mode",
+          "icon": "",
+          "link": "",
           "label": "dark-mode",
           "themeId": "theme-dark-mode",
           "uid": "theme-dark-mode"
@@ -131,10 +142,13 @@
     {
       "isToggle": false,
       "isPrivate": true,
+      "uid": "auth-1",
       "menuId": "auth-1",
       "active": {
         "label": "Login",
         "icon": "login",
+        "value": "login",
+        "themeId": "",
         "name": "login",
         "uid": "login-uid-1",
         "link": "login"
@@ -144,6 +158,8 @@
           "label": "Login",
           "icon": "login",
           "name": "login",
+          "value": "login",
+          "themeId": "",
           "uid": "login-uid-1",
           "link": "login"
         },
@@ -151,6 +167,8 @@
           "label": "Logout",
           "icon": "logout",
           "name": "logout",
+          "themeId": "",
+          "value": "logout",
           "uid": "logout-uid-1",
           "link": "logout"
         }

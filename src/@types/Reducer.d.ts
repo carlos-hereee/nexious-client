@@ -1,9 +1,8 @@
 declare module "reducer-dispatch-props" {
   import { FormProps, FormValueProps } from "app-forms";
+  import { AppListProps } from "app-context";
   import { APP_ACTIONS } from "@app/utils/types/AppActions";
-  import { MenuProps } from "app-types";
-  // import { AppStateProps } from "app-context";
-  // import { ReducerAction } from "react";
+  import { AdminIdProps, MenuItemProps, MenuProps, NewsletterProps } from "app-types";
 
   export interface DispatchProps {
     dispatch: React.Dispatch<any>;
@@ -34,8 +33,33 @@ declare module "reducer-dispatch-props" {
     handleAppAssets: (key: FormValueProps) => void;
   }
 
-  export interface AppActionProps {
-    type: APP_ACTIONS;
-    payload: "";
-  }
+  export type AppActionProps =
+    | {
+        type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON;
+        payload: boolean;
+      }
+    | {
+        type: APP_ACTIONS.SET_APP_ID;
+        payload: string;
+      }
+    | {
+        type: APP_ACTIONS.SET_THEME_LIST;
+        payload: MenuItemProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_ACTIVE_MENU;
+        payload: MenuProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_APP_LIST;
+        payload: AppListProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_NEWSLETTER;
+        payload: NewsletterProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_ADMIN_IDS;
+        payload: AdminIdProps[];
+      };
 }

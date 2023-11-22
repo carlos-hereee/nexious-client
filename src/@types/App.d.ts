@@ -11,31 +11,46 @@ declare module "app-types" {
     uid?: string;
   }
   export interface SectionProps {
-    title?: string;
-    subtitle?: string;
-    details?: string;
+    title: string;
+    subtitle: string;
+    details: string;
     data?: string;
-    body?: string;
+    body: string;
     theme?: string;
-    uid?: string;
-    heroId?: string;
-    _id?: string;
     hero?: AssetProps;
-    sections?: { [key: string]: string }[];
+    sections?: KeyStringProp[];
+  }
+  export interface NewsletterProps {
+    title: string;
+    subtitle: string;
+    details: string;
+    email: string;
+    hero: AssetProps;
+  }
+  export interface MenuItemProps {
+    name: string;
+    value: string;
+    label: string;
+    icon: string;
+    link: string;
+    uid: string;
+    themeId: string;
+    menuItemId: string;
   }
   export interface MenuProps {
+    uid: string;
     menuId: string;
     isToggle: boolean;
     isPrivate: boolean;
     // TODO: include actual keys, and values
-    active: { [key: string]: string | undefined };
-    alternatives: { [key: string]: string | undefined }[];
+    active: MenuItemProps;
+    alternatives: MenuItemProps[];
   }
   export interface CalendarProps {
     name: string;
     theme?: string;
     calendarId: string;
-    events: { [key: string]: string }[];
+    events: KeyStringProp[];
   }
   export interface HeroProps {
     url: string;
@@ -51,6 +66,11 @@ declare module "app-types" {
       assetUrl: string;
     };
   }
+  // export type ThemeListProps = {};
+  export type AdminIdProps = {
+    userId: string;
+    role: string;
+  };
   export type AssetProps = {
     url?: string;
     alt?: string;

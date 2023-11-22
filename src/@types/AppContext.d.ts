@@ -1,9 +1,11 @@
 declare module "app-context" {
   import {
+    AdminIdProps,
     AssetProps,
     CalendarProps,
     CallToActionProps,
     KeyStringProp,
+    MenuItemProps,
     MenuProps,
     SectionProps,
   } from "app-types";
@@ -12,13 +14,13 @@ declare module "app-context" {
   export interface AppListProps {
     appName: string;
     appId: string;
-    adminIds: { userId: string; role: string }[];
+    adminIds: AdminIdProps[];
     logo: AssetProps;
   }
   export interface AppProps {
     appName: string;
     appId: string;
-    adminIds: { userId: string; role: string }[];
+    adminIds: AdminIdProps[];
     logo: AssetProps;
   }
 
@@ -41,13 +43,13 @@ declare module "app-context" {
     landing: LandingProps;
     appId: string;
     ownerId: string;
-    adminIds: string[];
+    adminIds: AdminIdProps[];
     newsletter: SectionProps;
     media: SectionProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: KeyStringProp;
-    themeList: KeyStringProp[];
+    themeList: MenuItemProps[];
     languageList: KeyStringProp[];
     iconList: KeyStringProp[];
     locale: string;
@@ -65,13 +67,13 @@ declare module "app-context" {
     landing: LandingProps;
     appId: string;
     ownerId: string;
-    adminIds: string[];
+    adminIds: AdminIdProps[];
     newsletter: SectionProps;
     media: SectionProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: KeyStringProp;
-    themeList: KeyStringProp[];
+    themeList: MenuItemProps[];
     languageList: KeyStringProp[];
     iconList: KeyStringProp[];
     locale: string;
