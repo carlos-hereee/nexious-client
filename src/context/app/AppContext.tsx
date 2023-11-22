@@ -53,9 +53,9 @@ export const AppState = ({ children }: ChildProps) => {
   //   }
   // }, [queryParams.search]);
 
-  useEffect(() => {
-    getAppList({ dispatch });
-  }, []);
+  // useEffect(() => {
+  //   getAppList({ dispatch });
+  // }, []);
 
   return (
     <AppContext.Provider
@@ -73,6 +73,7 @@ export const AppState = ({ children }: ChildProps) => {
         isOnline: state.isOnline,
         media: state.media,
         menu: state.menu,
+        activeMenu: state.activeMenu,
         ownerId: state.ownerId,
         logo: state.logo,
         locale: state.locale,

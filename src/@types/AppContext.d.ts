@@ -17,6 +17,7 @@ declare module "app-context" {
     newsletter: SectionProps;
     media: SectionProps;
     menu: MenuProps[];
+    activeMenu: MenuProps[];
     logo: KeyStringProp;
     themeList: KeyStringProp[];
     languageList: KeyStringProp[];
@@ -35,6 +36,7 @@ declare module "app-context" {
     appName: string;
     languageList: KeyStringProp[];
     iconList: KeyStringProp[];
+    activeMenu: MenuProps[];
     welcomeMessage: string;
     // theme: string;
     landing: any;

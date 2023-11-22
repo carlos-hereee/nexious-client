@@ -9,16 +9,15 @@ import { AdminContext } from "@context/admin/AdminContext";
 const App = ({ children }: ChildProps) => {
   const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
-  const { updateMenu, menu, logo, appName, media } = useContext(AppContext);
+  const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
   const navigate = useNavigate();
 
-  console.log("media :>> ", media);
   useEffect(() => {
     if (appName) document.title = appName;
   }, [appName]);
 
   const handleMenu = (menuItem: MenuProps) => {
-    let oldValues = [...menu];
+    let oldValues = [...activeMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
@@ -48,7 +47,7 @@ const App = ({ children }: ChildProps) => {
   return (
     <div className={`app-container elbow-space${theme ? " " + theme : ""}`}>
       <Header
-        menu={menu}
+        menu={activeMenu}
         logo={{ ...logo, title: appName }}
         updateMenu={handleMenu}
         theme={theme}
