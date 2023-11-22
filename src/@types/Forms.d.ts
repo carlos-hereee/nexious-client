@@ -28,6 +28,7 @@ declare module "app-forms" {
   export type RegisterFormProps = {
     username: string;
     password: string;
+    confirmPassword: string;
   };
   export type FormValueProps = {
     [key: string]: unknown;

@@ -14,13 +14,23 @@
       "name": "light-mode",
       "value": "light-mode",
       "label": "light-mode",
-      "uid": "theme-light-mode"
+      "uid": "theme-light-mode",
+      "icon": "",
+      "link": "",
+      "themeId": "theme-light-mode",
+      "locale": "",
+      "menuItemId": "theme-light-mode"
     },
     {
       "name": "dark-mode",
       "value": "dark-mode",
       "label": "dark-mode",
-      "uid": "theme-dark-mode"
+      "uid": "theme-dark-mode",
+      "icon": "",
+      "link": "",
+      "themeId": "theme-dark-mode",
+      "locale": "",
+      "menuItemId": "theme-dark-mode"
     }
   ],
   "appName": "Nexs Tech",
@@ -39,8 +49,11 @@
   "media": {
     "title": "Dont miss a thing! Follow us on our socials",
     "subtitle": "",
+    "details": "",
     "hero": {
       "heroId": "medias",
+      "uid": "medias-1",
+      "alt": "medias-hero",
       "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
       "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
       "theme": "thumbnail",
@@ -64,10 +77,12 @@
       "active": {
         "name": "dark-mode",
         "value": "dark-mode",
-        "label": "dark-mode",
         "icon": "",
         "link": "",
+        "locale": "",
+        "label": "dark-mode",
         "themeId": "theme-dark-mode",
+        "menuItemId": "theme-dark-mode",
         "uid": "theme-dark-mode"
       },
       "alternatives": [
@@ -76,16 +91,21 @@
           "value": "light-mode",
           "label": "light-mode",
           "themeId": "theme-light-mode",
+          "menuItemId": "theme-light-mode",
           "icon": "",
           "link": "",
+          "locale": "",
           "uid": "theme-light-mode"
         },
         {
           "name": "dark-mode",
           "value": "dark-mode",
+          "icon": "",
+          "link": "",
+          "locale": "",
           "label": "dark-mode",
           "themeId": "theme-dark-mode",
-          "icon": "",
+          "menuItemId": "theme-dark-mode",
           "uid": "theme-dark-mode"
         }
       ]
@@ -98,8 +118,12 @@
       "active": {
         "label": "Login",
         "icon": "login",
+        "value": "login",
+        "themeId": "",
+        "locale": "",
         "name": "login",
         "uid": "login-uid-1",
+        "menuItemId": "login-uid-1",
         "link": "login"
       },
       "alternatives": [
@@ -107,14 +131,22 @@
           "label": "Login",
           "icon": "login",
           "name": "login",
+          "value": "login",
+          "locale": "",
+          "themeId": "",
           "uid": "login-uid-1",
+          "menuItemId": "login-uid-1",
           "link": "login"
         },
         {
           "label": "Logout",
           "icon": "logout",
           "name": "logout",
+          "themeId": "",
+          "locale": "",
+          "value": "logout",
           "uid": "logout-uid-1",
+          "menuItemId": "logOut-uid-1",
           "link": "logout"
         }
       ]
@@ -173,7 +205,9 @@
         "value": "login",
         "themeId": "",
         "name": "login",
+        "locale": "",
         "uid": "login-uid-1",
+        "menuItemId": "login-uid-1",
         "link": "login"
       },
       "alternatives": [
@@ -183,16 +217,20 @@
           "name": "login",
           "value": "login",
           "themeId": "",
+          "locale": "",
           "uid": "login-uid-1",
+          "menuItemId": "login-uid-1",
           "link": "login"
         },
         {
           "label": "Logout",
           "icon": "logout",
           "name": "logout",
+          "locale": "",
           "themeId": "",
           "value": "logout",
           "uid": "logout-uid-1",
+          "menuItemId": "logOut-uid-2",
           "link": "logout"
         }
       ]
@@ -272,7 +310,11 @@
       "label": "Confirm",
       "value": "confirm",
       "icon": "confirm",
-      "uid": "icon-1"
+      "uid": "icon-1",
+      "link": "",
+      "locale": "",
+      "themeId": "",
+      "menuItemId": "icon-list-item-english"
     }
   ],
   "languageList": [
@@ -281,14 +323,22 @@
       "label": "English",
       "value": "en-US (English)",
       "locale": "en-US",
-      "uid": "language-english-en"
+      "uid": "language-english-en",
+      "icon": "",
+      "link": "",
+      "themeId": "lan-english",
+      "menuItemId": "lan-english"
     },
     {
       "name": "spanish",
       "label": "Espanol",
       "value": "es-US (Espanol)",
       "locale": "es-US",
-      "uid": "language-spanish-en"
+      "uid": "language-spanish-en",
+      "icon": "",
+      "link": "",
+      "themeId": "lan-english",
+      "menuItemId": "lan-english"
     }
   ]
 }

@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
+import ChangePassword from "@components/form/ChangePassword";
 import PrivateRoute from "./utils/router/PrivateRoute";
 import Landing from "./pages/Landing";
 // import Services from "./pages/Services";
@@ -14,9 +15,8 @@ import Landing from "./pages/Landing";
 // import Dashboard from "./pages/Dashboard";
 // import AdminDashboard from "./pages/AdminDashboard";
 // import AddPage from "./pages/AddPages";
-import ChangePassword from "@components/form/ChangePassword";
 import Offline from "./components/app/Offline";
-import SignUp from "./pages/Signup";
+import SignUp from "./pages/Register";
 import AppRoute from "./utils/router/AppRoute";
 import ForgotPassword from "./components/form/ForgotPassword";
 import AdminRoute from "./utils/router/AdminRoute";
@@ -31,17 +31,16 @@ const AppRouter: React.FC = () => {
   const { emergencyPasswordChangeIsRequired } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // emergency password change
-  if (emergencyPasswordChangeIsRequired) {
-    // return <ChangePassword handleClick={changePassword} />;
-    return <ChangePassword />;
-  }
-
   useEffect(() => {
     // navigate to user playground when the amount of owned apps changes
     navigate("/");
   }, [ownedApps.length]);
 
+  // emergency password change
+  if (emergencyPasswordChangeIsRequired) {
+    // return <ChangePassword handleClick={changePassword} />;
+    return <ChangePassword />;
+  }
   return (
     <Routes>
       {/* Public Routes */}

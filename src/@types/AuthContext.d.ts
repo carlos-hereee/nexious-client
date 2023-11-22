@@ -1,4 +1,7 @@
+import { AppListProps } from "app-context";
+
 declare module "auth-context" {
+  import { AssetProps } from "app-types";
   import { FormProps, FormValueProps, LoginFormProps, RegisterFormProps } from "app-forms";
 
   export interface UserSchema {
@@ -30,7 +33,7 @@ declare module "auth-context" {
   }
   export interface UpdateUserReducerProps {
     dispatch: React.Dispatch<any>;
-    user: { [key: string]: any };
+    user: UserSchema;
   }
   export interface AuthStateProps {
     // auth schema
@@ -38,7 +41,7 @@ declare module "auth-context" {
     isOffline: boolean;
     emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
-    ownedApps: { appId: string; logo?: { [key: string]: string }; appName: string }[];
+    ownedApps: AppListProps[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     userForm: FormProps;
@@ -58,7 +61,7 @@ declare module "auth-context" {
     accessToken: string;
     theme: string;
     locale: string;
-    ownedApps: { appId: string; logo?: {}; appName: string }[];
+    ownedApps: { appId: string; logo?: AssetProps; appName: string }[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     userForm: FormProps;

@@ -3,17 +3,15 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { Form } from "nexious-library";
 import { Link } from "react-router-dom";
 
-const SignUp = () => {
+const Register = () => {
   const { register, authErrors, signUpForm } = useContext(AuthContext);
 
   return (
     <div>
-      <h2 className="heading">Sign up</h2>
-      {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
-      <Form
-        initialValues={signUpForm.initialValues}
-        onSubmit={(values: any) => register(values)}
-      />
+      <div className="form-hero">
+        {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
+        <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+      </div>
       <div className="flex-center">
         <Link to="/">
           Already have an account?
@@ -23,4 +21,4 @@ const SignUp = () => {
     </div>
   );
 };
-export default SignUp;
+export default Register;
