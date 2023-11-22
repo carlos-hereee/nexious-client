@@ -24,7 +24,7 @@ declare module "app-context" {
     isOnline: boolean;
     appList: AppListProps[];
     welcomeMessage: string;
-    landing: LandingProps;
+    landing: PageProps;
     ownerId: string;
     newsletter: NewsletterProps;
     media: MediaProps;
@@ -40,7 +40,7 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     logo: AssetProps;
   }
-  export interface LandingProps {
+  export interface PageProps {
     title: string;
     tagline: string;
     body: string;
@@ -57,7 +57,7 @@ declare module "app-context" {
     appList: AppListProps[];
     appName: string;
     welcomeMessage: string;
-    landing: LandingProps;
+    landing: PageProps;
     appId: string;
     ownerId: string;
     adminIds: AdminIdProps[];
@@ -81,7 +81,7 @@ declare module "app-context" {
     appName: string;
     welcomeMessage: string;
     // theme: string;
-    landing: LandingProps;
+    landing: PageProps;
     appId: string;
     ownerId: string;
     adminIds: AdminIdProps[];

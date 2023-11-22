@@ -232,7 +232,7 @@
         "subtitle": "",
         "uid": "section-1",
         "details": "",
-        "hero": {
+        "sectionHero": {
           "url": "/icons/secure-icon.svg",
           "alt": "Trusted professionals",
           "uid": "hero-uid-1",
@@ -247,7 +247,7 @@
         "subtitle": "",
         "uid": "section-2",
         "details": "",
-        "hero": {
+        "sectionHero": {
           "url": "/icons/custom.svg",
           "alt": "Trusted professionals",
           "uid": "hero-uid-2",

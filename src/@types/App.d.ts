@@ -1,5 +1,6 @@
 declare module "app-types" {
   import { FormValueProps } from "app-forms";
+  import { PageProps } from "app-context";
 
   export interface ChildProps {
     children: React.ReactNode;
@@ -17,7 +18,8 @@ declare module "app-types" {
     details: string;
     body: string;
     theme?: string;
-    hero: AssetProps;
+    sharedKey?: string;
+    sectionHero: AssetProps;
   }
   export interface NewsletterProps {
     title: string;
@@ -111,10 +113,10 @@ declare module "app-types" {
     theme: string;
   }
   export interface PreviewPageProps {
-    preview: FormValueProps;
+    preview: PageProps;
     theme?: string;
     hero: HeroProps;
-    onClick?: (key: unknown) => void;
+    onClick?: (key: CallToActionProps) => void;
   }
   export interface KeyStringProp {
     [key: string]: string;

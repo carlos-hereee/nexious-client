@@ -1,5 +1,5 @@
 declare module "app-forms" {
-  // import { AppDispatchProps } from "reducer-dispatch-props";
+  import { AssetProps } from "app-types";
 
   export interface LoginFormProps {
     username: string;
@@ -10,6 +10,7 @@ declare module "app-forms" {
     initialValues: FormValueProps;
     labels?: { [key: string]: string | undefined };
     types?: { [key: string]: string | undefined };
+    hero?: AssetProps;
     // optional data
     placeholders?: { [key: string]: string | undefined };
     heading?: string;

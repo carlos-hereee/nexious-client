@@ -21,7 +21,7 @@ const Landing = () => {
         <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
           {landing.sections.map((section: SectionProps) => (
             <div className="flex-d-column" key={section.uid}>
-              <HeroCard data={section} hero={section.hero} />
+              <HeroCard data={section} hero={section.sectionHero} />
               {section.body && <p className="text-max">{section.body}</p>}
             </div>
           ))}

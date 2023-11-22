@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form } from "nexious-library";
+import { Form, Hero } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
 
@@ -8,9 +8,11 @@ const Login = () => {
 
   return (
     <div className="container">
-      <h2 className="heading">Login</h2>
-      {authErrors.signInError && <p className="error-message">{authErrors.signInError}</p>}
-      <Form initialValues={loginForm.initialValues} onSubmit={login} />
+      <div className="form-hero">
+        {authErrors.signInError && <p className="error-message">{authErrors.signInError}</p>}
+        <Form initialValues={loginForm.initialValues} heading="Login" onSubmit={login} />
+        {loginForm.hero && <Hero hero={loginForm.hero} />}
+      </div>
       <div className="flex-d-column flex-center">
         <Link to="/sign-up">
           Dont have an account?

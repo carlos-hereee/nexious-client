@@ -1,6 +1,6 @@
 declare module "reducer-dispatch-props" {
   import { FormProps, FormValueProps } from "app-forms";
-  import { AppListProps, AppProps, LandingProps } from "app-context";
+  import { AppListProps, AppProps, PageProps } from "app-context";
   import { APP_ACTIONS } from "@app/utils/types/AppActions";
   import {
     AdminIdProps,
@@ -68,7 +68,7 @@ declare module "reducer-dispatch-props" {
       }
     | {
         type: APP_ACTIONS.SET_LANDING;
-        payload: LandingProps;
+        payload: PageProps;
       }
     | {
         type: APP_ACTIONS.SET_APP_LOGO;

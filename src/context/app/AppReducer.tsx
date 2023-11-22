@@ -66,3 +66,4 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       throw new Error();
   }
 };
+// Photo by <a href=""></a> on <a href="">Unsplash</a>
