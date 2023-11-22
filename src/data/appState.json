@@ -39,7 +39,17 @@
   "media": {
     "title": "Dont miss a thing! Follow us on our socials",
     "subtitle": "",
-    "hero": { "heroId": "medias", "hero": "/icons/custom.svg", "url": "/icons/custom.svg" },
+    "hero": {
+      "heroId": "medias",
+      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "theme": "thumbnail",
+      "creditTo": {
+        "artistName": "Ian Schneider",
+        "assetUrl": "https://unsplash.com/photos/two-person-standing-on-gray-tile-paving-TamMbr4okv4?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash",
+        "artistUrl": "https://unsplash.com/@goian?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    },
     "medias": [
       { "media": "facebook", "link": "https://facebook.com", "uid": "6554c3a2bb0a21f3bb3e07b4" },
       { "media": "x", "link": "https://twitter.com/", "uid": "6554c3a2bb0a21f3bb3e07b5" }
@@ -194,12 +204,17 @@
     "tagline": "Turn Your Idea into a Stunning App",
     "hasCta": true,
     "hero": {
-      "url": "/icons/logo.svg",
+      "url": "/unsplash/austin-chan-ukzHlkoz1IE-unsplash.jpg",
       "alt": "feature hero",
       "uid": "landing-hero-uid",
       "heroId": "landing-hero",
-      "hero": "/icons/logo.svg",
-      "theme": ""
+      "hero": "/unsplash/austin-chan-ukzHlkoz1IE-unsplash.jpg",
+      "creditTo": {
+        "artistName": "Austin Chan",
+        "artistUrl": "https://unsplash.com/photos/this-is-the-sign-youve-been-looking-for-neon-signage-ukzHlkoz1IE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/@austinchan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      },
+      "theme": "feature-hero"
     },
     "body": "Welcome to Nexious Tech, your one-stop destination for transforming your app idea into reality.",
     "hasSections": true,

@@ -67,7 +67,7 @@ declare module "app-types" {
     small?: string;
     theme?: string;
     ping?: number;
-    credit?: {
+    creditTo?: {
       artistName: string;
       artistUrl: string;
       assetUrl: string;
@@ -87,7 +87,7 @@ declare module "app-types" {
     small?: string;
     label?: string;
     link?: string;
-    credit?: {
+    creditTo?: {
       artistName: string;
       artistUrl: string;
       assetUrl: string;

@@ -62,7 +62,7 @@ declare module "app-context" {
     ownerId: string;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
-    media: SectionProps;
+    media: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: AssetProps;
@@ -86,7 +86,7 @@ declare module "app-context" {
     ownerId: string;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
-    media: SectionProps;
+    media: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: AssetProps;

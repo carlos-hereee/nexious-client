@@ -11,13 +11,8 @@ const Homepage: React.FC = () => {
   // const navigate = useNavigate();
   if (accessToken) return <UserPlayground />;
   return (
-    <div className="landing">
+    <div>
       <Landing />
-      {/* <PreviewPage
-        preview={{ ...nexs, hasSections: true }}
-        hero={nexs.hero}
-        onClick={(e: unknown) => navigate(`/${e?.link}`)}
-      /> */}
     </div>
   );
 };

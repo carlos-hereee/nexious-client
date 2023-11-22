@@ -1,8 +1,10 @@
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
-import initState from "@data/appState.json";
+// import initState from "@data/appState.json";
+import { AppStateProps } from "app-context";
 import { AppActionProps } from "reducer-dispatch-props";
 
-export const reducer = (state: typeof initState, action: AppActionProps): typeof initState => {
+// export const reducer = (state: typeof initState, action: AppActionProps): typeof initState => {
+export const reducer = (state: AppStateProps, action: AppActionProps): AppStateProps => {
   switch (action.type) {
     case APP_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
