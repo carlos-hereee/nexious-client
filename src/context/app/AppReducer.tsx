@@ -1,10 +1,9 @@
-import { AppStateProps } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
+// import { AppReducerProps } from "reducer-dispatch-props";
+import initState from "@data/appState.json";
+import { AppActionProps } from "reducer-dispatch-props";
 
-type ReducerAction = { type: APP_ACTIONS; payload: any };
-type AppReducerProps = (state: AppStateProps, action: ReducerAction) => AppStateProps;
-
-export const reducer: AppReducerProps = (state, action) => {
+export const reducer = (state: typeof initState, action: AppActionProps): typeof initState => {
   switch (action.type) {
     case APP_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
@@ -65,6 +64,6 @@ export const reducer: AppReducerProps = (state, action) => {
     // case APP_ACTIONS.RESET_FILTER:
     //   return { ...state, isFiltered: false, filtered: action.payload };
     default:
-      return state;
+      throw new Error();
   }
 };

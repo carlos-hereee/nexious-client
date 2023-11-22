@@ -1,7 +1,7 @@
 import { UpdateAppProps } from "app-forms";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
 
-export const updateAppData = (props: UpdateAppProps) => {
+export const setAppData = (props: UpdateAppProps) => {
   const { dispatch, values } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   // if values exists other wise use default type

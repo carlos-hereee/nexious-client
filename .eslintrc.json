@@ -37,6 +37,16 @@
     "jsx-a11y/label-has-associated-control": 0,
     "react/jsx-no-constructed-context-values": 0,
     "react/prop-types": 0,
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        // if enums are not IN_THIS_FORMAT it will error
+        "selector": "enum",
+        "format": [
+          "UPPER_CASE"
+        ]
+      }
+    ],
     "react/function-component-definition": [
       2,
       {

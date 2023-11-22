@@ -1,22 +1,27 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
-// import {  useCallback, useMemo, } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
+import {
+  ReactElement,
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from "react";
 import appState from "@data/appState.json";
-import { ChildProps } from "app-types";
-// import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { AppSchema } from "app-context";
+import { ChildProps, MenuProps } from "app-types";
+import { AppListProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
-import { updateAppData } from "./dispatch/updateAppData";
+import { FormValueProps } from "app-forms";
+import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
-// import { getAppList } from "./helpers/getAppList";
-import { getAppWithName } from "./helpers/getWithAppName";
-import { updateMenu } from "./dispatch/updateMenu";
+import { fetchAppWithName } from "./fetch/fetchAppWithName";
+import { setMenu } from "./dispatch/setMenu";
+import { fetchAppList } from "./fetch/fetchAppList";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
-// export const AppProvider = createContext<AppProviderProps>({} as AppProviderProps);
 
-export const AppState = ({ children }: ChildProps) => {
+export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
   const { accessToken } = useContext(AuthContext);
   // const navigate = useNavigate();
@@ -52,87 +57,88 @@ export const AppState = ({ children }: ChildProps) => {
     }
   }, [accessToken]);
 
-  // const appValues = useMemo(() => {
-  //   return {
-  //     isLoading: state.isLoading,
-  //     appList: state.appList,
-  //     iconList: state.iconList,
-  //     appName: state.appName,
-  //     appId: state.appId,
-  //     landing: state.landing,
-  //     themeList: state.themeList,
-  //     languageList: state.languageList,
-  //     adminIds: state.adminIds,
-  //     calendar: state.calendar,
-  //     isOnline: state.isOnline,
-  //     media: state.media,
-  //     menu: state.menu,
-  //     activeMenu: state.activeMenu,
-  //     ownerId: state.ownerId,
-  //     logo: state.logo,
-  //     locale: state.locale,
-  //     welcomeMessage: state.welcomeMessage,
-  //     newsletter: state.newsletter,
-  //   };
-  // }, []);
-  // const dispatches = useCallback(() => {
-  //   return {
-  //     updateAppData: (a) => updateAppData({ dispatch, values: a }),
-  //     updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
-  //     getAppWithName: (a) =>
-  //       getAppWithName({
-  //         dispatch,
-  //         appName: a,
-  //         updateApp: (e) => updateAppData({ dispatch, values: e }),
-  //       }),
-  //     // getAppList: () => getAppList({ dispatch }),
-  //     updateMenu: (a) => updateMenu({ dispatch, data: a }),
-  //   };
-  // }, []);
+  // update app data
+  const updateAppData = useCallback((a: FormValueProps) => setAppData({ dispatch, values: a }), []);
+  // update app list
+  const updateAppList = useCallback((a: AppListProps) => {
+    dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
+  }, []);
+  // fetch app with app name
+  const getAppWithName = useCallback((a: string) => {
+    fetchAppWithName({ dispatch, appName: a, updateAppData });
+  }, []);
+  const updateMenu = useCallback((a: MenuProps[]) => {
+    setMenu({ dispatch, data: a });
+  }, []);
+  const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
-  // dispatches,
+  const appValues = useMemo(() => {
+    return {
+      isLoading: state.isLoading,
+      appList: state.appList,
+      iconList: state.iconList,
+      appName: state.appName,
+      appId: state.appId,
+      landing: state.landing,
+      themeList: state.themeList,
+      languageList: state.languageList,
+      adminIds: state.adminIds,
+      calendar: state.calendar,
+      isOnline: state.isOnline,
+      media: state.media,
+      menu: state.menu,
+      activeMenu: state.activeMenu,
+      ownerId: state.ownerId,
+      logo: state.logo,
+      locale: state.locale,
+      welcomeMessage: state.welcomeMessage,
+      newsletter: state.newsletter,
+      updateAppData,
+      updateAppList,
+      getAppWithName,
+      updateMenu,
+      getAppList,
+    };
+  }, []);
+
+  return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (
-  //   <AppContext.Provider value={appValues}>
-  //     <AppProvider.Provider value={dispatches()}>{children}</AppProvider.Provider>
+  //   <AppContext.Provider
+  //     value={{
+  //       isLoading: state.isLoading,
+  //       appList: state.appList,
+  //       iconList: state.iconList,
+  //       appName: state.appName,
+  //       appId: state.appId,
+  //       landing: state.landing,
+  //       themeList: state.themeList,
+  //       languageList: state.languageList,
+  //       adminIds: state.adminIds,
+  //       calendar: state.calendar,
+  //       isOnline: state.isOnline,
+  //       media: state.media,
+  //       menu: state.menu,
+  //       activeMenu: state.activeMenu,
+  //       ownerId: state.ownerId,
+  //       logo: state.logo,
+  //       locale: state.locale,
+  //       welcomeMessage: state.welcomeMessage,
+  //       newsletter: state.newsletter,
+  //       updateAppData: (a) => updateAppData({ dispatch, values: a }),
+  //       updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
+  //       getAppWithName: (appName) =>
+  //         getAppWithName({
+  //           dispatch,
+  //           appName,
+  //           updateApp: (e) => updateAppData({ dispatch, values: e }),
+  //         }),
+  //       // getAppList: () => getAppList({ dispatch }),
+  //       updateMenu: (a) => updateMenu({ dispatch, data: a }),
+  //     }}
+  //   >
+  //     {children}
   //   </AppContext.Provider>
   // );
-  return (
-    <AppContext.Provider
-      value={{
-        isLoading: state.isLoading,
-        appList: state.appList,
-        iconList: state.iconList,
-        appName: state.appName,
-        appId: state.appId,
-        landing: state.landing,
-        themeList: state.themeList,
-        languageList: state.languageList,
-        adminIds: state.adminIds,
-        calendar: state.calendar,
-        isOnline: state.isOnline,
-        media: state.media,
-        menu: state.menu,
-        activeMenu: state.activeMenu,
-        ownerId: state.ownerId,
-        logo: state.logo,
-        locale: state.locale,
-        welcomeMessage: state.welcomeMessage,
-        newsletter: state.newsletter,
-        updateAppData: (a) => updateAppData({ dispatch, values: a }),
-        updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
-        getAppWithName: (appName) =>
-          getAppWithName({
-            dispatch,
-            appName,
-            updateApp: (e) => updateAppData({ dispatch, values: e }),
-          }),
-        // getAppList: () => getAppList({ dispatch }),
-        updateMenu: (a) => updateMenu({ dispatch, data: a }),
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
 };
 
 // import { uploadImage } from "./helpers/uploadImage";

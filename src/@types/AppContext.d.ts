@@ -1,21 +1,44 @@
 declare module "app-context" {
-  import { AssetProps, CalendarProps, KeyStringProp, MenuProps, SectionProps } from "app-types";
+  import {
+    AssetProps,
+    CalendarProps,
+    CallToActionProps,
+    KeyStringProp,
+    MenuProps,
+    SectionProps,
+  } from "app-types";
   import { FormValueProps } from "app-forms";
 
-  export interface AppProps {
+  export interface AppListProps {
     appName: string;
+    appId: string;
+    adminIds: { userId: string; role: string }[];
     logo: AssetProps;
   }
-  export interface LandingProps {}
+  export interface AppProps {
+    appName: string;
+    appId: string;
+    adminIds: { userId: string; role: string }[];
+    logo: AssetProps;
+  }
+
+  export interface LandingProps {
+    title: string;
+    tagline: string;
+    body: string;
+    hasCta: boolean;
+    hasSection: boolean;
+    hero: AssetProps;
+    cta: CallToActionProps[];
+  }
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
-    appList: { [key: string]: any }[];
+    appList: AppListProps[];
     appName: string;
     welcomeMessage: string;
-    // theme: string;
-    landing: any;
+    landing: LandingProps;
     appId: string;
     ownerId: string;
     adminIds: string[];
@@ -35,11 +58,11 @@ declare module "app-context" {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
-    appList: { [key: string]: any }[];
+    appList: AppListProps[];
     appName: string;
     welcomeMessage: string;
     // theme: string;
-    landing: any;
+    landing: LandingProps;
     appId: string;
     ownerId: string;
     adminIds: string[];
@@ -56,7 +79,7 @@ declare module "app-context" {
     updateAppData: (key: FormValueProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;
-    updateAppList: (appList: { [key: string]: any }[]) => void;
+    updateAppList: (appList: AppListProps[]) => void;
   }
   // export interface AppProviderProps {
   //   updateAppData: (key: FormValueProps) => void;

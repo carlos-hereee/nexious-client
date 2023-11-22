@@ -4,6 +4,12 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
+  export interface CallToActionProps {
+    link?: string;
+    label?: string;
+    icon?: string;
+    uid?: string;
+  }
   export interface SectionProps {
     title?: string;
     subtitle?: string;
