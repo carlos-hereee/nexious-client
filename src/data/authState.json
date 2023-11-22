@@ -2,16 +2,16 @@
   "isLoading": true,
   "isOffline": false,
   "accessToken": "",
-  "emergencyPasswordChangeIsRequired": false,
   "theme": "dark-mode",
   "locale": "",
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,
     "signInError": "",
     "signUpError": "",
+    "changePasswordError": "",
     "forgotPasswordError": ""
   },
-  "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "" },
+  "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
   "userForm": {
     "formId": "user",
     "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },

@@ -14,7 +14,6 @@ export const setUser = (props: UpdateUserReducerProps) => {
     phone: user.phone || "",
   };
   dispatch({ type: AUTH_ACTIONS.SET_USER_DATA, payload: userData });
-  // if(user.o)
-  user.ownedApps && dispatch({ type: AUTH_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
-  user.permissions && dispatch({ type: AUTH_ACTIONS.SET_PERMSSIONS, payload: user.permissions });
+  if (user.ownedApps) dispatch({ type: AUTH_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
+  // if (user.permissions) dispatch({ type: AUTH_ACTIONS.SET_PERMSSIONS, payload: user.permissions });
 };

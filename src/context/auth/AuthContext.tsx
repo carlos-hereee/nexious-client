@@ -3,18 +3,18 @@ import { createContext, useReducer, useEffect, useContext, useMemo, useCallback 
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+// import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { reducer } from "./AuthReducer";
-import { login } from "./helpers/login";
+import { singIn } from "./helpers/singIn";
 import { singUp } from "./helpers/singUp";
 import { logOut } from "./helpers/logout";
-import { updateUser } from "./dispatch/setUser";
+import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
 import { getAccessToken } from "./helpers/getAccessToken";
 import { forgotPassword } from "./helpers/forgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
-import { RegisterFormProps } from "app-forms";
+import { LoginFormProps, RegisterFormProps } from "app-forms";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -23,7 +23,7 @@ export const AuthState = ({ children }: ChildProps) => {
 
   const updateUser = useCallback((e: UserSchema) => {
     setUser({ dispatch, user: e });
-  });
+  }, []);
 
   useEffect(() => {
     getAccessToken({ dispatch, updateUser });
@@ -44,8 +44,12 @@ export const AuthState = ({ children }: ChildProps) => {
           login({ dispatch, credentials: e, updateUser: (user) => updateUser({ dispatch, user }) }),
           */
 
+  const login = useCallback((e: LoginFormProps) => {
+    singIn({ dispatch, credential: e, updateUser });
+  }, []);
+
   const register = useCallback((e: RegisterFormProps) => {
-    singUp({ dispatch, credentials: e, updateUser: (user) => updateUser({ dispatch, user }) });
+    singUp({ dispatch, credentials: e, updateUser });
   }, []);
   const authValues = useMemo(() => {
     return {
@@ -61,9 +65,10 @@ export const AuthState = ({ children }: ChildProps) => {
       signUpForm: state.signUpForm,
       passwordChangeForm: state.passwordChangeForm,
       forgotPasswordForm: state.forgotPasswordForm,
-      emergencyPasswordChangeIsRequired: state.emergencyPasswordChangeIsRequired,
       ownedApps: state.ownedApps,
       register,
+      updateUser,
+      login,
     };
   }, []);
 

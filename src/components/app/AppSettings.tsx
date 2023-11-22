@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
-import DangerZone from "./DangerZone";
 import { Button } from "nexious-library";
+import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
   const { appName } = useContext(AppContext);

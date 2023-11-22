@@ -1,22 +1,24 @@
-import { AppListProps } from "app-context";
-
 declare module "auth-context" {
+  import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+  import { AppListProps } from "app-context";
   import { AssetProps } from "app-types";
   import { FormProps, FormValueProps, LoginFormProps, RegisterFormProps } from "app-forms";
 
   export interface UserSchema {
-    id: string;
+    // uid: string;
     userId: string;
     username: string;
     email?: string;
     nickname?: string;
     languageId?: string;
     phone?: string;
+    ownedApps: AppListProps[];
   }
   export interface AuthErrorProps {
     emergencyPasswordChangeIsRequired: boolean;
     signInError: string;
     signUpError: string;
+    changePasswordError: string;
     forgotPasswordError: string;
   }
   export interface ReducerMethodProps {
@@ -26,9 +28,9 @@ declare module "auth-context" {
     dispatch: React.Dispatch<any>;
     updateUser: (user: UserSchema) => void;
   }
-  export interface AuthReducerProps {
-    dispatch: React.Dispatch<any>;
-    credentials: FormValueProps;
+  export interface AuthLoginReducerProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+    credentials: LoginFormProps;
     updateUser: (user: UserSchema) => void;
   }
   export interface UpdateUserReducerProps {
@@ -39,7 +41,7 @@ declare module "auth-context" {
     // auth schema
     isLoading: boolean;
     isOffline: boolean;
-    emergencyPasswordChangeIsRequired: boolean;
+    // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     ownedApps: AppListProps[];
     authErrors: AuthErrorProps;
@@ -57,7 +59,7 @@ declare module "auth-context" {
     // auth schema
     isLoading: boolean;
     isOffline: boolean;
-    emergencyPasswordChangeIsRequired: boolean;
+    // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     theme: string;
     locale: string;
@@ -82,4 +84,32 @@ declare module "auth-context" {
     // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
   }
+  export type AuthActionProps =
+    | {
+        type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED;
+        payload: boolean;
+      }
+    | {
+        type:
+          | AUTH_ACTIONS.SIGN_IN_ERROR
+          | AUTH_ACTIONS.FORGOT_PASSWORD_ERROR
+          | AUTH_ACTIONS.CHANGE_PASSWORD_ERROR
+          | AUTH_ACTIONS.SIGN_UP_ERROR
+          | AUTH_ACTIONS.SET_ACCESS_TOKEN
+          | AUTH_ACTIONS.SET_THEME;
+        payload: string;
+      }
+    | {
+        type: AUTH_ACTIONS.SET_OWNED_APPS;
+        payload: AppListProps[];
+      }
+    // | {
+    //     type: AUTH_ACTIONS.UPDATE_SHIPPING_DETAILS;
+    //     payload: AppListProps[];
+    //   }
+    | {
+        type: AUTH_ACTIONS.SET_USER_DATA;
+        payload: UserSchema;
+      }
+    | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
 }
