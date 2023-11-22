@@ -1,6 +1,7 @@
 declare module "app-admin" {
   import { MenuProps } from "app-types";
   import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
+
   export interface AdminStateProps {
     isLoading: boolean;
     initAppForm: FormProps;

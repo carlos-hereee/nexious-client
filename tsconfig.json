@@ -4,7 +4,7 @@
     "target": "ES2020", // if code runs on the browser /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
     "module": "ES2020",
     "moduleResolution": "Bundler",
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    // "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "allowSyntheticDefaultImports": true, // e.i import package from 'library'
     "jsx": "react-jsx" /* Specify what JSX code is generated. */,
     "baseUrl": "src" /* Specify the base directory to resolve non-relative module names. */,
@@ -40,14 +40,14 @@
     "outDir": "dist" /* Specify an output folder for all emitted files. */,
     "isolatedModules": true,
     "strict": true /* Enable all strict type-checking options. */,
-    // "lib": [
-    //   "ES5",
-    //   "ES2015",
-    //   "ES2016",
-    //   "DOM",
-    //   "ESNext",
-    //   "DOM.Iterable"
-    // ],
+    "lib": [
+      "ES5",
+      "ES2015",
+      "ES2016",
+      "DOM",
+      "ESNext",
+      "DOM.Iterable"
+    ],
     "declarationMap": true /* Create sourcemaps for d.ts files. */,
     "inlineSources": true /* Include source code in the sourcemaps inside the emitted JavaScript. */,
     "resolveJsonModule": true,

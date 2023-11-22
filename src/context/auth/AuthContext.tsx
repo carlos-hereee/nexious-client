@@ -1,7 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import { createContext, useReducer, useEffect, useContext } from "react";
-import { reducer } from "./AuthReducer";
+import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
+import { AuthSchema } from "auth-context";
+import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { reducer } from "./AuthReducer";
 import { login } from "./helpers/login";
 import { register } from "./helpers/register";
 import { logOut } from "./helpers/logout";
@@ -10,9 +13,6 @@ import { updateUser } from "./dispatch/updateUser";
 import { getAccessToken } from "./helpers/getAccessToken";
 import { forgotPassword } from "./helpers/forgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
-import { ChildProps } from "app-types";
-import { AuthSchema } from "auth-context";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { updateTheme } from "./dispatch/updateTheme";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);

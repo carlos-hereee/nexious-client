@@ -7,7 +7,7 @@ export const editCalendar = async (props: EditAppProps) => {
 
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/app/update-calendar/${appId}`, values);
+    const { data } = await axiosAuth.put(`/app/update-calendar/${appId}`, values);
     handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

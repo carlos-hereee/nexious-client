@@ -4,10 +4,10 @@ import { EditAppProps } from "app-forms";
 
 export const editSocialMedia = async (props: EditAppProps) => {
   const { appId, dispatch, handleAppAssets, values } = props;
-  try {
-    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosMedia.post(`app/update-medias/${appId}`, values);
-    handleAppAssets(data);
-    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
-  } catch (error) {}
+  // try {
+  dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+  const { data } = await axiosMedia.put(`app/update-medias/${appId}`, values);
+  handleAppAssets(data);
+  dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
+  // } catch (error) {}
 };

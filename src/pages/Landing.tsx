@@ -17,7 +17,7 @@ const Landing = () => {
       {landing.sections && (
         <div className="feature-card-container m-tb">
           {landing.sections.map((af: SectionProps) => (
-            <div className="flex-d-column" key={af.uid || af.heroId || af._id}>
+            <div className="flex-d-column" key={af.uid || af.heroId}>
               <HeroCard data={af} hero={af} />
               {af.body && <p className="text-max">{af.body}</p>}
             </div>

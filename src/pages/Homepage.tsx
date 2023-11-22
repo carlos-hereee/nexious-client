@@ -1,21 +1,23 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext } from "react";
+// import nexs from "@data/nexs.json";
+// import PreviewPage from "@app/components/app/PreviewPage";
+// import { useNavigate } from "react-router-dom";
 import UserPlayground from "./UserPlayground";
-import nexs from "@data/nexs.json";
-import PreviewPage from "@app/components/app/PreviewPage";
-import { useNavigate } from "react-router-dom";
+import Landing from "./Landing";
 
 const Homepage: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   if (accessToken) return <UserPlayground />;
   return (
     <div className="landing">
-      <PreviewPage
+      <Landing />
+      {/* <PreviewPage
         preview={{ ...nexs, hasSections: true }}
         hero={nexs.hero}
-        onClick={(e: any) => navigate(`/${e.link}`)}
-      />
+        onClick={(e: unknown) => navigate(`/${e?.link}`)}
+      /> */}
     </div>
   );
 };

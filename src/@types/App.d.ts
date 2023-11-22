@@ -1,5 +1,6 @@
 declare module "app-types" {
   import { FormValueProps } from "app-forms";
+
   export interface ChildProps {
     children: React.ReactNode;
   }
@@ -79,7 +80,7 @@ declare module "app-types" {
     preview: FormValueProps;
     theme?: string;
     hero: HeroProps;
-    onClick?: (key: any) => void;
+    onClick?: (key: unknown) => void;
   }
   export interface KeyStringProp {
     [key: string]: string;
