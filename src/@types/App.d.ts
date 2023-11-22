@@ -27,6 +27,14 @@ declare module "app-types" {
     email: string;
     hero: AssetProps;
   }
+  export interface MediaProps {
+    title: string;
+    subtitle: string;
+    details: string;
+    email: string;
+    hero: AssetProps;
+    medias: { media: string; link: string; uid: string }[];
+  }
   export interface MenuItemProps {
     name: string;
     value: string;
@@ -35,6 +43,7 @@ declare module "app-types" {
     link: string;
     uid: string;
     themeId: string;
+    locale: string;
     menuItemId: string;
   }
   export interface MenuProps {
@@ -72,8 +81,8 @@ declare module "app-types" {
     role: string;
   };
   export type AssetProps = {
-    url?: string;
-    alt?: string;
+    url: string;
+    alt: string;
     name?: string;
     icon?: string;
     media?: string;
@@ -87,7 +96,9 @@ declare module "app-types" {
     };
     theme?: string;
     // variable id
-    uid?: string;
+    uid: string;
+    hero: string;
+    heroId: string;
     sharedKey?: string;
     title?: string;
     assetId?: string;

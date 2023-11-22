@@ -33,8 +33,6 @@ export const reducer = (state: typeof initState, action: AppActionProps): typeof
       return { ...state, logo: action.payload };
     case APP_ACTIONS.SET_MENU:
       return { ...state, menu: action.payload };
-    case APP_ACTIONS.SET_APP_MENU:
-      return { ...state, appMenu: action.payload };
     case APP_ACTIONS.SET_LOCALE:
       return { ...state, locale: action.payload };
     case APP_ACTIONS.SET_LANGUAGE_LIST:

@@ -5,7 +5,7 @@ declare module "app-forms" {
   }
   export type FormProps = {
     formId: string;
-    initialValues: { [key: string]: any };
+    initialValues: FormValueProps;
     labels?: { [key: string]: string | undefined };
     types?: { [key: string]: string | undefined };
     // optional data
@@ -27,7 +27,7 @@ declare module "app-forms" {
     password: string;
   };
   export type FormValueProps = {
-    [key: string]: any;
+    [key: string]: unknown;
   };
   export interface SectionEntryOganizer {
     [key: string]: FormProps;

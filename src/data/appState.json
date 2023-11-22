@@ -179,7 +179,10 @@
   "landing": {},
   "logo": {
     "url": "/icons/logo.svg",
-    "alt": "industry-brand"
+    "hero": "/icons/logo.svg",
+    "alt": "industry-brand",
+    "uid": "ch04937-brand-id",
+    "heroId": "ch04937-brand-id"
   },
   "iconList": [
     {
