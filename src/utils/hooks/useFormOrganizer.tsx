@@ -19,6 +19,7 @@ export const useFormOrganizer = () => {
     setActive(formId);
     setPreview(formValues);
   };
+  // console.log("themeList :>> ", themeList);
 
   const integrateData: { [key: string]: any | undefined } = {
     initApp: {

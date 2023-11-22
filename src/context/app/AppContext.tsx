@@ -36,7 +36,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, appState);
-  // const { accessToken, user } = useContext(AuthContext);
+  const { accessToken, user } = useContext(AuthContext);
   // const navigate = useNavigate();
   // const queryParams = useLocation();
 
@@ -56,6 +56,19 @@ export const AppState = ({ children }: ChildProps) => {
   // useEffect(() => {
   //   getAppList({ dispatch });
   // }, []);
+  useEffect(() => {
+    // user is login
+    let oldValues = [...state.activeMenu];
+    const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
+    if (accessToken) {
+      // find auth menu
+      const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
+      // find dashboard menu item
+      const logout = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
+      oldValues[authMenuItemIdx].active = logout;
+      dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
+    }
+  }, [accessToken]);
 
   return (
     <AppContext.Provider

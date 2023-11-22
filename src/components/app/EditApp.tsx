@@ -23,9 +23,8 @@ const EditApp = () => {
   const { editSocialMedia, editCalendar, editLanguage } = useContext(AdminContext);
   const { theme, setTheme } = useContext(AuthContext);
   // initial data if any
-  const { newsletter, media, calendar, landing, logo, locale } = useContext(AppContext);
-  const { appName, appId, themeList, languageList } = useContext(AppContext);
-  // const { iconList } = useContext(AppContext);
+  const { newsletter, media, landing, logo, isLoading } = useContext(AppContext);
+  const { appName, appId, themeList } = useContext(AppContext);
   const {
     active,
     formValues,
@@ -42,7 +41,7 @@ const EditApp = () => {
   }, [active]);
   // console.log("calendar :>> ", calendar);
   useEffect(() => {
-    if (appName) {
+    if (!isLoading) {
       const LDO = landingForm.desiredOrder || [""];
       const NDO = newsletterForm.desiredOrder || [""];
       const SMO = socialMediaForm.desiredOrder || [""];
@@ -90,7 +89,8 @@ const EditApp = () => {
       if (appData) setAppValues(appData);
       setFormLoading(false);
     }
-  }, [appName]);
+  }, [isLoading]);
+
   // console.log("newsletter :>> ", newsletter);
   const logoData = { url: preview?.logo || "", title: preview.appName || "" };
   const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });

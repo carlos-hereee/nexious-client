@@ -17,59 +17,11 @@ import { editSocialMedia } from "./requests/editSocialMedia";
 import { editCalendar } from "./requests/editCalendar";
 import { editLanguage } from "./requests/editLanguage";
 
-/**
- *     // app MenU: {
-    //   "isToggle": true,
-    //   "isPrivate": false,
-    //   "menuId": "language-1",
-    //   "active": {
-    //     "name": "english",
-    //     "label": "English",
-    //     "value": "en-US (English)",
-    //     "locale": "en-US",
-    //     "url": "icons/english.svg",
-    //     "uid": "lan-english"
-    //   },
-    //   "alternatives": [
-    //     {
-    //       "name": "english",
-    //       "label": "English",
-    //       "value": "en-US (English)",
-    //       "locale": "en-US",
-    //       "url": "icons/english.svg",
-    //       "uid": "lan-english"
-    //     },
-    //     {
-    //       "name": "espanol",
-    //       "locale": "es",
-    //       "label": "Espanol",
-    //       "value": "es-US (Espanol)",
-    //       "url": "icons/spanish.svg",
-    //       "uid": "lan-espanol"
-    //     }
-    //   ]
-    // },
- */
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
   const { updateAppData, updateAppList } = useContext(AppContext);
-  const { updateUser, accessToken } = useContext(AuthContext);
-
-  useEffect(() => {
-    // user is login
-    let oldValues = [...state.appMenu];
-    const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
-    if (accessToken) {
-      // find auth menu
-      const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
-      // find dashboard menu item
-      const logout = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
-      oldValues[authMenuItemIdx].active = logout;
-      dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: oldValues });
-    } else {
-    }
-  }, [accessToken]);
+  const { updateUser } = useContext(AuthContext);
 
   const handleAppAssets = (values: any) => {
     values.app && updateAppData(values.app);
@@ -99,7 +51,7 @@ export const AdminState = ({ children }: ChildProps) => {
         themeList: state.themeList,
         languageList: state.languageList,
         appLogo: state.appLogo,
-        appMenu: state.appMenu,
+        // appMenu: state.appMenu,
         appName: state.appName,
         updateAppMenu: (e) => dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: e }),
         updateLanguage: (a, b) =>

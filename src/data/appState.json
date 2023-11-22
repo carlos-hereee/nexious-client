@@ -2,7 +2,22 @@
   "isLoading": true,
   "isOnline": true,
   "appList": [],
-  "themeList": [],
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "themeId": "theme-light-mode",
+      "uid": "theme-light-mode"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
+    }
+  ],
   "appName": "Nexs Tech",
   "appId": "",
   "ownerId": "",

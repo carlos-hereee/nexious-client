@@ -21,7 +21,7 @@ declare module "app-admin" {
     mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
-    appMenu: MenuProps[];
+    // appMenu: MenuProps[];
     appName: string;
     sectionEntries: SectionEntryOganizer;
   }
@@ -45,7 +45,7 @@ declare module "app-admin" {
     mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
     appLogo: { [key: string]: string };
-    appMenu: MenuProps[];
+    // appMenu: MenuProps[];
     appName: string;
     sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
