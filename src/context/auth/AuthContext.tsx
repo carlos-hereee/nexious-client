@@ -5,6 +5,7 @@ import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 // import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { ForgotPasswordFormProps, LoginFormProps, RegisterFormProps } from "app-forms";
+import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./helpers/singIn";
 import { singUp } from "./helpers/singUp";
@@ -15,7 +16,6 @@ import { getAccessToken } from "./helpers/getAccessToken";
 import { setForgotPassword } from "./helpers/setForgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -67,6 +67,7 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   const register = useCallback((e: RegisterFormProps) => {
     singUp({ dispatch, credentials: e, updateUser });
   }, []);
+
   const authValues = useMemo(() => {
     return {
       isLoading: state.isLoading,

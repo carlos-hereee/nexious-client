@@ -1,7 +1,7 @@
 import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
-import { UpdateUserReducerProps } from "auth-context";
+import { AuthReducerSetUserProps } from "auth-context";
 
-export const setUser = (props: UpdateUserReducerProps) => {
+export const setUser = (props: AuthReducerSetUserProps) => {
   //  key varaibles
   const { dispatch, user } = props;
   const userData = {

@@ -27,18 +27,18 @@ declare module "auth-context" {
     changePasswordError: string;
     forgotPasswordError: string;
   }
-  export interface ReducerMethodProps {
-    dispatch: React.Dispatch<any>;
-  }
-  export interface RefreshTokenReducerProps {
-    dispatch: React.Dispatch<any>;
-    updateUser: (user: UserSchema) => void;
-  }
+  // export interface ReducerMethodProps {
+  //   dispatch: React.Dispatch<any>;
+  // }
+  // export interface RefreshTokenReducerProps {
+  //   dispatch: React.Dispatch<any>;
+  //   updateUser: (user: UserSchema) => void;
+  // }
 
-  export interface UpdateUserReducerProps {
-    dispatch: React.Dispatch<any>;
-    user: UserSchema;
-  }
+  // export interface UpdateUserReducerProps {
+  //   dispatch: React.Dispatch<any>;
+  //   user: UserSchema;
+  // }
   export interface AuthStateProps {
     // auth schema
     isLoading: boolean;
@@ -101,7 +101,10 @@ declare module "auth-context" {
   export interface AuthForgotPasswordFormProps {
     dispatch: React.Dispatch<AuthActionProps>;
     credentials: ForgotPasswordFormProps;
-    // updateUser: (user: UserSchema) => void;
+  }
+  export interface AuthReducerSetUserProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+    user: UserSchema;
   }
   export type AuthActionProps =
     | {

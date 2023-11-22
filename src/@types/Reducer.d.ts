@@ -1,5 +1,5 @@
 declare module "reducer-dispatch-props" {
-  import { FormProps, FormValueProps } from "app-forms";
+  // import { FormProps, FormValueProps } from "app-forms";
   import { AppListProps, AppProps, PageProps } from "app-context";
   import { APP_ACTIONS } from "@app/utils/types/AppActions";
   import {
@@ -20,27 +20,27 @@ declare module "reducer-dispatch-props" {
     values: AppProps;
   }
 
-  export interface DispatchDataProp {
-    dispatch: React.Dispatch<unknown>;
-    data: { [key: string]: string };
-  }
-  export interface DispatchFormValueProp {
-    dispatch: React.Dispatch<unknown>;
-    values: FormProps;
-  }
-  export interface DispatchListProp {
-    dispatch: React.Dispatch<unknown>;
-    data: { [key: string]: string }[];
-  }
+  // export interface DispatchDataProp {
+  //   dispatch: React.Dispatch<unknown>;
+  //   data: { [key: string]: string };
+  // }
+  // export interface DispatchFormValueProp {
+  //   dispatch: React.Dispatch<unknown>;
+  //   values: FormProps;
+  // }
+  // export interface DispatchListProp {
+  //   dispatch: React.Dispatch<unknown>;
+  //   data: { [key: string]: string }[];
+  // }
   export interface DispatchMenuProp {
     dispatch: React.Dispatch<AppActionProps>;
     data: MenuProps[];
   }
-  export interface DispatchAppAssets {
-    dispatch: React.Dispatch<APP_ACTIONS>;
-    data: FormValueProps;
-    handleAppAssets: (key: FormValueProps) => void;
-  }
+  // export interface DispatchAppAssets {
+  //   dispatch: React.Dispatch<APP_ACTIONS>;
+  //   data: FormValueProps;
+  //   handleAppAssets: (key: FormValueProps) => void;
+  // }
 
   export type AppActionProps =
     | {

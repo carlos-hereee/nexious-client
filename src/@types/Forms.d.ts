@@ -61,33 +61,33 @@ declare module "app-forms" {
   //   dispatch: React.Dispatch<AppDispatchProps>;
   //   values: FormValueProps;
   // };
-  export type BuildAppProps = {
-    dispatch: React.Dispatch<any>;
-    values: FormValueProps;
-    handleAppAssets: (key: FormValueProps) => void;
-  };
-  export type DeleteAppProps = {
-    dispatch: React.Dispatch<any>;
-    appId: string;
-    handleAppAssets: (key: FormValueProps) => void;
-  };
-  export type EditAppProps = {
-    dispatch: React.Dispatch<any>;
-    values: FormValueProps;
-    appId: string;
-    handleAppAssets: (key: FormValueProps) => void;
-  };
-  export type UpdateLanguageProps = {
-    dispatch: React.Dispatch<any>;
-    locale: string;
-    appName: string;
-    handleAppAssets: (key: FormValueProps) => void;
-  };
-  export type GetAppNameReducerProps = {
-    dispatch: React.Dispatch<any>;
-    appName: string;
-    updateAppData: (key: FormValueProps) => void;
-  };
+  // export type BuildAppProps = {
+  //   dispatch: React.Dispatch<any>;
+  //   values: FormValueProps;
+  //   handleAppAssets: (key: FormValueProps) => void;
+  // };
+  // export type DeleteAppProps = {
+  //   dispatch: React.Dispatch<any>;
+  //   appId: string;
+  //   handleAppAssets: (key: FormValueProps) => void;
+  // };
+  // export type EditAppProps = {
+  //   dispatch: React.Dispatch<any>;
+  //   values: FormValueProps;
+  //   appId: string;
+  //   handleAppAssets: (key: FormValueProps) => void;
+  // };
+  // export type UpdateLanguageProps = {
+  //   dispatch: React.Dispatch<any>;
+  //   locale: string;
+  //   appName: string;
+  //   handleAppAssets: (key: FormValueProps) => void;
+  // };
+  // export type GetAppNameReducerProps = {
+  //   dispatch: React.Dispatch<any>;
+  //   appName: string;
+  //   updateAppData: (key: FormValueProps) => void;
+  // };
   export interface ReorderFormValueProps {
     values: FormValueProps;
     desiredOrder: string[];
