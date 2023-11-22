@@ -4,17 +4,18 @@ import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 // import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { ForgotPasswordFormProps, LoginFormProps, RegisterFormProps } from "app-forms";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./helpers/singIn";
 import { singUp } from "./helpers/singUp";
-import { logOut } from "./helpers/logout";
+import { signOut } from "./helpers/signOut";
 import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
 import { getAccessToken } from "./helpers/getAccessToken";
-import { forgotPassword } from "./helpers/forgotPassword";
+import { setForgotPassword } from "./helpers/setForgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
-import { LoginFormProps, RegisterFormProps } from "app-forms";
+import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -31,21 +32,36 @@ export const AuthState = ({ children }: ChildProps) => {
 
   /**
  * {
-        setStranded: (e) => dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: e }),
-        setIsLoading: (e) => dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: e }),
-        setAccessToken: (e) => dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: e }),
-        logout: () => logOut({ dispatch }),
-        updateUser: (e) => updateUser({ dispatch, user: e }),
-        // fetchUser: (a) => fetchUser(dispatch, a),
-        // changePassword: (e) => changePassword(dispatch, e),
-        forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
-        setTheme: (a) => updateTheme({ dispatch, data: a }),
-        login: (e) =>
-          login({ dispatch, credentials: e, updateUser: (user) => updateUser({ dispatch, user }) }),
-          */
+updateUser: (e) => updateUser({ dispatch, user: e }),
+// fetchUser: (a) => fetchUser(dispatch, a),
+// changePassword: (e) => changePassword(dispatch, e),
+forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
+*/
+
+  const forgotPassword = useCallback((e: ForgotPasswordFormProps) => {
+    setForgotPassword({ dispatch, credentials: e });
+  }, []);
+
+  const setAccessToken = useCallback((e: string) => {
+    dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: e });
+  }, []);
+
+  const setIsLoading = useCallback((e: boolean) => {
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: e });
+  }, []);
+
+  const setStranded = useCallback((e: boolean) => {
+    dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: e });
+  }, []);
+
+  const logout = useCallback(() => signOut({ dispatch }), []);
+
+  const setTheme = useCallback((a: string) => {
+    updateTheme({ dispatch, data: a });
+  }, []);
 
   const login = useCallback((e: LoginFormProps) => {
-    singIn({ dispatch, credential: e, updateUser });
+    singIn({ dispatch, credentials: e, updateUser });
   }, []);
 
   const register = useCallback((e: RegisterFormProps) => {
@@ -69,6 +85,12 @@ export const AuthState = ({ children }: ChildProps) => {
       register,
       updateUser,
       login,
+      setTheme,
+      logout,
+      forgotPassword,
+      setStranded,
+      setIsLoading,
+      setAccessToken,
     };
   }, []);
 

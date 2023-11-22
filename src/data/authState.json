@@ -11,7 +11,7 @@
     "changePasswordError": "",
     "forgotPasswordError": ""
   },
-  "user": { "id": "", "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
+  "user": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
   "userForm": {
     "formId": "user",
     "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },

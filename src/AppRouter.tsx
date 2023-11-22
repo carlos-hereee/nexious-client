@@ -28,7 +28,7 @@ import Login from "./pages/Login";
 
 const AppRouter: React.FC = () => {
   const { accessToken, ownedApps } = useContext(AuthContext);
-  const { emergencyPasswordChangeIsRequired } = useContext(AuthContext);
+  const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const AppRouter: React.FC = () => {
   }, [ownedApps.length]);
 
   // emergency password change
-  if (emergencyPasswordChangeIsRequired) {
+  if (authErrors.emergencyPasswordChangeIsRequired) {
     // return <ChangePassword handleClick={changePassword} />;
     return <ChangePassword />;
   }

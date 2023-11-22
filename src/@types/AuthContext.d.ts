@@ -1,8 +1,14 @@
 declare module "auth-context" {
   import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
   import { AppListProps } from "app-context";
-  import { AssetProps } from "app-types";
-  import { FormProps, FormValueProps, LoginFormProps, RegisterFormProps } from "app-forms";
+  // import { AssetProps } from "app-types";
+  import {
+    ForgotPasswordFormProps,
+    FormProps,
+    FormValueProps,
+    LoginFormProps,
+    RegisterFormProps,
+  } from "app-forms";
 
   export interface UserSchema {
     // uid: string;
@@ -28,11 +34,7 @@ declare module "auth-context" {
     dispatch: React.Dispatch<any>;
     updateUser: (user: UserSchema) => void;
   }
-  export interface AuthLoginReducerProps {
-    dispatch: React.Dispatch<AuthActionProps>;
-    credentials: LoginFormProps;
-    updateUser: (user: UserSchema) => void;
-  }
+
   export interface UpdateUserReducerProps {
     dispatch: React.Dispatch<any>;
     user: UserSchema;
@@ -59,11 +61,10 @@ declare module "auth-context" {
     // auth schema
     isLoading: boolean;
     isOffline: boolean;
-    // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     theme: string;
     locale: string;
-    ownedApps: { appId: string; logo?: AssetProps; appName: string }[];
+    ownedApps: AppListProps[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     userForm: FormProps;
@@ -83,6 +84,24 @@ declare module "auth-context" {
     forgotPassword: (values: FormProps) => void;
     // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
+  }
+
+  export interface AuthDispatchProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+  }
+  export interface AuthDispatchStringProp {
+    dispatch: React.Dispatch<AuthActionProps>;
+    data: string;
+  }
+  export interface AuthLoginReducerProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+    credentials: LoginFormProps;
+    updateUser: (user: UserSchema) => void;
+  }
+  export interface AuthForgotPasswordFormProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+    credentials: ForgotPasswordFormProps;
+    // updateUser: (user: UserSchema) => void;
   }
   export type AuthActionProps =
     | {

@@ -5,6 +5,11 @@ declare module "app-forms" {
     username: string;
     password: string;
   }
+  export interface ForgotPasswordFormProps {
+    username: string;
+    newPassword: string;
+    confirmNewPassword: string;
+  }
   export type FormProps = {
     formId: string;
     initialValues: FormValueProps;

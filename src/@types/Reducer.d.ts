@@ -19,10 +19,7 @@ declare module "reducer-dispatch-props" {
     dispatch: React.Dispatch<AppActionProps>;
     values: AppProps;
   }
-  export interface DispatchStringProp {
-    dispatch: React.Dispatch<unknown>;
-    data: string;
-  }
+
   export interface DispatchDataProp {
     dispatch: React.Dispatch<unknown>;
     data: { [key: string]: string };
