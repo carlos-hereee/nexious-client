@@ -19,7 +19,8 @@ declare module "app-types" {
     body: string;
     theme?: string;
     sharedKey?: string;
-    sectionHero: AssetProps;
+    sectionHero?: AssetProps;
+    hero?: AssetProps;
   }
   export interface NewsletterProps {
     title: string;

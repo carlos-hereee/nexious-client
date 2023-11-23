@@ -12,8 +12,7 @@ const App = ({ children }: ChildProps) => {
   const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const logoData = { ...logo, appName };
-
+  const logoData = { ...logo, title: appName };
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...activeMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;

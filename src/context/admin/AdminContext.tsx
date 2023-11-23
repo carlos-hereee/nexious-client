@@ -4,6 +4,7 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { FormValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
+import { useNavigate } from "react-router-dom";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -20,6 +21,7 @@ import { AuthContext } from "../auth/AuthContext";
 // import { fetchRefreshToken } from "../auth/helpers/fetchRefreshToken";
 import { fetchAccessToken } from "./requests/fetchAccessToken";
 import { buildApp } from "./requests/buildApp";
+import { updateAppName } from "./requests/updateAppName";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -27,6 +29,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const { updateAppData, updateAppList, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app) updateAppData(values.app);
@@ -64,6 +67,11 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const initApp = useCallback((values: FormValueProps) => {
     buildApp({ dispatch, initApp: values, handleAppAssets });
+    navigate(-1);
+  }, []);
+
+  const editAppName = useCallback((values: FormValueProps) => {
+    updateAppName({ dispatch, initApp: values, handleAppAssets });
   }, []);
 
   const adminValues = useMemo(() => {
@@ -87,6 +95,7 @@ export const AdminState = ({ children }: ChildProps) => {
       themeList: state.themeList,
       languageList: state.languageList,
       initApp,
+      editAppName,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

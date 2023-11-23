@@ -105,6 +105,7 @@ declare module "app-context" {
     dispatch: React.Dispatch<AppActionProps>;
     values?: AppProps;
     appName?: string;
+    appId?: string;
     menu?: MenuProps[];
     updateAppData?: (a: AppProps) => void;
   }

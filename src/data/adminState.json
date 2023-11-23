@@ -5,8 +5,8 @@
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",
     "formId": "initApp",
-    "fieldHeading": { "appName": "App name", "logo": "Logo", "theme": "Themes" },
-    "initialValues": { "appName": "", "logo": "", "theme": "" },
+    "fieldHeading": { "appName": "App name", "logo": "Logo" },
+    "initialValues": { "appName": "", "logo": "" },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
@@ -126,11 +126,12 @@
       "title": "Title",
       "hero": "Add background image",
       "subtitle": "Subtitle",
+      "details": "Add disclaimer data",
       "email": "Forwarding email"
     },
     "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
     "types": { "title": "text", "hero": "file", "details": "text", "email": "text" },
-    "desiredOrder": ["title", "subtitle", "hero", "email"]
+    "desiredOrder": ["title", "subtitle", "details", "hero", "email"]
   },
   "calendarForm": {
     "heading": "Configure your calendar details here!",
@@ -223,7 +224,7 @@
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
   "sectionEntries": {
-    "hasCta": {
+    "cta": {
       "formId": "ctaForm",
       "heading": "",
       "fieldHeading": {},
@@ -238,9 +239,10 @@
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
-      "groupName": "cta"
+      "groupName": "cta",
+      "group": "hasCta"
     },
-    "hasSections": {
+    "sections": {
       "formId": "sectionForm",
       "heading": "",
       "fieldHeading": {},
@@ -255,7 +257,8 @@
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
-      "groupName": "sections"
+      "groupName": "sections",
+      "group": "hasSections"
     }
   },
   "themeList": [

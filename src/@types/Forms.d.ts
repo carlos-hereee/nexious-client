@@ -1,5 +1,6 @@
 declare module "app-forms" {
-  import { AssetProps } from "app-types";
+  import { PageProps } from "app-context";
+  import { AssetProps, MediaProps, NewsletterProps } from "app-types";
 
   export interface AuthFormValueProps {
     username: string;
@@ -39,7 +40,7 @@ declare module "app-forms" {
     confirmPassword: string;
   };
   export type FormValueProps = {
-    [key: string]: unknown;
+    [key: string]: string | number | boolean;
   };
   export interface SectionEntryOganizer {
     [key: string]: FormProps;
@@ -63,6 +64,21 @@ declare module "app-forms" {
 
   export interface ReorderFormValueProps {
     values: FormValueProps;
+    desiredOrder: string[];
+    hasEntry?: SectionEntryOganizer;
+  }
+  export interface FormatLandingPageProps {
+    values: PageProps;
+    desiredOrder: string[];
+    hasEntry?: SectionEntryOganizer;
+  }
+  export interface FormatNewsletterProps {
+    values: NewsletterProps;
+    desiredOrder: string[];
+    hasEntry?: SectionEntryOganizer;
+  }
+  export interface FormatMediaProps {
+    values: MediaProps;
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }

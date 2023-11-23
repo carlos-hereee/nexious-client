@@ -55,7 +55,7 @@ declare module "app-admin" {
     sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
     // editApp: (values: FormValueProps, appId: string) => void;
-    // editAppName: (values: FormValueProps, appId: string) => void;
+    editAppName: (values: FormValueProps, appId: string) => void;
     // deleteApp: (appId: string) => void;
     // updateLanguage: (locale: string, appName: string) => void;
     // editLandingPage: (values: FormValueProps, appId: string) => void;

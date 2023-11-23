@@ -17,10 +17,16 @@ const formatMenuItem = (item: string) => {
 };
 
 export const formatHeaderValues = (props: HeaderProps) => {
-  const { language, locale, theme } = props;
-  const { languageList, themeList } = appState;
+  const {
+    //  language, locale,
+    theme,
+  } = props;
+  const {
+    //  languageList,
+    themeList,
+  } = appState;
   const tList = theme.split(",").filter((item) => item);
-  const lList = language?.split(",").filter((item) => item);
+  // const lList = language?.split(",").filter((item) => item);
 
   const loginMenuItem = formatMenuItem("login");
   const dashboardMenuItem = formatMenuItem("dashboard");
