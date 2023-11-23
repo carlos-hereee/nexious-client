@@ -55,11 +55,11 @@ declare module "auth-context" {
     passwordChangeForm: FormProps;
     forgotPasswordForm: FormProps;
     // methods
-    setIsLoading: (values: boolean) => void;
-    setStranded: (values: boolean) => void;
+    // setIsLoading: (values: boolean) => void;
+    // setStranded: (values: boolean) => void;
     // setAccessToken: (values: string) => void;
     // getAccessToken: () => void;
-    getAccessTokenData: () => void;
+    // getAccessTokenData: () => void;
     login: (values: LoginFormProps) => void;
     register: (values: RegisterFormProps) => void;
     logout: () => void;
@@ -73,14 +73,11 @@ declare module "auth-context" {
   export interface AuthDispatchProps {
     dispatch: React.Dispatch<AuthActionProps>;
   }
-  export interface AuthDispatchStringProp {
-    dispatch: React.Dispatch<AuthActionProps>;
-    data: string;
-  }
   export interface AuthReducerProps {
     dispatch: React.Dispatch<AuthActionProps>;
     credentials?: LoginFormProps;
     user?: UserSchema;
+    data?: string;
     updateUser?: (user: UserSchema) => void;
     setAccessToken?: (token: string) => void;
   }

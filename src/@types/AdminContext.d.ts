@@ -52,9 +52,6 @@ declare module "app-admin" {
     themeList: MenuItemProps[];
     mediaList: MenuItemProps[];
     languageList: MenuItemProps[];
-    // appLogo: MenuItemProps;
-    // // appMenu: MenuProps[];
-    // appName: string;
     sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
     editApp: (values: FormValueProps, appId: string) => void;
@@ -68,7 +65,8 @@ declare module "app-admin" {
     editCalendar: (values: FormValueProps, appId: string) => void;
     editLanguage: (values: FormValueProps, appId: string) => void;
   }
-  export interface AdminReducerProps {
+  export interface AdminDisptachProps {
+    dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets: (key: AppAssetProps) => void;
   }
   export type AdminActionProps =

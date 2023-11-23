@@ -15,6 +15,7 @@ import { editNewsletter } from "./requests/editNewsletter";
 import { editSocialMedia } from "./requests/editSocialMedia";
 import { editCalendar } from "./requests/editCalendar";
 import { editLanguage } from "./requests/editLanguage";
+// import { fetchRefreshToken } from "../auth/helpers/fetchRefreshToken";
 import { fetchAccessToken } from "./requests/fetchAccessToken";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
@@ -22,7 +23,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
   const { updateAppData, updateAppList } = useContext(AppContext);
-  const { updateUser, accessToken, getAccessTokenData } = useContext(AuthContext);
+  const { updateUser, accessToken } = useContext(AuthContext);
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app) updateAppData(values.app);
@@ -30,14 +31,9 @@ export const AdminState = ({ children }: ChildProps) => {
     if (values.user) updateUser(values.user);
   };
 
-  const getAccessToken = () => {
-    fetchAccessToken({ handleAppAssets });
-    // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  };
-
   useEffect(() => {
-    if (accessToken) getAccessTokenData();
-    else getAccessToken();
+    console.log("accessToken :>> ", accessToken);
+    if (accessToken) fetchAccessToken({ dispatch, handleAppAssets });
   }, [accessToken]);
 
   return (
@@ -61,10 +57,6 @@ export const AdminState = ({ children }: ChildProps) => {
         languageForm: state.languageForm,
         themeList: state.themeList,
         languageList: state.languageList,
-        // appLogo: state.appLogo,
-        // // appMenu: state.appMenu,
-        // appName: state.appName,
-        // updateAppMenu: (e) => dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: e }),
         updateLanguage: (a, b) =>
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
         initApp: (values) => initApp({ dispatch, values, handleAppAssets }),

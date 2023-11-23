@@ -9,8 +9,8 @@ export const singUp = async (props: AuthReducerProps) => {
   dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
   const { data } = await axiosAuth.post("/auth/register", credentials);
   dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data?.accessToken || "" });
-  if (data) updateUser(data.user);
-  dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  if (data && updateUser) updateUser(data.user);
+  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   // } catch (error: any) {
   // if (isDev) console.log("register error", error);
   // const { status, data } = error.response;

@@ -1,21 +1,22 @@
 // eslint-disable-next-line no-unused-vars
-import { createContext, useReducer, useContext, useMemo, useCallback } from "react";
+import { createContext, useReducer, useContext, useMemo, useCallback, useEffect } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 // import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { ForgotPasswordFormProps, LoginFormProps, RegisterFormProps } from "app-forms";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+// import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { reducer } from "./AuthReducer";
-import { singIn } from "./helpers/singIn";
-import { singUp } from "./helpers/singUp";
-import { signOut } from "./helpers/signOut";
+import { singIn } from "./request/singIn";
+import { singUp } from "./request/singUp";
+import { signOut } from "./request/signOut";
 import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
-import { setForgotPassword } from "./helpers/setForgotPassword";
+import { setForgotPassword } from "./request/setForgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
-import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
+import { fetchRefreshToken } from "./request/fetchRefreshToken";
+// import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
 // import { fetchAccessToken } from "../admin/requests/fetchAccessToken";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
@@ -23,58 +24,18 @@ export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
 
-  const updateUser = useCallback((e: UserSchema) => {
-    setUser({ dispatch, user: e });
+  useEffect(() => {
+    fetchRefreshToken({ dispatch });
   }, []);
-
-  // console.log("state.AuthFormValueProps :>> ", state.accessToken);
-  // useEffect(() => {
-  //   getAccessToken({ dispatch, updateUser });
-  // }, [state.accessToken]);
-
-  /**
- * {
-updateUser: (e) => updateUser({ dispatch, user: e }),
-// fetchUser: (a) => fetchUser(dispatch, a),
-// changePassword: (e) => changePassword(dispatch, e),
-forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
-*/
 
   const forgotPassword = useCallback((e: ForgotPasswordFormProps) => {
     setForgotPassword({ dispatch, credentials: e });
   }, []);
-
-  const setAccessToken = useCallback((e: string) => {
-    dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: e });
-  }, []);
-
-  const setIsLoading = useCallback((e: boolean) => {
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: e });
-  }, []);
-
-  const setStranded = useCallback((e: boolean) => {
-    dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: e });
-  }, []);
-
+  const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
+  const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
+  const login = useCallback((e: LoginFormProps) => singIn({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
-
-  const setTheme = useCallback((a: string) => {
-    updateTheme({ dispatch, data: a });
-  }, []);
-
-  const login = useCallback((e: LoginFormProps) => {
-    singIn({ dispatch, credentials: e, setAccessToken });
-  }, []);
-
-  const register = useCallback((e: RegisterFormProps) => {
-    singUp({ dispatch, credentials: e, setAccessToken });
-  }, []);
-
-  const getAccessTokenData = useCallback(() => {
-    console.log("fetching token data");
-    fetchAccessTokenData({ dispatch });
-    // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  }, []);
+  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -97,11 +58,6 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
       setTheme,
       logout,
       forgotPassword,
-      setStranded,
-      setIsLoading,
-      // setAccessToken,
-      getAccessTokenData,
-      // getAccessToken,
     };
   }, [state.accessToken]);
 
