@@ -5,14 +5,12 @@ declare module "app-context" {
     AssetProps,
     CalendarProps,
     CallToActionProps,
-    KeyStringProp,
     MediaProps,
     MenuItemProps,
     MenuProps,
     NewsletterProps,
     SectionProps,
   } from "app-types";
-  import { FormValueProps } from "app-forms";
 
   export interface AppProps {
     appName: string;
@@ -92,11 +90,11 @@ declare module "app-context" {
     activeMenu: MenuProps[];
     logo: AssetProps;
     themeList: MenuItemProps[];
-    languageList: KeyStringProp[];
-    iconList: KeyStringProp[];
+    languageList: MenuItemProps[];
+    iconList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
-    updateAppData: (key: FormValueProps) => void;
+    updateAppData: (key: AppProps) => void;
     getAppWithName: (appName: string) => void;
     updateMenu: (menu: MenuProps[]) => void;
     updateAppList: (appList: AppListProps[]) => void;

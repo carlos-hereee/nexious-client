@@ -38,13 +38,13 @@ declare module "app-types" {
   export interface MenuItemProps {
     name: string;
     value: string;
-    label: string;
-    icon: string;
-    link: string;
     uid: string;
-    themeId: string;
-    locale: string;
-    menuItemId: string;
+    label?: string;
+    icon?: string;
+    link?: string;
+    themeId?: string;
+    locale?: string;
+    menuItemId?: string;
   }
   export interface MenuProps {
     uid: string;

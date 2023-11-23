@@ -11,7 +11,6 @@ import appState from "@data/appState.json";
 import { ChildProps, MenuProps } from "app-types";
 import { AppListProps, AppProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
-import { FormValueProps } from "app-forms";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -60,7 +59,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // update app data
   const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
   // update app list
-  const updateAppList = useCallback((a: AppListProps) => {
+  const updateAppList = useCallback((a: AppListProps[]) => {
     dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
   }, []);
   // fetch app with app name

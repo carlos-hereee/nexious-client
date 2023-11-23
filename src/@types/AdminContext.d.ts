@@ -1,8 +1,8 @@
 declare module "app-admin" {
+  import { MenuItemProps } from "app-types";
   import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
   import { AppListProps, AppProps } from "app-context";
   import { UserSchema } from "auth-context";
-  import { MenuProps } from "app-types";
   import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
 
   export type AdminFormErrors = {
@@ -27,16 +27,16 @@ declare module "app-admin" {
     ctaForm: FormProps;
     mediaEntryForm: FormProps;
     formErrors: AdminFormErrors;
-    themeList: { [key: string]: string }[];
-    calendarThemeList: { [key: string]: string }[];
-    mediaList: { [key: string]: string }[];
-    languageList: { [key: string]: string }[];
+    themeList: MenuItemProps[];
+    calendarThemeList: MenuItemProps[];
+    mediaList: MenuItemProps[];
+    languageList: MenuItemProps[];
     sectionEntries: SectionEntryOganizer;
   }
 
   export interface AdminSchema {
     isLoading: boolean;
-    formErrors: { initAppFormError: string };
+    formErrors: AdminFormErrors;
     initAppForm: FormProps;
     pagesForm: FormProps;
     sectionForm: FormProps;
@@ -48,19 +48,19 @@ declare module "app-admin" {
     ctaForm: FormProps;
     mediaEntryForm: FormProps;
     languageForm: FormProps;
-    calendarThemeList: { [key: string]: string }[];
-    themeList: { [key: string]: string }[];
-    mediaList: { [key: string]: string }[];
-    languageList: { [key: string]: string }[];
-    appLogo: { [key: string]: string };
-    // appMenu: MenuProps[];
-    appName: string;
+    calendarThemeList: MenuItemProps[];
+    themeList: MenuItemProps[];
+    mediaList: MenuItemProps[];
+    languageList: MenuItemProps[];
+    // appLogo: MenuItemProps;
+    // // appMenu: MenuProps[];
+    // appName: string;
     sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
     editApp: (values: FormValueProps, appId: string) => void;
     editAppName: (values: FormValueProps, appId: string) => void;
     deleteApp: (appId: string) => void;
-    updateAppMenu: (menu: MenuProps[]) => void;
+    // updateAppMenu: (menu: MenuProps[]) => void;
     updateLanguage: (locale: string, appName: string) => void;
     editLandingPage: (values: FormValueProps, appId: string) => void;
     editNewsletter: (values: FormValueProps, appId: string) => void;

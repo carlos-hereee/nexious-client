@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { AdminSchema, AppAssetProps } from "app-admin";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { reducer } from "./AdminReducer";
@@ -29,12 +28,9 @@ export const AdminState = ({ children }: ChildProps) => {
     if (values.app) updateAppData(values.app);
     if (values.appList) updateAppList(values.appList);
     if (values.user) updateUser(values.user);
-    // values.appList && updateAppList(values.appList);
-    // values.user && updateUser(values.user);
   };
 
   const getAccessToken = () => {
-    console.log("fetching token data");
     fetchAccessToken({ handleAppAssets });
     // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   };
@@ -65,10 +61,10 @@ export const AdminState = ({ children }: ChildProps) => {
         languageForm: state.languageForm,
         themeList: state.themeList,
         languageList: state.languageList,
-        appLogo: state.appLogo,
-        // appMenu: state.appMenu,
-        appName: state.appName,
-        updateAppMenu: (e) => dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: e }),
+        // appLogo: state.appLogo,
+        // // appMenu: state.appMenu,
+        // appName: state.appName,
+        // updateAppMenu: (e) => dispatch({ type: ADMIN_ACTIONS.SET_APP_MENU, payload: e }),
         updateLanguage: (a, b) =>
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
         initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
