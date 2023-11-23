@@ -20,18 +20,7 @@ declare module "auth-context" {
     changePasswordError: string;
     forgotPasswordError: string;
   }
-  // export interface ReducerMethodProps {
-  //   dispatch: React.Dispatch<any>;
-  // }
-  // export interface RefreshTokenReducerProps {
-  //   dispatch: React.Dispatch<any>;
-  //   updateUser: (user: UserSchema) => void;
-  // }
 
-  // export interface UpdateUserReducerProps {
-  //   dispatch: React.Dispatch<any>;
-  //   user: UserSchema;
-  // }
   export interface AuthStateProps {
     // auth schema
     isLoading: boolean;

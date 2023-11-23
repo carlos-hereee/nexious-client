@@ -101,18 +101,10 @@ declare module "app-context" {
     updateMenu: (menu: MenuProps[]) => void;
     updateAppList: (appList: AppListProps[]) => void;
   }
-  // export interface AppProviderProps {
-  //   updateAppData: (key: FormValueProps) => void;
-  //   getAppWithName: (appName: string) => void;
-  //   updateMenu: (menu: MenuProps[]) => void;
-  //   updateAppList: (appList: { [key: string]: any }[]) => void;
-  // }
+
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
-  }
-  export interface AppFormDispatchProps {
-    dispatch: React.Dispatch<AppActionProps>;
-    values: AppProps;
+    values?: AppProps;
     menu?: MenuProps[];
   }
 

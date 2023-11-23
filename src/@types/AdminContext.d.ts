@@ -1,16 +1,17 @@
 declare module "app-admin" {
+  import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
   import { AppListProps, AppProps } from "app-context";
   import { UserSchema } from "auth-context";
   import { MenuProps } from "app-types";
   import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
 
+  export type AdminFormErrors = {
+    initAppFormError?: string;
+  };
   export interface AppAssetProps {
     user?: UserSchema;
     app?: AppProps;
     appList?: AppListProps[];
-  }
-  export interface AdminReducerProps {
-    handleAppAssets: (key: AppAssetProps) => void;
   }
   export interface AdminStateProps {
     isLoading: boolean;
@@ -25,15 +26,11 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     ctaForm: FormProps;
     mediaEntryForm: FormProps;
-    // landingPageFormOrder: string[];
-    formErrors: { initAppFormError: string };
+    formErrors: AdminFormErrors;
     themeList: { [key: string]: string }[];
     calendarThemeList: { [key: string]: string }[];
     mediaList: { [key: string]: string }[];
     languageList: { [key: string]: string }[];
-    appLogo: { [key: string]: string };
-    // appMenu: MenuProps[];
-    appName: string;
     sectionEntries: SectionEntryOganizer;
   }
 
@@ -71,4 +68,16 @@ declare module "app-admin" {
     editCalendar: (values: FormValueProps, appId: string) => void;
     editLanguage: (values: FormValueProps, appId: string) => void;
   }
+  export interface AdminReducerProps {
+    handleAppAssets: (key: AppAssetProps) => void;
+  }
+  export type AdminActionProps =
+    | {
+        type: ADMIN_ACTIONS.IS_LOADING;
+        payload: boolean;
+      }
+    | {
+        type: ADMIN_ACTIONS.SET_FORM_ERRORS;
+        payload: AdminFormErrors;
+      };
 }

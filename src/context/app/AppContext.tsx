@@ -9,7 +9,7 @@ import {
 } from "react";
 import appState from "@data/appState.json";
 import { ChildProps, MenuProps } from "app-types";
-import { AppListProps, AppSchema } from "app-context";
+import { AppListProps, AppProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/types/AppActions";
 import { FormValueProps } from "app-forms";
 import { setAppData } from "./dispatch/setAppData";
@@ -58,7 +58,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, [accessToken]);
 
   // update app data
-  const updateAppData = useCallback((a: FormValueProps) => setAppData({ dispatch, values: a }), []);
+  const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
   // update app list
   const updateAppList = useCallback((a: AppListProps) => {
     dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
