@@ -1,22 +1,25 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { AdminSchema, AppAssetProps } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
+import { FormValueProps } from "app-forms";
+import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { reducer } from "./AdminReducer";
-import { initApp } from "./requests/initApp";
-import { editApp } from "./requests/editApp";
-import { editAppName } from "./requests/editAppName";
-import { editLandingPage } from "./requests/editLandingPage";
 import { AppContext } from "../app/AppContext";
-import { deleteApp } from "./requests/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
-import { updateLanguage } from "./requests/updateLanguage";
-import { editNewsletter } from "./requests/editNewsletter";
-import { editSocialMedia } from "./requests/editSocialMedia";
-import { editCalendar } from "./requests/editCalendar";
-import { editLanguage } from "./requests/editLanguage";
+// import { initApp } from "./requests/initApp";
+// import { editApp } from "./requests/editApp";
+// import { editAppName } from "./requests/editAppName";
+// import { editLandingPage } from "./requests/editLandingPage";
+// import { deleteApp } from "./requests/deleteApp";
+// import { updateLanguage } from "./requests/updateLanguage";
+// import { editNewsletter } from "./requests/editNewsletter";
+// import { editSocialMedia } from "./requests/editSocialMedia";
+// import { editCalendar } from "./requests/editCalendar";
+// import { editLanguage } from "./requests/editLanguage";
 // import { fetchRefreshToken } from "../auth/helpers/fetchRefreshToken";
 import { fetchAccessToken } from "./requests/fetchAccessToken";
+import { buildApp } from "./requests/buildApp";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -29,34 +32,11 @@ export const AdminState = ({ children }: ChildProps) => {
     if (values.app) updateAppData(values.app);
     if (values.appList) updateAppList(values.appList);
     if (values.user) updateUser(values.user);
+    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
 
-  useEffect(() => {
-    if (accessToken) fetchAccessToken({ dispatch, handleAppAssets });
-  }, [accessToken]);
-
-  return (
-    <AdminContext.Provider
-      value={{
-        isLoading: state.isLoading,
-        initAppForm: state.initAppForm,
-        pagesForm: state.pagesForm,
-        calendarForm: state.calendarForm,
-        mediaList: state.mediaList,
-        sectionForm: state.sectionForm,
-        newsletterForm: state.newsletterForm,
-        calendarThemeList: state.calendarThemeList,
-        landingForm: state.landingForm,
-        heroForm: state.heroForm,
-        ctaForm: state.ctaForm,
-        socialMediaForm: state.socialMediaForm,
-        sectionEntries: state.sectionEntries,
-        formErrors: state.formErrors,
-        mediaEntryForm: state.mediaEntryForm,
-        languageForm: state.languageForm,
-        themeList: state.themeList,
-        languageList: state.languageList,
-        updateLanguage: (a, b) =>
+  /**
+   *         updateLanguage: (a, b) =>
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
         initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
         deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
@@ -70,9 +50,38 @@ export const AdminState = ({ children }: ChildProps) => {
           editSocialMedia({ dispatch, values: a, appId: b, handleAppAssets }),
         editCalendar: (a, b) => editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
         editLanguage: (a, b) => editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
-      }}
-    >
-      {children}
-    </AdminContext.Provider>
-  );
+   */
+
+  useEffect(() => {
+    if (accessToken) fetchAccessToken({ dispatch, handleAppAssets });
+  }, [accessToken]);
+
+  const initApp = useCallback((values: FormValueProps) => {
+    buildApp({ dispatch, initApp: values, handleAppAssets });
+  }, []);
+
+  const adminValues = useMemo(() => {
+    return {
+      isLoading: state.isLoading,
+      initAppForm: state.initAppForm,
+      pagesForm: state.pagesForm,
+      calendarForm: state.calendarForm,
+      mediaList: state.mediaList,
+      sectionForm: state.sectionForm,
+      newsletterForm: state.newsletterForm,
+      calendarThemeList: state.calendarThemeList,
+      landingForm: state.landingForm,
+      heroForm: state.heroForm,
+      ctaForm: state.ctaForm,
+      socialMediaForm: state.socialMediaForm,
+      sectionEntries: state.sectionEntries,
+      formErrors: state.formErrors,
+      mediaEntryForm: state.mediaEntryForm,
+      languageForm: state.languageForm,
+      themeList: state.themeList,
+      languageList: state.languageList,
+      initApp,
+    };
+  }, []);
+  return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
 };

@@ -8,7 +8,6 @@ declare module "app-forms" {
     newPassword?: string;
     confirmNewPassword?: string;
   }
-  export interface LoginFormProps {}
   export interface ForgotPasswordFormProps {
     username: string;
     newPassword: string;
@@ -61,37 +60,7 @@ declare module "app-forms" {
       unique?: { name: string; list: string[] }[];
     };
   }
-  // export type UpdateAppProps = {
-  //   dispatch: React.Dispatch<AppDispatchProps>;
-  //   values: FormValueProps;
-  // };
-  // export type BuildAppProps = {
-  //   dispatch: React.Dispatch<any>;
-  //   values: FormValueProps;
-  //   handleAppAssets: (key: FormValueProps) => void;
-  // };
-  // export type DeleteAppProps = {
-  //   dispatch: React.Dispatch<any>;
-  //   appId: string;
-  //   handleAppAssets: (key: FormValueProps) => void;
-  // };
-  // export type EditAppProps = {
-  //   dispatch: React.Dispatch<any>;
-  //   values: FormValueProps;
-  //   appId: string;
-  //   handleAppAssets: (key: FormValueProps) => void;
-  // };
-  // export type UpdateLanguageProps = {
-  //   dispatch: React.Dispatch<any>;
-  //   locale: string;
-  //   appName: string;
-  //   handleAppAssets: (key: FormValueProps) => void;
-  // };
-  // export type GetAppNameReducerProps = {
-  //   dispatch: React.Dispatch<any>;
-  //   appName: string;
-  //   updateAppData: (key: FormValueProps) => void;
-  // };
+
   export interface ReorderFormValueProps {
     values: FormValueProps;
     desiredOrder: string[];

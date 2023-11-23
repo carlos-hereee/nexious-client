@@ -1,14 +1,15 @@
-import { BuildAppProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
+import { AdminDisptachProps } from "app-admin";
 
-export const initApp = async (props: BuildAppProps) => {
-  const { dispatch, values, handleAppAssets } = props;
+export const buildApp = async (props: AdminDisptachProps) => {
+  const { dispatch, handleAppAssets, initApp } = props;
   // try {
-  dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-  const { data } = await axiosMedia.post(`/app/init-app/${values.appName}`, values);
-  if (data) handleAppAssets(data);
-  dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
+  if (initApp) {
+    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+    const { data } = await axiosMedia.post(`/app/init-app/${initApp.appName}`, initApp);
+    if (data) handleAppAssets(data);
+  }
   // } catch (error: any) {
   //   const response = error.response;
   //   isDev && console.log("error building app ", response);

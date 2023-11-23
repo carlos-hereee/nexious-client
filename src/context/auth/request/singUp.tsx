@@ -5,11 +5,11 @@ import { AuthReducerProps } from "auth-context";
 
 export const singUp = async (props: AuthReducerProps) => {
   const { dispatch, credentials, updateUser } = props;
-  // try {
   dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
   const { data } = await axiosAuth.post("/auth/register", credentials);
   dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data?.accessToken || "" });
   if (data && updateUser) updateUser(data.user);
+  dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   // } catch (error: any) {
   // if (isDev) console.log("register error", error);

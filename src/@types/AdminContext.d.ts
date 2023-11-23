@@ -54,20 +54,21 @@ declare module "app-admin" {
     languageList: MenuItemProps[];
     sectionEntries: SectionEntryOganizer;
     initApp: (values: FormValueProps) => void;
-    editApp: (values: FormValueProps, appId: string) => void;
-    editAppName: (values: FormValueProps, appId: string) => void;
-    deleteApp: (appId: string) => void;
-    // updateAppMenu: (menu: MenuProps[]) => void;
-    updateLanguage: (locale: string, appName: string) => void;
-    editLandingPage: (values: FormValueProps, appId: string) => void;
-    editNewsletter: (values: FormValueProps, appId: string) => void;
-    editSocialMedia: (values: FormValueProps, appId: string) => void;
-    editCalendar: (values: FormValueProps, appId: string) => void;
-    editLanguage: (values: FormValueProps, appId: string) => void;
+    // editApp: (values: FormValueProps, appId: string) => void;
+    // editAppName: (values: FormValueProps, appId: string) => void;
+    // deleteApp: (appId: string) => void;
+    // updateLanguage: (locale: string, appName: string) => void;
+    // editLandingPage: (values: FormValueProps, appId: string) => void;
+    // editNewsletter: (values: FormValueProps, appId: string) => void;
+    // editSocialMedia: (values: FormValueProps, appId: string) => void;
+    // editCalendar: (values: FormValueProps, appId: string) => void;
+    // editLanguage: (values: FormValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets: (key: AppAssetProps) => void;
+    appId?: string;
+    initApp?: FormValueProps;
   }
   export type AdminActionProps =
     | {

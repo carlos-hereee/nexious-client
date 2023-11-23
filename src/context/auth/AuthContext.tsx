@@ -4,7 +4,7 @@ import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 // import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
-import { ForgotPasswordFormProps, LoginFormProps, RegisterFormProps } from "app-forms";
+import { AuthFormValueProps, ForgotPasswordFormProps, RegisterFormProps } from "app-forms";
 // import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
@@ -33,7 +33,7 @@ export const AuthState = ({ children }: ChildProps) => {
   }, []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
-  const login = useCallback((e: LoginFormProps) => singIn({ dispatch, credentials: e }), []);
+  const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
 

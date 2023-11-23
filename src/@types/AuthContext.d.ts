@@ -1,7 +1,12 @@
 declare module "auth-context" {
   import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
   import { AppListProps } from "app-context";
-  import { ForgotPasswordFormProps, FormProps, LoginFormProps, RegisterFormProps } from "app-forms";
+  import {
+    AuthFormValueProps,
+    ForgotPasswordFormProps,
+    FormProps,
+    RegisterFormProps,
+  } from "app-forms";
 
   export interface UserSchema {
     // uid: string;
@@ -60,7 +65,7 @@ declare module "auth-context" {
     // setAccessToken: (values: string) => void;
     // getAccessToken: () => void;
     // getAccessTokenData: () => void;
-    login: (values: LoginFormProps) => void;
+    login: (values: AuthFormValueProps) => void;
     register: (values: RegisterFormProps) => void;
     logout: () => void;
     updateUser: (values: UserSchema) => void;
@@ -75,16 +80,11 @@ declare module "auth-context" {
   }
   export interface AuthReducerProps {
     dispatch: React.Dispatch<AuthActionProps>;
-    credentials?: LoginFormProps;
+    credentials?: AuthFormValueProps;
     user?: UserSchema;
     data?: string;
     updateUser?: (user: UserSchema) => void;
     setAccessToken?: (token: string) => void;
-  }
-  export interface AuthLoginReducerProps {
-    dispatch?: React.Dispatch<AuthActionProps>;
-    setAccessToken?: (token: string) => void;
-    credentials: LoginFormProps;
   }
 
   export type AuthActionProps =
