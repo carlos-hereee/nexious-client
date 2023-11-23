@@ -1,5 +1,5 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { AUTH_ACTIONS } from "@app/utils/actions/AuthActions";
 import { AuthDispatchProps } from "auth-context";
 
 export const signOut = async (props: AuthDispatchProps) => {
@@ -13,7 +13,7 @@ export const signOut = async (props: AuthDispatchProps) => {
     payload: { username: "", email: "", phone: "", userId: "", ownedApps: [] },
   });
   dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
-  dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   // } catch (e: any) {
   //   isDev && console.log("error occured logging out", e);
   //   const { status, data } = e.response;

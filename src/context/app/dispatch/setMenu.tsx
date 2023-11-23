@@ -1,4 +1,4 @@
-import { APP_ACTIONS } from "@app/utils/types/AppActions";
+import { APP_ACTIONS } from "@app/utils/actions/AppActions";
 import { DispatchMenuProp } from "reducer-dispatch-props";
 
 export const setMenu = (props: DispatchMenuProp) => {

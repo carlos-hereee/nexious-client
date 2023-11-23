@@ -1,5 +1,5 @@
 declare module "app-context" {
-  import { APP_ACTIONS } from "@app/utils/types/AppActions";
+  import { APP_ACTIONS } from "@app/utils/actions/AppActions";
   import {
     AdminIdProps,
     AssetProps,

@@ -1,4 +1,4 @@
-import { APP_ACTIONS } from "@app/utils/types/AppActions";
+import { APP_ACTIONS } from "@app/utils/actions/AppActions";
 import { AppActionProps, AppStateProps } from "app-context";
 
 export const reducer = (state: AppStateProps, action: AppActionProps): AppStateProps => {

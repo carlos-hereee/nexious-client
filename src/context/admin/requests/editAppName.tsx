@@ -1,7 +1,7 @@
 // import { isDev } from "@app/config";
 import { EditAppProps } from "app-forms";
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 
 export const editAppName = async (props: EditAppProps) => {
   const { dispatch, values, appId, handleAppAssets } = props;

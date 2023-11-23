@@ -1,6 +1,6 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
 import { EditAppProps } from "app-forms";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 
 export const editApp = async (props: EditAppProps) => {
   const { dispatch, values, appId, handleAppAssets } = props;

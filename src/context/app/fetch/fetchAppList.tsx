@@ -1,5 +1,5 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { APP_ACTIONS } from "@app/utils/types/AppActions";
+import { APP_ACTIONS } from "@app/utils/actions/AppActions";
 import { AppDispatchProps } from "reducer-dispatch-props";
 
 export const fetchAppList = async (props: AppDispatchProps) => {

@@ -3,7 +3,7 @@ import { AdminSchema, AppAssetProps } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { FormValueProps } from "app-forms";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -25,7 +25,7 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
-  const { updateAppData, updateAppList } = useContext(AppContext);
+  const { updateAppData, updateAppList, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
 
   const handleAppAssets = (values: AppAssetProps) => {
@@ -53,8 +53,15 @@ export const AdminState = ({ children }: ChildProps) => {
    */
 
   useEffect(() => {
-    if (accessToken) fetchAccessToken({ dispatch, handleAppAssets });
+    if (accessToken) {
+      dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+      fetchAccessToken({ dispatch, handleAppAssets });
+    }
   }, [accessToken]);
+
+  useEffect(() => {
+    if (appName) document.title = appName;
+  }, [appName]);
 
   const initApp = useCallback((values: FormValueProps) => {
     buildApp({ dispatch, initApp: values, handleAppAssets });

@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
-import { GoBackButton } from "nexious-library";
-import { Form } from "nexious-library";
+import { GoBackButton, Form } from "nexious-library";
 
 const ForgotPassword: React.FC = () => {
   const {

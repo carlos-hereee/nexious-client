@@ -1,11 +1,9 @@
-// eslint-disable-next-line no-unused-vars
 import { createContext, useReducer, useContext, useMemo, useCallback, useEffect } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
-// import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
 import { AuthFormValueProps, ForgotPasswordFormProps, RegisterFormProps } from "app-forms";
-// import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { AUTH_ACTIONS } from "@app/utils/actions/AuthActions";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -13,8 +11,6 @@ import { signOut } from "./request/signOut";
 import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
 import { setForgotPassword } from "./request/setForgotPassword";
-// import { fetchUser } from "./helpers/fetchUser";
-import { updateTheme } from "./dispatch/updateTheme";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
 // import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
 // import { fetchAccessToken } from "../admin/requests/fetchAccessToken";
@@ -31,11 +27,19 @@ export const AuthState = ({ children }: ChildProps) => {
   const forgotPassword = useCallback((e: ForgotPasswordFormProps) => {
     setForgotPassword({ dispatch, credentials: e });
   }, []);
-  const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
+
+  const updateUser = useCallback((user: UserSchema) => {
+    setUser({ dispatch, user });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  }, []);
+
+  const setTheme = useCallback((data: string) => {
+    dispatch({ type: AUTH_ACTIONS.SET_THEME, payload: data });
+  }, []);
+
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
-  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
 
   const authValues = useMemo(() => {
     return {

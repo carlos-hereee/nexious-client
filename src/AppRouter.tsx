@@ -2,7 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
-import ChangePassword from "@components/form/ChangePassword";
+// import ChangePassword from "@components/form/ChangePassword";
 import PrivateRoute from "./utils/router/PrivateRoute";
 import Landing from "./pages/Landing";
 // import Services from "./pages/Services";
@@ -30,7 +30,7 @@ import UserPlayground from "./pages/UserPlayground";
 
 const AppRouter: React.FC = () => {
   const { accessToken, ownedApps } = useContext(AuthContext);
-  const { authErrors } = useContext(AuthContext);
+  // const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,11 +38,11 @@ const AppRouter: React.FC = () => {
     navigate("/");
   }, [ownedApps.length]);
 
-  // emergency password change
-  if (authErrors.emergencyPasswordChangeIsRequired) {
-    // return <ChangePassword handleClick={changePassword} />;
-    return <ChangePassword />;
-  }
+  // // emergency password change
+  // if (authErrors.emergencyPasswordChangeIsRequired) {
+  //   // return <ChangePassword handleClick={changePassword} />;
+  //   return <ChangePassword />;
+  // }
   return (
     <Routes>
       {/* Public Routes */}

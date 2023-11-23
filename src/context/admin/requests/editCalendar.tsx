@@ -1,5 +1,5 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { EditAppProps } from "app-forms";
 
 export const editCalendar = async (props: EditAppProps) => {

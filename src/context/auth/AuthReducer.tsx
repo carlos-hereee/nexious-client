@@ -1,8 +1,6 @@
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { AUTH_ACTIONS } from "@app/utils/actions/AuthActions";
 import { AuthStateProps, AuthActionProps } from "auth-context";
 
-// type ReducerAction = { type: AUTH_ACTIONS; payload?: any };
-// type AuthReducerProps = (state: AuthStateProps, action: ReducerAction) => AuthStateProps;
 export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthStateProps => {
   switch (action.type) {
     case AUTH_ACTIONS.IS_LOADING:

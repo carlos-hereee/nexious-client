@@ -10,7 +10,7 @@ import {
 import appState from "@data/appState.json";
 import { ChildProps, MenuProps } from "app-types";
 import { AppListProps, AppProps, AppSchema } from "app-context";
-import { APP_ACTIONS } from "@app/utils/types/AppActions";
+import { APP_ACTIONS } from "@app/utils/actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";

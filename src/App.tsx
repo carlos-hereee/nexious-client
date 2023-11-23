@@ -1,23 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
-import { AdminContext } from "@context/admin/AdminContext";
+// import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
-  const { updateLanguage } = useContext(AdminContext);
+  // const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
   const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (appName) document.title = appName;
-  }, [appName]);
-  // useEffect(() => {
-  //   if (accessToken) getAccessTokenData();
-  // }, [accessToken]);
+  const logoData = { ...logo, appName };
 
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...activeMenu];
@@ -32,7 +27,7 @@ const App = ({ children }: ChildProps) => {
     } else if (isToggle && active?.locale) {
       // update menu
       updateMenu(oldValues);
-      updateLanguage(active.locale, appName);
+      // updateLanguage(active.locale, appName);
     } else {
       // find menu item
       const menuItemIdx = oldValues.findIndex((val) => val.menuId === menuId);
@@ -49,12 +44,7 @@ const App = ({ children }: ChildProps) => {
   if (isLoading) return <Loading message="Fetching user assets.." />;
   return (
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
-      <Header
-        menu={activeMenu}
-        logo={{ ...logo, title: appName }}
-        updateMenu={handleMenu}
-        theme={theme}
-      />
+      <Header menu={activeMenu} logo={logoData} updateMenu={handleMenu} theme={theme} />
       {children}
       <Footer appName={appName} media={media} hero={media.hero} />
     </div>

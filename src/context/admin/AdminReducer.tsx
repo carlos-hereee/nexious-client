@@ -1,4 +1,4 @@
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { AdminActionProps, AdminStateProps } from "app-admin";
 
 export const reducer = (state: AdminStateProps, action: AdminActionProps): AdminStateProps => {

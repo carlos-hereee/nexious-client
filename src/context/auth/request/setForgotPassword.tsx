@@ -1,6 +1,6 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
 // import { isDev } from "@app/config";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { AUTH_ACTIONS } from "@app/utils/actions/AuthActions";
 import { AuthReducerProps } from "auth-context";
 
 export const setForgotPassword = async (props: AuthReducerProps) => {

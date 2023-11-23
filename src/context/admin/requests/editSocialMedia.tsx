@@ -1,5 +1,5 @@
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { EditAppProps } from "app-forms";
 
 export const editSocialMedia = async (props: EditAppProps) => {

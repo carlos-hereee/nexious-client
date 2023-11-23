@@ -1,5 +1,5 @@
 declare module "auth-context" {
-  import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+  import { AUTH_ACTIONS } from "@app/utils/actions/AuthActions";
   import { AppListProps } from "app-context";
   import {
     AuthFormValueProps,

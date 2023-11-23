@@ -1,4 +1,4 @@
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
 import { AdminDisptachProps } from "app-admin";
 
