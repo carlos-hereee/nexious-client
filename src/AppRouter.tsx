@@ -57,7 +57,6 @@ const AppRouter: React.FC = () => {
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
         <Route path="/app/" element={<Landing />} />
-        <Route path="/dashboard" element={<UserPlayground />} />
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}
         {/* <Route path="/about" element={<About />} />
@@ -67,8 +66,9 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
-        {/* <Route path="/dashboard" element={<Dashboard />} />
+        {/* 
         <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
+        <Route path="/dashboard" element={<UserPlayground />} />
         <Route path="/build-app" element={<BuildApp />} />
       </Route>
       {/* Admin routes for editing pages */}

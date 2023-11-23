@@ -32,7 +32,6 @@ export const AdminState = ({ children }: ChildProps) => {
   };
 
   useEffect(() => {
-    console.log("accessToken :>> ", accessToken);
     if (accessToken) fetchAccessToken({ dispatch, handleAppAssets });
   }, [accessToken]);
 

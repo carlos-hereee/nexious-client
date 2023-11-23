@@ -4,6 +4,7 @@ import { AppContext } from "@context/app/AppContext";
 import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
+import messages from "@data/messages.json";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
@@ -14,10 +15,7 @@ const UserPlayground = () => {
 
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {
-      setError({
-        ...error,
-        [app.appId]: "Could not see live app because app name has not been set",
-      });
+      setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
       const name = app.appName.split(" ").join("+");
       getAppWithName(name);
@@ -26,10 +24,7 @@ const UserPlayground = () => {
   };
   const handleEdit = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {
-      setError({
-        ...error,
-        [app.appId]: "Could not see live app because app name has not been set",
-      });
+      setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
       const name = app.appName.split(" ").join("+");
       getAppWithName(name);
@@ -37,12 +32,8 @@ const UserPlayground = () => {
     }
   };
   const handleAdvancedSetting = (app: { appName: string; appId: string }) => {
-    // console.log("app", app);
     if (!app.appName) {
-      setError({
-        ...error,
-        [app.appId]: "Could not see live app because app name has not been set",
-      });
+      setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
       const name = app.appName.split(" ").join("+");
       getAppWithName(name);
