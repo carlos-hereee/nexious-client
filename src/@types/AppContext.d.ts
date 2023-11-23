@@ -103,7 +103,9 @@ declare module "app-context" {
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     values?: AppProps;
+    appName?: string;
     menu?: MenuProps[];
+    updateAppData?: (a: AppProps) => void;
   }
 
   export type AppActionProps =

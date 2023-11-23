@@ -89,6 +89,6 @@ export const AdminState = ({ children }: ChildProps) => {
       languageList: state.languageList,
       initApp,
     };
-  }, []);
+  }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
 };

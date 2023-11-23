@@ -98,7 +98,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateMenu,
       getAppList,
     };
-  }, []);
+  }, [state.isLoading]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (

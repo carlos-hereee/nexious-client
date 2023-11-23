@@ -1,5 +1,5 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 // import ChangePassword from "@components/form/ChangePassword";
@@ -29,14 +29,16 @@ import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
 
 const AppRouter: React.FC = () => {
-  const { accessToken, ownedApps } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   // const { authErrors } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    // navigate to user playground when the amount of owned apps changes
-    navigate("/");
-  }, [ownedApps.length]);
+  // useEffect(() => {
+  //   if (accessToken) {
+  //     // navigate to user playground when the amount of owned apps changes
+  //     navigate("/");
+  //   }
+  // }, [ownedApps.length]);
 
   // // emergency password change
   // if (authErrors.emergencyPasswordChangeIsRequired) {
