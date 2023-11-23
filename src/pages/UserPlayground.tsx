@@ -11,7 +11,7 @@ const UserPlayground = () => {
   const { getAppWithName } = useContext(AppContext);
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
-  console.log("ownedApps :>> ", ownedApps);
+  // console.log("ownedApps :>> ", ownedApps);
 
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {

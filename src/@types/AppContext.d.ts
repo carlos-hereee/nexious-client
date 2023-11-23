@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { UserSchema } from "auth-context";
   import { APP_ACTIONS } from "@app/utils/actions/AppActions";
   import {
     AdminIdProps,
@@ -24,7 +25,7 @@ declare module "app-context" {
     appList: AppListProps[];
     welcomeMessage: string;
     landing: PageProps;
-    ownerId: string;
+    owner: UserSchema;
     newsletter: NewsletterProps;
     media: MediaProps;
     menu: MenuProps[];
@@ -58,7 +59,7 @@ declare module "app-context" {
     welcomeMessage: string;
     landing: PageProps;
     appId: string;
-    ownerId: string;
+    owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;
@@ -82,7 +83,7 @@ declare module "app-context" {
     // theme: string;
     landing: PageProps;
     appId: string;
-    ownerId: string;
+    owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;
@@ -114,16 +115,16 @@ declare module "app-context" {
         payload: boolean;
       }
     | {
-        type:
-          | APP_ACTIONS.SET_APP_ID
-          | APP_ACTIONS.SET_OWNER_ID
-          | APP_ACTIONS.SET_APP_NAME
-          | APP_ACTIONS.SET_LOCALE;
+        type: APP_ACTIONS.SET_APP_ID | APP_ACTIONS.SET_APP_NAME | APP_ACTIONS.SET_LOCALE;
         payload: string;
       }
     | {
         type: APP_ACTIONS.SET_THEME_LIST | APP_ACTIONS.SET_LANGUAGE_LIST;
         payload: MenuItemProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_OWNER_ID;
+        payload: UserSchema;
       }
     | {
         type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU;

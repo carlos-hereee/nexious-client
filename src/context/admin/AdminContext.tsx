@@ -38,7 +38,6 @@ export const AdminState = ({ children }: ChildProps) => {
   /**
    *         updateLanguage: (a, b) =>
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
-        initApp: (values) => initApp({ dispatch, values, handleAppAssets }),
         deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
         editNewsletter: (a, b) =>

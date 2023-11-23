@@ -1,9 +1,9 @@
-import { KeyStringProp } from "app-types";
+import { MenuItemProps } from "app-types";
 
-export const formatInitApp = (appName: string, logo: string, themeList: KeyStringProp[]) => {
+export const formatInitApp = (appName: string, logo: string, themeList: MenuItemProps[]) => {
   return {
     appName: appName || "",
     logo: logo || "",
-    theme: themeList.map((list) => list.value).join(",") + ",",
+    theme: `${themeList.map((list) => list.value).join(",")},`,
   };
 };

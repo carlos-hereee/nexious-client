@@ -35,7 +35,7 @@
   ],
   "appName": "Nexs Tech",
   "appId": "Nexious-appid-1",
-  "ownerId": "ch04937",
+  "owner": { "userId": "", "username": "" },
   "welcomeMessage": "Welcome back!",
   "locale": "",
   "adminIds": [{ "userId": "", "role": "" }],

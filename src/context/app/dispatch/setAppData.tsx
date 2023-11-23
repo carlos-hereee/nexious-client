@@ -17,7 +17,7 @@ export const setAppData = (props: AppDispatchProps) => {
     dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: values?.newsletter || {} });
     dispatch({ type: APP_ACTIONS.SET_MENU, payload: values?.menu || [] });
     dispatch({ type: APP_ACTIONS.SET_MEDIA, payload: values?.media || {} });
-    dispatch({ type: APP_ACTIONS.SET_OWNER_ID, payload: values?.ownerId || "" });
+    dispatch({ type: APP_ACTIONS.SET_OWNER_ID, payload: values?.owner || "" });
     dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: values?.themeList || [] });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }

@@ -5,8 +5,10 @@ import { AppContext } from "@context/app/AppContext";
 
 const AdminRoute = () => {
   const { user } = useContext(AuthContext);
-  const { ownerId, isLoading } = useContext(AppContext);
+  const { owner, isLoading } = useContext(AppContext);
+  console.log("user :>> ", user);
+  console.log("owner :>> ", owner);
   if (isLoading) return <Outlet />;
-  return user.id === ownerId ? <Outlet /> : <Navigate to="/" />;
+  return user.userId === owner.userId ? <Outlet /> : <Navigate to="/" />;
 };
 export default AdminRoute;

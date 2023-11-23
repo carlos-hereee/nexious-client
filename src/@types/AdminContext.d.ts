@@ -68,6 +68,7 @@ declare module "app-admin" {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets: (key: AppAssetProps) => void;
     appId?: string;
+    values?: FormValueProps;
     initApp?: FormValueProps;
   }
   export type AdminActionProps =
