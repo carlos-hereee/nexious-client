@@ -1,10 +1,14 @@
 declare module "app-forms" {
   import { AssetProps } from "app-types";
 
-  export interface LoginFormProps {
+  export interface AuthFormValueProps {
     username: string;
-    password: string;
+    password?: string;
+    confirmPassword?: string;
+    newPassword?: string;
+    confirmNewPassword?: string;
   }
+  export interface LoginFormProps {}
   export interface ForgotPasswordFormProps {
     username: string;
     newPassword: string;

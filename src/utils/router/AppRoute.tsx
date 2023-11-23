@@ -6,6 +6,7 @@ const AppRoute = () => {
   const { isOnline } = useContext(AppContext);
   if (isOnline) {
     return <Outlet />;
-  } else return <Navigate to="/offline" />;
+  }
+  return <Navigate to="/offline" />;
 };
 export default AppRoute;

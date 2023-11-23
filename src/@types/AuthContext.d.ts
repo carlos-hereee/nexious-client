@@ -1,14 +1,7 @@
 declare module "auth-context" {
   import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
   import { AppListProps } from "app-context";
-  // import { AssetProps } from "app-types";
-  import {
-    ForgotPasswordFormProps,
-    FormProps,
-    FormValueProps,
-    LoginFormProps,
-    RegisterFormProps,
-  } from "app-forms";
+  import { ForgotPasswordFormProps, FormProps, LoginFormProps, RegisterFormProps } from "app-forms";
 
   export interface UserSchema {
     // uid: string;
@@ -18,7 +11,7 @@ declare module "auth-context" {
     nickname?: string;
     languageId?: string;
     phone?: string;
-    ownedApps: AppListProps[];
+    ownedApps?: AppListProps[];
   }
   export interface AuthErrorProps {
     emergencyPasswordChangeIsRequired: boolean;
@@ -75,13 +68,14 @@ declare module "auth-context" {
     // methods
     setIsLoading: (values: boolean) => void;
     setStranded: (values: boolean) => void;
-    setAccessToken: (values: string) => void;
+    // setAccessToken: (values: string) => void;
+    getAccessTokenData: () => void;
     login: (values: LoginFormProps) => void;
     register: (values: RegisterFormProps) => void;
     logout: () => void;
-    updateUser: (values: FormValueProps) => void;
+    updateUser: (values: UserSchema) => void;
     // fetchUser: (values: UserSchema) => void;
-    forgotPassword: (values: FormProps) => void;
+    forgotPassword: (values: ForgotPasswordFormProps) => void;
     // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
   }
@@ -93,24 +87,20 @@ declare module "auth-context" {
     dispatch: React.Dispatch<AuthActionProps>;
     data: string;
   }
+  export interface AuthReducerProps {
+    dispatch: React.Dispatch<AuthActionProps>;
+    credentials?: LoginFormProps;
+    user?: UserSchema;
+    updateUser?: (user: UserSchema) => void;
+    setAccessToken?: (token: string) => void;
+  }
   export interface AuthLoginReducerProps {
-    dispatch: React.Dispatch<AuthActionProps>;
+    setAccessToken: (token: string) => void;
     credentials: LoginFormProps;
-    updateUser: (user: UserSchema) => void;
   }
-  export interface AuthForgotPasswordFormProps {
-    dispatch: React.Dispatch<AuthActionProps>;
-    credentials: ForgotPasswordFormProps;
-  }
-  export interface AuthReducerSetUserProps {
-    dispatch: React.Dispatch<AuthActionProps>;
-    user: UserSchema;
-  }
+
   export type AuthActionProps =
-    | {
-        type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED;
-        payload: boolean;
-      }
+    | { type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED; payload: boolean }
     | {
         type:
           | AUTH_ACTIONS.SIGN_IN_ERROR
@@ -121,17 +111,11 @@ declare module "auth-context" {
           | AUTH_ACTIONS.SET_THEME;
         payload: string;
       }
-    | {
-        type: AUTH_ACTIONS.SET_OWNED_APPS;
-        payload: AppListProps[];
-      }
+    | { type: AUTH_ACTIONS.SET_OWNED_APPS; payload: AppListProps[] }
     // | {
     //     type: AUTH_ACTIONS.UPDATE_SHIPPING_DETAILS;
     //     payload: AppListProps[];
     //   }
-    | {
-        type: AUTH_ACTIONS.SET_USER_DATA;
-        payload: UserSchema;
-      }
+    | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
 }

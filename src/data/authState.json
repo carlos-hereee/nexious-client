@@ -1,5 +1,5 @@
 {
-  "isLoading": true,
+  "isLoading": false,
   "isOffline": false,
   "accessToken": "",
   "theme": "dark-mode",

@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { reducer } from "./AdminReducer";
 import { AdminSchema } from "app-admin";
 import { ChildProps } from "app-types";
@@ -23,10 +23,12 @@ export const AdminState = ({ children }: ChildProps) => {
   const { updateAppData, updateAppList } = useContext(AppContext);
   const { updateUser } = useContext(AuthContext);
 
-  const handleAppAssets = (values: any) => {
-    values.app && updateAppData(values.app);
-    values.appList && updateAppList(values.appList);
-    values.user && updateUser(values.user);
+  const handleAppAssets = (values: unknown) => {
+    if (values.app) updateAppData(values.app);
+    if (values.appList) updateAppList(values.appList);
+    if (values.user) updateUser(values.user);
+    // values.appList && updateAppList(values.appList);
+    // values.user && updateUser(values.user);
   };
 
   return (

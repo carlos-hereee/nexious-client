@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { AuthContext } from "@context/auth/AuthContext";
+import { AuthContext, useAuth } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
@@ -8,21 +8,28 @@ import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
   const { updateLanguage } = useContext(AdminContext);
-  const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
+  const { isLoading, theme, setTheme, logout, accessToken } = useContext(AuthContext);
   const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
+  // const { accessToken } = useAuth();
   const navigate = useNavigate();
+
+  console.log("accessToken :>> ", accessToken);
+  // console.log("isLoading:>> ", accessToken);
 
   useEffect(() => {
     if (appName) document.title = appName;
   }, [appName]);
+  // useEffect(() => {
+  //   if (accessToken) getAccessTokenData();
+  // }, [accessToken]);
 
   const handleMenu = (menuItem: MenuProps) => {
-    let oldValues = [...activeMenu];
+    const oldValues = [...activeMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (active.name === "logout") logout();
-      else navigate("/" + active.link || "");
+      else navigate(`/${active.link}` || "");
       // check theme Id
     } else if (isToggle && active?.themeId && active.name) {
       setTheme(active.name);
@@ -43,9 +50,9 @@ const App = ({ children }: ChildProps) => {
   };
   // console.log("theme :>> ", theme);
   // waiting server response
-  if (isLoading) return <Loading message="Loading app assets.." />;
+  if (isLoading) return <Loading message="Fetching user assets.." />;
   return (
-    <div className={`app-container elbow-space${theme ? " " + theme : ""}`}>
+    <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
       <Header
         menu={activeMenu}
         logo={{ ...logo, title: appName }}

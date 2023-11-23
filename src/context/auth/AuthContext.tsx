@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { createContext, useReducer, useEffect, useContext, useMemo, useCallback } from "react";
+import { createContext, useReducer, useContext, useMemo, useCallback } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
@@ -12,10 +12,11 @@ import { singUp } from "./helpers/singUp";
 import { signOut } from "./helpers/signOut";
 import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
-import { getAccessToken } from "./helpers/getAccessToken";
+// import { getAccessToken } from "./helpers/getAccessToken";
 import { setForgotPassword } from "./helpers/setForgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
+import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -26,9 +27,10 @@ export const AuthState = ({ children }: ChildProps) => {
     setUser({ dispatch, user: e });
   }, []);
 
-  useEffect(() => {
-    getAccessToken({ dispatch, updateUser });
-  }, []);
+  // console.log("state.AuthFormValueProps :>> ", state.accessToken);
+  // useEffect(() => {
+  //   getAccessToken({ dispatch, updateUser });
+  // }, [state.accessToken]);
 
   /**
  * {
@@ -43,6 +45,7 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   }, []);
 
   const setAccessToken = useCallback((e: string) => {
+    // console.log("e :>> ", e);
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: e });
   }, []);
 
@@ -61,12 +64,16 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   }, []);
 
   const login = useCallback((e: LoginFormProps) => {
-    singIn({ dispatch, credentials: e, updateUser });
+    singIn({ credentials: e, setAccessToken });
   }, []);
 
   const register = useCallback((e: RegisterFormProps) => {
-    singUp({ dispatch, credentials: e, updateUser });
+    singUp({ dispatch, credentials: e, setAccessToken });
   }, []);
+
+  const getAccessTokenData = useCallback(() => {
+    fetchAccessTokenData({ dispatch });
+  }, [state.accessToken]);
 
   const authValues = useMemo(() => {
     return {
@@ -91,9 +98,10 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
       forgotPassword,
       setStranded,
       setIsLoading,
-      setAccessToken,
+      // setAccessToken,
+      getAccessTokenData,
     };
-  }, []);
+  }, [state.accessToken]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };
