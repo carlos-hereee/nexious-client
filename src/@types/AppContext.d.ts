@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { APP_ACTIONS } from "@app/utils/types/AppActions";
   import {
     AdminIdProps,
     AssetProps,
@@ -106,4 +107,62 @@ declare module "app-context" {
   //   updateMenu: (menu: MenuProps[]) => void;
   //   updateAppList: (appList: { [key: string]: any }[]) => void;
   // }
+  export interface AppDispatchProps {
+    dispatch: React.Dispatch<AppActionProps>;
+  }
+  export interface AppFormDispatchProps {
+    dispatch: React.Dispatch<AppActionProps>;
+    values: AppProps;
+    menu?: MenuProps[];
+  }
+
+  export type AppActionProps =
+    | {
+        type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON;
+        payload: boolean;
+      }
+    | {
+        type:
+          | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_OWNER_ID
+          | APP_ACTIONS.SET_APP_NAME
+          | APP_ACTIONS.SET_LOCALE;
+        payload: string;
+      }
+    | {
+        type: APP_ACTIONS.SET_THEME_LIST | APP_ACTIONS.SET_LANGUAGE_LIST;
+        payload: MenuItemProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU;
+        payload: MenuProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_LANDING;
+        payload: PageProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_APP_LOGO;
+        payload: AssetProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_CALENDAR;
+        payload: CalendarProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_APP_LIST;
+        payload: AppListProps[];
+      }
+    | {
+        type: APP_ACTIONS.SET_NEWSLETTER;
+        payload: NewsletterProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_MEDIA;
+        payload: MediaProps;
+      }
+    | {
+        type: APP_ACTIONS.SET_ADMIN_IDS;
+        payload: AdminIdProps[];
+      };
 }

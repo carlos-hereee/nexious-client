@@ -1,7 +1,17 @@
 declare module "app-admin" {
+  import { AppListProps, AppProps } from "app-context";
+  import { UserSchema } from "auth-context";
   import { MenuProps } from "app-types";
   import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
 
+  export interface AppAssetProps {
+    user?: UserSchema;
+    app?: AppProps;
+    appList?: AppListProps[];
+  }
+  export interface AdminReducerProps {
+    handleAppAssets: (key: AppAssetProps) => void;
+  }
   export interface AdminStateProps {
     isLoading: boolean;
     initAppForm: FormProps;

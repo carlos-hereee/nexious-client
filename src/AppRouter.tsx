@@ -22,9 +22,11 @@ import ForgotPassword from "./components/form/ForgotPassword";
 import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
-import Homepage from "./pages/Homepage";
+// import Homepage from "./pages/Homepage";
 import AppSettings from "./components/app/AppSettings";
 import Login from "./pages/Login";
+import PublicRoute from "./utils/router/PublicRoute";
+import UserPlayground from "./pages/UserPlayground";
 
 const AppRouter: React.FC = () => {
   const { accessToken, ownedApps } = useContext(AuthContext);
@@ -44,16 +46,18 @@ const AppRouter: React.FC = () => {
   return (
     <Routes>
       {/* Public Routes */}
-      {/* // if server not coaperating use offline data */}
-      <Route path="/offline" element={<Offline />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Homepage />} />
+      <Route element={<PublicRoute />}>
+        {/* // if server not coaperating use offline data */}
+        <Route path="/offline" element={<Offline />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Landing />} />
+      </Route>
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
         <Route path="/app/" element={<Landing />} />
-        {/* <Route path="/services" element={<Services />} /> */}
+        <Route path="/dashboard" element={<UserPlayground />} />
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}
         {/* <Route path="/about" element={<About />} />

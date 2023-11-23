@@ -1,35 +1,48 @@
-import { createContext, useContext, useReducer } from "react";
-import { reducer } from "./AdminReducer";
-import { AdminSchema } from "app-admin";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { AdminSchema, AppAssetProps } from "app-admin";
+import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
+import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
+import { reducer } from "./AdminReducer";
 import { initApp } from "./requests/initApp";
 import { editApp } from "./requests/editApp";
-import adminState from "@data/adminState.json";
 import { editAppName } from "./requests/editAppName";
 import { editLandingPage } from "./requests/editLandingPage";
 import { AppContext } from "../app/AppContext";
 import { deleteApp } from "./requests/deleteApp";
 import { AuthContext } from "../auth/AuthContext";
-import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 import { updateLanguage } from "./requests/updateLanguage";
 import { editNewsletter } from "./requests/editNewsletter";
 import { editSocialMedia } from "./requests/editSocialMedia";
 import { editCalendar } from "./requests/editCalendar";
 import { editLanguage } from "./requests/editLanguage";
+import { fetchAccessToken } from "./requests/fetchAccessToken";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
-  const { updateAppData, updateAppList } = useContext(AppContext);
-  const { updateUser } = useContext(AuthContext);
 
-  const handleAppAssets = (values: unknown) => {
+  const { updateAppData, updateAppList } = useContext(AppContext);
+  const { updateUser, accessToken, getAccessTokenData } = useContext(AuthContext);
+
+  const handleAppAssets = (values: AppAssetProps) => {
     if (values.app) updateAppData(values.app);
     if (values.appList) updateAppList(values.appList);
     if (values.user) updateUser(values.user);
     // values.appList && updateAppList(values.appList);
     // values.user && updateUser(values.user);
   };
+
+  const getAccessToken = () => {
+    console.log("fetching token data");
+    fetchAccessToken({ handleAppAssets });
+    // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  };
+
+  useEffect(() => {
+    if (accessToken) getAccessTokenData();
+    else getAccessToken();
+  }, [accessToken]);
 
   return (
     <AdminContext.Provider

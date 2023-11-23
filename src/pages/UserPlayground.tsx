@@ -8,8 +8,9 @@ import WelcomeBanner from "@app/components/app/WelcomeBanner";
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
   const { getAppWithName } = useContext(AppContext);
-  const [error, setError] = useState<{ [key: string]: any }>({});
+  const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
+  console.log("ownedApps :>> ", ownedApps);
 
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {
@@ -18,7 +19,7 @@ const UserPlayground = () => {
         [app.appId]: "Could not see live app because app name has not been set",
       });
     } else {
-      let name = app.appName.split(" ").join("+");
+      const name = app.appName.split(" ").join("+");
       getAppWithName(name);
       navigate({ pathname: "/app", search: `?appName=${name}` });
     }
@@ -30,7 +31,7 @@ const UserPlayground = () => {
         [app.appId]: "Could not see live app because app name has not been set",
       });
     } else {
-      let name = app.appName.split(" ").join("+");
+      const name = app.appName.split(" ").join("+");
       getAppWithName(name);
       navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
     }
@@ -43,7 +44,7 @@ const UserPlayground = () => {
         [app.appId]: "Could not see live app because app name has not been set",
       });
     } else {
-      let name = app.appName.split(" ").join("+");
+      const name = app.appName.split(" ").join("+");
       getAppWithName(name);
       navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
     }

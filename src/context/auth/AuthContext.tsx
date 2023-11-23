@@ -12,11 +12,11 @@ import { singUp } from "./helpers/singUp";
 import { signOut } from "./helpers/signOut";
 import { setUser } from "./dispatch/setUser";
 // import { changePassword } from "./helpers/changePassword";
-// import { getAccessToken } from "./helpers/getAccessToken";
 import { setForgotPassword } from "./helpers/setForgotPassword";
 // import { fetchUser } from "./helpers/fetchUser";
 import { updateTheme } from "./dispatch/updateTheme";
 import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
+// import { fetchAccessToken } from "../admin/requests/fetchAccessToken";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -45,7 +45,6 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   }, []);
 
   const setAccessToken = useCallback((e: string) => {
-    // console.log("e :>> ", e);
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: e });
   }, []);
 
@@ -64,7 +63,7 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   }, []);
 
   const login = useCallback((e: LoginFormProps) => {
-    singIn({ credentials: e, setAccessToken });
+    singIn({ dispatch, credentials: e, setAccessToken });
   }, []);
 
   const register = useCallback((e: RegisterFormProps) => {
@@ -72,8 +71,10 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
   }, []);
 
   const getAccessTokenData = useCallback(() => {
+    console.log("fetching token data");
     fetchAccessTokenData({ dispatch });
-  }, [state.accessToken]);
+    // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  }, []);
 
   const authValues = useMemo(() => {
     return {
@@ -100,6 +101,7 @@ forgotPassword: (a) => forgotPassword({ dispatch, values: a }),
       setIsLoading,
       // setAccessToken,
       getAccessTokenData,
+      // getAccessToken,
     };
   }, [state.accessToken]);
 

@@ -1,6 +1,6 @@
 declare module "app-types" {
-  import { FormValueProps } from "app-forms";
   import { PageProps } from "app-context";
+  import { FormValueProps } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;

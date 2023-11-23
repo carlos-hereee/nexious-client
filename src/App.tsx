@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { AuthContext, useAuth } from "@context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
@@ -8,13 +8,9 @@ import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
   const { updateLanguage } = useContext(AdminContext);
-  const { isLoading, theme, setTheme, logout, accessToken } = useContext(AuthContext);
+  const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
   const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
-  // const { accessToken } = useAuth();
   const navigate = useNavigate();
-
-  console.log("accessToken :>> ", accessToken);
-  // console.log("isLoading:>> ", accessToken);
 
   useEffect(() => {
     if (appName) document.title = appName;

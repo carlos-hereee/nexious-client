@@ -69,6 +69,7 @@ declare module "auth-context" {
     setIsLoading: (values: boolean) => void;
     setStranded: (values: boolean) => void;
     // setAccessToken: (values: string) => void;
+    // getAccessToken: () => void;
     getAccessTokenData: () => void;
     login: (values: LoginFormProps) => void;
     register: (values: RegisterFormProps) => void;
@@ -95,7 +96,8 @@ declare module "auth-context" {
     setAccessToken?: (token: string) => void;
   }
   export interface AuthLoginReducerProps {
-    setAccessToken: (token: string) => void;
+    dispatch?: React.Dispatch<AuthActionProps>;
+    setAccessToken?: (token: string) => void;
     credentials: LoginFormProps;
   }
 

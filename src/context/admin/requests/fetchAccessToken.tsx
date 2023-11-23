@@ -1,17 +1,19 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
 // import { isDev } from "@app/config";
 // import { RefreshTokenReducerProps } from "auth-context";
-import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
-import { AuthReducerProps } from "auth-context";
+// import { AUTH_ACTIONS } from "@app/utils/types/AuthActions";
+import { AdminReducerProps } from "app-admin";
+// import { AdminReducerProps } from "auth-context";
 
-export const getAccessToken = async (props: AuthReducerProps) => {
-  const { dispatch, updateUser } = props;
+export const fetchAccessToken = async (props: AdminReducerProps) => {
+  const { handleAppAssets } = props;
   // try {
-  dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
+  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
   const { data } = await axiosAuth.post("/auth/refresh-token");
-  dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data.accessToken });
-  if (data.user && updateUser) updateUser(data.user);
-  dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  // dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data.accessToken });
+
+  if (data) handleAppAssets(data);
+  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   // } catch (error: any) {
   //   if (isDev) console.log("error fetching token", error);
   //   const status = error.response?.status;
