@@ -61,7 +61,7 @@ const EditApp = () => {
     if (active) scrollToId(active);
   }, [active]);
 
-  // console.log("calendar :>> ", calendar);
+  console.log("landing :>> ", landing);
   useEffect(() => {
     if (!isLoading) {
       const LDO = landingForm.desiredOrder || [""];
@@ -114,16 +114,6 @@ const EditApp = () => {
     }
   }, [isLoading]);
 
-  // console.log("newsletter :>> ", newsletter);
-  // const logoData = { url: preview?.logo || "", title: preview?.appName || "" };
-  // const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
-
-  // const handleMenu = (menuItem: MenuProps) => {
-  //   const { active } = menuItem;
-  //   if (active?.themeId) setTheme(active.name || theme);
-  // };
-
-  // console.log("values :>> ", formValues);
   if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
@@ -141,8 +131,6 @@ const EditApp = () => {
           ) : active === "medias" ? (
             <PreviewSocials data={preview} />
           ) : (
-            // ) : active === "calendar" ? (
-            //   <PreviewCalendar events={preview} />
             active === "landingPage" && <PreviewLanding preview={previewPage} />
           )
         }

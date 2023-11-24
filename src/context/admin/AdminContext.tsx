@@ -45,15 +45,8 @@ export const AdminState = ({ children }: ChildProps) => {
   /**
    *         updateLanguage: (a, b) =>
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
-        deleteApp: (appId) => deleteApp({ dispatch, appId, handleAppAssets }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
-        editNewsletter: (a, b) =>
-          editNewsletter({ dispatch, values: a, appId: b, handleAppAssets }),
-        editAppName: (a, b) => editAppName({ dispatch, values: a, appId: b, handleAppAssets }),
-        editLandingPage: (a, b) =>
-          editLandingPage({ dispatch, values: a, appId: b, handleAppAssets }),
-        editSocialMedia: (a, b) =>
-          editSocialMedia({ dispatch, values: a, appId: b, handleAppAssets }),
+
         editCalendar: (a, b) => editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
         editLanguage: (a, b) => editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
    */
@@ -92,6 +85,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const deleteApp = useCallback((appId: string) => {
     removeApp({ dispatch, appId, handleAppAssets });
+    navigate("/dashboard");
   }, []);
 
   const adminValues = useMemo(() => {

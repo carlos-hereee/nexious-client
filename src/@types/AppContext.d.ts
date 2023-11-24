@@ -58,7 +58,7 @@ declare module "app-context" {
     appName: string;
     activeAppName: string;
     welcomeMessage: string;
-    landing: PageProps;
+    landing?: PageProps;
     appId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
@@ -84,7 +84,7 @@ declare module "app-context" {
     activeAppName: string;
     welcomeMessage: string;
     // theme: string;
-    landing: PageProps;
+    landing?: PageProps;
     appId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];

@@ -1,0 +1,62 @@
+{
+  "landing": {
+    "title": "Create Your Dream App Today",
+    "tagline": "Turn Your Idea into a Stunning App",
+    "hasCta": true,
+    "hero": {
+      "url": "/unsplash/austin-chan-ukzHlkoz1IE-unsplash.jpg",
+      "alt": "feature hero",
+      "uid": "landing-hero-uid",
+      "heroId": "landing-hero",
+      "hero": "/unsplash/austin-chan-ukzHlkoz1IE-unsplash.jpg",
+      "creditTo": {
+        "artistName": "Austin Chan",
+        "artistUrl": "https://unsplash.com/photos/this-is-the-sign-youve-been-looking-for-neon-signage-ukzHlkoz1IE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/@austinchan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      },
+      "theme": "feature-hero"
+    },
+    "body": "Welcome to Nexious Tech, your one-stop destination for transforming your app idea into reality.",
+    "hasSections": true,
+    "cta": [
+      {
+        "label": "Get Started",
+        "icon": "confirm",
+        "link": "login",
+        "uid": "cta-1"
+      }
+    ],
+    "sections": [
+      {
+        "title": "Trusted Professionals",
+        "subtitle": "",
+        "uid": "section-1",
+        "details": "",
+        "sectionHero": {
+          "url": "/icons/secure-icon.svg",
+          "alt": "Trusted professionals",
+          "uid": "hero-uid-1",
+          "heroId": "section-heroId",
+          "hero": "/icons/secure-icon.svg",
+          "theme": "hero-thumbnail"
+        },
+        "body": "Our staff consists of experienced and trained professionals who are dedicated to providing exceptional service and attention to detail."
+      },
+      {
+        "title": "Customazible Plans",
+        "subtitle": "",
+        "uid": "section-2",
+        "details": "",
+        "sectionHero": {
+          "url": "/icons/custom.svg",
+          "alt": "Trusted professionals",
+          "uid": "hero-uid-2",
+          "heroId": "section-heroId-2",
+          "hero": "/icons/custom.svg",
+          "theme": "hero-thumbnail"
+        },
+        "body": "We understand that every app is unique. That's why we offer customizable plans that allow you to tailor our services to meet your specific requirements."
+      }
+    ]
+  }
+}

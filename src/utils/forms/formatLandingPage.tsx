@@ -10,6 +10,7 @@ export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
   return Object.assign(
     {},
     ...desiredOrder.map((key) => {
+      if (!values) return { [key]: "" };
       const current = values[key as keyof PageProps];
       if (typeof current === "boolean") {
         return { [key]: current };

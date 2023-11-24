@@ -7,18 +7,20 @@ import DangerZone from "./DangerZone";
 const AppSettings = () => {
   const { appName } = useContext(AppContext);
   const navigate = useNavigate();
+  const name = appName.split(" ").join("+");
 
-  const handleEdit = () => {
-    let name = appName.split(" ").join("+");
-    navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
+  const handleNavigate = (link: string) => {
+    navigate({ pathname: `/${link}/`, search: `?appName=${name}` });
   };
   return (
     <div className="container">
       <h1 className="heading">Advanded settings: {appName}</h1>
       <div className="flex-row">
-        <Button label="Admin permissions" />
-        <Button label="Edit app" onClick={handleEdit} />
-        <Button label="Support" />
+        <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
+        <Button label="See live" onClick={() => handleNavigate("app")} />
+        {/* <Button label="Admin permissions" /> */}
+        <Button label="Edit app" onClick={() => handleNavigate("edit-app")} />
+        {/* <Button label="Support" /> */}
       </div>
       <DangerZone />
     </div>
