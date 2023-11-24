@@ -5,6 +5,8 @@ import { SectionProps } from "app-types";
 export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
   const { desiredOrder, hasEntry, values } = props;
 
+  const entryKey: { [key: string]: string } = { cta: "hasCta", sections: "hasSections" };
+
   return Object.assign(
     {},
     ...desiredOrder.map((key) => {
@@ -13,7 +15,7 @@ export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
         return { [key]: current };
       }
       if (Array.isArray(current) && hasEntry) {
-        const form = hasEntry[key];
+        const form = hasEntry[entryKey[key]];
         return (current as SectionProps[]).map((val: SectionProps) => {
           return Object.assign(
             {},

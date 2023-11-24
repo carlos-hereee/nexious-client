@@ -225,7 +225,7 @@
     "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
   },
   "sectionEntries": {
-    "cta": {
+    "hasCta": {
       "formId": "ctaForm",
       "heading": "",
       "fieldHeading": {},
@@ -243,7 +243,7 @@
       "groupName": "cta",
       "group": "hasCta"
     },
-    "sections": {
+    "hasSections": {
       "formId": "sectionForm",
       "heading": "",
       "fieldHeading": {},
