@@ -1,23 +1,24 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Header, Loading, PaginateForm, urlFile } from "nexious-library";
+import { Loading, PaginateForm } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
-import { FormValueProps } from "app-forms";
+import { PreviewValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
-import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
-import { MenuProps } from "app-types";
+// import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
+// import { MenuProps } from "app-types";
 import { scrollToId } from "@app/utils/app/scrollToElement";
 import { useFormOrganizer } from "@app/utils/hooks/useFormOrganizer";
-import { formatInitApp } from "@app/utils/forms/formatInitApp";
 // import { formatPage } from "@app/utils/forms/formatPage";
 import { formatLandingPage } from "@app/utils/forms/formatLandingPage";
 import { formatNewsletter } from "@app/utils/forms/formatNewsletter";
 import { formatMedia } from "@app/utils/forms/formatMedia";
-import PreviewPage from "./PreviewPage";
+// import PreviewPage from "./preview/PreviewPage";
 import Newsletter from "./Newsletter";
-import PreviewSocials from "./PreviewSocials";
-import PreviewCalendar from "./PreviewCalendar";
+import PreviewSocials from "./preview/PreviewSocials";
+// import PreviewCalendar from "./preview/PreviewCalendar";
+import PreviewHeader from "./preview/PreviewHeader";
+import PreviewLanding from "./preview/PreviewLanding";
 
 const EditApp = () => {
   const { sectionEntries, newsletterForm, mediaEntryForm } = useContext(AdminContext);
@@ -26,12 +27,19 @@ const EditApp = () => {
     initAppForm,
     socialMediaForm,
     editAppName,
+    editLandingPage,
+    editNewsletter,
+    editSocialMedia,
     //  languageForm, calendarForm
   } = useContext(AdminContext);
-  // const { editAppName, editLandingPage, editNewsletter, editSocialMedia } =
+  // const { editSocialMedia } =
   //   useContext(AdminContext);
   // const {  editCalendar, editLanguage } = useContext(AdminContext);
-  const { theme, setTheme } = useContext(AuthContext);
+  const {
+    theme,
+    // setTheme
+  } = useContext(AuthContext);
+
   // initial data if any
   const { newsletter, media, landing, logo, isLoading, appName, appId } = useContext(AppContext);
   const {
@@ -39,6 +47,8 @@ const EditApp = () => {
     formValues,
     isFormLoading,
     preview,
+    previewInitApp,
+    previewPage,
     organizeValues,
     setActive,
     setFormLoading,
@@ -65,26 +75,26 @@ const EditApp = () => {
       // const calValues = formatPage({ values: calendar, desiredOrder: CFO });
       const paginateForm = [
         {
-          initialValues: formatInitApp(appName, logo.url || ""),
+          initialValues: { appName: appName || "", logo: logo.url || "" },
           form: initAppForm,
-          onSubmit: (e: FormValueProps) => editAppName(e, appId),
+          onSubmit: (e: PreviewValueProps) => editAppName(e, appId),
         },
         {
           initialValues: lValues,
           form: landingForm,
           addEntries: sectionEntries,
-          onSubmit: (e: FormValueProps) => editLandingPage(e, appId),
+          onSubmit: (e: PreviewValueProps) => editLandingPage(e, appId),
         },
         {
           initialValues: NValues,
           form: newsletterForm,
-          onSubmit: (e: FormValueProps) => editNewsletter(e, appId),
+          onSubmit: (e: PreviewValueProps) => editNewsletter(e, appId),
         },
         {
           initialValues: mediaValues,
           form: socialMediaForm,
           addEntries: { hasMedias: mediaEntryForm },
-          onSubmit: (e: FormValueProps) => editSocialMedia(e, appId),
+          onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
         },
         // {
         //   initialValues: calValues,
@@ -104,13 +114,13 @@ const EditApp = () => {
   }, [isLoading]);
 
   // console.log("newsletter :>> ", newsletter);
-  const logoData = { url: preview?.logo || "", title: preview.appName || "" };
-  const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
+  // const logoData = { url: preview?.logo || "", title: preview?.appName || "" };
+  // const menuData = preview.theme && formatHeaderValues({ theme: preview.theme });
 
-  const handleMenu = (menuItem: MenuProps) => {
-    const { active } = menuItem;
-    if (active?.themeId) setTheme(active.name || theme);
-  };
+  // const handleMenu = (menuItem: MenuProps) => {
+  //   const { active } = menuItem;
+  //   if (active?.themeId) setTheme(active.name || theme);
+  // };
 
   // console.log("values :>> ", formValues);
   if (isFormLoading) return <Loading message="Loading app data" />;
@@ -124,21 +134,15 @@ const EditApp = () => {
         onPageClick={() => setActive("")}
         previewPage={
           active === "initApp" ? (
-            <Header logo={logoData} menu={menuData} theme={theme} updateMenu={handleMenu} />
+            <PreviewHeader preview={previewInitApp} />
           ) : active === "newsletter" ? (
             <Newsletter data={preview} />
           ) : active === "medias" ? (
             <PreviewSocials data={preview} />
-          ) : active === "calendar" ? (
-            <PreviewCalendar events={preview} />
           ) : (
-            active === "landingPage" && (
-              <PreviewPage
-                preview={preview}
-                hero={{ url: urlFile(preview.hero) }}
-                theme="landing-page"
-              />
-            )
+            // ) : active === "calendar" ? (
+            //   <PreviewCalendar events={preview} />
+            active === "landingPage" && <PreviewLanding preview={previewPage} />
           )
         }
       />

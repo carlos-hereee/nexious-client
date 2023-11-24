@@ -5,11 +5,16 @@ import { AuthDispatchProps } from "auth-context";
 export const fetchRefreshToken = async (props: AuthDispatchProps) => {
   const { dispatch } = props;
   dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-  const { data } = await axiosAuth.post("/auth/refresh-token");
-  if (data) {
-    dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data });
-  } else {
-    dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
+  try {
+    const { data } = await axiosAuth.post("/auth/refresh-token");
+    if (data) {
+      dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data });
+    } else {
+      dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
+      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    }
+  } catch (error) {
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    // console.log("data :>> ", data);
   }
 };

@@ -1,13 +1,15 @@
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { axiosMedia } from "@app/utils/axios/axiosMedia";
 import { AdminDisptachProps } from "app-admin";
+import { InitAppProps } from "app-forms";
 
 export const buildApp = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, initApp } = props;
+  const { dispatch, handleAppAssets, values } = props;
   // try {
-  if (initApp) {
+  const val = values as InitAppProps;
+  if (values) {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosMedia.post(`/app/init-app/${initApp.appName}`, initApp);
+    const { data } = await axiosMedia.post(`/app/init-app/${val.appName}`, val);
     if (data) handleAppAssets(data);
   }
   // } catch (error: any) {

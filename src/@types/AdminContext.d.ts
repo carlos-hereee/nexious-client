@@ -3,7 +3,7 @@ declare module "app-admin" {
   import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
   import { AppListProps, AppProps } from "app-context";
   import { UserSchema } from "auth-context";
-  import { FormProps, FormValueProps, SectionEntryOganizer } from "app-forms";
+  import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
 
   export type AdminFormErrors = {
     initAppFormError?: string;
@@ -53,23 +53,22 @@ declare module "app-admin" {
     mediaList: MenuItemProps[];
     languageList: MenuItemProps[];
     sectionEntries: SectionEntryOganizer;
-    initApp: (values: FormValueProps) => void;
-    // editApp: (values: FormValueProps, appId: string) => void;
-    editAppName: (values: FormValueProps, appId: string) => void;
-    // deleteApp: (appId: string) => void;
+    initApp: (values: PreviewValueProps) => void;
+    // editApp: (values: PreviewValueProps, appId: string) => void;
+    editAppName: (values: PreviewValueProps, appId: string) => void;
+    deleteApp: (appId: string) => void;
     // updateLanguage: (locale: string, appName: string) => void;
-    // editLandingPage: (values: FormValueProps, appId: string) => void;
-    // editNewsletter: (values: FormValueProps, appId: string) => void;
-    // editSocialMedia: (values: FormValueProps, appId: string) => void;
-    // editCalendar: (values: FormValueProps, appId: string) => void;
-    // editLanguage: (values: FormValueProps, appId: string) => void;
+    editLandingPage: (values: PreviewValueProps, appId: string) => void;
+    editNewsletter: (values: PreviewValueProps, appId: string) => void;
+    editSocialMedia: (values: PreviewValueProps, appId: string) => void;
+    // editCalendar: (values: PreviewValueProps, appId: string) => void;
+    // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets: (key: AppAssetProps) => void;
     appId?: string;
-    values?: FormValueProps;
-    initApp?: FormValueProps;
+    values?: PreviewValueProps;
   }
   export type AdminActionProps =
     | {

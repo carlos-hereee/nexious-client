@@ -13,8 +13,7 @@ export const setAppData = (props: AppDispatchProps) => {
     if (values.appName) dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: values.appName });
     if (values.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: values.calendar });
     if (values.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: values.landing });
-    // if (values.menu) dispatch({ type: APP_ACTIONS.SET_MENU, payload: values.menu });
-    // if (values.menu)dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: values.menu });
+    if (values.menu) dispatch({ type: APP_ACTIONS.SET_MENU, payload: values.menu });
     if (values.media) dispatch({ type: APP_ACTIONS.SET_MEDIA, payload: values.media });
     if (values.owner) dispatch({ type: APP_ACTIONS.SET_OWNER_ID, payload: values.owner });
     if (values.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: values.themeList });

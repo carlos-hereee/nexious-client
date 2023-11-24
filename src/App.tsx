@@ -9,10 +9,10 @@ import { useNavigate } from "react-router-dom";
 const App = ({ children }: ChildProps) => {
   // const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
-  const { updateMenu, logo, appName, media, activeMenu } = useContext(AppContext);
+  const { updateMenu, logo, activeMenu, activeAppName, footerMedia } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const logoData = { ...logo, title: appName };
+  const logoData = { ...logo, title: activeAppName };
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...activeMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
@@ -45,7 +45,7 @@ const App = ({ children }: ChildProps) => {
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
       <Header menu={activeMenu} logo={logoData} updateMenu={handleMenu} theme={theme} />
       {children}
-      <Footer appName={appName} media={media} hero={media.hero} />
+      <Footer data={{ title: activeAppName }} media={footerMedia} hero={footerMedia.hero} />
     </div>
   );
 };

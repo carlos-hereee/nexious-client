@@ -67,7 +67,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     fetchAppWithName({ dispatch, appName: a, updateAppData });
   }, []);
   const updateMenu = useCallback((a: MenuProps[]) => {
-    setMenu({ dispatch, data: a });
+    setMenu({ dispatch, menu: a });
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -84,7 +84,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       adminIds: state.adminIds,
       calendar: state.calendar,
       isOnline: state.isOnline,
+      activeAppName: state.activeAppName,
       media: state.media,
+      footerMedia: state.footerMedia,
       menu: state.menu,
       activeMenu: state.activeMenu,
       owner: state.owner,

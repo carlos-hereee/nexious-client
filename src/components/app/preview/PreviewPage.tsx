@@ -4,8 +4,8 @@ import { Card, HeroCard } from "nexious-library";
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
   const { preview, theme, hero, onClick } = props;
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
-  // Photo by <a href="https://unsplash.com/@retrosupply?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">RetroSupply</a> on <a href="https://unsplash.com/photos/vintage-teal-typewriter-beside-book-jLwVAUtLOAQ?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 
+  if (!preview) return <div />;
   return (
     <div className="container">
       <div className="container">

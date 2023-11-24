@@ -1,9 +1,8 @@
-import { FormValueProps } from "app-forms";
 import { Calendar, IconButton } from "nexious-library";
 import { useState } from "react";
 
 type PreviewCalendarProps = {
-  events: FormValueProps;
+  events: any;
 };
 type SelectedDayProps = {
   date: string;

@@ -1,7 +1,11 @@
 declare module "app-forms" {
-  import { PageProps } from "app-context";
-  import { AssetProps, MediaProps, NewsletterProps } from "app-types";
+  import { AppListProps, PageProps } from "app-context";
+  import { AssetProps, KeyStringProp, MediaProps, MenuItemProps, NewsletterProps } from "app-types";
 
+  export interface InitAppProps {
+    appName: string;
+    logo: string;
+  }
   export interface AuthFormValueProps {
     username: string;
     password?: string;
@@ -16,7 +20,7 @@ declare module "app-forms" {
   }
   export type FormProps = {
     formId: string;
-    initialValues: FormValueProps;
+    initialValues: PreviewValueProps;
     labels?: { [key: string]: string | undefined };
     types?: { [key: string]: string | undefined };
     hero?: AssetProps;
@@ -39,31 +43,36 @@ declare module "app-forms" {
     password: string;
     confirmPassword: string;
   };
-  export type FormValueProps = {
-    [key: string]: string | number | boolean;
-  };
+
   export interface SectionEntryOganizer {
     [key: string]: FormProps;
   }
+  export type PreviewValueProps =
+    | InitAppProps
+    | PageProps
+    | NewsletterProps
+    | MediaProps
+    | KeyStringProp
+    | { [key: string]: string | boolean };
   export interface InitPaginateFormProps {
-    values: FormValueProps;
+    initialValues: PreviewValueProps;
     form: FormProps;
     formId: string;
     withFileUpload?: boolean;
     addEntries?: SectionEntryOganizer[];
     theme?: string;
     previewLabel?: string;
-    dataList?: { [key: string]: { [key: string]: string }[] };
-    onSubmit?: (key: FormValueProps) => void;
-    onViewPreview?: (key: FormValueProps[]) => void;
+    dataList?: { [key: string]: MenuItemProps[] };
+    onSubmit?: (key: PreviewValueProps) => void;
+    onViewPreview?: (key: PreviewValueProps) => void;
     schema?: {
       required?: string[];
-      unique?: { name: string; list: string[] }[];
+      unique?: { name: string; list: AppListProps[] }[];
     };
   }
 
   export interface ReorderFormValueProps {
-    values: FormValueProps;
+    values: PreviewValueProps;
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
@@ -84,8 +93,8 @@ declare module "app-forms" {
   }
   export interface InitValueProps {
     form: FormProps;
-    initialValues: FormValueProps;
+    initialValues: PreviewValueProps;
     addEntries?: SectionEntryOganizer;
-    onSubmit: (e: FormValueProps) => void;
+    onSubmit: (e: PreviewValueProps) => void;
   }
 }

@@ -33,7 +33,8 @@
       "menuItemId": "theme-dark-mode"
     }
   ],
-  "appName": "Nexs Tech",
+  "appName": "",
+  "activeAppName": "Nexs Tech",
   "appId": "Nexious-appid-1",
   "owner": { "userId": "", "username": "" },
   "welcomeMessage": "Welcome back!",
@@ -46,7 +47,7 @@
     "email": "",
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" }
   },
-  "media": {
+  "footerMedia": {
     "title": "Dont miss a thing! Follow us on our socials",
     "subtitle": "",
     "details": "",
@@ -67,6 +68,20 @@
       { "media": "facebook", "link": "https://facebook.com", "uid": "6554c3a2bb0a21f3bb3e07b4" },
       { "media": "x", "link": "https://twitter.com/", "uid": "6554c3a2bb0a21f3bb3e07b5" }
     ]
+  },
+  "media": {
+    "title": "",
+    "subtitle": "",
+    "details": "",
+    "hero": {
+      "heroId": "medias",
+      "uid": "medias-1",
+      "alt": "medias-hero",
+      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "theme": "thumbnail"
+    },
+    "medias": []
   },
   "menu": [
     {

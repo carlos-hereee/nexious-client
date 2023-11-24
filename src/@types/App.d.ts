@@ -1,6 +1,6 @@
 declare module "app-types" {
-  import { PageProps } from "app-context";
-  import { FormValueProps } from "app-forms";
+  import { AppListProps, PageProps } from "app-context";
+  import { PreviewValueProps } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
@@ -29,12 +29,17 @@ declare module "app-types" {
     email: string;
     hero: AssetProps;
   }
+  export type MediaItemProp = {
+    media: string;
+    link: string;
+    uid: string;
+  };
   export interface MediaProps {
     title: string;
     subtitle: string;
     details: string;
     hero: AssetProps;
-    medias: { media: string; link: string; uid: string }[];
+    medias: MediaItemProp[];
   }
   export interface MenuItemProps {
     name: string;
@@ -105,7 +110,7 @@ declare module "app-types" {
     logoId?: string;
   };
   export interface FilterDesiredProps {
-    values: FormValueProps;
+    values: PreviewValueProps;
     desiredData: string[];
   }
   export interface HeaderProps {
@@ -114,9 +119,9 @@ declare module "app-types" {
     theme: string;
   }
   export interface PreviewPageProps {
-    preview: PageProps;
+    preview?: PageProps;
     theme?: string;
-    hero: HeroProps;
+    hero?: HeroProps;
     onClick?: (key: CallToActionProps) => void;
   }
   export interface KeyStringProp {
@@ -129,7 +134,20 @@ declare module "app-types" {
   }
   export type SchemaProps = {
     formId: string;
-    appList?: KeyStringProp[];
+    appList?: AppListProps[];
     target?: string;
+  };
+  export type OrganizeFormProps = {
+    [key: string]: {
+      schema?: {
+        required?: string[];
+        unique?: {
+          name: string;
+          list: AppListProps[];
+        }[];
+      };
+      dataList?: { [key: string]: MenuItemProps[] };
+      onViewPreview: (e: PreviewValueProps) => void;
+    };
   };
 }

@@ -1,56 +1,68 @@
 import { useContext, useState } from "react";
-// import { includeEntries } from "../forms/includeEntries";
-import { FormValueProps, InitValueProps } from "app-forms";
+import { InitAppProps, InitPaginateFormProps, InitValueProps, PreviewValueProps } from "app-forms";
 import { AppContext } from "@app/context/app/AppContext";
 import { AdminContext } from "@app/context/admin/AdminContext";
-import { formatInitAppSchema } from "../forms/formatInitAppSchema";
+import { KeyStringProp, NewsletterProps, OrganizeFormProps } from "app-types";
+import { PageProps } from "app-context";
 
 export const useFormOrganizer = () => {
-  const { appList, themeList, appName, languageList, iconList } = useContext(AppContext);
-  const { mediaList, calendarThemeList } = useContext(AdminContext);
+  const { appList, themeList, appName, iconList } = useContext(AppContext);
+  // const { calendarThemeList, languageList } = useContext(AdminContext);
+  const { mediaList } = useContext(AdminContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
-  const [formValues, setAppValues] = useState<FormValueProps[]>([]);
+  const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
   const [active, setActive] = useState<string>("");
-  const [preview, setPreview] = useState<FormValueProps>({});
+  const [preview, setPreview] = useState<KeyStringProp>();
+  const [previewInitApp, setPreviewInitApp] = useState<InitAppProps>({ appName: "", logo: "" });
+  const [previewNewsletter, setPreviewNewsletter] = useState<NewsletterProps>();
+  const [previewPage, setPreviewPage] = useState<PageProps>();
+  // const [previewNewsletter, setPreviewNewsletter] = useState<NewsletterProps>();
 
-  const handlePreview = (formId: string, formValues: FormValueProps) => {
-    setActive("");
-    setPreview({});
+  const handlePreview = (formId: string, values: PreviewValueProps) => {
     setActive(formId);
-    setPreview(formValues);
+    setPreview(undefined);
+    if (formId === "initApp") setPreviewInitApp(values as InitAppProps);
+    else if (formId === "newsletter") setPreviewNewsletter(values as NewsletterProps);
+    else if (formId === "landingPage") setPreviewPage(values as PageProps);
+    else setPreview(values as KeyStringProp);
   };
-  // console.log("themeList :>> ", themeList);
 
-  const integrateData: { [key: string]: any | undefined } = {
+  const integrateData: OrganizeFormProps = {
     initApp: {
-      schema: formatInitAppSchema({ formId: "initApp", appList, target: appName }),
+      schema: {
+        required: ["appName", "logo"],
+        unique: [
+          {
+            name: "appName",
+            list: appList ? appList.filter((app) => app.appName && app.appName !== appName) : [],
+          },
+        ],
+      },
       dataList: { theme: themeList },
-      onViewPreview: (e: FormValueProps) => handlePreview("initApp", e),
+      onViewPreview: (e: PreviewValueProps) => handlePreview("initApp", e),
     },
     landingPage: {
       schema: { required: ["title"] },
       dataList: { icon: iconList },
-      onViewPreview: (e: FormValueProps) => handlePreview("landingPage", e),
+      onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
     },
-    languages: {
-      schema: {},
-      onViewPreview: (e: FormValueProps) => handlePreview("languages", e),
-      dataList: { language: languageList, locale: languageList },
-    },
+    // languages: {
+    //   schema: {},
+    //   onViewPreview: (e: PreviewValueProps) => handlePreview("languages", e),
+    //   dataList: { language: languageList, locale: languageList },
+    // },
     medias: {
-      schema: {},
       dataList: { media: mediaList },
-      onViewPreview: (e: FormValueProps) => handlePreview("medias", e),
+      onViewPreview: (e: PreviewValueProps) => handlePreview("medias", e),
     },
     newsletter: {
-      schema: {},
-      onViewPreview: (e: FormValueProps) => handlePreview("newsletter", e),
+      onViewPreview: (e: PreviewValueProps) => handlePreview("newsletter", e),
     },
-    calendar: {
-      schema: {},
-      dataList: { theme: calendarThemeList },
-      onViewPreview: (e: FormValueProps) => handlePreview("calendar", e),
-    },
+    // calendar: {
+    //   schema: {},
+    //   dataList: { theme: calendarThemeList },
+    //   onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
+    // },
   };
 
   const organizeValues = (props: InitValueProps) => {
@@ -58,7 +70,7 @@ export const useFormOrganizer = () => {
     const { formId } = props.form;
     const { schema, dataList, onViewPreview } = integrateData[formId];
     const payload = { ...form, formId, initialValues, schema, dataList, addEntry: addEntries };
-    return { ...payload, onViewPreview, onSubmit };
+    return { ...payload, form, onViewPreview, onSubmit };
   };
   return {
     setActive,
@@ -70,5 +82,8 @@ export const useFormOrganizer = () => {
     handlePreview,
     setAppValues,
     setFormLoading,
+    previewNewsletter,
+    previewInitApp,
+    previewPage,
   };
 };

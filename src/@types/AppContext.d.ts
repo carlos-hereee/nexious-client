@@ -56,6 +56,7 @@ declare module "app-context" {
     isOnline: boolean;
     appList: AppListProps[];
     appName: string;
+    activeAppName: string;
     welcomeMessage: string;
     landing: PageProps;
     appId: string;
@@ -65,6 +66,7 @@ declare module "app-context" {
     media: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
+    footerMedia: MediaProps;
     logo: AssetProps;
     themeList: MenuItemProps[];
     languageList: MenuItemProps[];
@@ -79,6 +81,7 @@ declare module "app-context" {
     isOnline: boolean;
     appList: AppListProps[];
     appName: string;
+    activeAppName: string;
     welcomeMessage: string;
     // theme: string;
     landing: PageProps;
@@ -87,6 +90,7 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;
+    footerMedia: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: AssetProps;
