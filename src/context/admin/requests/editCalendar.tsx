@@ -1,13 +1,13 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
-import { EditAppProps } from "app-forms";
+import { AdminDisptachProps } from "app-admin";
 
-export const editCalendar = async (props: EditAppProps) => {
+export const editCalendar = async (props: AdminDisptachProps) => {
   const { dispatch, appId, handleAppAssets, values } = props;
 
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.put(`/app/update-calendar/${appId}`, values);
+    const { data } = await axiosAuth.post(`/app/update-calendar/${appId}`, values);
     handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

@@ -12,7 +12,6 @@ const UserPlayground = () => {
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   // console.log("ownedApps :>> ", ownedApps);
-
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {
       setError({ ...error, [app.appId]: messages.appNameRequired });

@@ -6,7 +6,7 @@ export const editApp = async (props: AdminDisptachProps) => {
   const { dispatch, values, appId, handleAppAssets } = props;
   // try {
   dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-  const { data } = await axiosAuth.put(`/app/update-app/${appId}`, values);
+  const { data } = await axiosAuth.post(`/app/update-app/${appId}`, values);
   if (data) handleAppAssets(data);
   // dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   // } catch (error) {

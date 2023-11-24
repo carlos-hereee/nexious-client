@@ -67,20 +67,21 @@ export const AdminState = ({ children }: ChildProps) => {
     navigate("/dashboard");
   }, []);
 
-  const editAppName = useCallback((values: PreviewValueProps) => {
-    updateAppName({ dispatch, values, handleAppAssets });
+  const editAppName = useCallback((values: PreviewValueProps, appId: string) => {
+    updateAppName({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editLandingPage = useCallback((values: PreviewValueProps) => {
-    updateLandingPage({ dispatch, values, handleAppAssets });
+  const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
+    console.log("values :>> ", values);
+    updateLandingPage({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editNewsletter = useCallback((values: PreviewValueProps) => {
-    updateNewsletter({ dispatch, values, handleAppAssets });
+  const editNewsletter = useCallback((values: PreviewValueProps, appId: string) => {
+    updateNewsletter({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editSocialMedia = useCallback((values: PreviewValueProps) => {
-    updateSocialMedia({ dispatch, values, handleAppAssets });
+  const editSocialMedia = useCallback((values: PreviewValueProps, appId: string) => {
+    updateSocialMedia({ dispatch, values, handleAppAssets, appId });
   }, []);
 
   const deleteApp = useCallback((appId: string) => {

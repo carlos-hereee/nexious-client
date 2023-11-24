@@ -6,7 +6,7 @@ export const updateAppName = async (props: AdminDisptachProps) => {
   const { dispatch, values, appId, handleAppAssets } = props;
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosMedia.put(`/app/update-app-name/${appId}`, values);
+    const { data } = await axiosMedia.post(`/app/update-app-name/${appId}`, values);
     if (data) handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
