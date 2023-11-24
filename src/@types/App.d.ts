@@ -1,6 +1,6 @@
 declare module "app-types" {
   import { AppListProps, PageProps } from "app-context";
-  import { PreviewValueProps } from "app-forms";
+  import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
@@ -147,7 +147,10 @@ declare module "app-types" {
         }[];
       };
       dataList?: { [key: string]: MenuItemProps[] };
+      addEntries?: SectionEntryOganizer;
       onViewPreview: (e: PreviewValueProps) => void;
+      onSubmit: (e: PreviewValueProps) => void;
+      form: FormProps;
     };
   };
 }

@@ -6,9 +6,20 @@ import { KeyStringProp, NewsletterProps, OrganizeFormProps } from "app-types";
 import { PageProps } from "app-context";
 
 export const useFormOrganizer = () => {
-  const { appList, themeList, appName, iconList } = useContext(AppContext);
-  // const { calendarThemeList, languageList } = useContext(AdminContext);
-  const { mediaList } = useContext(AdminContext);
+  const { appList, themeList, appName, iconList, appId } = useContext(AppContext);
+  const {
+    editSocialMedia,
+    editAppName,
+    // editLandingPage,
+    editNewsletter,
+    landingForm,
+    mediaList,
+    initAppForm,
+    sectionEntries,
+    mediaEntryForm,
+    socialMediaForm,
+    newsletterForm,
+  } = useContext(AdminContext);
   const [isFormLoading, setFormLoading] = useState<boolean>(true);
   const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
   const [active, setActive] = useState<string>("");
@@ -16,7 +27,6 @@ export const useFormOrganizer = () => {
   const [previewInitApp, setPreviewInitApp] = useState<InitAppProps>({ appName: "", logo: "" });
   const [previewLetter, setPreviewNewsletter] = useState<NewsletterProps>();
   const [previewPage, setPreviewPage] = useState<PageProps>();
-  // const [previewNewsletter, setPreviewNewsletter] = useState<NewsletterProps>();
 
   const handlePreview = (formId: string, values: PreviewValueProps) => {
     setActive(formId);
@@ -39,12 +49,17 @@ export const useFormOrganizer = () => {
         ],
       },
       dataList: { theme: themeList },
+      onSubmit: (e: PreviewValueProps) => editAppName(e, appId),
       onViewPreview: (e: PreviewValueProps) => handlePreview("initApp", e),
+      form: initAppForm,
     },
     landingPage: {
-      schema: { required: ["title"] },
+      onSubmit: (e: PreviewValueProps) => console.log(e, appId),
+      // onSubmit: (e: PreviewValueProps) => editLandingPage(e, appId),
       dataList: { icon: iconList },
       onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
+      form: landingForm,
+      addEntries: sectionEntries,
     },
     // languages: {
     //   schema: {},
@@ -54,9 +69,14 @@ export const useFormOrganizer = () => {
     medias: {
       dataList: { media: mediaList },
       onViewPreview: (e: PreviewValueProps) => handlePreview("medias", e),
+      onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
+      addEntries: { hasMedias: mediaEntryForm },
+      form: socialMediaForm,
     },
     newsletter: {
       onViewPreview: (e: PreviewValueProps) => handlePreview("newsletter", e),
+      onSubmit: (e: PreviewValueProps) => editNewsletter(e, appId),
+      form: newsletterForm,
     },
     // calendar: {
     //   schema: {},
@@ -66,11 +86,19 @@ export const useFormOrganizer = () => {
   };
 
   const organizeValues = (props: InitValueProps) => {
-    const { form, onSubmit, initialValues, addEntries } = props;
-    const { formId } = props.form;
-    const { schema, dataList, onViewPreview } = integrateData[formId];
-    const payload = { ...form, formId, initialValues, schema, dataList, addEntry: addEntries };
-    return { ...payload, form, onViewPreview, onSubmit };
+    const { initialValues, formId } = props;
+    const { schema, dataList, onViewPreview, onSubmit, addEntries, form } = integrateData[formId];
+    return {
+      ...form,
+      formId,
+      initialValues,
+      schema,
+      dataList,
+      addEntry: addEntries,
+      form,
+      onViewPreview,
+      onSubmit,
+    };
   };
   return {
     setActive,

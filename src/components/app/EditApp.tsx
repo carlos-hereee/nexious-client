@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Loading, PaginateForm } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
-import { PreviewValueProps } from "app-forms";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 // import { formatHeaderValues } from "@app/utils/forms/formatHeaderValues";
@@ -22,26 +21,11 @@ import PreviewLanding from "./preview/PreviewLanding";
 
 const EditApp = () => {
   const { sectionEntries, newsletterForm, mediaEntryForm } = useContext(AdminContext);
-  const {
-    landingForm,
-    initAppForm,
-    socialMediaForm,
-    editAppName,
-    editLandingPage,
-    editNewsletter,
-    editSocialMedia,
-    //  languageForm, calendarForm
-  } = useContext(AdminContext);
-  // const { editSocialMedia } =
-  //   useContext(AdminContext);
-  // const {  editCalendar, editLanguage } = useContext(AdminContext);
-  const {
-    theme,
-    // setTheme
-  } = useContext(AuthContext);
+  const { landingForm, socialMediaForm } = useContext(AdminContext);
+  const { theme } = useContext(AuthContext);
 
   // initial data if any
-  const { newsletter, media, landing, logo, isLoading, appName, appId } = useContext(AppContext);
+  const { newsletter, media, landing, logo, isLoading, appName } = useContext(AppContext);
   const {
     active,
     formValues,
@@ -61,7 +45,7 @@ const EditApp = () => {
     if (active) scrollToId(active);
   }, [active]);
 
-  console.log("landing :>> ", landing);
+  // console.log("landing :>> ", landing);
   useEffect(() => {
     if (!isLoading) {
       const LDO = landingForm.desiredOrder || [""];
@@ -75,28 +59,10 @@ const EditApp = () => {
       const mediaValues = formatMedia({ values: media, desiredOrder: SMO, hasEntry: mEntry });
       // const calValues = formatPage({ values: calendar, desiredOrder: CFO });
       const paginateForm = [
-        {
-          initialValues: { appName: appName || "", logo: logo.url || "" },
-          form: initAppForm,
-          onSubmit: (e: PreviewValueProps) => editAppName(e, appId),
-        },
-        {
-          initialValues: lValues,
-          form: landingForm,
-          addEntries: sectionEntries,
-          onSubmit: (e: PreviewValueProps) => editLandingPage(e, appId),
-        },
-        {
-          initialValues: NValues,
-          form: newsletterForm,
-          onSubmit: (e: PreviewValueProps) => editNewsletter(e, appId),
-        },
-        {
-          initialValues: mediaValues,
-          form: socialMediaForm,
-          addEntries: { hasMedias: mediaEntryForm },
-          onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
-        },
+        { initialValues: { appName: appName || "", logo: logo.url || "" }, formId: "initApp" },
+        { initialValues: lValues, formId: "landingPage" },
+        { initialValues: NValues, formId: "newsletter" },
+        { initialValues: mediaValues, formId: "medias" },
         // {
         //   initialValues: calValues,
         //   form: calendarForm,

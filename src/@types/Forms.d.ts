@@ -53,7 +53,8 @@ declare module "app-forms" {
     | NewsletterProps
     | MediaProps
     | KeyStringProp
-    | { [key: string]: string | boolean };
+    | { [key: string]: string | boolean }
+    | FormData;
   export interface InitPaginateFormProps {
     initialValues: PreviewValueProps;
     form: FormProps;
@@ -92,9 +93,7 @@ declare module "app-forms" {
     hasEntry?: SectionEntryOganizer;
   }
   export interface InitValueProps {
-    form: FormProps;
     initialValues: PreviewValueProps;
-    addEntries?: SectionEntryOganizer;
-    onSubmit: (e: PreviewValueProps) => void;
+    formId: string;
   }
 }
