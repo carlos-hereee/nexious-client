@@ -121,7 +121,7 @@ declare module "app-types" {
   export interface PreviewPageProps {
     preview?: PageProps;
     theme?: string;
-    hero?: HeroProps;
+    hero?: string | File;
     onClick?: (key: CallToActionProps) => void;
   }
   export interface KeyStringProp {

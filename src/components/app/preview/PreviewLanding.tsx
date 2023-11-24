@@ -1,18 +1,21 @@
 import { PreviewPageProps } from "app-types";
-import { Card, HeroCard } from "nexious-library";
+import { Card, HeroCard, urlFile } from "nexious-library";
 
 const PreviewLanding: React.FC<PreviewPageProps> = (props) => {
   const { preview, theme, onClick } = props;
+  if (!preview) return <div />;
+
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
 
-  if (!preview) return <div />;
+  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : "" };
+
   return (
     <div className="container">
       <div className="container">
         {preview.hero ? (
           <HeroCard
             data={cardData}
-            hero={preview.hero}
+            hero={heroData}
             theme={theme}
             cta={preview.cta}
             onClick={onClick}

@@ -4,6 +4,7 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
+import { useNavigate } from "react-router-dom";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -32,6 +33,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const { updateAppData, updateAppList, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app) updateAppData(values.app);
@@ -69,6 +71,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const initApp = useCallback((values: PreviewValueProps) => {
     buildApp({ dispatch, values, handleAppAssets });
+    navigate("/dashboard");
   }, []);
 
   const editAppName = useCallback((values: PreviewValueProps) => {

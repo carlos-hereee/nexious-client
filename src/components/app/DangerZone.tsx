@@ -12,7 +12,7 @@ const DangerZone = () => {
     <div className="container">
       <h2 className="heading error-message">Danger Zone</h2>
       <div className="flex-row">
-        <Button label="Transer app" />
+        <Button label="Transfer app.. Comming soon" />
         <Button label="Delete app" onClick={handleDelete} theme="btn-cancel" />
       </div>
     </div>

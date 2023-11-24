@@ -14,7 +14,7 @@ export const useFormOrganizer = () => {
   const [active, setActive] = useState<string>("");
   const [preview, setPreview] = useState<KeyStringProp>();
   const [previewInitApp, setPreviewInitApp] = useState<InitAppProps>({ appName: "", logo: "" });
-  const [previewNewsletter, setPreviewNewsletter] = useState<NewsletterProps>();
+  const [previewLetter, setPreviewNewsletter] = useState<NewsletterProps>();
   const [previewPage, setPreviewPage] = useState<PageProps>();
   // const [previewNewsletter, setPreviewNewsletter] = useState<NewsletterProps>();
 
@@ -82,7 +82,7 @@ export const useFormOrganizer = () => {
     handlePreview,
     setAppValues,
     setFormLoading,
-    previewNewsletter,
+    previewLetter,
     previewInitApp,
     previewPage,
   };

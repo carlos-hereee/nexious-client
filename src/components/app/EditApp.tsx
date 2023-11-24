@@ -14,7 +14,7 @@ import { formatLandingPage } from "@app/utils/forms/formatLandingPage";
 import { formatNewsletter } from "@app/utils/forms/formatNewsletter";
 import { formatMedia } from "@app/utils/forms/formatMedia";
 // import PreviewPage from "./preview/PreviewPage";
-import Newsletter from "./Newsletter";
+import PreviewNewsletter from "./preview/PreviewNewsletter";
 import PreviewSocials from "./preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
 import PreviewHeader from "./preview/PreviewHeader";
@@ -49,6 +49,7 @@ const EditApp = () => {
     preview,
     previewInitApp,
     previewPage,
+    previewLetter,
     organizeValues,
     setActive,
     setFormLoading,
@@ -136,7 +137,7 @@ const EditApp = () => {
           active === "initApp" ? (
             <PreviewHeader preview={previewInitApp} />
           ) : active === "newsletter" ? (
-            <Newsletter data={preview} />
+            <PreviewNewsletter preview={previewLetter} />
           ) : active === "medias" ? (
             <PreviewSocials data={preview} />
           ) : (

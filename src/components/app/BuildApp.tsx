@@ -9,7 +9,13 @@ const BuildApp = () => {
   const { initAppForm: form, initApp, themeList, languageList } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
+  // useEffect(() => {
+
+  // }, [ownedApps.length]);
+  // useNavigate()
 
   return (
     <div className="container">
