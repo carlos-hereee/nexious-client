@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Loading, PaginateForm } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
@@ -13,6 +13,7 @@ import { formatLandingPage } from "@app/utils/forms/formatLandingPage";
 import { formatNewsletter } from "@app/utils/forms/formatNewsletter";
 import { formatMedia } from "@app/utils/forms/formatMedia";
 // import PreviewPage from "./preview/PreviewPage";
+import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 import PreviewNewsletter from "./preview/PreviewNewsletter";
 import PreviewSocials from "./preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
@@ -20,24 +21,45 @@ import PreviewHeader from "./preview/PreviewHeader";
 import PreviewLanding from "./preview/PreviewLanding";
 
 const EditApp = () => {
-  const { sectionEntries, newsletterForm, mediaEntryForm } = useContext(AdminContext);
-  const { landingForm, socialMediaForm } = useContext(AdminContext);
+  const {
+    editSocialMedia,
+    editAppName,
+    editLandingPage,
+    editNewsletter,
+    landingForm,
+    mediaList,
+    initAppForm,
+    sectionEntries,
+    mediaEntryForm,
+    socialMediaForm,
+    newsletterForm,
+  } = useContext(AdminContext);
   const { theme } = useContext(AuthContext);
-
+  const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
   // initial data if any
-  const { newsletter, media, landing, logo, isLoading, appName } = useContext(AppContext);
+  const {
+    newsletter,
+    media,
+    landing,
+    logo,
+    isLoading,
+    appName,
+    appList,
+    themeList,
+    iconList,
+    appId,
+  } = useContext(AppContext);
+  useContext(AppContext);
   const {
     active,
-    formValues,
     isFormLoading,
     preview,
     previewInitApp,
     previewPage,
     previewLetter,
-    organizeValues,
     setActive,
+    handlePreview,
     setFormLoading,
-    setAppValues,
   } = useFormOrganizer();
   const navigate = useNavigate();
 
@@ -45,62 +67,109 @@ const EditApp = () => {
     if (active) scrollToId(active);
   }, [active]);
 
-  // console.log("landing :>> ", landing);
+  console.log("landing :>> ", landing);
   useEffect(() => {
     if (!isLoading) {
-      const LDO = landingForm.desiredOrder || [""];
-      const NDO = newsletterForm.desiredOrder || [""];
-      const SMO = socialMediaForm.desiredOrder || [""];
-      // // const CFO = calendarForm.desiredOrder || [""];
-      const mEntry = { hasMedias: mediaEntryForm };
-      const lEntry = { values: landing, desiredOrder: LDO, hasEntry: sectionEntries };
-      const lValues = formatLandingPage(lEntry);
-      const NValues = formatNewsletter({ values: newsletter, desiredOrder: NDO });
-      const mediaValues = formatMedia({ values: media, desiredOrder: SMO, hasEntry: mEntry });
-      // const calValues = formatPage({ values: calendar, desiredOrder: CFO });
-      const paginateForm = [
-        { initialValues: { appName: appName || "", logo: logo.url || "" }, formId: "initApp" },
-        { initialValues: lValues, formId: "landingPage" },
-        { initialValues: NValues, formId: "newsletter" },
-        { initialValues: mediaValues, formId: "medias" },
-        // {
-        //   initialValues: calValues,
-        //   form: calendarForm,
-        //   onSubmit: (e: FormValueProps) => editCalendar(e, appId),
+      setFormLoading(true);
+      setAppValues([
+        {
+          ...initAppForm,
+          initialValues: { appName: appName || "", logo: logo.url || "" },
+          schema: {
+            required: ["appName", "logo"],
+            unique: [
+              {
+                name: "appName",
+                list: appList
+                  ? appList.filter((app) => app.appName && app.appName !== appName)
+                  : [],
+              },
+            ],
+          },
+          dataList: { theme: themeList },
+          onSubmit: (e: any) => editAppName(e, appId),
+          onViewPreview: (e: PreviewValueProps) => handlePreview("initApp", e),
+          form: initAppForm,
+          formId: "initApp",
+        },
+        {
+          // onSubmit: (e: PreviewValueProps) => console.log(e, appId),
+          ...landingForm,
+          onSubmit: (e: any) => editLandingPage(e, appId),
+          dataList: { icon: iconList },
+          initialValues: formatLandingPage({
+            values: landing,
+            desiredOrder: landingForm.desiredOrder || [""],
+            hasEntry: sectionEntries,
+          }),
+          onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
+          form: landingForm,
+          addEntries: sectionEntries,
+          formId: "landingPage",
+        },
+        // languages: {
+        //   schema: {},
+        //   onViewPreview: (e: PreviewValueProps) => handlePreview("languages", e),
+        //   dataList: { language: languageList, locale: languageList },
         // },
-        // {
-        //   initialValues: { locale, language: languageList.map((l) => l.value).join(",") },
-        //   form: languageForm,
-        //   onSubmit: (e: FormValueProps) => editLanguage(e, appId),
+        {
+          ...socialMediaForm,
+          dataList: { media: mediaList },
+          onViewPreview: (e: PreviewValueProps) => handlePreview("medias", e),
+          onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
+          addEntries: { hasMedias: mediaEntryForm },
+          form: socialMediaForm,
+          formId: "medias",
+          initialValues: formatMedia({
+            values: media,
+            desiredOrder: mediaEntryForm.desiredOrder || [],
+            hasEntry: { hasMedias: mediaEntryForm },
+          }),
+        },
+        {
+          ...newsletterForm,
+          onViewPreview: (e: PreviewValueProps) => handlePreview("newsletter", e),
+          onSubmit: (e: PreviewValueProps) => editNewsletter(e, appId),
+          form: newsletterForm,
+          formId: "newsletter",
+          initialValues: formatNewsletter({
+            values: newsletter,
+            desiredOrder: newsletterForm.desiredOrder || [""],
+          }),
+        },
+        // calendar: {
+        //   schema: {},
+        //   dataList: { theme: calendarThemeList },
+        //   onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
         // },
-      ];
-      const appData = paginateForm.map((data) => organizeValues(data));
-      if (appData) setAppValues(appData);
+      ]);
       setFormLoading(false);
-    }
+    } else setFormLoading(true);
   }, [isLoading]);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
-      <PaginateForm
-        paginate={formValues}
-        theme={theme}
-        onCancel={() => navigate("/")}
-        onPageClick={() => setActive("")}
-        previewPage={
-          active === "initApp" ? (
-            <PreviewHeader preview={previewInitApp} />
-          ) : active === "newsletter" ? (
-            <PreviewNewsletter preview={previewLetter} />
-          ) : active === "medias" ? (
-            <PreviewSocials data={preview} />
-          ) : (
-            active === "landingPage" && <PreviewLanding preview={previewPage} />
-          )
-        }
-      />
+      {formValues && (
+        <PaginateForm
+          paginate={formValues}
+          theme={theme}
+          onCancel={() => navigate("/")}
+          onPageClick={() => setActive("")}
+          previewPage={
+            active === "initApp" ? (
+              <PreviewHeader preview={previewInitApp} />
+            ) : active === "newsletter" ? (
+              <PreviewNewsletter preview={previewLetter} />
+            ) : active === "medias" ? (
+              <PreviewSocials data={preview} />
+            ) : (
+              active === "landingPage" && <PreviewLanding preview={previewPage} />
+            )
+          }
+        />
+      )}
     </div>
   );
 };

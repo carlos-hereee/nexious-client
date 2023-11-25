@@ -60,7 +60,7 @@ declare module "app-forms" {
     form: FormProps;
     formId: string;
     withFileUpload?: boolean;
-    addEntries?: SectionEntryOganizer[];
+    addEntries?: { [key: string]: FormProps };
     theme?: string;
     previewLabel?: string;
     dataList?: { [key: string]: MenuItemProps[] };
@@ -94,6 +94,6 @@ declare module "app-forms" {
   }
   export interface InitValueProps {
     initialValues: PreviewValueProps;
-    formId: string;
+    formId: "initApp" | "landingPage" | "medias" | "newsletter";
   }
 }

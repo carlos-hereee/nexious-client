@@ -71,7 +71,8 @@ export const AdminState = ({ children }: ChildProps) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const editLandingPage = useCallback((values: any, appId: string) => {
     console.log("values :>> ", values);
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
   }, []);
