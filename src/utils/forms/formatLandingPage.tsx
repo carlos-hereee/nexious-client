@@ -15,6 +15,7 @@ export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
       if (typeof current === "boolean") {
         return { [key]: current };
       }
+      if (key === "hero") return { [key]: values[key].url || "" };
       if (Array.isArray(current) && hasEntry) {
         const form = hasEntry[entryKey[key]];
         return (current as SectionProps[]).map((val: SectionProps) => {
