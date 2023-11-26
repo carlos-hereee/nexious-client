@@ -37,7 +37,7 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
     "sourceMap": true /* Create source map files for emitted JavaScript files. */,
-    "outDir": "dist" /* Specify an output folder for all emitted files. */,
+    "outDir": "build" /* Specify an output folder for all emitted files. */,
     "isolatedModules": true,
     "strict": true /* Enable all strict type-checking options. */,
     "lib": [
