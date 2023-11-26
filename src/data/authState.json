@@ -33,11 +33,7 @@
   },
   "signUpForm": {
     "formId": "singup",
-    "initialValues": {
-      "username": "qwerty",
-      "password": "secretPassword",
-      "confirmPassword": "secretPassword"
-    },
+    "initialValues": { "username": "", "password": "", "confirmPassword": "" },
     "labels": {
       "username": "Username: ",
       "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
@@ -55,7 +51,7 @@
     "heading": ""
   },
   "loginForm": {
-    "initialValues": { "username": "qwerty", "password": "secretPassword" },
+    "initialValues": { "username": "", "password": "" },
     "formId": "login",
     "hero": {
       "url": "/unsplash/retrosupply-jLwVAUtLOAQ-unsplash.jpg",
@@ -88,10 +84,10 @@
   "passwordChangeForm": {
     "formId": "passwordChange",
     "initialValues": {
-      "username": "qwerty",
-      "oldPassword": "secretPassword",
-      "newPassword": "strongPassword",
-      "confirmNewPassword": "strongPassword"
+      "username": "",
+      "oldPassword": "",
+      "newPassword": "",
+      "confirmNewPassword": ""
     },
     "labels": {
       "username": "Username: ",
@@ -111,11 +107,7 @@
   },
   "forgotPasswordForm": {
     "formId": "forgotPassword",
-    "initialValues": {
-      "username": "qwerty",
-      "newPassword": "secretPassword",
-      "confirmNewPassword": "secretPassword"
-    },
+    "initialValues": { "username": "", "newPassword": "", "confirmNewPassword": "" },
     "labels": {
       "username": "Username: ",
       "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",

@@ -32,6 +32,7 @@ declare module "app-types" {
   export type MediaItemProp = {
     media: string;
     link: string;
+    hero?: string;
     uid: string;
   };
   export interface MediaProps {

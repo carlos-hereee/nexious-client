@@ -52,7 +52,7 @@
     "inlineSources": true /* Include source code in the sourcemaps inside the emitted JavaScript. */,
     "resolveJsonModule": true,
     "noEmit": true,
-    // "skipLibCheck": true,
+    "skipLibCheck": true,
     // "skipDefaultLibCheck": true,
     "types": [
       "vite/client"
