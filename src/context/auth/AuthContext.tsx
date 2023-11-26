@@ -29,7 +29,9 @@ export const AuthState = ({ children }: ChildProps) => {
   }, []);
 
   const setTheme = useCallback((data: string) => {
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: AUTH_ACTIONS.SET_THEME, payload: data });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   }, []);
 
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
@@ -59,7 +61,7 @@ export const AuthState = ({ children }: ChildProps) => {
       logout,
       forgotPassword,
     };
-  }, [state.accessToken, state.isLoading]);
+  }, [state.accessToken, state.isLoading, state.theme]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

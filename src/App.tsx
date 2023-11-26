@@ -27,8 +27,9 @@ const App = ({ children }: ChildProps) => {
       if (active.name === "logout") logout();
       else navigate(`/${active.link}` || "");
       // check theme Id
-    } else if (isToggle && active?.themeId && active.name) {
-      setTheme(active.name);
+    } else if (isToggle && active?.themeId) {
+      // console.log("active :>> ", menuItem);
+      setTheme(active.value);
     } else if (isToggle && active?.locale) {
       // update menu
       // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });

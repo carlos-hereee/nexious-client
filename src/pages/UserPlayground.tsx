@@ -57,7 +57,7 @@ const UserPlayground = () => {
         <button type="button" className="btn-main w-max" onClick={handleBuild}>
           + Create a new app
         </button>
-        {ownedApps && ownedApps.length > 0 ? (
+        {ownedApps.length > 0 ? (
           ownedApps.map((app) => (
             <div key={app.appId} className="card-row pad-t">
               <Hero hero={app.logo || {}} theme="logo" onImageClick={() => handleEdit(app)} />
