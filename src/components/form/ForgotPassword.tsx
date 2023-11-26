@@ -8,14 +8,12 @@ const ForgotPassword: React.FC = () => {
     passwordChangeForm,
     //  fetchUser,
     forgotPassword,
-    // dummyData
     user,
   } = useContext(AuthContext);
   const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
-  {
-    /* todo : test forgot password  */
-  }
+
+  // TODO: add forgot password to next MVP
   return (
     <div>
       <GoBackButton onClick={() => navigate("/")} />
@@ -30,7 +28,7 @@ const ForgotPassword: React.FC = () => {
         />
       ) : (
         <Form
-          initialValues={{ username: "qwerty" }}
+          initialValues={{ username: "" }}
           //  onSubmit={(values) => fetchUser(values)}
         />
       )}

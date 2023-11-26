@@ -16,19 +16,19 @@ const Login = () => {
   // if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
+      {authErrors.signInError && <p className="error-message">{authErrors.signInError}</p>}
       <div className="form-hero">
-        {authErrors.signInError && <p className="error-message">{authErrors.signInError}</p>}
         {loginForm.initialValues && (
           <Form initialValues={loginForm.initialValues} heading="Login" onSubmit={login} />
         )}
         {loginForm.hero && <Hero hero={loginForm.hero} />}
       </div>
-      <div className="flex-d-column flex-center">
+      <div className="flex-d-column flex-center text-center">
         <Link to="/sign-up">
           Dont have an account?
           <br /> Create an account
         </Link>
-        <Link to="/forgot-password">Forgot password?</Link>
+        {/* <Link to="/forgot-password">Forgot password?</Link> */}
       </div>
     </div>
   );

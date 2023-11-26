@@ -7,13 +7,13 @@ const Register = () => {
   const { register, authErrors, signUpForm } = useContext(AuthContext);
 
   return (
-    <div>
+    <div className="container">
+      {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
       <div className="form-hero">
-        {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
         <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
         {signUpForm.hero && <Hero hero={signUpForm.hero} />}
       </div>
-      <div className="flex-center">
+      <div className="flex-center text-center">
         <Link to="/">
           Already have an account?
           <br /> Go to Login
