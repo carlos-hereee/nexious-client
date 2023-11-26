@@ -19,6 +19,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, ownedApps: action.payload };
     case AUTH_ACTIONS.SIGN_IN_ERROR:
       return { ...state, authErrors: { ...state.authErrors, signInError: action.payload } };
+    case AUTH_ACTIONS.LOGOUT_ERROR:
+      return { ...state, authErrors: { ...state.authErrors, logOutError: action.payload } };
     case AUTH_ACTIONS.FORGOT_PASSWORD_ERROR:
       return { ...state, authErrors: { ...state.authErrors, forgotPasswordError: action.payload } };
     // case AUTH_ACTIONS.SET_DUMMY_DATA:

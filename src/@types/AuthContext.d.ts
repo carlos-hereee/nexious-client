@@ -22,6 +22,7 @@ declare module "auth-context" {
     emergencyPasswordChangeIsRequired: boolean;
     signInError: string;
     signUpError: string;
+    logOutError: string;
     changePasswordError: string;
     forgotPasswordError: string;
   }
@@ -92,6 +93,7 @@ declare module "auth-context" {
     | {
         type:
           | AUTH_ACTIONS.SIGN_IN_ERROR
+          | AUTH_ACTIONS.LOGOUT_ERROR
           | AUTH_ACTIONS.FORGOT_PASSWORD_ERROR
           | AUTH_ACTIONS.CHANGE_PASSWORD_ERROR
           | AUTH_ACTIONS.SIGN_UP_ERROR

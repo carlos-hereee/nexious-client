@@ -9,6 +9,7 @@
     "signInError": "",
     "signUpError": "",
     "changePasswordError": "",
+    "logOutError": "",
     "forgotPasswordError": ""
   },
   "user": { "username": "", "email": "", "phone": "", "userId": "" },

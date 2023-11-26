@@ -1,6 +1,7 @@
 import { axiosAuth } from "@app/utils/axios/axiosAuth";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
 import { AdminDisptachProps } from "app-admin";
+// import { AxiosError } from "axios";
 
 export const editCalendar = async (props: AdminDisptachProps) => {
   const { dispatch, appId, handleAppAssets, values } = props;
@@ -11,6 +12,7 @@ export const editCalendar = async (props: AdminDisptachProps) => {
     handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    console.log("error :>> ", error);
+    // console.log("error :>> ", error);
+    // const err = error as AxiosError;
   }
 };
