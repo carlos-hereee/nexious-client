@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Form } from "nexious-library";
+import { Form, Hero } from "nexious-library";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -11,6 +11,7 @@ const Register = () => {
       <div className="form-hero">
         {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
         <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+        {signUpForm.hero && <Hero hero={signUpForm.hero} />}
       </div>
       <div className="flex-center">
         <Link to="/">
