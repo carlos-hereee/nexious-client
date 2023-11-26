@@ -101,8 +101,9 @@ declare module "app-context" {
     calendar: CalendarProps;
     updateAppData: (key: AppProps) => void;
     getAppWithName: (appName: string) => void;
-    updateMenu: (menu: MenuProps[]) => void;
+    // updateMenu: (menu: MenuProps[]) => void;
     updateAppList: (appList: AppListProps[]) => void;
+    updateActiveMenu: (appList: MenuProps[], appName: string) => void;
   }
 
   export interface AppDispatchProps {
@@ -120,7 +121,11 @@ declare module "app-context" {
         payload: boolean;
       }
     | {
-        type: APP_ACTIONS.SET_APP_ID | APP_ACTIONS.SET_APP_NAME | APP_ACTIONS.SET_LOCALE;
+        type:
+          | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_APP_NAME
+          | APP_ACTIONS.SET_LOCALE
+          | APP_ACTIONS.SET_ACTIVE_APP_NAME;
         payload: string;
       }
     | {
@@ -128,7 +133,7 @@ declare module "app-context" {
         payload: MenuItemProps[];
       }
     | {
-        type: APP_ACTIONS.SET_OWNER_ID;
+        type: APP_ACTIONS.SET_OWNER;
         payload: UserSchema;
       }
     | {

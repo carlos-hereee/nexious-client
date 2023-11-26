@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
-// import { initApp } from "./requests/initApp";
 // import { editApp } from "./requests/editApp";
 // import { editAppName } from "./requests/editAppName";
 // import { editLandingPage } from "./requests/editLandingPage";
@@ -73,7 +72,6 @@ export const AdminState = ({ children }: ChildProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const editLandingPage = useCallback((values: any, appId: string) => {
-    console.log("values :>> ", values);
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
   }, []);
 

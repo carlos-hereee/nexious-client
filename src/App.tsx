@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const App = ({ children }: ChildProps) => {
   // const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
-  const { updateMenu, logo, activeMenu, activeAppName, footerMedia } = useContext(AppContext);
+  const { updateActiveMenu, logo, activeMenu, activeAppName, footerMedia } = useContext(AppContext);
   const navigate = useNavigate();
 
   const logoData = { ...logo, title: activeAppName };
@@ -25,7 +25,7 @@ const App = ({ children }: ChildProps) => {
       setTheme(active.name);
     } else if (isToggle && active?.locale) {
       // update menu
-      updateMenu(oldValues);
+      updateActiveMenu(oldValues, activeAppName);
       // updateLanguage(active.locale, appName);
     } else {
       // find menu item
@@ -35,7 +35,7 @@ const App = ({ children }: ChildProps) => {
       // if idx matches total use the first item else update count +1
       const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
       oldValues[menuItemIdx].active = alternatives[idx];
-      updateMenu(oldValues);
+      updateActiveMenu(oldValues, activeAppName);
     }
   };
   // console.log("theme :>> ", theme);

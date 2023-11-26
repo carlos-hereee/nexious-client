@@ -15,8 +15,9 @@ import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./fetch/fetchAppWithName";
-import { setMenu } from "./dispatch/setMenu";
+// import { setMenu } from "./dispatch/setMenu";
 import { fetchAppList } from "./fetch/fetchAppList";
+import { setActiveMenu } from "./dispatch/setActiveMenu";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -66,8 +67,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData });
   }, []);
-  const updateMenu = useCallback((a: MenuProps[]) => {
-    setMenu({ dispatch, menu: a });
+  // const updateMenu = useCallback((a: MenuProps[]) => {
+  //   setActiveMenu({ dispatch, menu: a });
+  // }, []);
+  const updateActiveMenu = useCallback((a: MenuProps[], appName: string) => {
+    setActiveMenu({ dispatch, menu: a, appName });
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -97,8 +101,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateAppData,
       updateAppList,
       getAppWithName,
-      updateMenu,
+      // updateMenu,
       getAppList,
+      updateActiveMenu,
     };
   }, [state.isLoading]);
 

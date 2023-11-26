@@ -67,7 +67,6 @@ const EditApp = () => {
     if (active) scrollToId(active);
   }, [active]);
 
-  console.log("landing :>> ", landing);
   useEffect(() => {
     if (!isLoading) {
       setFormLoading(true);
@@ -93,7 +92,6 @@ const EditApp = () => {
           formId: "initApp",
         },
         {
-          // onSubmit: (e: PreviewValueProps) => console.log(e, appId),
           ...landingForm,
           onSubmit: (e: any) => editLandingPage(e, appId),
           dataList: { icon: iconList },
