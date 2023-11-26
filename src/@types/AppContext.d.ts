@@ -39,6 +39,7 @@ declare module "app-context" {
     appId: string;
     adminIds: AdminIdProps[];
     logo: AssetProps;
+    menu?: MenuProps[];
   }
   export interface PageProps {
     title: string;
@@ -52,8 +53,8 @@ declare module "app-context" {
   }
   export type ActiveMenuProps = {
     menu: MenuProps[];
-    appName: string;
-    logo: AssetProps;
+    appName?: string;
+    logo?: AssetProps;
   };
   export interface AppStateProps {
     // auth schema

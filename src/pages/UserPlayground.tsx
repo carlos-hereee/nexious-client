@@ -5,27 +5,31 @@ import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import messages from "@data/messages.json";
+import { AppListProps } from "app-context";
 // import { nexiousMenu, nexiousName } from "@data/nexious.json";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const {
-    getAppWithName,
-    //  updateActiveMenu
-  } = useContext(AppContext);
+  const { getAppWithName, updateActiveMenu } = useContext(AppContext);
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   // console.log("ownedApps :>> ", ownedApps);
 
-  const handleSeeLive = (app: { appName?: string; appId: string }) => {
+  const handleSeeLive = (app: AppListProps) => {
     if (!app.appName) {
       setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
       const name = app.appName.split(" ").join("+");
+      updateActiveMenu({
+        menu: app.menu || [],
+        appName: name.split("+").join(" "),
+        logo: app.logo,
+      });
+      getAppWithName(name);
       navigate({ pathname: "/app", search: `?appName=${name}` });
     }
   };
-  const handleEdit = (app: { appName?: string; appId: string }) => {
+  const handleEdit = (app: AppListProps) => {
     if (!app.appName) {
       setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
@@ -34,7 +38,7 @@ const UserPlayground = () => {
       navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
     }
   };
-  const handleAdvancedSetting = (app: { appName: string; appId: string }) => {
+  const handleAdvancedSetting = (app: AppListProps) => {
     if (!app.appName) {
       setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {

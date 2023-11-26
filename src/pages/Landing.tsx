@@ -1,26 +1,26 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { HeroCard } from "nexious-library";
 import { CallToActionProps, SectionProps } from "app-types";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
-  const { landing, appName, updateActiveMenu, menu, getAppWithName, logo } = useContext(AppContext);
+  const { landing } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (appName) {
-      console.log("appName :>> ", appName);
-      updateActiveMenu({ menu, appName, logo });
-    } else {
-      const name = searchParams.get("appName");
-      console.log("name :>> ", name);
-      if (name) getAppWithName(name.split(" ").join("+"));
-      else navigate("/dashboard");
-    }
-  }, [appName]);
+  // useEffect(() => {
+  //   if (appName) {
+  //     console.log("appName :>> ", appName);
+  //     updateActiveMenu({ menu, appName, logo });
+  //   } else {
+  //     const name = searchParams.get("appName");
+  //     console.log("name :>> ", name);
+  //     if (name) getAppWithName(name.split(" ").join("+"));
+  //     else navigate("/dashboard");
+  //   }
+  // }, [appName, isLoading]);
 
   if (!landing) return <div />;
 

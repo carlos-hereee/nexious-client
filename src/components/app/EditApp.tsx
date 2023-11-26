@@ -120,7 +120,7 @@ const EditApp = () => {
           formId: "medias",
           initialValues: formatMedia({
             values: media,
-            desiredOrder: mediaEntryForm.desiredOrder || [],
+            desiredOrder: socialMediaForm.desiredOrder || [],
             hasEntry: { hasMedias: mediaEntryForm },
           }),
         },

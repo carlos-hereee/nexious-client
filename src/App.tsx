@@ -4,6 +4,7 @@ import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
+import { nexiousMenu, nexiousName, nexiousLogo } from "@data/nexious.json";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
@@ -14,6 +15,7 @@ const App = ({ children }: ChildProps) => {
     activeAppName,
     footerMedia,
     isLoading: loadingApp,
+    updateActiveMenu,
   } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -42,6 +44,10 @@ const App = ({ children }: ChildProps) => {
       // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
     }
   };
+  const handleLogoClick = () => {
+    updateActiveMenu({ menu: nexiousMenu, appName: nexiousName, logo: nexiousLogo });
+    navigate("/");
+  };
 
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app assets" />;
@@ -51,6 +57,7 @@ const App = ({ children }: ChildProps) => {
         menu={activeMenu}
         logo={{ ...activeLogo, title: activeAppName }}
         updateMenu={handleMenu}
+        onLogoClick={handleLogoClick}
         theme={theme}
       />
       {children}
