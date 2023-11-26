@@ -4,15 +4,19 @@ import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
-// import { AdminContext } from "@context/admin/AdminContext";
 
 const App = ({ children }: ChildProps) => {
-  // const { updateLanguage } = useContext(AdminContext);
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
-  const { updateActiveMenu, logo, activeMenu, activeAppName, footerMedia } = useContext(AppContext);
+  const {
+    // updateActiveMenu,
+    activeLogo,
+    activeMenu,
+    activeAppName,
+    footerMedia,
+    isLoading: loadingApp,
+  } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const logoData = { ...logo, title: activeAppName };
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...activeMenu];
     const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
@@ -25,7 +29,7 @@ const App = ({ children }: ChildProps) => {
       setTheme(active.name);
     } else if (isToggle && active?.locale) {
       // update menu
-      updateActiveMenu(oldValues, activeAppName);
+      // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
       // updateLanguage(active.locale, appName);
     } else {
       // find menu item
@@ -35,15 +39,20 @@ const App = ({ children }: ChildProps) => {
       // if idx matches total use the first item else update count +1
       const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
       oldValues[menuItemIdx].active = alternatives[idx];
-      updateActiveMenu(oldValues, activeAppName);
+      // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
     }
   };
-  // console.log("theme :>> ", theme);
-  // waiting server response
+
   if (isLoading) return <Loading message="Fetching user assets.." />;
+  if (loadingApp) return <Loading message="Fetching app assets" />;
   return (
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
-      <Header menu={activeMenu} logo={logoData} updateMenu={handleMenu} theme={theme} />
+      <Header
+        menu={activeMenu}
+        logo={{ ...activeLogo, title: activeAppName }}
+        updateMenu={handleMenu}
+        theme={theme}
+      />
       {children}
       <Footer data={{ title: activeAppName }} media={footerMedia} hero={footerMedia.hero} />
     </div>

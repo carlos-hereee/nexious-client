@@ -8,8 +8,8 @@ import {
   useReducer,
 } from "react";
 import appState from "@data/appState.json";
-import { ChildProps, MenuProps } from "app-types";
-import { AppListProps, AppProps, AppSchema } from "app-context";
+import { ChildProps } from "app-types";
+import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@app/utils/actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -18,6 +18,7 @@ import { fetchAppWithName } from "./fetch/fetchAppWithName";
 // import { setMenu } from "./dispatch/setMenu";
 import { fetchAppList } from "./fetch/fetchAppList";
 import { setActiveMenu } from "./dispatch/setActiveMenu";
+// import { useLocation } from "react-router-dom";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -26,19 +27,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const { accessToken } = useContext(AuthContext);
   // const navigate = useNavigate();
   // const queryParams = useLocation();
-
-  // useEffect(() => {
-  //   if (queryParams.search) {
-  //     const appName = queryParams.search.split("appName=")[1];
-  //     if (appName) {
-  //       getAppWithName({
-  //         dispatch,
-  //         appName,
-  //         updateApp: (values) => updateAppData({ dispatch, values }),
-  //       });
-  //     }
-  //   }
-  // }, [queryParams.search]);
 
   // useEffect(() => {
   //   getAppList({ dispatch });
@@ -67,14 +55,25 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData });
   }, []);
-  // const updateMenu = useCallback((a: MenuProps[]) => {
-  //   setActiveMenu({ dispatch, menu: a });
-  // }, []);
-  const updateActiveMenu = useCallback((a: MenuProps[], appName: string) => {
-    setActiveMenu({ dispatch, menu: a, appName });
+  const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
+    const { menu, appName, logo } = props;
+    // console.log("props :>> ", props);
+    setActiveMenu({ dispatch, menu, appName, logo });
   }, []);
-  const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
+  const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
+  // useEffect(() => {
+  //   if (queryParams.search) {
+  //     const appName = queryParams.search.split("appName=")[1];
+  //     if (appName) {
+  //       getAppWithName({
+  //         dispatch,
+  //         appName,
+  //         updateApp: updateAppData,
+  //       });
+  //     }
+  //   }
+  // }, [queryParams.search]);
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -95,13 +94,13 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       activeMenu: state.activeMenu,
       owner: state.owner,
       logo: state.logo,
+      activeLogo: state.activeLogo,
       locale: state.locale,
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
       updateAppData,
       updateAppList,
       getAppWithName,
-      // updateMenu,
       getAppList,
       updateActiveMenu,
     };

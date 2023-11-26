@@ -5,19 +5,23 @@ import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import messages from "@data/messages.json";
+// import { nexiousMenu, nexiousName } from "@data/nexious.json";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { getAppWithName } = useContext(AppContext);
+  const {
+    getAppWithName,
+    //  updateActiveMenu
+  } = useContext(AppContext);
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   // console.log("ownedApps :>> ", ownedApps);
+
   const handleSeeLive = (app: { appName?: string; appId: string }) => {
     if (!app.appName) {
       setError({ ...error, [app.appId]: messages.appNameRequired });
     } else {
       const name = app.appName.split(" ").join("+");
-      getAppWithName(name);
       navigate({ pathname: "/app", search: `?appName=${name}` });
     }
   };

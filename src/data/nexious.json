@@ -1,0 +1,94 @@
+{
+  "nexiousName": "Nexious Tech",
+  "nexiousMenu": [
+    {
+      "isToggle": true,
+      "isPrivate": false,
+      "uid": "themelist-1",
+      "menuId": "themelist-1",
+      "active": {
+        "name": "dark-mode",
+        "value": "dark-mode",
+        "icon": "",
+        "link": "",
+        "locale": "",
+        "label": "dark-mode",
+        "themeId": "theme-dark-mode",
+        "menuItemId": "theme-dark-mode",
+        "uid": "theme-dark-mode"
+      },
+      "alternatives": [
+        {
+          "name": "light-mode",
+          "value": "light-mode",
+          "label": "light-mode",
+          "themeId": "theme-light-mode",
+          "menuItemId": "theme-light-mode",
+          "icon": "",
+          "link": "",
+          "locale": "",
+          "uid": "theme-light-mode"
+        },
+        {
+          "name": "dark-mode",
+          "value": "dark-mode",
+          "icon": "",
+          "link": "",
+          "locale": "",
+          "label": "dark-mode",
+          "themeId": "theme-dark-mode",
+          "menuItemId": "theme-dark-mode",
+          "uid": "theme-dark-mode"
+        }
+      ]
+    },
+    {
+      "isToggle": false,
+      "isPrivate": true,
+      "uid": "auth-1",
+      "menuId": "auth-1",
+      "active": {
+        "label": "Login",
+        "icon": "login",
+        "value": "login",
+        "themeId": "",
+        "name": "login",
+        "locale": "",
+        "uid": "login-uid-1",
+        "menuItemId": "login-uid-1",
+        "link": "login"
+      },
+      "alternatives": [
+        {
+          "label": "Login",
+          "icon": "login",
+          "name": "login",
+          "value": "login",
+          "themeId": "",
+          "locale": "",
+          "uid": "login-uid-1",
+          "menuItemId": "login-uid-1",
+          "link": "login"
+        },
+        {
+          "label": "Logout",
+          "icon": "logout",
+          "name": "logout",
+          "locale": "",
+          "themeId": "",
+          "value": "logout",
+          "uid": "logout-uid-1",
+          "menuItemId": "logOut-uid-2",
+          "link": "logout"
+        }
+      ]
+    }
+  ],
+  "nexiousLogo": {
+    "url": "/icons/logo.svg",
+    "hero": "/icons/logo.svg",
+    "alt": "industry-brand",
+    "uid": "ch04937-brand-id",
+    "heroId": "ch04937-brand-id"
+  }
+}

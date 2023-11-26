@@ -50,6 +50,11 @@ declare module "app-context" {
     cta: CallToActionProps[];
     sections: SectionProps[];
   }
+  export type ActiveMenuProps = {
+    menu: MenuProps[];
+    appName: string;
+    logo: AssetProps;
+  };
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
@@ -68,6 +73,7 @@ declare module "app-context" {
     activeMenu: MenuProps[];
     footerMedia: MediaProps;
     logo: AssetProps;
+    activeLogo: AssetProps;
     themeList: MenuItemProps[];
     languageList: MenuItemProps[];
     iconList: MenuItemProps[];
@@ -79,6 +85,7 @@ declare module "app-context" {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
+    activeLogo: AssetProps;
     appList: AppListProps[];
     appName: string;
     activeAppName: string;
@@ -103,12 +110,13 @@ declare module "app-context" {
     getAppWithName: (appName: string) => void;
     // updateMenu: (menu: MenuProps[]) => void;
     updateAppList: (appList: AppListProps[]) => void;
-    updateActiveMenu: (appList: MenuProps[], appName: string) => void;
+    updateActiveMenu: (props: ActiveMenuProps) => void;
   }
 
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     values?: AppProps;
+    logo?: AssetProps;
     appName?: string;
     appId?: string;
     menu?: MenuProps[];
@@ -116,10 +124,7 @@ declare module "app-context" {
   }
 
   export type AppActionProps =
-    | {
-        type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON;
-        payload: boolean;
-      }
+    | { type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON; payload: boolean }
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
@@ -128,44 +133,14 @@ declare module "app-context" {
           | APP_ACTIONS.SET_ACTIVE_APP_NAME;
         payload: string;
       }
-    | {
-        type: APP_ACTIONS.SET_THEME_LIST | APP_ACTIONS.SET_LANGUAGE_LIST;
-        payload: MenuItemProps[];
-      }
-    | {
-        type: APP_ACTIONS.SET_OWNER;
-        payload: UserSchema;
-      }
-    | {
-        type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU;
-        payload: MenuProps[];
-      }
-    | {
-        type: APP_ACTIONS.SET_LANDING;
-        payload: PageProps;
-      }
-    | {
-        type: APP_ACTIONS.SET_APP_LOGO;
-        payload: AssetProps;
-      }
-    | {
-        type: APP_ACTIONS.SET_CALENDAR;
-        payload: CalendarProps;
-      }
-    | {
-        type: APP_ACTIONS.SET_APP_LIST;
-        payload: AppListProps[];
-      }
-    | {
-        type: APP_ACTIONS.SET_NEWSLETTER;
-        payload: NewsletterProps;
-      }
-    | {
-        type: APP_ACTIONS.SET_MEDIA;
-        payload: MediaProps;
-      }
-    | {
-        type: APP_ACTIONS.SET_ADMIN_IDS;
-        payload: AdminIdProps[];
-      };
+    | { type: APP_ACTIONS.SET_THEME_LIST | APP_ACTIONS.SET_LANGUAGE_LIST; payload: MenuItemProps[] }
+    | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
+    | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
+    | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
+    | { type: APP_ACTIONS.SET_APP_LOGO | APP_ACTIONS.SET_ACTIVE_LOGO; payload: AssetProps }
+    | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
+    | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
+    | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
+    | { type: APP_ACTIONS.SET_MEDIA; payload: MediaProps }
+    | { type: APP_ACTIONS.SET_ADMIN_IDS; payload: AdminIdProps[] };
 }

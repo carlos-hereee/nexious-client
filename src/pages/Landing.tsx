@@ -5,15 +5,18 @@ import { CallToActionProps, SectionProps } from "app-types";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Landing = () => {
-  const { landing, appName, menu, updateActiveMenu, getAppWithName } = useContext(AppContext);
+  const { landing, appName, updateActiveMenu, menu, getAppWithName, logo } = useContext(AppContext);
   const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (appName) {
-      updateActiveMenu(menu, appName);
+      console.log("appName :>> ", appName);
+      updateActiveMenu({ menu, appName, logo });
     } else {
       const name = searchParams.get("appName");
+      console.log("name :>> ", name);
       if (name) getAppWithName(name.split(" ").join("+"));
       else navigate("/dashboard");
     }

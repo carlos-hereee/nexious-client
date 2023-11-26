@@ -31,6 +31,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, calendar: action.payload };
     case APP_ACTIONS.SET_APP_LOGO:
       return { ...state, logo: action.payload };
+    case APP_ACTIONS.SET_ACTIVE_LOGO:
+      return { ...state, activeLogo: action.payload };
     case APP_ACTIONS.SET_MENU:
       return { ...state, menu: action.payload };
     case APP_ACTIONS.SET_LOCALE:

@@ -34,7 +34,7 @@
     }
   ],
   "appName": "",
-  "activeAppName": "Nexs Tech",
+  "activeAppName": "Nexious Tech",
   "appId": "Nexious-appid-1",
   "owner": { "userId": "", "username": "" },
   "welcomeMessage": "Welcome back!",
@@ -252,8 +252,14 @@
     }
   ],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
-
   "logo": {
+    "url": "",
+    "hero": "",
+    "alt": "industry-brand",
+    "uid": "ch04937-brand-id",
+    "heroId": "ch04937-brand-id"
+  },
+  "activeLogo": {
     "url": "/icons/logo.svg",
     "hero": "/icons/logo.svg",
     "alt": "industry-brand",
