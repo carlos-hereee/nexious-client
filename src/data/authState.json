@@ -2,7 +2,7 @@
   "isLoading": false,
   "isOffline": false,
   "accessToken": "",
-  "theme": "dark-mode",
+  "theme": "light-mode",
   "locale": "",
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,

@@ -35,12 +35,17 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     // user is login
     const oldValues = [...state.activeMenu];
     const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
+    // find auth menu
+    const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
     if (accessToken) {
-      // find auth menu
-      const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
       // find dashboard menu item
       const logout = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
       oldValues[authMenuItemIdx].active = logout;
+      dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
+    } else {
+      // find dashboard menu item
+      const login = authMenuItem.alternatives.filter((alt) => alt.name === "login")[0];
+      oldValues[authMenuItemIdx].active = login;
       dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
     }
   }, [accessToken]);
