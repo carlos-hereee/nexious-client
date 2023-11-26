@@ -26,6 +26,9 @@ const Homepage = () => {
           ))}
         </div>
       )}
+      <div className="flex-center">
+        <h3 className="heading"> More comming soon</h3>
+      </div>
     </div>
   );
 };

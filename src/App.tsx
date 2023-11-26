@@ -42,7 +42,7 @@ const App = ({ children }: ChildProps) => {
       // if idx matches total use the first item else update count +1
       const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
       oldValues[menuItemIdx].active = alternatives[idx];
-      // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
+      updateActiveMenu({ menu: oldValues });
     }
   };
   const handleLogoClick = () => {
