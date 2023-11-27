@@ -58,8 +58,26 @@
       }
     },
     "medias": [
-      { "media": "facebook", "link": "https://facebook.com", "uid": "6554c3a2bb0a21f3bb3e07b4" },
-      { "media": "x", "link": "https://twitter.com/", "uid": "6554c3a2bb0a21f3bb3e07b5" }
+      {
+        "media": "x",
+        "link": "https://twitter.com/carlos_heree",
+        "uid": "6554c3a2bb0a21f3bb3e07b5"
+      },
+      {
+        "uid": "instagram-uid",
+        "media": "instagram",
+        "link": "https://www.instagram.com/carlos_hereee/"
+      },
+      {
+        "uid": "linkedin-uid",
+        "media": "linkedin",
+        "link": "https://www.linkedin.com/in/carlos-hereee/"
+      },
+      {
+        "uid": "github-uid",
+        "media": "github",
+        "link": "https://github.com/carlos-hereee"
+      }
     ]
   },
   "media": {
