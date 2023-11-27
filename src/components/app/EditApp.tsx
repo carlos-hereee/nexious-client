@@ -17,7 +17,7 @@ import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 import PreviewNewsletter from "./preview/PreviewNewsletter";
 import PreviewSocials from "./preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
-import PreviewHeader from "./preview/PreviewHeader";
+import PreviewAppName from "./preview/PreviewAppName";
 import PreviewLanding from "./preview/PreviewLanding";
 
 const EditApp = () => {
@@ -155,9 +155,10 @@ const EditApp = () => {
           theme={theme}
           onCancel={() => navigate("/")}
           onPageClick={() => setActive("")}
+          onDialogClose={() => setActive("")}
           previewPage={
             active === "initApp" ? (
-              <PreviewHeader preview={previewInitApp} />
+              <PreviewAppName preview={previewInitApp} />
             ) : active === "newsletter" ? (
               <PreviewNewsletter preview={previewLetter} />
             ) : active === "medias" ? (

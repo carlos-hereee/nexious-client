@@ -4,7 +4,7 @@ import { Hero } from "nexious-library";
 type PreviewHeaderProps = {
   preview: InitAppProps;
 };
-const PreviewHeader = (props: PreviewHeaderProps) => {
+const PreviewAppName = (props: PreviewHeaderProps) => {
   const { preview } = props;
   return (
     <div className="flex-row">
@@ -13,4 +13,4 @@ const PreviewHeader = (props: PreviewHeaderProps) => {
     </div>
   );
 };
-export default PreviewHeader;
+export default PreviewAppName;

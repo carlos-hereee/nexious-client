@@ -59,16 +59,14 @@ const UserPlayground = () => {
         </button>
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => (
-            <div key={app.appId} className="card-row pad-t">
+            <div key={app.appId} className="card-row">
               <Hero hero={app.logo || {}} theme="logo" onImageClick={() => handleEdit(app)} />
-              <div className="flex-column elbow-space mb-2">
+              <div className="card-row-body">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
-                <div>
-                  {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
-                </div>
-                <div className="flex-row flex-wrap">
-                  <Button label="Edit app" onClick={() => handleEdit(app)} />
-                  <Button label="Advanced settings" onClick={() => handleAdvancedSetting(app)} />
+                {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
+                <div className="navigation-container">
+                  <Button label="Edit" onClick={() => handleEdit(app)} />
+                  <Button label="Settings" onClick={() => handleAdvancedSetting(app)} />
                   <Button label="See live" onClick={() => handleSeeLive(app)} />
                 </div>
               </div>
