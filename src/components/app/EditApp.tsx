@@ -102,7 +102,7 @@ const EditApp = () => {
           }),
           onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
           form: landingForm,
-          addEntries: sectionEntries,
+          addEntry: sectionEntries,
           formId: "landingPage",
         },
         // languages: {
@@ -115,7 +115,7 @@ const EditApp = () => {
           dataList: { media: mediaList },
           onViewPreview: (e: PreviewValueProps) => handlePreview("medias", e),
           onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
-          addEntries: { hasMedias: mediaEntryForm },
+          addEntry: { hasMedias: mediaEntryForm },
           form: socialMediaForm,
           formId: "medias",
           initialValues: formatMedia({
@@ -146,6 +146,7 @@ const EditApp = () => {
   }, [isLoading]);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
+  console.log("formValues :>> ", formValues);
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>

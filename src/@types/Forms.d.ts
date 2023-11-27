@@ -60,7 +60,7 @@ declare module "app-forms" {
     form: FormProps;
     formId: string;
     withFileUpload?: boolean;
-    addEntries?: { [key: string]: FormProps };
+    addEntry?: { [key: string]: FormProps };
     theme?: string;
     previewLabel?: string;
     dataList?: { [key: string]: MenuItemProps[] };
