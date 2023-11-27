@@ -25,12 +25,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
   const { accessToken } = useContext(AuthContext);
-  // const navigate = useNavigate();
-  // const queryParams = useLocation();
 
-  // useEffect(() => {
-  //   getAppList({ dispatch });
-  // }, []);
   useEffect(() => {
     // user is login
     const oldValues = [...state.activeMenu];
@@ -62,23 +57,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo } = props;
-    // console.log("props :>> ", props);
     setActiveMenu({ dispatch, menu, appName, logo });
   }, []);
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
-  // useEffect(() => {
-  //   if (queryParams.search) {
-  //     const appName = queryParams.search.split("appName=")[1];
-  //     if (appName) {
-  //       getAppWithName({
-  //         dispatch,
-  //         appName,
-  //         updateApp: updateAppData,
-  //       });
-  //     }
-  //   }
-  // }, [queryParams.search]);
+
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -109,7 +92,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppList,
       updateActiveMenu,
     };
-  }, [state.isLoading]);
+  }, [state.isLoading, state.activeAppName]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (

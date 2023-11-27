@@ -9,7 +9,6 @@ import { nexiousMenu, nexiousName, nexiousLogo } from "@data/nexious.json";
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
   const {
-    // updateActiveMenu,
     activeLogo,
     activeMenu,
     activeAppName,

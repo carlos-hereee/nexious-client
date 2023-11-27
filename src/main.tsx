@@ -37,5 +37,5 @@ if (elementRoot) {
     // </React.StrictMode>
   );
 } else if (isDev) {
-  console.log("App ERROR element root not found; value is null");
+  // console.log("App ERROR element root not found; value is null");
 }

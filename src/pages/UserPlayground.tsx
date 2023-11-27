@@ -4,48 +4,32 @@ import { AppContext } from "@context/app/AppContext";
 import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
-import messages from "@data/messages.json";
 import { AppListProps } from "app-context";
 // import { nexiousMenu, nexiousName } from "@data/nexious.json";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
   const { getAppWithName, updateActiveMenu } = useContext(AppContext);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   // console.log("ownedApps :>> ", ownedApps);
 
   const handleSeeLive = (app: AppListProps) => {
-    if (!app.appName) {
-      setError({ ...error, [app.appId]: messages.appNameRequired });
-    } else {
-      const name = app.appName.split(" ").join("+");
-      updateActiveMenu({
-        menu: app.menu || [],
-        appName: name.split("+").join(" "),
-        logo: app.logo,
-      });
-      getAppWithName(name);
-      navigate({ pathname: "/app", search: `?appName=${name}` });
-    }
+    const name = app.appName.split(" ").join("+");
+    updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });
+    getAppWithName(name);
+    navigate({ pathname: "/app", search: `?appName=${name}` });
   };
   const handleEdit = (app: AppListProps) => {
-    if (!app.appName) {
-      setError({ ...error, [app.appId]: messages.appNameRequired });
-    } else {
-      const name = app.appName.split(" ").join("+");
-      getAppWithName(name);
-      navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
-    }
+    const name = app.appName.split(" ").join("+");
+    getAppWithName(name);
+    navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
   };
   const handleAdvancedSetting = (app: AppListProps) => {
-    if (!app.appName) {
-      setError({ ...error, [app.appId]: messages.appNameRequired });
-    } else {
-      const name = app.appName.split(" ").join("+");
-      getAppWithName(name);
-      navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
-    }
+    const name = app.appName.split(" ").join("+");
+    getAppWithName(name);
+    navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
   };
   const handleBuild = () => navigate("/build-app");
   // console.log("ownedApps", ownedApps);
