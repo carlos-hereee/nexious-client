@@ -14,7 +14,7 @@ const UserPlayground = () => {
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   // console.log("ownedApps :>> ", ownedApps);
-
+  // console.log("appList :>> ", appList);
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
     updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });

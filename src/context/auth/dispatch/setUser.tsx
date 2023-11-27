@@ -6,6 +6,7 @@ export const setUser = (props: AuthReducerProps) => {
   //  key varaibles
   const { dispatch, user } = props;
   if (user) {
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: AUTH_ACTIONS.SET_USER_DATA, payload: userMinData(user) });
     if (user.ownedApps) dispatch({ type: AUTH_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });

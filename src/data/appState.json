@@ -1,14 +1,7 @@
 {
   "isLoading": false,
   "isOnline": true,
-  "appList": [
-    {
-      "appName": "",
-      "appId": "",
-      "adminIds": [{ "userId": "", "role": "" }],
-      "logo": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" }
-    }
-  ],
+  "appList": [],
   "themeList": [
     {
       "name": "light-mode",

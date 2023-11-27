@@ -6,17 +6,30 @@ import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 
 const BuildApp = () => {
-  const { initAppForm: form, initApp, themeList, languageList } = useContext(AdminContext);
+  const {
+    initAppForm: form,
+    initApp,
+    themeList,
+    languageList,
+    formErrors,
+  } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
+  const {
+    theme,
+    //  ownedApps
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   // useEffect(() => {
-
-  // }, [ownedApps.length]);
+  //   if (ownedApps.length > 0) {
+  //     if (!formErrors.initAppFormError)
+  //   }
+  // }, [ownedApps]);
   // useNavigate()
+  // console.log("formErrors :>> ", formErrors);
 
+  // console.log("appList :>> ", appList);
   return (
     <div className="container">
       <Form
@@ -27,12 +40,13 @@ const BuildApp = () => {
         types={form.types}
         labels={form.labels}
         theme={theme}
+        responseError={formErrors.initAppFormError}
         placeholders={form.placeholders}
         onCancel={() => navigate("/")}
         dataList={{ theme: themeList, locale: languageList, language: languageList }}
         fieldHeading={form.fieldHeading}
         schema={{
-          required: ["appName", "logo", "locale"],
+          required: ["appName", "logo"],
           unique: [{ name: "appName", list: appList?.map((app) => app.appName) || [] }],
         }}
       />

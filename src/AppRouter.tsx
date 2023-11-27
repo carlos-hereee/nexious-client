@@ -37,9 +37,9 @@ const AppRouter: React.FC = () => {
   // useEffect(() => {
   //   if (accessToken) {
   //     // navigate to user playground when the amount of owned apps changes
-  //     navigate("/");
+  //     navigate("/dashboard");
   //   }
-  // }, [ownedApps.length]);
+  // }, [ownedApps]);
 
   // // emergency password change
   // if (authErrors.emergencyPasswordChangeIsRequired) {

@@ -49,7 +49,10 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
   // update app list
   const updateAppList = useCallback((a: AppListProps[]) => {
+    // console.log("a :>> ", a);
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
@@ -92,7 +95,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppList,
       updateActiveMenu,
     };
-  }, [state.isLoading, state.activeAppName]);
+  }, [state.isLoading, state.activeAppName, accessToken, state.appList]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (

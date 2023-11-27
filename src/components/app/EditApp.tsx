@@ -146,7 +146,7 @@ const EditApp = () => {
   }, [isLoading]);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
-  console.log("formValues :>> ", formValues);
+  // console.log("formValues :>> ", formValues);
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>

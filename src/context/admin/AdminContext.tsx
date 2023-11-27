@@ -4,7 +4,7 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { nexiousMenu, nexiousName, nexiousLogo } from "@data/nexious.json";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
@@ -31,14 +31,9 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
-  const {
-    updateAppData,
-    updateAppList,
-    appName,
-    //  getAppWithName, menu, logo, updateActiveMenu
-  } = useContext(AppContext);
+  const { updateAppData, updateAppList, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   // const queryParams = useLocation();
 
   // useEffect(() => {
@@ -82,33 +77,26 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const initApp = useCallback((values: PreviewValueProps) => {
     buildApp({ dispatch, values, handleAppAssets });
-    navigate("/dashboard");
   }, []);
 
   const editAppName = useCallback((values: PreviewValueProps, appId: string) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
-    navigate("/dashboard");
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const editLandingPage = useCallback((values: any, appId: string) => {
+  const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
-    navigate("/dashboard");
   }, []);
 
   const editNewsletter = useCallback((values: PreviewValueProps, appId: string) => {
     updateNewsletter({ dispatch, values, handleAppAssets, appId });
-    navigate("/dashboard");
   }, []);
 
   const editSocialMedia = useCallback((values: PreviewValueProps, appId: string) => {
     updateSocialMedia({ dispatch, values, handleAppAssets, appId });
-    navigate("/dashboard");
   }, []);
 
   const deleteApp = useCallback((appId: string) => {
     removeApp({ dispatch, appId, handleAppAssets });
-    navigate("/dashboard");
   }, []);
 
   const adminValues = useMemo(() => {
