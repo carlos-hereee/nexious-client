@@ -10,7 +10,7 @@ export const buildApp = async (props: AdminDisptachProps) => {
     const val = values as InitAppProps;
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.post(`/app/init-app/${val.appName}`, val);
+      const { data } = await axiosMedia.post(`/app/init-app`, val);
       if (data) handleAppAssets(data);
     }
   } catch (error) {
