@@ -4,7 +4,7 @@ import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
-import { nexiousMenu, nexiousName, nexiousLogo } from "@data/nexious.json";
+import { nexiousMenu, nexiousName, nexiousLogo, nexiousMedia } from "@data/nexious.json";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, logout } = useContext(AuthContext);
@@ -51,7 +51,7 @@ const App = ({ children }: ChildProps) => {
       if (menuIdx) return activeMenu[menuIdx];
       return nexiousMenu[idx];
     });
-    updateActiveMenu({ menu, appName: nexiousName, logo: nexiousLogo });
+    updateActiveMenu({ menu, appName: nexiousName, logo: nexiousLogo, media: nexiousMedia });
     navigate("/");
   };
   // console.log("themeList :>> ", themeList);

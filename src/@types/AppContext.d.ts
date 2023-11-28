@@ -54,6 +54,7 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     logo: AssetProps;
     menu?: MenuProps[];
+    media?: MediaProps;
   }
   export interface PageProps {
     title: string;
@@ -69,6 +70,7 @@ declare module "app-context" {
     menu: MenuProps[];
     appName?: string;
     logo?: AssetProps;
+    media?: MediaProps;
   };
 
   export interface AppStateProps {

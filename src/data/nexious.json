@@ -107,5 +107,44 @@
         "body": "We understand that every app is unique. That's why we offer customizable plans that allow you to tailor our services to meet your specific requirements."
       }
     ]
+  },
+  "nexiousMedia": {
+    "title": "Dont miss a thing! Follow us on our socials",
+    "subtitle": "",
+    "hero": {
+      "heroId": "medias",
+      "uid": "medias-1",
+      "alt": "medias-hero",
+      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "theme": "thumbnail",
+      "creditTo": {
+        "artistName": "Ian Schneider",
+        "assetUrl": "https://unsplash.com/photos/two-person-standing-on-gray-tile-paving-TamMbr4okv4?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash",
+        "artistUrl": "https://unsplash.com/@goian?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    },
+    "medias": [
+      {
+        "media": "x",
+        "link": "https://twitter.com/carlos_heree",
+        "uid": "6554c3a2bb0a21f3bb3e07b5"
+      },
+      {
+        "uid": "instagram-uid",
+        "media": "instagram",
+        "link": "https://www.instagram.com/carlos_hereee/"
+      },
+      {
+        "uid": "linkedin-uid",
+        "media": "linkedin",
+        "link": "https://www.linkedin.com/in/carlos-hereee/"
+      },
+      {
+        "uid": "github-uid",
+        "media": "github",
+        "link": "https://github.com/carlos-hereee"
+      }
+    ]
   }
 }

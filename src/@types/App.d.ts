@@ -38,7 +38,7 @@ declare module "app-types" {
   export interface MediaProps {
     title: string;
     subtitle: string;
-    details: string;
+    details?: string;
     hero?: AssetProps;
     medias: MediaItemProp[];
   }

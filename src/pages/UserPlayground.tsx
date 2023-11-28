@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
-import { Button, Hero } from "nexious-library";
+import { Button, Hero, Icon } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import { AppListProps } from "app-context";
@@ -15,7 +15,12 @@ const UserPlayground = () => {
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
-    updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });
+    updateActiveMenu({
+      menu: app.menu || [],
+      appName: name.split("+").join(" "),
+      logo: app.logo,
+      media: app.media,
+    });
     navigate(`/app/${name}`);
   };
 
@@ -25,6 +30,7 @@ const UserPlayground = () => {
   };
   const handleBuild = () => navigate("/build-app");
 
+  console.log("ownedApps :>> ", ownedApps);
   return (
     <div className="container">
       <WelcomeBanner />
@@ -39,6 +45,15 @@ const UserPlayground = () => {
               <Hero hero={app.logo} theme="logo" onImageClick={() => handleNav(app, "edit-app")} />
               <div className="card-row-body">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
+                {app.media && (
+                  <div className="card-container">
+                    {app.media.medias.map((d) => (
+                      <a key={d.uid} className="nav-link" href={d.link || "#"}>
+                        {d.media && <Icon icon={d.media} name={d.media} size="3x" />}
+                      </a>
+                    ))}
+                  </div>
+                )}
                 {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
                 <div className="navigation-container">
                   <Button label="Edit" onClick={() => handleNav(app, "edit-app")} />

@@ -63,8 +63,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
-    const { menu, appName, logo } = props;
-    setActiveData({ dispatch, menu, appName, logo });
+    const { menu, appName, logo, media } = props;
+    setActiveData({ dispatch, menu, appName, logo, media });
   }, []);
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
