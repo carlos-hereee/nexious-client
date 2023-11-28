@@ -13,6 +13,7 @@ const App = ({ children }: ChildProps) => {
     activeMenu,
     activeAppName,
     footerMedia,
+    themeList,
     isLoading: loadingApp,
     updateActiveMenu,
   } = useContext(AppContext);
@@ -20,16 +21,15 @@ const App = ({ children }: ChildProps) => {
 
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...activeMenu];
-    const { active, isToggle, alternatives, menuId, isPrivate } = menuItem;
+    const { active, isToggle, alternatives, menuId, isPrivate, category } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (active.name === "logout") logout();
       else navigate(`/${active.link}` || "");
       // check theme Id
-    } else if (isToggle && active?.themeId) {
-      // console.log("active :>> ", menuItem);
+    } else if (isToggle && category === "theme") {
       setTheme(active.value);
-    } else if (isToggle && active?.locale) {
+      // } else if (isToggle && active?.locale) {
       // update menu
       // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
       // updateLanguage(active.locale, appName);
@@ -45,10 +45,16 @@ const App = ({ children }: ChildProps) => {
     }
   };
   const handleLogoClick = () => {
-    updateActiveMenu({ menu: nexiousMenu, appName: nexiousName, logo: nexiousLogo });
+    const data = [...nexiousMenu].map((val) => ({ active: val.active, category: val.category }));
+    const menu = data.map((d, idx) => {
+      const menuIdx = activeMenu.findIndex((active) => active.category === d.category);
+      if (menuIdx) return activeMenu[menuIdx];
+      return nexiousMenu[idx];
+    });
+    updateActiveMenu({ menu, appName: nexiousName, logo: nexiousLogo });
     navigate("/");
   };
-
+  // console.log("themeList :>> ", themeList);
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app assets" />;
   return (
@@ -58,6 +64,8 @@ const App = ({ children }: ChildProps) => {
         logo={{ ...activeLogo, title: activeAppName }}
         updateMenu={handleMenu}
         onLogoClick={handleLogoClick}
+        handleTheme={(t: string) => setTheme(t)}
+        themeList={themeList}
         theme={theme}
       />
       {children}

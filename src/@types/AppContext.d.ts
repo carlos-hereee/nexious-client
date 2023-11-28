@@ -13,6 +13,19 @@ declare module "app-context" {
     SectionProps,
   } from "app-types";
 
+  export type ThemeList = {
+    name: string;
+    value: string;
+    label: string;
+    uid: string;
+    colors: { primary: string; secondary: string; altPrimary: string; altSecondary: string };
+    backgroundColors: {
+      primary: string;
+      secondary: string;
+      altPrimary: string;
+      altSecondary: string;
+    };
+  };
   export interface AppProps {
     appName: string;
     appId: string;
@@ -30,7 +43,7 @@ declare module "app-context" {
     media: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    themeList: MenuItemProps[];
+    themeList: ThemeList[];
     iconList: MenuItemProps[];
     calendar: CalendarProps;
   }
@@ -75,7 +88,7 @@ declare module "app-context" {
     footerMedia: MediaProps;
     logo: AssetProps;
     activeLogo: AssetProps;
-    themeList: MenuItemProps[];
+    themeList: ThemeList[];
     languageList: MenuItemProps[];
     iconList: MenuItemProps[];
     locale: string;
@@ -103,7 +116,7 @@ declare module "app-context" {
     activeMenu: MenuProps[];
     logo: AssetProps;
     themeList: MenuItemProps[];
-    languageList: MenuItemProps[];
+    themeList: ThemeList[];
     iconList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
@@ -134,7 +147,8 @@ declare module "app-context" {
           | APP_ACTIONS.SET_ACTIVE_APP_NAME;
         payload: string;
       }
-    | { type: APP_ACTIONS.SET_THEME_LIST | APP_ACTIONS.SET_LANGUAGE_LIST; payload: MenuItemProps[] }
+    | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
+    | { type: APP_ACTIONS.SET_LANGUAGE_LIST; payload: MenuItemProps[] }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
     | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }

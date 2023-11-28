@@ -57,6 +57,7 @@ declare module "app-types" {
     uid: string;
     menuId: string;
     isToggle: boolean;
+    category: string;
     isPrivate: boolean;
     // TODO: include actual keys, and values
     active: MenuItemProps;

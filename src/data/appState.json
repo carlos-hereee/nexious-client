@@ -7,23 +7,37 @@
       "name": "light-mode",
       "value": "light-mode",
       "label": "light-mode",
-      "uid": "theme-light-mode",
-      "icon": "",
-      "link": "",
-      "themeId": "theme-light-mode",
-      "locale": "",
-      "menuItemId": "theme-light-mode"
+      "uid": "light-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
     },
     {
       "name": "dark-mode",
       "value": "dark-mode",
       "label": "dark-mode",
-      "uid": "theme-dark-mode",
-      "icon": "",
-      "link": "",
-      "themeId": "theme-dark-mode",
-      "locale": "",
-      "menuItemId": "theme-dark-mode"
+      "uid": "dark-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
     }
   ],
   "appName": "",
@@ -96,51 +110,11 @@
   },
   "menu": [
     {
-      "isToggle": true,
-      "isPrivate": false,
-      "uid": "themelist-1",
-      "menuId": "themelist-1",
-      "active": {
-        "name": "dark-mode",
-        "value": "dark-mode",
-        "icon": "",
-        "link": "",
-        "locale": "",
-        "label": "dark-mode",
-        "themeId": "theme-dark-mode",
-        "menuItemId": "theme-dark-mode",
-        "uid": "theme-dark-mode"
-      },
-      "alternatives": [
-        {
-          "name": "light-mode",
-          "value": "light-mode",
-          "label": "light-mode",
-          "themeId": "theme-light-mode",
-          "menuItemId": "theme-light-mode",
-          "icon": "",
-          "link": "",
-          "locale": "",
-          "uid": "theme-light-mode"
-        },
-        {
-          "name": "dark-mode",
-          "value": "dark-mode",
-          "icon": "",
-          "link": "",
-          "locale": "",
-          "label": "dark-mode",
-          "themeId": "theme-dark-mode",
-          "menuItemId": "theme-dark-mode",
-          "uid": "theme-dark-mode"
-        }
-      ]
-    },
-    {
       "isToggle": false,
       "isPrivate": true,
       "uid": "auth-1",
       "menuId": "auth-1",
+      "category": "auth",
       "active": {
         "label": "Login",
         "icon": "login",
@@ -180,51 +154,11 @@
   ],
   "activeMenu": [
     {
-      "isToggle": true,
-      "isPrivate": false,
-      "uid": "themelist-1",
-      "menuId": "themelist-1",
-      "active": {
-        "name": "dark-mode",
-        "value": "dark-mode",
-        "icon": "",
-        "link": "",
-        "locale": "",
-        "label": "dark-mode",
-        "themeId": "theme-dark-mode",
-        "menuItemId": "theme-dark-mode",
-        "uid": "theme-dark-mode"
-      },
-      "alternatives": [
-        {
-          "name": "light-mode",
-          "value": "light-mode",
-          "label": "light-mode",
-          "themeId": "theme-light-mode",
-          "menuItemId": "theme-light-mode",
-          "icon": "",
-          "link": "",
-          "locale": "",
-          "uid": "theme-light-mode"
-        },
-        {
-          "name": "dark-mode",
-          "value": "dark-mode",
-          "icon": "",
-          "link": "",
-          "locale": "",
-          "label": "dark-mode",
-          "themeId": "theme-dark-mode",
-          "menuItemId": "theme-dark-mode",
-          "uid": "theme-dark-mode"
-        }
-      ]
-    },
-    {
       "isToggle": false,
       "isPrivate": true,
       "uid": "auth-1",
       "menuId": "auth-1",
+      "category": "auth",
       "active": {
         "label": "Login",
         "icon": "login",
@@ -242,7 +176,6 @@
           "icon": "login",
           "name": "login",
           "value": "login",
-          "themeId": "",
           "locale": "",
           "uid": "login-uid-1",
           "menuItemId": "login-uid-1",
@@ -253,7 +186,6 @@
           "icon": "logout",
           "name": "logout",
           "locale": "",
-          "themeId": "",
           "value": "logout",
           "uid": "logout-uid-1",
           "menuItemId": "logOut-uid-2",

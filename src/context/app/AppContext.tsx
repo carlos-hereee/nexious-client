@@ -17,7 +17,7 @@ import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./fetch/fetchAppWithName";
 // import { setMenu } from "./dispatch/setMenu";
 import { fetchAppList } from "./fetch/fetchAppList";
-import { setActiveMenu } from "./dispatch/setActiveMenu";
+import { setActiveData } from "./dispatch/setActiveData";
 // import { useLocation } from "react-router-dom";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
@@ -25,6 +25,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
   const { accessToken } = useContext(AuthContext);
+  // const { accessToken, setTheme, theme } = useContext(AuthContext);
 
   useEffect(() => {
     // user is login
@@ -60,7 +61,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo } = props;
-    setActiveMenu({ dispatch, menu, appName, logo });
+    setActiveData({ dispatch, menu, appName, logo });
   }, []);
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
