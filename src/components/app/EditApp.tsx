@@ -53,7 +53,7 @@ const EditApp = () => {
   const {
     active,
     isFormLoading,
-    preview,
+    previewMedia,
     previewInitApp,
     previewPage,
     previewLetter,
@@ -164,7 +164,7 @@ const EditApp = () => {
             ) : active === "newsletter" ? (
               <PreviewNewsletter preview={previewLetter} />
             ) : active === "medias" ? (
-              <PreviewSocials data={preview} />
+              <PreviewSocials preview={previewMedia} />
             ) : (
               active === "landingPage" && <PreviewLanding preview={previewPage} />
             )

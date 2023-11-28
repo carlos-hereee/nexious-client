@@ -40,6 +40,7 @@ declare module "app-types" {
     subtitle: string;
     details?: string;
     hero?: AssetProps;
+    hasMedias?: boolean;
     medias: MediaItemProp[];
   }
   export interface MenuItemProps {
@@ -126,6 +127,9 @@ declare module "app-types" {
     hero?: string | File;
     onClick?: (key: CallToActionProps) => void;
   }
+  export type PreviewSocialMediaProps = {
+    preview?: MediaProps;
+  };
   export interface KeyStringProp {
     [key: string]: string;
   }

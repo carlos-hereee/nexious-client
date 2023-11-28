@@ -13,6 +13,14 @@ declare module "app-context" {
     SectionProps,
   } from "app-types";
 
+  export interface AppCardProps {
+    app: AppListProps;
+    owner: UserSchema;
+    theme?: string;
+    errorMessage?: string;
+    handleSeeLive: () => void;
+    handleNavigation: (link: string) => void;
+  }
   export type ThemeList = {
     name: string;
     value: string;
@@ -53,6 +61,7 @@ declare module "app-context" {
     appId: string;
     adminIds: AdminIdProps[];
     logo: AssetProps;
+    owner: UserSchema;
     menu?: MenuProps[];
     media?: MediaProps;
   }

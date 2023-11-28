@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
-import { Button, Hero, Icon } from "nexious-library";
+// import { Button, Hero, Icon } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import { AppListProps } from "app-context";
+import AppCard from "@app/components/app/AppCard";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
@@ -41,27 +42,15 @@ const UserPlayground = () => {
         </button>
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => (
-            <div key={app.appId} className="card-row">
-              <Hero hero={app.logo} theme="logo" onImageClick={() => handleNav(app, "edit-app")} />
-              <div className="card-row-body">
-                <h2 className="heading">{app?.appName || "No name"}</h2>
-                {app.media && (
-                  <div className="card-container">
-                    {app.media.medias.map((d) => (
-                      <a key={d.uid} className="nav-link" href={d.link || "#"}>
-                        {d.media && <Icon icon={d.media} name={d.media} size="3x" />}
-                      </a>
-                    ))}
-                  </div>
-                )}
-                {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
-                <div className="navigation-container">
-                  <Button label="Edit" onClick={() => handleNav(app, "edit-app")} />
-                  <Button label="Settings" onClick={() => handleNav(app, "settings/app")} />
-                  <Button label="See live" onClick={() => handleSeeLive(app)} />
-                </div>
-              </div>
-            </div>
+            <AppCard
+              app={app}
+              key={app.appId}
+              errorMessage={error[app.appId]}
+              handleNavigation={(link: string) => handleNav(app, link)}
+              handleSeeLive={() => handleSeeLive(app)}
+              owner={app.owner}
+              theme="card-row"
+            />
           ))
         ) : (
           <p>You dont own any apps</p>
