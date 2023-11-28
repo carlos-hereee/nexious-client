@@ -65,7 +65,7 @@ export const AuthState = ({ children }: ChildProps) => {
       logout,
       forgotPassword,
     };
-  }, [state.accessToken, state.isLoading, state.theme]);
+  }, [state.accessToken, state.isLoading, state.theme, state.user]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

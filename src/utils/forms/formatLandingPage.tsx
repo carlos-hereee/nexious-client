@@ -5,19 +5,25 @@ import { SectionProps } from "app-types";
 export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
   const { desiredOrder, hasEntry, values } = props;
 
-  const entryKey: { [key: string]: string } = { cta: "hasCta", sections: "hasSections" };
+  const entryKey: { [key: string]: string } = {
+    cta: "hasCta",
+    sections: "hasSections",
+    hasSections: "sections",
+    hasCta: "cta",
+  };
 
   return Object.assign(
     {},
     ...desiredOrder.map((key) => {
       if (!values) return { [key]: "" };
       const current = values[key as keyof PageProps];
-      if (typeof current === "boolean") {
-        return { [key]: current };
-      }
+      if (typeof current === "boolean") return { [key]: current };
       if (key === "hero") return { [key]: values[key]?.url || "" };
       if (Array.isArray(current) && hasEntry) {
         const form = hasEntry[entryKey[key]];
+        const value = values[entryKey[key] as keyof PageProps];
+        // error handling if has entry value is true but grouping is emty
+        if (value && current.length === 0) return form.initialValues;
         return (current as SectionProps[]).map((val: SectionProps) => {
           return Object.assign(
             {},

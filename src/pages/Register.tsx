@@ -10,11 +10,13 @@ const Register = () => {
     <div className="container">
       {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
       <div className="form-hero">
-        <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+        {signUpForm.initialValues && (
+          <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+        )}
         {signUpForm.hero && <Hero hero={signUpForm.hero} />}
       </div>
       <div className="flex-center text-center">
-        <Link to="/">
+        <Link to="/login">
           Already have an account?
           <br /> Go to Login
         </Link>

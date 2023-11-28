@@ -44,7 +44,8 @@
       "hasSections": "checkbox",
       "hasCta": "checkbox",
       "hero": "file",
-      "sections": "text"
+      "sections": "text",
+      "icon": "select"
     },
     "labels": {
       "title": "Page heading",
@@ -54,7 +55,8 @@
       "hasCta": "This part of the app has a Call To Action",
       "hasSections": "This part of the app has a sub section",
       "label": "Enter display data",
-      "link": "What page or url does it point to"
+      "link": "What page or url does it point to",
+      "icon": "Choose icon"
     },
     "placeholders": {
       "title": "",

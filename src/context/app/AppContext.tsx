@@ -44,13 +44,12 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       oldValues[authMenuItemIdx].active = login;
       dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
     }
-  }, [accessToken]);
+  }, [accessToken, state.activeAppName]);
 
   // update app data
   const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
   // update app list
   const updateAppList = useCallback((a: AppListProps[]) => {
-    // console.log("a :>> ", a);
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
@@ -23,7 +23,7 @@ import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
 // import Homepage from "./pages/Homepage";
-import AppSettings from "./components/app/AppSettings";
+import AppSettings from "./pages/AppSettings";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
@@ -32,7 +32,7 @@ import Homepage from "./pages/HomePage";
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
   // const { authErrors } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (accessToken) {
@@ -81,7 +81,12 @@ const AppRouter: React.FC = () => {
         <Route path="/settings/app/" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
-      <Route path="/*" element={<PageNotFound to={accessToken ? "/dashboard" : "/"} />} />
+      <Route
+        path="/*"
+        element={
+          <PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />
+        }
+      />
     </Routes>
   );
 };

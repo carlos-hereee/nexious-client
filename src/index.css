@@ -56,13 +56,12 @@
   display: flex;
   align-items: center;
 }
-/* .edit-app-container {
-  position: relative;
-} */
-/* .open-window-box {
-  background-color: ;
-  position: absolute;
-} */
+
 .form-field-container {
   max-height: 600px;
+}
+.section-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
