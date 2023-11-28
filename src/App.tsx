@@ -12,7 +12,7 @@ const App = ({ children }: ChildProps) => {
     activeLogo,
     activeMenu,
     activeAppName,
-    footerMedia,
+    activeMedia,
     themeList,
     isLoading: loadingApp,
     updateActiveMenu,
@@ -69,7 +69,7 @@ const App = ({ children }: ChildProps) => {
         theme={theme}
       />
       {children}
-      <Footer data={{ title: activeAppName }} media={footerMedia} hero={footerMedia.hero} />
+      <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
     </div>
   );
 };

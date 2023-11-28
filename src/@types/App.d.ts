@@ -39,7 +39,7 @@ declare module "app-types" {
     title: string;
     subtitle: string;
     details: string;
-    hero: AssetProps;
+    hero?: AssetProps;
     medias: MediaItemProp[];
   }
   export interface MenuItemProps {

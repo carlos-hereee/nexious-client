@@ -84,7 +84,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       isOnline: state.isOnline,
       activeAppName: state.activeAppName,
       media: state.media,
-      footerMedia: state.footerMedia,
+      activeMedia: state.activeMedia,
       menu: state.menu,
       activeMenu: state.activeMenu,
       owner: state.owner,

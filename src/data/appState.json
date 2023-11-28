@@ -55,7 +55,7 @@
     "email": "",
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" }
   },
-  "footerMedia": {
+  "activeMedia": {
     "title": "Dont miss a thing! Follow us on our socials",
     "subtitle": "",
     "details": "",
@@ -99,14 +99,7 @@
     "title": "",
     "subtitle": "",
     "details": "",
-    "hero": {
-      "heroId": "medias",
-      "uid": "medias-1",
-      "alt": "medias-hero",
-      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
-      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
-      "theme": "thumbnail"
-    },
+    "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" },
     "medias": []
   },
   "menu": [

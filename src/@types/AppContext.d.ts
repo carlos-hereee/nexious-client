@@ -86,9 +86,9 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;
+    activeMedia: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    footerMedia: MediaProps;
     logo: AssetProps;
     activeLogo: AssetProps;
     themeList: ThemeList[];
@@ -114,11 +114,11 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;
-    footerMedia: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: AssetProps;
     themeList: MenuItemProps[];
+    activeMedia: MediaProps;
     themeList: ThemeList[];
     iconList: MenuItemProps[];
     locale: string;
@@ -133,6 +133,7 @@ declare module "app-context" {
     dispatch: React.Dispatch<AppActionProps>;
     values?: AppProps;
     logo?: AssetProps;
+    media?: MediaProps;
     appName?: string;
     appId?: string;
     menu?: MenuProps[];
@@ -159,6 +160,6 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
-    | { type: APP_ACTIONS.SET_MEDIA; payload: MediaProps }
+    | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
     | { type: APP_ACTIONS.SET_ADMIN_IDS; payload: AdminIdProps[] };
 }

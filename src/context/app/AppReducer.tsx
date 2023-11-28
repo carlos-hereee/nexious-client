@@ -11,6 +11,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, adminIds: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MENU:
       return { ...state, activeMenu: action.payload };
+    case APP_ACTIONS.SET_ACTIVE_MEDIA:
+      return { ...state, activeMedia: action.payload };
     case APP_ACTIONS.SET_NEWSLETTER:
       return { ...state, newsletter: action.payload };
     case APP_ACTIONS.SET_APP_LIST:
