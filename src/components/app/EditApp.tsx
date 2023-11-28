@@ -103,6 +103,7 @@ const EditApp = () => {
           onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
           form: landingForm,
           addEntry: sectionEntries,
+          clearSelection: { icon: true },
           formId: "landingPage",
         },
         // languages: {

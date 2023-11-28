@@ -64,6 +64,7 @@ declare module "app-forms" {
     theme?: string;
     previewLabel?: string;
     dataList?: { [key: string]: MenuItemProps[] };
+    clearSelection?: { [key: string]: boolean };
     onSubmit?: (key: PreviewValueProps) => void;
     onViewPreview?: (key: PreviewValueProps) => void;
     schema?: {

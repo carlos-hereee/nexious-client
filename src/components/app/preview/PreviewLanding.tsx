@@ -7,7 +7,7 @@ const PreviewLanding: React.FC<PreviewPageProps> = (props) => {
 
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
 
-  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : "" };
+  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : preview.hero };
 
   return (
     <div className="container">

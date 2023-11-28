@@ -5,32 +5,20 @@ import { Button, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import { AppListProps } from "app-context";
-// import { nexiousMenu, nexiousName } from "@data/nexious.json";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
   const { updateActiveMenu } = useContext(AppContext);
-  // const { getAppWithName, updateActiveMenu } = useContext(AppContext);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
-  // console.log("ownedApps :>> ", ownedApps);
-  // console.log("appList :>> ", appList);
+
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
     updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });
     navigate(`/app/${name}`);
   };
-  // const handleEdit = (app: AppListProps) => {
-  //   const name = app.appName.split(" ").join("+");
-  //   getAppWithName(name);
-  //   navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
-  // };
-  // const handleAdvancedSetting = (app: AppListProps) => {
-  //   const name = app.appName.split(" ").join("+");
-  //   getAppWithName(name);
-  //   navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
-  // };
+
   const handleNav = (app: AppListProps, link: string) => {
     const name = app.appName.split(" ").join("+");
     navigate(`/${link}/${name}`);
