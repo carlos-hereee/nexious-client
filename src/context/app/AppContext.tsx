@@ -33,6 +33,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
     // find auth menu
     const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     if (accessToken) {
       // find dashboard menu item
       const logout = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
@@ -44,6 +45,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       oldValues[authMenuItemIdx].active = login;
       dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
     }
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, [accessToken, state.activeAppName]);
 
   // update app data
@@ -56,7 +58,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     fetchAppWithName({ dispatch, appName: a, updateAppData });
+    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo } = props;
@@ -84,6 +88,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       menu: state.menu,
       activeMenu: state.activeMenu,
       owner: state.owner,
+      appError: state.appError,
       logo: state.logo,
       activeLogo: state.activeLogo,
       locale: state.locale,

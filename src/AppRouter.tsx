@@ -59,7 +59,7 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
-        <Route path="/app/" element={<Landing />} />
+        <Route path="/app/:appName" element={<Landing />} />
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}
         {/* <Route path="/about" element={<About />} />
@@ -77,8 +77,8 @@ const AppRouter: React.FC = () => {
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>
         {/* <Route path="/add-page" element={<AddPage />} /> */}
-        <Route path="/edit-app/" element={<EditApp />} />
-        <Route path="/settings/app/" element={<AppSettings />} />
+        <Route path="/edit-app/:appName" element={<EditApp />} />
+        <Route path="/settings/app/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
       <Route

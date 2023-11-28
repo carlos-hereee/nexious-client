@@ -37,6 +37,7 @@ declare module "app-context" {
     isOnline: boolean;
     appList: AppListProps[];
     welcomeMessage: string;
+    appError: string;
     landing: PageProps;
     owner: UserSchema;
     newsletter: NewsletterProps;
@@ -69,11 +70,13 @@ declare module "app-context" {
     appName?: string;
     logo?: AssetProps;
   };
+
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
     appList: AppListProps[];
+    appError: string;
     appName: string;
     activeAppName: string;
     welcomeMessage: string;
@@ -103,8 +106,8 @@ declare module "app-context" {
     appList: AppListProps[];
     appName: string;
     activeAppName: string;
+    appError: string;
     welcomeMessage: string;
-    // theme: string;
     landing?: PageProps;
     appId: string;
     owner: UserSchema;
@@ -122,7 +125,6 @@ declare module "app-context" {
     calendar: CalendarProps;
     updateAppData: (key: AppProps) => void;
     getAppWithName: (appName: string) => void;
-    // updateMenu: (menu: MenuProps[]) => void;
     updateAppList: (appList: AppListProps[]) => void;
     updateActiveMenu: (props: ActiveMenuProps) => void;
   }
@@ -143,6 +145,7 @@ declare module "app-context" {
         type:
           | APP_ACTIONS.SET_APP_ID
           | APP_ACTIONS.SET_APP_NAME
+          | APP_ACTIONS.SET_APP_ERROR
           | APP_ACTIONS.SET_LOCALE
           | APP_ACTIONS.SET_ACTIVE_APP_NAME;
         payload: string;

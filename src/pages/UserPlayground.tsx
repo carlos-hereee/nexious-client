@@ -9,7 +9,8 @@ import { AppListProps } from "app-context";
 
 const UserPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { getAppWithName, updateActiveMenu } = useContext(AppContext);
+  const { updateActiveMenu } = useContext(AppContext);
+  // const { getAppWithName, updateActiveMenu } = useContext(AppContext);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
@@ -18,21 +19,24 @@ const UserPlayground = () => {
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
     updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });
-    getAppWithName(name);
-    navigate({ pathname: "/app", search: `?appName=${name}` });
+    navigate(`/app/${name}`);
   };
-  const handleEdit = (app: AppListProps) => {
+  // const handleEdit = (app: AppListProps) => {
+  //   const name = app.appName.split(" ").join("+");
+  //   getAppWithName(name);
+  //   navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
+  // };
+  // const handleAdvancedSetting = (app: AppListProps) => {
+  //   const name = app.appName.split(" ").join("+");
+  //   getAppWithName(name);
+  //   navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
+  // };
+  const handleNav = (app: AppListProps, link: string) => {
     const name = app.appName.split(" ").join("+");
-    getAppWithName(name);
-    navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
-  };
-  const handleAdvancedSetting = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    getAppWithName(name);
-    navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
+    navigate(`/${link}/${name}`);
   };
   const handleBuild = () => navigate("/build-app");
-  // console.log("ownedApps", ownedApps);
+
   return (
     <div className="container">
       <WelcomeBanner />
@@ -44,13 +48,13 @@ const UserPlayground = () => {
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => (
             <div key={app.appId} className="card-row">
-              <Hero hero={app.logo || {}} theme="logo" onImageClick={() => handleEdit(app)} />
+              <Hero hero={app.logo} theme="logo" onImageClick={() => handleNav(app, "edit-app")} />
               <div className="card-row-body">
                 <h2 className="heading">{app?.appName || "No name"}</h2>
                 {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
                 <div className="navigation-container">
-                  <Button label="Edit" onClick={() => handleEdit(app)} />
-                  <Button label="Settings" onClick={() => handleAdvancedSetting(app)} />
+                  <Button label="Edit" onClick={() => handleNav(app, "edit-app")} />
+                  <Button label="Settings" onClick={() => handleNav(app, "settings/app")} />
                   <Button label="See live" onClick={() => handleSeeLive(app)} />
                 </div>
               </div>

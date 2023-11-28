@@ -11,10 +11,6 @@ const AppSettings = () => {
   const name = appName.split(" ").join("+");
   const baseUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
 
-  const handleNavigate = (link: string) => {
-    navigate({ pathname: `/${link}/`, search: `?appName=${name}` });
-  };
-
   const copyLink = () => {
     navigator.clipboard.writeText(baseUrl);
     setCopyUrl(true);
@@ -26,8 +22,8 @@ const AppSettings = () => {
       <div className="navigation-container">
         <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
         {/* <Button label="Admin permissions" /> */}
-        <Button label="Edit app" onClick={() => handleNavigate("edit-app")} />
-        <Button label="See live" onClick={() => handleNavigate("app")} />
+        <Button label="Edit app" onClick={() => navigate(`/edit-app/${name}`)} />
+        <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
         {/* <Button label="Support" /> */}
       </div>
       <div className="section-row">

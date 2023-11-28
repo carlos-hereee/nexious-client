@@ -41,6 +41,7 @@
     }
   ],
   "appName": "",
+  "appError": "",
   "activeAppName": "Nexious Tech",
   "appId": "Nexious-appid-1",
   "owner": { "userId": "", "username": "" },
