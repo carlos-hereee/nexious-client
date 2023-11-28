@@ -34,6 +34,7 @@ declare module "app-types" {
     link: string;
     hero?: string;
     uid: string;
+    sharedKey?: string;
   };
   export interface MediaProps {
     title: string;

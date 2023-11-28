@@ -100,7 +100,7 @@
     },
     "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
     "types": { "title": "text", "hero": "file", "subtitle": "text", "hasMedias": "checkbox" },
-    "desiredOrder": ["title", "subtitle", "hero", "hasMedias"]
+    "desiredOrder": ["title", "subtitle", "hero", "hasMedias", "medias"]
   },
   "mediaEntryForm": {
     "formId": "mediaEntryForm",
