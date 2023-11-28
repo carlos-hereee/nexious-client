@@ -13,14 +13,13 @@ const AdminRoute = () => {
   useEffect(() => {
     const query = location.pathname.split("/");
     const appName = query[query.length - 1];
-    console.log("appName :>> ", appName);
     getAppWithName(appName);
     setIsLoading(false);
   }, []);
-  console.log("appError :>> ", appError);
+
   if (isLoading) return <Outlet />;
+  if (!appError) return <Outlet />;
   if (!accessToken) return <Navigate to="/" />;
-  if (appError) return <Navigate to="/" />;
   if (user.userId !== owner.userId) return <Navigate to="/" />;
   return <Outlet />;
 };
