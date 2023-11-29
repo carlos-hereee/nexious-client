@@ -13,6 +13,7 @@ const AdminRoute = () => {
   useEffect(() => {
     const query = location.pathname.split("/");
     const appName = query[query.length - 1];
+    // console.log("appName :>> ", appName);
     getAppWithName(appName);
     setIsLoading(false);
   }, []);

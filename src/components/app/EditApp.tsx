@@ -14,7 +14,7 @@ import { formatNewsletter } from "@app/utils/forms/formatNewsletter";
 import { formatMedia } from "@app/utils/forms/formatMedia";
 // import PreviewPage from "./preview/PreviewPage";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
-import { formatCalendar } from "@app/utils/forms/formatCalendar";
+// import { formatCalendar } from "@app/utils/forms/formatCalendar";
 import PreviewNewsletter from "./preview/PreviewNewsletter";
 import PreviewSocials from "./preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
@@ -27,7 +27,7 @@ const EditApp = () => {
     editAppName,
     editLandingPage,
     editNewsletter,
-    editCalendar,
+    // editCalendar,
     landingForm,
     mediaList,
     initAppForm,
@@ -35,7 +35,7 @@ const EditApp = () => {
     mediaEntryForm,
     socialMediaForm,
     newsletterForm,
-    calendarForm,
+    // calendarForm,
   } = useContext(AdminContext);
   const { theme } = useContext(AuthContext);
   const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
@@ -51,7 +51,7 @@ const EditApp = () => {
     themeList,
     iconList,
     appId,
-    calendar,
+    // calendar,
   } = useContext(AppContext);
   useContext(AppContext);
   const {
@@ -142,15 +142,15 @@ const EditApp = () => {
             desiredOrder: newsletterForm.desiredOrder || [""],
           }),
         },
-        {
-          ...calendarForm,
-          // dataList: { theme: calendarThemeList },
-          initialValues: formatCalendar({ calendar, form: calendarForm }),
-          form: calendarForm,
-          onSubmit: (e: PreviewValueProps) => editCalendar(e, appId),
-          onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
-          formId: "calendar",
-        },
+        // {
+        //   ...calendarForm,
+        //   // dataList: { theme: calendarThemeList },
+        //   initialValues: formatCalendar({ calendar, form: calendarForm }),
+        //   form: calendarForm,
+        //   onSubmit: (e: PreviewValueProps) => editCalendar(e, appId),
+        //   onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
+        //   formId: "calendar",
+        // },
       ]);
       setFormLoading(false);
     } else setFormLoading(true);

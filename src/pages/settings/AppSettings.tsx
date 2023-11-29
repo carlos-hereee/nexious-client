@@ -6,6 +6,7 @@ import DangerZone from "../../components/app/DangerZone";
 
 const AppSettings = () => {
   const { appName } = useContext(AppContext);
+  // const { appName, forwardingEmail } = useContext(AppContext);
   const navigate = useNavigate();
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const name = appName.split(" ").join("+");
@@ -15,7 +16,7 @@ const AppSettings = () => {
     navigator.clipboard.writeText(baseUrl);
     setCopyUrl(true);
   };
-
+  // console.log("appName :>> ", appName);
   return (
     <div className="container">
       <h1 className="heading">App settings: {appName}</h1>

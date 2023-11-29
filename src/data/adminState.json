@@ -141,11 +141,11 @@
     "formId": "calendar",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "title": "", "email": "", "theme": "" },
-    "labels": { "title": "Name", "email": "Forwarding email", "theme": "Calendar theme" },
+    "initialValues": { "title": "", "theme": "" },
+    "labels": { "title": "Name", "theme": "Calendar theme" },
     "placeholders": { "title": "app calendar name", "email": "" },
     "types": { "title": "text", "email": "text", "theme": "select" },
-    "desiredOrder": ["title", "email", "theme"]
+    "desiredOrder": ["title", "theme"]
   },
   "pagesForm": {
     "heading": "",
