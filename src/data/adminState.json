@@ -44,7 +44,8 @@
       "hasSections": "checkbox",
       "hasCta": "checkbox",
       "hero": "file",
-      "sections": "text"
+      "sections": "text",
+      "icon": "select"
     },
     "labels": {
       "title": "Page heading",
@@ -54,7 +55,8 @@
       "hasCta": "This part of the app has a Call To Action",
       "hasSections": "This part of the app has a sub section",
       "label": "Enter display data",
-      "link": "What page or url does it point to"
+      "link": "What page or url does it point to",
+      "icon": "Choose icon"
     },
     "placeholders": {
       "title": "",
@@ -98,7 +100,7 @@
     },
     "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
     "types": { "title": "text", "hero": "file", "subtitle": "text", "hasMedias": "checkbox" },
-    "desiredOrder": ["title", "subtitle", "hero", "hasMedias"]
+    "desiredOrder": ["title", "subtitle", "hero", "hasMedias", "medias"]
   },
   "mediaEntryForm": {
     "formId": "mediaEntryForm",
@@ -139,11 +141,11 @@
     "formId": "calendar",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "title": "", "email": "", "theme": "" },
-    "labels": { "title": "Name", "email": "Forwarding email", "theme": "Calendar theme" },
-    "placeholders": { "title": "", "email": "" },
+    "initialValues": { "title": "", "theme": "" },
+    "labels": { "title": "Name", "theme": "Calendar theme" },
+    "placeholders": { "title": "app calendar name", "email": "" },
     "types": { "title": "text", "email": "text", "theme": "select" },
-    "desiredOrder": ["title", "email", "theme"]
+    "desiredOrder": ["title", "theme"]
   },
   "pagesForm": {
     "heading": "",
@@ -364,7 +366,7 @@
     {
       "name": "x",
       "value": "x",
-      "label": "x",
+      "label": "x (Twitter)",
       "icon": "x",
       "themeId": "theme-x",
       "uid": "theme-x"

@@ -1,6 +1,13 @@
 declare module "app-forms" {
   import { AppListProps, PageProps } from "app-context";
-  import { AssetProps, KeyStringProp, MediaProps, MenuItemProps, NewsletterProps } from "app-types";
+  import {
+    AssetProps,
+    CalendarProps,
+    KeyStringProp,
+    MediaProps,
+    MenuItemProps,
+    NewsletterProps,
+  } from "app-types";
 
   export interface InitAppProps {
     appName: string;
@@ -52,6 +59,7 @@ declare module "app-forms" {
     | PageProps
     | NewsletterProps
     | MediaProps
+    | CalendarProps
     | KeyStringProp
     | { [key: string]: string | boolean }
     | FormData;
@@ -64,6 +72,7 @@ declare module "app-forms" {
     theme?: string;
     previewLabel?: string;
     dataList?: { [key: string]: MenuItemProps[] };
+    clearSelection?: { [key: string]: boolean };
     onSubmit?: (key: PreviewValueProps) => void;
     onViewPreview?: (key: PreviewValueProps) => void;
     schema?: {

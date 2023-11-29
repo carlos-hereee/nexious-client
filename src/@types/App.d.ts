@@ -11,6 +11,9 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
+  export interface CardContainerProps {
+    data: MediaItemProp[];
+  }
   export interface SectionProps {
     title: string;
     uid: string;
@@ -34,12 +37,14 @@ declare module "app-types" {
     link: string;
     hero?: string;
     uid: string;
+    sharedKey?: string;
   };
   export interface MediaProps {
     title: string;
     subtitle: string;
-    details: string;
-    hero: AssetProps;
+    details?: string;
+    hero?: AssetProps;
+    hasMedias?: boolean;
     medias: MediaItemProp[];
   }
   export interface MenuItemProps {
@@ -57,6 +62,7 @@ declare module "app-types" {
     uid: string;
     menuId: string;
     isToggle: boolean;
+    category: string;
     isPrivate: boolean;
     // TODO: include actual keys, and values
     active: MenuItemProps;
@@ -125,6 +131,9 @@ declare module "app-types" {
     hero?: string | File;
     onClick?: (key: CallToActionProps) => void;
   }
+  export type PreviewSocialMediaProps = {
+    preview?: MediaProps;
+  };
   export interface KeyStringProp {
     [key: string]: string;
   }

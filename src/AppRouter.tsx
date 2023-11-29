@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
@@ -23,16 +23,17 @@ import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
 // import Homepage from "./pages/Homepage";
-import AppSettings from "./components/app/AppSettings";
+// import AppPlayground from "./pages/AppPlayground";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
 import Homepage from "./pages/HomePage";
+import AppSettings from "./pages/settings/AppSettings";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
   // const { authErrors } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   if (accessToken) {
@@ -59,7 +60,7 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
-        <Route path="/app/" element={<Landing />} />
+        <Route path="/app/:appName" element={<Landing />} />
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}
         {/* <Route path="/about" element={<About />} />
@@ -77,11 +78,16 @@ const AppRouter: React.FC = () => {
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>
         {/* <Route path="/add-page" element={<AddPage />} /> */}
-        <Route path="/edit-app/" element={<EditApp />} />
-        <Route path="/settings/app/" element={<AppSettings />} />
+        <Route path="/edit-app/:appName" element={<EditApp />} />
+        <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
-      <Route path="/*" element={<PageNotFound to={accessToken ? "/dashboard" : "/"} />} />
+      <Route
+        path="/*"
+        element={
+          <PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />
+        }
+      />
     </Routes>
   );
 };

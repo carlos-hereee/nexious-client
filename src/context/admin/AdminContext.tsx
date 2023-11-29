@@ -4,19 +4,10 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@app/utils/actions/AdminActions";
-// import { useNavigate } from "react-router-dom";
-// import { nexiousMenu, nexiousName, nexiousLogo } from "@data/nexious.json";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
-// import { editApp } from "./requests/editApp";
-// import { editAppName } from "./requests/editAppName";
-// import { editLandingPage } from "./requests/editLandingPage";
-// import { deleteApp } from "./requests/deleteApp";
 // import { updateLanguage } from "./requests/updateLanguage";
-// import { editNewsletter } from "./requests/editNewsletter";
-// import { editSocialMedia } from "./requests/editSocialMedia";
-// import { editCalendar } from "./requests/editCalendar";
 // import { editLanguage } from "./requests/editLanguage";
 // import { fetchRefreshToken } from "../auth/helpers/fetchRefreshToken";
 import { fetchAccessToken } from "./requests/fetchAccessToken";
@@ -26,6 +17,7 @@ import { updateLandingPage } from "./requests/updateLandingPage";
 import { updateNewsletter } from "./requests/updateNewsletter";
 import { updateSocialMedia } from "./requests/updateSocialMedia";
 import { removeApp } from "./requests/removeApp";
+import { updateCalendar } from "./requests/updateCalendar";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -33,20 +25,6 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const { updateAppData, updateAppList, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
-  // const navigate = useNavigate();
-  // const queryParams = useLocation();
-
-  // useEffect(() => {
-  //   if (queryParams.pathname) {
-  //     // console.log('queryParams.pathName :>> ', queryParams.pathName);
-  //     if (queryParams.pathname === "/app") {
-  //       const name = queryParams.search.split("appName=")[1];
-  //       if (name.split("+").join(" ") === appName) {
-  //         updateActiveMenu({ menu, appName, logo });
-  //       } else if (name) getAppWithName(name);
-  //     } else updateActiveMenu({ menu: nexiousMenu, appName: nexiousName, logo: nexiousLogo });
-  //   } else updateActiveMenu({ menu: nexiousMenu, appName: nexiousName, logo: nexiousLogo });
-  // }, [queryParams.pathname, queryParams, queryParams.search]);
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app) updateAppData(values.app);
@@ -60,9 +38,8 @@ export const AdminState = ({ children }: ChildProps) => {
           updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
         editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
 
-        editCalendar: (a, b) => editCalendar({ dispatch, values: a, appId: b, handleAppAssets }),
         editLanguage: (a, b) => editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
-   */
+        */
 
   useEffect(() => {
     if (accessToken) {
@@ -95,6 +72,10 @@ export const AdminState = ({ children }: ChildProps) => {
     updateSocialMedia({ dispatch, values, handleAppAssets, appId });
   }, []);
 
+  const editCalendar = useCallback((a: PreviewValueProps, appId: string) => {
+    updateCalendar({ dispatch, values: a, appId, handleAppAssets });
+  }, []);
+
   const deleteApp = useCallback((appId: string) => {
     removeApp({ dispatch, appId, handleAppAssets });
   }, []);
@@ -125,6 +106,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editNewsletter,
       editSocialMedia,
       deleteApp,
+      editCalendar,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

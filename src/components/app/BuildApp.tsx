@@ -14,10 +14,7 @@ const BuildApp = () => {
     formErrors,
   } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const {
-    theme,
-    //  ownedApps
-  } = useContext(AuthContext);
+  const { theme } = useContext(AuthContext);
 
   const navigate = useNavigate();
 

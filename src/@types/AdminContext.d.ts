@@ -61,7 +61,7 @@ declare module "app-admin" {
     editLandingPage: (values: PreviewValueProps, appId: string) => void;
     editNewsletter: (values: PreviewValueProps, appId: string) => void;
     editSocialMedia: (values: PreviewValueProps, appId: string) => void;
-    // editCalendar: (values: PreviewValueProps, appId: string) => void;
+    editCalendar: (values: PreviewValueProps, appId: string) => void;
     // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {

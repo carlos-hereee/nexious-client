@@ -14,6 +14,7 @@ import { formatNewsletter } from "@app/utils/forms/formatNewsletter";
 import { formatMedia } from "@app/utils/forms/formatMedia";
 // import PreviewPage from "./preview/PreviewPage";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
+// import { formatCalendar } from "@app/utils/forms/formatCalendar";
 import PreviewNewsletter from "./preview/PreviewNewsletter";
 import PreviewSocials from "./preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
@@ -26,6 +27,7 @@ const EditApp = () => {
     editAppName,
     editLandingPage,
     editNewsletter,
+    // editCalendar,
     landingForm,
     mediaList,
     initAppForm,
@@ -33,6 +35,7 @@ const EditApp = () => {
     mediaEntryForm,
     socialMediaForm,
     newsletterForm,
+    // calendarForm,
   } = useContext(AdminContext);
   const { theme } = useContext(AuthContext);
   const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
@@ -48,12 +51,13 @@ const EditApp = () => {
     themeList,
     iconList,
     appId,
+    // calendar,
   } = useContext(AppContext);
   useContext(AppContext);
   const {
     active,
     isFormLoading,
-    preview,
+    previewMedia,
     previewInitApp,
     previewPage,
     previewLetter,
@@ -63,10 +67,12 @@ const EditApp = () => {
   } = useFormOrganizer();
   const navigate = useNavigate();
 
+  // console.log("calendar :>> ", calendar);
   useEffect(() => {
     if (active) scrollToId(active);
   }, [active]);
 
+  // console.log("media :>> ", media);
   useEffect(() => {
     if (!isLoading) {
       setFormLoading(true);
@@ -103,6 +109,7 @@ const EditApp = () => {
           onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
           form: landingForm,
           addEntry: sectionEntries,
+          clearSelection: { icon: true },
           formId: "landingPage",
         },
         // languages: {
@@ -135,10 +142,14 @@ const EditApp = () => {
             desiredOrder: newsletterForm.desiredOrder || [""],
           }),
         },
-        // calendar: {
-        //   schema: {},
-        //   dataList: { theme: calendarThemeList },
+        // {
+        //   ...calendarForm,
+        //   // dataList: { theme: calendarThemeList },
+        //   initialValues: formatCalendar({ calendar, form: calendarForm }),
+        //   form: calendarForm,
+        //   onSubmit: (e: PreviewValueProps) => editCalendar(e, appId),
         //   onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
+        //   formId: "calendar",
         // },
       ]);
       setFormLoading(false);
@@ -146,7 +157,7 @@ const EditApp = () => {
   }, [isLoading]);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
-  // console.log("formValues :>> ", formValues);
+  // console.log("formValues :>> ", formValues[2].initialValues);
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
@@ -163,7 +174,7 @@ const EditApp = () => {
             ) : active === "newsletter" ? (
               <PreviewNewsletter preview={previewLetter} />
             ) : active === "medias" ? (
-              <PreviewSocials data={preview} />
+              <PreviewSocials preview={previewMedia} />
             ) : (
               active === "landingPage" && <PreviewLanding preview={previewPage} />
             )

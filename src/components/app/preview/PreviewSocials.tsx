@@ -1,20 +1,21 @@
-import { Hero, Form, Socials } from "nexious-library";
+import { PreviewSocialMediaProps } from "app-types";
+import { Hero, Socials, urlFile } from "nexious-library";
 
-type SocialProps = {
-  data: any;
-};
-const PreviewSocials: React.FC<SocialProps> = (props) => {
-  const { data } = props;
+const PreviewSocials: React.FC<PreviewSocialMediaProps> = (props) => {
+  const { preview } = props;
+
+  if (!preview) return <div />;
+  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : preview.hero };
   return (
     <div className="container">
       <div className="container-split">
         <div className="container">
-          {data.title && <h2 className="heading">{data.title}</h2>}
-          {data.subtitle && <p className="heading">{data.subtitle}</p>}
+          {preview.title && <h2 className="heading">{preview.title}</h2>}
+          {preview.subtitle && <p className="heading">{preview.subtitle}</p>}
         </div>
-        {data.hero && <Hero hero={{ url: data.hero }} />}
+        {preview.hero && <Hero hero={heroData} />}
       </div>
-      {data.hasMedias && <Socials medias={data.medias} />}
+      {preview.hasMedias && <Socials medias={preview.medias} />}
     </div>
   );
 };

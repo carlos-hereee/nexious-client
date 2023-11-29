@@ -1,74 +1,53 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "@context/auth/AuthContext";
-import { AppContext } from "@context/app/AppContext";
-import { Button, Hero } from "nexious-library";
-import { useNavigate } from "react-router-dom";
+// import { useContext, useState } from "react";
+import { useState } from "react";
+// import { AppContext } from "@context/app/AppContext";
+import { IconButton } from "nexious-library";
+// import { Button, Hero, Icon } from "nexious-library";
+// import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
-import { AppListProps } from "app-context";
-// import { nexiousMenu, nexiousName } from "@data/nexious.json";
+import ExploreApps from "@app/components/app/ExploreApps";
+import AppPlayground from "./AppPlayground";
+import AccountSettings from "./settings/AccountSettings";
+// import { AppListProps } from "app-context";
+// import AppCard from "@app/components/app/AppCard";
 
 const UserPlayground = () => {
-  const { ownedApps } = useContext(AuthContext);
-  const { getAppWithName, updateActiveMenu } = useContext(AppContext);
+  // const { ownedApps } = useContext(AuthContext);
+  // const { updateActiveMenu } = useContext(AppContext);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [error, setError] = useState<{ [key: string]: string }>({});
-  const navigate = useNavigate();
-  // console.log("ownedApps :>> ", ownedApps);
+  // const [error, setError] = useState<{ [key: string]: string }>({});
+  // const navigate = useNavigate();
+
+  const [active, setActive] = useState<"apps" | "explore" | "account">("explore");
+
+  // console.log('object :>> ', object);
   // console.log("appList :>> ", appList);
-  const handleSeeLive = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    updateActiveMenu({ menu: app.menu || [], appName: name.split("+").join(" "), logo: app.logo });
-    getAppWithName(name);
-    navigate({ pathname: "/app", search: `?appName=${name}` });
-  };
-  const handleEdit = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    getAppWithName(name);
-    navigate({ pathname: "/edit-app/", search: `?appName=${name}` });
-  };
-  const handleAdvancedSetting = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    getAppWithName(name);
-    navigate({ pathname: "/settings/app/", search: `?appName=${name}` });
-  };
-  const handleBuild = () => navigate("/build-app");
-  // console.log("ownedApps", ownedApps);
   return (
     <div className="container">
       <WelcomeBanner />
       <div className="container">
-        <h2 className="heading">All your apps: </h2>
-        <button type="button" className="btn-main w-max" onClick={handleBuild}>
-          + Create a new app
-        </button>
-        {ownedApps.length > 0 ? (
-          ownedApps.map((app) => (
-            <div key={app.appId} className="card-row">
-              <Hero hero={app.logo || {}} theme="logo" onImageClick={() => handleEdit(app)} />
-              <div className="card-row-body">
-                <h2 className="heading">{app?.appName || "No name"}</h2>
-                {error && error[app.appId] && <p className="error-message">{error[app.appId]}</p>}
-                <div className="navigation-container">
-                  <Button label="Edit" onClick={() => handleEdit(app)} />
-                  <Button label="Settings" onClick={() => handleAdvancedSetting(app)} />
-                  <Button label="See live" onClick={() => handleSeeLive(app)} />
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>You dont own any apps</p>
-        )}
-        {/* <div className="flex-g">
-          <Button label={label.app} onClick={() => handleMenu("app")} theme={appTheme} />
-          <Button label={label.account} onClick={() => handleMenu("account")} theme={accTheme} />
+        <div className="navigation-container">
+          <IconButton
+            icon={{ icon: "app", label: "Apps" }}
+            theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("apps")}
+          />
+          <IconButton
+            icon={{ icon: "explore", label: "Explore" }}
+            theme={active === "explore" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("explore")}
+          />
+          <IconButton
+            icon={{ icon: "account", label: "Account" }}
+            theme={active === "account" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("account")}
+          />
         </div>
-        {active === "account" && show[active] && <AccountSettings onClick={handleMenu} />}
-        {active === "app" && show[active] && <AppSettings onClick={handleMenu} />}
-    
-        {active === "editApp" && show[active] && <EditApp onClick={handleMenu} />} */}
+
+        {active === "apps" && <AppPlayground />}
+        {active === "account" && <AccountSettings />}
+        {active === "explore" && <ExploreApps />}
       </div>
-      {/* <div>FOOTER</div> */}
     </div>
   );
 };
