@@ -5,7 +5,9 @@ import { IconButton } from "nexious-library";
 // import { Button, Hero, Icon } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
+import ExploreApps from "@app/components/app/ExploreApps";
 import AppSettings from "./settings/AppSettings";
+import AccountSettings from "./settings/AccountSettings";
 // import { AppListProps } from "app-context";
 // import AppCard from "@app/components/app/AppCard";
 
@@ -18,29 +20,34 @@ const UserPlayground = () => {
 
   const [active, setActive] = useState<"apps" | "explore" | "account">("apps");
 
-  // console.log("ownedApps :>> ", ownedApps);
+  // console.log('object :>> ', object);
+  // console.log("appList :>> ", appList);
   return (
     <div className="container">
       <WelcomeBanner />
       <div className="container">
         <div className="navigation-container">
-          <IconButton icon={{ icon: "app", label: "Apps" }} theme="btn-main" />
-          <IconButton icon={{ icon: "explore", label: "Explore" }} theme="btn-main" />
-          <IconButton icon={{ icon: "account", label: "Account" }} theme="btn-main" />
+          <IconButton
+            icon={{ icon: "app", label: "Apps" }}
+            theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("apps")}
+          />
+          <IconButton
+            icon={{ icon: "explore", label: "Explore" }}
+            theme={active === "explore" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("explore")}
+          />
+          <IconButton
+            icon={{ icon: "account", label: "Account" }}
+            theme={active === "account" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("account")}
+          />
         </div>
 
         {active === "apps" && <AppSettings />}
-
-        {/* <div className="flex-g">
-          <Button label={label.app} onClick={() => handleMenu("app")} theme={appTheme} />
-          <Button label={label.account} onClick={() => handleMenu("account")} theme={accTheme} />
-        </div>
-        {active === "account" && show[active] && <AccountSettings onClick={handleMenu} />}
-        {active === "app" && show[active] && <AppSettings onClick={handleMenu} />}
-    
-        {active === "editApp" && show[active] && <EditApp onClick={handleMenu} />} */}
+        {active === "account" && <AccountSettings />}
+        {active === "explore" && <ExploreApps />}
       </div>
-      {/* <div>FOOTER</div> */}
     </div>
   );
 };

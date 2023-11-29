@@ -12,19 +12,11 @@ const AppSettings = () => {
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
-    updateActiveMenu({
-      menu: app.menu || [],
-      appName: name.split("+").join(" "),
-      logo: app.logo,
-      media: app.media,
-    });
+    const { logo, appName, menu } = app;
+    updateActiveMenu({ menu, appName, logo, media: app.media });
     navigate(`/app/${name}`);
   };
 
-  const handleNav = (app: AppListProps, link: string) => {
-    const name = app.appName.split(" ").join("+");
-    navigate(`/${link}/${name}`);
-  };
   const handleBuild = () => navigate("/build-app");
 
   return (
@@ -34,16 +26,19 @@ const AppSettings = () => {
         + Create a new app
       </button>
       {ownedApps.length > 0 ? (
-        ownedApps.map((app) => (
-          <AppCard
-            app={app}
-            key={app.appId}
-            handleNavigation={(link: string) => handleNav(app, link)}
-            handleSeeLive={() => handleSeeLive(app)}
-            owner={app.owner}
-            theme="card-row"
-          />
-        ))
+        ownedApps.map((app) => {
+          const appName = app.appName.split(" ").join("+");
+          return (
+            <AppCard
+              app={app}
+              key={app.appId}
+              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+              handleSeeLive={() => handleSeeLive(app)}
+              owner={app.owner}
+              theme="card-row"
+            />
+          );
+        })
       ) : (
         <p>You dont own any apps</p>
       )}

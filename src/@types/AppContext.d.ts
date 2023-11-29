@@ -76,7 +76,7 @@ declare module "app-context" {
     sections: SectionProps[];
   }
   export type ActiveMenuProps = {
-    menu: MenuProps[];
+    menu?: MenuProps[];
     appName?: string;
     logo?: AssetProps;
     media?: MediaProps;
