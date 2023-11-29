@@ -23,10 +23,10 @@ const AccountSettings = () => {
         onSubmit={updateUser}
         submitLabel="Save and continue"
       />
-      <h2 className="heading">More options:</h2>
+      {/* <h2 className="heading">More options:</h2>
       <button className="btn-main btn-link" type="button">
         Change password
-      </button>
+      </button> */}
     </div>
   );
 };

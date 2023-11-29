@@ -4,7 +4,7 @@ import { Icon } from "nexious-library";
 const MediaContainer = (props: CardContainerProps) => {
   const { data } = props;
   return (
-    <div className="flex-g">
+    <div className="media-container">
       {data.length > 0 &&
         data.map((d) => (
           <a key={d.uid} className="nav-link" href={d.link || "#"}>
