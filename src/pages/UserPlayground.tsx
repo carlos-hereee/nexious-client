@@ -6,7 +6,7 @@ import { IconButton } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import ExploreApps from "@app/components/app/ExploreApps";
-import AppSettings from "./settings/AppSettings";
+import AppPlayground from "./AppPlayground";
 import AccountSettings from "./settings/AccountSettings";
 // import { AppListProps } from "app-context";
 // import AppCard from "@app/components/app/AppCard";
@@ -18,7 +18,7 @@ const UserPlayground = () => {
   // const [error, setError] = useState<{ [key: string]: string }>({});
   // const navigate = useNavigate();
 
-  const [active, setActive] = useState<"apps" | "explore" | "account">("apps");
+  const [active, setActive] = useState<"apps" | "explore" | "account">("explore");
 
   // console.log('object :>> ', object);
   // console.log("appList :>> ", appList);
@@ -44,7 +44,7 @@ const UserPlayground = () => {
           />
         </div>
 
-        {active === "apps" && <AppSettings />}
+        {active === "apps" && <AppPlayground />}
         {active === "account" && <AccountSettings />}
         {active === "explore" && <ExploreApps />}
       </div>

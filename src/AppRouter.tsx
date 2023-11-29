@@ -23,11 +23,12 @@ import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
 // import Homepage from "./pages/Homepage";
-import AppSettings from "./pages/settings/AppSettings";
+// import AppPlayground from "./pages/AppPlayground";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
 import Homepage from "./pages/HomePage";
+import AppSettings from "./pages/settings/AppSettings";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
@@ -78,7 +79,7 @@ const AppRouter: React.FC = () => {
       <Route element={<AdminRoute />}>
         {/* <Route path="/add-page" element={<AddPage />} /> */}
         <Route path="/edit-app/:appName" element={<EditApp />} />
-        <Route path="/settings/app/:appName" element={<AppSettings />} />
+        <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
       <Route

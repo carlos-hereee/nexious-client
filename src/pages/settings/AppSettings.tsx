@@ -1,48 +1,42 @@
-import AppCard from "@app/components/app/AppCard";
-import { AppContext } from "@app/context/app/AppContext";
-import { AuthContext } from "@app/context/auth/AuthContext";
-import { AppListProps } from "app-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
+import { Button, IconButton } from "nexious-library";
+import DangerZone from "../../components/app/DangerZone";
 
 const AppSettings = () => {
-  const { ownedApps } = useContext(AuthContext);
-  const { updateActiveMenu } = useContext(AppContext);
+  const { appName } = useContext(AppContext);
   const navigate = useNavigate();
+  const [copyUrl, setCopyUrl] = useState<boolean>(false);
+  const name = appName.split(" ").join("+");
+  const baseUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
 
-  const handleSeeLive = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    const { logo, appName, menu } = app;
-    updateActiveMenu({ menu, appName, logo, media: app.media });
-    navigate(`/app/${name}`);
+  const copyLink = () => {
+    navigator.clipboard.writeText(baseUrl);
+    setCopyUrl(true);
   };
 
-  const handleBuild = () => navigate("/build-app");
-
   return (
-    <div>
-      <h2 className="heading">All your apps: </h2>
-      <button type="button" className="btn-main w-max" onClick={handleBuild}>
-        + Create a new app
-      </button>
-      {ownedApps.length > 0 ? (
-        ownedApps.map((app) => {
-          const appName = app.appName.split(" ").join("+");
-          return (
-            <AppCard
-              app={app}
-              key={app.appId}
-              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
-              handleSeeLive={() => handleSeeLive(app)}
-              owner={app.owner}
-              theme="card-row"
-            />
-          );
-        })
-      ) : (
-        <p>You dont own any apps</p>
-      )}
+    <div className="container">
+      <h1 className="heading">App settings: {appName}</h1>
+      <div className="navigation-container">
+        <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
+        {/* <Button label="Admin permissions" /> */}
+        <Button label="Edit app" onClick={() => navigate(`/edit-app/${name}`)} />
+        <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
+        {/* <Button label="Support" /> */}
+      </div>
+      <div className="section-row">
+        <h3>App url:</h3>
+        <IconButton
+          icon={{ icon: copyUrl ? "check" : "copy", label: baseUrl }}
+          onClick={copyLink}
+          theme="btn-main"
+        />
+      </div>
+      <DangerZone />
     </div>
   );
 };
+
 export default AppSettings;

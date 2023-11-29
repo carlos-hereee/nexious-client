@@ -11,6 +11,9 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
+  export interface CardContainerProps {
+    data: MediaItemProp[];
+  }
   export interface SectionProps {
     title: string;
     uid: string;
