@@ -23,7 +23,7 @@ import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
 // import Homepage from "./pages/Homepage";
-import AppSettings from "./pages/AppSettings";
+import AppSettings from "./pages/settings/AppSettings";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";

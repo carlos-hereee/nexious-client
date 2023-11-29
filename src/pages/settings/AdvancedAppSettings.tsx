@@ -2,9 +2,9 @@ import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Button, IconButton } from "nexious-library";
-import DangerZone from "../components/app/DangerZone";
+import DangerZone from "../../components/app/DangerZone";
 
-const AppSettings = () => {
+const AdvancedAppSettings = () => {
   const { appName } = useContext(AppContext);
   const navigate = useNavigate();
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
@@ -39,4 +39,4 @@ const AppSettings = () => {
   );
 };
 
-export default AppSettings;
+export default AdvancedAppSettings;

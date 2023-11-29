@@ -67,7 +67,7 @@ const EditApp = () => {
     if (active) scrollToId(active);
   }, [active]);
 
-  console.log("media :>> ", media);
+  // console.log("media :>> ", media);
   useEffect(() => {
     if (!isLoading) {
       setFormLoading(true);
@@ -148,7 +148,7 @@ const EditApp = () => {
   }, [isLoading]);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
-  console.log("formValues :>> ", formValues[2].initialValues);
+  // console.log("formValues :>> ", formValues[2].initialValues);
   return (
     <div className="container">
       <h2 className="heading">Editing app: {appName}</h2>
