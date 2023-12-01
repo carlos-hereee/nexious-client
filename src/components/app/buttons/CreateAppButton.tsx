@@ -5,7 +5,7 @@ const CreateAppButton = () => {
 
   const handleBuild = () => navigate("/build-app");
   return (
-    <button type="button" className="btn-main w-max" onClick={handleBuild}>
+    <button type="button" className="btn-main" onClick={handleBuild}>
       + Create a new app
     </button>
   );
