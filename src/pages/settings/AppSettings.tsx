@@ -12,6 +12,8 @@ const AppSettings = () => {
   const name = appName.split(" ").join("+");
   const baseUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
 
+  console.log("appName :>> ", appName);
+  console.log("baseUrl :>> ", baseUrl);
   const copyLink = () => {
     navigator.clipboard.writeText(baseUrl);
     setCopyUrl(true);

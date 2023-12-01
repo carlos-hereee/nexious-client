@@ -79,7 +79,7 @@ const EditApp = () => {
       setAppValues([
         {
           ...initAppForm,
-          initialValues: { appName: appName || "", logo: logo.url || "" },
+          initialValues: { appName: appName || "", logo },
           schema: {
             required: ["appName", "logo"],
             unique: [
