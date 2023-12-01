@@ -92,6 +92,10 @@ declare module "app-types" {
     userId: string;
     role: string;
   };
+  export type ImageBuffer = {
+    data: { data: Buffer };
+    contentType: string;
+  };
   export type AssetProps = {
     url: string;
     alt: string;
@@ -102,6 +106,7 @@ declare module "app-types" {
     small?: string;
     label?: string;
     link?: string;
+    image?: ImageBuffer;
     creditTo?: {
       artistName: string;
       artistUrl: string;

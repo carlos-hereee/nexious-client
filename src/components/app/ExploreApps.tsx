@@ -18,7 +18,7 @@ const ExploreApps = () => {
   };
 
   return (
-    <div className="flex-gap">
+    <div className="card-container">
       {appList.map((app) => {
         const appName = app.appName.split(" ").join("+");
         return (
