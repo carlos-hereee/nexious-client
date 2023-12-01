@@ -101,7 +101,7 @@ declare module "app-context" {
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: string;
-    activeLogo: AssetProps;
+    activeLogo: string;
     themeList: ThemeList[];
     languageList: MenuItemProps[];
     iconList: MenuItemProps[];
@@ -113,7 +113,7 @@ declare module "app-context" {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
-    activeLogo: AssetProps;
+    activeLogo: string;
     appList: AppListProps[];
     appName: string;
     activeAppName: string;

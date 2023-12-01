@@ -28,10 +28,15 @@ const PreviewLanding: React.FC<PreviewPageProps> = (props) => {
       {preview.hasSections && (
         <div className={preview.sections?.length > 3 ? "sections-container" : "grid"}>
           {preview.sections.map((data) => {
-            const { sectionHero, sharedKey, body, uid } = data;
+            const { sectionHero, sharedKey, body, uid, title } = data;
+            const sectionHeroData = {
+              url: sectionHero instanceof File ? urlFile(sectionHero) : sectionHero,
+              theme: "hero-thumbnail",
+              alt: title,
+            };
             return sectionHero ? (
               <div key={uid || sharedKey} className="section-card">
-                <HeroCard data={data} hero={{ url: sectionHero, theme: "hero-thumbnail" }} />
+                <HeroCard data={data} hero={sectionHeroData} />
                 {body && <p className="text-max">{body}</p>}
               </div>
             ) : (
