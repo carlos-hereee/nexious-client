@@ -1,4 +1,5 @@
 import AppCard from "@app/components/app/AppCard";
+import CreateAppButton from "@app/components/app/CreateAppButton";
 import { AppContext } from "@app/context/app/AppContext";
 import { AuthContext } from "@app/context/auth/AuthContext";
 import { AppListProps } from "app-context";
@@ -17,14 +18,9 @@ const AppPlayground = () => {
     navigate(`/app/${name}`);
   };
 
-  const handleBuild = () => navigate("/build-app");
-
   return (
     <div>
       <h2 className="heading">All your apps: </h2>
-      <button type="button" className="btn-main w-max" onClick={handleBuild}>
-        + Create a new app
-      </button>
       {ownedApps.length > 0 ? (
         ownedApps.map((app) => {
           const appName = app.appName.split(" ").join("+");
@@ -42,6 +38,8 @@ const AppPlayground = () => {
       ) : (
         <p>You dont own any apps</p>
       )}
+      <h2 className="heading">Build an app</h2>
+      <CreateAppButton />
     </div>
   );
 };

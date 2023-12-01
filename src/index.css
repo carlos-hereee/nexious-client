@@ -60,11 +60,15 @@
 .form-field-container {
   max-height: 600px;
 }
-.section-row {
+/* .section-row {
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-/* .card-container > * {
-  flex: 1;
 } */
+
+.app-card {
+  flex: 1;
+}
+.app-card .card-row-body {
+  display: flex;
+}

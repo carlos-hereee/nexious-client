@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/context/auth/AuthContext";
 import { AppListProps } from "app-context";
 import AppCard from "./AppCard";
+import CreateAppButton from "./CreateAppButton";
 
 const ExploreApps = () => {
   const { appList, updateActiveMenu } = useContext(AppContext);
@@ -18,20 +19,23 @@ const ExploreApps = () => {
   };
 
   return (
-    <div className="card-container">
-      {appList.map((app) => {
-        const appName = app.appName.split(" ").join("+");
-        return (
-          <AppCard
-            app={app}
-            key={app.appId}
-            handleSeeLive={() => handleSeeLive(app)}
-            handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
-            owner={app.owner}
-            theme={theme ? `app-card alt-${theme}` : "app-card"}
-          />
-        );
-      })}
+    <div className="container">
+      <CreateAppButton />
+      <div className="card-container">
+        {appList.map((app) => {
+          const appName = app.appName.split(" ").join("+");
+          return (
+            <AppCard
+              app={app}
+              key={app.appId}
+              handleSeeLive={() => handleSeeLive(app)}
+              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+              owner={app.owner}
+              theme={theme ? `app-card alt-${theme}` : "app-card"}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
