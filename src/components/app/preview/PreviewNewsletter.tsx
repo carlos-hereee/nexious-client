@@ -1,5 +1,5 @@
 import { NewsletterProps } from "app-types";
-import { Hero, Form } from "nexious-library";
+import { Hero, Form, urlFile } from "nexious-library";
 
 type LetterProps = {
   preview?: NewsletterProps;
@@ -7,6 +7,7 @@ type LetterProps = {
 const PreviewNewsletter: React.FC<LetterProps> = (props) => {
   const { preview } = props;
   if (!preview) return <div />;
+  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : preview.hero };
   return (
     <div className="container-split">
       <div className="container">
@@ -19,7 +20,7 @@ const PreviewNewsletter: React.FC<LetterProps> = (props) => {
           </button>
         )}
       </div>
-      {preview.hero && <Hero hero={{ url: preview.hero }} />}
+      {preview.hero && <Hero hero={heroData} />}
     </div>
   );
 };
