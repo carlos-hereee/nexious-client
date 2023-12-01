@@ -156,7 +156,7 @@ const EditApp = () => {
       setFormLoading(false);
     } else setFormLoading(true);
   }, [isLoading]);
-  console.log("isLoading :>> ", isLoading);
+  // console.log("isLoading :>> ", isLoading);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
   // console.log("formValues :>> ", formValues[2].initialValues);
