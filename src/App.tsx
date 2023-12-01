@@ -61,7 +61,7 @@ const App = ({ children }: ChildProps) => {
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
       <Header
         menu={activeMenu}
-        logo={{ ...activeLogo, title: activeAppName }}
+        logo={{ url: activeLogo, title: activeAppName, alt: `${activeAppName}industry brand` }}
         updateMenu={handleMenu}
         onLogoClick={handleLogoClick}
         handleTheme={(t: string) => setTheme(t)}

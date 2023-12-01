@@ -12,7 +12,6 @@ export const formatLandingPage = (props: FormatLandingPageProps): PageProps => {
       if (!values) return { [key]: "" };
       const current = values[key as keyof PageProps];
       if (typeof current === "boolean") return { [key]: current };
-      if (key === "hero") return { [key]: values[key]?.url || "" };
       if (Array.isArray(current) && hasEntry) {
         const form = hasEntry[entryKey[key]];
         const value = values[entryKey[key] as keyof PageProps];

@@ -76,10 +76,11 @@ const EditApp = () => {
   useEffect(() => {
     if (!isLoading) {
       setFormLoading(true);
+      setAppValues([]);
       setAppValues([
         {
           ...initAppForm,
-          initialValues: { appName: appName || "", logo: logo.url || "" },
+          initialValues: { appName: appName || "", logo },
           schema: {
             required: ["appName", "logo"],
             unique: [
@@ -155,6 +156,7 @@ const EditApp = () => {
       setFormLoading(false);
     } else setFormLoading(true);
   }, [isLoading]);
+  // console.log("isLoading :>> ", isLoading);
 
   if (isFormLoading) return <Loading message="Loading app data" />;
   // console.log("formValues :>> ", formValues[2].initialValues);
@@ -165,6 +167,7 @@ const EditApp = () => {
         <PaginateForm
           paginate={formValues}
           theme={theme}
+          page={1}
           onCancel={() => navigate("/")}
           onPageClick={() => setActive("")}
           onDialogClose={() => setActive("")}

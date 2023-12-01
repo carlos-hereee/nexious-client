@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@app/context/auth/AuthContext";
 import { AppListProps } from "app-context";
 import AppCard from "./AppCard";
+// import CreateAppButton from "./buttons/CreateAppButton";
 
 const ExploreApps = () => {
   const { appList, updateActiveMenu } = useContext(AppContext);
@@ -18,7 +19,9 @@ const ExploreApps = () => {
   };
 
   return (
-    <div className="flex-gap">
+    // <div className="">
+    <div className="card-container">
+      <h2 className="heading">New apps</h2>
       {appList.map((app) => {
         const appName = app.appName.split(" ").join("+");
         return (
@@ -33,6 +36,8 @@ const ExploreApps = () => {
         );
       })}
     </div>
+
+    // </div>
   );
 };
 export default ExploreApps;

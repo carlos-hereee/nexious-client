@@ -18,6 +18,7 @@ import { updateNewsletter } from "./requests/updateNewsletter";
 import { updateSocialMedia } from "./requests/updateSocialMedia";
 import { removeApp } from "./requests/removeApp";
 import { updateCalendar } from "./requests/updateCalendar";
+import { getBucket } from "./requests/getBucket";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -80,6 +81,10 @@ export const AdminState = ({ children }: ChildProps) => {
     removeApp({ dispatch, appId, handleAppAssets });
   }, []);
 
+  const listBucket = useCallback((appId: string) => {
+    getBucket({ dispatch, appId, handleAppAssets });
+  }, []);
+
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -107,6 +112,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editSocialMedia,
       deleteApp,
       editCalendar,
+      listBucket,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

@@ -41,13 +41,7 @@
       ]
     }
   ],
-  "nexiousLogo": {
-    "url": "/icons/logo.svg",
-    "hero": "/icons/logo.svg",
-    "alt": "industry-brand",
-    "uid": "ch04937-brand-id",
-    "heroId": "ch04937-brand-id"
-  },
+  "nexiousLogo": "/icons/logo.svg",
   "nexiousHomepage": {
     "title": "Create Your Dream App Today",
     "tagline": "Turn Your Idea into a Stunning App",

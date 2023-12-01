@@ -9,10 +9,10 @@ const AppCard = (props: AppCardProps) => {
   const { user } = useContext(AuthContext);
 
   const isAdmin = owner.userId === user.userId;
-
+  const heroData = { url: app.logo, alt: `industry-brand-${app.appName}` };
   return (
     <div className={theme}>
-      <Hero hero={app.logo} theme="logo" onImageClick={handleSeeLive} />
+      <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
       <div className="card-row-body">
         <h2 className="heading">{app?.appName || "No name"}</h2>
         {app.media && <MediaContainer data={app.media.medias} />}

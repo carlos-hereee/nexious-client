@@ -38,7 +38,7 @@ declare module "app-context" {
     appName: string;
     appId: string;
     adminIds: AdminIdProps[];
-    logo: AssetProps;
+    logo: string;
     locale: string;
     languageList: MenuItemProps[];
     isLoading: boolean;
@@ -60,7 +60,7 @@ declare module "app-context" {
     appName: string;
     appId: string;
     adminIds: AdminIdProps[];
-    logo: AssetProps;
+    logo: string;
     owner: UserSchema;
     menu?: MenuProps[];
     media?: MediaProps;
@@ -78,7 +78,7 @@ declare module "app-context" {
   export type ActiveMenuProps = {
     menu?: MenuProps[];
     appName?: string;
-    logo?: AssetProps;
+    logo?: string;
     media?: MediaProps;
   };
 
@@ -100,8 +100,8 @@ declare module "app-context" {
     activeMedia: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    logo: AssetProps;
-    activeLogo: AssetProps;
+    logo: string;
+    activeLogo: string;
     themeList: ThemeList[];
     languageList: MenuItemProps[];
     iconList: MenuItemProps[];
@@ -113,7 +113,7 @@ declare module "app-context" {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
-    activeLogo: AssetProps;
+    activeLogo: string;
     appList: AppListProps[];
     appName: string;
     activeAppName: string;
@@ -127,7 +127,7 @@ declare module "app-context" {
     media: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
-    logo: AssetProps;
+    logo: string;
     themeList: MenuItemProps[];
     activeMedia: MediaProps;
     themeList: ThemeList[];
@@ -143,7 +143,7 @@ declare module "app-context" {
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     values?: AppProps;
-    logo?: AssetProps;
+    logo?: string;
     media?: MediaProps;
     appName?: string;
     appId?: string;
@@ -156,6 +156,8 @@ declare module "app-context" {
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_APP_LOGO
+          | APP_ACTIONS.SET_ACTIVE_LOGO
           | APP_ACTIONS.SET_APP_NAME
           | APP_ACTIONS.SET_APP_ERROR
           | APP_ACTIONS.SET_LOCALE
@@ -167,7 +169,6 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
     | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
-    | { type: APP_ACTIONS.SET_APP_LOGO | APP_ACTIONS.SET_ACTIVE_LOGO; payload: AssetProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }

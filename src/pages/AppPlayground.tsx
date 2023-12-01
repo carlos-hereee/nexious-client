@@ -1,4 +1,5 @@
 import AppCard from "@app/components/app/AppCard";
+import CreateApp from "@app/components/app/CreateApp";
 import { AppContext } from "@app/context/app/AppContext";
 import { AuthContext } from "@app/context/auth/AuthContext";
 import { AppListProps } from "app-context";
@@ -17,31 +18,29 @@ const AppPlayground = () => {
     navigate(`/app/${name}`);
   };
 
-  const handleBuild = () => navigate("/build-app");
-
   return (
-    <div>
-      <h2 className="heading">All your apps: </h2>
-      <button type="button" className="btn-main w-max" onClick={handleBuild}>
-        + Create a new app
-      </button>
-      {ownedApps.length > 0 ? (
-        ownedApps.map((app) => {
-          const appName = app.appName.split(" ").join("+");
-          return (
-            <AppCard
-              app={app}
-              key={app.appId}
-              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
-              handleSeeLive={() => handleSeeLive(app)}
-              owner={app.owner}
-              theme="card-row"
-            />
-          );
-        })
-      ) : (
-        <p>You dont own any apps</p>
-      )}
+    <div className="container">
+      <CreateApp />
+      <div className="container">
+        <h2 className="heading">All your apps: </h2>
+        {ownedApps.length > 0 ? (
+          ownedApps.map((app) => {
+            const appName = app.appName.split(" ").join("+");
+            return (
+              <AppCard
+                app={app}
+                key={app.appId}
+                handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+                handleSeeLive={() => handleSeeLive(app)}
+                owner={app.owner}
+                theme="card-row"
+              />
+            );
+          })
+        ) : (
+          <p>You dont own any apps</p>
+        )}
+      </div>
     </div>
   );
 };

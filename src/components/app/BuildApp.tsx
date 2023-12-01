@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
+import { uniqueApplist } from "@app/utils/forms/uniqeList";
 
 const BuildApp = () => {
   const {
@@ -44,7 +45,7 @@ const BuildApp = () => {
         fieldHeading={form.fieldHeading}
         schema={{
           required: ["appName", "logo"],
-          unique: [{ name: "appName", list: appList?.map((app) => app.appName) || [] }],
+          unique: [{ name: "appName", list: uniqueApplist(appList) }],
         }}
       />
     </div>

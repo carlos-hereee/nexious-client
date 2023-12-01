@@ -189,20 +189,9 @@
     }
   ],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
-  "logo": {
-    "url": "",
-    "hero": "",
-    "alt": "industry-brand",
-    "uid": "ch04937-brand-id",
-    "heroId": "ch04937-brand-id"
-  },
-  "activeLogo": {
-    "url": "/icons/logo.svg",
-    "hero": "/icons/logo.svg",
-    "alt": "industry-brand",
-    "uid": "ch04937-brand-id",
-    "heroId": "ch04937-brand-id"
-  },
+  "logo": "",
+  "activeLogo": "/icons/logo.svg",
+
   "iconList": [
     {
       "name": "confirm",

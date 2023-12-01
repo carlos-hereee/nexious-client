@@ -6,6 +6,8 @@ import { IconButton } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@app/components/app/WelcomeBanner";
 import ExploreApps from "@app/components/app/ExploreApps";
+// import { AdminContext } from "@app/context/admin/AdminContext";
+// import { AppContext } from "@app/context/app/AppContext";
 import AppPlayground from "./AppPlayground";
 import AccountSettings from "./settings/AccountSettings";
 // import { AppListProps } from "app-context";
@@ -13,7 +15,8 @@ import AccountSettings from "./settings/AccountSettings";
 
 const UserPlayground = () => {
   // const { ownedApps } = useContext(AuthContext);
-  // const { updateActiveMenu } = useContext(AppContext);
+  // const { listBucket } = useContext(AdminContext);
+  // const { appId } = useContext(AppContext);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [error, setError] = useState<{ [key: string]: string }>({});
   // const navigate = useNavigate();
@@ -25,6 +28,9 @@ const UserPlayground = () => {
   return (
     <div className="container">
       <WelcomeBanner />
+      {/* <button type="button" onClick={() => listBucket(appId)}>
+        List bucket
+      </button> */}
       <div className="container">
         <div className="navigation-container">
           <IconButton

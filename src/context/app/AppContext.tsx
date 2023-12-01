@@ -64,7 +64,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo, media } = props;
-    setActiveData({ dispatch, menu, appName, logo, media });
+    setActiveData({ dispatch, menu, appName, logo: logo || "", media });
   }, []);
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
@@ -100,7 +100,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppList,
       updateActiveMenu,
     };
-  }, [state.isLoading, state.activeAppName, accessToken, state.appList]);
+  }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.appName]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (

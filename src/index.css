@@ -60,8 +60,35 @@
 .form-field-container {
   max-height: 600px;
 }
-.section-row {
+/* .section-row {
   display: flex;
   align-items: center;
   gap: 1rem;
+} */
+
+.app-card {
+  flex: 1;
+}
+.app-card .card-row-body {
+  display: flex;
+}
+.explore-apps {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 2fr;
+}
+.build-app-container {
+  min-width: 300px;
+}
+.card-container {
+  justify-content: flex-start;
+}
+@media only screen and (max-width: 505px) {
+  /*Small smartphones [325px -> 425px]*/
+  .explore-apps {
+    grid-template-columns: 1fr;
+  }
+  .card-container {
+    justify-content: center;
+  }
 }
