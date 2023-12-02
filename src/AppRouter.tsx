@@ -2,19 +2,8 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
-// import ChangePassword from "@components/form/ChangePassword";
 import PrivateRoute from "./utils/router/PrivateRoute";
 import Landing from "./pages/Landing";
-// import Services from "./pages/Services";
-// import Booking from "./pages/Booking";
-// import Testimonials from "./pages/Testimonials";
-// import About from "./pages/About";
-// import Contact from "./pages/Contact";
-// import FAQ from "./pages/FAQ";
-// import Checkout from "./pages/Checkout";
-// import Dashboard from "./pages/Dashboard";
-// import AdminDashboard from "./pages/AdminDashboard";
-// import AddPage from "./pages/AddPages";
 import Offline from "./components/app/Offline";
 import SignUp from "./pages/Register";
 import AppRoute from "./utils/router/AppRoute";
@@ -22,13 +11,12 @@ import ForgotPassword from "./components/form/ForgotPassword";
 import AdminRoute from "./utils/router/AdminRoute";
 import BuildApp from "./components/app/BuildApp";
 import EditApp from "./components/app/EditApp";
-// import Homepage from "./pages/Homepage";
-// import AppPlayground from "./pages/AppPlayground";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
 import Homepage from "./pages/HomePage";
 import AppSettings from "./pages/settings/AppSettings";
+import AddPage from "./pages/AddPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
@@ -77,7 +65,7 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>
-        {/* <Route path="/add-page" element={<AddPage />} /> */}
+        <Route path="/add-page/:appName" element={<AddPage />} />
         <Route path="/edit-app/:appName" element={<EditApp />} />
         <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>

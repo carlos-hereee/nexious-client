@@ -155,15 +155,16 @@
     "initialValues": {
       "name": "",
       "title": "",
-      "body": "",
       "hero": "",
-      "hasSection": false,
-      "hasCta": false
+      "body": "",
+      "hasCta": false,
+      "hasSection": false
     },
     "types": {
       "title": "text",
       "body": "textarea",
       "name": "text",
+      "hero": "file",
       "hasSection": "checkbox",
       "hasCta": "checkbox"
     },
@@ -171,6 +172,7 @@
       "name": "Enter page name",
       "title": "Enter page heading",
       "body": "Enter page body text",
+      "hero": "Add background image",
       "hasSection": "This part cta the app has sub sections",
       "hasCta": "This part of the app has a call to action"
     },

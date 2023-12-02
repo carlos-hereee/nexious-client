@@ -58,6 +58,7 @@ declare module "app-admin" {
     editAppName: (values: PreviewValueProps, appId: string) => void;
     deleteApp: (appId: string) => void;
     // updateLanguage: (locale: string, appName: string) => void;
+    addPage: (values: PreviewValueProps, appId: string) => void;
     editLandingPage: (values: PreviewValueProps, appId: string) => void;
     editNewsletter: (values: PreviewValueProps, appId: string) => void;
     editSocialMedia: (values: PreviewValueProps, appId: string) => void;
