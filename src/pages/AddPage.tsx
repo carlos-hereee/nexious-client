@@ -1,9 +1,11 @@
 import { AdminContext } from "@context/admin/AdminContext";
+import { AppContext } from "@context/app/AppContext";
 import { Form } from "nexious-library";
 import { useContext } from "react";
 
 const AddPage = () => {
-  const { pagesForm, addPage } = useContext(AdminContext);
+  const { pagesForm, addPage, sectionEntries } = useContext(AdminContext);
+  const { iconList } = useContext(AppContext);
 
   return (
     <div className="flex-d-column">
@@ -13,6 +15,9 @@ const AddPage = () => {
         labels={pagesForm.labels}
         placeholders={pagesForm.placeholders}
         types={pagesForm.types}
+        addEntry={sectionEntries}
+        dataList={{ icon: iconList }}
+        clearSelection={{ icon: true }}
         submit={addPage}
         submitLabel="Save and continue"
         useMedia

@@ -5,7 +5,7 @@ import { Button, IconButton, Socials } from "nexious-library";
 import DangerZone from "../../components/app/DangerZone";
 
 const AppSettings = () => {
-  const { appName, media } = useContext(AppContext);
+  const { appName, media, menu, pages } = useContext(AppContext);
   // const { appName, forwardingEmail } = useContext(AppContext);
   const navigate = useNavigate();
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
@@ -16,33 +16,44 @@ const AppSettings = () => {
     navigator.clipboard.writeText(appUrl);
     setCopyUrl(true);
   };
-  // console.log("appName :>> ", media);
+  console.log("menu :>> ", menu);
+  console.log("pages:>> ", pages);
   return (
     <div className="container">
       <h1 className="heading">App settings: {appName}</h1>
       <div className="navigation-container">
         <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
-        {/* <Button label="Admin permissions" /> */}
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${name}`)} />
         <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
         {/* <Button label="Support" /> */}
       </div>
-      <div className="section-row">
-        <h3>Add page:</h3>
+      <div className="container">
+        <h2>Pages:</h2>
+        {pages && pages?.length > 0 ? (
+          pages.map((page) => (
+            <div className="container" key={page.uid}>
+              <h2> {page.title} </h2>
+            </div>
+          ))
+        ) : (
+          <p>No pages added. Add more pages to your app</p>
+        )}
         <Button label="+ Add Page" onClick={() => navigate(`/add-page/${name}`)} />
       </div>
+      <div className="container">
+        <h2>Social medias:</h2>
+        {media.hasMedias ? <Socials medias={media.medias} /> : <p>No social media linked</p>}
+        <Button label="+ Add Social media" onClick={() => navigate(`/add-social-media/${name}`)} />
+      </div>
       <div className="section-row">
-        <h3>App url:</h3>
+        <h2>Copy app url:</h2>
         <IconButton
           icon={{ icon: copyUrl ? "check" : "copy", label: appUrl }}
           onClick={copyLink}
           theme="btn-main"
         />
       </div>
-      <div className="container">
-        <h3>Social medias:</h3>
-        {media.hasMedias ? <Socials medias={media.medias} /> : <p>No social media linked</p>}
-      </div>
+
       <DangerZone />
     </div>
   );

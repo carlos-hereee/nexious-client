@@ -74,6 +74,7 @@ declare module "app-context" {
     hero: AssetProps;
     cta: CallToActionProps[];
     sections: SectionProps[];
+    uid?: string;
   }
   export type ActiveMenuProps = {
     menu?: MenuProps[];
@@ -96,6 +97,7 @@ declare module "app-context" {
     owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
+    pages?: PageProps[];
     media: MediaProps;
     activeMedia: MediaProps;
     menu: MenuProps[];
@@ -120,6 +122,7 @@ declare module "app-context" {
     appError: string;
     welcomeMessage: string;
     landing?: PageProps;
+    pages?: PageProps[];
     appId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];

@@ -158,14 +158,14 @@
       "hero": "",
       "body": "",
       "hasCta": false,
-      "hasSection": false
+      "hasSections": false
     },
     "types": {
       "title": "text",
       "body": "textarea",
       "name": "text",
       "hero": "file",
-      "hasSection": "checkbox",
+      "hasSections": "checkbox",
       "hasCta": "checkbox"
     },
     "labels": {
@@ -173,17 +173,18 @@
       "title": "Enter page heading",
       "body": "Enter page body text",
       "hero": "Add background image",
-      "hasSection": "This part cta the app has sub sections",
+      "hasSections": "This part cta the app has sub sections",
       "hasCta": "This part of the app has a call to action"
     },
     "placeholders": {
       "title": "Page headline",
       "hero": "",
       "body": "Text body",
-      "name": "Page name",
-      "hasSection": "",
+      "name": "Page name, eg. services/checkout/booking",
+      "hasSections": "",
       "hasCta": ""
-    }
+    },
+    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
   },
   "sectionForm": {
     "formId": "sectionForm",

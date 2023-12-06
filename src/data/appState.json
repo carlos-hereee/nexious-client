@@ -191,6 +191,7 @@
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
+  "pages": [],
   "iconList": [
     {
       "name": "confirm",

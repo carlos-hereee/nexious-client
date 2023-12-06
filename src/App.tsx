@@ -21,8 +21,6 @@ const App = ({ children }: ChildProps) => {
   } = useContext(AppContext);
   const navigate = useNavigate();
 
-  console.log("isOffline :>> ", isOffline);
-
   const handleLogoClick = () => {
     const data = [...nexiousMenu].map((val) => ({ active: val.active, category: val.category }));
     const menu = data.map((d, idx) => {

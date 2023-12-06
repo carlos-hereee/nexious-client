@@ -121,6 +121,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       locale: state.locale,
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
+      pages: state.pages,
       updateAppData,
       updateAppList,
       getAppWithName,
