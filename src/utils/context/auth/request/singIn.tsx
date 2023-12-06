@@ -13,9 +13,14 @@ export const singIn = async (props: AuthReducerProps) => {
       dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
     } catch (error) {
       const err = error as AxiosError;
-      // console.log("err :>> ", err);
-      dispatch({ type: AUTH_ACTIONS.SIGN_IN_ERROR, payload: `${err.response?.data}` });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+      if (err.code === "ERR_NETWORK") {
+        dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: true });
+        dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+      } else {
+        // console.log("err :>> ", err);
+        dispatch({ type: AUTH_ACTIONS.SIGN_IN_ERROR, payload: `${err.response?.data}` });
+        dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+      }
     }
   }
 };

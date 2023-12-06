@@ -71,6 +71,21 @@
     ],
     "sections": [
       {
+        "title": "Fast and Simple",
+        "subtitle": "",
+        "uid": "section-12",
+        "details": "",
+        "sectionHero": {
+          "url": "/icons/CLOCK.svg",
+          "alt": "Trusted professionals",
+          "uid": "hero-uid-3",
+          "heroId": "section-heroId-3",
+          "hero": "/icons/CLOCK.svg",
+          "theme": "hero-thumbnail"
+        },
+        "body": "Crafted with a focus on simplicity and user-friendly functionality, the design aims to provide an intuitive and accessible user experience."
+      },
+      {
         "title": "Trusted Professionals",
         "subtitle": "",
         "uid": "section-1",

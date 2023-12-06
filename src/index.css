@@ -60,11 +60,6 @@
 .form-field-container {
   max-height: 600px;
 }
-/* .section-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-} */
 
 .app-card {
   flex: 1;
@@ -92,3 +87,18 @@
     justify-content: center;
   }
 }
+.sections-grid {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.section-card {
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: 1fr 1fr;
+}
+/* .header {
+  border-bottom: 3px solid #fefefe;
+} */

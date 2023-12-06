@@ -5,9 +5,10 @@ import { AppContext } from "@context/app/AppContext";
 import { ChildProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousMenu, nexiousName, nexiousLogo, nexiousMedia } from "@data/nexious.json";
+import ErrorPage from "@pages/ErrorPage";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme } = useContext(AuthContext);
+  const { isLoading, theme, setTheme, isOffline, setStranded } = useContext(AuthContext);
   const {
     activeLogo,
     activeMenu,
@@ -20,6 +21,8 @@ const App = ({ children }: ChildProps) => {
   } = useContext(AppContext);
   const navigate = useNavigate();
 
+  console.log("isOffline :>> ", isOffline);
+
   const handleLogoClick = () => {
     const data = [...nexiousMenu].map((val) => ({ active: val.active, category: val.category }));
     const menu = data.map((d, idx) => {
@@ -31,6 +34,11 @@ const App = ({ children }: ChildProps) => {
     navigate("/");
   };
   // console.log("themeList :>> ", themeList);
+
+  if (isOffline)
+    return (
+      <ErrorPage message="Server is offline try again later.." onClick={() => setStranded(false)} />
+    );
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
   return (

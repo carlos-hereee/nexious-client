@@ -66,6 +66,7 @@ declare module "auth-context" {
     // setAccessToken: (values: string) => void;
     // getAccessToken: () => void;
     // getAccessTokenData: () => void;
+    setStranded: (data: boolean) => void;
     login: (values: AuthFormValueProps) => void;
     register: (values: RegisterFormProps) => void;
     logout: () => void;
@@ -102,10 +103,6 @@ declare module "auth-context" {
         payload: string;
       }
     | { type: AUTH_ACTIONS.SET_OWNED_APPS; payload: AppListProps[] }
-    // | {
-    //     type: AUTH_ACTIONS.UPDATE_SHIPPING_DETAILS;
-    //     payload: AppListProps[];
-    //   }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
 }

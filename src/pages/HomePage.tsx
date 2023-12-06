@@ -19,16 +19,16 @@ const Homepage = () => {
         />
         {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
       </div>
-      <div className={nexiousHomepage.sections.length > 3 ? "sections-container" : "grid"}>
+      <div className={nexiousHomepage.sections.length > 3 ? "sections-container" : "sections-grid"}>
         {nexiousHomepage.sections.map((section: SectionProps) => (
-          <div className="flex-d-column" key={section.uid}>
+          <div className="section-card" key={section.uid}>
             <HeroCard data={section} hero={section.sectionHero} />
             {section.body && <p className="text-max">{section.body}</p>}
           </div>
         ))}
       </div>
       <div className="flex-center">
-        <h3 className="heading text-center"> More comming soon</h3>
+        <h3 className="heading text-center"> More comming soon!</h3>
       </div>
     </div>
   );
