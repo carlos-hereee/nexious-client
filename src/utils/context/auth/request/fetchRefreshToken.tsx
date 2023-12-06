@@ -1,6 +1,7 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { AuthDispatchProps } from "auth-context";
+// import { AxiosError } from "axios";
 
 export const fetchRefreshToken = async (props: AuthDispatchProps) => {
   const { dispatch } = props;
@@ -14,6 +15,7 @@ export const fetchRefreshToken = async (props: AuthDispatchProps) => {
       dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
     }
   } catch (error) {
+    // const err = error as AxiosError;
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
     // console.log("data :>> ", data);
   }

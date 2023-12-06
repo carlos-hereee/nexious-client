@@ -12,8 +12,13 @@ export const singUp = async (props: AuthReducerProps) => {
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data || "" });
   } catch (error) {
     const err = error as AxiosError;
-    dispatch({ type: AUTH_ACTIONS.SIGN_UP_ERROR, payload: `${err.response?.data}` });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    if (err.code === "ERR_NETWORK") {
+      dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: true });
+      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    } else {
+      dispatch({ type: AUTH_ACTIONS.SIGN_UP_ERROR, payload: `${err.response?.data}` });
+      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    }
   }
   // if (data && updateUser) updateUser(data.user);
   // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
