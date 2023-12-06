@@ -1,4 +1,4 @@
-import { LOG_ACTIONS } from "@app/utils/@types/actions/LogActions";
+import { LOG_ACTIONS } from "@actions/LogActions";
 import { LogActionProps, LogSchema } from "log-context";
 
 export const reducer = (state: LogSchema, action: LogActionProps): LogSchema => {

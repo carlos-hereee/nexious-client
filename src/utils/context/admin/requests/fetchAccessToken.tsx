@@ -1,4 +1,4 @@
-import { axiosAuth } from "@app/utils/axios/axiosAuth";
+import { axiosAuth } from "@axios/axiosAuth";
 import { AdminDisptachProps } from "app-admin";
 
 export const fetchAccessToken = async (props: AdminDisptachProps) => {

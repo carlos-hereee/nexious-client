@@ -1,5 +1,5 @@
 import axios from "axios";
-import { clientUrl, serverUrl } from "@app/config";
+import { clientUrl, serverUrl } from "@config";
 
 export const axiosAuth = axios.create({
   baseURL: serverUrl,

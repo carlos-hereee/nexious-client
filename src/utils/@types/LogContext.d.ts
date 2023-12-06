@@ -1,5 +1,5 @@
 declare module "log-context" {
-  import { LOG_ACTIONS } from "@app/utils/@types/actions/LogActions";
+  import { LOG_ACTIONS } from "@actions/LogActions";
 
   export interface LogMessageItem {
     uid: string;

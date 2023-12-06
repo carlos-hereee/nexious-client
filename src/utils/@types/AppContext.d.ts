@@ -1,6 +1,6 @@
 declare module "app-context" {
   import { UserSchema } from "auth-context";
-  import { APP_ACTIONS } from "@app/utils/@types/actions/AppActions";
+  import { APP_ACTIONS } from "@actions/AppActions";
   import {
     AdminIdProps,
     AssetProps,

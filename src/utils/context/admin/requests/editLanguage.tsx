@@ -1,4 +1,4 @@
-// import { axiosAuth } from "@app/utils/axios/axiosAuth";
+// import { axiosAuth } from "@axios/axiosAuth";
 // import { ADMIN_ACTIONS } from "@app/utils/types/AdminActions";
 // // import { isDev } from "@app/config";
 // import { EditAppProps } from "app-forms";

@@ -1,4 +1,4 @@
-// import { axiosMedia } from "@app/utils/axios/axiosMedia";
+// import { axiosMedia } from "@axios/axiosMedia";
 // import { isDev } from "@app/config";
 
 // export const uploadImage = async (dispatch, file, onUploadProgress) => {

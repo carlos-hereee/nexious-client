@@ -4,14 +4,14 @@ import { useState } from "react";
 import { IconButton } from "nexious-library";
 // import { Button, Hero, Icon } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
-import WelcomeBanner from "@app/components/app/WelcomeBanner";
-import ExploreApps from "@app/components/app/ExploreApps";
-// import { AdminContext } from "@app/context/admin/AdminContext";
-// import { AppContext } from "@app/context/app/AppContext";
+import WelcomeBanner from "@components/app/WelcomeBanner";
+import ExploreApps from "@components/app/ExploreApps";
+// import { AdminContext } from "@context/admin/AdminContext";
+// import { AppContext } from "@context/app/AppContext";
 import AppPlayground from "./AppPlayground";
 import AccountSettings from "./settings/AccountSettings";
 // import { AppListProps } from "app-context";
-// import AppCard from "@app/components/app/AppCard";
+// import AppCard from "@components/app/AppCard";
 
 const UserPlayground = () => {
   // const { ownedApps } = useContext(AuthContext);

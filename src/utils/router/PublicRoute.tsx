@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
-// import { AppContext } from "@app/context/app/AppContext";
+// import { AppContext } from "@context/app/AppContext";
 
 const PublicRoute = () => {
   const { accessToken } = useContext(AuthContext);

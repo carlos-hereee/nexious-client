@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { uniqueApplist } from "@app/utils/forms/uniqeList";
+import { uniqueApplist } from "@forms/uniqeList";
 
 const BuildApp = () => {
   const {

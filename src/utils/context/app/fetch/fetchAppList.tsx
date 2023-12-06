@@ -1,5 +1,5 @@
-import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { APP_ACTIONS } from "@app/utils/@types/actions/AppActions";
+import { axiosAuth } from "@axios/axiosAuth";
+import { APP_ACTIONS } from "@actions/AppActions";
 import { AppDispatchProps } from "app-context";
 
 export const fetchAppList = async (props: AppDispatchProps) => {

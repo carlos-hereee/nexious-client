@@ -7,7 +7,7 @@ import { LogState } from "@context/log/LogContext";
 // import { ServicesState } from "@context/services/ServicesContext";
 // import { CalendarState } from "@context/calendar/CalendarContext";
 import { AdminState } from "@context/admin/AdminContext";
-import { isDev } from "@app/config";
+import { isDev } from "@config";
 import App from "./App";
 import AppRouter from "./AppRouter";
 import "nexious-library/@index.css";
@@ -38,5 +38,6 @@ if (elementRoot) {
     </React.StrictMode>
   );
 } else if (isDev) {
+  // eslint-disable-next-line no-console
   console.log("App ERROR element root not found; value is null");
 }

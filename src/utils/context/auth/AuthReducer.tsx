@@ -1,4 +1,4 @@
-import { AUTH_ACTIONS } from "@app/utils/@types/actions/AuthActions";
+import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { AuthStateProps, AuthActionProps } from "auth-context";
 
 export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthStateProps => {

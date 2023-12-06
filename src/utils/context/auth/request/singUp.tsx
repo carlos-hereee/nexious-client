@@ -1,6 +1,6 @@
 // import { isDev } from "@app/config";
-import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { AUTH_ACTIONS } from "@app/utils/@types/actions/AuthActions";
+import { axiosAuth } from "@axios/axiosAuth";
+import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { AuthReducerProps } from "auth-context";
 import { AxiosError } from "axios";
 

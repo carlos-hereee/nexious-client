@@ -1,5 +1,5 @@
-import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
-import { axiosMedia } from "@app/utils/axios/axiosMedia";
+import { ADMIN_ACTIONS } from "@actions/AdminActions";
+import { axiosMedia } from "@axios/axiosMedia";
 import { AdminDisptachProps } from "app-admin";
 import { InitAppProps } from "app-forms";
 import { AxiosError } from "axios";

@@ -1,5 +1,5 @@
-import { axiosMedia } from "@app/utils/axios/axiosMedia";
-import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
+import { axiosMedia } from "@axios/axiosMedia";
+import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { AdminDisptachProps } from "app-admin";
 
 export const updateNewsletter = async (props: AdminDisptachProps) => {

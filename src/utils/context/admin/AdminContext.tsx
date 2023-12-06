@@ -3,7 +3,7 @@ import { AdminSchema, AppAssetProps } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
-import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
+import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";

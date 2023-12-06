@@ -1,5 +1,5 @@
-import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
-import { axiosAuth } from "@app/utils/axios/axiosAuth";
+import { ADMIN_ACTIONS } from "@actions/AdminActions";
+import { axiosAuth } from "@axios/axiosAuth";
 import { AdminDisptachProps } from "app-admin";
 
 export const getBucket = async (props: AdminDisptachProps) => {

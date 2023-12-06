@@ -10,7 +10,7 @@ import {
 import appState from "@data/appState.json";
 import { ChildProps, MenuProps } from "app-types";
 import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
-import { APP_ACTIONS } from "@app/utils/@types/actions/AppActions";
+import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";

@@ -1,5 +1,5 @@
-import { userMinData } from "@app/utils/app/userMinData";
-import { AUTH_ACTIONS } from "@app/utils/@types/actions/AuthActions";
+import { userMinData } from "@hooks/userMinData";
+import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { AuthReducerProps } from "auth-context";
 
 export const setUser = (props: AuthReducerProps) => {

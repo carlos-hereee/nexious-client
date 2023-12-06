@@ -1,4 +1,4 @@
-import { AuthContext } from "@app/context/auth/AuthContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { AppCardProps } from "app-context";
 import { Button, Hero } from "nexious-library";
 import { useContext } from "react";

@@ -1,4 +1,4 @@
-import { AdminContext } from "@app/context/admin/AdminContext";
+import { AdminContext } from "@context/admin/AdminContext";
 import { Form } from "nexious-library";
 import { useContext } from "react";
 

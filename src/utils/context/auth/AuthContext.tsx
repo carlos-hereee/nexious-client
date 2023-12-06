@@ -3,7 +3,7 @@ import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 import { AuthFormValueProps, ForgotPasswordFormProps, RegisterFormProps } from "app-forms";
-import { AUTH_ACTIONS } from "@app/utils/@types/actions/AuthActions";
+import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { useNavigate } from "react-router-dom";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";

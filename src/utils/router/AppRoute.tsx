@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { AppContext } from "@app/context/app/AppContext";
+import { AppContext } from "@context/app/AppContext";
 
 const AppRoute = () => {
   const { isOnline, getAppWithName, appError } = useContext(AppContext);

@@ -1,6 +1,6 @@
 declare module "app-admin" {
   import { MenuItemProps } from "app-types";
-  import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
+  import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps } from "app-context";
   import { UserSchema } from "auth-context";
   import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";

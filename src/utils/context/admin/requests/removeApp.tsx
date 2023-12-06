@@ -1,6 +1,6 @@
 // import { isDev } from "@app/config";
-import { axiosAuth } from "@app/utils/axios/axiosAuth";
-import { ADMIN_ACTIONS } from "@app/utils/@types/actions/AdminActions";
+import { axiosAuth } from "@axios/axiosAuth";
+import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { AdminDisptachProps } from "app-admin";
 
 export const removeApp = async (props: AdminDisptachProps) => {

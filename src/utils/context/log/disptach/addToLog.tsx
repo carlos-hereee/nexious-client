@@ -1,5 +1,5 @@
-import { LOG_ACTIONS } from "@app/utils/@types/actions/LogActions";
-import { responseError } from "@app/utils/app/axiosResponseError";
+import { LOG_ACTIONS } from "@actions/LogActions";
+import { responseError } from "@app/axiosResponseError";
 import { LogReducerProps } from "log-context";
 
 export const addToLog = (props: LogReducerProps) => {

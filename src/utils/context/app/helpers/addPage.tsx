@@ -1,4 +1,4 @@
-// import { axiosMedia } from "@app/utils/axios/axiosMedia";
+// import { axiosMedia } from "@axios/axiosMedia";
 
 // export const addPage = async (dispatch, a, appId, fetchLatest) => {
 //   try {
