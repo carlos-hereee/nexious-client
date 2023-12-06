@@ -22,6 +22,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, appId: action.payload };
     case APP_ACTIONS.SET_MEDIA:
       return { ...state, media: action.payload };
+    case APP_ACTIONS.SET_PAGES:
+      return { ...state, pages: action.payload };
     case APP_ACTIONS.SET_OWNER:
       return { ...state, owner: action.payload };
     case APP_ACTIONS.SET_APP_NAME:

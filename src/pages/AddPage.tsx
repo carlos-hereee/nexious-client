@@ -1,11 +1,12 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
+import { PreviewValueProps } from "app-forms";
 import { Form } from "nexious-library";
 import { useContext } from "react";
 
 const AddPage = () => {
   const { pagesForm, addPage, sectionEntries } = useContext(AdminContext);
-  const { iconList } = useContext(AppContext);
+  const { iconList, appId } = useContext(AppContext);
 
   return (
     <div className="flex-d-column">
@@ -18,9 +19,9 @@ const AddPage = () => {
         addEntry={sectionEntries}
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
-        submit={addPage}
+        onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
         submitLabel="Save and continue"
-        useMedia
+        withFileUpload
         schema={{ required: ["title", "name"] }}
       />
     </div>
