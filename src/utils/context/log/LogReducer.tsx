@@ -1,25 +1,15 @@
-// const isLoading = (state, action) => {
-//   return { ...state, isLoading: action.payload };
-// };
-// const addMessageToLog = (state, action) => {
-//   return { ...state, log: [...state.log, action.payload], isLoading: false };
-// };
-// const removeMessageFromLog = (state, action) => {
-//   return {
-//     ...state,
-//     log: state.log.filter((i) => i.uid !== action.payload),
-//     isLoading: false,
-//   };
-// };
-// export const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "IS_LOADING":
-//       return isLoading(state, action);
-//     case "ADD_MESSAGE_TO_LOG":
-//       return addMessageToLog(state, action);
-//     case "REMOVE_MESSAGE_FROM_LOG":
-//       return removeMessageFromLog(state, action);
-//     default:
-//       return state;
-//   }
-// };
+import { LOG_ACTIONS } from "@app/utils/@types/actions/LogActions";
+import { LogActionProps, LogSchema } from "log-context";
+
+export const reducer = (state: LogSchema, action: LogActionProps): LogSchema => {
+  switch (action.type) {
+    case LOG_ACTIONS.IS_LOADING:
+      return { ...state, isLoading: action.payload };
+    case LOG_ACTIONS.ADD_MESSAGE_TO_LOG:
+      return { ...state, log: action.payload };
+    case LOG_ACTIONS.REMOVE_MESSAGE_FROM_LOG:
+      return { ...state, log: action.payload };
+    default:
+      return state;
+  }
+};

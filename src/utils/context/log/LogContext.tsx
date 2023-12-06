@@ -1,22 +1,30 @@
-// import { createContext, useReducer } from "react";
-// import { reducer } from "./LogReducer";
-// import { addMessageToLog } from "./helpers/addMessageToLog";
-// import { removeMessageFromLog } from "./helpers/removeMessageFromLog";
-// export const LogContext = createContext();
+import { createContext, useCallback, useMemo, useReducer } from "react";
+import { ChildProps } from "app-types";
+import { LogMessageItem, LogSchema } from "log-context";
+import logState from "@data/logState.json";
+import { reducer } from "./LogReducer";
+import { addToLog } from "./disptach/addToLog";
+import { removeFromLog } from "./disptach/removeFromLog";
 
-// export const LogState = ({ children }) => {
-//   const initialState = { isLoading: false, log: [] };
-//   const [state, dispatch] = useReducer(reducer, initialState);
+export const LogContext = createContext<LogSchema>({} as LogSchema);
 
-//   return (
-//     <LogContext.Provider
-//       value={{
-//         log: state.log,
-//         isLoading: state.isLoading,
-//         addMessageToLog: (a) => addMessageToLog(dispatch, a),
-//         removeMessageFromLog: (a) => removeMessageFromLog(dispatch, a),
-//       }}>
-//       {children}
-//     </LogContext.Provider>
-//   );
-// };
+export const LogState = ({ children }: ChildProps) => {
+  const [state, dispatch] = useReducer(reducer, logState);
+
+  const addMessageToLog = useCallback((a: LogMessageItem) => {
+    addToLog({ dispatch, data: a });
+  }, []);
+  const removeMessageFromLog = useCallback((a: LogMessageItem) => {
+    removeFromLog({ dispatch, data: a, log: state.log });
+  }, []);
+
+  const logValues = useMemo(() => {
+    return {
+      isLoading: state.isLoading,
+      log: state.log,
+      addMessageToLog,
+      removeMessageFromLog,
+    };
+  }, [state.isLoading, addMessageToLog, removeMessageFromLog]);
+  return <LogContext.Provider value={logValues}>{children}</LogContext.Provider>;
+};
