@@ -133,8 +133,9 @@ declare module "app-types" {
   export interface PreviewPageProps {
     preview?: PageProps;
     theme?: string;
-    hero?: string | File;
-    onClick?: (key: CallToActionProps) => void;
+    hero?: string;
+    layout?: string;
+    onClick?: () => void;
   }
   export type PreviewSocialMediaProps = {
     preview?: MediaProps;

@@ -3,7 +3,7 @@ declare module "app-context" {
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
     AdminIdProps,
-    AssetProps,
+    // AssetProps,
     CalendarProps,
     CallToActionProps,
     MediaProps,
@@ -72,9 +72,10 @@ declare module "app-context" {
     body: string;
     hasCta: boolean;
     hasSections: boolean;
-    hero: AssetProps;
+    hero: string;
     cta: CallToActionProps[];
     sections: SectionProps[];
+    name?: string;
     uid?: string;
   }
   export type ActiveMenuProps = {
