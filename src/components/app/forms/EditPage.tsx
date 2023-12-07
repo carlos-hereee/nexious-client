@@ -6,15 +6,17 @@ import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
 import { PageProps } from "app-context";
 import { formatPage } from "@forms/formatPage";
-// import { AuthContext } from "@context/auth/AuthContext";
 
 const EditPage = () => {
   const { pagesForm, sectionEntries, editPage, isLoading } = useContext(AdminContext);
   const { iconList, appId, pages } = useContext(AppContext);
-  // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
   const [initialValues, setValues] = useState<PageProps>();
   const location = useLocation();
+
+  const pageData = location.pathname.split("/");
+  const pageName = pageData[pageData.length - 1];
+  const activePage = pages ? pages.filter((p) => p.name === pageName)[0] : null;
 
   useEffect(() => {
     if (isLoading) setStatus("loading");
@@ -23,17 +25,12 @@ const EditPage = () => {
 
   useEffect(() => {
     if (status === "idle") {
-      const pageData = location.pathname.split("/");
-      const pageName = pageData[pageData.length - 1];
-      if (pages) {
-        const activePage = pages.filter((p) => p.name === pageName)[0];
-        console.log("activePage :>> ", activePage);
+      if (activePage) {
         const val = formatPage({
           values: activePage,
           hasEntry: sectionEntries,
           desiredOrder: pagesForm.desiredOrder || [""],
         });
-        console.log("val :>> ", val);
         setValues(val);
       }
     }
@@ -52,7 +49,7 @@ const EditPage = () => {
           addEntry={sectionEntries}
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
-          onSubmit={(values: PreviewValueProps) => editPage(values, appId)}
+          onSubmit={(values: PreviewValueProps) => editPage(values, appId, activePage?.pageId)}
           submitLabel="Save and continue"
           withFileUpload
           schema={{ required: ["title", "name"] }}

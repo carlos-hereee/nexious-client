@@ -80,8 +80,8 @@ export const AdminState = ({ children }: ChildProps) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
 
-  const editPage = useCallback((a: PreviewValueProps, appId: string, name?: string) => {
-    updatePage({ dispatch, values: a, appId, handleAppAssets, name });
+  const editPage = useCallback((a: PreviewValueProps, appId: string, pageId?: string) => {
+    updatePage({ dispatch, values: a, appId, handleAppAssets, pageId });
   }, []);
 
   const deleteApp = useCallback((appId: string) => {
