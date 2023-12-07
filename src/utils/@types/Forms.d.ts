@@ -35,7 +35,7 @@ declare module "app-forms" {
     placeholders?: { [key: string]: string | undefined };
     heading?: string;
     fieldHeading: { [key: string]: string | undefined };
-    desiredOrder?: string[];
+    desiredOrder: string[];
     submitLabel?: string;
     additionLabel?: string;
     removalLabel?: string;
@@ -93,7 +93,7 @@ declare module "app-forms" {
   }
   export interface FormatNewsletterProps {
     values: NewsletterProps;
-    desiredOrder: string[];
+    desiredOrder?: string[];
     hasEntry?: SectionEntryOganizer;
   }
   export interface FormatMediaProps {

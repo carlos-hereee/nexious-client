@@ -20,6 +20,7 @@
     "types": { "appName": "text", "logo": "file", "theme": "datalist" },
     "withFileUpload": true,
     "previewLabel": "See changes",
+    "desiredOrder": ["appName", "logo"],
     "hero": {
       "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
       "alt": "build app",
@@ -212,7 +213,8 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "canMultiply": true,
-    "groupName": "sections"
+    "groupName": "sections",
+    "desiredOrder": ["title", "body", "sectionHero"]
   },
   "ctaForm": {
     "formId": "ctaForm",
@@ -229,16 +231,18 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "canMultiply": true,
-    "groupName": "cta"
+    "groupName": "cta",
+    "desiredOrder": ["label", "link", "icon"]
   },
   "heroForm": {
     "heading": "",
     "formId": "heroForm",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "labels": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
+    "initialValues": { "name": "", "hero": "", "link": "", "label": "" },
+    "desiredOrder": [],
+    "labels": { "name": "", "hero": "", "link": "", "label": "" },
+    "placeholders": { "name": "", "hero": "", "link": "", "label": "" },
+    "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
   "sectionEntries": {
     "hasCta": {
@@ -257,7 +261,8 @@
       "removalLabel": "Remove",
       "canMultiply": true,
       "groupName": "cta",
-      "group": "hasCta"
+      "group": "hasCta",
+      "desiredOrder": ["label", "link", "icon"]
     },
     "hasSections": {
       "formId": "sectionForm",
@@ -275,7 +280,8 @@
       "removalLabel": "Remove",
       "canMultiply": true,
       "groupName": "sections",
-      "group": "hasSections"
+      "group": "hasSections",
+      "desiredOrder": ["title", "body", "sectionHero"]
     }
   },
   "themeList": [

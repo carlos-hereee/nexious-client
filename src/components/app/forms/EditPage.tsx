@@ -29,7 +29,7 @@ const EditPage = () => {
         const val = formatPage({
           values: activePage,
           hasEntry: sectionEntries,
-          desiredOrder: pagesForm.desiredOrder || [""],
+          desiredOrder: pagesForm.desiredOrder,
         });
         setValues(val);
       }

@@ -17,25 +17,25 @@ const elementRoot: Element | DocumentFragment | null = document.getElementById("
 
 if (elementRoot) {
   ReactDOM.createRoot(elementRoot).render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <LogState>
-          <AuthState>
-            <AppState>
-              {/* <ServicesState>
+    // <React.StrictMode>
+    <BrowserRouter>
+      <LogState>
+        <AuthState>
+          <AppState>
+            {/* <ServicesState>
               <CalendarState> */}
-              <AdminState>
-                <App>
-                  <AppRouter />
-                </App>
-              </AdminState>
-              {/* </CalendarState>
+            <AdminState>
+              <App>
+                <AppRouter />
+              </App>
+            </AdminState>
+            {/* </CalendarState>
             </ServicesState> */}
-            </AppState>
-          </AuthState>
-        </LogState>
-      </BrowserRouter>
-    </React.StrictMode>
+          </AppState>
+        </AuthState>
+      </LogState>
+    </BrowserRouter>
+    // </React.StrictMode>
   );
 } else if (isDev) {
   // eslint-disable-next-line no-console

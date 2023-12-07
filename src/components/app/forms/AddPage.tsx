@@ -33,7 +33,6 @@ const AddPage = () => {
   if (status === "loading") return <Loading message="loading app assets.." />;
   return (
     <div className="flex-d-column">
-      <h1>Add page content</h1>
       <Form
         initialValues={pagesForm.initialValues}
         labels={pagesForm.labels}
@@ -42,6 +41,7 @@ const AddPage = () => {
         addEntry={sectionEntries}
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
+        heading="Add page content"
         onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
