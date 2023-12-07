@@ -22,11 +22,12 @@ export const formatPage = (props: FormatPageProps): PageProps => {
         }
         return {
           [key]: (current as SectionProps[]).map((val: SectionProps) => {
+            const sharedKey = val.uid || val.heroId;
             return Object.assign(
               {},
               ...Object.keys(form.initialValues).map((k) => {
-                if (k === "sectionHero") return { [k]: val.hero, sharedKey: val.uid };
-                return { [k]: val[k as keyof SectionProps], sharedKey: val.uid };
+                if (k === "sectionHero") return { [k]: val.sectionHero || "", sharedKey };
+                return { [k]: val[k as keyof SectionProps], sharedKey };
               })
             );
           }),

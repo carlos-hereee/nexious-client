@@ -36,6 +36,9 @@ const EditPage = () => {
     }
   }, [status]);
 
+  // console.log("activePage :>> ", activePage);
+  // console.log("initialValues :>> ", initialValues);
+
   if (status === "pending") return <Loading message="sending request.." />;
   if (status === "loading") return <Loading message="loading app assets.." />;
   return (

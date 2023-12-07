@@ -22,6 +22,7 @@ declare module "app-types" {
     body: string;
     theme?: string;
     sharedKey?: string;
+    heroId?: string;
     sectionHero?: AssetProps;
     hero?: AssetProps;
   }

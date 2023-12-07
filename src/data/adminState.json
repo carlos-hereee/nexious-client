@@ -180,9 +180,9 @@
       "hasCta": "checkbox"
     },
     "labels": {
-      "name": "Enter page name",
-      "title": "Enter page heading",
-      "body": "Enter page body text",
+      "name": "Page name",
+      "title": "Page heading",
+      "body": "Page body text",
       "hero": "Add background image",
       "hasSections": "This part cta the app has sub sections",
       "hasCta": "This part of the app has a call to action"
@@ -195,7 +195,7 @@
       "hasSections": "",
       "hasCta": ""
     },
-    "desiredOrder": ["title", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
+    "desiredOrder": ["name", "title", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
   },
   "sectionForm": {
     "formId": "sectionForm",
