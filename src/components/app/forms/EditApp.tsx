@@ -8,11 +8,9 @@ import { AuthContext } from "@context/auth/AuthContext";
 // import { MenuProps } from "app-types";
 import { scrollToId } from "@app/scrollToElement";
 import { useFormOrganizer } from "@hooks/useFormOrganizer";
-// import { formatPage } from "@forms/formatPage";
-import { formatLandingPage } from "@forms/formatLandingPage";
+import { formatPage } from "@forms/formatPage";
 import { formatNewsletter } from "@forms/formatNewsletter";
 import { formatMedia } from "@forms/formatMedia";
-// import PreviewPage from "./preview/PreviewPage";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
 import PreviewNewsletter from "../preview/PreviewNewsletter";
@@ -102,7 +100,7 @@ const EditApp = () => {
           ...landingForm,
           onSubmit: (e: any) => editLandingPage(e, appId),
           dataList: { icon: iconList },
-          initialValues: formatLandingPage({
+          initialValues: formatPage({
             values: landing,
             desiredOrder: landingForm.desiredOrder || [""],
             hasEntry: sectionEntries,

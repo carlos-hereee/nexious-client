@@ -86,7 +86,7 @@ declare module "app-forms" {
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
-  export interface FormatLandingPageProps {
+  export interface FormatPageProps {
     values?: PageProps;
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;

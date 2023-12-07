@@ -184,7 +184,7 @@
       "hasSections": "",
       "hasCta": ""
     },
-    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
+    "desiredOrder": ["title", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
   },
   "sectionForm": {
     "formId": "sectionForm",
