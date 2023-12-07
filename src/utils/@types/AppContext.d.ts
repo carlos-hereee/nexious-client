@@ -76,7 +76,8 @@ declare module "app-context" {
     cta: CallToActionProps[];
     sections: SectionProps[];
     name?: string;
-    uid?: string;
+    // uid?: string;
+    pageId?: string;
   }
   export type ActiveMenuProps = {
     menu?: MenuProps[];

@@ -28,12 +28,11 @@ const AppSettings = () => {
   const handleDeletePage = (data: PageProps) => {
     setShow(true);
     setActivePage(data);
-    // console.log("menu :>> ", data);
-    // console.log("pages:>> ", pages);
   };
   const handleConfirm = () => {
     setShow(false);
-    if (activePage?.uid) deletePage(appId, activePage.uid);
+    // console.log("activePage :>> ", activePage);
+    if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
 
   return (
@@ -50,17 +49,23 @@ const AppSettings = () => {
         <div className="card-container">
           {pages && pages?.length > 0 ? (
             pages.map((page) => (
-              <div key={page.uid} className="preview-container">
+              <div key={page.pageId} className="card">
                 {page.name && <h2>{page.name}</h2>}
-                <PreviewPage
-                  preview={page}
-                  hero={page.hero}
-                  onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
-                  layout="preview-thumbnail highlight"
-                />
-                <button className="btn-remove" type="button" onClick={() => handleDeletePage(page)}>
-                  X
-                </button>
+                <div className="pos-rel">
+                  <PreviewPage
+                    preview={page}
+                    hero={page.hero}
+                    onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
+                    layout="preview-thumbnail highlight"
+                  />
+                  <button
+                    className="btn-remove"
+                    type="button"
+                    onClick={() => handleDeletePage(page)}
+                  >
+                    X
+                  </button>
+                </div>
               </div>
             ))
           ) : (

@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { Form } from "nexious-library";
+import { useContext, useState, useEffect } from "react";
+import { Form, Loading } from "nexious-library";
 import { useLocation } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -7,10 +7,15 @@ import { PreviewValueProps } from "app-forms";
 // import { AuthContext } from "@context/auth/AuthContext";
 
 const EditPage = () => {
-  const { pagesForm, sectionEntries, editPage } = useContext(AdminContext);
+  const { pagesForm, sectionEntries, editPage, isLoading } = useContext(AdminContext);
   const { iconList, appId } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
+  const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
 
+  useEffect(() => {
+    if (isLoading) setStatus("loading");
+    else setStatus("idle");
+  }, [isLoading]);
   // const navigate = useNavigate();
   const location = useLocation();
 
@@ -25,7 +30,8 @@ const EditPage = () => {
   // useNavigate()
   // console.log("formErrors :>> ", formErrors);
 
-  // console.log("appList :>> ", appList);
+  if (status === "pending") return <Loading message="sending request.." />;
+  if (status === "loading") return <Loading message="loading app assets.." />;
   return (
     <div className="container">
       <Form
