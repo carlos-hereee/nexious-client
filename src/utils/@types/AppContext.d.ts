@@ -76,7 +76,7 @@ declare module "app-context" {
     cta: CallToActionProps[];
     sections: SectionProps[];
     name?: string;
-    // uid?: string;
+    uid?: string;
     pageId?: string;
   }
   export type ActiveMenuProps = {
@@ -85,12 +85,21 @@ declare module "app-context" {
     logo?: string;
     media?: MediaProps;
   };
+  export type IconListItem = {
+    uid: string;
+    name: string;
+    value: string;
+    icon: string;
+    label: string;
+  };
 
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
     isOnline: boolean;
     appList: AppListProps[];
+    themeList: ThemeList[];
+    iconList: IconListItem[];
     appError: string;
     appName: string;
     activeAppName: string;
@@ -107,9 +116,7 @@ declare module "app-context" {
     activeMenu: MenuProps[];
     logo: string;
     activeLogo: string;
-    themeList: ThemeList[];
     languageList: MenuItemProps[];
-    iconList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
   }
@@ -120,6 +127,8 @@ declare module "app-context" {
     isOnline: boolean;
     activeLogo: string;
     appList: AppListProps[];
+    themeList: ThemeList[];
+    iconList: IconListItem[];
     appName: string;
     activeAppName: string;
     appError: string;
@@ -134,10 +143,7 @@ declare module "app-context" {
     menu: MenuProps[];
     activeMenu: MenuProps[];
     logo: string;
-    themeList: MenuItemProps[];
     activeMedia: MediaProps;
-    themeList: ThemeList[];
-    iconList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
     updateAppData: (key: AppProps) => void;

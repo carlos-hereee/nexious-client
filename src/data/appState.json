@@ -1,99 +1,20 @@
 {
   "isLoading": false,
   "isOnline": true,
-  "appList": [],
-  "themeList": [
-    {
-      "name": "light-mode",
-      "value": "light-mode",
-      "label": "light-mode",
-      "uid": "light-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    },
-    {
-      "name": "dark-mode",
-      "value": "dark-mode",
-      "label": "dark-mode",
-      "uid": "dark-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    }
-  ],
   "appName": "",
   "appError": "",
   "activeAppName": "Nexious Tech",
   "appId": "Nexious-appid-1",
-  "owner": { "userId": "", "username": "" },
   "welcomeMessage": "Welcome back!",
   "locale": "",
   "adminIds": [{ "userId": "", "role": "" }],
+  "owner": { "userId": "", "username": "" },
   "newsletter": {
     "title": "Join the newsletter",
     "subtitle": "Suscribe to get the latest content by email",
     "details": "Unsubscribe at any time.",
     "email": "",
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" }
-  },
-  "activeMedia": {
-    "title": "Dont miss a thing! Follow us on our socials",
-    "subtitle": "",
-    "details": "",
-    "hero": {
-      "heroId": "medias",
-      "uid": "medias-1",
-      "alt": "medias-hero",
-      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
-      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
-      "theme": "thumbnail",
-      "creditTo": {
-        "artistName": "Ian Schneider",
-        "assetUrl": "https://unsplash.com/photos/two-person-standing-on-gray-tile-paving-TamMbr4okv4?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash",
-        "artistUrl": "https://unsplash.com/@goian?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash"
-      }
-    },
-    "medias": [
-      {
-        "media": "x",
-        "link": "https://twitter.com/carlos_heree",
-        "uid": "6554c3a2bb0a21f3bb3e07b5"
-      },
-      {
-        "uid": "instagram-uid",
-        "media": "instagram",
-        "link": "https://www.instagram.com/carlos_hereee/"
-      },
-      {
-        "uid": "linkedin-uid",
-        "media": "linkedin",
-        "link": "https://www.linkedin.com/in/carlos-hereee/"
-      },
-      {
-        "uid": "github-uid",
-        "media": "github",
-        "link": "https://github.com/carlos-hereee"
-      }
-    ]
   },
   "media": {
     "title": "",
@@ -146,6 +67,49 @@
       ]
     }
   ],
+  "calendar": { "name": "", "calendarId": "", "events": [{}] },
+  "logo": "",
+  "activeLogo": "/icons/logo.svg",
+  "activeMedia": {
+    "title": "Dont miss a thing! Follow us on our socials",
+    "subtitle": "",
+    "details": "",
+    "hero": {
+      "heroId": "medias",
+      "uid": "medias-1",
+      "alt": "medias-hero",
+      "hero": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "url": "/unsplash/ian-schneider-TamMbr4okv4-unsplash.jpg",
+      "theme": "thumbnail",
+      "creditTo": {
+        "artistName": "Ian Schneider",
+        "assetUrl": "https://unsplash.com/photos/two-person-standing-on-gray-tile-paving-TamMbr4okv4?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash",
+        "artistUrl": "https://unsplash.com/@goian?utm_content=creditToCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    },
+    "medias": [
+      {
+        "media": "x",
+        "link": "https://twitter.com/carlos_heree",
+        "uid": "6554c3a2bb0a21f3bb3e07b5"
+      },
+      {
+        "uid": "instagram-uid",
+        "media": "instagram",
+        "link": "https://www.instagram.com/carlos_hereee/"
+      },
+      {
+        "uid": "linkedin-uid",
+        "media": "linkedin",
+        "link": "https://www.linkedin.com/in/carlos-hereee/"
+      },
+      {
+        "uid": "github-uid",
+        "media": "github",
+        "link": "https://github.com/carlos-hereee"
+      }
+    ]
+  },
   "activeMenu": [
     {
       "isToggle": false,
@@ -188,21 +152,53 @@
       ]
     }
   ],
-  "calendar": { "name": "", "calendarId": "", "events": [{}] },
-  "logo": "",
-  "activeLogo": "/icons/logo.svg",
   "pages": [],
+  "appList": [],
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "uid": "light-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "uid": "dark-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    }
+  ],
   "iconList": [
     {
       "name": "confirm",
       "label": "Confirm",
       "value": "confirm",
       "icon": "confirm",
-      "uid": "icon-1",
-      "link": "",
-      "locale": "",
-      "themeId": "",
-      "menuItemId": "icon-list-item-english"
+      "uid": "icon-1"
     }
   ],
   "languageList": [

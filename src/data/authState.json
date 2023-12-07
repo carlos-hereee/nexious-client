@@ -92,7 +92,7 @@
     },
     "types": { "username": "text", "email": "text" },
     "fieldHeading": {},
-    "heading": ""
+    "heading": "Login"
   },
   "passwordChangeForm": {
     "formId": "passwordChange",

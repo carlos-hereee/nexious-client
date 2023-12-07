@@ -19,7 +19,18 @@
     },
     "types": { "appName": "text", "logo": "file", "theme": "datalist" },
     "withFileUpload": true,
-    "previewLabel": "See changes"
+    "previewLabel": "See changes",
+    "hero": {
+      "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
+      "alt": "build app",
+      "uid": "build-app-hero-uid",
+      "heroId": "build-app-hero",
+      "creditTo": {
+        "artistName": "Gia Oris",
+        "artistUrl": "https://unsplash.com/@giabyte?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/photos/pink-star-here-text-_uM5_nG2ssc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    }
   },
   "landingForm": {
     "heading": "Update landing page data",

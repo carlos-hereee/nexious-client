@@ -99,7 +99,6 @@ declare module "app-types" {
   export type AssetProps = {
     url: string;
     alt: string;
-    hero: string;
     name?: string;
     icon?: string;
     media?: string;

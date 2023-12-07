@@ -42,6 +42,7 @@ const AppRouter: React.FC = () => {
       <Route element={<PublicRoute />}>
         {/* // if server not coaperating use offline data */}
         <Route path="/offline" element={<Offline />} />
+        <Route path="/build-app" element={<BuildApp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
@@ -62,7 +63,6 @@ const AppRouter: React.FC = () => {
         {/* 
         <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/dashboard" element={<UserPlayground />} />
-        <Route path="/build-app" element={<BuildApp />} />
       </Route>
       {/* Admin routes for editing pages */}
       <Route element={<AdminRoute />}>

@@ -16,10 +16,14 @@ const Login = () => {
   // if (isFormLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
-      {authErrors.signInError && <p className="error-message">{authErrors.signInError}</p>}
       <div className="form-hero">
         {loginForm.initialValues && (
-          <Form initialValues={loginForm.initialValues} heading="Login" onSubmit={login} />
+          <Form
+            initialValues={loginForm.initialValues}
+            responseError={authErrors.signInError}
+            heading={loginForm.heading}
+            onSubmit={login}
+          />
         )}
         {loginForm.hero && <Hero hero={loginForm.hero} />}
       </div>

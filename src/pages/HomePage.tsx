@@ -10,7 +10,7 @@ const Homepage = () => {
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
   return (
     <div>
-      <div className="flex-d-column">
+      <div className="flex-d-column mtb-2">
         <HeroCard
           data={nexiousHomepage}
           hero={nexiousHomepage.hero}

@@ -65,7 +65,7 @@
       {
         "label": "Get Started",
         "icon": "confirm",
-        "link": "sign-up",
+        "link": "build-app",
         "uid": "cta-1"
       }
     ],

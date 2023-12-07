@@ -56,10 +56,6 @@
   align-items: center;
 }
 
-.form-field-container {
-  max-height: 600px;
-}
-
 .app-card {
   flex: 1;
 }
@@ -97,13 +93,6 @@
   grid-template-rows: 1fr 1fr;
 }
 
-.form-field-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-height: 800px;
-}
-
 .preview-container {
   position: relative;
 }
@@ -117,4 +106,7 @@
 }
 .page-header .hero-card {
   grid-template-columns: 1fr 1fr;
+}
+.mtb-2 {
+  margin: 2rem 0;
 }

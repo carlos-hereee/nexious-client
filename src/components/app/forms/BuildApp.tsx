@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form } from "nexious-library";
+import { Form, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -7,47 +7,42 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { uniqueApplist } from "@forms/uniqeList";
 
 const BuildApp = () => {
-  const {
-    initAppForm: form,
-    initApp,
-    themeList,
-    languageList,
-    formErrors,
-  } = useContext(AdminContext);
+  const { initAppForm, initApp, themeList, languageList, formErrors } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
-
+  const {
+    theme,
+    accessToken,
+    // user
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (ownedApps.length > 0) {
-  //     if (!formErrors.initAppFormError)
-  //   }
-  // }, [ownedApps]);
-  // useNavigate()
-  // console.log("formErrors :>> ", formErrors);
+  // console.log("accessToken :>> ", !accessToken);
+  // console.log("user :>> ", user);
 
-  // console.log("appList :>> ", appList);
   return (
     <div className="container">
-      <Form
-        initialValues={form.initialValues}
-        onSubmit={initApp}
-        heading={form.heading}
-        submitLabel={form.submitLabel}
-        types={form.types}
-        labels={form.labels}
-        theme={theme}
-        responseError={formErrors.initAppFormError}
-        placeholders={form.placeholders}
-        onCancel={() => navigate("/")}
-        dataList={{ theme: themeList, locale: languageList, language: languageList }}
-        fieldHeading={form.fieldHeading}
-        schema={{
-          required: ["appName", "logo"],
-          unique: [{ name: "appName", list: uniqueApplist(appList) }],
-        }}
-      />
+      <div className="form-hero">
+        <Form
+          initialValues={initAppForm.initialValues}
+          onSubmit={initApp}
+          heading={initAppForm.heading}
+          submitLabel={initAppForm.submitLabel}
+          types={initAppForm.types}
+          labels={initAppForm.labels}
+          theme={theme}
+          disableForm={!accessToken}
+          responseError={formErrors.initAppFormError}
+          placeholders={initAppForm.placeholders}
+          onCancel={() => navigate("/")}
+          dataList={{ theme: themeList, locale: languageList, language: languageList }}
+          fieldHeading={initAppForm.fieldHeading}
+          schema={{
+            required: ["appName", "logo"],
+            unique: [{ name: "appName", list: uniqueApplist(appList) }],
+          }}
+        />
+        {initAppForm.hero && <Hero hero={initAppForm.hero} layout="hide-on-tablet" />}
+      </div>
     </div>
   );
 };
