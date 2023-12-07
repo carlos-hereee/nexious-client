@@ -1,14 +1,23 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
-import { Button, IconButton, Socials } from "nexious-library";
+import { Button, ButtonCancel, IconButton, Socials } from "nexious-library";
 import PreviewPage from "@components/app/preview/PreviewPage";
+import { PageProps } from "app-context";
+import Dialog from "@components/app/Dialog";
+import { AuthContext } from "@context/auth/AuthContext";
+import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "../../components/app/DangerZone";
 
 const AppSettings = () => {
-  const { appName, media, menu, pages } = useContext(AppContext);
-  const navigate = useNavigate();
+  const { appName, media, pages, appId } = useContext(AppContext);
+  const { theme } = useContext(AuthContext);
+  const { deletePage } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
+  const [show, setShow] = useState(false);
+  const [activePage, setActivePage] = useState<PageProps>();
+  const navigate = useNavigate();
+
   const name = appName.split(" ").join("+");
   const appUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
 
@@ -16,10 +25,17 @@ const AppSettings = () => {
     navigator.clipboard.writeText(appUrl);
     setCopyUrl(true);
   };
-  const handleDeletePage = () => {
-    console.log("menu :>> ", menu);
-    console.log("pages:>> ", pages);
+  const handleDeletePage = (data: PageProps) => {
+    setShow(true);
+    setActivePage(data);
+    // console.log("menu :>> ", data);
+    // console.log("pages:>> ", pages);
   };
+  const handleConfirm = () => {
+    setShow(false);
+    if (activePage?.uid) deletePage(appId, activePage.uid);
+  };
+
   return (
     <div className="container">
       <h1 className="heading">App settings: {appName}</h1>
@@ -42,7 +58,7 @@ const AppSettings = () => {
                   onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
                   layout="preview-thumbnail highlight"
                 />
-                <button className="btn-remove" type="button" onClick={() => handleDeletePage()}>
+                <button className="btn-remove" type="button" onClick={() => handleDeletePage(page)}>
                   X
                 </button>
               </div>
@@ -51,7 +67,20 @@ const AppSettings = () => {
             <p>No pages added. Add more pages to your app</p>
           )}
         </div>
-        <Button label="+ Add Page" onClick={() => navigate(`/add-page/${name}`)} />
+        {show && (
+          <Dialog theme={theme} onDialogClose={() => setShow(false)}>
+            <h2>Are you sure you want to delete page {activePage?.name}</h2>
+            <p>This will delete all data</p>
+            <div className="flex-row">
+              <ButtonCancel onClick={() => setShow(false)} theme="btn-main" />
+              <Button label="Confirm" onClick={handleConfirm} />
+            </div>
+          </Dialog>
+        )}
+
+        <div className="flex-center">
+          <Button label="+ Add Page" onClick={() => navigate(`/add-page/${name}`)} />
+        </div>
       </div>
       <div className="container">
         <h2>Social medias:</h2>

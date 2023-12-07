@@ -2,6 +2,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
+import EditPage from "@components/app/forms/EditPage";
 import PrivateRoute from "./utils/router/PrivateRoute";
 import Landing from "./pages/Landing";
 import Offline from "./components/app/Offline";
@@ -9,14 +10,14 @@ import SignUp from "./pages/Register";
 import AppRoute from "./utils/router/AppRoute";
 import ForgotPassword from "./components/form/ForgotPassword";
 import AdminRoute from "./utils/router/AdminRoute";
-import BuildApp from "./components/app/BuildApp";
-import EditApp from "./components/app/EditApp";
+import BuildApp from "./components/app/forms/BuildApp";
+import EditApp from "./components/app/forms/EditApp";
 import Login from "./pages/Login";
 import PublicRoute from "./utils/router/PublicRoute";
 import UserPlayground from "./pages/UserPlayground";
 import Homepage from "./pages/HomePage";
 import AppSettings from "./pages/settings/AppSettings";
-import AddPage from "./pages/AddPage";
+import AddPage from "./components/app/forms/AddPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
@@ -67,6 +68,7 @@ const AppRouter: React.FC = () => {
       <Route element={<AdminRoute />}>
         <Route path="/add-page/:appName" element={<AddPage />} />
         <Route path="/edit-app/:appName" element={<EditApp />} />
+        <Route path="/edit-app/:appName/page/:pageName" element={<EditPage />} />
         <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}

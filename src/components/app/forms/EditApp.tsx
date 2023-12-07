@@ -15,11 +15,11 @@ import { formatMedia } from "@forms/formatMedia";
 // import PreviewPage from "./preview/PreviewPage";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
-import PreviewNewsletter from "./preview/PreviewNewsletter";
-import PreviewSocials from "./preview/PreviewSocials";
+import PreviewNewsletter from "../preview/PreviewNewsletter";
+import PreviewSocials from "../preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
-import PreviewAppName from "./preview/PreviewAppName";
-import PreviewLanding from "./preview/PreviewLanding";
+import PreviewAppName from "../preview/PreviewAppName";
+import PreviewLanding from "../preview/PreviewLanding";
 
 const EditApp = () => {
   const {

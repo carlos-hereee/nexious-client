@@ -20,6 +20,8 @@ import { removeApp } from "./requests/removeApp";
 import { updateCalendar } from "./requests/updateCalendar";
 import { getBucket } from "./requests/getBucket";
 import { createPage } from "./requests/createPage";
+import { updatePage } from "./requests/updatePage";
+import { removePage } from "./requests/removePage";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -78,8 +80,16 @@ export const AdminState = ({ children }: ChildProps) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
 
+  const editPage = useCallback((a: PreviewValueProps, appId: string, name?: string) => {
+    updatePage({ dispatch, values: a, appId, handleAppAssets, name });
+  }, []);
+
   const deleteApp = useCallback((appId: string) => {
     removeApp({ dispatch, appId, handleAppAssets });
+  }, []);
+
+  const deletePage = useCallback((appId: string, pageId: string) => {
+    removePage({ dispatch, appId, handleAppAssets, pageId });
   }, []);
 
   const listBucket = useCallback((appId: string) => {
@@ -116,9 +126,11 @@ export const AdminState = ({ children }: ChildProps) => {
       editNewsletter,
       editSocialMedia,
       deleteApp,
+      deletePage,
       editCalendar,
       listBucket,
       addPage,
+      editPage,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

@@ -63,6 +63,8 @@ declare module "app-admin" {
     editNewsletter: (values: PreviewValueProps, appId: string) => void;
     editSocialMedia: (values: PreviewValueProps, appId: string) => void;
     editCalendar: (values: PreviewValueProps, appId: string) => void;
+    editPage: (values: PreviewValueProps, appId: string, name?: string) => void;
+    deletePage: (appId: string, pageId: string) => void;
     listBucket: (appId: string) => void;
     // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
@@ -70,6 +72,8 @@ declare module "app-admin" {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets: (key: AppAssetProps) => void;
     appId?: string;
+    name?: string;
+    pageId?: string;
     values?: PreviewValueProps;
   }
   export type AdminActionProps =
