@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form, Hero } from "nexious-library";
+import { Button, Form, Hero } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -9,18 +9,17 @@ import { uniqueApplist } from "@forms/uniqeList";
 const BuildApp = () => {
   const { initAppForm, initApp, themeList, languageList, formErrors } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const {
-    theme,
-    accessToken,
-    // user
-  } = useContext(AuthContext);
+  const { theme, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // console.log("accessToken :>> ", !accessToken);
-  // console.log("user :>> ", user);
 
   return (
     <div className="container">
+      {!accessToken && (
+        <div className="flex-center">
+          <h3 className="heading">It looks like your not logged in</h3>{" "}
+          <Button label="Go to login" onClick={() => navigate("/login")} />
+        </div>
+      )}
       <div className="form-hero">
         <Form
           initialValues={initAppForm.initialValues}

@@ -26,45 +26,16 @@
   "menu": [
     {
       "isToggle": false,
+      "isPage": false,
       "isPrivate": true,
       "uid": "auth-1",
       "menuId": "auth-1",
       "category": "auth",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "value": "login",
-        "themeId": "",
-        "locale": "",
-        "name": "login",
-        "uid": "login-uid-1",
-        "menuItemId": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "value": "login",
-          "locale": "",
-          "themeId": "",
-          "uid": "login-uid-1",
-          "menuItemId": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "themeId": "",
-          "locale": "",
-          "value": "logout",
-          "uid": "logout-uid-1",
-          "menuItemId": "logOut-uid-1",
-          "link": "logout"
-        }
-      ]
+      "label": "login",
+      "icon": "login",
+      "value": "login",
+      "name": "login",
+      "link": "login"
     }
   ],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
@@ -114,42 +85,15 @@
     {
       "isToggle": false,
       "isPrivate": true,
+      "isPage": false,
       "uid": "auth-1",
-      "menuId": "auth-1",
       "category": "auth",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "value": "login",
-        "themeId": "",
-        "name": "login",
-        "locale": "",
-        "uid": "login-uid-1",
-        "menuItemId": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "value": "login",
-          "locale": "",
-          "uid": "login-uid-1",
-          "menuItemId": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "locale": "",
-          "value": "logout",
-          "uid": "logout-uid-1",
-          "menuItemId": "logOut-uid-2",
-          "link": "logout"
-        }
-      ]
+      "menuId": "auth-1",
+      "label": "login",
+      "icon": "login",
+      "value": "login",
+      "link": "login",
+      "name": "login"
     }
   ],
   "pages": [],

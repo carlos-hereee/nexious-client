@@ -12,6 +12,7 @@ import { ChildProps, MenuProps } from "app-types";
 import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
+import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -32,21 +33,17 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   useEffect(() => {
     // user is login
     const oldValues = [...state.activeMenu];
-    const authMenuItem = oldValues.filter((app) => app.isPrivate)[0];
     // find auth menu
     const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
+    // is user logged in
     if (accessToken) {
-      // find dashboard menu item
-      const altMenuItem = authMenuItem.alternatives.filter((alt) => alt.name === "logout")[0];
-      oldValues[authMenuItemIdx].active = altMenuItem;
-      dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
-    } else {
-      // find dashboard menu item
-      const login = authMenuItem.alternatives.filter((alt) => alt.name === "login")[0];
-      oldValues[authMenuItemIdx].active = login;
-      dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
+      oldValues[authMenuItemIdx] = toggleAuthMenuItem(oldValues[authMenuItemIdx], "logout");
+      // user logging out
+    } else if (oldValues[authMenuItemIdx].name === "logout") {
+      oldValues[authMenuItemIdx] = toggleAuthMenuItem(oldValues[authMenuItemIdx], "login");
     }
+    dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, [accessToken, state.activeAppName]);
 
@@ -71,28 +68,29 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   const handleMenu = (menuItem: MenuProps) => {
     const oldValues = [...state.activeMenu];
-    const { active, isToggle, alternatives, menuId, isPrivate, category } = menuItem;
+    const { isToggle, isPrivate, category, name, value, link } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
-      if (active.name === "logout") logout();
-      else navigate(`/${active.link}` || "");
+      if (name === "logout") logout();
+      else navigate(`/${link}` || "");
       // check theme Id
     } else if (isToggle && category === "theme") {
-      setTheme(active.value);
+      setTheme(value);
       // } else if (isToggle && active?.locale) {
       // update menu
       // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
       // updateLanguage(active.locale, appName);
-    } else {
-      // find menu item
-      const menuItemIdx = oldValues.findIndex((val) => val.menuId === menuId);
-      // find active menu item
-      const activeMenuIdx = alternatives.findIndex((alt) => alt.uid === active?.uid);
-      // if idx matches total use the first item else update count +1
-      const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
-      oldValues[menuItemIdx].active = alternatives[idx];
-      updateActiveMenu({ menu: oldValues });
     }
+    //  else {
+    //   // find menu item
+    //   const menuItemIdx = oldValues.findIndex((val) => val.menuId === menuId);
+    //   // find active menu item
+    //   const activeMenuIdx = alternatives.findIndex((alt) => alt.uid === active?.uid);
+    //   // if idx matches total use the first item else update count +1
+    //   const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
+    //   oldValues[menuItemIdx].active = alternatives[idx];
+    // }
+    updateActiveMenu({ menu: oldValues });
   };
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 

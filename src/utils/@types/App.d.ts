@@ -47,26 +47,18 @@ declare module "app-types" {
     hasMedias?: boolean;
     medias: MediaItemProp[];
   }
-  export interface MenuItemProps {
-    name: string;
-    value: string;
-    uid: string;
-    label?: string;
-    icon?: string;
-    link?: string;
-    themeId?: string;
-    locale?: string;
-    menuItemId?: string;
-  }
   export interface MenuProps {
     uid: string;
     menuId: string;
-    isToggle: boolean;
     category: string;
     isPrivate: boolean;
-    // TODO: include actual keys, and values
-    active: MenuItemProps;
-    alternatives: MenuItemProps[];
+    isPage: boolean;
+    isToggle: boolean;
+    name: string;
+    value: string;
+    label: string;
+    icon: string;
+    link: string;
   }
   export interface CalendarProps {
     name: string;
