@@ -9,11 +9,12 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { AdminContext } from "@context/admin/AdminContext";
 import AddMedia from "@components/app/forms/AddMedia";
 import DangerZone from "../../components/app/DangerZone";
+import MediaContainer from "@components/app/MediaContainer";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
-  const { deletePage } = useContext(AdminContext);
+  const { deletePage, deleteMedia } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
   const [activePage, setActivePage] = useState<PageProps>();
@@ -85,7 +86,11 @@ const AppSettings = () => {
       </div>
       <div className="container">
         <h2>Social medias:</h2>
-        {media.hasMedias ? <Socials medias={media.medias} /> : <p>No social media linked</p>}
+        {media.hasMedias ? (
+          <MediaContainer data={media.medias} canRemove />
+        ) : (
+          <p>No social media linked</p>
+        )}
         {show.media && (
           <Dialog theme={theme} onDialogClose={() => setShow({ ...show, media: false })}>
             <AddMedia onCancelClick={() => setShow({ ...show, media: false })} />

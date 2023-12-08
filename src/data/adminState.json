@@ -119,7 +119,7 @@
     "heading": "",
     "fieldHeading": {},
     "initialValues": { "media": "", "link": "" },
-    "labels": { "media": "Social media", "link": "Username or URL" },
+    "labels": { "media": "Social media", "link": "Username" },
     "placeholders": { "media": "", "link": "" },
     "types": { "media": "select", "link": "text" },
     "additionLabel": "Add another",

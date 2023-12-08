@@ -13,6 +13,8 @@ declare module "app-types" {
   }
   export interface CardContainerProps {
     data: MediaItemProp[];
+    canRemove?: boolean;
+    onRemove?: (key: string) => void;
   }
   export interface SectionProps {
     title: string;
@@ -37,6 +39,7 @@ declare module "app-types" {
     media: string;
     link: string;
     hero?: string;
+    url?: string;
     uid: string;
     sharedKey?: string;
   };

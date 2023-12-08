@@ -111,3 +111,14 @@
 .mtb-2 {
   margin: 2rem 0;
 }
+.media-wrapper {
+  position: relative;
+  /* padding: 0 1rem; */
+  /* display: flex; */
+  /* gap: 1rem; */
+}
+.btn-media-remove {
+  top: -5%;
+  right: -5%;
+  max-width: 25px;
+}
