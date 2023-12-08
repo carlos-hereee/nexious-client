@@ -5,7 +5,7 @@ import PreviewPage from "@components/app/preview/PreviewPage";
 const PagesList = (props: PagesContainerProps) => {
   const { name, onRemove, pages } = props;
   const navigate = useNavigate();
-  if (!pages) return <p>No pages added. Add more pages to your app</p>;
+  if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
   return (
     <div className="section-container">
       {pages?.length > 0 &&

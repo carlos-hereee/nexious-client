@@ -6,13 +6,13 @@ declare module "app-types" {
     children: React.ReactNode;
   }
   export interface DialogProps {
-    onClose?: () => void;
-    onConfirm?: () => void;
-    onCancel?: () => void;
-    onSubmit?: () => void;
     header?: { heading?: string; subtitle?: string; data?: string };
     media?: MediaItemProp;
     status?: string;
+    onClose: () => void;
+    onConfirm?: () => void;
+    onCancel?: (key: DialogStatusProps) => void;
+    onSubmit?: () => void;
   }
   export interface PagesContainerProps {
     data?: { heading: string; name: string };
@@ -38,6 +38,7 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
+  export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-two";
   export interface SectionProps {
     title: string;
     uid: string;
@@ -61,7 +62,7 @@ declare module "app-types" {
     media: string;
     link: string;
     url?: string;
-    uid?: string;
+    uid: string;
     sharedKey?: string;
   };
   export interface MediaProps {

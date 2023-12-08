@@ -5,7 +5,6 @@ import { Button } from "nexious-library";
 const MediaContainer = (props: MediaCardContainerProps) => {
   const { data, onRemove, onMediaClick, onAddMedia } = props;
 
-  if (!data.medias || data.medias.length === 0) return <p>No social media linked</p>;
   return (
     <div className="container">
       {data.heading && <h2 className="heading">{data.heading}</h2>}

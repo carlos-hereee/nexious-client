@@ -33,6 +33,7 @@ const AddMedia = ({ onCancelClick }: OnclickProps) => {
         onCancel={onCancelClick}
         onSubmit={handleMedia}
         submitLabel="Confirm"
+        schema={{ required: ["media", "link"] }}
       />
     </div>
   );

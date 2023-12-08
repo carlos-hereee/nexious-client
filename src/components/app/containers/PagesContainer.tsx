@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const PagesContainer = (props: PagesContainerProps) => {
   const { data, onRemove, pages, name } = props;
   const navigate = useNavigate();
+
   return (
     <div className="container">
       {data?.heading && <h2 className="heading">{data.heading}</h2>}

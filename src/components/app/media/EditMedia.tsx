@@ -35,7 +35,7 @@ const EditMedia = (props: MediaFormUpdateProps) => {
           placeholders={mediaEntryForm.placeholders}
           types={mediaEntryForm.types}
           dataList={{ media: mediaList }}
-          heading="Update social media"
+          heading={`Update social media: ${media?.media || ""}`}
           onCancel={onCancelClick}
           onSubmit={handleMedia}
           cancelLabel="Delete"

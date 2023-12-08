@@ -3,32 +3,34 @@ import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Button, IconButton, Loading } from "nexious-library";
 import { PageProps } from "app-context";
-// import { AuthContext } from "@context/auth/AuthContext";
 import { AdminContext } from "@context/admin/AdminContext";
-// import AddMedia from "@components/app/forms/AddMedia";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
-import { MediaItemProp } from "app-types";
+import { DialogStatusProps, MediaItemProp } from "app-types";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading } = useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
-  // const [show, setShow] = useState({ pages: false, media: false , cancelMedia:false});
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
-  const [status, setStatus] = useState<string>("idle");
+  const [status, setStatus] = useState<DialogStatusProps>("idle");
   const navigate = useNavigate();
 
   const name = appName.split(" ").join("+");
   const appUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
 
   const dialogPageHeader = {
-    heading: `Are you sure you want to delete page ${activePage?.name}`,
+    heading: `Are you sure you want to delete ${activePage?.name}'s page`,
+    data: `This will delete all progress`,
+  };
+  const dialogMediaHeader = {
+    heading: `Are you sure you want to delete ${activeMedia?.media} `,
+    data: `This will delete all progress`,
   };
   const mediaData = { medias: media.medias, heading: "Social media:" };
   const pagesData = { name, heading: "Pages:" };
@@ -49,11 +51,12 @@ const AppSettings = () => {
     setShow({ ...show, media: true });
     setActiveMedia(m);
   };
-  // deleteMedia(appId, id);
 
-  // const onCancelMediaClose = () => setShow({ ...show, cancelMedia: false });
   const onPageClose = () => setShow({ ...show, pages: false });
-  // const onMediaClose =;
+  const onAddMedia = () => {
+    setShow({ ...show, media: true });
+    setStatus("phase-two");
+  };
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -66,16 +69,18 @@ const AppSettings = () => {
         {/* <Button label="Support" /> */}
       </div>
       <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} />
-      <MediaContainer data={mediaData} onMediaClick={handleMediaClick} />
+      <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
       {show.pages && (
         <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
       )}
       {show.media && (
         <MediaDialog
-          onClose={() => setShow({ ...show, media: false })}
-          onCancel={() => setStatus("confirm-cancel")}
           media={activeMedia}
           status={status}
+          header={status === "confirm-cancel" ? dialogMediaHeader : undefined}
+          onClose={() => setShow({ ...show, media: false })}
+          onCancel={(stat: DialogStatusProps) => setStatus(stat)}
+          onConfirm={() => deleteMedia(appId, activeMedia?.uid || "")}
         />
       )}
 

@@ -6,6 +6,7 @@ import { Button, ButtonCancel, Dialog } from "nexious-library";
 const PageDialog = (props: DialogProps) => {
   const { onClose, onConfirm, header } = props;
   const { theme } = useContext(AuthContext);
+
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={header}>
       <div className="flex-center">
