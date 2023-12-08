@@ -33,7 +33,11 @@ const AppSettings = () => {
     heading: `Are you sure you want to delete ${activeMedia?.media} `,
     data: `This will delete all progress`,
   };
-  const mediaData = { medias: media.medias, heading: "Social media:" };
+  const mediaData = {
+    medias: media.medias,
+    heading: "Social media:",
+    hint: "Click/Tap on icons to edit",
+  };
   const pagesData = { name, heading: "Pages:" };
 
   const copyLink = () => {

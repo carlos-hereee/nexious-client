@@ -8,7 +8,13 @@ const MediaContainer = (props: MediaCardContainerProps) => {
   return (
     <div className="container">
       {data.heading && <h2 className="heading">{data.heading}</h2>}
-      <MediaList onRemove={onRemove} data={data.medias} onMediaClick={onMediaClick} />;
+      <MediaList
+        onRemove={onRemove}
+        data={data.medias}
+        onMediaClick={onMediaClick}
+        hint={data.hint}
+      />
+      ;
       {onAddMedia && (
         <div className="flex-center">
           <Button label="+ Add Social media" onClick={onAddMedia} />

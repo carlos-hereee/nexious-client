@@ -117,3 +117,6 @@
   right: -5%;
   max-width: 25px;
 }
+.btn-rect {
+  aspect-ratio: 1/1;
+}
