@@ -7,6 +7,7 @@ export const setUnsubscribe = async (props: AuthReducerProps) => {
   const { dispatch, appId, updateUser } = props;
   try {
     const { data } = await axiosAuth.post(`/app/unsubscribe/${appId}`);
+    console.log("data :>> ", data);
     if (data && updateUser) updateUser(data);
   } catch (error) {
     const err = error as AxiosError;

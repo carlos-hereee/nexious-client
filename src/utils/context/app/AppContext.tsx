@@ -70,8 +70,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
   const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
-    const { menu, appName, logo, media } = props;
-    setActiveData({ dispatch, menu, appName, logo: logo || "", media });
+    const { menu, appName, logo, media, appId } = props;
+    setActiveData({ dispatch, menu, appName, logo: logo || "", media, appId });
   }, []);
 
   const handleMenu = useCallback((menuItem: MenuProps, appName: string) => {
@@ -98,6 +98,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       iconList: state.iconList,
       appName: state.appName,
       appId: state.appId,
+      activeAppId: state.activeAppId,
       landing: state.landing,
       themeList: state.themeList,
       languageList: state.languageList,

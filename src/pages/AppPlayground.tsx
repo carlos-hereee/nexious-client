@@ -13,8 +13,8 @@ const AppPlayground = () => {
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
-    const { logo, appName, menu } = app;
-    updateActiveMenu({ menu, appName, logo, media: app.media });
+    const { logo, appName, menu, appId } = app;
+    updateActiveMenu({ menu, appName, logo, media: app.media, appId });
     navigate(`/app/${name}`);
   };
 

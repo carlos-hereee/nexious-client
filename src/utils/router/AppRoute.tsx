@@ -15,7 +15,6 @@ const AppRoute = () => {
     setIsLoading(false);
   }, []);
 
-  // if (appName) updateActiveMenu(menu, appName);
   if (!isOnline) return <Navigate to="/offline" />;
   if (isLoading) return <Outlet />;
   if (!appError) return <Outlet />;

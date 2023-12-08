@@ -83,6 +83,7 @@ declare module "app-context" {
     menu?: MenuProps[];
     appName?: string;
     logo?: string;
+    appId?: string;
     media?: MediaProps;
   };
   export type IconListItem = {
@@ -106,6 +107,7 @@ declare module "app-context" {
     welcomeMessage: string;
     landing?: PageProps;
     appId: string;
+    activeAppId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
@@ -136,6 +138,7 @@ declare module "app-context" {
     landing?: PageProps;
     pages?: PageProps[];
     appId: string;
+    activeAppId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
@@ -169,6 +172,7 @@ declare module "app-context" {
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_ACTIVE_APP_ID
           | APP_ACTIONS.SET_APP_LOGO
           | APP_ACTIONS.SET_ACTIVE_LOGO
           | APP_ACTIONS.SET_APP_NAME

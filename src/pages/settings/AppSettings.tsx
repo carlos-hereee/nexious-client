@@ -63,7 +63,7 @@ const AppSettings = () => {
     setStatus("phase-two");
   };
   const handleSeeLive = () => {
-    updateActiveMenu({ menu, appName, logo, media });
+    updateActiveMenu({ menu, appName, logo, media, appId });
     navigate(`/app/${name}`);
   };
 
