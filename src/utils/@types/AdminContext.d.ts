@@ -59,7 +59,6 @@ declare module "app-admin" {
     initApp: (values: PreviewValueProps) => void;
     // editApp: (values: PreviewValueProps, appId: string) => void;
     editAppName: (values: PreviewValueProps, appId: string) => void;
-    deleteApp: (appId: string) => void;
     // updateLanguage: (locale: string, appName: string) => void;
     addPage: (values: PreviewValueProps, appId: string) => void;
     addMedia: (values: PreviewValueProps, appId: string) => void;
@@ -68,7 +67,9 @@ declare module "app-admin" {
     editSocialMedia: (values: PreviewValueProps, appId: string) => void;
     editCalendar: (values: PreviewValueProps, appId: string) => void;
     editPage: (values: PreviewValueProps, appId: string, name?: string) => void;
+    deleteApp: (appId: string) => void;
     deletePage: (appId: string, pageId: string) => void;
+    deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
     // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }

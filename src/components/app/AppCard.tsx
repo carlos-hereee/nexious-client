@@ -15,7 +15,7 @@ const AppCard = (props: AppCardProps) => {
       <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
       <div className="card-row-body">
         <h2 className="heading">{app?.appName || "No name"}</h2>
-        {app.media?.hasMedias && <MediaContainer data={app.media.medias} />}
+        {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />}
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <div className="navigation-container">
           {isAdmin && <Button label="Settings" onClick={() => handleNavigation("settings")} />}

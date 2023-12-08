@@ -22,9 +22,13 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
+  export interface MediaCardContainerProps {
+    data: { heading?: string; medias?: MediaItemProp[] };
+    onRemove?: (key: string) => void;
+    onClick?: () => void;
+  }
   export interface CardContainerProps {
-    data: MediaItemProp[];
-    canRemove?: boolean;
+    data?: MediaItemProp[];
     onRemove?: (key: string) => void;
   }
   export interface SectionProps {

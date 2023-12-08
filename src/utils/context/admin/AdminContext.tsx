@@ -23,6 +23,7 @@ import { createPage } from "./requests/createPage";
 import { updatePage } from "./requests/updatePage";
 import { removePage } from "./requests/removePage";
 import { createMedia } from "./requests/createMedia";
+import { removeMedia } from "./requests/removeMedia";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -105,6 +106,10 @@ export const AdminState = ({ children }: ChildProps) => {
     createMedia({ dispatch, appId, handleAppAssets, values });
   }, []);
 
+  const deleteMedia = useCallback((appId: string, name: string) => {
+    removeMedia({ dispatch, appId, handleAppAssets, name });
+  }, []);
+
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -132,6 +137,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editSocialMedia,
       deleteApp,
       deletePage,
+      deleteMedia,
       editCalendar,
       listBucket,
       addPage,

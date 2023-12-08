@@ -1,21 +1,22 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
-import { Button, Dialog, IconButton, Loading } from "nexious-library";
+import { Button, IconButton, Loading } from "nexious-library";
 import { PageProps } from "app-context";
-import { AuthContext } from "@context/auth/AuthContext";
+// import { AuthContext } from "@context/auth/AuthContext";
 import { AdminContext } from "@context/admin/AdminContext";
-import AddMedia from "@components/app/forms/AddMedia";
+// import AddMedia from "@components/app/forms/AddMedia";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
+import MediaDialog from "@components/app/dialog/MediaDialog";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
-  // const { deletePage, deleteMedia } = useContext(AdminContext);
-  const { deletePage } = useContext(AdminContext);
+  // const { theme } = useContext(AuthContext);
+  const { deletePage, deleteMedia } = useContext(AdminContext);
+  // const { deletePage } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
   const [activePage, setActivePage] = useState<PageProps>();
@@ -27,6 +28,8 @@ const AppSettings = () => {
   const dialogPageHeader = {
     heading: `Are you sure you want to delete page ${activePage?.name}`,
   };
+  const mediaData = { medias: media.medias, heading: "Social media:" };
+  const pagesData = { name, heading: "Pages:" };
 
   const copyLink = () => {
     navigator.clipboard.writeText(appUrl);
@@ -40,6 +43,8 @@ const AppSettings = () => {
     setShow({ ...show, pages: false });
     if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
+
+  const onMediaRemove = (id: string) => deleteMedia(appId, id);
   const onPageClose = () => setShow({ ...show, pages: false });
   const onMediaClose = () => setShow({ ...show, media: false });
 
@@ -53,22 +58,12 @@ const AppSettings = () => {
         <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
         {/* <Button label="Support" /> */}
       </div>
-      <PagesContainer data={{ name, heading: "Pages:" }} onRemove={onDeletePage} pages={pages} />
+      <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} />
       {show.pages && (
         <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
       )}
-      <div className="container">
-        <h2>Social medias:</h2>
-        <MediaContainer data={media.medias} canRemove />
-        {show.media && (
-          <Dialog theme={theme} onDialogClose={onMediaClose}>
-            <AddMedia onCancelClick={onMediaClose} />
-          </Dialog>
-        )}
-        <div className="flex-center">
-          <Button label="+ Add Social media" onClick={() => setShow({ ...show, media: true })} />
-        </div>
-      </div>
+      {show.media && <MediaDialog onClose={onMediaClose} />}
+      <MediaContainer data={mediaData} onRemove={onMediaRemove} />
       <div className="section-row">
         <h2>Copy app url:</h2>
         <IconButton
