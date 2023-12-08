@@ -22,6 +22,9 @@
       "@hooks/*": [
         "utils/hooks/*"
       ],
+      "@router/*": [
+        "utils/router/*"
+      ],
       "@forms/*": [
         "utils/forms/*"
       ],

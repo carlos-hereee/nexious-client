@@ -14,6 +14,7 @@ export default defineConfig({
       "@actions": path.resolve(__dirname, "./src/utils/@types/actions"),
       "@hooks": path.resolve(__dirname, "./src/utils/hooks"),
       "@forms": path.resolve(__dirname, "./src/utils/forms"),
+      "@router": path.resolve(__dirname, "./src/utils/router"),
       // "@utils": path.resolve(__dirname, "./src/utils"),
       "@axios": path.resolve(__dirname, "./src/utils/axios"),
       "@components": path.resolve(__dirname, "./src/components"),
