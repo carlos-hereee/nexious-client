@@ -32,7 +32,7 @@ const AppSettings = () => {
     navigator.clipboard.writeText(appUrl);
     setCopyUrl(true);
   };
-  const handleDeletePage = (data: PageProps) => {
+  const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
     setActivePage(data);
   };
@@ -41,6 +41,7 @@ const AppSettings = () => {
     if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
   const onPageClose = () => setShow({ ...show, pages: false });
+  const onMediaClose = () => setShow({ ...show, media: false });
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -52,22 +53,16 @@ const AppSettings = () => {
         <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
         {/* <Button label="Support" /> */}
       </div>
-      <div className="container">
-        <h2>Pages:</h2>
-        <PagesContainer name={name} handleDeletePage={handleDeletePage} pages={pages} />
-        {show.pages && (
-          <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
-        )}
-        <div className="flex-center">
-          <Button label="+ Add Page" onClick={() => navigate(`/add-page/${name}`)} />
-        </div>
-      </div>
+      <PagesContainer data={{ name, heading: "Pages:" }} onRemove={onDeletePage} pages={pages} />
+      {show.pages && (
+        <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
+      )}
       <div className="container">
         <h2>Social medias:</h2>
         <MediaContainer data={media.medias} canRemove />
         {show.media && (
-          <Dialog theme={theme} onDialogClose={() => setShow({ ...show, media: false })}>
-            <AddMedia onCancelClick={() => setShow({ ...show, media: false })} />
+          <Dialog theme={theme} onDialogClose={onMediaClose}>
+            <AddMedia onCancelClick={onMediaClose} />
           </Dialog>
         )}
         <div className="flex-center">

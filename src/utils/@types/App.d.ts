@@ -11,8 +11,9 @@ declare module "app-types" {
     header?: { heading?: string; subtitle?: string; data?: string };
   }
   export interface PagesContainerProps {
-    name: string;
-    handleDeletePage: (page: PageProps) => void;
+    data?: { heading: string; name: string };
+    name?: string;
+    onRemove?: (page: PageProps) => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {
