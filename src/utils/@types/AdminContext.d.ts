@@ -13,6 +13,9 @@ declare module "app-admin" {
     app?: AppProps;
     appList?: AppListProps[];
   }
+  export type OnclickProps = {
+    onCancelClick: () => void;
+  };
   export interface AdminStateProps {
     isLoading: boolean;
     initAppForm: FormProps;
@@ -59,6 +62,7 @@ declare module "app-admin" {
     deleteApp: (appId: string) => void;
     // updateLanguage: (locale: string, appName: string) => void;
     addPage: (values: PreviewValueProps, appId: string) => void;
+    addMedia: (values: PreviewValueProps, appId: string) => void;
     editLandingPage: (values: PreviewValueProps, appId: string) => void;
     editNewsletter: (values: PreviewValueProps, appId: string) => void;
     editSocialMedia: (values: PreviewValueProps, appId: string) => void;

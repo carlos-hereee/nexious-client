@@ -22,6 +22,7 @@ import { getBucket } from "./requests/getBucket";
 import { createPage } from "./requests/createPage";
 import { updatePage } from "./requests/updatePage";
 import { removePage } from "./requests/removePage";
+import { createMedia } from "./requests/createMedia";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -100,6 +101,10 @@ export const AdminState = ({ children }: ChildProps) => {
     createPage({ dispatch, appId, handleAppAssets, values });
   }, []);
 
+  const addMedia = useCallback((values: PreviewValueProps, appId: string) => {
+    createMedia({ dispatch, appId, handleAppAssets, values });
+  }, []);
+
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -131,6 +136,7 @@ export const AdminState = ({ children }: ChildProps) => {
       listBucket,
       addPage,
       editPage,
+      addMedia,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

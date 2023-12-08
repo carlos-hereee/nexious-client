@@ -380,7 +380,6 @@
       "value": "facebook",
       "label": "Facebook",
       "icon": "facebook",
-      "themeId": "theme-facebook",
       "uid": "theme-facebook"
     },
     {
@@ -388,15 +387,13 @@
       "value": "x",
       "label": "x (Twitter)",
       "icon": "x",
-      "themeId": "theme-x",
       "uid": "theme-x"
     },
     {
       "name": "instagram",
       "value": "instagram",
-      "label": "instagram",
+      "label": "Instagram",
       "icon": "instagram",
-      "themeId": "theme-instagram",
       "uid": "theme-instagram"
     }
   ],

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import EditPage from "@components/app/forms/EditPage";
+// import AddMedia from "@components/app/forms/AddMedia";
 import PrivateRoute from "./utils/router/PrivateRoute";
 import Landing from "./pages/Landing";
 import Offline from "./components/app/Offline";
