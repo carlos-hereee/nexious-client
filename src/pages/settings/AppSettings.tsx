@@ -76,7 +76,7 @@ const AppSettings = () => {
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${name}`)} />
         <Button label="See live" onClick={handleSeeLive} />
       </div>
-      <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} />
+      <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} name={name} />
       <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
       {show.pages && (
         <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
