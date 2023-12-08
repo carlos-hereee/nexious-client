@@ -46,26 +46,20 @@ const AppSettings = () => {
       </div>
       <div className="container">
         <h2>Pages:</h2>
-        <div className="card-container">
+        <div className="section-container">
           {pages && pages?.length > 0 ? (
             pages.map((page) => (
-              <div key={page.pageId} className="card">
-                {page.name && <h2>{page.name}</h2>}
-                <div className="pos-rel">
-                  <PreviewPage
-                    preview={page}
-                    hero={page.hero}
-                    onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
-                    layout="preview-thumbnail highlight"
-                  />
-                  <button
-                    className="btn-remove"
-                    type="button"
-                    onClick={() => handleDeletePage(page)}
-                  >
-                    X
-                  </button>
-                </div>
+              <div key={page.pageId} className="preview-card highlight">
+                <PreviewPage
+                  preview={page}
+                  hero={page.hero}
+                  heading={page.name}
+                  onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
+                  layout="preview-thumbnail"
+                />
+                <button className="btn-remove" type="button" onClick={() => handleDeletePage(page)}>
+                  X
+                </button>
               </div>
             ))
           ) : (
@@ -90,7 +84,12 @@ const AppSettings = () => {
       <div className="container">
         <h2>Social medias:</h2>
         {media.hasMedias ? <Socials medias={media.medias} /> : <p>No social media linked</p>}
-        <Button label="+ Add Social media" onClick={() => navigate(`/add-social-media/${name}`)} />
+        <div className="flex-center">
+          <Button
+            label="+ Add Social media"
+            onClick={() => navigate(`/add-social-media/${name}`)}
+          />
+        </div>
       </div>
       <div className="section-row">
         <h2>Copy app url:</h2>

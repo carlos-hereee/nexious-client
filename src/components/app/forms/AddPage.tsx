@@ -3,6 +3,7 @@ import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const AddPage = () => {
@@ -10,6 +11,7 @@ const AddPage = () => {
   const { iconList, appId } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoading) setStatus("loading");
@@ -42,6 +44,7 @@ const AddPage = () => {
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
         heading="Add page content"
+        onCancel={() => navigate("/")}
         onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload

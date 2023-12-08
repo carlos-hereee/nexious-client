@@ -126,6 +126,7 @@ declare module "app-types" {
     preview?: PageProps;
     theme?: string;
     hero?: string;
+    heading?: string;
     layout?: string;
     onClick?: () => void;
   }

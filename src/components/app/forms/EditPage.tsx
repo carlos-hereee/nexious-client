@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Form, Loading } from "nexious-library";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
@@ -13,6 +13,7 @@ const EditPage = () => {
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
   const [initialValues, setValues] = useState<PageProps>();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const pageData = location.pathname.split("/");
   const pageName = pageData[pageData.length - 1];
@@ -52,6 +53,8 @@ const EditPage = () => {
           addEntry={sectionEntries}
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
+          onCancel={() => navigate("/")}
+          heading="Edit page"
           onSubmit={(values: PreviewValueProps) => editPage(values, appId, activePage?.pageId)}
           submitLabel="Save and continue"
           withFileUpload

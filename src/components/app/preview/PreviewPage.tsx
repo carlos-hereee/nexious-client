@@ -2,16 +2,17 @@ import { PreviewPageProps } from "app-types";
 import { Card, HeroCard } from "nexious-library";
 
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
-  const { preview, theme, hero, onClick, layout } = props;
+  const { preview, theme, hero, onClick, layout, heading } = props;
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
   const heroData = { url: hero, alt: `preview page${preview?.title}`, theme: "hero-thumbnail" };
 
   if (!preview) return <div />;
   return (
     <button type="button" className={layout} onClick={onClick}>
+      {heading && <h2 className="heading">{heading}</h2>}
       <div className="page-header">
         {preview.hero ? (
-          <HeroCard data={cardData} hero={heroData} theme={theme} cta={preview.cta} />
+          <HeroCard data={cardData} hero={heroData} theme={theme} cta={preview.cta} viewAsPreview />
         ) : (
           <Card data={cardData} />
         )}

@@ -97,11 +97,12 @@
   position: relative;
 }
 .preview-thumbnail {
-  aspect-ratio: 16/9;
+  /* aspect-ratio: 16/9; */
   display: flex;
   flex-direction: column;
-  max-width: auto;
-  object-fit: contain;
+  max-width: 100%;
+  padding: 0;
+  /* object-fit: contain; */
   gap: 1rem;
 }
 .page-header .hero-card {
