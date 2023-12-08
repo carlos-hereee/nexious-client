@@ -26,7 +26,8 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscriptions } = useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscriptions, subscribe, unSubscribe } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -79,6 +80,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
+      else if (name === "subscribe") subscribe(state.appId);
+      else if (name === "unsubscribe") unSubscribe(state.appId);
       else navigate(`/${link}` || "");
       // change theme
     } else if (isToggle && category === "theme") setTheme(menuItem.value);

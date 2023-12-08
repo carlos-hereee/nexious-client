@@ -10,11 +10,10 @@ import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
 import { signOut } from "./request/signOut";
 import { setUser } from "./dispatch/setUser";
-// import { changePassword } from "./helpers/changePassword";
 import { setForgotPassword } from "./request/setForgotPassword";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
-// import { fetchAccessTokenData } from "./helpers/fetchAccessTokenData";
-// import { fetchAccessToken } from "../admin/requests/fetchAccessToken";
+import { setSubscribe } from "./request/setSubscribe";
+import { setUnsubscribe } from "./request/setUnsubscribe";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -46,6 +45,14 @@ export const AuthState = ({ children }: ChildProps) => {
   const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
 
+  const subscribe = useCallback((e: string) => {
+    setSubscribe({ dispatch, appId: e, updateUser });
+  }, []);
+
+  const unSubscribe = useCallback((e: string) => {
+    setUnsubscribe({ dispatch, appId: e, updateUser });
+  }, []);
+
   const authValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -69,6 +76,8 @@ export const AuthState = ({ children }: ChildProps) => {
       logout,
       forgotPassword,
       setStranded,
+      subscribe,
+      unSubscribe,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.isOffline]);
 

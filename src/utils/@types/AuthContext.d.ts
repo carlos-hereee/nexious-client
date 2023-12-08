@@ -78,6 +78,8 @@ declare module "auth-context" {
     forgotPassword: (values: ForgotPasswordFormProps) => void;
     // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
+    subscribe: (appId: string) => void;
+    unSubscribe: (appId: string) => void;
   }
 
   export interface AuthDispatchProps {
@@ -88,6 +90,7 @@ declare module "auth-context" {
     credentials?: AuthFormValueProps;
     user?: UserSchema;
     data?: string;
+    appId?: string;
     updateUser?: (user: UserSchema) => void;
     setAccessToken?: (token: string) => void;
   }
