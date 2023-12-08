@@ -61,6 +61,7 @@ export const AuthState = ({ children }: ChildProps) => {
       passwordChangeForm: state.passwordChangeForm,
       forgotPasswordForm: state.forgotPasswordForm,
       ownedApps: state.ownedApps,
+      subscriptions: state.subscriptions,
       register,
       updateUser,
       login,

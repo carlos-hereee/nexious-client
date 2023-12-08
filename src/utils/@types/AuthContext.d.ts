@@ -16,6 +16,7 @@ declare module "auth-context" {
     nickname?: string;
     languageId?: string;
     phone?: string;
+    subscriptions?: AppListProps[];
     ownedApps?: AppListProps[];
   }
   export interface AuthErrorProps {
@@ -40,6 +41,7 @@ declare module "auth-context" {
     loginForm: FormProps;
     signUpForm: FormProps;
     passwordChangeForm: FormProps;
+    subscriptions: AppListProps[];
     forgotPasswordForm: FormProps;
     theme: string;
     locale: string;
@@ -53,6 +55,7 @@ declare module "auth-context" {
     theme: string;
     locale: string;
     ownedApps: AppListProps[];
+    subscriptions: AppListProps[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     userForm: FormProps;

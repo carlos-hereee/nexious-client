@@ -14,6 +14,7 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
 import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { formatStringToUrl } from "@app/formatStringToUrl";
+import { nexiousName } from "@data/nexious.json";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -25,22 +26,29 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout } = useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscriptions } = useContext(AuthContext);
   const navigate = useNavigate();
-  // const { accessToken, setTheme, theme } = useContext(AuthContext);
 
   useEffect(() => {
     // user is login
     const oldValues = [...state.activeMenu];
     // find auth menu
-    const authMenuItemIdx = oldValues.findIndex((app) => app.isPrivate);
+    const authIdx = oldValues.findIndex((app) => app.isPrivate);
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     // is user logged in
     if (accessToken) {
-      oldValues[authMenuItemIdx] = toggleAuthMenuItem(oldValues[authMenuItemIdx], "logout");
+      // check if is origin app
+      if (state.activeAppName !== nexiousName) {
+        // check user subscriptions
+        const subIdx = subscriptions.findIndex((sub) => sub.appName === state.activeAppName);
+        // if user is a sub
+        if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+        else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "subscribe");
+        // otherwise user can logout
+      } else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "logout");
       // user logging out
-    } else if (oldValues[authMenuItemIdx].name === "logout") {
-      oldValues[authMenuItemIdx] = toggleAuthMenuItem(oldValues[authMenuItemIdx], "login");
+    } else if (oldValues[authIdx].name === "logout") {
+      oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "login");
     }
     dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
