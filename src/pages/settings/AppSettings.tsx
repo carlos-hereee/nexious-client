@@ -12,7 +12,8 @@ import MediaDialog from "@components/app/dialog/MediaDialog";
 import { DialogStatusProps, MediaItemProp } from "app-types";
 
 const AppSettings = () => {
-  const { appName, media, pages, appId, isLoading } = useContext(AppContext);
+  const { appName, media, pages, appId, isLoading, updateActiveMenu, logo, menu } =
+    useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
@@ -57,6 +58,10 @@ const AppSettings = () => {
     setShow({ ...show, media: true });
     setStatus("phase-two");
   };
+  const handleSeeLive = () => {
+    updateActiveMenu({ menu, appName, logo, media });
+    navigate(`/app/${name}`);
+  };
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -65,8 +70,7 @@ const AppSettings = () => {
       <div className="navigation-container">
         <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${name}`)} />
-        <Button label="See live" onClick={() => navigate(`/app/${name}`)} />
-        {/* <Button label="Support" /> */}
+        <Button label="See live" onClick={handleSeeLive} />
       </div>
       <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} />
       <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
