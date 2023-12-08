@@ -74,14 +74,14 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setActiveData({ dispatch, menu, appName, logo: logo || "", media, appId });
   }, []);
 
-  const handleMenu = useCallback((menuItem: MenuProps, appName: string) => {
+  const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const oldValues = [...state.activeMenu];
     const { isToggle, isPrivate, category, name, link } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
-      else if (name === "subscribe") subscribe(state.appId);
-      else if (name === "unsubscribe") unSubscribe(state.appId);
+      else if (name === "subscribe") subscribe(appId);
+      else if (name === "unsubscribe") unSubscribe(appId);
       else navigate(`/${link}` || "");
       // change theme
     } else if (isToggle && category === "theme") setTheme(menuItem.value);

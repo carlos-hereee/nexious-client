@@ -13,6 +13,7 @@ const App = ({ children }: ChildProps) => {
     activeLogo,
     activeMenu,
     activeAppName,
+    activeAppId,
     activeMedia,
     themeList,
     isLoading: loadingApp,
@@ -36,7 +37,7 @@ const App = ({ children }: ChildProps) => {
       <Header
         menu={activeMenu}
         logo={{ url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` }}
-        updateMenu={(menuItem: MenuProps) => handleMenu(menuItem, activeAppName)}
+        updateMenu={(menuItem: MenuProps) => handleMenu(menuItem, activeAppName, activeAppId)}
         onLogoClick={handleLogoClick}
         handleTheme={setTheme}
         themeList={themeList}

@@ -153,7 +153,7 @@ declare module "app-context" {
     getAppWithName: (appName: string) => void;
     updateAppList: (appList: AppListProps[]) => void;
     updateActiveMenu: (props: ActiveMenuProps) => void;
-    handleMenu: (props: MenuProps, appName: string) => void;
+    handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
 
   export interface AppDispatchProps {
