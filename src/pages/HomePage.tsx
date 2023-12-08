@@ -11,12 +11,7 @@ const Homepage = () => {
   return (
     <div>
       <div className="flex-d-column mtb-2">
-        <HeroCard
-          data={nexiousHomepage}
-          hero={nexiousHomepage.hero}
-          cta={nexiousHomepage.cta}
-          onClick={handleClick}
-        />
+        <HeroCard data={nexiousHomepage} hero={nexiousHomepage.hero} onClick={handleClick} />
         {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
       </div>
       <div className={nexiousHomepage.sections.length > 3 ? "sections-container" : "sections-grid"}>

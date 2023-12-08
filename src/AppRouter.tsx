@@ -18,6 +18,7 @@ import UserPlayground from "@pages/UserPlayground";
 import Homepage from "@pages/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AddPage from "@components/app/forms/AddPage";
+import AppPage from "@pages/AppPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
@@ -38,6 +39,7 @@ const AppRouter: React.FC = () => {
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
         <Route path="/app/:appName" element={<Landing />} />
+        <Route path="/app/:appName/:pageName" element={<AppPage />} />
         {/* <Route path="/testimonials" element={<Testimonials />} /> */}
         {/* <Route path="/booking" element={<Booking />} /> */}
         {/* <Route path="/about" element={<About />} />

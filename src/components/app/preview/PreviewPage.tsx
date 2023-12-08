@@ -12,7 +12,7 @@ const PreviewPage: React.FC<PreviewPageProps> = (props) => {
       {heading && <h2 className="heading">{heading}</h2>}
       <div className="page-header">
         {preview.hero ? (
-          <HeroCard data={cardData} hero={heroData} theme={theme} cta={preview.cta} viewAsPreview />
+          <HeroCard data={cardData} hero={heroData} theme={theme} viewAsPreview />
         ) : (
           <Card data={cardData} />
         )}

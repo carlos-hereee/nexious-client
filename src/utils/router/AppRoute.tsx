@@ -11,7 +11,7 @@ const AppRoute = () => {
     const query = location.pathname.split("/");
     const appName = query[query.length - 1];
     // console.log("appName :>> ", appName);
-    getAppWithName(appName);
+    if (appName) getAppWithName(appName);
     setIsLoading(false);
   }, []);
 

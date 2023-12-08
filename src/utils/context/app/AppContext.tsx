@@ -66,32 +66,19 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setActiveData({ dispatch, menu, appName, logo: logo || "", media });
   }, []);
 
-  const handleMenu = (menuItem: MenuProps) => {
+  const handleMenu = useCallback((menuItem: MenuProps, appName: string) => {
     const oldValues = [...state.activeMenu];
-    const { isToggle, isPrivate, category, name, value, link } = menuItem;
+    const { isToggle, isPrivate, category, name, link } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
       else navigate(`/${link}` || "");
-      // check theme Id
-    } else if (isToggle && category === "theme") {
-      setTheme(value);
-      // } else if (isToggle && active?.locale) {
-      // update menu
-      // updateActiveMenu({ menu: oldValues, appName: activeAppName, logo: activeLogo });
-      // updateLanguage(active.locale, appName);
-    }
-    //  else {
-    //   // find menu item
-    //   const menuItemIdx = oldValues.findIndex((val) => val.menuId === menuId);
-    //   // find active menu item
-    //   const activeMenuIdx = alternatives.findIndex((alt) => alt.uid === active?.uid);
-    //   // if idx matches total use the first item else update count +1
-    //   const idx = alternatives.length === activeMenuIdx + 1 ? 0 : activeMenuIdx + 1;
-    //   oldValues[menuItemIdx].active = alternatives[idx];
-    // }
+      // change theme
+    } else if (isToggle && category === "theme") setTheme(menuItem.value);
+    // otherwise go to page
+    else if (menuItem.isPage) navigate(`/app/${appName.split(" ").join("+")}${link}` || "");
     updateActiveMenu({ menu: oldValues });
-  };
+  }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
   const appValues = useMemo(() => {

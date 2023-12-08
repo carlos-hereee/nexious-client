@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
-import { ChildProps } from "app-types";
+import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/ErrorPage";
@@ -24,7 +24,6 @@ const App = ({ children }: ChildProps) => {
     if (activeAppName === nexiousName) navigate("/");
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
-  // console.log("themeList :>> ", themeList);
 
   if (isOffline)
     return (
@@ -37,7 +36,7 @@ const App = ({ children }: ChildProps) => {
       <Header
         menu={activeMenu}
         logo={{ url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` }}
-        updateMenu={handleMenu}
+        updateMenu={(menuItem: MenuProps) => handleMenu(menuItem, activeAppName)}
         onLogoClick={handleLogoClick}
         handleTheme={setTheme}
         themeList={themeList}
