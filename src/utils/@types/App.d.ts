@@ -84,7 +84,7 @@ declare module "app-types" {
     name: string;
     value: string;
     label: string;
-    icon: string;
+    icon?: string;
     link: string;
   }
   export interface CalendarProps {

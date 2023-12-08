@@ -25,13 +25,29 @@ const AppPage = () => {
       }
     }
   }, [pathname]);
-  console.log("pages :>> ", page);
+
   if (!page) return <Loading message="loading page data..." />;
   return (
     <div className="container">
-      <div className="page-header">
+      <div className="container">
         {page.hero ? <HeroCard data={page} hero={{ url: page.hero }} /> : <Card data={page} />}
+        {page.body && <p className="text-max">{page.body}</p>}
       </div>
+      {page.hasSections && (
+        <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
+          {page.sections.map((data) => {
+            const { sectionHero, body, uid } = data;
+            return sectionHero ? (
+              <div key={uid} className="section-card">
+                <HeroCard data={data} hero={{ url: sectionHero, theme: "hero-thumbnail" }} />
+                {body && <p className="text-max">{body}</p>}
+              </div>
+            ) : (
+              <Card data={data} key={uid} />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

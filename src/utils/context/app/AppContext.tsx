@@ -13,14 +13,13 @@ import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context"
 import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
 import { toggleAuthMenuItem } from "@app/toggleMenu";
+import { formatStringToUrl } from "@app/formatStringToUrl";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./fetch/fetchAppWithName";
-// import { setMenu } from "./dispatch/setMenu";
 import { fetchAppList } from "./fetch/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
-// import { useLocation } from "react-router-dom";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -76,7 +75,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       // change theme
     } else if (isToggle && category === "theme") setTheme(menuItem.value);
     // otherwise go to page
-    else if (menuItem.isPage) navigate(`/app/${appName.split(" ").join("+")}${link}` || "");
+    else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
     updateActiveMenu({ menu: oldValues });
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);

@@ -32,7 +32,6 @@
       "menuId": "auth-1",
       "category": "auth",
       "label": "login",
-      "icon": "login",
       "value": "login",
       "name": "login",
       "link": "login"
@@ -90,7 +89,6 @@
       "category": "auth",
       "menuId": "auth-1",
       "label": "login",
-      "icon": "login",
       "value": "login",
       "link": "login",
       "name": "login"

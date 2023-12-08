@@ -9,7 +9,6 @@
       "category": "auth",
       "menuId": "auth-1",
       "label": "login",
-      "icon": "login",
       "value": "login",
       "link": "login",
       "name": "login"

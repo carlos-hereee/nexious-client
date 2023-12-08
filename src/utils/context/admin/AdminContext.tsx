@@ -39,14 +39,6 @@ export const AdminState = ({ children }: ChildProps) => {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
 
-  /**
-   *         updateLanguage: (a, b) =>
-          updateLanguage({ dispatch, locale: a, appName: b, handleAppAssets }),
-        editApp: (values, appId) => editApp({ dispatch, values, appId, handleAppAssets }),
-
-        editLanguage: (a, b) => editLanguage({ dispatch, values: a, appId: b, handleAppAssets }),
-        */
-
   useEffect(() => {
     if (accessToken) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });

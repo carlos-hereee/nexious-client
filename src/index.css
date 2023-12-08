@@ -120,3 +120,7 @@
 .btn-rect {
   aspect-ratio: 1/1;
 }
+.page-header {
+  display: flex;
+  gap: 1rem;
+}
