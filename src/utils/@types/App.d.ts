@@ -8,7 +8,11 @@ declare module "app-types" {
   export interface DialogProps {
     onClose?: () => void;
     onConfirm?: () => void;
+    onCancel?: () => void;
+    onSubmit?: () => void;
     header?: { heading?: string; subtitle?: string; data?: string };
+    media?: MediaItemProp;
+    status?: string;
   }
   export interface PagesContainerProps {
     data?: { heading: string; name: string };
@@ -25,11 +29,14 @@ declare module "app-types" {
   export interface MediaCardContainerProps {
     data: { heading?: string; medias?: MediaItemProp[] };
     onRemove?: (key: string) => void;
+    onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
+    onAddMedia?: () => void;
   }
   export interface CardContainerProps {
     data?: MediaItemProp[];
     onRemove?: (key: string) => void;
+    onMediaClick?: (key: MediaItemProp) => void;
   }
   export interface SectionProps {
     title: string;
@@ -53,9 +60,8 @@ declare module "app-types" {
   export type MediaItemProp = {
     media: string;
     link: string;
-    hero?: string;
     url?: string;
-    uid: string;
+    uid?: string;
     sharedKey?: string;
   };
   export interface MediaProps {

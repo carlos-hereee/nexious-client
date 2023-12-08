@@ -11,15 +11,17 @@ import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
+import { MediaItemProp } from "app-types";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading } = useContext(AppContext);
-  // const { theme } = useContext(AuthContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
-  // const { deletePage } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
+  // const [show, setShow] = useState({ pages: false, media: false , cancelMedia:false});
   const [activePage, setActivePage] = useState<PageProps>();
+  const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
+  const [status, setStatus] = useState<string>("idle");
   const navigate = useNavigate();
 
   const name = appName.split(" ").join("+");
@@ -43,10 +45,15 @@ const AppSettings = () => {
     setShow({ ...show, pages: false });
     if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
+  const handleMediaClick = (m: MediaItemProp) => {
+    setShow({ ...show, media: true });
+    setActiveMedia(m);
+  };
+  // deleteMedia(appId, id);
 
-  const onMediaRemove = (id: string) => deleteMedia(appId, id);
+  // const onCancelMediaClose = () => setShow({ ...show, cancelMedia: false });
   const onPageClose = () => setShow({ ...show, pages: false });
-  const onMediaClose = () => setShow({ ...show, media: false });
+  // const onMediaClose =;
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -59,11 +66,19 @@ const AppSettings = () => {
         {/* <Button label="Support" /> */}
       </div>
       <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} />
+      <MediaContainer data={mediaData} onMediaClick={handleMediaClick} />
       {show.pages && (
         <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
       )}
-      {show.media && <MediaDialog onClose={onMediaClose} />}
-      <MediaContainer data={mediaData} onRemove={onMediaRemove} />
+      {show.media && (
+        <MediaDialog
+          onClose={() => setShow({ ...show, media: false })}
+          onCancel={() => setStatus("confirm-cancel")}
+          media={activeMedia}
+          status={status}
+        />
+      )}
+
       <div className="section-row">
         <h2>Copy app url:</h2>
         <IconButton

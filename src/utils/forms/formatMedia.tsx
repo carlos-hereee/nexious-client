@@ -5,9 +5,11 @@ import { entryKey } from "./entryKeys";
 export const formatMedia = (props: FormatMediaProps): MediaProps => {
   const { desiredOrder, hasEntry, values } = props;
 
+  if (!desiredOrder) return { title: "", subtitle: "", medias: [] };
   return Object.assign(
     {},
     ...desiredOrder.map((key) => {
+      if (!values) return { [key]: "" };
       const current = values[key as keyof MediaProps];
       if (typeof current === "boolean") {
         return { [key]: current };

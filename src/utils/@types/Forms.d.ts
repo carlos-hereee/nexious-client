@@ -4,6 +4,7 @@ declare module "app-forms" {
     AssetProps,
     CalendarProps,
     KeyStringProp,
+    MediaItemProp,
     MediaProps,
     MenuItemProps,
     NewsletterProps,
@@ -24,6 +25,11 @@ declare module "app-forms" {
     username: string;
     newPassword: string;
     confirmNewPassword: string;
+  }
+  export interface MediaFormUpdateProps {
+    onCancelClick?: () => void;
+    onSubmit?: (key: PreviewValueProps) => void;
+    media?: MediaItemProp;
   }
   export type FormProps = {
     formId: string;
@@ -97,8 +103,9 @@ declare module "app-forms" {
     hasEntry?: SectionEntryOganizer;
   }
   export interface FormatMediaProps {
-    values: MediaProps;
-    desiredOrder: string[];
+    values?: MediaProps;
+    media?: MediaItemProp;
+    desiredOrder?: string[];
     hasEntry?: SectionEntryOganizer;
   }
   export interface InitValueProps {
