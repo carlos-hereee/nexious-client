@@ -3,40 +3,26 @@ import { useContext } from "react";
 import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import EditPage from "@components/app/forms/EditPage";
-// import AddMedia from "@components/app/forms/AddMedia";
-import PrivateRoute from "./utils/router/PrivateRoute";
-import Landing from "./pages/Landing";
-import Offline from "./components/app/Offline";
-import SignUp from "./pages/Register";
-import AppRoute from "./utils/router/AppRoute";
-import ForgotPassword from "./components/form/ForgotPassword";
-import AdminRoute from "./utils/router/AdminRoute";
-import BuildApp from "./components/app/forms/BuildApp";
-import EditApp from "./components/app/forms/EditApp";
-import Login from "./pages/Login";
-import PublicRoute from "./utils/router/PublicRoute";
-import UserPlayground from "./pages/UserPlayground";
-import Homepage from "./pages/HomePage";
-import AppSettings from "./pages/settings/AppSettings";
-import AddPage from "./components/app/forms/AddPage";
+import PrivateRoute from "@router/PrivateRoute";
+import AppRoute from "@router/AppRoute";
+import AdminRoute from "@router/AdminRoute";
+import PublicRoute from "@router/PublicRoute";
+import Landing from "@pages/Landing";
+import Offline from "@components/app/Offline";
+import SignUp from "@pages/Register";
+import ForgotPassword from "@components/form/ForgotPassword";
+import BuildApp from "@components/app/forms/BuildApp";
+import EditApp from "@components/app/forms/EditApp";
+import Login from "@pages/Login";
+import UserPlayground from "@pages/UserPlayground";
+import Homepage from "@pages/HomePage";
+import AppSettings from "@pages/settings/AppSettings";
+import AddPage from "@components/app/forms/AddPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
-  // const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (accessToken) {
-  //     // navigate to user playground when the amount of owned apps changes
-  //     navigate("/dashboard");
-  //   }
-  // }, [ownedApps]);
-
-  // // emergency password change
-  // if (authErrors.emergencyPasswordChangeIsRequired) {
-  //   // return <ChangePassword handleClick={changePassword} />;
-  //   return <ChangePassword />;
-  // }
   return (
     <Routes>
       {/* Public Routes */}
@@ -69,7 +55,7 @@ const AppRouter: React.FC = () => {
       <Route element={<AdminRoute />}>
         <Route path="/add-page/:appName" element={<AddPage />} />
         <Route path="/edit-app/:appName" element={<EditApp />} />
-        <Route path="/edit-app/:appName/page/:pageName" element={<EditPage />} />
+        <Route path="/edit-page/:appName/page/:pageName" element={<EditPage />} />
         <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}

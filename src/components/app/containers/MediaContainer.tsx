@@ -4,6 +4,8 @@ import { Icon } from "nexious-library";
 const MediaContainer = (props: CardContainerProps) => {
   const { data, canRemove, onRemove } = props;
   const handleRemove = (uid: string) => onRemove && onRemove(uid);
+
+  if (!data || data.length === 0) return <p>No social media linked</p>;
   return (
     <div className="flex-wrap">
       {data.length > 0 &&

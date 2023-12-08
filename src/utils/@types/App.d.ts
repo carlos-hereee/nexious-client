@@ -5,6 +5,16 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
+  export interface DialogProps {
+    onClose?: () => void;
+    onConfirm?: () => void;
+    header?: { heading?: string; subtitle?: string; data?: string };
+  }
+  export interface PagesContainerProps {
+    name: string;
+    handleDeletePage: (page: PageProps) => void;
+    pages?: PageProps[];
+  }
   export interface CallToActionProps {
     link: string;
     label: string;

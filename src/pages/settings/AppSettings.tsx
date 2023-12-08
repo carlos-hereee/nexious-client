@@ -1,20 +1,21 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonCancel, IconButton, Socials, Loading } from "nexious-library";
-import PreviewPage from "@components/app/preview/PreviewPage";
+import { Button, Dialog, IconButton, Loading } from "nexious-library";
 import { PageProps } from "app-context";
-import Dialog from "@components/app/Dialog";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AdminContext } from "@context/admin/AdminContext";
 import AddMedia from "@components/app/forms/AddMedia";
-import DangerZone from "../../components/app/DangerZone";
-import MediaContainer from "@components/app/MediaContainer";
+import DangerZone from "@components/app/DangerZone";
+import MediaContainer from "@components/app/containers/MediaContainer";
+import PagesContainer from "@components/app/containers/PagesContainer";
+import PageDialog from "@components/app/dialog/PageDialog";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
-  const { deletePage, deleteMedia } = useContext(AdminContext);
+  // const { deletePage, deleteMedia } = useContext(AdminContext);
+  const { deletePage } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false });
   const [activePage, setActivePage] = useState<PageProps>();
@@ -22,6 +23,10 @@ const AppSettings = () => {
 
   const name = appName.split(" ").join("+");
   const appUrl = `${import.meta.env.VITE_CLIENT_URL}/app/${name}`;
+
+  const dialogPageHeader = {
+    heading: `Are you sure you want to delete page ${activePage?.name}`,
+  };
 
   const copyLink = () => {
     navigator.clipboard.writeText(appUrl);
@@ -33,9 +38,9 @@ const AppSettings = () => {
   };
   const handleConfirm = () => {
     setShow({ ...show, pages: false });
-    // console.log("activePage :>> ", activePage);
     if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
+  const onPageClose = () => setShow({ ...show, pages: false });
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -49,48 +54,17 @@ const AppSettings = () => {
       </div>
       <div className="container">
         <h2>Pages:</h2>
-        <div className="section-container">
-          {pages && pages?.length > 0 ? (
-            pages.map((page) => (
-              <div key={page.pageId} className="preview-card highlight">
-                <PreviewPage
-                  preview={page}
-                  hero={page.hero}
-                  heading={page.name}
-                  onClick={() => navigate(`/edit-app/${name}/page/${page.name}`)}
-                  layout="preview-thumbnail"
-                />
-                <button className="btn-remove" type="button" onClick={() => handleDeletePage(page)}>
-                  X
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>No pages added. Add more pages to your app</p>
-          )}
-        </div>
+        <PagesContainer name={name} handleDeletePage={handleDeletePage} pages={pages} />
         {show.pages && (
-          <Dialog theme={theme} onDialogClose={() => setShow({ ...show, pages: false })}>
-            <h2>Are you sure you want to delete page {activePage?.name}</h2>
-            <p>This will delete all data</p>
-            <div className="flex-center">
-              <ButtonCancel onClick={() => setShow({ ...show, pages: false })} theme="btn-main" />
-              <Button label="Confirm" onClick={handleConfirm} />
-            </div>
-          </Dialog>
+          <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
         )}
-
         <div className="flex-center">
           <Button label="+ Add Page" onClick={() => navigate(`/add-page/${name}`)} />
         </div>
       </div>
       <div className="container">
         <h2>Social medias:</h2>
-        {media.hasMedias ? (
-          <MediaContainer data={media.medias} canRemove />
-        ) : (
-          <p>No social media linked</p>
-        )}
+        <MediaContainer data={media.medias} canRemove />
         {show.media && (
           <Dialog theme={theme} onDialogClose={() => setShow({ ...show, media: false })}>
             <AddMedia onCancelClick={() => setShow({ ...show, media: false })} />
