@@ -108,7 +108,10 @@ declare module "auth-context" {
           | AUTH_ACTIONS.SET_THEME;
         payload: string;
       }
-    | { type: AUTH_ACTIONS.SET_OWNED_APPS; payload: AppListProps[] }
+    | {
+        type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS;
+        payload: AppListProps[];
+      }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
 }

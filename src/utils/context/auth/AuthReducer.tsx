@@ -9,6 +9,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, authErrors: action.payload };
     case AUTH_ACTIONS.SET_STRANDED:
       return { ...state, isOffline: action.payload };
+    case AUTH_ACTIONS.SET_SUBSCRIPTIONS:
+      return { ...state, subscriptions: action.payload };
     // case AUTH_ACTIONS.UPDATE_LANGUAGE:
     //   return { ...state, language: action.payload };
     // case AUTH_ACTIONS.SET_APP_ID:

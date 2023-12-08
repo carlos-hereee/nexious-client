@@ -6,6 +6,9 @@ export const setUser = (props: AuthReducerProps) => {
   //  key varaibles
   const { dispatch, user } = props;
   if (user) {
+    if (user.subscriptions) {
+      dispatch({ type: AUTH_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
+    }
     const formatUser = userMinData(user);
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: AUTH_ACTIONS.SET_USER_DATA, payload: formatUser });
