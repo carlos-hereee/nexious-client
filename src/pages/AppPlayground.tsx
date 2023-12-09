@@ -1,20 +1,20 @@
-import AppCard from "@app/components/app/AppCard";
-import CreateApp from "@app/components/app/CreateApp";
-import { AppContext } from "@app/context/app/AppContext";
-import { AuthContext } from "@app/context/auth/AuthContext";
+import AppCard from "@components/app/AppCard";
+import CreateApp from "@components/app/CreateApp";
+import { AppContext } from "@context/app/AppContext";
+import { AuthContext } from "@context/auth/AuthContext";
 import { AppListProps } from "app-context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { updateActiveMenu } = useContext(AppContext);
+  const { updateActiveAppData } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
-    const { logo, appName, menu } = app;
-    updateActiveMenu({ menu, appName, logo, media: app.media });
+    const { logo, appName, menu, appId } = app;
+    updateActiveAppData({ menu, appName, logo, media: app.media, appId });
     navigate(`/app/${name}`);
   };
 

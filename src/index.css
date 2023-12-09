@@ -1,6 +1,5 @@
 .edit-app {
   width: 100%;
-  /* display: flex; */
   gap: 1rem;
   flex-wrap: wrap;
   align-items: start;
@@ -57,15 +56,6 @@
   align-items: center;
 }
 
-.form-field-container {
-  max-height: 600px;
-}
-/* .section-row {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-} */
-
 .app-card {
   flex: 1;
 }
@@ -80,9 +70,7 @@
 .build-app-container {
   min-width: 300px;
 }
-.card-container {
-  justify-content: flex-start;
-}
+
 @media only screen and (max-width: 505px) {
   /*Small smartphones [325px -> 425px]*/
   .explore-apps {
@@ -91,4 +79,55 @@
   .card-container {
     justify-content: center;
   }
+}
+.sections-grid {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+.section-card {
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: 1fr 1fr;
+}
+
+.preview-container {
+  position: relative;
+}
+.preview-thumbnail {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 0;
+  gap: 1rem;
+}
+.page-header .hero-card {
+  grid-template-columns: 1fr 1fr;
+}
+.mtb-2 {
+  margin: 2rem 0;
+}
+.media-wrapper {
+  position: relative;
+}
+.btn-media-remove {
+  top: -5%;
+  right: -5%;
+  max-width: 25px;
+}
+.btn-rect {
+  aspect-ratio: 1/1;
+}
+.page-header {
+  display: flex;
+  gap: 1rem;
+}
+.card-row {
+  display: grid;
+  grid-template-columns: minmax(auto, 200px) 3fr;
+}
+.logo {
+  min-width: 120px;
 }

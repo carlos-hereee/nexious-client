@@ -1,5 +1,6 @@
-import { clientUrl, serverUrl } from "@app/config";
 import axios from "axios";
+import { clientUrl, serverUrl } from "@config";
+
 const api = axios.create({
   baseURL: serverUrl,
   withCredentials: true,
@@ -16,6 +17,7 @@ api.interceptors.request.use(
   (config) => {
     // Do something before request is sent
     // update content type to form submit assets
+    // eslint-disable-next-line no-param-reassign
     config.headers["Content-Type"] = "multipart/form-data";
     return config;
   },

@@ -2,15 +2,17 @@ import { PreviewPageProps } from "app-types";
 import { Card, HeroCard } from "nexious-library";
 
 const PreviewPage: React.FC<PreviewPageProps> = (props) => {
-  const { preview, theme, hero, onClick } = props;
+  const { preview, theme, hero, onClick, layout, heading } = props;
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
+  const heroData = { url: hero, alt: `preview page${preview?.title}`, theme: "hero-thumbnail" };
 
   if (!preview) return <div />;
   return (
-    <div className="container">
-      <div className="container">
+    <button type="button" className={layout} onClick={onClick}>
+      {heading && <h2 className="heading">{heading}</h2>}
+      <div className="page-header">
         {preview.hero ? (
-          <HeroCard data={cardData} hero={hero} theme={theme} cta={preview.cta} onClick={onClick} />
+          <HeroCard data={cardData} hero={heroData} theme={theme} viewAsPreview />
         ) : (
           <Card data={cardData} />
         )}
@@ -19,19 +21,19 @@ const PreviewPage: React.FC<PreviewPageProps> = (props) => {
       {preview.hasSections && (
         <div className={preview.sections?.length > 3 ? "sections-container" : "grid"}>
           {preview.sections.map((data) => {
-            const { sectionHero, sharedKey, body, uid } = data;
+            const { sectionHero, body, uid } = data;
             return sectionHero ? (
-              <div key={uid || sharedKey} className="section-card">
+              <div key={uid} className="section-card">
                 <HeroCard data={data} hero={{ url: sectionHero, theme: "hero-thumbnail" }} />
                 {body && <p className="text-max">{body}</p>}
               </div>
             ) : (
-              <Card data={data} key={sharedKey} />
+              <Card data={data} key={uid} />
             );
           })}
         </div>
       )}
-    </div>
+    </button>
   );
 };
 export default PreviewPage;

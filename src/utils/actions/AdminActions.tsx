@@ -1,5 +1,0 @@
-export enum ADMIN_ACTIONS {
-  IS_LOADING,
-  SET_FORM_ERRORS,
-  // SET_APP_MENU,
-}

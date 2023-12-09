@@ -4,41 +4,14 @@
     {
       "isToggle": false,
       "isPrivate": true,
+      "isPage": false,
       "uid": "auth-1",
-      "menuId": "auth-1",
       "category": "auth",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "value": "login",
-        "name": "login",
-        "locale": "",
-        "uid": "login-uid-1",
-        "menuItemId": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "value": "login",
-          "locale": "",
-          "uid": "login-uid-1",
-          "menuItemId": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "locale": "",
-          "value": "logout",
-          "uid": "logout-uid-1",
-          "menuItemId": "logOut-uid-2",
-          "link": "logout"
-        }
-      ]
+      "menuId": "auth-1",
+      "label": "login",
+      "value": "login",
+      "link": "login",
+      "name": "login"
     }
   ],
   "nexiousLogo": "/icons/logo.svg",
@@ -65,11 +38,26 @@
       {
         "label": "Get Started",
         "icon": "confirm",
-        "link": "sign-up",
+        "link": "build-app",
         "uid": "cta-1"
       }
     ],
     "sections": [
+      {
+        "title": "Fast and Simple",
+        "subtitle": "",
+        "uid": "section-12",
+        "details": "",
+        "sectionHero": {
+          "url": "/icons/CLOCK.svg",
+          "alt": "Trusted professionals",
+          "uid": "hero-uid-3",
+          "heroId": "section-heroId-3",
+          "hero": "/icons/CLOCK.svg",
+          "theme": "hero-thumbnail"
+        },
+        "body": "Crafted with a focus on simplicity and user-friendly functionality, the design aims to provide an intuitive and accessible user experience."
+      },
       {
         "title": "Trusted Professionals",
         "subtitle": "",

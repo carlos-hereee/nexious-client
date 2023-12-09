@@ -17,7 +17,7 @@ const Landing = () => {
     <div>
       <div className="flex-d-column">
         {landing.hero ? (
-          <HeroCard data={landing} hero={heroData} cta={landing.cta} onClick={handleClick} />
+          <HeroCard data={landing} hero={heroData} onClick={handleClick} />
         ) : (
           <Card data={landing} cta={landing.cta} />
         )}

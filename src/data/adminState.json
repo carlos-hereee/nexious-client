@@ -19,7 +19,19 @@
     },
     "types": { "appName": "text", "logo": "file", "theme": "datalist" },
     "withFileUpload": true,
-    "previewLabel": "See changes"
+    "previewLabel": "See changes",
+    "desiredOrder": ["appName", "logo"],
+    "hero": {
+      "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
+      "alt": "build app",
+      "uid": "build-app-hero-uid",
+      "heroId": "build-app-hero",
+      "creditTo": {
+        "artistName": "Gia Oris",
+        "artistUrl": "https://unsplash.com/@giabyte?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/photos/pink-star-here-text-_uM5_nG2ssc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    }
   },
   "landingForm": {
     "heading": "Update landing page data",
@@ -107,7 +119,7 @@
     "heading": "",
     "fieldHeading": {},
     "initialValues": { "media": "", "link": "" },
-    "labels": { "media": "Social media", "link": "Username or URL" },
+    "labels": { "media": "Social media", "link": "Username" },
     "placeholders": { "media": "", "link": "" },
     "types": { "media": "select", "link": "text" },
     "additionLabel": "Add another",
@@ -155,33 +167,36 @@
     "initialValues": {
       "name": "",
       "title": "",
-      "body": "",
       "hero": "",
-      "hasSection": false,
-      "hasCta": false
+      "body": "",
+      "hasCta": false,
+      "hasSections": false
     },
     "types": {
       "title": "text",
       "body": "textarea",
       "name": "text",
-      "hasSection": "checkbox",
+      "hero": "file",
+      "hasSections": "checkbox",
       "hasCta": "checkbox"
     },
     "labels": {
-      "name": "Enter page name",
-      "title": "Enter page heading",
-      "body": "Enter page body text",
-      "hasSection": "This part cta the app has sub sections",
+      "name": "Page name",
+      "title": "Page heading",
+      "body": "Page body text",
+      "hero": "Add background image",
+      "hasSections": "This part cta the app has sub sections",
       "hasCta": "This part of the app has a call to action"
     },
     "placeholders": {
       "title": "Page headline",
       "hero": "",
       "body": "Text body",
-      "name": "Page name",
-      "hasSection": "",
+      "name": "Page name, eg. services/checkout/booking",
+      "hasSections": "",
       "hasCta": ""
-    }
+    },
+    "desiredOrder": ["name", "title", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
   },
   "sectionForm": {
     "formId": "sectionForm",
@@ -198,7 +213,8 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "canMultiply": true,
-    "groupName": "sections"
+    "groupName": "sections",
+    "desiredOrder": ["title", "body", "sectionHero"]
   },
   "ctaForm": {
     "formId": "ctaForm",
@@ -215,16 +231,18 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "canMultiply": true,
-    "groupName": "cta"
+    "groupName": "cta",
+    "desiredOrder": ["label", "link", "icon"]
   },
   "heroForm": {
     "heading": "",
     "formId": "heroForm",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "labels": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "placeholders": { "name": "", "hero": "", "filename": "", "link": "", "label": "" },
-    "types": { "name": "", "hero": "", "filename": "", "link": "", "label": "" }
+    "initialValues": { "name": "", "hero": "", "link": "", "label": "" },
+    "desiredOrder": [],
+    "labels": { "name": "", "hero": "", "link": "", "label": "" },
+    "placeholders": { "name": "", "hero": "", "link": "", "label": "" },
+    "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
   "sectionEntries": {
     "hasCta": {
@@ -243,7 +261,8 @@
       "removalLabel": "Remove",
       "canMultiply": true,
       "groupName": "cta",
-      "group": "hasCta"
+      "group": "hasCta",
+      "desiredOrder": ["label", "link", "icon"]
     },
     "hasSections": {
       "formId": "sectionForm",
@@ -261,7 +280,8 @@
       "removalLabel": "Remove",
       "canMultiply": true,
       "groupName": "sections",
-      "group": "hasSections"
+      "group": "hasSections",
+      "desiredOrder": ["title", "body", "sectionHero"]
     }
   },
   "themeList": [
@@ -360,7 +380,6 @@
       "value": "facebook",
       "label": "Facebook",
       "icon": "facebook",
-      "themeId": "theme-facebook",
       "uid": "theme-facebook"
     },
     {
@@ -368,15 +387,13 @@
       "value": "x",
       "label": "x (Twitter)",
       "icon": "x",
-      "themeId": "theme-x",
       "uid": "theme-x"
     },
     {
       "name": "instagram",
       "value": "instagram",
-      "label": "instagram",
+      "label": "Instagram",
       "icon": "instagram",
-      "themeId": "theme-instagram",
       "uid": "theme-instagram"
     }
   ],

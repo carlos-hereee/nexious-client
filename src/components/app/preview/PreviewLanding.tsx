@@ -7,19 +7,13 @@ const PreviewLanding: React.FC<PreviewPageProps> = (props) => {
 
   const cardData = { title: preview?.title || "", tagline: preview?.tagline || "" };
 
-  const heroData = { url: preview.hero instanceof File ? urlFile(preview.hero) : preview.hero };
+  const heroData = { url: preview.hero };
 
   return (
     <div className="container">
       <div className="container">
         {preview.hero ? (
-          <HeroCard
-            data={cardData}
-            hero={heroData}
-            theme={theme}
-            cta={preview.cta}
-            onClick={onClick}
-          />
+          <HeroCard data={cardData} hero={heroData} theme={theme} onClick={onClick} />
         ) : (
           <Card data={cardData} />
         )}

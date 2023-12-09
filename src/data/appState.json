@@ -1,53 +1,15 @@
 {
   "isLoading": false,
   "isOnline": true,
-  "appList": [],
-  "themeList": [
-    {
-      "name": "light-mode",
-      "value": "light-mode",
-      "label": "light-mode",
-      "uid": "light-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    },
-    {
-      "name": "dark-mode",
-      "value": "dark-mode",
-      "label": "dark-mode",
-      "uid": "dark-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    }
-  ],
   "appName": "",
   "appError": "",
   "activeAppName": "Nexious Tech",
-  "appId": "Nexious-appid-1",
-  "owner": { "userId": "", "username": "" },
+  "appId": "",
+  "activeAppId": "",
   "welcomeMessage": "Welcome back!",
   "locale": "",
   "adminIds": [{ "userId": "", "role": "" }],
+  "owner": { "userId": "", "username": "" },
   "newsletter": {
     "title": "Join the newsletter",
     "subtitle": "Suscribe to get the latest content by email",
@@ -55,6 +17,30 @@
     "email": "",
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" }
   },
+  "media": {
+    "title": "",
+    "subtitle": "",
+    "details": "",
+    "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" },
+    "medias": []
+  },
+  "menu": [
+    {
+      "isToggle": false,
+      "isPage": false,
+      "isPrivate": true,
+      "uid": "auth-1",
+      "menuId": "auth-1",
+      "category": "auth",
+      "label": "login",
+      "value": "login",
+      "name": "login",
+      "link": "login"
+    }
+  ],
+  "calendar": { "name": "", "calendarId": "", "events": [{}] },
+  "logo": "",
+  "activeLogo": "/icons/logo.svg",
   "activeMedia": {
     "title": "Dont miss a thing! Follow us on our socials",
     "subtitle": "",
@@ -95,114 +81,67 @@
       }
     ]
   },
-  "media": {
-    "title": "",
-    "subtitle": "",
-    "details": "",
-    "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" },
-    "medias": []
-  },
-  "menu": [
-    {
-      "isToggle": false,
-      "isPrivate": true,
-      "uid": "auth-1",
-      "menuId": "auth-1",
-      "category": "auth",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "value": "login",
-        "themeId": "",
-        "locale": "",
-        "name": "login",
-        "uid": "login-uid-1",
-        "menuItemId": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "value": "login",
-          "locale": "",
-          "themeId": "",
-          "uid": "login-uid-1",
-          "menuItemId": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "themeId": "",
-          "locale": "",
-          "value": "logout",
-          "uid": "logout-uid-1",
-          "menuItemId": "logOut-uid-1",
-          "link": "logout"
-        }
-      ]
-    }
-  ],
   "activeMenu": [
     {
       "isToggle": false,
       "isPrivate": true,
+      "isPage": false,
       "uid": "auth-1",
-      "menuId": "auth-1",
       "category": "auth",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "value": "login",
-        "themeId": "",
-        "name": "login",
-        "locale": "",
-        "uid": "login-uid-1",
-        "menuItemId": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "value": "login",
-          "locale": "",
-          "uid": "login-uid-1",
-          "menuItemId": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "locale": "",
-          "value": "logout",
-          "uid": "logout-uid-1",
-          "menuItemId": "logOut-uid-2",
-          "link": "logout"
-        }
-      ]
+      "menuId": "auth-1",
+      "label": "login",
+      "value": "login",
+      "link": "login",
+      "name": "login"
     }
   ],
-  "calendar": { "name": "", "calendarId": "", "events": [{}] },
-  "logo": "",
-  "activeLogo": "/icons/logo.svg",
-
+  "pages": [],
+  "appList": [],
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "uid": "light-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "uid": "dark-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    }
+  ],
   "iconList": [
     {
       "name": "confirm",
       "label": "Confirm",
       "value": "confirm",
       "icon": "confirm",
-      "uid": "icon-1",
-      "link": "",
-      "locale": "",
-      "themeId": "",
-      "menuItemId": "icon-list-item-english"
+      "uid": "icon-1"
     }
   ],
   "languageList": [

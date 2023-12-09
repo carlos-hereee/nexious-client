@@ -30,6 +30,7 @@
     },
     "types": { "username": "text", "email": "text" },
     "fieldHeading": {},
+    "desiredOrder": [""],
     "heading": ""
   },
   "signUpForm": {
@@ -61,6 +62,7 @@
       }
     },
     "fieldHeading": {},
+    "desiredOrder": [""],
     "heading": ""
   },
   "loginForm": {
@@ -92,10 +94,12 @@
     },
     "types": { "username": "text", "email": "text" },
     "fieldHeading": {},
-    "heading": ""
+    "desiredOrder": [""],
+    "heading": "Login"
   },
   "passwordChangeForm": {
     "formId": "passwordChange",
+    "desiredOrder": [""],
     "initialValues": {
       "username": "",
       "oldPassword": "",
@@ -119,6 +123,7 @@
     "heading": ""
   },
   "forgotPasswordForm": {
+    "desiredOrder": [""],
     "formId": "forgotPassword",
     "initialValues": { "username": "", "newPassword": "", "confirmNewPassword": "" },
     "labels": {
@@ -137,5 +142,6 @@
     "fieldHeading": {},
     "heading": ""
   },
-  "ownedApps": []
+  "ownedApps": [],
+  "subscriptions": []
 }
