@@ -14,7 +14,6 @@ const MediaContainer = (props: MediaCardContainerProps) => {
         onMediaClick={onMediaClick}
         hint={data.hint}
       />
-      ;
       {onAddMedia && (
         <div className="flex-center">
           <Button label="+ Add Social media" onClick={onAddMedia} />
