@@ -7,14 +7,14 @@ import AppCard from "./AppCard";
 // import CreateAppButton from "./buttons/CreateAppButton";
 
 const ExploreApps = () => {
-  const { appList, updateActiveMenu } = useContext(AppContext);
+  const { appList, updateActiveAppData } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
     const { logo, appName, menu, appId } = app;
-    updateActiveMenu({ menu, appName, logo, media: app.media, appId });
+    updateActiveAppData({ menu, appName, logo, media: app.media, appId });
     navigate(`/app/${name}`);
   };
 

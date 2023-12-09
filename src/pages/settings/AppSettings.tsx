@@ -12,7 +12,7 @@ import MediaDialog from "@components/app/dialog/MediaDialog";
 import { DialogStatusProps, MediaItemProp } from "app-types";
 
 const AppSettings = () => {
-  const { appName, media, pages, appId, isLoading, updateActiveMenu, logo, menu } =
+  const { appName, media, pages, appId, isLoading, updateActiveAppData, logo, menu } =
     useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
   const [copyUrl, setCopyUrl] = useState<boolean>(false);
@@ -63,7 +63,7 @@ const AppSettings = () => {
     setStatus("phase-two");
   };
   const handleSeeLive = () => {
-    updateActiveMenu({ menu, appName, logo, media, appId });
+    updateActiveAppData({ menu, appName, logo, media, appId });
     navigate(`/app/${name}`);
   };
 

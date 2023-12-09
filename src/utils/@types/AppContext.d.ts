@@ -152,7 +152,7 @@ declare module "app-context" {
     updateAppData: (key: AppProps) => void;
     getAppWithName: (appName: string) => void;
     updateAppList: (appList: AppListProps[]) => void;
-    updateActiveMenu: (props: ActiveMenuProps) => void;
+    updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
 

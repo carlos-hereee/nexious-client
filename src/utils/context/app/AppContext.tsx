@@ -69,9 +69,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     fetchAppWithName({ dispatch, appName: a, updateAppData });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
-  const updateActiveMenu = useCallback((props: ActiveMenuProps) => {
+  const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo, media, appId } = props;
-    setActiveData({ dispatch, menu, appName, logo: logo || "", media, appId });
+    setActiveData({ dispatch, menu, appName, logo, media, appId });
   }, []);
 
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
@@ -87,7 +87,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     } else if (isToggle && category === "theme") setTheme(menuItem.value);
     // otherwise go to page
     else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
-    updateActiveMenu({ menu: oldValues });
+    updateActiveAppData({ menu: oldValues });
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -122,7 +122,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateAppList,
       getAppWithName,
       getAppList,
-      updateActiveMenu,
+      updateActiveAppData,
       handleMenu,
     };
   }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.appName]);

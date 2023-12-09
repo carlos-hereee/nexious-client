@@ -42,6 +42,8 @@ const App = ({ children }: ChildProps) => {
         handleTheme={setTheme}
         themeList={themeList}
         theme={theme}
+        includeHome={activeAppName !== nexiousName}
+        onHomeClick={() => navigate("/")}
       />
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />

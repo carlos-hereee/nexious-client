@@ -8,13 +8,13 @@ import { useNavigate } from "react-router-dom";
 
 const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { updateActiveMenu } = useContext(AppContext);
+  const { updateActiveAppData } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleSeeLive = (app: AppListProps) => {
     const name = app.appName.split(" ").join("+");
     const { logo, appName, menu, appId } = app;
-    updateActiveMenu({ menu, appName, logo, media: app.media, appId });
+    updateActiveAppData({ menu, appName, logo, media: app.media, appId });
     navigate(`/app/${name}`);
   };
 
