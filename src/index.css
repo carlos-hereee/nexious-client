@@ -124,3 +124,10 @@
   display: flex;
   gap: 1rem;
 }
+.card-row {
+  display: grid;
+  grid-template-columns: minmax(auto, 200px) 3fr;
+}
+.logo {
+  min-width: 120px;
+}
