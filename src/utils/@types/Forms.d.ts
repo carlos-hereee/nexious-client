@@ -99,13 +99,13 @@ declare module "app-forms" {
   }
   export interface FormatNewsletterProps {
     values: NewsletterProps;
-    desiredOrder?: string[];
+    desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
   export interface FormatMediaProps {
     values?: MediaProps;
     media?: MediaItemProp;
-    desiredOrder?: string[];
+    desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
   export interface InitValueProps {
