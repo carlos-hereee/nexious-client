@@ -113,6 +113,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       owner: state.owner,
       appError: state.appError,
       logo: state.logo,
+      store: state.store,
       activeLogo: state.activeLogo,
       locale: state.locale,
       welcomeMessage: state.welcomeMessage,

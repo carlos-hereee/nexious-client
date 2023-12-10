@@ -245,8 +245,33 @@
     "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
   "storeForm": {
-    "heading": "Add merch",
+    "heading": "It looks like your have not create your store yet",
     "formId": "storeForm",
+    "previewLabel": "See changes",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "title": "", "hero": "", "body": "" },
+    "types": {
+      "body": "textarea",
+      "name": "text",
+      "title": "text",
+      "hero": "file"
+    },
+    "labels": {
+      "name": "Page name",
+      "title": "Store name",
+      "body": "About",
+      "hero": "Add image"
+    },
+    "placeholders": {
+      "hero": "",
+      "body": "",
+      "name": "Store/Shop"
+    },
+    "desiredOrder": ["name", "title", "hero", "body", "cost", "quantity"]
+  },
+  "merchForm": {
+    "heading": "Add merch",
+    "formId": "merchForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
     "initialValues": {

@@ -24,6 +24,7 @@ import { updatePage } from "./requests/updatePage";
 import { removePage } from "./requests/removePage";
 import { createMedia } from "./requests/createMedia";
 import { removeMedia } from "./requests/removeMedia";
+import { buildStore } from "./requests/buildStore";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -98,7 +99,10 @@ export const AdminState = ({ children }: ChildProps) => {
     createMedia({ dispatch, appId, handleAppAssets, values });
   }, []);
   const addStore = useCallback((values: PreviewValueProps, appId: string) => {
-    createMedia({ dispatch, appId, handleAppAssets, values });
+    buildStore({ dispatch, appId, handleAppAssets, values });
+  }, []);
+  const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
+    buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
 
   const deleteMedia = useCallback((appId: string, name: string) => {
@@ -125,6 +129,7 @@ export const AdminState = ({ children }: ChildProps) => {
       mediaEntryForm: state.mediaEntryForm,
       languageForm: state.languageForm,
       themeList: state.themeList,
+      merchForm: state.merchForm,
       languageList: state.languageList,
       initApp,
       editAppName,
@@ -140,6 +145,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editPage,
       addMedia,
       addStore,
+      addMerch,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

@@ -34,8 +34,22 @@ declare module "app-context" {
       altSecondary: string;
     };
   };
+  export type StoreProps = {
+    name?: string;
+    storeId?: string;
+    title?: string;
+    hero?: string;
+    merchendise?: {
+      name: string;
+      body: string;
+      hero: string;
+      cost: number;
+      quantity: number;
+    }[];
+  };
   export interface AppProps {
     appName: string;
+    store: StoreProps;
     appId: string;
     adminIds: AdminIdProps[];
     logo: string;
@@ -121,6 +135,7 @@ declare module "app-context" {
     languageList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
+    store: StoreProps;
   }
   // app context schema
   export interface AppSchema {
@@ -140,6 +155,7 @@ declare module "app-context" {
     appId: string;
     activeAppId: string;
     owner: UserSchema;
+    store: StoreProps;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     media: MediaProps;

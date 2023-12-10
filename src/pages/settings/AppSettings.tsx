@@ -40,10 +40,7 @@ const AppSettings = () => {
     heading: "Social media:",
     hint: "Click/Tap on icons to edit",
   };
-  const storeData = {
-    store: media.medias,
-    heading: "Merchendise:",
-  };
+  const storeData = { heading: "Merchendise:" };
   const pagesData = { name, heading: "Pages:" };
 
   const copyLink = () => {

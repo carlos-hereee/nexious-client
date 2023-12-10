@@ -6,8 +6,8 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
-const AddStore = () => {
-  const { storeForm, addStore, sectionEntries, isLoading } = useContext(AdminContext);
+const AddMerch = () => {
+  const { storeForm, addMerch, sectionEntries, isLoading } = useContext(AdminContext);
   const { iconList, appId, appName } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
@@ -45,7 +45,7 @@ const AddStore = () => {
         clearSelection={{ icon: true }}
         heading={`${storeForm.heading}: ${appName}`}
         onCancel={() => navigate("/dashboard")}
-        onSubmit={(values: PreviewValueProps) => addStore(values, appId)}
+        onSubmit={(values: PreviewValueProps) => addMerch(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         noScroll
@@ -54,4 +54,4 @@ const AddStore = () => {
     </div>
   );
 };
-export default AddStore;
+export default AddMerch;

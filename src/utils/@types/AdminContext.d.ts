@@ -27,6 +27,7 @@ declare module "app-admin" {
     languageForm: FormProps;
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
+    merchForm: FormProps;
     ctaForm: FormProps;
     storeForm: FormProps;
     mediaEntryForm: FormProps;
@@ -50,6 +51,7 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
+    merchForm: FormProps;
     storeForm: FormProps;
     mediaEntryForm: FormProps;
     languageForm: FormProps;
@@ -74,6 +76,7 @@ declare module "app-admin" {
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
     addStore: (values: PreviewValueProps, appId: string) => void;
+    addMerch: (values: PreviewValueProps, appId: string) => void;
     // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
