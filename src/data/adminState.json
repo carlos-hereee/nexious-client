@@ -244,6 +244,39 @@
     "placeholders": { "name": "", "hero": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
+  "storeForm": {
+    "heading": "Add merch",
+    "formId": "storeForm",
+    "previewLabel": "See changes",
+    "fieldHeading": {},
+    "initialValues": {
+      "name": "",
+      "hero": "",
+      "body": "",
+      "cost": "",
+      "quantity": ""
+    },
+    "types": {
+      "body": "textarea",
+      "name": "text",
+      "hero": "file",
+      "cost": "number",
+      "quantity": "number"
+    },
+    "labels": {
+      "name": "Merc name",
+      "body": "Description",
+      "hero": "Add image",
+      "cost": "Cost",
+      "quantity": "Quantity"
+    },
+    "placeholders": {
+      "hero": "",
+      "body": "",
+      "name": "item name"
+    },
+    "desiredOrder": ["name", "hero", "body", "hasCta", "cost", "quantity"]
+  },
   "sectionEntries": {
     "hasCta": {
       "formId": "ctaForm",

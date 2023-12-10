@@ -53,7 +53,7 @@ const EditPage = () => {
           addEntry={sectionEntries}
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
-          onCancel={() => navigate("/")}
+          onCancel={() => navigate("/dashboard")}
           heading="Edit page"
           onSubmit={(values: PreviewValueProps) => editPage(values, appId, activePage?.pageId)}
           submitLabel="Save and continue"

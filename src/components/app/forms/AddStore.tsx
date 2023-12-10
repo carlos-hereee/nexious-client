@@ -6,9 +6,9 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
-const AddPage = () => {
-  const { pagesForm, addPage, sectionEntries, isLoading } = useContext(AdminContext);
-  const { iconList, appId } = useContext(AppContext);
+const AddStore = () => {
+  const { storeForm, addStore, sectionEntries, isLoading } = useContext(AdminContext);
+  const { iconList, appId, appName } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
   const navigate = useNavigate();
@@ -36,21 +36,22 @@ const AddPage = () => {
   return (
     <div className="flex-d-column">
       <Form
-        initialValues={pagesForm.initialValues}
-        labels={pagesForm.labels}
-        placeholders={pagesForm.placeholders}
-        types={pagesForm.types}
+        initialValues={storeForm.initialValues}
+        labels={storeForm.labels}
+        placeholders={storeForm.placeholders}
+        types={storeForm.types}
         addEntry={sectionEntries}
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
-        heading="Add page content"
+        heading={`${storeForm.heading}: ${appName}`}
         onCancel={() => navigate("/dashboard")}
-        onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
+        onSubmit={(values: PreviewValueProps) => addStore(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
-        schema={{ required: ["title", "name"] }}
+        noScroll
+        schema={{ required: ["name"] }}
       />
     </div>
   );
 };
-export default AddPage;
+export default AddStore;

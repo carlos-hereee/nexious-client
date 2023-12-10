@@ -97,6 +97,9 @@ export const AdminState = ({ children }: ChildProps) => {
   const addMedia = useCallback((values: PreviewValueProps, appId: string) => {
     createMedia({ dispatch, appId, handleAppAssets, values });
   }, []);
+  const addStore = useCallback((values: PreviewValueProps, appId: string) => {
+    createMedia({ dispatch, appId, handleAppAssets, values });
+  }, []);
 
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
@@ -115,6 +118,7 @@ export const AdminState = ({ children }: ChildProps) => {
       landingForm: state.landingForm,
       heroForm: state.heroForm,
       ctaForm: state.ctaForm,
+      storeForm: state.storeForm,
       socialMediaForm: state.socialMediaForm,
       sectionEntries: state.sectionEntries,
       formErrors: state.formErrors,
@@ -135,6 +139,7 @@ export const AdminState = ({ children }: ChildProps) => {
       addPage,
       editPage,
       addMedia,
+      addStore,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

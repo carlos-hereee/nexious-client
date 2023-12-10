@@ -28,6 +28,7 @@ declare module "app-admin" {
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
     ctaForm: FormProps;
+    storeForm: FormProps;
     mediaEntryForm: FormProps;
     formErrors: AdminFormErrors;
     themeList: MenuItemProps[];
@@ -49,6 +50,7 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     heroForm: FormProps;
     ctaForm: FormProps;
+    storeForm: FormProps;
     mediaEntryForm: FormProps;
     languageForm: FormProps;
     calendarThemeList: MenuItemProps[];
@@ -71,6 +73,7 @@ declare module "app-admin" {
     deletePage: (appId: string, pageId: string) => void;
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
+    addStore: (values: PreviewValueProps, appId: string) => void;
     // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {

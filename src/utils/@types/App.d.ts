@@ -26,6 +26,13 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
+  export interface PageContainerProps {
+    data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
+    onRemove?: (key: string) => void;
+    onMediaClick?: (key: MediaItemProp) => void;
+    onClick?: () => void;
+    onAddItem?: () => void;
+  }
   export interface MediaCardContainerProps {
     data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
     onRemove?: (key: string) => void;

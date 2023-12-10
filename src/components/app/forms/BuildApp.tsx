@@ -32,7 +32,7 @@ const BuildApp = () => {
           disableForm={!accessToken}
           responseError={formErrors.initAppFormError}
           placeholders={initAppForm.placeholders}
-          onCancel={() => navigate("/")}
+          onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           dataList={{ theme: themeList, locale: languageList, language: languageList }}
           fieldHeading={initAppForm.fieldHeading}
           schema={{

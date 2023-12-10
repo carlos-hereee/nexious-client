@@ -35,7 +35,7 @@ const EditApp = () => {
     newsletterForm,
     // calendarForm,
   } = useContext(AdminContext);
-  const { theme } = useContext(AuthContext);
+  const { theme, accessToken } = useContext(AuthContext);
   const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
   // initial data if any
   const {
@@ -166,7 +166,7 @@ const EditApp = () => {
           paginate={formValues}
           theme={theme}
           page={1}
-          onCancel={() => navigate("/")}
+          onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           onPageClick={() => setActive("")}
           onDialogClose={() => setActive("")}
           previewPage={

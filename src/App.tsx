@@ -8,7 +8,8 @@ import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/ErrorPage";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme, isOffline, setStranded } = useContext(AuthContext);
+  const { isLoading, theme, setTheme, isOffline, setStranded, accessToken } =
+    useContext(AuthContext);
   const {
     activeLogo,
     activeMenu,
@@ -22,8 +23,10 @@ const App = ({ children }: ChildProps) => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    if (activeAppName === nexiousName) navigate("/");
-    else navigate(`/app/${activeAppName.split(" ").join("+")}`);
+    if (activeAppName === nexiousName) {
+      if (accessToken) navigate("/dashboard");
+      else navigate("/");
+    } else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
   if (isOffline)
@@ -43,7 +46,7 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
         includeHome={activeAppName !== nexiousName}
-        onHomeClick={() => navigate("/")}
+        onHomeClick={() => navigate(accessToken ? "/dashboard" : "/")}
       />
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
