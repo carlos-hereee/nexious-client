@@ -203,6 +203,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
     | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
+    | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }

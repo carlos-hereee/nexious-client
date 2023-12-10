@@ -4,13 +4,13 @@ import { AdminDisptachProps } from "app-admin";
 import { PreviewPageProps } from "app-types";
 import { AxiosError } from "axios";
 
-export const buildStore = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, values, appId } = props;
+export const addMerchendise = async (props: AdminDisptachProps) => {
+  const { dispatch, handleAppAssets, values } = props;
   try {
     const val = values as PreviewPageProps;
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.post(`/store/build-store/${appId}`, val);
+      const { data } = await axiosMedia.post(`/store/add-merch`, val);
       if (data) handleAppAssets(data);
     }
   } catch (error) {

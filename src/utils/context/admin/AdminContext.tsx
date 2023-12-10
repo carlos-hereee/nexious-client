@@ -25,6 +25,7 @@ import { removePage } from "./requests/removePage";
 import { createMedia } from "./requests/createMedia";
 import { removeMedia } from "./requests/removeMedia";
 import { buildStore } from "./requests/buildStore";
+import { addMerchendise } from "./requests/addMerchendise";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -102,7 +103,7 @@ export const AdminState = ({ children }: ChildProps) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
-    buildStore({ dispatch, appId, handleAppAssets, values });
+    addMerchendise({ dispatch, appId, handleAppAssets, values });
   }, []);
 
   const deleteMedia = useCallback((appId: string, name: string) => {

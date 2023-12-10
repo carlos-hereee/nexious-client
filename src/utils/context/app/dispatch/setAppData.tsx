@@ -18,6 +18,7 @@ export const setAppData = (props: AppDispatchProps) => {
     if (values.owner) dispatch({ type: APP_ACTIONS.SET_OWNER, payload: values.owner });
     if (values.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: values.themeList });
     if (values.pages) dispatch({ type: APP_ACTIONS.SET_PAGES, payload: values.pages });
+    if (values.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: values.store });
     if (values.languageList) {
       dispatch({ type: APP_ACTIONS.SET_LANGUAGE_LIST, payload: values.languageList });
     }

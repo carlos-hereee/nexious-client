@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const AddMerch = () => {
-  const { storeForm, addMerch, sectionEntries, isLoading } = useContext(AdminContext);
+  const { merchForm, addMerch, sectionEntries, isLoading } = useContext(AdminContext);
   const { iconList, appId, appName } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
@@ -36,14 +36,14 @@ const AddMerch = () => {
   return (
     <div className="flex-d-column">
       <Form
-        initialValues={storeForm.initialValues}
-        labels={storeForm.labels}
-        placeholders={storeForm.placeholders}
-        types={storeForm.types}
+        initialValues={merchForm.initialValues}
+        labels={merchForm.labels}
+        placeholders={merchForm.placeholders}
+        types={merchForm.types}
         addEntry={sectionEntries}
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
-        heading={`${storeForm.heading}: ${appName}`}
+        heading={`${merchForm.heading}: ${appName}`}
         onCancel={() => navigate("/dashboard")}
         onSubmit={(values: PreviewValueProps) => addMerch(values, appId)}
         submitLabel="Save and continue"
