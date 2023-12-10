@@ -76,7 +76,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const oldValues = [...state.activeMenu];
-    const { isToggle, isPrivate, category, name, link } = menuItem;
+    const { isPrivate, category, name, link } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
@@ -84,7 +84,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       else if (name === "unsubscribe") unSubscribe(appId);
       else navigate(`/${link}` || "");
       // change theme
-    } else if (isToggle && category === "theme") setTheme(menuItem.value);
+    } else if (category === "theme") setTheme(menuItem.value);
     // otherwise go to page
     else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
     updateActiveAppData({ menu: oldValues });
