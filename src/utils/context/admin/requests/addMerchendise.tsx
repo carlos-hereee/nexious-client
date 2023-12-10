@@ -5,12 +5,12 @@ import { PreviewPageProps } from "app-types";
 import { AxiosError } from "axios";
 
 export const addMerchendise = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, values } = props;
+  const { dispatch, handleAppAssets, values, appId } = props;
   try {
     const val = values as PreviewPageProps;
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.post(`/store/add-merch`, val);
+      const { data } = await axiosMedia.post(`/store/add-merch/${appId}`, val);
       if (data) handleAppAssets(data);
     }
   } catch (error) {

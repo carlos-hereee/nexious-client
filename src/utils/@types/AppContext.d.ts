@@ -40,6 +40,7 @@ declare module "app-context" {
     title?: string;
     hero?: string;
     merchendise?: {
+      uid: string;
       name: string;
       body: string;
       hero: string;
@@ -90,6 +91,7 @@ declare module "app-context" {
     cta: CallToActionProps[];
     sections: SectionProps[];
     name?: string;
+    isStore: boolean;
     uid?: string;
     pageId?: string;
   }

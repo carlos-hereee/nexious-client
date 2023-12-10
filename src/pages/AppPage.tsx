@@ -5,12 +5,14 @@ import { nexiousName } from "@data/nexious.json";
 import { formatStringToUrl } from "@app/formatStringToUrl";
 import { PageProps } from "app-context";
 import { Card, HeroCard, Loading } from "nexious-library";
+import AppStore from "./AppStore";
 
 const AppPage = () => {
   const { pages, activeAppName } = useContext(AppContext);
   const [page, setPage] = useState<PageProps>();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const [isStore, setStore] = useState(false);
 
   useEffect(() => {
     if (!pages) {
@@ -21,11 +23,14 @@ const AppPage = () => {
       const pageName = query[query.length - 1];
       if (pageName) {
         const pageIdx = pages.findIndex((p) => p.name === pageName);
-        if (pageIdx >= 0) setPage(pages[pageIdx]);
+        if (pages[pageIdx]?.isStore) setStore(true);
+        else if (pageIdx >= 0) setStore(false);
+        setPage(pages[pageIdx]);
       }
     }
   }, [pathname]);
 
+  if (isStore && page) return <AppStore page={page} />;
   if (!page) return <Loading message="loading page data..." />;
   return (
     <div className="container">
