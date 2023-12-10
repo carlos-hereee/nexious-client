@@ -131,3 +131,13 @@
 .logo {
   min-width: 120px;
 }
+.pages-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.pages-container .preview-card {
+  flex: 1;
+  max-width: 450px;
+  min-width: 300px;
+}

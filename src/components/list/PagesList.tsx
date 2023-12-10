@@ -7,7 +7,7 @@ const PagesList = (props: PagesContainerProps) => {
   const navigate = useNavigate();
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
   return (
-    <div className="section-container">
+    <div className="pages-container">
       {pages?.length > 0 &&
         pages.map((page) => (
           <div key={page.pageId} className="preview-card highlight">
