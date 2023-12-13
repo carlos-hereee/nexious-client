@@ -4,11 +4,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import { formatStringToUrl } from "@app/formatStringToUrl";
 import { PageProps } from "app-context";
-import { Card, HeroCard, Loading } from "nexious-library";
+import { Button, Card, HeroCard, Loading } from "nexious-library";
+import { ServicesContext } from "@context/services/ServicesContext";
 import AppStore from "./AppStore";
 
 const AppPage = () => {
   const { pages, activeAppName } = useContext(AppContext);
+  const { cart } = useContext(ServicesContext);
   const [page, setPage] = useState<PageProps>();
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -38,6 +40,9 @@ const AppPage = () => {
         {page.hero ? <HeroCard data={page} hero={{ url: page.hero }} /> : <Card data={page} />}
         {page.body && <p className="text-max">{page.body}</p>}
       </div>
+      {cart.length > 0 && (
+        <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />
+      )}
       {page.hasSections && (
         <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
           {page.sections.map((data) => {

@@ -49,7 +49,7 @@ export const ServicesState = ({ children }: ChildProps) => {
       // setIsUserReq: (a) => setIsUserReq(dispatch, a),
       // setTotal: (a) => setTotal(dispatch, a),
     };
-  }, [state.isLoading]);
+  }, [state.isLoading, state.cart]);
   return (
     <ServicesContext.Provider value={servicesValues}>{children}</ServicesContext.Provider>
     // return (

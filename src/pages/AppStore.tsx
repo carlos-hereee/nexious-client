@@ -1,24 +1,18 @@
 import { AppContext } from "@context/app/AppContext";
 import { PageProps } from "app-context";
 import { useContext } from "react";
-import { Hero, MerchCard } from "nexious-library";
+import { Button, Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "services-context";
 import { ServicesContext } from "@context/services/ServicesContext";
+import { useNavigate } from "react-router-dom";
 
 const AppStore = (props: { page: PageProps }) => {
   const { page } = props;
-  const { store } = useContext(AppContext);
+  const { store, activeAppName } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
+  const navigate = useNavigate();
 
-  // console.log("store :>> ", store);
-
-  // const onAddToCart = (data: unknown) => {
-  //   console.log("data :>> ", data);
-  // };
-  // const onRemoveFromCart = (data: unknown) => {
-  //   console.log("data :>> ", data);
-  // };
-  console.log("page :>> ", page);
+  // console.log("page :>> ", page);
   return (
     <div className="container">
       <div className="container">
@@ -26,6 +20,13 @@ const AppStore = (props: { page: PageProps }) => {
         {page.hero && <Hero hero={{ url: page.hero }} />}
         {page.body && <p className="text-max">{page.body}</p>}
       </div>
+      {cart.length > 0 && (
+        <Button
+          label="Procced to checkout"
+          theme="btn btn-main btn-checkout"
+          onClick={() => navigate(`${activeAppName}/checkout`)}
+        />
+      )}
       {store.merchendise?.map((merch) => (
         <MerchCard
           key={merch.uid}
