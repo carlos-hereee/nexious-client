@@ -67,7 +67,6 @@ export const ServicesState = ({ children }: ChildProps) => {
     //       services: state.services,
     //       bookEvent: (a, b, c) => bookEvent(dispatch, a, b, c),
     //       filter: (a, b) => filter(dispatch, a, b),
-    //       addToCart: (a, b) => addToCart(dispatch, a, b),
     //       setActive: (a) => setActive(dispatch, a),
     //       bookingRequired: (a, b) => bookingRequired(dispatch, a, b),
     //       onQuantityChange: (a, b) => onQuantityChange(dispatch, a, b),

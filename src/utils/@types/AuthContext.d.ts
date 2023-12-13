@@ -47,28 +47,7 @@ declare module "auth-context" {
     locale: string;
   }
   // export interface
-  export interface AuthSchema {
-    // auth schema
-    isLoading: boolean;
-    isOffline: boolean;
-    accessToken: string;
-    theme: string;
-    locale: string;
-    ownedApps: AppListProps[];
-    subscriptions: AppListProps[];
-    authErrors: AuthErrorProps;
-    user: UserSchema;
-    userForm: FormProps;
-    loginForm: FormProps;
-    signUpForm: FormProps;
-    passwordChangeForm: FormProps;
-    forgotPasswordForm: FormProps;
-    // methods
-    // setIsLoading: (values: boolean) => void;
-    // setStranded: (values: boolean) => void;
-    // setAccessToken: (values: string) => void;
-    // getAccessToken: () => void;
-    // getAccessTokenData: () => void;
+  export interface AuthSchema extends AuthStateProps {
     setStranded: (data: boolean) => void;
     login: (values: AuthFormValueProps) => void;
     register: (values: RegisterFormProps) => void;
@@ -82,9 +61,6 @@ declare module "auth-context" {
     unSubscribe: (appId: string) => void;
   }
 
-  export interface AuthDispatchProps {
-    dispatch: React.Dispatch<AuthActionProps>;
-  }
   export interface AuthReducerProps {
     dispatch: React.Dispatch<AuthActionProps>;
     credentials?: AuthFormValueProps;

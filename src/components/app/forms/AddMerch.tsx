@@ -49,7 +49,7 @@ const AddMerch = () => {
         submitLabel="Save and continue"
         withFileUpload
         noScroll
-        schema={{ required: ["name"] }}
+        schema={{ required: ["name", "cost", "quantity"] }}
       />
     </div>
   );

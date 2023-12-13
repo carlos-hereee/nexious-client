@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { AppState } from "@context/app/AppContext";
 import { AuthState } from "@context/auth/AuthContext";
 import { LogState } from "@context/log/LogContext";
-// import { ServicesState } from "@context/services/ServicesContext";
+import { ServicesState } from "@context/services/ServicesContext";
 // import { CalendarState } from "@context/calendar/CalendarContext";
 import { AdminState } from "@context/admin/AdminContext";
 import { isDev } from "@config";
@@ -23,15 +23,15 @@ if (elementRoot) {
       <LogState>
         <AuthState>
           <AppState>
-            {/* <ServicesState>
-              <CalendarState> */}
-            <AdminState>
-              <App>
-                <AppRouter />
-              </App>
-            </AdminState>
-            {/* </CalendarState>
-            </ServicesState> */}
+            <ServicesState>
+              {/* <CalendarState> */}
+              <AdminState>
+                <App>
+                  <AppRouter />
+                </App>
+              </AdminState>
+              {/* </CalendarState> */}
+            </ServicesState>
           </AppState>
         </AuthState>
       </LogState>
