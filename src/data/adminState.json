@@ -374,64 +374,6 @@
       "uid": "language-spanish-en"
     }
   ],
-  "appMenu": [
-    {
-      "isToggle": true,
-      "isPrivate": false,
-      "menuId": "themelist-1",
-      "active": {
-        "name": "dark-mode",
-        "value": "dark-mode",
-        "label": "dark-mode",
-        "themeId": "theme-dark-mode",
-        "uid": "theme-dark-mode"
-      },
-      "alternatives": [
-        {
-          "name": "light-mode",
-          "value": "light-mode",
-          "label": "light-mode",
-          "themeId": "theme-light-mode",
-          "uid": "theme-light-mode"
-        },
-        {
-          "name": "dark-mode",
-          "value": "dark-mode",
-          "label": "dark-mode",
-          "themeId": "theme-dark-mode",
-          "uid": "theme-dark-mode"
-        }
-      ]
-    },
-    {
-      "isToggle": false,
-      "isPrivate": true,
-      "menuId": "auth-1",
-      "active": {
-        "label": "Login",
-        "icon": "login",
-        "name": "login",
-        "uid": "login-uid-1",
-        "link": "login"
-      },
-      "alternatives": [
-        {
-          "label": "Login",
-          "icon": "login",
-          "name": "login",
-          "uid": "login-uid-1",
-          "link": "login"
-        },
-        {
-          "label": "Logout",
-          "icon": "logout",
-          "name": "logout",
-          "uid": "logout-uid-1",
-          "link": "logout"
-        }
-      ]
-    }
-  ],
   "mediaList": [
     {
       "name": "facebook",

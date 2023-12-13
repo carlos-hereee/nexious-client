@@ -1,4 +1,5 @@
 {
   "welcomeMessage": "Welcome",
-  "appNameRequired": "Could not see live app because app name has not been set."
+  "appNameRequired": "Could not see live app because app name has not been set..",
+  "serverIsOffline": "Server is offline try again later.."
 }

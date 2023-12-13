@@ -8,6 +8,7 @@ const Homepage = () => {
   const navigate = useNavigate();
 
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
+  // const heroData = { ...nexiousHomepage, cta: { ...nexiousHomepage.cta, onClick: handleClick } };
   return (
     <div>
       <div className="flex-d-column mtb-2">

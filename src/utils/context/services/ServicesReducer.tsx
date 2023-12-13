@@ -8,10 +8,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {
     case SERVICE_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
-    // case "LOAD_SERVICES":
-    //   return loadServices(state, action);
-    // case "UPDATE_CART":
-    //   return { ...state, isLoading: false, cart: action.payload };
+    case SERVICE_ACTIONS.UPDATE_CART:
+      return { ...state, cart: action.payload };
     // case "UPDATE_BOOKABLE":
     //   return { ...state, isLoading: false, bookable: action.payload };
     // case "UPDATE_BOOKED":

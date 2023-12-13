@@ -49,8 +49,7 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
-        {/* 
-        <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
+        {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/dashboard" element={<UserPlayground />} />
       </Route>
       {/* Admin routes for editing pages */}

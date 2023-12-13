@@ -6,6 +6,7 @@ export const toggleAuthMenuItem = (menuItem: MenuProps, target: string) => {
   oldValues.value = target;
   oldValues.link = target === "logout" ? "" : target;
   oldValues.label = target;
-  if (oldValues.icon) oldValues.icon = target;
+  // remove icons
+  // if (oldValues.icon) oldValues.icon = target;
   return oldValues;
 };

@@ -4,7 +4,7 @@ import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
 import { AuthFormValueProps, ForgotPasswordFormProps, RegisterFormProps } from "app-forms";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -19,7 +19,7 @@ export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     fetchRefreshToken({ dispatch });
   }, []);
@@ -39,7 +39,7 @@ export const AuthState = ({ children }: ChildProps) => {
 
   const updateUser = useCallback((user: UserSchema) => {
     setUser({ dispatch, user });
-    // navigate("/dashboard");
+    navigate("/dashboard");
   }, []);
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);

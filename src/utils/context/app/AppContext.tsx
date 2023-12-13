@@ -30,6 +30,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     useContext(AuthContext);
   const navigate = useNavigate();
 
+  // TODO: Move updateing menu to app routes
   useEffect(() => {
     // user is login
     const oldValues = [...state.activeMenu];
@@ -74,6 +75,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setActiveData({ dispatch, menu, appName, logo, media, appId });
   }, []);
 
+  // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const oldValues = [...state.activeMenu];
     const { isPrivate, category, name, link } = menuItem;
