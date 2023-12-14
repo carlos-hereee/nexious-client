@@ -34,7 +34,8 @@ const AppStore = (props: { page: PageProps }) => {
           hero={{ url: merch.hero }}
           onAddToCart={(data: MerchProps) => addToCart(cart, data)}
           onRemoveFromCart={(data: MerchProps) => removeFromCart(cart, data)}
-          onClick={(data: MerchProps) => console.log("data :>> ", data)}
+          // TODO: on body click navigate to merch item details
+          // onClick={(data: MerchProps) => console.log("data :>> ", data)}
           canRemove={cart && cart.some((c: MerchProps) => c.uid === merch.uid)}
         />
       ))}

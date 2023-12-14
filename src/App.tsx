@@ -9,7 +9,7 @@ import ErrorPage from "@pages/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme, isOffline, setStranded, accessToken } =
+  const { isLoading, theme, setTheme, accessToken, authErrors, resetStranded } =
     useContext(AuthContext);
   const {
     activeLogo,
@@ -30,7 +30,9 @@ const App = ({ children }: ChildProps) => {
     } else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
-  if (isOffline) return <ErrorPage message={serverIsOffline} onClick={() => setStranded(false)} />;
+  if (authErrors.serverIsOffline) {
+    return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
+  }
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
   return (

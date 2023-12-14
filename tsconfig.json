@@ -44,7 +44,7 @@
         "utils/types/*"
       ],
       "@data/*": [
-        "data/*"
+        "utils/data/*"
       ]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "forceConsistentCasingInFileNames": true,

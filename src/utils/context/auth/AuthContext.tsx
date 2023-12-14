@@ -2,9 +2,13 @@ import { createContext, useReducer, useContext, useMemo, useCallback, useEffect 
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
-import { AuthFormValueProps, ForgotPasswordFormProps, RegisterFormProps } from "app-forms";
+import {
+  AuthFormValueProps,
+  ForgotPasswordFormProps,
+  LoginFormValues,
+  RegisterFormProps,
+} from "app-forms";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
-import { useNavigate } from "react-router-dom";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -19,7 +23,6 @@ export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
-  const navigate = useNavigate();
   useEffect(() => {
     fetchRefreshToken({ dispatch });
   }, []);
@@ -33,14 +36,24 @@ export const AuthState = ({ children }: ChildProps) => {
     dispatch({ type: AUTH_ACTIONS.SET_THEME, payload: data });
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   }, []);
-  const setStranded = useCallback((data: boolean) => {
-    dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: data });
-  }, []);
 
   const updateUser = useCallback((user: UserSchema) => {
     setUser({ dispatch, user });
-    navigate("/dashboard");
   }, []);
+  const setDummyUser = useCallback((user: LoginFormValues) => {
+    // setUser({ dispatch, user });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
+    dispatch({ type: AUTH_ACTIONS.SET_DUMMY_DATA, payload: user });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  }, []);
+
+  const resetStranded = useCallback(() => {
+    // setUser({ dispatch, user });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
+    dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: false });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+  }, []);
+
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
@@ -56,10 +69,10 @@ export const AuthState = ({ children }: ChildProps) => {
   const authValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
-      isOffline: state.isOffline,
       authErrors: state.authErrors,
       accessToken: state.accessToken,
       user: state.user,
+      dummyUser: state.dummyUser,
       theme: state.theme,
       locale: state.locale,
       userForm: state.userForm,
@@ -75,11 +88,12 @@ export const AuthState = ({ children }: ChildProps) => {
       setTheme,
       logout,
       forgotPassword,
-      setStranded,
       subscribe,
       unSubscribe,
+      setDummyUser,
+      resetStranded,
     };
-  }, [state.accessToken, state.isLoading, state.theme, state.user, state.isOffline]);
+  }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

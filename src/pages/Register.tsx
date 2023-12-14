@@ -1,10 +1,18 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Form, Hero } from "nexious-library";
 import { Link } from "react-router-dom";
 
 const Register = () => {
-  const { register, authErrors, signUpForm } = useContext(AuthContext);
+  const { register, authErrors, signUpForm, dummyUser } = useContext(AuthContext);
+
+  const [initialValues, setInitialValues] = useState(signUpForm.initialValues);
+
+  useEffect(() => {
+    if (dummyUser.username) {
+      setInitialValues({ ...initialValues, ...dummyUser });
+    }
+  }, [dummyUser]);
 
   return (
     <div className="container">

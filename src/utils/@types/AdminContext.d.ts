@@ -39,31 +39,9 @@ declare module "app-admin" {
     sectionEntries: SectionEntryOganizer;
   }
 
-  export interface AdminSchema {
-    isLoading: boolean;
-    formErrors: AdminFormErrors;
-    initAppForm: FormProps;
-    pagesForm: FormProps;
-    sectionForm: FormProps;
-    calendarForm: FormProps;
-    landingForm: FormProps;
-    newsletterForm: FormProps;
-    socialMediaForm: FormProps;
-    heroForm: FormProps;
-    ctaForm: FormProps;
-    merchForm: FormProps;
-    storeForm: FormProps;
-    mediaEntryForm: FormProps;
-    languageForm: FormProps;
-    calendarThemeList: MenuItemProps[];
-    themeList: MenuItemProps[];
-    mediaList: MenuItemProps[];
-    languageList: MenuItemProps[];
-    sectionEntries: SectionEntryOganizer;
+  export interface AdminSchema extends AdminStateProps {
     initApp: (values: PreviewValueProps) => void;
-    // editApp: (values: PreviewValueProps, appId: string) => void;
     editAppName: (values: PreviewValueProps, appId: string) => void;
-    // updateLanguage: (locale: string, appName: string) => void;
     addPage: (values: PreviewValueProps, appId: string) => void;
     addMedia: (values: PreviewValueProps, appId: string) => void;
     editLandingPage: (values: PreviewValueProps, appId: string) => void;
@@ -77,7 +55,6 @@ declare module "app-admin" {
     listBucket: (appId: string) => void;
     addStore: (values: PreviewValueProps, appId: string) => void;
     addMerch: (values: PreviewValueProps, appId: string) => void;
-    // editLanguage: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;

@@ -1,10 +1,12 @@
 declare module "auth-context" {
+  import { AuthErrorProps } from "app-errors";
   import { AUTH_ACTIONS } from "@actions/AuthActions";
   import { AppListProps } from "app-context";
   import {
     AuthFormValueProps,
     ForgotPasswordFormProps,
     FormProps,
+    LoginFormValues,
     RegisterFormProps,
   } from "app-forms";
 
@@ -19,24 +21,16 @@ declare module "auth-context" {
     subscriptions?: AppListProps[];
     ownedApps?: AppListProps[];
   }
-  export interface AuthErrorProps {
-    emergencyPasswordChangeIsRequired: boolean;
-    signInError: string;
-    signUpError: string;
-    logOutError: string;
-    changePasswordError: string;
-    forgotPasswordError: string;
-  }
 
   export interface AuthStateProps {
     // auth schema
     isLoading: boolean;
-    isOffline: boolean;
     // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     ownedApps: AppListProps[];
     authErrors: AuthErrorProps;
     user: UserSchema;
+    dummyUser: LoginFormValues;
     userForm: FormProps;
     loginForm: FormProps;
     signUpForm: FormProps;
@@ -48,14 +42,13 @@ declare module "auth-context" {
   }
   // export interface
   export interface AuthSchema extends AuthStateProps {
-    setStranded: (data: boolean) => void;
+    logout: () => void;
+    resetStranded: () => void;
     login: (values: AuthFormValueProps) => void;
     register: (values: RegisterFormProps) => void;
-    logout: () => void;
+    setDummyUser: (values: LoginFormValues) => void;
     updateUser: (values: UserSchema) => void;
-    // fetchUser: (values: UserSchema) => void;
     forgotPassword: (values: ForgotPasswordFormProps) => void;
-    // changePassword: (values: UserSchema) => void;
     setTheme: (key: string) => void;
     subscribe: (appId: string) => void;
     unSubscribe: (appId: string) => void;
@@ -72,7 +65,10 @@ declare module "auth-context" {
   }
 
   export type AuthActionProps =
-    | { type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED; payload: boolean }
+    | {
+        type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED | AUTH_ACTIONS.SET_USER_NOT_FOUND;
+        payload: boolean;
+      }
     | {
         type:
           | AUTH_ACTIONS.SIGN_IN_ERROR
@@ -88,6 +84,7 @@ declare module "auth-context" {
         type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS;
         payload: AppListProps[];
       }
+    | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginFormValues }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
 }

@@ -1,11 +1,12 @@
 {
   "isLoading": false,
-  "isOffline": false,
   "accessToken": "",
   "theme": "light-mode",
   "locale": "",
   "authErrors": {
     "emergencyPasswordChangeIsRequired": false,
+    "serverIsOffline": false,
+    "userNotFound": false,
     "signInError": "",
     "signUpError": "",
     "changePasswordError": "",
@@ -13,6 +14,7 @@
     "forgotPasswordError": ""
   },
   "user": { "username": "", "email": "", "phone": "", "userId": "" },
+  "dummyUser": { "username": "", "password": "" },
   "userForm": {
     "formId": "user",
     "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },

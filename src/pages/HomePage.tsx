@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { nexiousHomepage } from "@data/nexious.json";
 
 const Homepage = () => {
-  // const { landing } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
-  // const heroData = { ...nexiousHomepage, cta: { ...nexiousHomepage.cta, onClick: handleClick } };
+
   return (
     <div>
       <div className="flex-d-column mtb-2">

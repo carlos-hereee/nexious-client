@@ -8,7 +8,6 @@ import AppRoute from "@router/AppRoute";
 import AdminRoute from "@router/AdminRoute";
 import PublicRoute from "@router/PublicRoute";
 import Landing from "@pages/Landing";
-import Offline from "@components/app/Offline";
 import SignUp from "@pages/Register";
 import ForgotPassword from "@components/form/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
@@ -19,19 +18,18 @@ import Homepage from "@pages/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AddPage from "@components/app/forms/AddPage";
 import AppPage from "@pages/AppPage";
-import { AppContext } from "@context/app/AppContext";
+// import Offline from "@components/app/Offline";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
-  const { store } = useContext(AppContext);
   const navigate = useNavigate();
-  console.log("store :>> ", store);
+
   return (
     <Routes>
       {/* Public Routes */}
       <Route element={<PublicRoute />}>
         {/* // if server not coaperating use offline data */}
-        <Route path="/offline" element={<Offline />} />
+        {/* <Route path="/offline" element={<Offline />} /> */}
         <Route path="/build-app" element={<BuildApp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/sign-up" element={<SignUp />} />
