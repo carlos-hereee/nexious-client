@@ -9,8 +9,7 @@ import ErrorPage from "@pages/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme, accessToken, authErrors, resetStranded } =
-    useContext(AuthContext);
+  const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
   const {
     activeLogo,
     activeMenu,
@@ -43,8 +42,8 @@ const App = ({ children }: ChildProps) => {
         handleTheme={setTheme}
         themeList={themeList}
         theme={theme}
-        includeHome={activeAppName !== nexiousName}
-        onHomeClick={() => navigate(accessToken ? "/dashboard" : "/")}
+        // includeHome={activeAppName !== nexiousName}
+        // onHomeClick={() => navigate(accessToken ? "/dashboard" : "/")}
       />
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />

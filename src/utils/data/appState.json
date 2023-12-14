@@ -24,20 +24,7 @@
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" },
     "medias": []
   },
-  "menu": [
-    {
-      "isToggle": false,
-      "isPage": false,
-      "isPrivate": true,
-      "uid": "auth-1",
-      "menuId": "auth-1",
-      "category": "auth",
-      "label": "login",
-      "value": "login",
-      "name": "login",
-      "link": "login"
-    }
-  ],
+  "menu": [],
   "calendar": { "name": "", "calendarId": "", "events": [{}] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
@@ -81,20 +68,7 @@
       }
     ]
   },
-  "activeMenu": [
-    {
-      "isToggle": false,
-      "isPrivate": true,
-      "isPage": false,
-      "uid": "auth-1",
-      "category": "auth",
-      "menuId": "auth-1",
-      "label": "login",
-      "value": "login",
-      "link": "login",
-      "name": "login"
-    }
-  ],
+  "activeMenu": [],
   "pages": [],
   "appList": [],
   "themeList": [

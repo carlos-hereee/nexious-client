@@ -29,17 +29,18 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
+
+  const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
+    const { menu, appName, logo, media, appId } = props;
+    setActiveData({ dispatch, menu, appName, logo, media, appId });
+  }, []);
+
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     fetchAppWithName({ dispatch, appName: a, updateAppData });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
-  const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
-    const { menu, appName, logo, media, appId } = props;
-    setActiveData({ dispatch, menu, appName, logo, media, appId });
-  }, []);
-
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const oldValues = [...state.activeMenu];

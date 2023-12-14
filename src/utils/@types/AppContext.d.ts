@@ -183,6 +183,7 @@ declare module "app-context" {
     appId?: string;
     menu?: MenuProps[];
     updateAppData?: (a: AppProps) => void;
+    updateActiveAppData?: (a: ActiveMenuProps) => void;
   }
 
   export type AppActionProps =
