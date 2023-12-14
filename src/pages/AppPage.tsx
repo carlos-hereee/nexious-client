@@ -15,7 +15,7 @@ const AppPage = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [isStore, setStore] = useState(false);
-  console.log("page :>> ", page);
+  // console.log("page :>> ", page);
   useEffect(() => {
     if (!pages) {
       if (nexiousName === activeAppName) navigate("/");

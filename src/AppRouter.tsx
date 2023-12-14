@@ -32,7 +32,7 @@ const AppRouter: React.FC = () => {
         {/* <Route path="/offline" element={<Offline />} /> */}
         <Route path="/build-app" element={<BuildApp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Homepage />} />
       </Route>

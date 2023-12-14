@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IconButton } from "nexious-library";
 // import { Button, Hero, Icon } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
-import WelcomeBanner from "@components/app/WelcomeBanner";
+import WelcomeBanner from "@components/app/banners/WelcomeBanner";
 import ExploreApps from "@components/app/ExploreApps";
 // import { AdminContext } from "@context/admin/AdminContext";
 // import { AppContext } from "@context/app/AppContext";

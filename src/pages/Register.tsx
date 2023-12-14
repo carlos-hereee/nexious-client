@@ -18,8 +18,8 @@ const Register = () => {
     <div className="container">
       {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
       <div className="form-hero">
-        {signUpForm.initialValues && (
-          <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+        {initialValues && (
+          <Form initialValues={initialValues} heading="Sign up" onSubmit={register} />
         )}
         {signUpForm.hero && <Hero hero={signUpForm.hero} />}
       </div>
