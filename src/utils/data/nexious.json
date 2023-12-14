@@ -14,6 +14,32 @@
       "name": "login"
     }
   ],
+  "nexiousAuthMenu": [
+    {
+      "isToggle": false,
+      "isPrivate": true,
+      "isPage": false,
+      "uid": "auth-2",
+      "category": "auth",
+      "menuId": "auth-2",
+      "label": "dashboard",
+      "value": "dashboard",
+      "link": "dashboard",
+      "name": "dashboard"
+    },
+    {
+      "isToggle": false,
+      "isPrivate": true,
+      "isPage": false,
+      "uid": "auth-1",
+      "category": "auth",
+      "menuId": "auth-1",
+      "label": "logout",
+      "value": "logout",
+      "link": "logout",
+      "name": "logout"
+    }
+  ],
   "nexiousLogo": "/icons/logo.svg",
   "nexiousHomepage": {
     "title": "Create Your Dream App Today",

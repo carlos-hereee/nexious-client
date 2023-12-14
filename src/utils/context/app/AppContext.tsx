@@ -14,7 +14,7 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
 import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { formatStringToUrl } from "@app/formatStringToUrl";
-import { nexiousName } from "@data/nexious.json";
+import { nexiousName, nexiousAuthMenu } from "@data/nexious.json";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -33,7 +33,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // TODO: Move updateing menu to app routes
   useEffect(() => {
     // user is login
-    const oldValues = [...state.activeMenu];
+    let oldValues = [...state.activeMenu];
     // find auth menu
     const authIdx = oldValues.findIndex((app) => app.isPrivate);
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
@@ -43,11 +43,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       if (state.activeAppName !== nexiousName) {
         // check user subscriptions
         const subIdx = subscriptions.findIndex((sub) => sub.appName === state.activeAppName);
-        // if user is a sub
+        // if user is subscribe to app toggle options
         if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
         else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "subscribe");
-        // otherwise user can logout
-      } else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "logout");
+        // otherwise user is at playground/dashboard
+      } else oldValues = nexiousAuthMenu;
       // user logging out
     } else if (oldValues[authIdx].name === "logout") {
       oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "login");

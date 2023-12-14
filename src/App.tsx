@@ -24,10 +24,8 @@ const App = ({ children }: ChildProps) => {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    if (activeAppName === nexiousName) {
-      if (accessToken) navigate("/dashboard");
-      else navigate("/");
-    } else navigate(`/app/${activeAppName.split(" ").join("+")}`);
+    if (activeAppName === nexiousName) navigate("/");
+    else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
   if (authErrors.serverIsOffline) {
