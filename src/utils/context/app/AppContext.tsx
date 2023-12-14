@@ -1,20 +1,12 @@
-import {
-  ReactElement,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-} from "react";
+import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ChildProps, MenuProps } from "app-types";
 import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { useNavigate } from "react-router-dom";
-import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { formatStringToUrl } from "@app/formatStringToUrl";
-import { nexiousName, nexiousAuthMenu } from "@data/nexious.json";
+// import { toggleAuthMenuItem } from "@app/toggleMenu";
+// import { nexiousName, nexiousAuthMenu } from "@data/nexious.json";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -26,35 +18,8 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscriptions, subscribe, unSubscribe } =
-    useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscribe, unSubscribe } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // TODO: Move updateing menu to app routes
-  useEffect(() => {
-    // user is login
-    let oldValues = [...state.activeMenu];
-    // find auth menu
-    const authIdx = oldValues.findIndex((app) => app.isPrivate);
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    // is user logged in
-    if (accessToken) {
-      // check if is origin app
-      if (state.activeAppName !== nexiousName) {
-        // check user subscriptions
-        const subIdx = subscriptions.findIndex((sub) => sub.appName === state.activeAppName);
-        // if user is subscribe to app toggle options
-        if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
-        else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "subscribe");
-        // otherwise user is at playground/dashboard
-      } else oldValues = nexiousAuthMenu;
-      // user logging out
-    } else if (oldValues[authIdx].name === "logout") {
-      oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "login");
-    }
-    dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
-  }, [accessToken, state.activeAppName]);
 
   // update app data
   const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
@@ -128,7 +93,14 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateActiveAppData,
       handleMenu,
     };
-  }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.appName]);
+  }, [
+    state.isLoading,
+    state.activeAppName,
+    accessToken,
+    state.appList,
+    state.appName,
+    JSON.stringify(state.activeMenu),
+  ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
   // return (

@@ -1,5 +1,6 @@
 {
   "nexiousName": "Nexious Tech",
+  "nexiousAppId": "Nexious-Tech-id",
   "nexiousMenu": [
     {
       "isToggle": false,
