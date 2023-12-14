@@ -1,8 +1,8 @@
 import { userMinData } from "@hooks/userMinData";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
-import { AuthReducerProps } from "auth-context";
+import { AuthDispatchProps } from "auth-context";
 
-export const setUser = (props: AuthReducerProps) => {
+export const setUser = (props: AuthDispatchProps) => {
   //  key varaibles
   const { dispatch, user } = props;
   if (user) {

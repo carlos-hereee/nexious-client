@@ -44,7 +44,8 @@ declare module "auth-context" {
   export interface AuthSchema extends AuthStateProps {
     logout: () => void;
     resetStranded: () => void;
-    login: (values: AuthFormValueProps) => void;
+    resetAuthErrors: () => void;
+    login: (values: LoginFormValues) => void;
     register: (values: RegisterFormProps) => void;
     setDummyUser: (values: LoginFormValues) => void;
     updateUser: (values: UserSchema) => void;
@@ -54,13 +55,15 @@ declare module "auth-context" {
     unSubscribe: (appId: string) => void;
   }
 
-  export interface AuthReducerProps {
+  export interface AuthDispatchProps {
     dispatch: React.Dispatch<AuthActionProps>;
     credentials?: AuthFormValueProps;
     user?: UserSchema;
     data?: string;
+    login?: LoginFormValues;
     appId?: string;
     updateUser?: (user: UserSchema) => void;
+    setDummyUser?: (user: LoginFormValues) => void;
     setAccessToken?: (token: string) => void;
   }
 

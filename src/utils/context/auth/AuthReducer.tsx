@@ -5,8 +5,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
   switch (action.type) {
     case AUTH_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
-    // case AUTH_ACTIONS.SET_ERROR:
-    //   return { ...state, authErrors: action.payload };
+    case AUTH_ACTIONS.SET_ERROR:
+      return { ...state, authErrors: action.payload };
     case AUTH_ACTIONS.SET_SUBSCRIPTIONS:
       return { ...state, subscriptions: action.payload };
     // case AUTH_ACTIONS.UPDATE_LANGUAGE:

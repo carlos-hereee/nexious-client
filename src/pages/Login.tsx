@@ -6,13 +6,13 @@ import { LoginFormValues } from "app-forms";
 import { useAuthRouter } from "@hooks/useAuthRouter";
 
 const Login = () => {
-  const { isLoading, login, setDummyUser, authErrors, loginForm } = useContext(AuthContext);
+  const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
 
   const { navigateTo } = useAuthRouter();
 
-  const handleSubmit = (val: LoginFormValues) => {
-    login(val);
-    setDummyUser(val);
+  const handleClick = () => {
+    resetAuthErrors();
+    navigateTo("register");
   };
 
   if (isLoading) return <Loading message="Loading user data" />;
@@ -21,7 +21,7 @@ const Login = () => {
       {authErrors.userNotFound && (
         <div className="flex-center">
           <p className="error-message"> {authErrors.signInError} </p>
-          <Button label=" Sign up with this username?" onClick={() => navigateTo("register")} />
+          <Button label="Sign up with this username?" onClick={handleClick} />
         </div>
       )}
       <div className="form-hero">
@@ -29,7 +29,7 @@ const Login = () => {
           <Form
             initialValues={loginForm.initialValues}
             heading={loginForm.heading}
-            onSubmit={handleSubmit}
+            onSubmit={(val: LoginFormValues) => login(val)}
             schema={{ require: ["username", "password"] }}
           />
         )}

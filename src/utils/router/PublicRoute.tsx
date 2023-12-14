@@ -4,12 +4,13 @@
 import { Outlet } from "react-router-dom";
 
 const PublicRoute = () => {
-  // const { accessToken } = useContext(AuthContext);
+  // const { resetAuthErrors } = useContext(AuthContext);
   // const navigate = useNavigate();
+  // const { pathname } = useLocation();
 
   // useEffect(() => {
-  //   if (accessToken) navigate("/dashboard");
-  // }, [accessToken]);
+  //   if (pathname) resetAuthErrors();
+  // }, [pathname]);
 
   return <Outlet />;
 };

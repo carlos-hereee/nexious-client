@@ -1,10 +1,9 @@
 import { axiosAuth } from "@axios/axiosAuth";
-// import { isDev } from "@app/config";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
-import { AuthReducerProps } from "auth-context";
+import { AuthDispatchProps } from "auth-context";
 import { AxiosError } from "axios";
 
-export const setForgotPassword = async (props: AuthReducerProps) => {
+export const setForgotPassword = async (props: AuthDispatchProps) => {
   const { dispatch, credentials } = props;
   try {
     if (credentials) {

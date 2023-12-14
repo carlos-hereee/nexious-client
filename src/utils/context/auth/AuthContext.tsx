@@ -2,13 +2,7 @@ import { createContext, useReducer, useContext, useMemo, useCallback, useEffect 
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
-import {
-  AuthFormValueProps,
-  ForgotPasswordFormProps,
-  LoginFormValues,
-  RegisterFormProps,
-} from "app-forms";
-import { AUTH_ACTIONS } from "@actions/AuthActions";
+import { ForgotPasswordFormProps, LoginFormValues, RegisterFormProps } from "app-forms";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -18,11 +12,16 @@ import { setForgotPassword } from "./request/setForgotPassword";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { setSubscribe } from "./request/setSubscribe";
 import { setUnsubscribe } from "./request/setUnsubscribe";
+import { clearAuthErrors } from "./dispatch/clearAuthErrors";
+import { clearStranded } from "./dispatch/clearStranded";
+import { updateDumnyData } from "./dispatch/updateDummyData";
+import { updateTheme } from "./dispatch/updateTheme";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
+
   useEffect(() => {
     fetchRefreshToken({ dispatch });
   }, []);
@@ -31,31 +30,26 @@ export const AuthState = ({ children }: ChildProps) => {
     setForgotPassword({ dispatch, credentials: e });
   }, []);
 
-  const setTheme = useCallback((data: string) => {
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-    dispatch({ type: AUTH_ACTIONS.SET_THEME, payload: data });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  }, []);
+  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
 
+  // const updateUser = useCallback((user: UserSchema) => {
+  //   setUser({ dispatch, user });
+  //    navigate('/dashboard')
+  // }, []);
   const updateUser = useCallback((user: UserSchema) => {
     setUser({ dispatch, user });
   }, []);
   const setDummyUser = useCallback((user: LoginFormValues) => {
-    // setUser({ dispatch, user });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-    dispatch({ type: AUTH_ACTIONS.SET_DUMMY_DATA, payload: user });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    updateDumnyData({ dispatch, login: user });
   }, []);
 
-  const resetStranded = useCallback(() => {
-    // setUser({ dispatch, user });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-    dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: false });
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  }, []);
+  const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
+  const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
 
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
-  const login = useCallback((e: AuthFormValueProps) => singIn({ dispatch, credentials: e }), []);
+  const login = useCallback((e: LoginFormValues) => {
+    singIn({ dispatch, login: e, setDummyUser });
+  }, []);
   const logout = useCallback(() => signOut({ dispatch }), []);
 
   const subscribe = useCallback((e: string) => {
@@ -92,8 +86,15 @@ export const AuthState = ({ children }: ChildProps) => {
       unSubscribe,
       setDummyUser,
       resetStranded,
+      resetAuthErrors,
     };
-  }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
+  }, [
+    state.accessToken,
+    state.isLoading,
+    state.theme,
+    state.user,
+    JSON.stringify(state.authErrors),
+  ]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

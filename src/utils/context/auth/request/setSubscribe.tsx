@@ -1,9 +1,9 @@
 import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { axiosAuth } from "@axios/axiosAuth";
-import { AuthReducerProps } from "auth-context";
+import { AuthDispatchProps } from "auth-context";
 import { AxiosError } from "axios";
 
-export const setSubscribe = async (props: AuthReducerProps) => {
+export const setSubscribe = async (props: AuthDispatchProps) => {
   const { dispatch, appId, updateUser } = props;
   try {
     const { data } = await axiosAuth.post(`/app/subscribe/${appId}`);
