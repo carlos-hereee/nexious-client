@@ -8,7 +8,7 @@ export const createMedia = async (props: AdminDisptachProps) => {
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/app/add-media/${appId}`, values);
-    if (data) handleAppAssets(data);
+    if (data && handleAppAssets) handleAppAssets(data);
   } catch (error) {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   }

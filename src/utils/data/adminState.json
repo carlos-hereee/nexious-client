@@ -1,6 +1,7 @@
 {
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
+  "formStatus": "IDLE",
   "initAppForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",

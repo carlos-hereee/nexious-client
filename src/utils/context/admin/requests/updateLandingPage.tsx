@@ -9,7 +9,7 @@ export const updateLandingPage = async (props: AdminDisptachProps) => {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     // console.log("values :>> ", values);
     const { data } = await axiosMedia.post(`/app/update-landing-page/${appId}`, values);
-    if (data) handleAppAssets(data);
+    if (data && handleAppAssets) handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     // isDev && console.log("error building app ", error);

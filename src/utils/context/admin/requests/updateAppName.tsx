@@ -7,7 +7,7 @@ export const updateAppName = async (props: AdminDisptachProps) => {
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosMedia.post(`/app/update-app-name/${appId}`, values);
-    if (data) handleAppAssets(data);
+    if (data && handleAppAssets) handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     // isDev && console.log("error building app ", error);

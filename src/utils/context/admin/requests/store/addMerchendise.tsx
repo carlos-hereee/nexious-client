@@ -11,7 +11,7 @@ export const addMerchendise = async (props: AdminDisptachProps) => {
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       const { data } = await axiosMedia.post(`/store/add-merch/${appId}`, val);
-      if (data) handleAppAssets(data);
+      if (data && handleAppAssets) handleAppAssets(data);
     }
   } catch (error) {
     const err = error as AxiosError;

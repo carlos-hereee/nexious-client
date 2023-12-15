@@ -1,9 +1,11 @@
 declare module "app-errors" {
-  import { AxiosError } from "axios";
+  import { AdminActionProps } from "app-admin";
 
   export interface GenericErrorMessagesProps {
-    error: AxiosError;
-    type: string;
+    error: unknown;
+    type: "form-error";
+    target?: string;
+    adminDispatch?: React.Dispatch<AdminActionProps>;
   }
   export interface AuthErrorProps {
     emergencyPasswordChangeIsRequired: boolean;

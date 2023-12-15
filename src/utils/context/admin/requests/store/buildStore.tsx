@@ -11,7 +11,7 @@ export const buildStore = async (props: AdminDisptachProps) => {
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       const { data } = await axiosMedia.post(`/store/build-store/${appId}`, val);
-      if (data) handleAppAssets(data);
+      if (data && handleAppAssets) handleAppAssets(data);
     }
   } catch (error) {
     const err = error as AxiosError;

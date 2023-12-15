@@ -8,6 +8,8 @@ declare module "app-admin" {
   export type AdminFormErrors = {
     initAppFormError?: string;
   };
+  export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
+
   export interface AppAssetProps {
     user?: UserSchema;
     app?: AppProps;
@@ -18,6 +20,7 @@ declare module "app-admin" {
   };
   export interface AdminStateProps {
     isLoading: boolean;
+    formStatus: string;
     initAppForm: FormProps;
     pagesForm: FormProps;
     calendarForm: FormProps;
@@ -40,6 +43,7 @@ declare module "app-admin" {
   }
 
   export interface AdminSchema extends AdminStateProps {
+    setFormStatus: (status: FORM_STATUS) => void;
     initApp: (values: PreviewValueProps) => void;
     editAppName: (values: PreviewValueProps, appId: string) => void;
     addPage: (values: PreviewValueProps, appId: string) => void;
@@ -59,19 +63,16 @@ declare module "app-admin" {
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
-    handleAppAssets: (key: AppAssetProps) => void;
+    handleAppAssets?: (key: AppAssetProps) => void;
+    updateFormStatus?: (key: string) => void;
     appId?: string;
     name?: string;
     pageId?: string;
+    status?: FORM_STATUS;
     values?: PreviewValueProps;
   }
   export type AdminActionProps =
-    | {
-        type: ADMIN_ACTIONS.IS_LOADING;
-        payload: boolean;
-      }
-    | {
-        type: ADMIN_ACTIONS.SET_FORM_ERRORS;
-        payload: AdminFormErrors;
-      };
+    | { type: ADMIN_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: ADMIN_ACTIONS.SET_FORM_STATUS; payload: string }
+    | { type: ADMIN_ACTIONS.SET_FORM_ERRORS; payload: AdminFormErrors };
 }

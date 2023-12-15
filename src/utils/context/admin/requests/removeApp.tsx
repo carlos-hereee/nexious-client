@@ -8,7 +8,7 @@ export const removeApp = async (props: AdminDisptachProps) => {
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.delete(`/app/delete-app/${appId}`);
-    handleAppAssets(data);
+    if (handleAppAssets) handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     // isDev && console.log("error", error);

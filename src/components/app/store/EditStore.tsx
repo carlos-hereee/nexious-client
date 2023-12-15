@@ -13,9 +13,8 @@ const EditStore = () => {
   const { accessToken } = useContext(AuthContext);
   // const
   const navigate = useNavigate();
-  console.log("store :>> ", store);
   const initialValues = formatStore({ store, desiredOrder: storeForm.desiredOrder });
-  console.log("initialValues :>> ", initialValues);
+
   return (
     <div className="container">
       <div className="form-hero">

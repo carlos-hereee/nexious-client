@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssetProps } from "app-admin";
+import { AdminSchema, AppAssetProps, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
@@ -24,6 +24,7 @@ import { removeMedia } from "./requests/removeMedia";
 import { buildStore } from "./requests/store/buildStore";
 import { addMerchendise } from "./requests/store/addMerchendise";
 import { updateStore } from "./requests/store/updateStore";
+import { updateFormStatus } from "./dispatch/updateFormStatus";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -35,6 +36,8 @@ export const AdminState = ({ children }: ChildProps) => {
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app || values.appList) updateAppData({ app: values.app, appList: values.appList });
     if (values.user) updateUser(values.user);
+
+    dispatch({ type: ADMIN_ACTIONS.SET_FORM_STATUS, payload: "SUCCESS" });
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
 
@@ -109,10 +112,14 @@ export const AdminState = ({ children }: ChildProps) => {
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
   }, []);
+  const setFormStatus = useCallback((status: FORM_STATUS) => {
+    updateFormStatus({ dispatch, status });
+  }, []);
 
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
+      formStatus: state.formStatus,
       initAppForm: state.initAppForm,
       pagesForm: state.pagesForm,
       calendarForm: state.calendarForm,
@@ -148,6 +155,7 @@ export const AdminState = ({ children }: ChildProps) => {
       addStore,
       editStore,
       addMerch,
+      setFormStatus,
     };
   }, [state.isLoading]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
