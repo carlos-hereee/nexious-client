@@ -1,4 +1,5 @@
 import { APP_ACTIONS } from "@actions/AppActions";
+import { formatAppUrl, readableUrlString } from "@app/formatAppStrings";
 import { AppDispatchProps } from "app-context";
 
 export const setAppData = (props: AppDispatchProps) => {
@@ -10,7 +11,6 @@ export const setAppData = (props: AppDispatchProps) => {
     if (app.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: app.adminIds });
     if (app.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: app.appId });
     if (app.locale) dispatch({ type: APP_ACTIONS.SET_LOCALE, payload: app.locale });
-    if (app.appName) dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: app.appName });
     if (app.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: app.calendar });
     if (app.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: app.landing });
     if (app.menu) dispatch({ type: APP_ACTIONS.SET_MENU, payload: app.menu });
@@ -21,6 +21,12 @@ export const setAppData = (props: AppDispatchProps) => {
     if (app.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: app.store });
     if (app.languageList) dispatch({ type: APP_ACTIONS.SET_LANGUAGES, payload: app.languageList });
     if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
+    if (app.appName) {
+      const appLink = readableUrlString(app.appName);
+      dispatch({ type: APP_ACTIONS.SET_READABLE_APP_URL, payload: appLink });
+      dispatch({ type: APP_ACTIONS.SET_APP_URL, payload: formatAppUrl(appLink) });
+      dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: app.appName });
+    }
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });

@@ -38,6 +38,8 @@ declare module "app-context" {
     welcomeMessage: string;
     landing?: PageProps;
     appId: string;
+    appUrl: string;
+    appLink: string;
     activeAppId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
@@ -80,6 +82,8 @@ declare module "app-context" {
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_APP_URL
+          | APP_ACTIONS.SET_READABLE_APP_URL
           | APP_ACTIONS.SET_ACTIVE_APP_ID
           | APP_ACTIONS.SET_APP_LOGO
           | APP_ACTIONS.SET_ACTIVE_LOGO

@@ -2,7 +2,7 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
-import { formatStringToUrl } from "@app/formatStringToUrl";
+import { readableUrlString } from "@app/formatAppStrings";
 import { PageProps } from "app-types";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
@@ -19,7 +19,7 @@ const AppPage = () => {
   useEffect(() => {
     if (!pages) {
       if (nexiousName === activeAppName) navigate("/");
-      else navigate(`/app/${formatStringToUrl(activeAppName)}`);
+      else navigate(`/app/${readableUrlString(activeAppName)}`);
     } else {
       const query = pathname.split("/");
       const pageName = query[query.length - 1];

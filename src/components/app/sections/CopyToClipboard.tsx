@@ -3,7 +3,7 @@ import { IconButton } from "nexious-library";
 import { useEffect, useState } from "react";
 
 const CopyToClipboard = (props: CopyToClipboardProps) => {
-  const { heading, data } = props;
+  const { heading, data, label } = props;
 
   const [isCopy, setCopy] = useState(false);
 
@@ -18,6 +18,7 @@ const CopyToClipboard = (props: CopyToClipboardProps) => {
   return (
     <div className="section-row">
       {heading && <h2 className="heading">{heading}</h2>}
+      {label && <p>{label}</p>}
       <IconButton
         icon={{ icon: isCopy ? "check" : "copy", label: data }}
         onClick={copyData}

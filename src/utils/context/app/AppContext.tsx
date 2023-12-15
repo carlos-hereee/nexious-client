@@ -3,8 +3,8 @@ import appState from "@data/appState.json";
 import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
 import { AppSchema } from "app-context";
 import { useNavigate } from "react-router-dom";
-import { formatStringToUrl } from "@app/formatStringToUrl";
 import { AppAssetProps } from "app-admin";
+import { readableUrlString } from "@app/formatAppStrings";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -46,7 +46,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       // change theme
     } else if (category === "theme") setTheme(menuItem.value);
     // otherwise go to page
-    else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
+    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -56,6 +56,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
+      appUrl: state.appUrl,
+      appLink: state.appLink,
       appId: state.appId,
       activeAppId: state.activeAppId,
       landing: state.landing,

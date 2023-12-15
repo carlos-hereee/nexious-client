@@ -6,6 +6,7 @@ declare module "app-types" {
   }
   export interface CopyToClipboardProps {
     heading?: string;
+    label?: string;
     data: string;
     isCopy?: boolean;
   }
