@@ -7,6 +7,9 @@ declare module "app-admin" {
 
   export type AdminFormErrors = {
     initAppFormError?: string;
+    addMerchFormError?: string;
+    buildAppFormError?: string;
+    updateStoreFormError?: string;
   };
   export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 
@@ -64,7 +67,7 @@ declare module "app-admin" {
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets?: (key: AppAssetProps) => void;
-    updateFormStatus?: (key: string) => void;
+    setFormStatus?: (key: FORM_STATUS) => void;
     appId?: string;
     name?: string;
     pageId?: string;

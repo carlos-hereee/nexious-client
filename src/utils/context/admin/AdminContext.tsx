@@ -30,14 +30,16 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
-  const { updateAppData, appName } = useContext(AppContext);
+  const { updateAppData } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
+
+  const setFormStatus = useCallback((status: FORM_STATUS) => {
+    updateFormStatus({ dispatch, status });
+  }, []);
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app || values.appList) updateAppData({ app: values.app, appList: values.appList });
     if (values.user) updateUser(values.user);
-
-    dispatch({ type: ADMIN_ACTIONS.SET_FORM_STATUS, payload: "SUCCESS" });
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
 
@@ -47,10 +49,6 @@ export const AdminState = ({ children }: ChildProps) => {
       fetchAccessToken({ dispatch, handleAppAssets });
     }
   }, [accessToken]);
-
-  useEffect(() => {
-    if (appName) document.title = appName;
-  }, [appName]);
 
   const initApp = useCallback((values: PreviewValueProps) => {
     buildApp({ dispatch, values, handleAppAssets });
@@ -103,7 +101,7 @@ export const AdminState = ({ children }: ChildProps) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const editStore = useCallback((values: PreviewValueProps, appId: string) => {
-    updateStore({ dispatch, appId, handleAppAssets, values });
+    updateStore({ dispatch, appId, handleAppAssets, values, setFormStatus });
   }, []);
   const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
@@ -111,9 +109,6 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
-  }, []);
-  const setFormStatus = useCallback((status: FORM_STATUS) => {
-    updateFormStatus({ dispatch, status });
   }, []);
 
   const adminValues = useMemo(() => {
@@ -157,6 +152,6 @@ export const AdminState = ({ children }: ChildProps) => {
       addMerch,
       setFormStatus,
     };
-  }, [state.isLoading]);
+  }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
 };

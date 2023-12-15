@@ -9,7 +9,7 @@ const StoreContainer = (props: PageContainerProps) => {
   const { data, onAddItem, onClick } = props;
   const { store } = useContext(AppContext);
 
-  // console.log("store :>> ", store);
+  console.log("store :>> ", store);
 
   return (
     <div className="container">

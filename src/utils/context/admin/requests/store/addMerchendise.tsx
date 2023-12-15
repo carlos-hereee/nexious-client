@@ -1,25 +1,18 @@
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { axiosMedia } from "@axios/axiosMedia";
+import { genericErrorMessages } from "@context/log/helpers/genericErrorMessages";
 import { AdminDisptachProps } from "app-admin";
-import { PreviewPageProps } from "app-types";
-import { AxiosError } from "axios";
 
 export const addMerchendise = async (props: AdminDisptachProps) => {
   const { dispatch, handleAppAssets, values, appId } = props;
   try {
-    const val = values as PreviewPageProps;
     if (values) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.post(`/store/add-merch/${appId}`, val);
+      const { data } = await axiosMedia.post(`/store/add-merch/${appId}`, values);
       if (data && handleAppAssets) handleAppAssets(data);
     }
   } catch (error) {
-    const err = error as AxiosError;
-    console.log("error :>> ", err);
-    // dispatch({
-    //   type: ADMIN_ACTIONS.SET_FORM_ERRORS,
-    //   payload: { initAppFormError: `${err.response?.data}` },
-    // });
-    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
+    const errorPayload = { error, adminDispatch: dispatch, target: "addMerchFormError" };
+    genericErrorMessages({ ...errorPayload, type: "form-error" });
   }
 };

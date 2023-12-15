@@ -16,7 +16,9 @@ const AppRoute = () => {
     const appName = query[query.length - 1];
     if (appName) getAppWithName(appName);
   }, [pathname]);
-
+  // useEffect(() => {
+  //   if (appName) document.title = appName;
+  // }, [appName]);
   useEffect(() => {
     // if user logged in
     if (accessToken) {

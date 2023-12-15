@@ -4,6 +4,10 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
+  export interface CopyToClipboardProps {
+    heading?: string;
+    label?: string;
+  }
   export type ThemeList = {
     name: string;
     value: string;
