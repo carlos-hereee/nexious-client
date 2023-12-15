@@ -28,12 +28,12 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
-  const { updateAppData, updateAppList, appName } = useContext(AppContext);
+  const { updateAppData, appName } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
 
   const handleAppAssets = (values: AppAssetProps) => {
-    if (values.app) updateAppData(values.app);
-    if (values.appList) updateAppList(values.appList);
+    console.log("values :>> ", values);
+    if (values.app || values.appList) updateAppData({ app: values.app, appList: values.appList });
     if (values.user) updateUser(values.user);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };

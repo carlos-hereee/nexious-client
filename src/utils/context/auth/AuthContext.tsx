@@ -32,13 +32,7 @@ export const AuthState = ({ children }: ChildProps) => {
 
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
 
-  // const updateUser = useCallback((user: UserSchema) => {
-  //   setUser({ dispatch, user });
-  //    navigate('/dashboard')
-  // }, []);
-  const updateUser = useCallback((user: UserSchema) => {
-    setUser({ dispatch, user });
-  }, []);
+  const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
   const setDummyUser = useCallback((user: LoginFormValues) => {
     updateDumnyData({ dispatch, login: user });
   }, []);

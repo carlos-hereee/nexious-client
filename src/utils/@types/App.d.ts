@@ -1,9 +1,96 @@
 declare module "app-types" {
-  import { AppListProps, PageProps } from "app-context";
   import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
+  }
+  export type ThemeList = {
+    name: string;
+    value: string;
+    label: string;
+    uid: string;
+    colors: { primary: string; secondary: string; altPrimary: string; altSecondary: string };
+    backgroundColors: {
+      primary: string;
+      secondary: string;
+      altPrimary: string;
+      altSecondary: string;
+    };
+  };
+  export type StoreProps = {
+    name?: string;
+    storeId?: string;
+    title?: string;
+    hero?: string;
+    merchendise?: {
+      uid: string;
+      name: string;
+      body: string;
+      hero: string;
+      cost: number;
+      quantity: number;
+    }[];
+  };
+  export interface AppListProps {
+    appName: string;
+    appId: string;
+    adminIds: AdminIdProps[];
+    logo: string;
+    owner: UserSchema;
+    menu?: MenuProps[];
+    media?: MediaProps;
+  }
+  export interface PageProps {
+    title: string;
+    tagline: string;
+    body: string;
+    hasCta: boolean;
+    hasSections: boolean;
+    hero: string;
+    cta: CallToActionProps[];
+    sections: SectionProps[];
+    name?: string;
+    isStore: boolean;
+    uid?: string;
+    pageId?: string;
+  }
+  export type ActiveMenuProps = {
+    menu?: MenuProps[];
+    appName?: string;
+    logo?: string;
+    appId?: string;
+    media?: MediaProps;
+  };
+  export type IconListItem = {
+    uid: string;
+    name: string;
+    value: string;
+    icon: string;
+    label: string;
+  };
+  export interface AppProps {
+    appName: string;
+    store: StoreProps;
+    appId: string;
+    adminIds: AdminIdProps[];
+    logo: string;
+    locale: string;
+    languageList: MenuItemProps[];
+    pages: PageProps[];
+    isLoading: boolean;
+    isOnline: boolean;
+    appList: AppListProps[];
+    welcomeMessage: string;
+    appError: string;
+    landing: PageProps;
+    owner: UserSchema;
+    newsletter: NewsletterProps;
+    media: MediaProps;
+    menu: MenuProps[];
+    activeMenu: MenuProps[];
+    themeList: ThemeList[];
+    iconList: MenuItemProps[];
+    calendar: CalendarProps;
   }
   export interface DialogProps {
     header?: { heading?: string; subtitle?: string; data?: string };
@@ -118,10 +205,7 @@ declare module "app-types" {
     userId: string;
     role: string;
   };
-  export type ImageBuffer = {
-    data: { data: Buffer };
-    contentType: string;
-  };
+
   export type AssetProps = {
     url: string;
     alt: string;
@@ -183,10 +267,7 @@ declare module "app-types" {
     [key: string]: {
       schema?: {
         required?: string[];
-        unique?: {
-          name: string;
-          list: AppListProps[];
-        }[];
+        unique?: { name: string; list: AppListProps[] }[];
       };
       dataList?: { [key: string]: MenuItemProps[] };
       addEntries?: SectionEntryOganizer;

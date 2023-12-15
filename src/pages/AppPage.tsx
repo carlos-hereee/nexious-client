@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import { formatStringToUrl } from "@app/formatStringToUrl";
-import { PageProps } from "app-context";
+import { PageProps } from "app-types";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
 import AppStore from "./AppStore";

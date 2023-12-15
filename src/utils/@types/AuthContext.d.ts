@@ -1,7 +1,7 @@
 declare module "auth-context" {
   import { AuthErrorProps } from "app-errors";
   import { AUTH_ACTIONS } from "@actions/AuthActions";
-  import { AppListProps } from "app-context";
+  import { AppListProps } from "app-types";
   import {
     AuthFormValueProps,
     ForgotPasswordFormProps,

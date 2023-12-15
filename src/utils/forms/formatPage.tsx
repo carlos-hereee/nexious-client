@@ -1,6 +1,5 @@
-import { PageProps } from "app-context";
 import { FormatPageProps } from "app-forms";
-import { SectionProps } from "app-types";
+import { PageProps, SectionProps } from "app-types";
 import { uniqueId } from "nexious-library";
 import { entryKey } from "./entryKeys";
 

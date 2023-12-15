@@ -2,7 +2,7 @@ import AppCard from "@components/app/AppCard";
 import CreateApp from "@components/app/CreateApp";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { AppListProps } from "app-context";
+import { AppListProps } from "app-types";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 

@@ -1,12 +1,10 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ChildProps, MenuProps } from "app-types";
-import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
-import { APP_ACTIONS } from "@actions/AppActions";
+import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
+import { AppSchema } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { formatStringToUrl } from "@app/formatStringToUrl";
-// import { toggleAuthMenuItem } from "@app/toggleMenu";
-// import { nexiousName, nexiousAuthMenu } from "@data/nexious.json";
+import { AppAssetProps } from "app-admin";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -22,12 +20,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const navigate = useNavigate();
 
   // update app data
-  const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
-  // update app list
-  const updateAppList = useCallback((a: AppListProps[]) => {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
+  const updateAppData = useCallback((props: AppAssetProps) => {
+    const { app, appList } = props;
+    setAppData({ dispatch, app, appList });
   }, []);
 
   const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
@@ -37,25 +32,21 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     fetchAppWithName({ dispatch, appName: a, updateAppData });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }, []);
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
-    const oldValues = [...state.activeMenu];
     const { isPrivate, category, name, link } = menuItem;
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
       else if (name === "subscribe") subscribe(appId);
       else if (name === "unsubscribe") unSubscribe(appId);
-      else navigate(`/${link}` || "");
+      else navigate(`/${link || ""}`);
       // change theme
     } else if (category === "theme") setTheme(menuItem.value);
     // otherwise go to page
     else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
-    updateActiveAppData({ menu: oldValues });
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -88,61 +79,18 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       newsletter: state.newsletter,
       pages: state.pages,
       updateAppData,
-      updateAppList,
       getAppWithName,
       getAppList,
       updateActiveAppData,
       handleMenu,
     };
-  }, [
-    state.isLoading,
-    state.activeAppName,
-    accessToken,
-    state.appList,
-    state.appName,
-    JSON.stringify(state.activeMenu),
-  ]);
+  }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.activeMenu]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
-  // return (
-  //   <AppContext.Provider
-  //     value={{
-  //       isLoading: state.isLoading,
-  //       appList: state.appList,
-  //       iconList: state.iconList,
-  //       appName: state.appName,
-  //       appId: state.appId,
-  //       landing: state.landing,
-  //       themeList: state.themeList,
-  //       languageList: state.languageList,
-  //       adminIds: state.adminIds,
-  //       calendar: state.calendar,
-  //       isOnline: state.isOnline,
-  //       media: state.media,
-  //       menu: state.menu,
-  //       activeMenu: state.activeMenu,
-  //       owner: state.owner,
-  //       logo: state.logo,
-  //       locale: state.locale,
-  //       welcomeMessage: state.welcomeMessage,
-  //       newsletter: state.newsletter,
-  //       updateAppData: (a) => updateAppData({ dispatch, values: a }),
-  //       updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
-  //       getAppWithName: (appName) =>
-  //         getAppWithName({
-  //           dispatch,
-  //           appName,
-  //           updateApp: (e) => updateAppData({ dispatch, values: e }),
-  //         }),
-  //       // getAppList: () => getAppList({ dispatch }),
-  //       updateMenu: (a) => updateMenu({ dispatch, data: a }),
-  //     }}
-  //   >
-  //     {children}
-  //   </AppContext.Provider>
-  // );
 };
-
+/**
+ * 
+ 
 // import { uploadImage } from "./helpers/uploadImage";
 // import { getLatestAppData } from "./helpers/getLatestAppData";
 // import { getFiles } from "./helpers/getFiles";
@@ -228,4 +176,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 // getAppWithAppId: (a) => getAppWithAppId(dispatch, a),
 // setEditApp: (a) => setEditApp(dispatch, a),
 // updateEditAppState: (a) => dispatch({ type: "SET_EDIT_APP", payload: a }),
-// addPage: (a) => addPage(dispatch, a, appId, getLatestAppData),
+// addPage: (a) => addPage(dispatch, a, appId, getLatestAppData)
+
+*/

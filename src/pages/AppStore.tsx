@@ -1,5 +1,5 @@
 import { AppContext } from "@context/app/AppContext";
-import { PageProps } from "app-context";
+import { PageProps } from "app-types";
 import { useContext } from "react";
 import { Button, Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "services-context";
@@ -27,7 +27,7 @@ const AppStore = (props: { page: PageProps }) => {
           onClick={() => navigate(`${activeAppName}/checkout`)}
         />
       )}
-      {store.merchendise?.map((merch) => (
+      {store.merchendise?.map((merch: MerchProps) => (
         <MerchCard
           key={merch.uid}
           data={merch}

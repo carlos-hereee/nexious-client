@@ -20,7 +20,8 @@ const AppRoute = () => {
   useEffect(() => {
     // if user logged in
     if (accessToken) {
-      const oldValues = nexiousAppMenu.concat(menu);
+      const oldValues = nexiousAppMenu;
+      oldValues.concat(menu);
       // find auth menu
       const authIdx = oldValues.findIndex((app) => app.category === "subscribe");
       // check user subscriptions

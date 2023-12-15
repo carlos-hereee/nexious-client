@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
-import { PageProps } from "app-context";
+import { PageProps } from "app-types";
 import { formatPage } from "@forms/formatPage";
 
 const EditPage = () => {

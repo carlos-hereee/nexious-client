@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Button, IconButton, Loading } from "nexious-library";
-import { PageProps } from "app-context";
+import { PageProps } from "app-types";
 import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
@@ -71,7 +71,6 @@ const AppSettings = () => {
   };
   const onAddMerch = () => {
     setShow({ ...show, store: true });
-    // console.log("object :>> ");
   };
 
   if (isLoading) return <Loading message="loading app assets.. " />;

@@ -10,7 +10,7 @@ import ExploreApps from "@components/app/ExploreApps";
 // import { AppContext } from "@context/app/AppContext";
 import AppPlayground from "./AppPlayground";
 import AccountSettings from "./settings/AccountSettings";
-// import { AppListProps } from "app-context";
+// import { AppListProps} from "app-types";
 // import AppCard from "@components/app/AppCard";
 
 const UserPlayground = () => {

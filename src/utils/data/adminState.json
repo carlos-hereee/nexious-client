@@ -245,7 +245,7 @@
     "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
   "storeForm": {
-    "heading": "It looks like your have not create your store yet",
+    "heading": "Create store",
     "formId": "storeForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
