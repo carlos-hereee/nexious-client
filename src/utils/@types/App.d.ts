@@ -6,7 +6,8 @@ declare module "app-types" {
   }
   export interface CopyToClipboardProps {
     heading?: string;
-    label?: string;
+    data: string;
+    isCopy?: boolean;
   }
   export type ThemeList = {
     name: string;

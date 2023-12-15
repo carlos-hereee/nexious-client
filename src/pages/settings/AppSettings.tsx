@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
-import { Button, IconButton, Loading } from "nexious-library";
+import { Button, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
@@ -11,12 +11,12 @@ import MediaDialog from "@components/app/dialog/MediaDialog";
 import { DialogStatusProps, MediaItemProp, PageProps } from "app-types";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import StoreDialog from "@components/app/dialog/StoreDialog";
+import CopyToClipboard from "@components/app/sections/CopyToClipboard";
 
 const AppSettings = () => {
   const { appName, media, pages, appId, isLoading, updateActiveAppData, logo, menu } =
     useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
-  const [copyUrl, setCopyUrl] = useState<boolean>(false);
   const [show, setShow] = useState({ pages: false, media: false, store: false });
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
@@ -43,10 +43,7 @@ const AppSettings = () => {
   const pagesData = { name, heading: "Pages:" };
 
   const resetStatus = () => setStatus("idle");
-  const copyLink = () => {
-    navigator.clipboard.writeText(appUrl);
-    setCopyUrl(true);
-  };
+
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
     setActivePage(data);
@@ -110,15 +107,7 @@ const AppSettings = () => {
       )}
       {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
 
-      <div className="section-row">
-        <h2>Copy app url:</h2>
-        <IconButton
-          icon={{ icon: copyUrl ? "check" : "copy", label: appUrl }}
-          onClick={copyLink}
-          theme="btn-main"
-        />
-      </div>
-
+      <CopyToClipboard data={appUrl} heading="Copy app url: " />
       <DangerZone />
     </div>
   );
