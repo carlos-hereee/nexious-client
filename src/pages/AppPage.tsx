@@ -2,7 +2,7 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
-import { readableUrlString } from "@app/formatAppStrings";
+import { readableUrlString } from "@app/formatStringUrl";
 import { PageProps } from "app-types";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";

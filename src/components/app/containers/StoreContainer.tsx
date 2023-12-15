@@ -2,15 +2,12 @@ import { AppContext } from "@context/app/AppContext";
 import { PageContainerProps } from "app-types";
 import { Button } from "nexious-library";
 import { useContext } from "react";
+import { formatStoreUrl } from "@app/formatStringUrl";
 import CopyToClipboard from "../sections/CopyToClipboard";
-// import BuildStore from "../forms/BuildStore";
 
 const StoreContainer = (props: PageContainerProps) => {
-  // const { data, onRemove, onMediaClick, onAddItem } = props;
   const { data, onAddItem, onClick } = props;
-  const { store } = useContext(AppContext);
-
-  console.log("store :>> ", store);
+  const { store, appLink } = useContext(AppContext);
 
   return (
     <div className="container">
@@ -22,7 +19,10 @@ const StoreContainer = (props: PageContainerProps) => {
               <p>
                 <strong>Store name:</strong> {store.name}
               </p>
-              <CopyToClipboard data="" label="Copy store url: " />
+              <CopyToClipboard
+                data={formatStoreUrl(appLink, store.name)}
+                label="Copy store url: "
+              />
             </>
           )}
           {/* {store.name && <p>{store.name}</p>} */}

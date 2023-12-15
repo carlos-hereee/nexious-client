@@ -1,5 +1,5 @@
 import { APP_ACTIONS } from "@actions/AppActions";
-import { formatAppUrl, readableUrlString } from "@app/formatAppStrings";
+import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
 export const setAppData = (props: AppDispatchProps) => {
