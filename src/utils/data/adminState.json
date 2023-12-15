@@ -250,37 +250,17 @@
     "previewLabel": "See changes",
     "fieldHeading": {},
     "initialValues": { "name": "", "title": "", "hero": "", "body": "" },
-    "types": {
-      "body": "textarea",
-      "name": "text",
-      "title": "text",
-      "hero": "file"
-    },
-    "labels": {
-      "name": "Page name",
-      "title": "Store name",
-      "body": "About",
-      "hero": "Add image"
-    },
-    "placeholders": {
-      "hero": "",
-      "body": "",
-      "name": "Store/Shop"
-    },
-    "desiredOrder": ["name", "title", "hero", "body", "cost", "quantity"]
+    "types": { "body": "textarea", "name": "text", "title": "text", "hero": "file" },
+    "labels": { "name": "Page name", "title": "Store name", "body": "About", "hero": "Add image" },
+    "placeholders": { "hero": "", "body": "", "name": "Store/Shop" },
+    "desiredOrder": ["name", "title", "hero", "body"]
   },
   "merchForm": {
     "heading": "Add merch",
     "formId": "merchForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": {
-      "name": "",
-      "hero": "",
-      "body": "",
-      "cost": "",
-      "quantity": ""
-    },
+    "initialValues": { "name": "", "hero": "", "body": "", "cost": "", "quantity": "" },
     "types": {
       "body": "textarea",
       "name": "text",
@@ -295,12 +275,8 @@
       "cost": "Cost",
       "quantity": "Quantity"
     },
-    "placeholders": {
-      "hero": "",
-      "body": "",
-      "name": "item name"
-    },
-    "desiredOrder": ["name", "hero", "body", "hasCta", "cost", "quantity"]
+    "placeholders": { "hero": "", "body": "", "name": "item name" },
+    "desiredOrder": ["name", "hero", "body", "cost", "quantity"]
   },
   "sectionEntries": {
     "hasCta": {

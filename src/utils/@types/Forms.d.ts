@@ -8,8 +8,13 @@ declare module "app-forms" {
     MediaProps,
     MenuItemProps,
     NewsletterProps,
+    StoreProps,
   } from "app-types";
 
+  export interface FormatStoreFormProps {
+    store: StoreProps;
+    desiredOrder: string[];
+  }
   export interface InitAppProps {
     appName: string;
     logo: string;

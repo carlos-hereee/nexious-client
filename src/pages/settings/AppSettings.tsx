@@ -2,14 +2,13 @@ import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigate } from "react-router-dom";
 import { Button, IconButton, Loading } from "nexious-library";
-import { PageProps } from "app-types";
 import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
-import { DialogStatusProps, MediaItemProp } from "app-types";
+import { DialogStatusProps, MediaItemProp, PageProps } from "app-types";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import StoreDialog from "@components/app/dialog/StoreDialog";
 
@@ -40,9 +39,10 @@ const AppSettings = () => {
     heading: "Social media:",
     hint: "Click/Tap on icons to edit",
   };
-  const storeData = { heading: "Merchendise:" };
+  const storeData = { heading: "Store:" };
   const pagesData = { name, heading: "Pages:" };
 
+  const resetStatus = () => setStatus("idle");
   const copyLink = () => {
     navigator.clipboard.writeText(appUrl);
     setCopyUrl(true);
@@ -71,6 +71,16 @@ const AppSettings = () => {
   };
   const onAddMerch = () => {
     setShow({ ...show, store: true });
+    setStatus("phase-two");
+  };
+  const onStoreEdit = () => {
+    setShow({ ...show, store: true });
+    setStatus("phase-one");
+  };
+
+  const onStoreDialogClose = () => {
+    setShow({ ...show, store: false });
+    resetStatus();
   };
 
   if (isLoading) return <Loading message="loading app assets.. " />;
@@ -83,7 +93,7 @@ const AppSettings = () => {
         <Button label="See live" onClick={handleSeeLive} />
       </div>
       <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} name={name} />
-      <StoreContainer data={storeData} onAddItem={onAddMerch} />
+      <StoreContainer data={storeData} onAddItem={onAddMerch} onClick={onStoreEdit} />
       <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
       {show.pages && (
         <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
@@ -98,7 +108,7 @@ const AppSettings = () => {
           onConfirm={() => deleteMedia(appId, activeMedia?.uid || "")}
         />
       )}
-      {show.store && <StoreDialog onClose={() => setShow({ ...show, store: false })} />}
+      {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
 
       <div className="section-row">
         <h2>Copy app url:</h2>

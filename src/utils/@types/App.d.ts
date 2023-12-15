@@ -22,7 +22,7 @@ declare module "app-types" {
     storeId?: string;
     title?: string;
     hero?: string;
-    merchendise?: {
+    inventory?: {
       uid: string;
       name: string;
       body: string;
@@ -133,7 +133,7 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-two";
+  export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-one" | "phase-two";
   export interface SectionProps {
     title: string;
     uid: string;

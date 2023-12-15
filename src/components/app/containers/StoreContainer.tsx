@@ -6,20 +6,22 @@ import { useContext } from "react";
 
 const StoreContainer = (props: PageContainerProps) => {
   // const { data, onRemove, onMediaClick, onAddItem } = props;
-  const { data, onAddItem } = props;
+  const { data, onAddItem, onClick } = props;
   const { store } = useContext(AppContext);
+
+  // console.log("store :>> ", store);
 
   return (
     <div className="container">
-      <h2 className="heading">Store: </h2>
+      {data.heading && <h2 className="heading">{data.heading}</h2>}
       {store?.storeId ? (
         <>
-          {data.heading && <h2 className="heading">{data.heading}</h2>}
-          {onAddItem && (
-            <div className="flex-center">
-              <Button label="+ Add merch" onClick={onAddItem} />
-            </div>
-          )}
+          {store.name && <p>{store.name}</p>}
+          {store.name && <p>{store.name}</p>}
+          <div className="buttons-container">
+            <Button label="Edit store details" onClick={onClick} />
+            {onAddItem && <Button label="+ Add merch" onClick={onAddItem} />}
+          </div>
         </>
       ) : (
         <>

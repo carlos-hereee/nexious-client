@@ -4,7 +4,6 @@ import { AppDispatchProps } from "app-context";
 export const setAppData = (props: AppDispatchProps) => {
   const { dispatch, app, appList } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-  console.log("app, appList :>> ", app, appList);
   if (app) {
     // if values exists other wise use default typec\
     if (app.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: app.logo });

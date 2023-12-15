@@ -54,6 +54,7 @@ declare module "app-admin" {
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
     addStore: (values: PreviewValueProps, appId: string) => void;
+    editStore: (values: PreviewValueProps, appId: string) => void;
     addMerch: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
