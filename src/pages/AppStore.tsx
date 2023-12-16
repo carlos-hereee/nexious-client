@@ -1,24 +1,22 @@
 import { AppContext } from "@context/app/AppContext";
-import { PageProps } from "app-types";
 import { useContext } from "react";
 import { Button, Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "services-context";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { useNavigate } from "react-router-dom";
 
-const AppStore = (props: { page: PageProps }) => {
-  const { page } = props;
+const AppStore = () => {
   const { store, activeAppName } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
 
-  // console.log("page :>> ", page);
+  console.log("page :>> ", store);
   return (
     <div className="container">
       <div className="container">
-        <h1 className="heading">{page.title}</h1>
-        {page.hero && <Hero hero={{ url: page.hero }} />}
-        {page.body && <p className="text-max">{page.body}</p>}
+        {store.title && <h1 className="heading">{store.title}</h1>}
+        {store.hero && <Hero hero={{ url: store.hero }} />}
+        {store.body && <p className="text-max">{store.body}</p>}
       </div>
       {cart.length > 0 && (
         <Button

@@ -6,16 +6,25 @@ import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { nexiousAppMenu } from "@data/nexious.json";
 
 const AppRoute = () => {
-  const { isOnline, getAppWithName, appError, activeAppName, updateActiveAppData, menu } =
+  const { isOnline, getAppWithName, appError, activeAppName, updateActiveAppData, menu, appId } =
     useContext(AppContext);
   const { subscriptions, accessToken } = useContext(AuthContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     const query = pathname.split("/");
-    const appName = query[query.length - 1];
-    if (appName) getAppWithName(appName);
-  }, [pathname]);
+    const routeAppName = query[2];
+    // console.log("routeAppName :>> ", routeAppName);
+    if (routeAppName === activeAppName) document.title = activeAppName;
+    if (routeAppName !== activeAppName) getAppWithName(routeAppName);
+    // if (query[1] === "app" && routeAppName !== activeAppName) {
+    //   getAppWithName(routeAppName);
+    // }
+    // if (query[1] === "store" && routeAppName !== activeAppName) {
+    //   getAppWithName(routeAppName);
+    // }
+    // console.log("query :>> ", query);
+  }, [pathname, activeAppName, appId]);
   // useEffect(() => {
   //   if (appName) document.title = appName;
   // }, [appName]);

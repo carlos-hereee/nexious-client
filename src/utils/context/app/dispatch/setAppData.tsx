@@ -6,6 +6,7 @@ export const setAppData = (props: AppDispatchProps) => {
   const { dispatch, app, appList } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
+    // console.log("app.store :>> ", app.store);
     // if values exists other wise use default typec\
     if (app.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: app.logo });
     if (app.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: app.adminIds });

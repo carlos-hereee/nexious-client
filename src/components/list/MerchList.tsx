@@ -40,20 +40,28 @@ const MerchList = () => {
     <div className="key-with-definition">
       <HintButton data={hintData} />
       {show.inventory ? (
-        <div className="inventory-container">
-          {inventory.map((item) => (
-            <button
-              type="button"
-              key={item.uid}
-              className="iventory-item-card highlight"
-              onClick={() => handleClick(item)}
-            >
-              {item.hero && (
-                <Hero theme="thumbnail" hero={{ url: item.hero, alt: `product ${item.name}` }} />
-              )}
-              <p>{item.name} </p>
-            </button>
-          ))}
+        <div className="container">
+          <Button
+            label="Close Inventory"
+            theme="btn-cancel btn-main highlight btn-close"
+            onClick={() => setShow({ ...show, inventory: false })}
+          />
+          <div className="inventory-container">
+            {inventory.map((item) => (
+              <button
+                type="button"
+                key={item.uid}
+                className="iventory-item-card highlight"
+                onClick={() => handleClick(item)}
+              >
+                {item.hero && (
+                  <Hero theme="thumbnail" hero={{ url: item.hero, alt: `product ${item.name}` }} />
+                )}
+                <p>{item.name} </p>
+                {item.quantity > 0 ? <p>{item.quantity} Remaining</p> : <p>OUT OF STOCK</p>}
+              </button>
+            ))}
+          </div>
         </div>
       ) : (
         <Button label="Show inventory" onClick={() => setShow({ ...show, inventory: true })} />

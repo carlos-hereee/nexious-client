@@ -18,6 +18,7 @@ import Homepage from "@pages/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AddPage from "@components/app/forms/AddPage";
 import AppPage from "@pages/AppPage";
+import AppStore from "@pages/AppStore";
 // import Offline from "@components/app/Offline";
 
 const AppRouter: React.FC = () => {
@@ -40,6 +41,8 @@ const AppRouter: React.FC = () => {
       <Route element={<AppRoute />}>
         <Route path="/app/:appName" element={<Landing />} />
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
+        <Route path="/store/:appName/:storeName" element={<AppStore />} />
+        {/* <Route path="/app/:appName/:storeName/:merchName" element={<StorePage />} /> */}
         {/* <Route path="/app/:appName/:pageName" element={<AppPage />} /> */}
       </Route>
       {/* Private routes for account holders and authorized user */}
