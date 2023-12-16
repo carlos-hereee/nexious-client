@@ -60,6 +60,7 @@ declare module "app-context" {
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssetProps) => void;
     getAppWithName: (appName: string) => void;
+    setLoading: (isLoading: boolean) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
@@ -71,6 +72,7 @@ declare module "app-context" {
     logo?: string;
     media?: MediaProps;
     appName?: string;
+    isLoading?: boolean;
     appId?: string;
     menu?: MenuProps[];
     updateAppData?: (a: AppProps) => void;
@@ -83,7 +85,7 @@ declare module "app-context" {
         type:
           | APP_ACTIONS.SET_APP_ID
           | APP_ACTIONS.SET_APP_URL
-          | APP_ACTIONS.SET_READABLE_APP_URL
+          | APP_ACTIONS.SET_APP_LINK
           | APP_ACTIONS.SET_ACTIVE_APP_ID
           | APP_ACTIONS.SET_APP_LOGO
           | APP_ACTIONS.SET_ACTIVE_LOGO

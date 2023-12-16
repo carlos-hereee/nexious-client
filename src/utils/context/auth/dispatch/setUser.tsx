@@ -6,13 +6,13 @@ export const setUser = (props: AuthDispatchProps) => {
   //  key varaibles
   const { dispatch, user } = props;
   if (user) {
-    if (user.subscriptions) {
-      dispatch({ type: AUTH_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
-    }
     const formatUser = userMinData(user);
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: AUTH_ACTIONS.SET_USER_DATA, payload: formatUser });
     if (user.ownedApps) dispatch({ type: AUTH_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
+    if (user.subscriptions) {
+      dispatch({ type: AUTH_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
+    }
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   }
 };

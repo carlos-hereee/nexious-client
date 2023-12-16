@@ -23,7 +23,7 @@ export const setAppData = (props: AppDispatchProps) => {
     if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
     if (app.appName) {
       const appLink = readableUrlString(app.appName);
-      dispatch({ type: APP_ACTIONS.SET_READABLE_APP_URL, payload: appLink });
+      dispatch({ type: APP_ACTIONS.SET_APP_LINK, payload: appLink });
       dispatch({ type: APP_ACTIONS.SET_APP_URL, payload: formatAppUrl(appLink) });
       dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: app.appName });
     }

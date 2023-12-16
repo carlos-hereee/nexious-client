@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext, useMemo, useCallback, useEffect } from "react";
+import { createContext, useReducer, useContext, useMemo, useCallback } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
@@ -9,22 +9,18 @@ import { singUp } from "./request/singUp";
 import { signOut } from "./request/signOut";
 import { setUser } from "./dispatch/setUser";
 import { setForgotPassword } from "./request/setForgotPassword";
-import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { setSubscribe } from "./request/setSubscribe";
 import { setUnsubscribe } from "./request/setUnsubscribe";
 import { clearAuthErrors } from "./dispatch/clearAuthErrors";
 import { clearStranded } from "./dispatch/clearStranded";
 import { updateDumnyData } from "./dispatch/updateDummyData";
 import { updateTheme } from "./dispatch/updateTheme";
+import { updateAccessToken } from "./dispatch/updateAccessToken";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
-
-  useEffect(() => {
-    fetchRefreshToken({ dispatch });
-  }, []);
 
   const forgotPassword = useCallback((e: ForgotPasswordFormProps) => {
     setForgotPassword({ dispatch, credentials: e });
@@ -35,6 +31,9 @@ export const AuthState = ({ children }: ChildProps) => {
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
   const setDummyUser = useCallback((user: LoginFormValues) => {
     updateDumnyData({ dispatch, login: user });
+  }, []);
+  const setAccessToken = useCallback((accessToken: string) => {
+    updateAccessToken({ dispatch, accessToken });
   }, []);
 
   const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
@@ -81,6 +80,7 @@ export const AuthState = ({ children }: ChildProps) => {
       setDummyUser,
       resetStranded,
       resetAuthErrors,
+      setAccessToken,
     };
   }, [
     state.accessToken,

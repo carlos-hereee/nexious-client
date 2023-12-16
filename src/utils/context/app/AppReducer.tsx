@@ -33,7 +33,7 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, appName: action.payload };
     case APP_ACTIONS.SET_APP_URL:
       return { ...state, appUrl: action.payload };
-    case APP_ACTIONS.SET_READABLE_APP_URL:
+    case APP_ACTIONS.SET_APP_LINK:
       return { ...state, appLink: action.payload };
     case APP_ACTIONS.SET_ACTIVE_APP_NAME:
       return { ...state, activeAppName: action.payload };

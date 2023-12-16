@@ -45,6 +45,7 @@ declare module "auth-context" {
     logout: () => void;
     resetStranded: () => void;
     resetAuthErrors: () => void;
+    setAccessToken: (accessToken: string) => void;
     login: (values: LoginFormValues) => void;
     register: (values: RegisterFormProps) => void;
     setDummyUser: (values: LoginFormValues) => void;
@@ -60,6 +61,7 @@ declare module "auth-context" {
     credentials?: AuthFormValueProps;
     user?: UserSchema;
     data?: string;
+    accessToken?: string;
     login?: LoginFormValues;
     appId?: string;
     updateUser?: (user: UserSchema) => void;

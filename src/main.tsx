@@ -20,8 +20,8 @@ if (elementRoot) {
     // <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <LogState>
-        <AuthState>
+      <AuthState>
+        <LogState>
           <AppState>
             <ServicesState>
               {/* <CalendarState> */}
@@ -33,8 +33,8 @@ if (elementRoot) {
               {/* </CalendarState> */}
             </ServicesState>
           </AppState>
-        </AuthState>
-      </LogState>
+        </LogState>
+      </AuthState>
     </BrowserRouter>
     // </React.StrictMode>
   );

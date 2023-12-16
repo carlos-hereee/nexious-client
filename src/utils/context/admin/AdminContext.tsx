@@ -4,6 +4,7 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
+import { LogContext } from "@context/log/LogContext";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -30,11 +31,12 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, adminState);
 
-  const { updateAppData } = useContext(AppContext);
+  const { updateAppData, setLoading } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
+  const { status } = useContext(LogContext);
 
-  const setFormStatus = useCallback((status: FORM_STATUS) => {
-    updateFormStatus({ dispatch, status });
+  const setFormStatus = useCallback((data: FORM_STATUS) => {
+    updateFormStatus({ dispatch, status: data });
   }, []);
 
   const handleAppAssets = (values: AppAssetProps) => {
@@ -47,8 +49,10 @@ export const AdminState = ({ children }: ChildProps) => {
     if (accessToken) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       fetchAccessToken({ dispatch, handleAppAssets });
+    } else if (status === "IDLE" && !accessToken) {
+      setLoading(false);
     }
-  }, [accessToken]);
+  }, [accessToken, status]);
 
   const initApp = useCallback((values: PreviewValueProps) => {
     buildApp({ dispatch, values, handleAppAssets });

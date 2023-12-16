@@ -11,6 +11,7 @@ import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./fetch/fetchAppWithName";
 import { fetchAppList } from "./fetch/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
+import { setIsLoading } from "./dispatch/setIsLoading";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -19,6 +20,10 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const { accessToken, setTheme, logout, subscribe, unSubscribe } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // update app data
+  const setLoading = useCallback((isLoading: boolean) => {
+    setIsLoading({ dispatch, isLoading });
+  }, []);
   // update app data
   const updateAppData = useCallback((props: AppAssetProps) => {
     const { app, appList } = props;
@@ -85,6 +90,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppList,
       updateActiveAppData,
       handleMenu,
+      setLoading,
     };
   }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.activeMenu]);
 
