@@ -138,15 +138,11 @@
 }
 .pages-container .preview-card {
   flex: 1;
-  /* max-width: 450px;
-  min-width: 300px; */
 }
 .key-with-definition {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  align-items: flex-start;
-  justify-items: flex-start;
-  /* text-align: left; */
+  align-items: center;
 }
 .inventory-container {
   display: flex;

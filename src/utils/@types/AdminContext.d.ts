@@ -27,12 +27,12 @@ declare module "app-admin" {
     isLoading: boolean;
     formStatus: FORM_STATUS;
     initAppForm: FormProps;
+    appDetailsForm: FormProps;
     pagesForm: FormProps;
     calendarForm: FormProps;
     sectionForm: FormProps;
     landingForm: FormProps;
     heroForm: FormProps;
-    languageForm: FormProps;
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
     merchForm: FormProps;
@@ -45,11 +45,14 @@ declare module "app-admin" {
     mediaList: MenuItemProps[];
     languageList: MenuItemProps[];
     sectionEntries: SectionEntryOganizer;
+    themeList: ThemeList[];
+    iconList: IconListItem[];
   }
 
   export interface AdminSchema extends AdminStateProps {
     setFormStatus: (status: FORM_STATUS) => void;
     initApp: (values: PreviewValueProps) => void;
+    editAppDetails: (values: PreviewValueProps, appId: string) => void;
     editAppName: (values: PreviewValueProps, appId: string) => void;
     addPage: (values: PreviewValueProps, appId: string) => void;
     addMedia: (values: PreviewValueProps, appId: string) => void;

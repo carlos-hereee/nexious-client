@@ -3,20 +3,30 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { toggleAuthMenuItem } from "@app/toggleMenu";
-import { nexiousAppMenu } from "@data/nexious.json";
+import { nexiousAppMenu, nexiousName } from "@data/nexious.json";
 
 const AppRoute = () => {
-  const { isOnline, getAppWithName, appError, activeAppName, updateActiveAppData, menu, appId } =
-    useContext(AppContext);
+  const {
+    isOnline,
+    getAppWithName,
+    appError,
+    activeAppName,
+    updateActiveAppData,
+    menu,
+    activeAppId,
+  } = useContext(AppContext);
   const { subscriptions, accessToken } = useContext(AuthContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     const query = pathname.split("/");
     const routeAppName = query[2];
-    // console.log("routeAppName :>> ", routeAppName);
     if (routeAppName === activeAppName) document.title = activeAppName;
-    if (routeAppName !== activeAppName) getAppWithName(routeAppName);
+    if (routeAppName !== activeAppName) {
+      document.title = nexiousName;
+      getAppWithName(routeAppName, true);
+    }
+    console.log("activeAppName :>> ", activeAppName);
     // if (query[1] === "app" && routeAppName !== activeAppName) {
     //   getAppWithName(routeAppName);
     // }
@@ -24,7 +34,7 @@ const AppRoute = () => {
     //   getAppWithName(routeAppName);
     // }
     // console.log("query :>> ", query);
-  }, [pathname, activeAppName, appId]);
+  }, [pathname, activeAppId]);
   // useEffect(() => {
   //   if (appName) document.title = appName;
   // }, [appName]);

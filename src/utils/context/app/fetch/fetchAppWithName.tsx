@@ -4,15 +4,17 @@ import { AppDispatchProps } from "app-context";
 import { AxiosError } from "axios";
 
 export const fetchAppWithName = async (props: AppDispatchProps) => {
-  const { appName, updateAppData, dispatch } = props;
+  const { appName, dispatch } = props;
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.get(`/app/${appName}`);
     // console.log("data :>> ", data);
-    if (data && updateAppData) updateAppData({ app: data });
+    return data;
+    // if (data && updateAppData) updateAppData({ app: data });
   } catch (error) {
     const err = error as AxiosError;
     dispatch({ type: APP_ACTIONS.SET_APP_ERROR, payload: `${err.response?.data}` });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
+    return null;
   }
 };

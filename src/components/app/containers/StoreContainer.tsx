@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import CopyToClipboard from "../sections/CopyToClipboard";
+import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const StoreContainer = (props: PageContainerProps) => {
   const { data, onAddItem, onClick } = props;
@@ -22,24 +23,15 @@ const StoreContainer = (props: PageContainerProps) => {
       </>
     );
   }
-  const copyLink = formatStoreUrl(appLink, store.name);
 
   // console.log("store :>> ", store);
   return (
     <div className="container">
       {data.heading && <h2 className="heading">{data.heading}</h2>}
-      <div className="key-with-definition">
-        <p>
-          <strong>Store name:</strong>
-        </p>
-        <p>{store.name}</p>
-      </div>
-      <CopyToClipboard
-        data={copyLink}
-        label="Copy store url:"
-        labelLayout="bolden"
-        theme="key-with-definition"
-      />
+      <KeyWithDefinition label="Store name:" value={store.name} labelLayout="bolden" />
+      <KeyWithDefinition label="Store url:" labelLayout="bolden">
+        <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
+      </KeyWithDefinition>
       <MerchList />
       <div className="buttons-container">
         <Button label="Edit store details" onClick={onClick} />

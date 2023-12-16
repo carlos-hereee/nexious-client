@@ -4,6 +4,28 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
+  export interface KeyWithDefinitionProps {
+    label?: string;
+    value?: string;
+    labelLayout?: "bolden";
+    children?: React.ReactNode;
+  }
+  export interface AppDetailsProps {
+    locale: string;
+    appName: string;
+    logo: string;
+  }
+  export interface AppDetailsFormProps {
+    app: AppDetailsProps;
+    desiredOrder: string[];
+  }
+  export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
+  export type ThemeColorProps = {
+    primary: string;
+    secondary: string;
+    altPrimary: string;
+    altSecondary: string;
+  };
   export interface CopyToClipboardProps {
     heading?: string;
     label?: string;
@@ -12,18 +34,17 @@ declare module "app-types" {
     data: string;
     isCopy?: boolean;
   }
+  export interface AppContainerProps {
+    data: ContainerDataProps;
+    onAppDetails?: () => void;
+  }
   export type ThemeList = {
     name: string;
     value: string;
     label: string;
     uid: string;
-    colors: { primary: string; secondary: string; altPrimary: string; altSecondary: string };
-    backgroundColors: {
-      primary: string;
-      secondary: string;
-      altPrimary: string;
-      altSecondary: string;
-    };
+    colors: ThemeColorProps;
+    backgroundColors: ThemeColorProps;
   };
   export interface InventoryItemProps {
     uid: string;
@@ -132,7 +153,7 @@ declare module "app-types" {
     onAddItem?: (phase: DialogStatusProps) => void;
   }
   export interface MediaCardContainerProps {
-    data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
+    data: ContainerDataProps;
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;

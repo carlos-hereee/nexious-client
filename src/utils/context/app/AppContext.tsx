@@ -36,8 +36,12 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
 
   // fetch app with app name
-  const getAppWithName = useCallback((a: string) => {
-    fetchAppWithName({ dispatch, appName: a, updateAppData });
+  const getAppWithName = useCallback(async (a: string, setAsActive?: boolean) => {
+    const app = await fetchAppWithName({ dispatch, appName: a });
+    if (app) {
+      updateAppData({ app });
+      if (setAsActive) updateActiveAppData(app);
+    }
   }, []);
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {

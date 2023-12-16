@@ -11,7 +11,8 @@ import MediaDialog from "@components/app/dialog/MediaDialog";
 import { DialogStatusProps, MediaItemProp, PageProps } from "app-types";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import StoreDialog from "@components/app/dialog/StoreDialog";
-import CopyToClipboard from "@components/app/sections/CopyToClipboard";
+import AppContainer from "@components/app/containers/AppContainer";
+import AppDialog from "@components/app/dialog/AppDialog";
 
 const AppSettings = () => {
   const {
@@ -27,7 +28,7 @@ const AppSettings = () => {
     appLink,
   } = useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
-  const [show, setShow] = useState({ pages: false, media: false, store: false });
+  const [show, setShow] = useState({ pages: false, media: false, store: false, app: false });
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("idle");
@@ -47,6 +48,7 @@ const AppSettings = () => {
     hint: "Click/Tap on icons to edit",
   };
   const storeData = { heading: "Store:" };
+  const appData = { heading: "App:" };
   const pagesData = { name: appUrl, heading: "Pages:" };
 
   const resetStatus = () => setStatus("idle");
@@ -86,9 +88,17 @@ const AppSettings = () => {
     setShow({ ...show, store: false });
     resetStatus();
   };
+
+  const onAppDetailsDialogClose = () => {
+    setShow({ ...show, app: false });
+    resetStatus();
+  };
   const onMediaClose = () => {
     setShow({ ...show, media: false });
     resetStatus();
+  };
+  const onAppDetails = () => {
+    setShow({ ...show, app: true });
   };
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -99,6 +109,7 @@ const AppSettings = () => {
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
         <Button label="See live" onClick={handleSeeLive} />
       </div>
+      <AppContainer data={appData} onAppDetails={onAppDetails} />
       <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} name={appLink} />
       <StoreContainer data={storeData} onAddItem={onAddMerch} onClick={onStoreEdit} />
       <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
@@ -116,11 +127,8 @@ const AppSettings = () => {
         />
       )}
       {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
+      {show.app && <AppDialog onClose={onAppDetailsDialogClose} />}
 
-      <div>
-        <h2 className="heading">App:</h2>
-        <CopyToClipboard data={appUrl} label="Copy app url: " labelLayout="bolden" />
-      </div>
       <DangerZone />
     </div>
   );

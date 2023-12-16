@@ -10,13 +10,10 @@ declare module "app-context" {
     MenuItemProps,
     MenuProps,
     NewsletterProps,
+    PageProps,
     StoreProps,
   } from "app-types";
 
-  // export interface UpdateAppsProps {
-  //   appList?: AppListProps[];
-  //   app?: AppProps;
-  // }
   export interface AppCardProps {
     app: AppListProps;
     owner: UserSchema;
@@ -45,7 +42,7 @@ declare module "app-context" {
     owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
-    pages?: PageProps[];
+    pages: PageProps[] | [];
     media: MediaProps;
     activeMedia: MediaProps;
     menu: MenuProps[];
@@ -60,7 +57,7 @@ declare module "app-context" {
   // app context schema
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssetProps) => void;
-    getAppWithName: (appName: string) => void;
+    getAppWithName: (appName: string, setAsActive?: boolean) => void;
     setLoading: (isLoading: boolean) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
@@ -74,6 +71,7 @@ declare module "app-context" {
     media?: MediaProps;
     appName?: string;
     isLoading?: boolean;
+    setAsActive?: boolean;
     appId?: string;
     menu?: MenuProps[];
     updateAppData?: (a: AppProps) => void;

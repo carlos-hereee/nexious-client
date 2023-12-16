@@ -27,6 +27,7 @@ import { addMerchendise } from "./requests/store/addMerchendise";
 import { updateStore } from "./requests/store/updateStore";
 import { updateFormStatus } from "./dispatch/updateFormStatus";
 import { updateMerch } from "./requests/store/updateMerch";
+import { updateAppDetails } from "./requests/updateAppDetails";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -66,6 +67,9 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
+  }, []);
+  const editAppDetails = useCallback((values: PreviewValueProps, appId: string) => {
+    updateAppDetails({ dispatch, values, handleAppAssets, appId });
   }, []);
 
   const editNewsletter = useCallback((values: PreviewValueProps, appId: string) => {
@@ -125,6 +129,7 @@ export const AdminState = ({ children }: ChildProps) => {
       isLoading: state.isLoading,
       formStatus: state.formStatus,
       initAppForm: state.initAppForm,
+      appDetailsForm: state.appDetailsForm,
       pagesForm: state.pagesForm,
       calendarForm: state.calendarForm,
       mediaList: state.mediaList,
@@ -139,10 +144,10 @@ export const AdminState = ({ children }: ChildProps) => {
       sectionEntries: state.sectionEntries,
       formErrors: state.formErrors,
       mediaEntryForm: state.mediaEntryForm,
-      languageForm: state.languageForm,
       themeList: state.themeList,
       merchForm: state.merchForm,
       languageList: state.languageList,
+      iconList: state.iconList,
       initApp,
       editAppName,
       editLandingPage,
@@ -160,6 +165,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editStore,
       addMerch,
       editMerch,
+      editAppDetails,
       setFormStatus,
     };
   }, [state.isLoading, state.formStatus]);

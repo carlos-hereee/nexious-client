@@ -1,6 +1,46 @@
 {
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
+  "appDetailsForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "formId": "initApp",
+    "fieldHeading": { "language": "Language" },
+    "initialValues": { "appName": "", "logo": "", "locale": "" },
+    "labels": {
+      "appName": "Enter app name",
+      "logo": "Add new app logo",
+      "theme": "Select custom themes to include for your app",
+      "locale": "What is the primary language of your app? (can be changed at any time)",
+      "language": "Increase your target audience by adding making it assecible to more people"
+    },
+    "placeholders": {
+      "appName": "Enter appname ..",
+      "logo": "Choose file",
+      "theme": "Choose a theme"
+    },
+    "types": {
+      "appName": "text",
+      "logo": "file",
+      "theme": "datalist",
+      "language": "datalist",
+      "locale": "select"
+    },
+    "withFileUpload": true,
+    "previewLabel": "See changes",
+    "desiredOrder": ["appName", "logo", "language", "locale"],
+    "hero": {
+      "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
+      "alt": "build app",
+      "uid": "build-app-hero-uid",
+      "heroId": "build-app-hero",
+      "creditTo": {
+        "artistName": "Gia Oris",
+        "artistUrl": "https://unsplash.com/@giabyte?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/photos/pink-star-here-text-_uM5_nG2ssc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    }
+  },
   "initAppForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",
@@ -80,21 +120,6 @@
       "hero": "file"
     },
     "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
-  },
-  "languageForm": {
-    "heading": "Update language data",
-    "submitLabel": "Save and continue",
-    "formId": "languages",
-    "previewLabel": "See changes",
-    "fieldHeading": { "locale": "Language" },
-    "initialValues": { "locale": "en-US", "language": "" },
-    "labels": {
-      "locale": "What is the primary language of your app? (can be changed later)",
-      "language": "Increase your target audience by adding making it assecible to more people"
-    },
-    "types": { "language": "datalist", "locale": "select" },
-    "placeholders": { "locale": "English", "laguageList": "" },
-    "desiredOrder": ["locale", "language"]
   },
   "socialMediaForm": {
     "heading": "Link your social media here!",
@@ -330,20 +355,51 @@
       "desiredOrder": ["title", "body", "sectionHero"]
     }
   },
+  "iconList": [
+    {
+      "name": "confirm",
+      "label": "Confirm",
+      "value": "confirm",
+      "icon": "confirm",
+      "uid": "icon-1"
+    }
+  ],
   "themeList": [
     {
       "name": "light-mode",
       "value": "light-mode",
       "label": "light-mode",
-      "themeId": "theme-light-mode",
-      "uid": "theme-light-mode"
+      "uid": "light-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
     },
     {
       "name": "dark-mode",
       "value": "dark-mode",
       "label": "dark-mode",
-      "themeId": "theme-dark-mode",
-      "uid": "theme-dark-mode"
+      "uid": "dark-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
     }
   ],
   "languageList": [

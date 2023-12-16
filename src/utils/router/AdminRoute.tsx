@@ -14,10 +14,10 @@ const AdminRoute = () => {
 
   useEffect(() => {
     const query = pathname.split("/");
-    const routeName = query[query.length - 1];
+    const routeAppName = query[query.length - 1];
     if (!appName) {
-      if (routeName) getAppWithName(routeName);
-    } else if (routeName !== appName) getAppWithName(routeName);
+      if (routeAppName) getAppWithName(routeAppName);
+    } else if (routeAppName !== appName) getAppWithName(routeAppName);
   }, [pathname, appName]);
 
   if (isAppLoading) return <Outlet />;

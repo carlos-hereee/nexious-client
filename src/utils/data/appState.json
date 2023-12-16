@@ -74,75 +74,7 @@
   "pages": [],
   "appList": [],
   "store": { "name": "", "storeId": "", "inventory": [] },
-  "themeList": [
-    {
-      "name": "light-mode",
-      "value": "light-mode",
-      "label": "light-mode",
-      "uid": "light-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    },
-    {
-      "name": "dark-mode",
-      "value": "dark-mode",
-      "label": "dark-mode",
-      "uid": "dark-mode",
-      "colors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      },
-      "backgroundColors": {
-        "primary": "",
-        "secondary": "",
-        "altPrimary": "",
-        "altSecondary": ""
-      }
-    }
-  ],
-  "iconList": [
-    {
-      "name": "confirm",
-      "label": "Confirm",
-      "value": "confirm",
-      "icon": "confirm",
-      "uid": "icon-1"
-    }
-  ],
-  "languageList": [
-    {
-      "name": "english",
-      "label": "English",
-      "value": "en-US (English)",
-      "locale": "en-US",
-      "uid": "language-english-en",
-      "icon": "",
-      "link": "",
-      "themeId": "lan-english",
-      "menuItemId": "lan-english"
-    },
-    {
-      "name": "spanish",
-      "label": "Espanol",
-      "value": "es-US (Espanol)",
-      "locale": "es-US",
-      "uid": "language-spanish-en",
-      "icon": "",
-      "link": "",
-      "themeId": "lan-english",
-      "menuItemId": "lan-english"
-    }
-  ]
+  "themeList": [],
+  "iconList": [],
+  "languageList": []
 }
