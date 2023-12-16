@@ -25,21 +25,22 @@ declare module "app-types" {
       altSecondary: string;
     };
   };
-  export type StoreProps = {
+  export interface InventoryItemProps {
+    uid: string;
+    name: string;
+    body: string;
+    hero: string;
+    cost: number;
+    quantity: number;
+  }
+  export interface StoreProps {
     name: string;
     storeId: string;
     title?: string;
     hero?: string;
     body?: string;
-    inventory: {
-      uid: string;
-      name: string;
-      body: string;
-      hero: string;
-      cost: number;
-      quantity: number;
-    }[];
-  };
+    inventory: InventoryItemProps[];
+  }
   export interface AppListProps {
     appName: string;
     appId: string;
@@ -105,6 +106,7 @@ declare module "app-types" {
     header?: { heading?: string; subtitle?: string; data?: string };
     media?: MediaItemProp;
     status?: string;
+    formValues?: unknown;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;

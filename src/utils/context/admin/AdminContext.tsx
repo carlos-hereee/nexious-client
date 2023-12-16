@@ -26,6 +26,7 @@ import { buildStore } from "./requests/store/buildStore";
 import { addMerchendise } from "./requests/store/addMerchendise";
 import { updateStore } from "./requests/store/updateStore";
 import { updateFormStatus } from "./dispatch/updateFormStatus";
+import { updateMerch } from "./requests/store/updateMerch";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -40,6 +41,7 @@ export const AdminState = ({ children }: ChildProps) => {
   }, []);
 
   const handleAppAssets = (values: AppAssetProps) => {
+    if (values) setFormStatus("SUCCESS");
     if (values.app || values.appList) updateAppData({ app: values.app, appList: values.appList });
     if (values.user) updateUser(values.user);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
@@ -110,6 +112,9 @@ export const AdminState = ({ children }: ChildProps) => {
   const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
   }, []);
+  const editMerch = useCallback((values: PreviewValueProps, appId: string) => {
+    updateMerch({ dispatch, appId, handleAppAssets, values });
+  }, []);
 
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
@@ -154,6 +159,7 @@ export const AdminState = ({ children }: ChildProps) => {
       addStore,
       editStore,
       addMerch,
+      editMerch,
       setFormStatus,
     };
   }, [state.isLoading, state.formStatus]);

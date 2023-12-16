@@ -19,7 +19,9 @@ declare module "app-admin" {
     appList?: AppListProps[];
   }
   export type OnclickProps = {
-    onCancelClick: () => void;
+    onCancelClick?: () => void;
+    onClick?: () => void;
+    data?: { title: string; body: string };
   };
   export interface AdminStateProps {
     isLoading: boolean;
@@ -62,6 +64,7 @@ declare module "app-admin" {
     listBucket: (appId: string) => void;
     addStore: (values: PreviewValueProps, appId: string) => void;
     editStore: (values: PreviewValueProps, appId: string) => void;
+    editMerch: (values: PreviewValueProps, appId: string) => void;
     addMerch: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {

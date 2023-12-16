@@ -16,7 +16,7 @@ const AddMedia = ({ onCancelClick }: OnclickProps) => {
   }, [isLoading]);
 
   const handleMedia = (values: PreviewValueProps) => {
-    onCancelClick();
+    if (onCancelClick) onCancelClick();
     addMedia(values, appId);
   };
   if (status === "pending") return <Loading message="sending request.." />;

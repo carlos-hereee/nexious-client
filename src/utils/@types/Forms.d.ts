@@ -3,6 +3,7 @@ declare module "app-forms" {
   import {
     AssetProps,
     CalendarProps,
+    InventoryItemProps,
     KeyStringProp,
     MediaItemProp,
     MediaProps,
@@ -13,6 +14,10 @@ declare module "app-forms" {
 
   export interface FormatStoreFormProps {
     store: StoreProps;
+    desiredOrder: string[];
+  }
+  export interface FormatMerchFormProps {
+    merch: InventoryItemProps;
     desiredOrder: string[];
   }
   export interface InitAppProps {
