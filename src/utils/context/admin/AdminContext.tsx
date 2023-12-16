@@ -112,8 +112,8 @@ export const AdminState = ({ children }: ChildProps) => {
   const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const editMerch = useCallback((values: PreviewValueProps, appId: string) => {
-    updateMerch({ dispatch, appId, handleAppAssets, values });
+  const editMerch = useCallback((values: PreviewValueProps, appId: string, merchId: string) => {
+    updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
 
   const deleteMedia = useCallback((appId: string, name: string) => {

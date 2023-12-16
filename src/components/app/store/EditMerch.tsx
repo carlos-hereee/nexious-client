@@ -32,7 +32,7 @@ const EditMerch = (props: { initValues: InventoryItemProps }) => {
         types={merchForm.types}
         heading={`Add merchendise: ${appName}`}
         onCancel={() => navigate("/dashboard")}
-        onSubmit={(values: PreviewValueProps) => editMerch(values, appId)}
+        onSubmit={(values: PreviewValueProps) => editMerch(values, appId, initValues.uid)}
         submitLabel="Save and continue"
         withFileUpload
         noScroll

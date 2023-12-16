@@ -64,7 +64,7 @@ declare module "app-admin" {
     listBucket: (appId: string) => void;
     addStore: (values: PreviewValueProps, appId: string) => void;
     editStore: (values: PreviewValueProps, appId: string) => void;
-    editMerch: (values: PreviewValueProps, appId: string) => void;
+    editMerch: (values: PreviewValueProps, appId: string, merhId: string) => void;
     addMerch: (values: PreviewValueProps, appId: string) => void;
   }
   export interface AdminDisptachProps {
@@ -74,6 +74,7 @@ declare module "app-admin" {
     appId?: string;
     name?: string;
     pageId?: string;
+    merchId?: string;
     status?: FORM_STATUS;
     values?: PreviewValueProps;
   }
