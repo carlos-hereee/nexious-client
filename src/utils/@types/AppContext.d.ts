@@ -10,6 +10,7 @@ declare module "app-context" {
     MenuItemProps,
     MenuProps,
     NewsletterProps,
+    StoreProps,
   } from "app-types";
 
   // export interface UpdateAppsProps {

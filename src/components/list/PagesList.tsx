@@ -6,6 +6,7 @@ const PagesList = (props: PagesContainerProps) => {
   const { name, onRemove, pages } = props;
   const navigate = useNavigate();
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
+
   return (
     <div className="pages-container">
       {pages?.length > 0 &&

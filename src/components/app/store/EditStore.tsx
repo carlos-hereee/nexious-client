@@ -30,7 +30,8 @@ const EditStore = () => {
           placeholders={storeForm.placeholders}
           onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           fieldHeading={storeForm.fieldHeading}
-          schema={{ required: ["name", "title"] }}
+          schema={{ required: ["name", "title", "pageName"] }}
+          noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}
       </div>

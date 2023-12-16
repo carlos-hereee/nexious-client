@@ -27,7 +27,7 @@ const AppStore = (props: { page: PageProps }) => {
           onClick={() => navigate(`${activeAppName}/checkout`)}
         />
       )}
-      {store.merchendise?.map((merch: MerchProps) => (
+      {store.inventory?.map((merch: MerchProps) => (
         <MerchCard
           key={merch.uid}
           data={merch}

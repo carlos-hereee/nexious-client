@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
 const AddMerch = () => {
-  const { merchForm, addMerch, sectionEntries, isLoading } = useContext(AdminContext);
+  const { merchForm, addMerch, sectionEntries, isLoading, formStatus } = useContext(AdminContext);
   const { iconList, appId, appName } = useContext(AppContext);
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
@@ -15,7 +15,10 @@ const AddMerch = () => {
 
   useEffect(() => {
     if (isLoading) setStatus("loading");
-    else setStatus("idle");
+    else if (formStatus === "SUCCESS") {
+      console.log("formStatus :>> ", formStatus);
+      setStatus("idle");
+    }
   }, [isLoading]);
   // const navigate = useNavigate();
   // const location = useLocation();
@@ -43,7 +46,7 @@ const AddMerch = () => {
         addEntry={sectionEntries}
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
-        heading={`${merchForm.heading}: ${appName}`}
+        heading={`Add merchendise: ${appName}`}
         onCancel={() => navigate("/dashboard")}
         onSubmit={(values: PreviewValueProps) => addMerch(values, appId)}
         submitLabel="Save and continue"

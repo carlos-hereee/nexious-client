@@ -71,11 +71,11 @@ const AppSettings = () => {
   };
   const handleSeeLive = () => {
     updateActiveAppData({ menu, appName, logo, media, appId });
-    navigate(`/app/${appUrl}`);
+    navigate(`/app/${appLink}`);
   };
-  const onAddMerch = () => {
+  const onAddMerch = (phase: DialogStatusProps) => {
     setShow({ ...show, store: true });
-    setStatus("phase-two");
+    setStatus(phase);
   };
   const onStoreEdit = () => {
     setShow({ ...show, store: true });
@@ -86,7 +86,10 @@ const AppSettings = () => {
     setShow({ ...show, store: false });
     resetStatus();
   };
-
+  const onMediaClose = () => {
+    setShow({ ...show, media: false });
+    resetStatus();
+  };
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
     <div className="container">
@@ -107,14 +110,17 @@ const AppSettings = () => {
           media={activeMedia}
           status={status}
           header={status === "confirm-cancel" ? dialogMediaHeader : undefined}
-          onClose={() => setShow({ ...show, media: false })}
+          onClose={onMediaClose}
           onCancel={(stat: DialogStatusProps) => setStatus(stat)}
           onConfirm={() => deleteMedia(appId, activeMedia?.uid || "")}
         />
       )}
       {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
 
-      <CopyToClipboard data={appUrl} heading="Copy app url: " />
+      <div>
+        <h2 className="heading">App:</h2>
+        <CopyToClipboard data={appUrl} label="Copy app url: " labelLayout="bolden" />
+      </div>
       <DangerZone />
     </div>
   );

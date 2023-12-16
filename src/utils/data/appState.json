@@ -73,6 +73,7 @@
   "activeMenu": [],
   "pages": [],
   "appList": [],
+  "store": { "name": "", "storeId": "", "inventory": [] },
   "themeList": [
     {
       "name": "light-mode",
@@ -143,6 +144,5 @@
       "themeId": "lan-english",
       "menuItemId": "lan-english"
     }
-  ],
-  "store": {}
+  ]
 }

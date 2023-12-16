@@ -7,6 +7,8 @@ declare module "app-types" {
   export interface CopyToClipboardProps {
     heading?: string;
     label?: string;
+    labelLayout?: string;
+    theme?: string;
     data: string;
     isCopy?: boolean;
   }
@@ -24,11 +26,12 @@ declare module "app-types" {
     };
   };
   export type StoreProps = {
-    name?: string;
-    storeId?: string;
+    name: string;
+    storeId: string;
     title?: string;
     hero?: string;
-    inventory?: {
+    body?: string;
+    inventory: {
       uid: string;
       name: string;
       body: string;
@@ -124,7 +127,7 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
-    onAddItem?: () => void;
+    onAddItem?: (phase: DialogStatusProps) => void;
   }
   export interface MediaCardContainerProps {
     data: { heading?: string; medias?: MediaItemProp[]; hint?: string };

@@ -27,7 +27,8 @@ const BuildStore = () => {
           placeholders={storeForm.placeholders}
           onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           fieldHeading={storeForm.fieldHeading}
-          schema={{ required: ["name"] }}
+          schema={{ required: ["name", "title", "pageName"] }}
+          noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}
       </div>

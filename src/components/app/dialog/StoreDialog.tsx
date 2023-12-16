@@ -19,7 +19,7 @@ const StoreDialog = (props: DialogProps) => {
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={header}>
       {/* TODO add preview store */}
-      {status === "phase-one" && store.storeId ? <EditStore /> : <BuildStore />}
+      {status === "phase-one" && (store.storeId ? <EditStore /> : <BuildStore />)}
       {status === "phase-two" && <AddMerch />}
     </Dialog>
   );

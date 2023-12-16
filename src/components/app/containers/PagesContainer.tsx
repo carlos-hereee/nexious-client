@@ -7,6 +7,7 @@ const PagesContainer = (props: PagesContainerProps) => {
   const { data, onRemove, pages, name } = props;
   const navigate = useNavigate();
 
+  if (!data) return <p>No Pages </p>;
   return (
     <div className="container">
       {data?.heading && <h2 className="heading">{data.heading}</h2>}

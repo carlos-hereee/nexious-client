@@ -23,7 +23,7 @@ declare module "app-admin" {
   };
   export interface AdminStateProps {
     isLoading: boolean;
-    formStatus: string;
+    formStatus: FORM_STATUS;
     initAppForm: FormProps;
     pagesForm: FormProps;
     calendarForm: FormProps;
@@ -76,6 +76,6 @@ declare module "app-admin" {
   }
   export type AdminActionProps =
     | { type: ADMIN_ACTIONS.IS_LOADING; payload: boolean }
-    | { type: ADMIN_ACTIONS.SET_FORM_STATUS; payload: string }
+    | { type: ADMIN_ACTIONS.SET_FORM_STATUS; payload: FORM_STATUS }
     | { type: ADMIN_ACTIONS.SET_FORM_ERRORS; payload: AdminFormErrors };
 }

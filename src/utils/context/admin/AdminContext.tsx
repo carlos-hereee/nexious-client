@@ -29,7 +29,7 @@ import { updateFormStatus } from "./dispatch/updateFormStatus";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
-  const [state, dispatch] = useReducer(reducer, adminState);
+  const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
   const { updateAppData, setLoading } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
