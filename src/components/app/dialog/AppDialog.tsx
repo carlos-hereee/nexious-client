@@ -4,13 +4,10 @@ import { useContext } from "react";
 import { Dialog } from "nexious-library";
 import { useFormStatusChecker } from "@hooks/useFormStatusChecker";
 import EditAppDetails from "../forms/EditAppDetails";
-// import AddMerch from "../store/AddMerch";
-// import BuildStore from "../store/BuildStore";
-// import EditStore from "../store/EditStore";
+import EditLanding from "../forms/EditLanding";
 
 const AppDialog = (props: DialogProps) => {
-  const { onClose, header } = props;
-  // const { store } = useContext(AppContext);
+  const { onClose, header, status } = props;
   const { theme } = useContext(AuthContext);
 
   // close dialog on success
@@ -19,7 +16,8 @@ const AppDialog = (props: DialogProps) => {
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={header}>
       {/* TODO add preview store */}
-      <EditAppDetails onCancelClick={onClose} />
+      {status === "phase-one" && <EditAppDetails onCancelClick={onClose} />}
+      {status === "phase-two" && <EditLanding onCancelClick={onClose} />}
     </Dialog>
   );
 };

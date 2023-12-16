@@ -5,7 +5,7 @@
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",
     "formId": "initApp",
-    "fieldHeading": { "language": "Language" },
+    "fieldHeading": { "language": "App language", "theme": "App theme" },
     "initialValues": { "appName": "", "logo": "", "locale": "" },
     "labels": {
       "appName": "Enter app name",
@@ -28,7 +28,7 @@
     },
     "withFileUpload": true,
     "previewLabel": "See changes",
-    "desiredOrder": ["appName", "logo", "language", "locale"],
+    "desiredOrder": ["appName", "logo", "theme", "language", "locale"],
     "hero": {
       "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
       "alt": "build app",

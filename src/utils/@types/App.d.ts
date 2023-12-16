@@ -36,7 +36,7 @@ declare module "app-types" {
   }
   export interface AppContainerProps {
     data: ContainerDataProps;
-    onAppDetails?: () => void;
+    onAppDetails?: (phase: DialogStatusProps) => void;
   }
   export type ThemeList = {
     name: string;
@@ -126,7 +126,7 @@ declare module "app-types" {
   export interface DialogProps {
     header?: { heading?: string; subtitle?: string; data?: string };
     media?: MediaItemProp;
-    status?: string;
+    status?: DialogStatusProps;
     formValues?: unknown;
     onClose: () => void;
     onConfirm?: () => void;
@@ -137,6 +137,7 @@ declare module "app-types" {
     data?: { heading: string; name: string };
     name?: string;
     onRemove?: (page: PageProps) => void;
+    onAddPage?: (page: DialogStatusProps) => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {

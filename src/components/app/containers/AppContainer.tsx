@@ -7,21 +7,26 @@ import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const AppContainer = (props: AppContainerProps) => {
   const { data, onAppDetails } = props;
-  const { appUrl, locale, landing } = useContext(AppContext);
+  const { appUrl, locale } = useContext(AppContext);
 
-  console.log("landing :>> ", landing);
   return (
     <div className="container">
       {data.heading && <h2 className="heading">{data.heading}</h2>}
-      <KeyWithDefinition label="App language:" labelLayout="bolden">
-        {locale || "Not set up "}
+      <KeyWithDefinition label="App homepage: " labelLayout="bolden">
+        {/* <CopyToClipboard data={appUrl} /> */}
+        {onAppDetails && <Button label="Edit homepage" onClick={() => onAppDetails("phase-two")} />}
       </KeyWithDefinition>
       <KeyWithDefinition label="Copy app url: " labelLayout="bolden">
         <CopyToClipboard data={appUrl} />
       </KeyWithDefinition>
-      <div className="flex-center">
-        <Button label="+ Edit app details" onClick={onAppDetails} />
-      </div>
+      <KeyWithDefinition label="App language:" labelLayout="bolden">
+        {locale || "Not set up "}
+      </KeyWithDefinition>
+      {onAppDetails && (
+        <KeyWithDefinition label="App details:" labelLayout="bolden">
+          <Button label="+ Edit app details" onClick={() => onAppDetails("phase-one")} />
+        </KeyWithDefinition>
+      )}
     </div>
   );
 };

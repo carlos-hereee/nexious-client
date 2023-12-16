@@ -5,20 +5,26 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { PreviewValueProps } from "app-forms";
 import { formatAppDetails } from "@forms/formatAppDetails";
 import { OnclickProps } from "app-admin";
+import { uniqueApplist } from "@forms/uniqeList";
 
 const EditAppDetails = (props: OnclickProps) => {
   const { editAppDetails, appDetailsForm, languageList, themeList, iconList } =
     useContext(AdminContext);
   const { onCancelClick } = props;
   // initial data if any
-  const { landing, logo, isLoading, appName, appList, appId, locale } = useContext(AppContext);
+  const { logo, isLoading, appName, appList, appId, locale } = useContext(AppContext);
   useContext(AppContext);
 
   const initialValues = formatAppDetails({
     app: { logo, appName, locale },
     desiredOrder: appDetailsForm.desiredOrder,
   });
-
+  const formDataList = {
+    language: languageList,
+    locale: languageList,
+    icon: iconList,
+    theme: themeList,
+  };
   if (isLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
@@ -28,8 +34,7 @@ const EditAppDetails = (props: OnclickProps) => {
         placeholders={appDetailsForm.placeholders}
         types={appDetailsForm.types}
         fieldHeading={appDetailsForm.fieldHeading}
-        // addEntry={sectionEntries}
-        dataList={{ language: languageList, locale: languageList }}
+        dataList={formDataList}
         clearSelection={{ icon: true }}
         onCancel={onCancelClick}
         heading={`Editing app details: ${appName}`}
@@ -38,12 +43,7 @@ const EditAppDetails = (props: OnclickProps) => {
         withFileUpload
         schema={{
           required: ["appName", "logo"],
-          unique: [
-            {
-              name: "appName",
-              list: appList ? appList.filter((app) => app.appName && app.appName !== appName) : [],
-            },
-          ],
+          unique: [{ name: "appName", list: uniqueApplist(appList) }],
         }}
         noScroll
       />

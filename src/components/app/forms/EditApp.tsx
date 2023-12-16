@@ -13,6 +13,7 @@ import { formatNewsletter } from "@forms/formatNewsletter";
 import { formatMedia } from "@forms/formatMedia";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
+import { uniqueApplist } from "@forms/uniqeList";
 import PreviewNewsletter from "../preview/PreviewNewsletter";
 import PreviewSocials from "../preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
@@ -81,14 +82,7 @@ const EditApp = () => {
           initialValues: { appName: appName || "", logo },
           schema: {
             required: ["appName", "logo"],
-            unique: [
-              {
-                name: "appName",
-                list: appList
-                  ? appList.filter((app) => app.appName && app.appName !== appName)
-                  : [],
-              },
-            ],
+            unique: [{ name: "appName", list: uniqueApplist(appList) }],
           },
           dataList: { theme: themeList },
           onSubmit: (e: any) => editAppName(e, appId),
@@ -111,11 +105,6 @@ const EditApp = () => {
           clearSelection: { icon: true },
           formId: "landingPage",
         },
-        // languages: {
-        //   schema: {},
-        //   onViewPreview: (e: PreviewValueProps) => handlePreview("languages", e),
-        //   dataList: { language: languageList, locale: languageList },
-        // },
         {
           ...socialMediaForm,
           dataList: { media: mediaList },

@@ -15,18 +15,8 @@ import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
 
 const AppSettings = () => {
-  const {
-    appName,
-    media,
-    pages,
-    appId,
-    isLoading,
-    updateActiveAppData,
-    logo,
-    menu,
-    appUrl,
-    appLink,
-  } = useContext(AppContext);
+  const { appName, media, appId, isLoading, updateActiveAppData, logo, menu, appUrl, appLink } =
+    useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
   const [show, setShow] = useState({ pages: false, media: false, store: false, app: false });
   const [activePage, setActivePage] = useState<PageProps>();
@@ -34,14 +24,20 @@ const AppSettings = () => {
   const [status, setStatus] = useState<DialogStatusProps>("idle");
   const navigate = useNavigate();
 
-  const dialogPageHeader = {
-    heading: `Are you sure you want to delete ${activePage?.name}'s page`,
-    data: `This will delete all progress`,
-  };
-  const dialogMediaHeader = {
-    heading: `Are you sure you want to delete ${activeMedia?.media} `,
-    data: `This will delete all progress`,
-  };
+  const dialogPageHeader =
+    status === "confirm-cancel"
+      ? {
+          heading: `Are you sure you want to delete ${activePage?.name}'s page`,
+          data: `This will delete all progress`,
+        }
+      : undefined;
+  const dialogMediaHeader =
+    status === "confirm-cancel"
+      ? {
+          heading: `Are you sure you want to delete ${activeMedia?.media} `,
+          data: `This will delete all progress`,
+        }
+      : undefined;
   const mediaData = {
     medias: media.medias,
     heading: "Social media:",
@@ -97,8 +93,13 @@ const AppSettings = () => {
     setShow({ ...show, media: false });
     resetStatus();
   };
-  const onAppDetails = () => {
+  const onAppDetails = (phase: DialogStatusProps) => {
     setShow({ ...show, app: true });
+    setStatus(phase);
+  };
+  const onAddPage = (phase: DialogStatusProps) => {
+    setShow({ ...show, pages: true });
+    setStatus(phase);
   };
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
@@ -110,11 +111,21 @@ const AppSettings = () => {
         <Button label="See live" onClick={handleSeeLive} />
       </div>
       <AppContainer data={appData} onAppDetails={onAppDetails} />
-      <PagesContainer data={pagesData} onRemove={onDeletePage} pages={pages} name={appLink} />
+      <PagesContainer
+        data={pagesData}
+        onRemove={onDeletePage}
+        onAddPage={onAddPage}
+        name={appLink}
+      />
       <StoreContainer data={storeData} onAddItem={onAddMerch} onClick={onStoreEdit} />
       <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
       {show.pages && (
-        <PageDialog onClose={onPageClose} onConfirm={handleConfirm} header={dialogPageHeader} />
+        <PageDialog
+          onClose={onPageClose}
+          onConfirm={handleConfirm}
+          header={dialogPageHeader}
+          status={status}
+        />
       )}
       {show.media && (
         <MediaDialog
@@ -127,7 +138,7 @@ const AppSettings = () => {
         />
       )}
       {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
-      {show.app && <AppDialog onClose={onAppDetailsDialogClose} />}
+      {show.app && <AppDialog onClose={onAppDetailsDialogClose} status={status} />}
 
       <DangerZone />
     </div>
