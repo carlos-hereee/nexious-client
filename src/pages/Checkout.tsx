@@ -7,7 +7,7 @@ import { ServicesContext } from "@context/services/ServicesContext";
 
 const Checkout = () => {
   // const { checkout } = useContext(AppContext);
-  const { cart } = useContext(ServicesContext);
+  const { cart, removeFromCart } = useContext(ServicesContext);
   // const { cart, setTotal, total } = useContext(ServicesContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -28,10 +28,13 @@ const Checkout = () => {
   // const handleSubmit = (e) => console.log("submit", e, "success");
   // const handlePaypal = (e) => console.log("e", e);
   // const handleInStorePayment = (e) => console.log("e", e);
+  const onRemoveFromCart = (e: unknown) => {
+    console.log("e :>> ", e);
+  };
   return (
     <section className="container">
       {cart.length > 0 ? (
-        <Cart data={cart} heading="checkout.heading" />
+        <Cart data={cart} heading="checkout.heading" removeFromCart={onRemoveFromCart} />
       ) : (
         <div className="btn-checkout-container">
           <Button

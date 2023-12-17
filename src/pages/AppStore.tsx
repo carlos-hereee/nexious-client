@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { formatPenniesToDollars } from "@forms/formatPenniesToDollars";
 
 const AppStore = () => {
-  const { store, activeMenu } = useContext(AppContext);
+  const { store } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
-  console.log("activeMenu :>> ", activeMenu);
+  // console.log("activeMenu :>> ", store);
   return (
     <div className="container">
       <div className="container">

@@ -6,7 +6,8 @@ import { AppListProps } from "app-types";
 import AppCard from "./AppCard";
 // import CreateAppButton from "./buttons/CreateAppButton";
 
-const ExploreApps = () => {
+const ExploreApps = (props: { featuredOnly?: boolean }) => {
+  const { featuredOnly } = props;
   const { appList, updateActiveAppData } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,8 +19,23 @@ const ExploreApps = () => {
     navigate(`/app/${name}`);
   };
 
+  if (featuredOnly) {
+    const featuredList = appList.slice(0, 5);
+    return featuredList.map((app) => {
+      const appName = app.appName.split(" ").join("+");
+      return (
+        <AppCard
+          app={app}
+          key={app.appId}
+          handleSeeLive={() => handleSeeLive(app)}
+          handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+          owner={app.owner}
+          theme={theme ? `app-card alt-${theme}` : "app-card"}
+        />
+      );
+    });
+  }
   return (
-    // <div className="">
     <div className="card-container">
       <h2 className="heading">Featured Apps</h2>
       {appList.map((app) => {
@@ -36,8 +52,6 @@ const ExploreApps = () => {
         );
       })}
     </div>
-
-    // </div>
   );
 };
 export default ExploreApps;

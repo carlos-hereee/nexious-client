@@ -8,7 +8,6 @@ export const onAddToCart = (props: ServicesDispatchProps) => {
       dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: true });
       // add merch to cart
       const payload = [...cart, merch];
-      console.log("payload :>> ", payload);
       dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload });
       dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: false });
     }

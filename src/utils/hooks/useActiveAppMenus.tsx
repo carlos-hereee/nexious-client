@@ -17,7 +17,8 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppMenus = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const { activeMenu, activeAppName, updateActiveAppData } = useContext(AppContext);
+  const { activeMenu, activeAppName, updateActiveAppData, getAppWithName, appId } =
+    useContext(AppContext);
   // const { accessToken } = useContext(AuthContext);
   // const { updateActiveAppData } = useContext(AppContext);
   const { pathname } = useLocation();
@@ -25,7 +26,8 @@ export const useActiveAppMenus = () => {
   useEffect(() => {
     // if user logged in
     if (accessToken) {
-      if (activeAppName === nexiousName) {
+      // check route homepage
+      if (pathname === "/" || pathname === "/checkout") {
         updateActiveAppData({
           appId: nexiousAppId,
           appName: nexiousName,
@@ -34,20 +36,24 @@ export const useActiveAppMenus = () => {
           menu: nexiousAuthMenu,
         });
       } else {
-        const noDups = combineArraysWithOutDups(nexiousAppMenu, activeMenu);
-        const oldValues = noDups as MenuProps[];
-        // find auth menu
-        const authIdx = oldValues.findIndex((app) => app.category === "subscribe");
-        if (authIdx >= 0) {
-          // check user subscriptions
-          const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
-          // if user is subscribe to app toggle options
-          if (subIdx >= 0)
-            oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
-        }
-        // avoid redundant data reset menus
-        // updateActiveAppData({ menu: [] });
-        updateActiveAppData({ menu: oldValues });
+        const routeAppName = pathname.split("/")[2];
+        if (!appId && routeAppName) getAppWithName(routeAppName, true);
+        else if (routeAppName === activeAppName) {
+          // check route matches active app name
+          const noDups = combineArraysWithOutDups(nexiousAppMenu, activeMenu);
+          const oldValues = noDups as MenuProps[];
+          // find auth menu
+          const authIdx = oldValues.findIndex((app) => app.category === "subscribe");
+          if (authIdx >= 0) {
+            // check user subscriptions
+            const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
+            // if user is subscribe to app toggle options
+            if (subIdx >= 0)
+              oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+            updateActiveAppData({ menu: oldValues });
+          }
+          // otherwise fetch data
+        } else if (routeAppName) getAppWithName(routeAppName, true);
       }
     } else if (pathname === "/") {
       updateActiveAppData({
@@ -58,5 +64,7 @@ export const useActiveAppMenus = () => {
         menu: nexiousMenu,
       });
     }
+    // update document details
+    document.title = activeAppName;
   }, [accessToken, activeAppName, JSON.stringify(subscriptions), pathname]);
 };
