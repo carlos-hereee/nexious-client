@@ -19,6 +19,8 @@ import AppSettings from "@pages/settings/AppSettings";
 import AddPage from "@components/app/forms/AddPage";
 import AppPage from "@pages/AppPage";
 import AppStore from "@pages/AppStore";
+import Checkout from "@pages/Checkout";
+import ExploreApps from "@components/app/ExploreApps";
 // import Offline from "@components/app/Offline";
 
 const AppRouter: React.FC = () => {
@@ -35,6 +37,8 @@ const AppRouter: React.FC = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/explore" element={<ExploreApps />} />
         <Route path="/" element={<Homepage />} />
       </Route>
       {/* App routes that requires internet or app data to work */}

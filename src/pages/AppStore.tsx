@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { formatPenniesToDollars } from "@forms/formatPenniesToDollars";
 
 const AppStore = () => {
-  const { store, activeAppName } = useContext(AppContext);
+  const { store, activeMenu } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
-
+  console.log("activeMenu :>> ", activeMenu);
   return (
     <div className="container">
       <div className="container">
@@ -23,7 +23,7 @@ const AppStore = () => {
           <Button
             label={`You have ${cart.length} items in your cart. Procced to checkout`}
             theme="btn btn-main btn-checkout"
-            onClick={() => navigate(`${activeAppName}/checkout`)}
+            onClick={() => navigate("/checkout")}
           />
         </div>
       )}

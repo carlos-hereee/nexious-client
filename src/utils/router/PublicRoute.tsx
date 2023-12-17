@@ -1,32 +1,8 @@
-import { useContext, useEffect } from "react";
-import { AppContext } from "@context/app/AppContext";
-import { Outlet, useLocation } from "react-router-dom";
-import {
-  nexiousName,
-  nexiousMedia,
-  nexiousLogo,
-  nexiousMenu,
-  nexiousAuthMenu,
-  nexiousAppId,
-} from "@data/nexious.json";
-import { AuthContext } from "@context/auth/AuthContext";
+import { Outlet } from "react-router-dom";
+import { useActiveAppMenus } from "@hooks/useActiveAppMenus";
 
 const PublicRoute = () => {
-  const { accessToken } = useContext(AuthContext);
-  const { updateActiveAppData } = useContext(AppContext);
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (pathname === "/") {
-      updateActiveAppData({
-        appId: nexiousAppId,
-        appName: nexiousName,
-        logo: nexiousLogo,
-        media: nexiousMedia,
-        menu: accessToken ? nexiousAuthMenu : nexiousMenu,
-      });
-    }
-  }, [pathname, accessToken]);
+  useActiveAppMenus();
 
   return <Outlet />;
 };

@@ -1,23 +1,14 @@
 import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
-import { AuthContext } from "@context/auth/AuthContext";
-import { toggleAuthMenuItem } from "@app/toggleMenu";
-import { nexiousAppMenu, nexiousName } from "@data/nexious.json";
+import { nexiousName } from "@data/nexious.json";
+import { useActiveAppMenus } from "@hooks/useActiveAppMenus";
 
 const AppRoute = () => {
-  const {
-    isOnline,
-    getAppWithName,
-    appError,
-    activeAppName,
-    updateActiveAppData,
-    activeAppId,
-    activeMenu,
-  } = useContext(AppContext);
-  const { subscriptions, accessToken } = useContext(AuthContext);
+  const { isOnline, getAppWithName, appError, activeAppName, activeAppId } = useContext(AppContext);
   const { pathname } = useLocation();
 
+  useActiveAppMenus();
   useEffect(() => {
     const query = pathname.split("/");
     const routeAppName = query[2];
@@ -27,22 +18,6 @@ const AppRoute = () => {
       getAppWithName(routeAppName, true);
     }
   }, [pathname, activeAppId]);
-
-  useEffect(() => {
-    // if user logged in
-    if (accessToken) {
-      const oldValues = nexiousAppMenu.concat(activeMenu);
-      // find auth menu
-      const authIdx = oldValues.findIndex((app) => app.category === "subscribe");
-      // check user subscriptions
-      const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
-      // if user is subscribe to app toggle options
-      if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
-      // avoid redundant data reset menus
-      // updateActiveAppData({ menu: [] });
-      updateActiveAppData({ menu: oldValues });
-    }
-  }, [accessToken, activeAppName, JSON.stringify(subscriptions)]);
 
   if (!isOnline) return <Navigate to="/offline" />;
   if (!appError) return <Outlet />;

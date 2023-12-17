@@ -21,7 +21,7 @@ const ExploreApps = () => {
   return (
     // <div className="">
     <div className="card-container">
-      <h2 className="heading">New apps</h2>
+      <h2 className="heading">Featured Apps</h2>
       {appList.map((app) => {
         const appName = app.appName.split(" ").join("+");
         return (
