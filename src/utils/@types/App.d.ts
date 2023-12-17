@@ -207,6 +207,7 @@ declare module "app-types" {
     category: string;
     isPrivate: boolean;
     isPage: boolean;
+    isStore?: boolean;
     isToggle: boolean;
     name: string;
     value: string;

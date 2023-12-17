@@ -27,6 +27,7 @@ const App = ({ children }: ChildProps) => {
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
+  // console.log("activeMenu :>> ", activeMenu);
   if (authErrors.serverIsOffline) {
     return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   }

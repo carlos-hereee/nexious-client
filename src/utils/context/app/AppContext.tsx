@@ -55,6 +55,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       // change theme
     } else if (category === "theme") setTheme(menuItem.value);
     // otherwise go to page
+    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}` || "");
     else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
@@ -101,6 +102,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.activeAppName,
     accessToken,
     state.activeMenu,
+    state.menu,
     state.appId,
     state.landing,
   ]);

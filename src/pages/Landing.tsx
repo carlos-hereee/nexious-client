@@ -10,7 +10,6 @@ const Landing = () => {
 
   if (!landing) return <div />;
 
-  console.log("landing :>> ", landing);
   const heroData = { url: landing.hero || "", alt: "page hero" };
 
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);

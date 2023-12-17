@@ -12,8 +12,8 @@ const AppRoute = () => {
     appError,
     activeAppName,
     updateActiveAppData,
-    menu,
     activeAppId,
+    activeMenu,
   } = useContext(AppContext);
   const { subscriptions, accessToken } = useContext(AuthContext);
   const { pathname } = useLocation();
@@ -26,29 +26,20 @@ const AppRoute = () => {
       document.title = nexiousName;
       getAppWithName(routeAppName, true);
     }
-    console.log("activeAppName :>> ", activeAppName);
-    // if (query[1] === "app" && routeAppName !== activeAppName) {
-    //   getAppWithName(routeAppName);
-    // }
-    // if (query[1] === "store" && routeAppName !== activeAppName) {
-    //   getAppWithName(routeAppName);
-    // }
-    // console.log("query :>> ", query);
   }, [pathname, activeAppId]);
-  // useEffect(() => {
-  //   if (appName) document.title = appName;
-  // }, [appName]);
+
   useEffect(() => {
     // if user logged in
     if (accessToken) {
-      const oldValues = nexiousAppMenu;
-      oldValues.concat(menu);
+      const oldValues = nexiousAppMenu.concat(activeMenu);
       // find auth menu
       const authIdx = oldValues.findIndex((app) => app.category === "subscribe");
       // check user subscriptions
       const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
       // if user is subscribe to app toggle options
       if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+      // avoid redundant data reset menus
+      // updateActiveAppData({ menu: [] });
       updateActiveAppData({ menu: oldValues });
     }
   }, [accessToken, activeAppName, JSON.stringify(subscriptions)]);
