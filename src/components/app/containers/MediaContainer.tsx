@@ -1,6 +1,7 @@
 import MediaList from "@components/list/MediaList";
 import { MediaCardContainerProps } from "app-types";
 import { Button } from "nexious-library";
+import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const MediaContainer = (props: MediaCardContainerProps) => {
   const { data, onRemove, onMediaClick, onAddMedia } = props;
@@ -15,9 +16,9 @@ const MediaContainer = (props: MediaCardContainerProps) => {
         hint={data.hint}
       />
       {onAddMedia && (
-        <div className="flex-center">
+        <KeyWithDefinition label="More options:" labelLayout="bolden">
           <Button label="+ Add Social media" onClick={onAddMedia} />
-        </div>
+        </KeyWithDefinition>
       )}
     </div>
   );

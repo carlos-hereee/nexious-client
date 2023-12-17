@@ -43,7 +43,7 @@ const EditAppDetails = (props: OnclickProps) => {
         withFileUpload
         schema={{
           required: ["appName", "logo"],
-          unique: [{ name: "appName", list: uniqueApplist(appList) }],
+          unique: [{ name: "appName", list: uniqueApplist(appList, appName) }],
         }}
         noScroll
       />

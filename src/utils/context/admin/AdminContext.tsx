@@ -42,9 +42,9 @@ export const AdminState = ({ children }: ChildProps) => {
   }, []);
 
   const handleAppAssets = (values: AppAssetProps) => {
-    if (values) setFormStatus("SUCCESS");
     if (values.app || values.appList) updateAppData({ app: values.app, appList: values.appList });
     if (values.user) updateUser(values.user);
+    if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
 

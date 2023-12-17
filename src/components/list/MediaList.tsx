@@ -1,3 +1,4 @@
+import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
 import { CardContainerProps } from "app-types";
 import { Button, Icon, IconButton } from "nexious-library";
 
@@ -7,7 +8,15 @@ const MediaList = (props: CardContainerProps) => {
 
   // console.log("data :>> ", data);
 
-  if (!data || data.length === 0) return <p>No social media linked</p>;
+  if (!data || data.length === 0) {
+    return (
+      <KeyWithDefinition
+        label="Social medias:"
+        value="No social media linked"
+        labelLayout="bolden"
+      />
+    );
+  }
   return (
     <>
       {hint && <p>{hint}</p>}

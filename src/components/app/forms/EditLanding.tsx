@@ -7,10 +7,11 @@ import { OnclickProps } from "app-admin";
 import { formatPage } from "@forms/formatPage";
 
 const EditLanding = (props: OnclickProps) => {
-  const { editLandingPage, landingForm, languageList, sectionEntries } = useContext(AdminContext);
+  const { editLandingPage, landingForm, languageList, sectionEntries, iconList } =
+    useContext(AdminContext);
   const { onCancelClick } = props;
   // initial data if any
-  const { landing, isLoading, appName, appList, appId } = useContext(AppContext);
+  const { landing, isLoading, appName, appId } = useContext(AppContext);
   useContext(AppContext);
 
   const initialValues = formatPage({
@@ -18,6 +19,9 @@ const EditLanding = (props: OnclickProps) => {
     desiredOrder: landingForm.desiredOrder || [""],
     hasEntry: sectionEntries,
   });
+
+  console.log("initialValues :>> ", initialValues);
+  console.log("landing :>> ", landing);
 
   if (isLoading) return <Loading message="Loading app data" />;
   return (
@@ -29,22 +33,14 @@ const EditLanding = (props: OnclickProps) => {
         types={landingForm.types}
         fieldHeading={landingForm.fieldHeading}
         addEntry={sectionEntries}
-        dataList={{ language: languageList, locale: languageList }}
+        dataList={{ language: languageList, locale: languageList, icon: iconList }}
         clearSelection={{ icon: true }}
         onCancel={onCancelClick}
-        heading={`Editing app details: ${appName}`}
+        heading={`Editing landing page: ${appName}`}
         onSubmit={(values: PreviewValueProps) => editLandingPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
-        schema={{
-          required: ["appName", "logo"],
-          unique: [
-            {
-              name: "appName",
-              list: appList ? appList.filter((app) => app.appName && app.appName !== appName) : [],
-            },
-          ],
-        }}
+        schema={{ required: ["appName", "logo"] }}
         noScroll
       />
     </div>

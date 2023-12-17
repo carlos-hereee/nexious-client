@@ -13,14 +13,9 @@ const StoreContainer = (props: PageContainerProps) => {
 
   if (!store || !store.storeId) {
     return (
-      <>
-        <p>No store added</p>
-        {onAddItem && (
-          <div className="flex-center">
-            <Button label="+ Create store" onClick={() => onAddItem("phase-one")} />
-          </div>
-        )}
-      </>
+      <KeyWithDefinition label="Store details:" labelLayout="bolden">
+        {onAddItem && <Button label="+ Create store" onClick={() => onAddItem("phase-one")} />}
+      </KeyWithDefinition>
     );
   }
 
