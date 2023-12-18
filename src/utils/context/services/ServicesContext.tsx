@@ -2,6 +2,7 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import servicesState from "@data/servicesState.json";
 import { MerchProps, ServiceSchema } from "services-context";
 import { ChildProps } from "app-types";
+import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 import { reducer } from "./ServicesReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { onRemoveFromCart } from "./dispatch/onRemoveFromCart";
@@ -27,6 +28,9 @@ export const ServicesState = ({ children }: ChildProps) => {
   const removeFromCart = useCallback((cart: MerchProps[], merch: MerchProps) => {
     onRemoveFromCart({ dispatch, cart, merch });
   }, []);
+  const updateCart = useCallback((cart: MerchProps[]) => {
+    dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart });
+  }, []);
   const servicesValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -34,6 +38,7 @@ export const ServicesState = ({ children }: ChildProps) => {
       paymentMethods: state.paymentMethods,
       addToCart,
       removeFromCart,
+      updateCart,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

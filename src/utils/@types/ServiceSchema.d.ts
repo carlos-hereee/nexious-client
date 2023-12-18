@@ -25,6 +25,7 @@ declare module "services-context" {
   export interface ServiceSchema extends ServiceStateProps {
     addToCart: (cart: MerchProps[], key: MerchProps) => void;
     removeFromCart: (cart: MerchProps[], key: MerchProps) => void;
+    updateCart: (cart: MerchProps[]) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;

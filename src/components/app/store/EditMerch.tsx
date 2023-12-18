@@ -1,6 +1,6 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { formatMerch } from "@formatters/formatMerch";
+import { formatMerch } from "@formatters/store/formatMerch";
 import { PreviewValueProps } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";

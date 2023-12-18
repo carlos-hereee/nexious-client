@@ -1,36 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { MerchProps } from "services-context";
 import {
+  formatDollarsToPennies,
   formatMerchFromPenniesToDollars,
   formatPenniesToDollars,
+  formatTotal,
 } from "@formatters/store/formatPenniesToDollars";
 
 const Checkout = () => {
-  // const { checkout } = useContext(AppContext);
-  const { cart, removeFromCart, paymentMethods } = useContext(ServicesContext);
-  // const { cart, setTotal, total } = useContext(ServicesContext);
+  const { cart, removeFromCart, paymentMethods, updateCart } = useContext(ServicesContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [total, setTotal] = useState(0);
-  // const { store } = useContext(AppContext);
-  // console.log("store :>> ", store);
+  const [total, setTotal] = useState(formatTotal(cart));
 
   const cartData = formatMerchFromPenniesToDollars(cart);
   // console.log("cart :>> ", cart);
-  console.log("user :>> ", user);
-
-  useEffect(() => {
-    if (cart.length > 0) {
-      const cost = cart.reduce((accumulator, currentValue) => {
-        return accumulator + currentValue.cost;
-      }, 0);
-      setTotal(cost);
-    } else setTotal(0);
-  }, [JSON.stringify(cart)]);
+  // console.log("user :>> ", user);
 
   // const handleSubmit = (e) => console.log("submit", e, "success");
   // const handlePaypal = (e) => console.log("e", e);
@@ -38,10 +27,26 @@ const Checkout = () => {
   const onRemoveFromCart = (e: unknown) => {
     removeFromCart(cart, e as MerchProps);
   };
+
+  const handleQuantity = (data: MerchProps, d: number) => {
+    const oldValues = cart;
+    const merchIdx = cart.findIndex((c) => c.uid === data.uid);
+    oldValues[merchIdx].quantity = d;
+    oldValues[merchIdx].cost = formatDollarsToPennies(data.cost);
+
+    const t = formatTotal(oldValues);
+    updateCart(oldValues);
+    setTotal(t);
+  };
   return (
     <section className="container">
       {cart.length > 0 ? (
-        <Cart data={cartData} heading="Review cart" removeFromCart={onRemoveFromCart} />
+        <Cart
+          data={cartData}
+          heading="Review cart"
+          removeFromCart={onRemoveFromCart}
+          setQuantity={handleQuantity}
+        />
       ) : (
         <div className="btn-checkout-container">
           <Button

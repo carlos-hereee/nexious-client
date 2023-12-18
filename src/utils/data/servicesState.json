@@ -27,23 +27,24 @@
         "alt": "mastercard"
       }
     },
-    {
-      "uid": "payment-2",
-      "type": "paypal",
-      "name": "Paypal",
-      "icon": "paypal",
-      "hero": {
-        "url": "icons/paypal.svg",
-        "small": "small/icons/paypal.jpg",
-        "name": "paypal",
-        "alt": "paypal"
-      }
-    },
+
     {
       "uid": "payment-3",
       "type": "in-store",
       "name": "Store",
       "icon": "store"
     }
-  ]
+  ],
+  "paypal": {
+    "uid": "payment-2",
+    "type": "paypal",
+    "name": "Paypal",
+    "icon": "paypal",
+    "hero": {
+      "url": "icons/paypal.svg",
+      "small": "small/icons/paypal.jpg",
+      "name": "paypal",
+      "alt": "paypal"
+    }
+  }
 }
