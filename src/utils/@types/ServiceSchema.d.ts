@@ -10,9 +10,17 @@ declare module "services-context" {
     hero: string;
     uid: string;
   }
+  export interface PaymentMethod {
+    uid: string;
+    type: string;
+    name: string;
+    icon: string;
+    hero?: { url: string; small: string; name: string; alt: string };
+  }
   export interface ServiceStateProps {
     isLoading: boolean;
     cart: MerchProps[] | [];
+    paymentMethods: PaymentMethod[] | [];
   }
   export interface ServiceSchema extends ServiceStateProps {
     addToCart: (cart: MerchProps[], key: MerchProps) => void;

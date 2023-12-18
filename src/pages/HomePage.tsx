@@ -15,10 +15,7 @@ const Homepage = () => {
         <HeroCard data={nexiousHomepage} hero={nexiousHomepage.hero} onClick={handleClick} />
         {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
       </div>
-      <div className="container">
-        <h2 className="heading">Check out our featured apps</h2>
-        <ExploreApps featuredOnly />
-      </div>
+      <ExploreApps featuredOnly heading="Check out our featured apps" />
       <div className={nexiousHomepage.sections.length > 3 ? "sections-container" : "sections-grid"}>
         {nexiousHomepage.sections.map((section: SectionProps) => (
           <div className="section-card" key={section.uid}>

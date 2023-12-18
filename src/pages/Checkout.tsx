@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-// import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Cart, UserCard, Total, Button } from "nexious-library";
-// import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
+import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { MerchProps } from "services-context";
-import { formatMerchFromPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
-// import { AppContext } from "@context/app/AppContext";
+import {
+  formatMerchFromPenniesToDollars,
+  formatPenniesToDollars,
+} from "@formatters/store/formatPenniesToDollars";
 
 const Checkout = () => {
   // const { checkout } = useContext(AppContext);
-  const { cart, removeFromCart } = useContext(ServicesContext);
+  const { cart, removeFromCart, paymentMethods } = useContext(ServicesContext);
   // const { cart, setTotal, total } = useContext(ServicesContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Checkout = () => {
 
   const cartData = formatMerchFromPenniesToDollars(cart);
   // console.log("cart :>> ", cart);
-  // console.log("user :>> ", user);
+  console.log("user :>> ", user);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -51,17 +51,17 @@ const Checkout = () => {
           />
         </div>
       )}
-      <Total total={total} />
+      <Total total={formatPenniesToDollars(total)} />
       {user.userId ? (
         <div className="container">
           <h2 className="heading">Your details</h2>
           <UserCard user={user} hideHero isRow />
-          {/* <PaymentMethods
-            data={checkout.paymentMethods}
-            visaPayment={handleSubmit}
-            paypalPayment={handlePaypal}
-            inStorePayment={handleInStorePayment}
-          /> */}
+          <PaymentMethods
+            data={paymentMethods}
+            // visaPayment={handleSubmit}
+            // paypalPayment={handlePaypal}
+            // inStorePayment={handleInStorePayment}
+          />
         </div>
       ) : (
         <h2 className="heading">Enter user information</h2>

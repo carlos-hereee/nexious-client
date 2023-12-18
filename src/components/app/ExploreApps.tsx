@@ -6,8 +6,8 @@ import { AppListProps } from "app-types";
 import AppCard from "./AppCard";
 // import CreateAppButton from "./buttons/CreateAppButton";
 
-const ExploreApps = (props: { featuredOnly?: boolean }) => {
-  const { featuredOnly } = props;
+const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
+  const { featuredOnly, heading } = props;
   const { appList, updateActiveAppData } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -21,19 +21,25 @@ const ExploreApps = (props: { featuredOnly?: boolean }) => {
 
   if (featuredOnly) {
     const featuredList = appList.slice(0, 5);
-    return featuredList.map((app) => {
-      const appName = app.appName.split(" ").join("+");
-      return (
-        <AppCard
-          app={app}
-          key={app.appId}
-          handleSeeLive={() => handleSeeLive(app)}
-          handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
-          owner={app.owner}
-          theme={theme ? ` alt-${theme}` : ""}
-        />
-      );
-    });
+    if (featuredList.length === 0) return <div />;
+    return (
+      <div className="container">
+        {heading && <h2 className="heading">{heading}</h2>}
+        {featuredList.map((app) => {
+          const appName = app.appName.split(" ").join("+");
+          return (
+            <AppCard
+              app={app}
+              key={app.appId}
+              handleSeeLive={() => handleSeeLive(app)}
+              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+              owner={app.owner}
+              theme={theme ? ` alt-${theme}` : ""}
+            />
+          );
+        })}
+      </div>
+    );
   }
   return (
     <div className="card-container">

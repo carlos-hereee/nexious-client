@@ -31,6 +31,7 @@ export const ServicesState = ({ children }: ChildProps) => {
     return {
       isLoading: state.isLoading,
       cart: state.cart,
+      paymentMethods: state.paymentMethods,
       addToCart,
       removeFromCart,
       // isFiltered: state.isFiltered,
