@@ -13,7 +13,7 @@ export default defineConfig({
       "@config": path.resolve(__dirname, "./src/config"),
       "@actions": path.resolve(__dirname, "./src/utils/@types/actions"),
       "@hooks": path.resolve(__dirname, "./src/utils/hooks"),
-      "@forms": path.resolve(__dirname, "./src/utils/forms"),
+      "@formatters": path.resolve(__dirname, "./src/utils/formatters"),
       "@router": path.resolve(__dirname, "./src/utils/router"),
       "@axios": path.resolve(__dirname, "./src/utils/axios"),
       "@components": path.resolve(__dirname, "./src/components"),

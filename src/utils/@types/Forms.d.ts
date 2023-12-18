@@ -1,9 +1,9 @@
 declare module "app-forms" {
+  import { MerchProps } from "services-context";
   import { AppListProps, PageProps } from "app-context";
   import {
     AssetProps,
     CalendarProps,
-    InventoryItemProps,
     KeyStringProp,
     MediaItemProp,
     MediaProps,
@@ -17,7 +17,7 @@ declare module "app-forms" {
     desiredOrder: string[];
   }
   export interface FormatMerchFormProps {
-    merch: InventoryItemProps;
+    merch: MerchProps;
     desiredOrder: string[];
   }
   export interface InitAppProps {

@@ -3,9 +3,9 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { PreviewValueProps } from "app-forms";
-import { formatAppDetails } from "@forms/formatAppDetails";
+import { formatAppDetails } from "@formatters/formatAppDetails";
 import { OnclickProps } from "app-admin";
-import { uniqueApplist } from "@forms/uniqeList";
+import { uniqueApplist } from "@formatters/uniqeList";
 
 const EditAppDetails = (props: OnclickProps) => {
   const { editAppDetails, appDetailsForm, languageList, themeList, iconList } =

@@ -1,14 +1,14 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { formatMerch } from "@forms/formatMerch";
+import { formatMerch } from "@formatters/formatMerch";
 import { PreviewValueProps } from "app-forms";
-import { InventoryItemProps } from "app-types";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { MerchProps } from "services-context";
 // import { useLocation } from "react-router-dom";
 
-const EditMerch = (props: { initValues: InventoryItemProps }) => {
+const EditMerch = (props: { initValues: MerchProps }) => {
   const { merchForm, editMerch, isLoading } = useContext(AdminContext);
   const { appId, appName } = useContext(AppContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");

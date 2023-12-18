@@ -2,8 +2,11 @@ declare module "services-context" {
   import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 
   export interface MerchProps {
-    name: string;
     cost: number;
+    inStock: number;
+    quantity: number;
+    name: string;
+    body: string;
     hero: string;
     uid: string;
   }

@@ -5,7 +5,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { PreviewValueProps } from "app-forms";
-import { formatStore } from "@forms/formatStore";
+import { formatStore } from "@formatters/store/formatStore";
 
 const EditStore = () => {
   const { storeForm, editStore } = useContext(AdminContext);

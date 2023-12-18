@@ -1,5 +1,5 @@
 import { FormatMerchFormProps } from "app-forms";
-import { InventoryItemProps } from "app-types";
+import { MerchProps } from "services-context";
 
 export const formatMerch = (props: FormatMerchFormProps) => {
   const { merch, desiredOrder } = props;
@@ -9,7 +9,7 @@ export const formatMerch = (props: FormatMerchFormProps) => {
     {},
     ...desiredOrder.map((key) => {
       if (!merch) return { [key]: "" };
-      const current = merch[key as keyof InventoryItemProps];
+      const current = merch[key as keyof MerchProps];
       if (current) return { [key]: current };
       return { [key]: "" };
     })

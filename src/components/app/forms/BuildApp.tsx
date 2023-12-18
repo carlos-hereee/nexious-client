@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { uniqueApplist } from "@forms/uniqeList";
+import { uniqueApplist } from "@formatters/uniqeList";
 
 const BuildApp = () => {
   const { initAppForm, initApp, themeList, languageList, formErrors } = useContext(AdminContext);

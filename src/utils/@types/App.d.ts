@@ -1,4 +1,5 @@
 declare module "app-types" {
+  import { MerchProps } from "services-context";
   import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
@@ -46,21 +47,14 @@ declare module "app-types" {
     colors: ThemeColorProps;
     backgroundColors: ThemeColorProps;
   };
-  export interface InventoryItemProps {
-    uid: string;
-    name: string;
-    body: string;
-    hero: string;
-    cost: number;
-    quantity: number;
-  }
+
   export interface StoreProps {
     name: string;
     storeId: string;
     title?: string;
     hero?: string;
     body?: string;
-    inventory: InventoryItemProps[];
+    inventory: MerchProps[];
   }
   export interface AppListProps {
     appName: string;

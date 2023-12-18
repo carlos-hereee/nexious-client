@@ -1,4 +1,17 @@
 {
   "isLoading": true,
-  "cart": []
+  "cart": [
+    {
+      "inStock": 13,
+      "hero": "https://nexious.s3.us-east-2.amazonaws.com/1702735040826-phone-fill.svg",
+      "name": "New item ",
+      "quantity": 1,
+      "cost": 2000,
+      "body": "Lorem ipusom ",
+      "_id": "657dacc0d7b235bb576dae4a",
+      "uid": "fb28efa3-73f6-4e9b-b562-44c456556b53",
+      "label": "- remove from cart",
+      "theme": "btn-main"
+    }
+  ]
 }

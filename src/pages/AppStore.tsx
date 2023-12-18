@@ -4,7 +4,7 @@ import { Button, Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "services-context";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { useNavigate } from "react-router-dom";
-import { formatPenniesToDollars } from "@forms/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 
 const AppStore = () => {
   const { store } = useContext(AppContext);

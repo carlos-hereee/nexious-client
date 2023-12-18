@@ -1,11 +1,12 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { DialogProps, InventoryItemProps } from "app-types";
+import { DialogProps } from "app-types";
 import { useContext } from "react";
 import { Dialog } from "nexious-library";
 import { useFormStatusChecker } from "@hooks/useFormStatusChecker";
 // import AddMerch from "../store/AddMerch";
 // import BuildStore from "../store/BuildStore";
 // import EditStore from "../store/EditStore";
+import { MerchProps } from "services-context";
 import EditMerch from "../store/EditMerch";
 
 const MerchDialog = (props: DialogProps) => {
@@ -19,7 +20,7 @@ const MerchDialog = (props: DialogProps) => {
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={header}>
       {/* TODO add preview store */}
-      {formValues && <EditMerch initValues={formValues as InventoryItemProps} />}
+      {formValues && <EditMerch initValues={formValues as MerchProps} />}
     </Dialog>
   );
 };

@@ -5,7 +5,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
 import { PageProps } from "app-types";
-import { formatPage } from "@forms/formatPage";
+import { formatPage } from "@formatters/formatPage";
 
 const EditPage = () => {
   const { pagesForm, sectionEntries, editPage, isLoading } = useContext(AdminContext);

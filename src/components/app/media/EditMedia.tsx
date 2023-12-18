@@ -1,5 +1,5 @@
 import { AdminContext } from "@context/admin/AdminContext";
-import { formatMediaItem } from "@forms/formatMediaItem";
+import { formatMediaItem } from "@formatters/formatMediaItem";
 import { MediaFormUpdateProps, PreviewValueProps } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";

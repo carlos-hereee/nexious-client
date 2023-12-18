@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 // import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
+import { Cart, UserCard, Total, Button } from "nexious-library";
+// import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { MerchProps } from "services-context";
+import { formatMerchFromPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
+// import { AppContext } from "@context/app/AppContext";
 
 const Checkout = () => {
   // const { checkout } = useContext(AppContext);
@@ -13,7 +16,10 @@ const Checkout = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
+  // const { store } = useContext(AppContext);
+  // console.log("store :>> ", store);
 
+  const cartData = formatMerchFromPenniesToDollars(cart);
   // console.log("cart :>> ", cart);
   // console.log("user :>> ", user);
 
@@ -35,7 +41,7 @@ const Checkout = () => {
   return (
     <section className="container">
       {cart.length > 0 ? (
-        <Cart data={cart} heading="Review cart" removeFromCart={onRemoveFromCart} />
+        <Cart data={cartData} heading="Review cart" removeFromCart={onRemoveFromCart} />
       ) : (
         <div className="btn-checkout-container">
           <Button
@@ -47,7 +53,7 @@ const Checkout = () => {
       )}
       <Total total={total} />
       {user.userId ? (
-        <div className="flex-d-column">
+        <div className="container">
           <h2 className="heading">Your details</h2>
           <UserCard user={user} hideHero isRow />
           {/* <PaymentMethods

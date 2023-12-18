@@ -4,7 +4,7 @@ import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { PreviewValueProps } from "app-forms";
 import { OnclickProps } from "app-admin";
-import { formatPage } from "@forms/formatPage";
+import { formatPage } from "@formatters/formatPage";
 
 const EditLanding = (props: OnclickProps) => {
   const { editLandingPage, landingForm, languageList, sectionEntries, iconList } =

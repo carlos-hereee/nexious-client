@@ -2,15 +2,15 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
 import { Button, Hero } from "nexious-library";
 import HintButton from "@components/app/buttons/HintButton";
-import { InventoryItemProps } from "app-types";
 import MerchDialog from "@components/app/dialog/MerchDialog";
+import { MerchProps } from "services-context";
 
 // const MerchList = (props: { handleHint: () => void }) => {
 const MerchList = () => {
   const { store } = useContext(AppContext);
   const { inventory } = store;
   const [show, setShow] = useState({ inventory: false, item: false });
-  const [editValues, setEdit] = useState<InventoryItemProps>();
+  const [editValues, setEdit] = useState<MerchProps>();
 
   const hintData = {
     title: "Hint!",
@@ -24,7 +24,7 @@ const MerchList = () => {
   };
 
   const onClose = () => setShow({ ...show, item: false });
-  const handleClick = (item: InventoryItemProps) => {
+  const handleClick = (item: MerchProps) => {
     setEdit(item);
     setShow({ ...show, item: true });
   };
