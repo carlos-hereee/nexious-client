@@ -12,7 +12,8 @@ import {
 } from "@formatters/store/formatPenniesToDollars";
 
 const Checkout = () => {
-  const { cart, removeFromCart, paymentMethods, updateCart } = useContext(ServicesContext);
+  const { cart, removeFromCart, paymentMethods, updateCart, submitOrder } =
+    useContext(ServicesContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(formatTotal(cart));
@@ -37,6 +38,9 @@ const Checkout = () => {
     const t = formatTotal(oldValues);
     updateCart(oldValues);
     setTotal(t);
+  };
+  const onVisaPayment = (data: { [key: string]: string }) => {
+    submitOrder({ cart, payment: data, user });
   };
   return (
     <section className="container">
@@ -63,7 +67,7 @@ const Checkout = () => {
           <UserCard user={user} hideHero isRow />
           <PaymentMethods
             data={paymentMethods}
-            // visaPayment={handleSubmit}
+            visaPayment={onVisaPayment}
             // paypalPayment={handlePaypal}
             // inStorePayment={handleInStorePayment}
           />

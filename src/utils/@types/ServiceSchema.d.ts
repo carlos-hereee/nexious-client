@@ -1,4 +1,5 @@
 declare module "services-context" {
+  import { UserSchema } from "auth-context";
   import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 
   export interface MerchProps {
@@ -22,14 +23,22 @@ declare module "services-context" {
     cart: MerchProps[] | [];
     paymentMethods: PaymentMethod[] | [];
   }
+  export interface SubmitPaymentProps {
+    user?: UserSchema;
+    payment?: { [key: string]: string };
+    cart?: MerchProps[];
+  }
   export interface ServiceSchema extends ServiceStateProps {
     addToCart: (cart: MerchProps[], key: MerchProps) => void;
     removeFromCart: (cart: MerchProps[], key: MerchProps) => void;
     updateCart: (cart: MerchProps[]) => void;
+    submitOrder: (props: SubmitPaymentProps) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
     merch?: MerchProps;
+    user?: UserSchema;
+    payment?: { [key: string]: string };
     cart?: MerchProps[];
   }
   export type ServiceActionProps =
