@@ -4,6 +4,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
+import { MerchProps } from "services-context";
 
 const Checkout = () => {
   // const { checkout } = useContext(AppContext);
@@ -13,8 +14,8 @@ const Checkout = () => {
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
 
-  console.log("cart :>> ", cart);
-  console.log("user :>> ", user);
+  // console.log("cart :>> ", cart);
+  // console.log("user :>> ", user);
 
   useEffect(() => {
     if (cart.length > 0) {
@@ -29,12 +30,12 @@ const Checkout = () => {
   // const handlePaypal = (e) => console.log("e", e);
   // const handleInStorePayment = (e) => console.log("e", e);
   const onRemoveFromCart = (e: unknown) => {
-    console.log("e :>> ", e);
+    removeFromCart(cart, e as MerchProps);
   };
   return (
     <section className="container">
       {cart.length > 0 ? (
-        <Cart data={cart} heading="checkout.heading" removeFromCart={onRemoveFromCart} />
+        <Cart data={cart} heading="Review cart" removeFromCart={onRemoveFromCart} />
       ) : (
         <div className="btn-checkout-container">
           <Button

@@ -30,7 +30,7 @@ const ExploreApps = (props: { featuredOnly?: boolean }) => {
           handleSeeLive={() => handleSeeLive(app)}
           handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
           owner={app.owner}
-          theme={theme ? `app-card alt-${theme}` : "app-card"}
+          theme={theme ? ` alt-${theme}` : ""}
         />
       );
     });
@@ -47,7 +47,7 @@ const ExploreApps = (props: { featuredOnly?: boolean }) => {
             handleSeeLive={() => handleSeeLive(app)}
             handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
             owner={app.owner}
-            theme={theme ? `app-card alt-${theme}` : "app-card"}
+            theme={theme ? ` alt-${theme}` : ""}
           />
         );
       })}
