@@ -8,7 +8,7 @@ import CopyToClipboard from "../sections/CopyToClipboard";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const StoreContainer = (props: PageContainerProps) => {
-  const { data, onAddItem, onClick } = props;
+  const { onAddItem, onEditDetails } = props;
   const { store, appLink } = useContext(AppContext);
 
   if (!store || !store.storeId) {
@@ -22,7 +22,7 @@ const StoreContainer = (props: PageContainerProps) => {
   // console.log("store :>> ", store);
   return (
     <div className="container">
-      {data.heading && <h2 className="heading">{data.heading}</h2>}
+      <h2 className="heading">Store:</h2>
       <KeyWithDefinition label="Store name:" value={store.name} labelLayout="bolden" />
       <KeyWithDefinition label="Store url:" labelLayout="bolden">
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
@@ -30,7 +30,9 @@ const StoreContainer = (props: PageContainerProps) => {
       <MerchList />
       <KeyWithDefinition label="More options: " labelLayout="bolden">
         <div className="buttons-container">
-          <Button label="Edit store details" onClick={onClick} />
+          {onEditDetails && (
+            <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
+          )}
           {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
         </div>
       </KeyWithDefinition>

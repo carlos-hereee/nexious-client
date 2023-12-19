@@ -8,46 +8,32 @@ import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
-import { DialogStatusProps, MediaItemProp, PageProps } from "app-types";
+import {
+  AppSettingDialogProps,
+  DialogShowProps,
+  DialogStatusProps,
+  MediaItemProp,
+  PageProps,
+} from "app-types";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import StoreDialog from "@components/app/dialog/StoreDialog";
 import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
 
 const AppSettings = () => {
-  const { appName, media, appId, isLoading, updateActiveAppData, logo, menu, appUrl, appLink } =
+  const { appName, media, appId, isLoading, updateActiveAppData, logo, menu, appLink } =
     useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
-  const [show, setShow] = useState({ pages: false, media: false, store: false, app: false });
+  const [show, setShow] = useState<AppSettingDialogProps>({
+    pages: false,
+    media: false,
+    store: false,
+    app: false,
+  });
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("idle");
   const navigate = useNavigate();
-
-  const dialogPageHeader =
-    status === "confirm-cancel"
-      ? {
-          heading: `Are you sure you want to delete ${activePage?.name}'s page`,
-          data: `This will delete all progress`,
-        }
-      : undefined;
-  const dialogMediaHeader =
-    status === "confirm-cancel"
-      ? {
-          heading: `Are you sure you want to delete ${activeMedia?.media} `,
-          data: `This will delete all progress`,
-        }
-      : undefined;
-  const mediaData = {
-    medias: media.medias,
-    heading: "Social media:",
-    hint: "Click/Tap on icons to edit",
-  };
-  const storeData = { heading: "Store:" };
-  const appData = { heading: "App:" };
-  const pagesData = { name: appUrl, heading: "Pages:" };
-
-  const resetStatus = () => setStatus("idle");
 
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
@@ -62,45 +48,23 @@ const AppSettings = () => {
     setActiveMedia(m);
   };
 
-  const onPageClose = () => setShow({ ...show, pages: false });
-  const onAddMedia = () => {
-    setShow({ ...show, media: true });
-    setStatus("phase-two");
-  };
   const handleSeeLive = () => {
     updateActiveAppData({ menu, appName, logo, media, appId });
     navigate(`/app/${appLink}`);
   };
-  const onAddMerch = (phase: DialogStatusProps) => {
-    setShow({ ...show, store: true });
-    setStatus(phase);
-  };
-  const onStoreEdit = () => {
-    setShow({ ...show, store: true });
-    setStatus("phase-one");
+
+  const handleClose = (props: DialogShowProps) => {
+    const { dialogName, dialogStatus } = props;
+    setShow({ ...show, [dialogName]: false });
+    setStatus(dialogStatus);
   };
 
-  const onStoreDialogClose = () => {
-    setShow({ ...show, store: false });
-    resetStatus();
+  const handleShow = (props: DialogShowProps) => {
+    const { dialogName, dialogStatus } = props;
+    setShow({ ...show, [dialogName]: true });
+    setStatus(dialogStatus);
   };
 
-  const onAppDetailsDialogClose = () => {
-    setShow({ ...show, app: false });
-    resetStatus();
-  };
-  const onMediaClose = () => {
-    setShow({ ...show, media: false });
-    resetStatus();
-  };
-  const onAppDetails = (phase: DialogStatusProps) => {
-    setShow({ ...show, app: true });
-    setStatus(phase);
-  };
-  const onAddPage = (phase: DialogStatusProps) => {
-    setShow({ ...show, pages: true });
-    setStatus(phase);
-  };
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (
     <div className="container">
@@ -110,35 +74,51 @@ const AppSettings = () => {
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
         <Button label="See live" onClick={handleSeeLive} />
       </div>
-      <AppContainer data={appData} onAppDetails={onAppDetails} />
+      <AppContainer
+        onAppDetails={(phase) => handleShow({ dialogName: "app", dialogStatus: phase })}
+      />
       <PagesContainer
-        data={pagesData}
         onRemove={onDeletePage}
-        onAddPage={onAddPage}
+        onAddPage={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
         name={appLink}
       />
-      <StoreContainer data={storeData} onAddItem={onAddMerch} onClick={onStoreEdit} />
-      <MediaContainer data={mediaData} onMediaClick={handleMediaClick} onAddMedia={onAddMedia} />
+      <StoreContainer
+        onAddItem={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })}
+        onEditDetails={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })}
+      />
+      <MediaContainer
+        onMediaClick={handleMediaClick}
+        onAdd={(phase) => handleShow({ dialogName: "media", dialogStatus: phase })}
+      />
       {show.pages && (
         <PageDialog
-          onClose={onPageClose}
+          onClose={() => handleClose({ dialogName: "pages", dialogStatus: "idle" })}
           onConfirm={handleConfirm}
-          header={dialogPageHeader}
           status={status}
+          activePage={activePage}
         />
       )}
       {show.media && (
         <MediaDialog
           media={activeMedia}
           status={status}
-          header={status === "confirm-cancel" ? dialogMediaHeader : undefined}
-          onClose={onMediaClose}
+          onClose={() => handleClose({ dialogName: "media", dialogStatus: "idle" })}
           onCancel={(stat: DialogStatusProps) => setStatus(stat)}
           onConfirm={() => deleteMedia(appId, activeMedia?.uid || "")}
         />
       )}
-      {show.store && <StoreDialog onClose={onStoreDialogClose} status={status} />}
-      {show.app && <AppDialog onClose={onAppDetailsDialogClose} status={status} />}
+      {show.store && (
+        <StoreDialog
+          onClose={() => handleClose({ dialogName: "store", dialogStatus: "idle" })}
+          status={status}
+        />
+      )}
+      {show.app && (
+        <AppDialog
+          onClose={() => handleClose({ dialogName: "app", dialogStatus: "idle" })}
+          status={status}
+        />
+      )}
 
       <DangerZone />
     </div>

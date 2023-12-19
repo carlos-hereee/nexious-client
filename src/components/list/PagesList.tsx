@@ -1,10 +1,14 @@
 import { PagesContainerProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import PreviewPage from "@components/app/preview/PreviewPage";
+import { useContext } from "react";
+import { AppContext } from "@context/app/AppContext";
 
 const PagesList = (props: PagesContainerProps) => {
-  const { name, onRemove, pages } = props;
+  const { name, onRemove } = props;
   const navigate = useNavigate();
+  const { pages } = useContext(AppContext);
+
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
 
   return (

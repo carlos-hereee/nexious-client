@@ -6,11 +6,17 @@ import EditMedia from "../media/EditMedia";
 import AddMedia from "../media/AddMedia";
 
 const MediaDialog = (props: DialogProps) => {
-  const { onClose, onSubmit, onCancel, onConfirm, header, media, status } = props;
+  const { onClose, onSubmit, onCancel, onConfirm, media, status } = props;
   const { theme } = useContext(AuthContext);
-
+  const dialogMediaHeader =
+    status === "confirm-cancel"
+      ? {
+          heading: `Are you sure you want to delete ${media?.media} `,
+          data: `This will delete all progress`,
+        }
+      : undefined;
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={header}>
+    <Dialog theme={theme} onDialogClose={onClose} header={dialogMediaHeader}>
       {status === "confirm-cancel" ? (
         <div className="flex-center">
           {onCancel && <ButtonCancel onClick={() => onCancel("idle")} theme="btn-main" />}

@@ -1,23 +1,20 @@
 import MediaList from "@components/list/MediaList";
 import { MediaCardContainerProps } from "app-types";
 import { Button } from "nexious-library";
+import { useContext } from "react";
+import { AppContext } from "@context/app/AppContext";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const MediaContainer = (props: MediaCardContainerProps) => {
-  const { data, onRemove, onMediaClick, onAddMedia } = props;
+  const { onRemove, onMediaClick, onAdd } = props;
+  const { media } = useContext(AppContext);
 
   return (
     <div className="container">
-      {data.heading && <h2 className="heading">{data.heading}</h2>}
-      <MediaList
-        onRemove={onRemove}
-        data={data.medias}
-        onMediaClick={onMediaClick}
-        hint={data.hint}
-      />
-      {onAddMedia && (
+      <MediaList onRemove={onRemove} data={media.medias} onMediaClick={onMediaClick} />
+      {onAdd && (
         <KeyWithDefinition label="More options:" labelLayout="bolden">
-          <Button label="+ Add Social media" onClick={onAddMedia} />
+          <Button label="+ Add Social media" onClick={() => onAdd("phase-two")} />
         </KeyWithDefinition>
       )}
     </div>

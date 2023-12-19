@@ -37,7 +37,7 @@ declare module "app-types" {
     isCopy?: boolean;
   }
   export interface AppContainerProps {
-    data: ContainerDataProps;
+    data?: ContainerDataProps;
     onAppDetails?: (phase: DialogStatusProps) => void;
   }
   export type ThemeList = {
@@ -119,10 +119,11 @@ declare module "app-types" {
     calendar: CalendarProps;
   }
   export interface DialogProps {
-    header?: { heading?: string; subtitle?: string; data?: string };
     media?: MediaItemProp;
     status?: DialogStatusProps;
     formValues?: unknown;
+    activePage?: PageProps;
+    activeMedia?: MediaItemProp;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;
@@ -142,18 +143,19 @@ declare module "app-types" {
     uid: string;
   }
   export interface PageContainerProps {
-    data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
+    // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
     onAddItem?: (phase: DialogStatusProps) => void;
+    onEditDetails?: (phase: DialogStatusProps) => void;
   }
   export interface MediaCardContainerProps {
-    data: ContainerDataProps;
+    data?: ContainerDataProps;
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
-    onAddMedia?: () => void;
+    onAdd?: (phase: DialogStatusProps) => void;
   }
   export interface CardContainerProps {
     data?: MediaItemProp[];
@@ -162,6 +164,17 @@ declare module "app-types" {
     onMediaClick?: (key: MediaItemProp) => void;
   }
   export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-one" | "phase-two";
+  export interface AppSettingDialogProps {
+    pages: boolean;
+    media: boolean;
+    store: boolean;
+    app: boolean;
+  }
+  export interface DialogShowProps {
+    dialogName: AppSettingDialogOptions;
+    dialogStatus: DialogStatusProps;
+  }
+  export type AppSettingDialogOptions = "pages" | "media" | "store" | "app";
   export interface SectionProps {
     title: string;
     uid: string;
