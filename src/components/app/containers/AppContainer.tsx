@@ -20,7 +20,7 @@ const AppContainer = (props: AppContainerProps) => {
         <CopyToClipboard data={appUrl} />
       </KeyWithDefinition>
       <KeyWithDefinition label="App language:" labelLayout="bolden">
-        {locale || "Not set up "}
+        {locale || "Comming soon "}
       </KeyWithDefinition>
       {onAppDetails && (
         <KeyWithDefinition label="App details:" labelLayout="bolden">

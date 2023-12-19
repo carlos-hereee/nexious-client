@@ -27,7 +27,7 @@ export const useActiveAppMenus = () => {
     // if user logged in
     if (accessToken) {
       // check route homepage
-      if (pathname === "/" || pathname === "/checkout") {
+      if (pathname === "/" || pathname.includes("checkout")) {
         updateActiveAppData({
           appId: nexiousAppId,
           appName: nexiousName,

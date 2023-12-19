@@ -1,9 +1,9 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
 import { Button, Hero } from "nexious-library";
-import HintButton from "@components/app/buttons/HintButton";
 import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "services-context";
+import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
 
 // const MerchList = (props: { handleHint: () => void }) => {
 const MerchList = () => {
@@ -30,15 +30,14 @@ const MerchList = () => {
   };
   if (!inventory || inventory.length === 0) {
     return (
-      <div className="key-with-definition">
-        <HintButton data={noInventoryHint} />
+      <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={noInventoryHint}>
         <p>No merchendise</p>
-      </div>
+      </KeyWithDefinition>
     );
   }
   return (
-    <div className="key-with-definition">
-      <HintButton data={hintData} />
+    <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hintData}>
+      {/* <HintButton data={hintData} /> */}
       {show.inventory ? (
         <div className="container">
           <Button
@@ -67,7 +66,7 @@ const MerchList = () => {
         <Button label="Show inventory" onClick={() => setShow({ ...show, inventory: true })} />
       )}
       {show.item && editValues && <MerchDialog onClose={onClose} formValues={editValues} />}
-    </div>
+    </KeyWithDefinition>
   );
 };
 export default MerchList;

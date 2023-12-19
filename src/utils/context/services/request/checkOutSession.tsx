@@ -8,6 +8,8 @@ export const checkOutSession = async (props: ServicesDispatchProps) => {
     dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: true });
     if (cart) {
       const { data } = await axiosAuth.post("/store/create-checkout-session", { cart });
+      // redirect
+      // document.location.href = data;
       console.log("data :>> ", data);
       // dispatch({ type: SERVICE_ACTIONS.SET_STRIPE_SECRET, payload: data });
     }

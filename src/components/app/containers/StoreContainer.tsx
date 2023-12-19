@@ -28,10 +28,12 @@ const StoreContainer = (props: PageContainerProps) => {
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
       </KeyWithDefinition>
       <MerchList />
-      <div className="buttons-container">
-        <Button label="Edit store details" onClick={onClick} />
-        {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
-      </div>
+      <KeyWithDefinition label="More options: " labelLayout="bolden">
+        <div className="buttons-container">
+          <Button label="Edit store details" onClick={onClick} />
+          {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
+        </div>
+      </KeyWithDefinition>
     </div>
   );
 };

@@ -8,6 +8,7 @@ declare module "app-types" {
   export interface KeyWithDefinitionProps {
     label?: string;
     value?: string;
+    hint?: { title: string; body: string };
     labelLayout?: "bolden";
     children?: React.ReactNode;
   }

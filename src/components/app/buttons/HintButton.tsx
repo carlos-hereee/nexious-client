@@ -8,9 +8,6 @@ const HintButton = (props: OnclickProps) => {
   const [show, setShow] = useState(false);
   return (
     <div className="button-hint-container">
-      <span>
-        <strong>Inventory:</strong>
-      </span>
       <IconButton
         icon={{ icon: "hint" }}
         title="show hint"

@@ -21,6 +21,7 @@ import AppPage from "@pages/AppPage";
 import AppStore from "@pages/AppStore";
 import Checkout from "@pages/Checkout";
 import ExploreApps from "@components/app/ExploreApps";
+import CheckoutSuccess from "@components/app/store/CheckoutSuccess";
 // import Offline from "@components/app/Offline";
 
 const AppRouter: React.FC = () => {
@@ -38,6 +39,8 @@ const AppRouter: React.FC = () => {
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/checkout/error" element={<CheckoutSuccess />} />
         <Route path="/explore" element={<ExploreApps />} />
         <Route path="/" element={<Homepage />} />
       </Route>
