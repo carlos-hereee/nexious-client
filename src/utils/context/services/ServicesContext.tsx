@@ -7,6 +7,7 @@ import { reducer } from "./ServicesReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { onRemoveFromCart } from "./dispatch/onRemoveFromCart";
 import { requestSecret } from "./request/requestSecret";
+import { checkOutSession } from "./request/checkOutSession";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
 // import { filter } from "./helpers/filter";
@@ -38,6 +39,9 @@ export const ServicesState = ({ children }: ChildProps) => {
   const submitOrder = useCallback((cart: MerchProps[]) => {
     requestSecret({ cart, dispatch });
   }, []);
+  const onCheckOutSession = useCallback((cart: MerchProps[]) => {
+    checkOutSession({ cart, dispatch });
+  }, []);
   const servicesValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -48,6 +52,7 @@ export const ServicesState = ({ children }: ChildProps) => {
       removeFromCart,
       updateCart,
       submitOrder,
+      onCheckOutSession,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

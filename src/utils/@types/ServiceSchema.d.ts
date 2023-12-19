@@ -34,6 +34,7 @@ declare module "services-context" {
     removeFromCart: (cart: MerchProps[], key: MerchProps) => void;
     updateCart: (cart: MerchProps[]) => void;
     submitOrder: (cart: MerchProps[]) => void;
+    onCheckOutSession: (cart: MerchProps[]) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;

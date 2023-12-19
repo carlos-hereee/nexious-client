@@ -12,7 +12,7 @@ import {
 } from "@formatters/store/formatPenniesToDollars";
 
 const Checkout = () => {
-  const { cart, removeFromCart, paymentMethods, updateCart, submitOrder, stripeSecret } =
+  const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession, stripeSecret } =
     useContext(ServicesContext);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -46,10 +46,10 @@ const Checkout = () => {
   const handlePaymentClick = (data: PaymentMethod) => {
     setActive(data);
     if (data.type === "visa/credit") {
-      submitOrder(cart);
+      onCheckOutSession(cart);
       console.log("data :>> ", data);
     }
-    // submitOrder({ cart, payment: data, user });
+    // onCheckOutSession({ cart, payment: data, user });
   };
   return (
     <section className="container">
