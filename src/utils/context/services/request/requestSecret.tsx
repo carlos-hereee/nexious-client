@@ -2,13 +2,13 @@ import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 import { axiosAuth } from "@axios/axiosAuth";
 import { ServicesDispatchProps } from "services-context";
 
-export const completeOrder = async (props: ServicesDispatchProps) => {
-  const { dispatch, user, payment, cart } = props;
+export const requestSecret = async (props: ServicesDispatchProps) => {
+  const { dispatch, cart } = props;
   try {
     dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: true });
-    if (user && payment && cart) {
-      const { data } = await axiosAuth.post("/store/complete-checkout", { user, payment, cart });
-      console.log("data :>> ", data);
+    if (cart) {
+      const { data } = await axiosAuth.post("/store/complete-checkout", { cart });
+      dispatch({ type: SERVICE_ACTIONS.SET_STRIPE_SECRET, payload: data });
     }
     dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

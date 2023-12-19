@@ -1,5 +1,6 @@
 {
   "isLoading": true,
+  "stripeSecret": "",
   "cart": [
     {
       "inStock": 13,

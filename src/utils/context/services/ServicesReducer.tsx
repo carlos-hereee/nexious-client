@@ -10,6 +10,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
       return { ...state, isLoading: action.payload };
     case SERVICE_ACTIONS.UPDATE_CART:
       return { ...state, cart: action.payload };
+    case SERVICE_ACTIONS.SET_STRIPE_SECRET:
+      return { ...state, stripeSecret: action.payload };
     // case "UPDATE_BOOKABLE":
     //   return { ...state, isLoading: false, bookable: action.payload };
     // case "UPDATE_BOOKED":

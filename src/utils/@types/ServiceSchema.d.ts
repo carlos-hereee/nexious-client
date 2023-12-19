@@ -20,6 +20,7 @@ declare module "services-context" {
   }
   export interface ServiceStateProps {
     isLoading: boolean;
+    stripeSecret: string;
     cart: MerchProps[] | [];
     paymentMethods: PaymentMethod[] | [];
   }
@@ -32,7 +33,7 @@ declare module "services-context" {
     addToCart: (cart: MerchProps[], key: MerchProps) => void;
     removeFromCart: (cart: MerchProps[], key: MerchProps) => void;
     updateCart: (cart: MerchProps[]) => void;
-    submitOrder: (props: SubmitPaymentProps) => void;
+    submitOrder: (cart: MerchProps[]) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -42,10 +43,8 @@ declare module "services-context" {
     cart?: MerchProps[];
   }
   export type ServiceActionProps =
-    | {
-        type: SERVICE_ACTIONS.IS_LOADING;
-        payload: boolean;
-      }
+    | { type: SERVICE_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET; payload: string }
     | {
         type:
           | SERVICE_ACTIONS.ADD_TO_CART
