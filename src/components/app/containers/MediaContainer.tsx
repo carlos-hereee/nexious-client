@@ -11,6 +11,7 @@ const MediaContainer = (props: MediaCardContainerProps) => {
 
   return (
     <div className="container">
+      <h2 className="heading">Social Media:</h2>
       <MediaList onRemove={onRemove} data={media.medias} onMediaClick={onMediaClick} />
       {onAdd && (
         <KeyWithDefinition label="More options:" labelLayout="bolden">

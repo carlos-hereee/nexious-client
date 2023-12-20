@@ -1,5 +1,5 @@
 declare module "app-admin" {
-  import { MenuItemProps } from "app-types";
+  import { MenuItemProps, StoreProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps } from "app-context";
   import { UserSchema } from "auth-context";
@@ -15,6 +15,7 @@ declare module "app-admin" {
 
   export interface AppAssetProps {
     user?: UserSchema;
+    store?: StoreProps;
     app?: AppProps;
     appList?: AppListProps[];
   }

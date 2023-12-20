@@ -9,7 +9,7 @@ import BuildStore from "../store/BuildStore";
 import EditStore from "../store/EditStore";
 
 const StoreDialog = (props: DialogProps) => {
-  const { onClose, header, status } = props;
+  const { onClose, status } = props;
   const { store } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
@@ -17,7 +17,7 @@ const StoreDialog = (props: DialogProps) => {
   useFormStatusChecker(onClose);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={header}>
+    <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && (store.storeId ? <EditStore /> : <BuildStore />)}
       {status === "phase-two" && <AddMerch />}

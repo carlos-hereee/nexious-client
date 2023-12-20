@@ -297,23 +297,23 @@
     "formId": "merchForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "body": "", "cost": "", "quantity": "" },
+    "initialValues": { "name": "", "hero": "", "body": "", "cost": "", "inStock": "" },
     "types": {
       "body": "textarea",
       "name": "text",
       "hero": "file",
-      "cost": "number",
-      "quantity": "number"
+      "cost": "price",
+      "inStock": "number"
     },
     "labels": {
       "name": "Merch name",
       "body": "Description",
       "hero": "Add image",
       "cost": "Cost",
-      "quantity": "Quantity"
+      "inStock": "Quantity"
     },
     "placeholders": { "hero": "", "body": "", "name": "item name" },
-    "desiredOrder": ["name", "hero", "body", "cost", "quantity"]
+    "desiredOrder": ["name", "hero", "body", "cost", "inStock"]
   },
   "sectionEntries": {
     "hasCta": {

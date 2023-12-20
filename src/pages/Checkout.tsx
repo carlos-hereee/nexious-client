@@ -5,27 +5,24 @@ import { Cart, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { MerchProps, PaymentMethod } from "services-context";
-import {
-  formatDollarsToPennies,
-  formatMerchFromPenniesToDollars,
-  formatPenniesToDollars,
-  formatTotal,
-} from "@formatters/store/formatPenniesToDollars";
-import { AppContext } from "@context/app/AppContext";
+import { formatTotal } from "@formatters/store/formatPenniesToDollars";
+// import { AppContext } from "@context/app/AppContext";
 
 const Checkout = () => {
   const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } =
     useContext(ServicesContext);
   // const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { store } = useContext(AppContext);
+  // const { store } = useContext(AppContext);
   const [total, setTotal] = useState(formatTotal(cart));
   const [active, setActive] = useState<PaymentMethod>();
-  console.log("store :>> ", store);
-  const cartData = formatMerchFromPenniesToDollars(cart);
+  // const cartData = formatMerchFromPenniesToDollars(cart);
 
-  // console.log("stripeSecret :>> ", stripeSecret);
+  // console.log("store :>> ", store.inventory);
+  // // console.log("stripeSecret :>> ", stripeSecret);
+  // console.log("cart :>> ", cart);
 
+  // console.log("total :>> ", total);
   // console.log("cart :>> ", cart);
   // console.log("user :>> ", user);
 
@@ -37,10 +34,10 @@ const Checkout = () => {
   };
 
   const handleQuantity = (data: MerchProps, d: number) => {
-    const oldValues = cart;
-    const merchIdx = cart.findIndex((c) => c.uid === data.uid);
+    const oldValues = [...cart];
+    const merchIdx = oldValues.findIndex((c) => c.uid === data.uid);
     oldValues[merchIdx].quantity = d;
-    oldValues[merchIdx].cost = formatDollarsToPennies(data.cost);
+    // oldValues[merchIdx].cost = formatDollarsToPennies(data.cost);
 
     const t = formatTotal(oldValues);
     updateCart(oldValues);
@@ -59,12 +56,16 @@ const Checkout = () => {
       {cart.length > 0 ? (
         <div className="split-container">
           <Cart
-            data={cartData}
+            data={cart}
             heading="Review cart"
             removeFromCart={onRemoveFromCart}
             setQuantity={handleQuantity}
           />
-          <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} active={active} />
+          <div className="container">
+            <h2 className="heading">Total:</h2>
+            <Total total={total} />
+            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} active={active} />
+          </div>
         </div>
       ) : (
         <div className="btn-checkout-container">
@@ -75,7 +76,6 @@ const Checkout = () => {
           />
         </div>
       )}
-      <Total total={formatPenniesToDollars(total)} />
     </section>
   );
 };

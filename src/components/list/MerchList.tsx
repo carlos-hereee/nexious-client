@@ -57,7 +57,7 @@ const MerchList = () => {
                   <Hero theme="thumbnail" hero={{ url: item.hero, alt: `product ${item.name}` }} />
                 )}
                 <p>{item.name} </p>
-                {item.quantity > 0 ? <p>{item.quantity} Remaining</p> : <p>OUT OF STOCK</p>}
+                {item.inStock > 0 ? <p>{item.inStock} Remaining</p> : <p>OUT OF STOCK</p>}
               </button>
             ))}
           </div>

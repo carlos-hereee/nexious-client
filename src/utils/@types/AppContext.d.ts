@@ -66,6 +66,7 @@ declare module "app-context" {
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     app?: AppProps;
+    store?: StoreProps;
     appList?: AppListProps[];
     logo?: string;
     media?: MediaProps;
