@@ -19,9 +19,16 @@ declare module "services-context" {
     icon: string;
     hero?: { url: string; small: string; name: string; alt: string };
   }
+  export interface StripeConfirmationProps {
+    status: string;
+    paymentStatus: string;
+    customer: null | unknown;
+    // intent: string;
+  }
   export interface ServiceStateProps {
     isLoading: boolean;
     stripeSecret: string;
+    stripeConfirmation: StripeConfirmationProps;
     cart: MerchProps[] | [];
     paymentMethods: PaymentMethod[] | [];
   }
@@ -36,16 +43,19 @@ declare module "services-context" {
     updateCart: (cart: MerchProps[]) => void;
     submitOrder: (cart: MerchProps[]) => void;
     onCheckOutSession: (cart: MerchProps[]) => void;
+    confirmIntent: (sessionId: string) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
     merch?: MerchProps;
     user?: UserSchema;
+    sessionId?: string;
     payment?: { [key: string]: string };
     cart?: MerchProps[];
   }
   export type ServiceActionProps =
     | { type: SERVICE_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
     | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET; payload: string }
     | {
         type:

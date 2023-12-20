@@ -23,6 +23,12 @@
       "icon": "store"
     }
   ],
+  "stripeConfirmation": {
+    "status": "",
+    "paymentStatus": "",
+    "customer": null,
+    "intent": ""
+  },
   "paypal": {
     "uid": "payment-2",
     "type": "paypal",

@@ -8,6 +8,7 @@ import { onAddToCart } from "./dispatch/onAddToCart";
 import { onRemoveFromCart } from "./dispatch/onRemoveFromCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
+import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
 // import { filter } from "./helpers/filter";
@@ -42,17 +43,22 @@ export const ServicesState = ({ children }: ChildProps) => {
   const onCheckOutSession = useCallback((cart: MerchProps[]) => {
     checkOutSession({ cart, dispatch });
   }, []);
+  const confirmIntent = useCallback((sessionId: string) => {
+    confirmCheckoutIntent({ dispatch, sessionId });
+  }, []);
   const servicesValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       cart: state.cart,
       stripeSecret: state.stripeSecret,
+      stripeConfirmation: state.stripeConfirmation,
       paymentMethods: state.paymentMethods,
       addToCart,
       removeFromCart,
       updateCart,
       submitOrder,
       onCheckOutSession,
+      confirmIntent,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,
