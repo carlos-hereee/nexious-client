@@ -25,7 +25,8 @@ const StoreContainer = (props: PageContainerProps) => {
     title: "Hint!",
     body: "Your inventory is empty click on + add merch to add items to your inventory",
   };
-
+  // console.log("store :>> ", store);
+  // console.log("inventory :>> ", inventory);
   return (
     <div className="container">
       <h2 className="heading">Store:</h2>

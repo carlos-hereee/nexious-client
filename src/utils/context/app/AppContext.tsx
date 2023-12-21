@@ -8,10 +8,11 @@ import { readableUrlString } from "@app/formatStringUrl";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
-import { fetchAppWithName } from "./fetch/fetchAppWithName";
-import { fetchAppList } from "./fetch/fetchAppList";
+import { fetchAppWithName } from "./request/fetchAppWithName";
+import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
+import { getInventory } from "./request/getInventory";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -35,6 +36,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setActiveData({ dispatch, menu, appName, logo, media, appId });
   }, []);
 
+  const getStoreInventory = useCallback((storeId: string) => {
+    getInventory({ dispatch, storeId });
+  }, []);
   // fetch app with app name
   const getAppWithName = useCallback(async (a: string, setAsActive?: boolean) => {
     const { app } = await fetchAppWithName({ dispatch, appName: a });
@@ -63,6 +67,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
+      loadingState: state.loadingState,
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
@@ -84,8 +89,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       owner: state.owner,
       appError: state.appError,
       logo: state.logo,
-      store: state.store,
       activeLogo: state.activeLogo,
+      store: state.store,
+      inventory: state.inventory,
       locale: state.locale,
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
@@ -96,6 +102,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateActiveAppData,
       handleMenu,
       setLoading,
+      getStoreInventory,
     };
   }, [
     state.isLoading,
@@ -105,6 +112,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.menu,
     state.appId,
     state.landing,
+    state.inventory,
+    state.loadingState,
   ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;

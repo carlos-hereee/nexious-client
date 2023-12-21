@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { MerchProps } from "services-context";
   import { UserSchema } from "auth-context";
   import { AppAssetProps } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
@@ -26,6 +27,7 @@ declare module "app-context" {
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
+    loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
     appList: AppListProps[];
     themeList: ThemeList[];
@@ -53,12 +55,14 @@ declare module "app-context" {
     locale: string;
     calendar: CalendarProps;
     store: StoreProps;
+    inventory: MerchProps[];
   }
   // app context schema
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssetProps) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     setLoading: (isLoading: boolean) => void;
+    getStoreInventory: (storeId: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
@@ -71,6 +75,7 @@ declare module "app-context" {
     logo?: string;
     media?: MediaProps;
     appName?: string;
+    storeId?: string;
     isLoading?: boolean;
     setAsActive?: boolean;
     appId?: string;
@@ -81,6 +86,7 @@ declare module "app-context" {
 
   export type AppActionProps =
     | { type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON; payload: boolean }
+    | { type: APP_ACTIONS.SET_LOADING_STATE; payload: { [key: string]: boolean } }
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
@@ -98,6 +104,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
     | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuItemProps[] }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
+    | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
     | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }

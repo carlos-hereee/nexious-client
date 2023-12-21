@@ -1,14 +1,13 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
-import { Button, Hero } from "nexious-library";
+import { Button, Hero, Spinner } from "nexious-library";
 import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "services-context";
 import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
 
 // const MerchList = (props: { handleHint: () => void }) => {
 const MerchList = () => {
-  const { store } = useContext(AppContext);
-  const { inventory } = store;
+  const { store, getStoreInventory, loadingState, inventory } = useContext(AppContext);
   const [show, setShow] = useState({ inventory: false, item: false });
   const [editValues, setEdit] = useState<MerchProps>();
 
@@ -28,7 +27,11 @@ const MerchList = () => {
     setEdit(item);
     setShow({ ...show, item: true });
   };
-  if (!inventory || inventory.length === 0) {
+  const openInventory = () => {
+    getStoreInventory(store.storeId);
+    setShow({ ...show, inventory: true });
+  };
+  if (!store.inventory || store.inventory.length === 0) {
     return (
       <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={noInventoryHint}>
         <p>No merchendise</p>
@@ -38,7 +41,7 @@ const MerchList = () => {
   return (
     <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hintData}>
       {/* <HintButton data={hintData} /> */}
-      {show.inventory ? (
+      {inventory.length > 0 ? (
         <div className="container">
           <Button
             label="Close Inventory"
@@ -62,8 +65,10 @@ const MerchList = () => {
             ))}
           </div>
         </div>
+      ) : loadingState.isLoadingInventory ? (
+        <Spinner />
       ) : (
-        <Button label="Show inventory" onClick={() => setShow({ ...show, inventory: true })} />
+        <Button label="Show inventory" onClick={openInventory} />
       )}
       {show.item && editValues && <MerchDialog onClose={onClose} formValues={editValues} />}
     </KeyWithDefinition>

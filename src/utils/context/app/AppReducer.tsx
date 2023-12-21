@@ -5,6 +5,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
   switch (action.type) {
     case APP_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
+    case APP_ACTIONS.SET_LOADING_STATE:
+      return { ...state, loadingState: { ...state.loadingState, ...action.payload } };
     case APP_ACTIONS.SET_THEME_LIST:
       return { ...state, themeList: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:
@@ -13,6 +15,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, activeMenu: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MEDIA:
       return { ...state, activeMedia: action.payload };
+    case APP_ACTIONS.SET_STORE_INVENTORY:
+      return { ...state, inventory: action.payload };
     case APP_ACTIONS.SET_NEWSLETTER:
       return { ...state, newsletter: action.payload };
     case APP_ACTIONS.SET_APP_LIST:
