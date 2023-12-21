@@ -40,8 +40,7 @@ const MerchList = () => {
   }
   return (
     <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hintData}>
-      {/* <HintButton data={hintData} /> */}
-      {inventory.length > 0 ? (
+      {show.inventory ? (
         <div className="container">
           <Button
             label="Close Inventory"

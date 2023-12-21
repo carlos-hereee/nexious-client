@@ -64,6 +64,8 @@ const AppSettings = () => {
     setShow({ ...show, [dialogName]: true });
     setStatus(dialogStatus);
   };
+  // TODO: ADD CURRENCY TYPE TO STORE
+  // TODO: ADD COUNTRY TO APP SETTINGS
 
   if (isLoading) return <Loading message="loading app assets.. " />;
   return (

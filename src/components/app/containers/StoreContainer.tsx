@@ -25,8 +25,7 @@ const StoreContainer = (props: PageContainerProps) => {
     title: "Hint!",
     body: "Your inventory is empty click on + add merch to add items to your inventory",
   };
-  // console.log("store :>> ", store);
-  // console.log("inventory :>> ", inventory);
+
   return (
     <div className="container">
       <h2 className="heading">Store:</h2>
@@ -43,7 +42,10 @@ const StoreContainer = (props: PageContainerProps) => {
       )}
       {onEditDetails && (
         <KeyWithDefinition label="More options: " labelLayout="bolden">
-          <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
+          <div className="flex-g">
+            <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
+            {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
+          </div>
         </KeyWithDefinition>
       )}
     </div>

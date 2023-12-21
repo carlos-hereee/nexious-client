@@ -64,6 +64,7 @@ declare module "app-admin" {
     editPage: (values: PreviewValueProps, appId: string, name?: string) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
+    deleteMerchItem: (appId: string, merchId: string) => void;
     deletePage: (appId: string, pageId: string) => void;
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;

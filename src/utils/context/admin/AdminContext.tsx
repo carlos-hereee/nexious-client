@@ -29,6 +29,7 @@ import { updateFormStatus } from "./dispatch/updateFormStatus";
 import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/updateAppDetails";
 import { removeStore } from "./requests/store/removeStore";
+import { removeMerch } from "./requests/store/removeMerch";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -102,6 +103,12 @@ export const AdminState = ({ children }: ChildProps) => {
   const deleteStore = useCallback((appId: string) => {
     removeStore({ dispatch, appId });
   }, []);
+  const deleteMedia = useCallback((appId: string, name: string) => {
+    removeMedia({ dispatch, appId, handleAppAssets, name });
+  }, []);
+  const deleteMerchItem = useCallback((appId: string, merchId: string) => {
+    removeMerch({ dispatch, appId, merchId, handleAppAssets });
+  }, []);
 
   const listBucket = useCallback((appId: string) => {
     getBucket({ dispatch, appId, handleAppAssets });
@@ -125,10 +132,6 @@ export const AdminState = ({ children }: ChildProps) => {
   }, []);
   const editMerch = useCallback((values: PreviewValueProps, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
-  }, []);
-
-  const deleteMedia = useCallback((appId: string, name: string) => {
-    removeMedia({ dispatch, appId, handleAppAssets, name });
   }, []);
 
   const adminValues = useMemo(() => {
@@ -175,6 +178,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editAppDetails,
       setFormStatus,
       deleteStore,
+      deleteMerchItem,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
