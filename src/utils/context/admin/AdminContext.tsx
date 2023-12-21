@@ -28,6 +28,7 @@ import { updateStore } from "./requests/store/updateStore";
 import { updateFormStatus } from "./dispatch/updateFormStatus";
 import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/updateAppDetails";
+import { removeStore } from "./requests/store/removeStore";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -96,6 +97,10 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const deletePage = useCallback((appId: string, pageId: string) => {
     removePage({ dispatch, appId, handleAppAssets, pageId });
+  }, []);
+
+  const deleteStore = useCallback((appId: string) => {
+    removeStore({ dispatch, appId });
   }, []);
 
   const listBucket = useCallback((appId: string) => {
@@ -169,6 +174,7 @@ export const AdminState = ({ children }: ChildProps) => {
       editMerch,
       editAppDetails,
       setFormStatus,
+      deleteStore,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

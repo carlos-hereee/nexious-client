@@ -63,6 +63,7 @@ declare module "app-admin" {
     editCalendar: (values: PreviewValueProps, appId: string) => void;
     editPage: (values: PreviewValueProps, appId: string, name?: string) => void;
     deleteApp: (appId: string) => void;
+    deleteStore: (appId: string) => void;
     deletePage: (appId: string, pageId: string) => void;
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;

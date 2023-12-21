@@ -26,8 +26,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   // update app data
   const updateAppData = useCallback((props: AppAssetProps) => {
-    const { app, appList, store } = props;
-    setAppData({ dispatch, app, appList, store });
+    const { app, appList } = props;
+    setAppData({ dispatch, app, appList });
   }, []);
 
   const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
@@ -37,9 +37,9 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   // fetch app with app name
   const getAppWithName = useCallback(async (a: string, setAsActive?: boolean) => {
-    const { app, store } = await fetchAppWithName({ dispatch, appName: a });
+    const { app } = await fetchAppWithName({ dispatch, appName: a });
     if (app) {
-      updateAppData({ app, store });
+      updateAppData({ app });
       if (setAsActive) updateActiveAppData(app);
     }
   }, []);

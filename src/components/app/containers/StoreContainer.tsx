@@ -13,29 +13,38 @@ const StoreContainer = (props: PageContainerProps) => {
 
   if (!store || !store.storeId) {
     return (
-      <KeyWithDefinition label="Store details:" labelLayout="bolden">
-        {onAddItem && <Button label="+ Create store" onClick={() => onAddItem("phase-one")} />}
-      </KeyWithDefinition>
+      <div className="container">
+        <h2 className="heading">Store:</h2>
+        <KeyWithDefinition label="Store details:" labelLayout="bolden">
+          {onAddItem && <Button label="+ Create store" onClick={() => onAddItem("phase-one")} />}
+        </KeyWithDefinition>
+      </div>
     );
   }
+  const noInventoryHint = {
+    title: "Hint!",
+    body: "Your inventory is empty click on + add merch to add items to your inventory",
+  };
 
-  // console.log("store :>> ", store);
   return (
     <div className="container">
       <h2 className="heading">Store:</h2>
-      <KeyWithDefinition label="Store name:" value={store.name} labelLayout="bolden" />
+      {/* <KeyWithDefinition label="Store name:" value={store.name || "No name"} labelLayout="bolden" /> */}
       <KeyWithDefinition label="Store url:" labelLayout="bolden">
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
       </KeyWithDefinition>
-      <MerchList />
-      <KeyWithDefinition label="More options: " labelLayout="bolden">
-        <div className="buttons-container">
-          {onEditDetails && (
-            <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
-          )}
+      {!store.inventory || store.inventory.length === 0 ? (
+        <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={noInventoryHint}>
           {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
-        </div>
-      </KeyWithDefinition>
+        </KeyWithDefinition>
+      ) : (
+        <MerchList />
+      )}
+      {onEditDetails && (
+        <KeyWithDefinition label="More options: " labelLayout="bolden">
+          <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
+        </KeyWithDefinition>
+      )}
     </div>
   );
 };

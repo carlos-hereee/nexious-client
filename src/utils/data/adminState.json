@@ -274,9 +274,9 @@
     "formId": "storeForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "name": "", "title": "", "hero": "", "body": "", "pageName": "" },
+    "initialValues": { "pageName": "", "name": "", "title": "", "hero": "", "description": "" },
     "types": {
-      "body": "textarea",
+      "description": "textarea",
       "name": "text",
       "title": "text",
       "hero": "file",
@@ -286,20 +286,20 @@
       "name": "Store name",
       "pageName": "Page name",
       "title": "Heading",
-      "body": "About",
+      "description": "About",
       "hero": "Add image"
     },
-    "placeholders": { "hero": "", "body": "", "name": "", "pageName": "Store/Shop" },
-    "desiredOrder": ["pageName", "name", "title", "hero", "body"]
+    "placeholders": { "hero": "", "description": "", "name": "", "pageName": "Store/Shop" },
+    "desiredOrder": ["pageName", "name", "title", "hero", "description"]
   },
   "merchForm": {
     "heading": "Add merch",
     "formId": "merchForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "body": "", "cost": "", "inStock": "" },
+    "initialValues": { "name": "", "hero": "", "description": "", "cost": "", "inStock": "" },
     "types": {
-      "body": "textarea",
+      "description": "textarea",
       "name": "text",
       "hero": "file",
       "cost": "price",
@@ -307,13 +307,13 @@
     },
     "labels": {
       "name": "Merch name",
-      "body": "Description",
+      "description": "Description",
       "hero": "Add image",
       "cost": "Cost",
       "inStock": "Quantity"
     },
-    "placeholders": { "hero": "", "body": "", "name": "item name" },
-    "desiredOrder": ["name", "hero", "body", "cost", "inStock"]
+    "placeholders": { "hero": "", "description": "", "name": "item name" },
+    "desiredOrder": ["name", "hero", "description", "cost", "inStock"]
   },
   "sectionEntries": {
     "hasCta": {

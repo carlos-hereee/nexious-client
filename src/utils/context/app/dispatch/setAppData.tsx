@@ -3,7 +3,7 @@ import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
 export const setAppData = (props: AppDispatchProps) => {
-  const { dispatch, app, appList, store } = props;
+  const { dispatch, app, appList } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
     // console.log("app.store :>> ", app.store);
@@ -20,6 +20,7 @@ export const setAppData = (props: AppDispatchProps) => {
     if (app.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: app.themeList });
     if (app.pages) dispatch({ type: APP_ACTIONS.SET_PAGES, payload: app.pages });
     if (app.languageList) dispatch({ type: APP_ACTIONS.SET_LANGUAGES, payload: app.languageList });
+    if (app.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: app.store });
     if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
     if (app.appName) {
       const appLink = readableUrlString(app.appName);
@@ -29,6 +30,6 @@ export const setAppData = (props: AppDispatchProps) => {
     }
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
-  if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+  // if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

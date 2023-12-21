@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Form, Hero } from "nexious-library";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
@@ -10,7 +10,7 @@ const BuildStore = () => {
   const { storeForm, addStore } = useContext(AdminContext);
   const { appId } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div className="container">
@@ -25,7 +25,7 @@ const BuildStore = () => {
           disableForm={!accessToken}
           // responseError={formErrors.storeFormError}
           placeholders={storeForm.placeholders}
-          onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
+          // onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           fieldHeading={storeForm.fieldHeading}
           schema={{ required: ["name", "title", "pageName"] }}
           noScroll
