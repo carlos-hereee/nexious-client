@@ -5,7 +5,7 @@ import { IconButton } from "nexious-library";
 // import { Button, Hero, Icon } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
 import WelcomeBanner from "@components/app/banners/WelcomeBanner";
-import ExploreApps from "@components/app/ExploreApps";
+// import ExploreApps from "@components/app/ExploreApps";
 // import { AdminContext } from "@context/admin/AdminContext";
 // import { AppContext } from "@context/app/AppContext";
 import AppPlayground from "./AppPlayground";
@@ -21,7 +21,8 @@ const UserPlayground = () => {
   // const [error, setError] = useState<{ [key: string]: string }>({});
   // const navigate = useNavigate();
 
-  const [active, setActive] = useState<"apps" | "explore" | "account">("explore");
+  const [active, setActive] = useState<"apps" | "account">("apps");
+  // const [active, setActive] = useState<"apps" | "explore" | "account">("apps");
 
   // console.log('object :>> ', object);
   // console.log("appList :>> ", appList);
@@ -38,11 +39,11 @@ const UserPlayground = () => {
             theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("apps")}
           />
-          <IconButton
+          {/* <IconButton
             icon={{ icon: "explore", label: "Explore" }}
             theme={active === "explore" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("explore")}
-          />
+          /> */}
           <IconButton
             icon={{ icon: "account", label: "Account" }}
             theme={active === "account" ? "btn-main btn-active" : "btn-main"}
@@ -52,7 +53,7 @@ const UserPlayground = () => {
 
         {active === "apps" && <AppPlayground />}
         {active === "account" && <AccountSettings />}
-        {active === "explore" && <ExploreApps />}
+        {/* {active === "explore" && <ExploreApps />} */}
       </div>
     </div>
   );

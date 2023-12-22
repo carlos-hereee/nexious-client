@@ -3,8 +3,8 @@ import { useContext, useEffect } from "react";
 import {
   nexiousName,
   nexiousMedia,
-  nexiousLogo,
   nexiousMenu,
+  nexiousLogo,
   nexiousAuthMenu,
   nexiousAppId,
   nexiousAppMenu,
@@ -17,17 +17,14 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppMenus = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const { activeMenu, activeAppName, updateActiveAppData, getAppWithName, appId } =
-    useContext(AppContext);
-  // const { accessToken } = useContext(AuthContext);
-  // const { updateActiveAppData } = useContext(AppContext);
+  const { activeMenu, activeAppName, updateActiveAppData } = useContext(AppContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     // if user logged in
     if (accessToken) {
       // check route homepage
-      if (pathname === "/" || pathname.includes("checkout")) {
+      if (pathname === "/" || pathname.includes("checkout") || pathname.includes("explore")) {
         updateActiveAppData({
           appId: nexiousAppId,
           appName: nexiousName,
@@ -37,8 +34,7 @@ export const useActiveAppMenus = () => {
         });
       } else {
         const routeAppName = pathname.split("/")[2];
-        if (!appId || routeAppName !== activeAppName) getAppWithName(routeAppName, true);
-        else if (routeAppName === activeAppName) {
+        if (routeAppName === activeAppName) {
           // check route matches active app name
           const noDups = combineArraysWithOutDups(nexiousAppMenu, activeMenu);
           const oldValues = noDups as MenuProps[];
@@ -52,10 +48,9 @@ export const useActiveAppMenus = () => {
               oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
             updateActiveAppData({ menu: oldValues });
           }
-          // otherwise fetch data
-        } else if (routeAppName) getAppWithName(routeAppName, true);
+        }
       }
-    } else if (pathname === "/") {
+    } else {
       updateActiveAppData({
         appId: nexiousAppId,
         appName: nexiousName,
@@ -65,6 +60,5 @@ export const useActiveAppMenus = () => {
       });
     }
     // update document details
-    document.title = activeAppName;
   }, [accessToken, activeAppName, JSON.stringify(subscriptions), pathname]);
 };

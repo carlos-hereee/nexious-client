@@ -50,6 +50,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const { isPrivate, category, name, link } = menuItem;
+    console.log("menuItem :>> ", menuItem);
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
@@ -58,6 +59,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       else navigate(`/${link || ""}`);
       // change theme
     } else if (category === "theme") setTheme(menuItem.value);
+    else if (menuItem.value === "explore") navigate("/explore");
     // otherwise go to page
     else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}` || "");
     else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
