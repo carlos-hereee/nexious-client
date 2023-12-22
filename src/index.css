@@ -126,9 +126,13 @@
   display: flex;
   gap: 1rem;
 }
-.card-row {
-  display: grid;
+.app-row {
+  aspect-ratio: 16 / 9;
+  min-width: 100%;
+  max-width: 30vw;
   grid-template-columns: minmax(auto, 200px) 3fr;
+  grid-template-rows: 1fr;
+  max-height: 300px;
 }
 .logo {
   min-width: 120px;
@@ -144,7 +148,7 @@
 .key-with-definition {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  align-items: center;
+  align-items: flex-start;
 }
 .inventory-container {
   display: flex;

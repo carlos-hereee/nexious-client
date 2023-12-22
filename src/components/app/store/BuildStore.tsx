@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Form, Hero } from "nexious-library";
+import { Form, Hero, Loading } from "nexious-library";
 // import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -7,11 +7,12 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { PreviewValueProps } from "app-forms";
 
 const BuildStore = () => {
-  const { storeForm, addStore } = useContext(AdminContext);
+  const { storeForm, addStore, isLoading } = useContext(AdminContext);
   const { appId } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
   // const navigate = useNavigate();
 
+  if (isLoading) return <Loading message="loading app assets.." />;
   return (
     <div className="container">
       <div className="form-hero">
@@ -27,7 +28,7 @@ const BuildStore = () => {
           placeholders={storeForm.placeholders}
           // onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           fieldHeading={storeForm.fieldHeading}
-          schema={{ required: ["name", "title", "pageName"] }}
+          schema={{ required: ["name", "pageName"] }}
           noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}

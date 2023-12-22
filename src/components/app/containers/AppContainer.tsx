@@ -24,7 +24,7 @@ const AppContainer = (props: AppContainerProps) => {
       </KeyWithDefinition>
       {onAppDetails && (
         <KeyWithDefinition label="App details:" labelLayout="bolden">
-          <Button label="+ Edit app details" onClick={() => onAppDetails("phase-one")} />
+          <Button label="Edit app details" onClick={() => onAppDetails("phase-one")} />
         </KeyWithDefinition>
       )}
     </div>

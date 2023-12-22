@@ -37,7 +37,7 @@ export const useActiveAppMenus = () => {
         });
       } else {
         const routeAppName = pathname.split("/")[2];
-        if (!appId && routeAppName) getAppWithName(routeAppName, true);
+        if (!appId || routeAppName !== activeAppName) getAppWithName(routeAppName, true);
         else if (routeAppName === activeAppName) {
           // check route matches active app name
           const noDups = combineArraysWithOutDups(nexiousAppMenu, activeMenu);

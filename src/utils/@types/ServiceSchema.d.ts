@@ -8,6 +8,7 @@ declare module "services-context" {
     quantity: number;
     storeId: string;
     merchId: string;
+    priceId: string;
     name: string;
     body: string;
     hero: string;

@@ -38,6 +38,7 @@ const MerchList = () => {
       </KeyWithDefinition>
     );
   }
+  // console.log("store.inventory :>> ", store.inventory);
   return (
     <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hintData}>
       {show.inventory ? (

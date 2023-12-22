@@ -21,8 +21,8 @@ const AppPlayground = () => {
   return (
     <div className="container">
       <CreateApp />
-      <div className="container">
-        <h2 className="heading">All your apps: </h2>
+      <h2 className="heading">All your apps: </h2>
+      <div className="card-container">
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => {
             const appName = app.appName.split(" ").join("+");
@@ -33,7 +33,7 @@ const AppPlayground = () => {
                 handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
                 handleSeeLive={() => handleSeeLive(app)}
                 owner={app.owner}
-                theme="card-row"
+                theme="highlight"
               />
             );
           })

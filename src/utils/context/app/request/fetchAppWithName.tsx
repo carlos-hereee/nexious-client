@@ -8,7 +8,7 @@ export const fetchAppWithName = async (props: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.get(`/app/${appName}`);
-    // console.log("data :>> ", data);
+    console.log("data :>> ", data);
     return data;
     // if (data && updateAppData) updateAppData({ app: data });
   } catch (error) {

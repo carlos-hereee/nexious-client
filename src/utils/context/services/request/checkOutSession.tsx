@@ -8,7 +8,7 @@ export const checkOutSession = async (props: ServicesDispatchProps) => {
     dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: true });
     if (cart) {
       const checkoutCart = cart.map((c) => {
-        return { quantity: c.quantity, storeId: c.storeId, merchId: c.uid };
+        return { quantity: c.quantity, storeId: c.storeId, merchId: c.merchId, priceId: c.priceId };
       });
       const { data } = await axiosAuth.post("/store/create-checkout-session", {
         cart: checkoutCart,

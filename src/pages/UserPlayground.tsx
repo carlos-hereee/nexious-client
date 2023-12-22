@@ -34,7 +34,7 @@ const UserPlayground = () => {
       <div className="container">
         <div className="navigation-container">
           <IconButton
-            icon={{ icon: "app", label: "Apps" }}
+            icon={{ icon: "app", label: "My apps" }}
             theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("apps")}
           />

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Button, Form, Hero } from "nexious-library";
+import { Button, Form, Hero, Loading } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -7,11 +7,13 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { uniqueApplist } from "@formatters/uniqeList";
 
 const BuildApp = () => {
-  const { initAppForm, initApp, themeList, languageList, formErrors } = useContext(AdminContext);
+  const { initAppForm, initApp, themeList, languageList, formErrors, isLoading } =
+    useContext(AdminContext);
   const { appList } = useContext(AppContext);
   const { theme, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  if (isLoading) return <Loading message="loading app assets.." />;
   return (
     <div className="container">
       {!accessToken && (

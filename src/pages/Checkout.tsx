@@ -18,7 +18,7 @@ const Checkout = () => {
   const [active, setActive] = useState<PaymentMethod>();
   // const cartData = formatMerchFromPenniesToDollars(cart);
 
-  // console.log("store :>> ", store.inventory);
+  // console.log("store :>> ", cart);
   // // console.log("stripeSecret :>> ", stripeSecret);
   // console.log("cart :>> ", cart);
 

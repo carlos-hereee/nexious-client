@@ -1,7 +1,7 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@context/auth/AuthContext";
+// import { AuthContext } from "@context/auth/AuthContext";
 import { AppListProps } from "app-types";
 import AppCard from "./AppCard";
 // import CreateAppButton from "./buttons/CreateAppButton";
@@ -9,7 +9,7 @@ import AppCard from "./AppCard";
 const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
   const { featuredOnly, heading } = props;
   const { appList, updateActiveAppData } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
+  // const { theme } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSeeLive = (app: AppListProps) => {
@@ -23,7 +23,7 @@ const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
     const featuredList = appList.slice(0, 5);
     if (featuredList.length === 0) return <div />;
     return (
-      <div className="container">
+      <div className="card-container">
         {heading && <h2 className="heading">{heading}</h2>}
         {featuredList.map((app) => {
           const appName = app.appName.split(" ").join("+");
@@ -34,7 +34,7 @@ const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
               handleSeeLive={() => handleSeeLive(app)}
               handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
               owner={app.owner}
-              theme={theme ? ` alt-${theme}` : ""}
+              theme="highlight"
             />
           );
         })}
@@ -53,7 +53,7 @@ const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
             handleSeeLive={() => handleSeeLive(app)}
             handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
             owner={app.owner}
-            theme={theme ? ` alt-${theme}` : ""}
+            theme="highlight"
           />
         );
       })}
