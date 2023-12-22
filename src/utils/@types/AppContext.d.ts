@@ -61,6 +61,7 @@ declare module "app-context" {
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssetProps) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
+    getAppStore: (appName: string) => void;
     setLoading: (isLoading: boolean) => void;
     getStoreInventory: (storeId: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
@@ -75,6 +76,7 @@ declare module "app-context" {
     logo?: string;
     media?: MediaProps;
     appName?: string;
+    subscriptions?: AppListProps[];
     storeId?: string;
     isLoading?: boolean;
     setAsActive?: boolean;

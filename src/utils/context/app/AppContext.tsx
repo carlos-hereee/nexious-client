@@ -5,6 +5,7 @@ import { AppSchema } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssetProps } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
+
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -13,12 +14,14 @@ import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
+import { getAppStoreWithName } from "./request/getAppStoreWithName";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, unSubscribe } = useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   // update app data
@@ -27,8 +30,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, []);
   // update app data
   const updateAppData = useCallback((props: AppAssetProps) => {
-    const { app, appList } = props;
-    setAppData({ dispatch, app, appList });
+    const { app, appList, store } = props;
+    setAppData({ dispatch, app, appList, store });
   }, []);
 
   const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
@@ -39,18 +42,17 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getStoreInventory = useCallback((storeId: string) => {
     getInventory({ dispatch, storeId });
   }, []);
+  const getAppStore = useCallback((storeId: string) => {
+    getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
+  }, []);
   // fetch app with app name
-  const getAppWithName = useCallback(async (a: string, setAsActive?: boolean) => {
-    const { app } = await fetchAppWithName({ dispatch, appName: a });
-    if (app) {
-      updateAppData({ app });
-      if (setAsActive) updateActiveAppData(app);
-    }
+  const getAppWithName = useCallback((a: string) => {
+    fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
   }, []);
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const { isPrivate, category, name, link } = menuItem;
-    console.log("menuItem :>> ", menuItem);
+    // console.log("menuItem :>> ", menuItem);
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
@@ -105,6 +107,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       handleMenu,
       setLoading,
       getStoreInventory,
+      getAppStore,
     };
   }, [
     state.isLoading,

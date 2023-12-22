@@ -21,8 +21,7 @@ import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
 
 const AppSettings = () => {
-  const { appName, media, appId, isLoading, updateActiveAppData, logo, menu, appLink } =
-    useContext(AppContext);
+  const { appName, appId, isLoading, appLink } = useContext(AppContext);
   const { deletePage, deleteMedia } = useContext(AdminContext);
   const [show, setShow] = useState<AppSettingDialogProps>({
     pages: false,
@@ -48,11 +47,6 @@ const AppSettings = () => {
     setActiveMedia(m);
   };
 
-  const handleSeeLive = () => {
-    updateActiveAppData({ menu, appName, logo, media, appId });
-    navigate(`/app/${appLink}`);
-  };
-
   const handleClose = (props: DialogShowProps) => {
     const { dialogName, dialogStatus } = props;
     setShow({ ...show, [dialogName]: false });
@@ -74,7 +68,7 @@ const AppSettings = () => {
       <div className="navigation-container">
         <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
-        <Button label="See live" onClick={handleSeeLive} />
+        <Button label="See live" onClick={() => navigate(`/app/${appLink}`)} />
       </div>
       <AppContainer
         onAppDetails={(phase) => handleShow({ dialogName: "app", dialogStatus: phase })}

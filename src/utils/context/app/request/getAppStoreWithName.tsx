@@ -1,5 +1,5 @@
-import { axiosAuth } from "@axios/axiosAuth";
 import { APP_ACTIONS } from "@actions/AppActions";
+import { axiosAuth } from "@axios/axiosAuth";
 import { AppDispatchProps } from "app-context";
 import { AxiosError } from "axios";
 import { combineArraysWithOutDups } from "nexious-library";
@@ -7,11 +7,11 @@ import { nexiousAppMenu } from "@data/nexious.json";
 import { toggleAuthMenuItem } from "@app/toggleMenu";
 import { MenuProps } from "app-types";
 
-export const fetchAppWithName = async (props: AppDispatchProps) => {
+export const getAppStoreWithName = async (props: AppDispatchProps) => {
   const { appName, dispatch, updateAppData, updateActiveAppData, subscriptions } = props;
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.get(`/app/${appName}`);
+    const { data } = await axiosAuth.get(`/store/app/${appName}`);
     console.log("data :>> ", data);
     if (data && updateAppData) {
       updateAppData(data);

@@ -1,22 +1,22 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Button, Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "services-context";
 import { ServicesContext } from "@context/services/ServicesContext";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 
 const AppStore = () => {
-  const { store, inventory, getStoreInventory } = useContext(AppContext);
+  const { store, inventory } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  // const { pathname } = useLocation();
 
   // console.log("activeMenu :>> ", store);
-  // useStoreInventory()
-  useEffect(() => {
-    if (store.inventory.length > 0) getStoreInventory(store.storeId);
-  }, [pathname]);
+  // // useStoreInventory()
+  // useEffect(() => {
+  //   if (store.inventory.length > 0);
+  // }, [pathname]);
   console.log("store.inventory :>> ", store.inventory, inventory);
   console.log("cart :>> ", cart);
   return (

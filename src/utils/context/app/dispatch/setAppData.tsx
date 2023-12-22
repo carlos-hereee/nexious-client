@@ -3,7 +3,7 @@ import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
 export const setAppData = (props: AppDispatchProps) => {
-  const { dispatch, app, appList } = props;
+  const { dispatch, app, appList, store } = props;
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
     // console.log("app.store :>> ", app.store);
@@ -30,6 +30,6 @@ export const setAppData = (props: AppDispatchProps) => {
     }
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
-  // if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+  if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

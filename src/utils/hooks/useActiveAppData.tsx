@@ -1,23 +1,68 @@
+import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import {
+  nexiousName,
+  nexiousMedia,
+  nexiousMenu,
+  nexiousLogo,
+  nexiousAuthMenu,
+  nexiousAppId,
+  nexiousAppMenu,
+} from "@data/nexious.json";
 import { AppContext } from "@context/app/AppContext";
+// import { toggleAuthMenuItem } from "@app/toggleMenu";
+import { useLocation } from "react-router-dom";
+// import { combineArraysWithOutDups } from "nexious-library";
+// import { MenuProps } from "app-types";
+import { combineArraysWithOutDups } from "nexious-library";
+import { toggleAuthMenuItem } from "@app/toggleMenu";
+import { MenuProps } from "app-types";
 
 export const useActiveAppData = () => {
-  const { activeAppName, getAppWithName, appId } = useContext(AppContext);
-  // const { accessToken } = useContext(AuthContext);
-  // const { updateActiveAppData } = useContext(AppContext);
+  const { accessToken, subscriptions } = useContext(AuthContext);
+  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu } =
+    useContext(AppContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     // if user logged in
-    if (pathname.includes("app")) {
+    // check route homepage
+    if (pathname === "/" || pathname.includes("checkout") || pathname.includes("explore")) {
+      updateActiveAppData({
+        appId: nexiousAppId,
+        appName: nexiousName,
+        logo: nexiousLogo,
+        media: nexiousMedia,
+        menu: accessToken ? nexiousAuthMenu : nexiousMenu,
+      });
+    } else if (pathname.includes("app")) {
       const routeAppName = pathname.split("/")[2];
-      if (!appId || routeAppName !== activeAppName) getAppWithName(routeAppName, true);
-      if (routeAppName) getAppWithName(routeAppName, true);
-      // update document details
+      console.log("routeAppName, pathname :>> ", routeAppName === activeAppName, pathname);
+      //   // check route matches active app name
+      if (routeAppName !== activeAppName) getAppWithName(routeAppName);
+      else {
+        const noDups = combineArraysWithOutDups(nexiousAppMenu, menu);
+        const oldValues = noDups as MenuProps[]; // find auth menu
+        const authIdx = oldValues.findIndex((val) => val.category === "subscribe");
+        if (authIdx >= 0) {
+          // check user subscriptions
+          const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
+          // if user is subscribe to app toggle options
+          if (subIdx >= 0)
+            oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+          // updateActiveAppData({ menu: oldValues });
+          updateActiveAppData({ menu: oldValues });
+        }
+        console.log("activeAppName, routeAppName :>> ", activeAppName, routeAppName);
+        // updateActiveAppData({ ...data.app, menu: oldValues });
+      }
+    } else if (pathname.includes("store")) {
+      const routeAppName = pathname.split("/")[2];
+      console.log("routeAppName :>> ", routeAppName);
+      if (routeAppName !== activeAppName) {
+        getAppStore(routeAppName);
+      }
     }
-    // if(pathname.includes("explore")){
-
-    // }
-  }, [activeAppName, pathname]);
+    // update document details
+  }, [pathname]);
 };

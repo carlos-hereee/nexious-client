@@ -11,27 +11,9 @@ const AppPage = () => {
   const { pages, activeAppName } = useContext(AppContext);
   const { cart } = useContext(ServicesContext);
   const [page, setPage] = useState<PageProps>();
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-  // const [isStore, setStore] = useState(false);
-  // console.log("page :>> ", page);
-  useEffect(() => {
-    if (!pages) {
-      if (nexiousName === activeAppName) navigate("/");
-      else navigate(`/app/${readableUrlString(activeAppName)}`);
-    } else {
-      const query = pathname.split("/");
-      const pageName = query[query.length - 1];
-      if (pageName) {
-        const pageIdx = pages.findIndex((p) => p.name === pageName);
-        // if (pages[pageIdx]?.isStore) setStore(true);
-        // else if (pageIdx >= 0) setStore(false);
-        setPage(pages[pageIdx]);
-      }
-    }
-  }, [pathname]);
+  console.log("page :>> ", pages);
 
-  // if (isStore && page) return <AppStore page={page} />;
   if (!page) return <Loading message="loading page data..." />;
   return (
     <div className="container">
