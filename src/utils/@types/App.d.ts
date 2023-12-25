@@ -148,8 +148,9 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
-    onAddItem?: (phase: DialogStatusProps) => void;
-    onEditDetails?: (phase: DialogStatusProps) => void;
+    onPhaseClick: (phase: DialogStatusProps) => void;
+    // onAddItem?: (phase: DialogStatusProps) => void;
+    // onEditDetails?: (phase: DialogStatusProps) => void;
   }
   export interface MediaCardContainerProps {
     data?: ContainerDataProps;
@@ -164,7 +165,12 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-one" | "phase-two";
+  export type DialogStatusProps =
+    | "idle"
+    | "confirm-cancel"
+    | "configuration"
+    | "phase-one"
+    | "phase-two";
   export interface AppSettingDialogProps {
     pages: boolean;
     media: boolean;

@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
-import { AppSchema } from "app-context";
+import { AppSchema, StripeConfigProps } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssetProps } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
@@ -15,6 +15,7 @@ import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
 import { getAppStoreWithName } from "./request/getAppStoreWithName";
+import { setStripeConfig } from "./dispatch/setStripeConfig";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -32,6 +33,10 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateAppData = useCallback((props: AppAssetProps) => {
     const { app, appList, store } = props;
     setAppData({ dispatch, app, appList, store });
+  }, []);
+  const updateStripeConfig = useCallback((config: StripeConfigProps) => {
+    // const { app, appList, store } = props;
+    setStripeConfig({ dispatch, config });
   }, []);
 
   const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
@@ -75,6 +80,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
+      stripeConfig: state.stripeConfig,
       appUrl: state.appUrl,
       appLink: state.appLink,
       appId: state.appId,
@@ -108,12 +114,14 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setLoading,
       getStoreInventory,
       getAppStore,
+      updateStripeConfig,
     };
   }, [
     state.isLoading,
     state.activeAppName,
     accessToken,
     state.activeMenu,
+    state.stripeConfig,
     state.menu,
     state.appId,
     state.landing,

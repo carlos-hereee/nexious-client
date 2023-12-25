@@ -9,6 +9,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, loadingState: { ...state.loadingState, ...action.payload } };
     case APP_ACTIONS.SET_THEME_LIST:
       return { ...state, themeList: action.payload };
+    case APP_ACTIONS.SET_STRIPE_CONFIG:
+      return { ...state, stripeConfig: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:
       return { ...state, adminIds: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MENU:

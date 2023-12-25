@@ -5,6 +5,7 @@ import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { LogContext } from "@context/log/LogContext";
+import { StripeConfigProps } from "app-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -30,12 +31,14 @@ import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/updateAppDetails";
 import { removeStore } from "./requests/store/removeStore";
 import { removeMerch } from "./requests/store/removeMerch";
+import { getStripeAccount } from "./requests/store/getStripeAccount";
+import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
-  const { updateAppData, setLoading } = useContext(AppContext);
+  const { updateAppData, setLoading, updateStripeConfig } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
   const { status } = useContext(LogContext);
 
@@ -133,6 +136,12 @@ export const AdminState = ({ children }: ChildProps) => {
   const editMerch = useCallback((values: PreviewValueProps, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
+  const getAccount = useCallback((accountId: string) => {
+    getStripeAccount({ dispatch, handleAppAssets, accountId, updateStripeConfig });
+  }, []);
+  const updateAccount = useCallback((config: StripeConfigProps) => {
+    updateStripeAccount({ dispatch, handleAppAssets, config, updateStripeConfig });
+  }, []);
 
   const adminValues = useMemo(() => {
     return {
@@ -155,6 +164,7 @@ export const AdminState = ({ children }: ChildProps) => {
       formErrors: state.formErrors,
       mediaEntryForm: state.mediaEntryForm,
       themeList: state.themeList,
+      stripeForm: state.stripeForm,
       merchForm: state.merchForm,
       languageList: state.languageList,
       iconList: state.iconList,
@@ -179,6 +189,8 @@ export const AdminState = ({ children }: ChildProps) => {
       setFormStatus,
       deleteStore,
       deleteMerchItem,
+      getAccount,
+      updateAccount,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

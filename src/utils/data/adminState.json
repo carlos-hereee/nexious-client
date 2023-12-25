@@ -41,6 +41,23 @@
       }
     }
   },
+  "stripeForm": {
+    "heading": "",
+    "submitLabel": "Save and continue",
+    "formId": "stripe-config",
+    "fieldHeading": {},
+    "initialValues": { "readPrivacyPolicy": false },
+    "labels": {
+      "readPrivacyPolicy": "Confirm you have read and agree with Stripes's privacy policy"
+    },
+    "placeholders": {},
+    "types": {
+      "readPrivacyPolicy": "checkbox"
+    },
+    "withFileUpload": false,
+    "previewLabel": "See changes",
+    "desiredOrder": ["readPrivacyPolicy"]
+  },
   "initAppForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",

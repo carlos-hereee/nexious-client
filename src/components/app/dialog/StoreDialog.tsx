@@ -7,6 +7,7 @@ import { useFormStatusChecker } from "@hooks/useFormStatusChecker";
 import AddMerch from "../store/AddMerch";
 import BuildStore from "../store/BuildStore";
 import EditStore from "../store/EditStore";
+import UpdateStripeConfig from "../store/UpdateStripeConfig";
 
 const StoreDialog = (props: DialogProps) => {
   const { onClose, status } = props;
@@ -21,6 +22,7 @@ const StoreDialog = (props: DialogProps) => {
       {/* TODO add preview store */}
       {status === "phase-one" && (store.storeId ? <EditStore /> : <BuildStore />)}
       {status === "phase-two" && <AddMerch />}
+      {status === "configuration" && <UpdateStripeConfig />}
     </Dialog>
   );
 };

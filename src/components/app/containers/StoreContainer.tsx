@@ -8,7 +8,7 @@ import CopyToClipboard from "../sections/CopyToClipboard";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
 const StoreContainer = (props: PageContainerProps) => {
-  const { onAddItem, onEditDetails } = props;
+  const { onPhaseClick } = props;
   const { store, appLink } = useContext(AppContext);
 
   if (!store || !store.storeId) {
@@ -16,7 +16,7 @@ const StoreContainer = (props: PageContainerProps) => {
       <div className="container">
         <h2 className="heading">Store:</h2>
         <KeyWithDefinition label="Store details:" labelLayout="bolden">
-          {onAddItem && <Button label="+ Create store" onClick={() => onAddItem("phase-one")} />}
+          <Button label="+ Create store" onClick={() => onPhaseClick("phase-one")} />
         </KeyWithDefinition>
       </div>
     );
@@ -33,21 +33,22 @@ const StoreContainer = (props: PageContainerProps) => {
       <KeyWithDefinition label="Store url:" labelLayout="bolden">
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
       </KeyWithDefinition>
+      <KeyWithDefinition label="Stripe Settings:" labelLayout="bolden">
+        <Button label="View configuration" onClick={() => onPhaseClick("configuration")} />
+      </KeyWithDefinition>
       {!store.inventory || store.inventory.length === 0 ? (
         <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={noInventoryHint}>
-          {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
+          <Button label="+ Add merch" onClick={() => onPhaseClick("phase-two")} />
         </KeyWithDefinition>
       ) : (
         <MerchList />
       )}
-      {onEditDetails && (
-        <KeyWithDefinition label="More options: " labelLayout="bolden">
-          <div className="flex-g">
-            <Button label="Edit store details" onClick={() => onEditDetails("phase-one")} />
-            {onAddItem && <Button label="+ Add merch" onClick={() => onAddItem("phase-two")} />}
-          </div>
-        </KeyWithDefinition>
-      )}
+      <KeyWithDefinition label="More options: " labelLayout="bolden">
+        <div className="flex-g">
+          <Button label="Edit store details" onClick={() => onPhaseClick("phase-one")} />
+          <Button label="+ Add merch" onClick={() => onPhaseClick("phase-two")} />
+        </div>
+      </KeyWithDefinition>
     </div>
   );
 };
