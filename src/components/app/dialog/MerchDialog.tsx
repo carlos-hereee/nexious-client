@@ -10,7 +10,7 @@ import { MerchProps } from "services-context";
 import EditMerch from "../store/EditMerch";
 
 const MerchDialog = (props: DialogProps) => {
-  const { onClose, header, formValues } = props;
+  const { onClose, formValues } = props;
   // const { store } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
@@ -18,7 +18,7 @@ const MerchDialog = (props: DialogProps) => {
   useFormStatusChecker(onClose);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={header}>
+    <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {formValues && <EditMerch initValues={formValues as MerchProps} />}
     </Dialog>
