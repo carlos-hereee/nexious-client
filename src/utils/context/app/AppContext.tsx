@@ -5,7 +5,6 @@ import { AppSchema, StripeConfigProps } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssetProps } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
-
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -99,6 +98,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       owner: state.owner,
       appError: state.appError,
       logo: state.logo,
+      email: state.email,
       activeLogo: state.activeLogo,
       store: state.store,
       inventory: state.inventory,

@@ -23,9 +23,13 @@ declare module "app-context" {
     handleSeeLive: () => void;
     handleNavigation: (link: string) => void;
   }
-  export interface StripeConfigProps {}
+  export interface StripeConfigProps {
+    currency?: string;
+    readPrivacyPolicy?: boolean;
+  }
   export interface StripeUpdateConfigProps {
-    readPrivacyPolicy: boolean;
+    readPrivacyPolicy?: boolean;
+    currency?: string;
   }
   export interface AppStateProps {
     // auth schema
@@ -38,6 +42,7 @@ declare module "app-context" {
     iconList: IconListItem[];
     appError: string;
     appName: string;
+    email: string;
     activeAppName: string;
     welcomeMessage: string;
     landing?: PageProps;
@@ -82,7 +87,7 @@ declare module "app-context" {
     logo?: string;
     media?: MediaProps;
     appName?: string;
-    config?: StripeConfigProps;
+    config?: StripeUpdateConfigProps;
     subscriptions?: AppListProps[];
     storeId?: string;
     isLoading?: boolean;

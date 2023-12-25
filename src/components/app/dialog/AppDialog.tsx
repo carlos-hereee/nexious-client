@@ -7,14 +7,14 @@ import EditAppDetails from "../forms/EditAppDetails";
 import EditLanding from "../forms/EditLanding";
 
 const AppDialog = (props: DialogProps) => {
-  const { onClose, header, status } = props;
+  const { onClose, status } = props;
   const { theme } = useContext(AuthContext);
 
   // close dialog on success
   useFormStatusChecker(onClose);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={header}>
+    <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && <EditAppDetails onCancelClick={onClose} />}
       {status === "phase-two" && <EditLanding onCancelClick={onClose} />}

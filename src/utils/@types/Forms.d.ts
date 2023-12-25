@@ -53,6 +53,7 @@ declare module "app-forms" {
     hero?: AssetProps;
     // optional data
     placeholders?: { [key: string]: string | undefined };
+    dataList?: { [key: string]: string[] };
     heading?: string;
     fieldHeading: { [key: string]: string | undefined };
     desiredOrder: string[];

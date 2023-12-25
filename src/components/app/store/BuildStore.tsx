@@ -8,7 +8,7 @@ import { PreviewValueProps } from "app-forms";
 
 const BuildStore = () => {
   const { storeForm, addStore, isLoading } = useContext(AdminContext);
-  const { appId } = useContext(AppContext);
+  const { appId, email } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
   // const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const BuildStore = () => {
     <div className="container">
       <div className="form-hero">
         <Form
-          initialValues={storeForm.initialValues}
+          initialValues={{ ...storeForm.initialValues, email: email || "" }}
           onSubmit={(values: PreviewValueProps) => addStore(values, appId)}
           heading={storeForm.heading}
           submitLabel={storeForm.submitLabel}
@@ -26,9 +26,29 @@ const BuildStore = () => {
           disableForm={!accessToken}
           // responseError={formErrors.storeFormError}
           placeholders={storeForm.placeholders}
+          populateLink={{
+            isRegistered: [
+              {
+                word: "Stripe Connected Account Agreement.",
+                link: "https://stripe.com/legal/connect-account",
+              },
+            ],
+            termsOfService: [
+              {
+                word: "Stripe Connected Account Agreement",
+                link: "https://stripe.com/legal/connect-account",
+              },
+              {
+                word: "Stripe Terms of Service",
+                link: "https://stripe.com/legal/ssa",
+              },
+            ],
+          }}
           // onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           fieldHeading={storeForm.fieldHeading}
-          schema={{ required: ["name", "pageName"] }}
+          schema={{
+            required: ["storeName", "pageName", "email", "isRegistered", "termsOfService"],
+          }}
           noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}

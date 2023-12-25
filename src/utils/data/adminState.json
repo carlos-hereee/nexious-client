@@ -6,10 +6,11 @@
     "submitLabel": "Save and continue",
     "formId": "initApp",
     "fieldHeading": { "language": "App language", "theme": "App theme" },
-    "initialValues": { "appName": "", "logo": "", "locale": "" },
+    "initialValues": { "appName": "", "logo": "", "locale": "", "email": "" },
     "labels": {
       "appName": "Enter app name",
       "logo": "Add new app logo",
+      "email": "Forwarding email",
       "theme": "Select custom themes to include for your app",
       "locale": "What is the primary language of your app? (can be changed at any time)",
       "language": "Increase your target audience by adding making it assecible to more people"
@@ -24,11 +25,12 @@
       "logo": "file",
       "theme": "datalist",
       "language": "datalist",
-      "locale": "select"
+      "locale": "select",
+      "email": "email"
     },
     "withFileUpload": true,
     "previewLabel": "See changes",
-    "desiredOrder": ["appName", "logo", "theme", "language", "locale"],
+    "desiredOrder": ["appName", "logo", "email", "theme", "language", "locale"],
     "hero": {
       "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
       "alt": "build app",
@@ -46,17 +48,16 @@
     "submitLabel": "Save and continue",
     "formId": "stripe-config",
     "fieldHeading": {},
-    "initialValues": { "readPrivacyPolicy": false },
+    "initialValues": { "readPrivacyPolicy": false, "currency": "" },
     "labels": {
+      "currency": "Default currency - usd",
       "readPrivacyPolicy": "Confirm you have read and agree with Stripes's privacy policy"
     },
-    "placeholders": {},
-    "types": {
-      "readPrivacyPolicy": "checkbox"
-    },
+    "placeholders": { "currency": "usd" },
+    "types": { "readPrivacyPolicy": "checkbox", "currency": "select" },
     "withFileUpload": false,
     "previewLabel": "See changes",
-    "desiredOrder": ["readPrivacyPolicy"]
+    "desiredOrder": ["readPrivacyPolicy", "currency"]
   },
   "initAppForm": {
     "heading": "Initialize your app!",
@@ -290,24 +291,48 @@
     "heading": "Create store",
     "formId": "storeForm",
     "previewLabel": "See changes",
-    "fieldHeading": {},
-    "initialValues": { "pageName": "", "name": "", "title": "", "hero": "", "description": "" },
+    "fieldHeading": { "isRegistered": "Register your account with stripe" },
+    "initialValues": {
+      "pageName": "",
+      "email": "",
+      "storeName": "",
+      "title": "",
+      "hero": "",
+      "description": "",
+      "isRegistered": false,
+      "termsOfService": false
+    },
     "types": {
       "description": "textarea",
-      "name": "text",
+      "storeName": "text",
       "title": "text",
       "hero": "file",
-      "pageName": "text"
+      "pageName": "text",
+      "email": "email",
+      "isRegistered": "checkbox",
+      "termsOfService": "checkbox"
     },
     "labels": {
-      "name": "Store name",
+      "storeName": "Store name",
       "pageName": "Page name",
       "title": "Heading",
+      "email": "Forwarding email",
       "description": "About",
-      "hero": "Add image"
+      "hero": "Add image",
+      "isRegistered": "By registering your account, you agree to our Services Agreement and the Stripe Connected Account Agreement.",
+      "termsOfService": "Payment processing services for account holders on Nexious.tech are provided by Stripe and are subject to the Stripe Connected Account Agreement, which includes the Stripe Terms of Service (collectively, the “Stripe Services Agreement”). By agreeing to [this agreement / these terms / and so on] or continuing to operate as a an account holders on Nexious.tech, you agree to be bound by the Stripe Services Agreement, as the same may be modified by Stripe from time to time. As a condition of Nexious.tech enabling payment processing services through Stripe, you agree to provide Nexious.tech accurate and complete information about you and your business, and you authorize Nexious.tech to share it and transaction information related to your use of the payment processing services provided by Stripe."
     },
-    "placeholders": { "hero": "", "description": "", "name": "", "pageName": "Store/Shop" },
-    "desiredOrder": ["pageName", "name", "title", "hero", "description"]
+    "placeholders": { "hero": "", "description": "", "storeName": "", "pageName": "Store/Shop" },
+    "desiredOrder": [
+      "pageName",
+      "email",
+      "storeName",
+      "title",
+      "hero",
+      "description",
+      "isRegistered",
+      "termsOfService"
+    ]
   },
   "merchForm": {
     "heading": "Add merch",

@@ -10,6 +10,7 @@ declare module "app-admin" {
     addMerchFormError?: string;
     buildAppFormError?: string;
     updateStoreFormError?: string;
+    updateAppDetailsFormError?: string;
   };
   export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 

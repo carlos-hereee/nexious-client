@@ -40,7 +40,7 @@ const EditStore = () => {
             onCancel={() => setShow(true)}
             cancelLabel="Delete store"
             fieldHeading={storeForm.fieldHeading}
-            schema={{ required: ["name", "title", "pageName"] }}
+            schema={{ required: ["name", "title", "pageName", "email"] }}
             noScroll
           />
           {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}
