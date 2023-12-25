@@ -1,28 +1,36 @@
 import { useContext } from "react";
-import { Form, Hero } from "nexious-library";
+import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
-// import { InitAppProps } from "app-forms";
+import { LoginFormValues } from "app-forms";
+import { useAuthRouter } from "@hooks/useAuthRouter";
 
 const Login = () => {
-  const { login, authErrors, loginForm } = useContext(AuthContext);
+  const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
 
-  // const [values, setValues] = useState(loginForm.initialValues);
+  const { navigateTo } = useAuthRouter();
 
-  // useEffect(() => {
-  //   setValues(loginForm.initialValues);
-  // }, []);
+  const handleClick = () => {
+    resetAuthErrors();
+    navigateTo("register");
+  };
 
-  // if (isFormLoading) return <Loading message="Loading app data" />;
+  if (isLoading) return <Loading message="Loading user data" />;
   return (
     <div className="container">
+      {authErrors.userNotFound && (
+        <div className="flex-center">
+          <p className="error-message"> {authErrors.signInError} </p>
+          <Button label="Sign up with this username?" onClick={handleClick} />
+        </div>
+      )}
       <div className="form-hero">
         {loginForm.initialValues && (
           <Form
             initialValues={loginForm.initialValues}
-            responseError={authErrors.signInError}
             heading={loginForm.heading}
-            onSubmit={login}
+            onSubmit={(val: LoginFormValues) => login(val)}
+            schema={{ require: ["username", "password"] }}
           />
         )}
         {loginForm.hero && <Hero hero={loginForm.hero} />}

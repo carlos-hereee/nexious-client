@@ -11,16 +11,17 @@ const AppCard = (props: AppCardProps) => {
   const isAdmin = owner.userId === user.userId;
   const heroData = { url: app.logo, alt: `industry-brand-${app.appName}` };
   return (
-    <div className={theme}>
-      <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
-      <div className="card-row-body">
+    <div className={`app-card${theme ? ` ${theme}` : ""}`}>
+      <button type="button" className="btn-card" onClick={handleSeeLive}>
+        <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
         <h2 className="heading">{app?.appName || "No name"}</h2>
-        {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <div className="navigation-container">
-          {isAdmin && <Button label="Settings" onClick={() => handleNavigation("settings")} />}
-          <Button label="See live" onClick={handleSeeLive} />
+        <div className="card-row-body">
+          {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
+      </button>
+      <div className="navigation-container">
+        {isAdmin && <Button label="Settings" onClick={() => handleNavigation("settings")} />}
       </div>
     </div>
   );

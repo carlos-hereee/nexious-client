@@ -1,12 +1,15 @@
-// import { useContext } from "react";
-// import { Navigate, Outlet } from "react-router-dom";
-// import { AuthContext } from "@context/auth/AuthContext";
+import { useActiveAppData } from "@hooks/useActiveAppData";
 import { Outlet } from "react-router-dom";
+// import { Outlet, useLocation } from "react-router-dom";
+// import { useActiveAppMenus } from "@hooks/useActiveAppMenus";
 
 const PublicRoute = () => {
-  // const { accessToken } = useContext(AuthContext);
+  // const { pathname } = useLocation();
+  // useActiveAppMenus();
+  useActiveAppData();
 
-  // if (accessToken) return <Navigate to="/dashboard" />;
+  // if(pathname ==="/ ") return
+
   return <Outlet />;
 };
 export default PublicRoute;

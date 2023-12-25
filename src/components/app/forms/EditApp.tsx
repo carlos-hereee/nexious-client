@@ -8,11 +8,12 @@ import { AuthContext } from "@context/auth/AuthContext";
 // import { MenuProps } from "app-types";
 import { scrollToId } from "@app/scrollToElement";
 import { useFormOrganizer } from "@hooks/useFormOrganizer";
-import { formatPage } from "@forms/formatPage";
-import { formatNewsletter } from "@forms/formatNewsletter";
-import { formatMedia } from "@forms/formatMedia";
+import { formatPage } from "@formatters/formatPage";
+import { formatNewsletter } from "@formatters/formatNewsletter";
+import { formatMedia } from "@formatters/formatMedia";
 import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
+import { uniqueApplist } from "@formatters/uniqeList";
 import PreviewNewsletter from "../preview/PreviewNewsletter";
 import PreviewSocials from "../preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
@@ -35,7 +36,7 @@ const EditApp = () => {
     newsletterForm,
     // calendarForm,
   } = useContext(AdminContext);
-  const { theme } = useContext(AuthContext);
+  const { theme, accessToken } = useContext(AuthContext);
   const [formValues, setAppValues] = useState<InitPaginateFormProps[]>([]);
   // initial data if any
   const {
@@ -81,14 +82,7 @@ const EditApp = () => {
           initialValues: { appName: appName || "", logo },
           schema: {
             required: ["appName", "logo"],
-            unique: [
-              {
-                name: "appName",
-                list: appList
-                  ? appList.filter((app) => app.appName && app.appName !== appName)
-                  : [],
-              },
-            ],
+            unique: [{ name: "appName", list: uniqueApplist(appList) }],
           },
           dataList: { theme: themeList },
           onSubmit: (e: any) => editAppName(e, appId),
@@ -111,11 +105,6 @@ const EditApp = () => {
           clearSelection: { icon: true },
           formId: "landingPage",
         },
-        // languages: {
-        //   schema: {},
-        //   onViewPreview: (e: PreviewValueProps) => handlePreview("languages", e),
-        //   dataList: { language: languageList, locale: languageList },
-        // },
         {
           ...socialMediaForm,
           dataList: { media: mediaList },
@@ -166,7 +155,7 @@ const EditApp = () => {
           paginate={formValues}
           theme={theme}
           page={1}
-          onCancel={() => navigate("/")}
+          onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           onPageClick={() => setActive("")}
           onDialogClose={() => setActive("")}
           previewPage={

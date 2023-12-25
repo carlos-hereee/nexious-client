@@ -1,0 +1,44 @@
+{
+  "isLoading": true,
+  "stripeSecret": "",
+  "cart": [],
+  "paymentMethods": [
+    {
+      "uid": "payment-1",
+      "type": "visa/credit",
+      "name": "Debit/Credit card",
+      "icon": "visa",
+      "hero": {
+        "url": "icons/bebit-credit.svg",
+        "small": "small/icons/bebit-credit.jpg",
+        "name": "mastercard",
+        "alt": "mastercard"
+      }
+    },
+
+    {
+      "uid": "payment-3",
+      "type": "in-store",
+      "name": "Store",
+      "icon": "store"
+    }
+  ],
+  "stripeConfirmation": {
+    "status": "",
+    "paymentStatus": "",
+    "customer": null,
+    "intent": ""
+  },
+  "paypal": {
+    "uid": "payment-2",
+    "type": "paypal",
+    "name": "Paypal",
+    "icon": "paypal",
+    "hero": {
+      "url": "icons/paypal.svg",
+      "small": "small/icons/paypal.jpg",
+      "name": "paypal",
+      "alt": "paypal"
+    }
+  }
+}

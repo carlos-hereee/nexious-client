@@ -9,7 +9,7 @@ export const updatePage = async (props: AdminDisptachProps) => {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     // console.log("values :>> ", values);
     const { data } = await axiosMedia.post(`/app/update-page/${appId}/page/${pageId}`, values);
-    if (data) handleAppAssets(data);
+    if (data && handleAppAssets) handleAppAssets(data);
     // dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });

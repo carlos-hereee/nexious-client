@@ -3,7 +3,13 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 // import { AppContext } from "@context/app/AppContext";
-import { nexiousMenu, nexiousName, nexiousMedia, nexiousLogo } from "@data/nexious.json";
+import {
+  nexiousName,
+  nexiousMedia,
+  nexiousLogo,
+  nexiousAuthMenu,
+  nexiousAppId,
+} from "@data/nexious.json";
 
 const PrivateRoute = () => {
   const { accessToken } = useContext(AuthContext);
@@ -13,11 +19,11 @@ const PrivateRoute = () => {
   useEffect(() => {
     if (pathname === "/dashboard") {
       updateActiveAppData({
-        appId: "",
+        appId: nexiousAppId,
         appName: nexiousName,
         logo: nexiousLogo,
         media: nexiousMedia,
-        menu: nexiousMenu,
+        menu: nexiousAuthMenu,
       });
     }
   }, [pathname]);

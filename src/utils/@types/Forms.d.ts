@@ -1,4 +1,5 @@
 declare module "app-forms" {
+  import { MerchProps } from "services-context";
   import { AppListProps, PageProps } from "app-context";
   import {
     AssetProps,
@@ -8,14 +9,27 @@ declare module "app-forms" {
     MediaProps,
     MenuItemProps,
     NewsletterProps,
+    StoreProps,
   } from "app-types";
 
+  export interface FormatStoreFormProps {
+    store: StoreProps;
+    desiredOrder: string[];
+  }
+  export interface FormatMerchFormProps {
+    merch: MerchProps;
+    desiredOrder: string[];
+  }
   export interface InitAppProps {
     appName: string;
     logo: string;
   }
-  export interface AuthFormValueProps {
+  export interface LoginFormValues {
     username: string;
+    password: string;
+  }
+  export interface AuthFormValueProps extends LoginFormValues {
+    // username: string;
     password?: string;
     confirmPassword?: string;
     newPassword?: string;
@@ -39,6 +53,7 @@ declare module "app-forms" {
     hero?: AssetProps;
     // optional data
     placeholders?: { [key: string]: string | undefined };
+    dataList?: { [key: string]: string[] };
     heading?: string;
     fieldHeading: { [key: string]: string | undefined };
     desiredOrder: string[];

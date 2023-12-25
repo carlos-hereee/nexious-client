@@ -1,29 +1,35 @@
 import { APP_ACTIONS } from "@actions/AppActions";
+import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
 export const setAppData = (props: AppDispatchProps) => {
-  const { dispatch, values } = props;
-  if (values) {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
+  const { dispatch, app, appList, store } = props;
+  dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
+  if (app) {
+    // console.log("app.store :>> ", app.store);
     // if values exists other wise use default typec\
-    if (values.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: values.logo });
-    if (values.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: values.adminIds });
-    if (values.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: values.appId });
-    if (values.locale) dispatch({ type: APP_ACTIONS.SET_LOCALE, payload: values.locale });
-    if (values.appName) dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: values.appName });
-    if (values.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: values.calendar });
-    if (values.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: values.landing });
-    if (values.menu) dispatch({ type: APP_ACTIONS.SET_MENU, payload: values.menu });
-    if (values.media) dispatch({ type: APP_ACTIONS.SET_MEDIA, payload: values.media });
-    if (values.owner) dispatch({ type: APP_ACTIONS.SET_OWNER, payload: values.owner });
-    if (values.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: values.themeList });
-    if (values.pages) dispatch({ type: APP_ACTIONS.SET_PAGES, payload: values.pages });
-    if (values.languageList) {
-      dispatch({ type: APP_ACTIONS.SET_LANGUAGE_LIST, payload: values.languageList });
+    if (app.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: app.logo });
+    if (app.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: app.adminIds });
+    if (app.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: app.appId });
+    if (app.locale) dispatch({ type: APP_ACTIONS.SET_LOCALE, payload: app.locale });
+    if (app.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: app.calendar });
+    if (app.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: app.landing });
+    if (app.menu) dispatch({ type: APP_ACTIONS.SET_MENU, payload: app.menu });
+    if (app.media) dispatch({ type: APP_ACTIONS.SET_MEDIA, payload: app.media });
+    if (app.owner) dispatch({ type: APP_ACTIONS.SET_OWNER, payload: app.owner });
+    if (app.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: app.themeList });
+    if (app.pages) dispatch({ type: APP_ACTIONS.SET_PAGES, payload: app.pages });
+    if (app.languageList) dispatch({ type: APP_ACTIONS.SET_LANGUAGES, payload: app.languageList });
+    if (app.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: app.store });
+    if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
+    if (app.appName) {
+      const appLink = readableUrlString(app.appName);
+      dispatch({ type: APP_ACTIONS.SET_APP_LINK, payload: appLink });
+      dispatch({ type: APP_ACTIONS.SET_APP_URL, payload: formatAppUrl(appLink) });
+      dispatch({ type: APP_ACTIONS.SET_APP_NAME, payload: app.appName });
     }
-    // if (values.newsletter) {
-    //   dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: values.newsletter });
-    // }
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }
+  if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
+  if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+  dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

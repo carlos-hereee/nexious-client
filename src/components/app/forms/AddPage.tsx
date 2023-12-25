@@ -1,17 +1,19 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
+import { OnclickProps } from "app-admin";
 import { PreviewValueProps } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 
-const AddPage = () => {
+const AddPage = (props: OnclickProps) => {
   const { pagesForm, addPage, sectionEntries, isLoading } = useContext(AdminContext);
   const { iconList, appId } = useContext(AppContext);
+  const { onCancelClick } = props;
   // const { theme } = useContext(AuthContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (isLoading) setStatus("loading");
@@ -44,10 +46,12 @@ const AddPage = () => {
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
         heading="Add page content"
-        onCancel={() => navigate("/")}
+        onCancel={onCancelClick}
+        // onCancel={() => navigate("/dashboard")}
         onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
+        noScroll
         schema={{ required: ["title", "name"] }}
       />
     </div>

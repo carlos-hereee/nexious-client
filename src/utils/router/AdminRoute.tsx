@@ -1,25 +1,30 @@
 import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+// import { useContext } from "react";
+// import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 
 const AdminRoute = () => {
-  const { user, accessToken } = useContext(AuthContext);
-  const { owner, getAppWithName, appError, isLoading, appName } = useContext(AppContext);
-  const location = useLocation();
+  const { accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
+  const { isLoading: isAppLoading, getAppWithName, appName } = useContext(AppContext);
+  // const { user, accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
+  // const { owner, isLoading: isAppLoading, getAppWithName, appName } = useContext(AppContext);
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (!isLoading) {
-      const query = location.pathname.split("/");
-      const queryName = query[query.length - 1];
-      if (appName !== queryName) getAppWithName(queryName);
-    }
-  }, [isLoading]);
+    const query = pathname.split("/");
+    const routeAppName = query[query.length - 1];
+    if (!appName) {
+      if (routeAppName) getAppWithName(routeAppName);
+    } else if (routeAppName !== appName) getAppWithName(routeAppName);
+  }, [pathname, appName]);
 
-  if (isLoading) return <Outlet />;
+  if (isAppLoading) return <Outlet />;
+  if (isAuthLoading) return <Outlet />;
   if (!accessToken) return <Navigate to="/" />;
-  if (!appError) return <Outlet />;
-  if (user.userId !== owner.userId) return <Navigate to="/" />;
+  // TODO: check user is app owner
+  // if (accessToken && user.userId !== owner.userId) return <Navigate to="/" />;
   return <Outlet />;
 };
 export default AdminRoute;

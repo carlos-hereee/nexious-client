@@ -1,43 +1,57 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "@context/auth/AuthContext";
-import { AppListProps } from "app-context";
 import AppCard from "./AppCard";
-// import CreateAppButton from "./buttons/CreateAppButton";
 
-const ExploreApps = () => {
-  const { appList, updateActiveAppData } = useContext(AppContext);
-  const { theme } = useContext(AuthContext);
+const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
+  const { featuredOnly, heading } = props;
+  const { appList, getAppList } = useContext(AppContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    // TODO: AVOID DOUBLE RENDDER
+    getAppList();
+    // console.log("appList :>> ", appList);
+  }, []);
 
-  const handleSeeLive = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    const { logo, appName, menu, appId } = app;
-    updateActiveAppData({ menu, appName, logo, media: app.media, appId });
-    navigate(`/app/${name}`);
-  };
-
+  if (featuredOnly) {
+    const featuredList = appList.slice(0, 5);
+    if (featuredList.length === 0) return <div />;
+    return (
+      <div className="card-container">
+        {heading && <h2 className="heading">{heading}</h2>}
+        {featuredList.map((app) => {
+          const appName = app.appName.split(" ").join("+");
+          return (
+            <AppCard
+              app={app}
+              key={app.appId}
+              handleSeeLive={() => navigate(`/app/${appName}`)}
+              handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+              owner={app.owner}
+              theme="highlight"
+            />
+          );
+        })}
+      </div>
+    );
+  }
   return (
-    // <div className="">
     <div className="card-container">
-      <h2 className="heading">New apps</h2>
+      <h2 className="heading">Featured Apps</h2>
       {appList.map((app) => {
         const appName = app.appName.split(" ").join("+");
         return (
           <AppCard
             app={app}
             key={app.appId}
-            handleSeeLive={() => handleSeeLive(app)}
+            handleSeeLive={() => navigate(`/app/${appName}`)}
             handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
             owner={app.owner}
-            theme={theme ? `app-card alt-${theme}` : "app-card"}
+            theme="highlight"
           />
         );
       })}
     </div>
-
-    // </div>
   );
 };
 export default ExploreApps;

@@ -1,14 +1,130 @@
 declare module "app-types" {
-  import { AppListProps, PageProps } from "app-context";
+  import { MerchProps } from "services-context";
   import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
   }
+  export interface KeyWithDefinitionProps {
+    label?: string;
+    value?: string;
+    hint?: { title: string; body: string };
+    labelLayout?: "bolden";
+    children?: React.ReactNode;
+  }
+  export interface AppDetailsProps {
+    locale: string;
+    appName: string;
+    logo: string;
+  }
+  export interface AppDetailsFormProps {
+    app: AppDetailsProps;
+    desiredOrder: string[];
+  }
+  export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
+  export type ThemeColorProps = {
+    primary: string;
+    secondary: string;
+    altPrimary: string;
+    altSecondary: string;
+  };
+  export interface CopyToClipboardProps {
+    heading?: string;
+    label?: string;
+    labelLayout?: string;
+    theme?: string;
+    data: string;
+    isCopy?: boolean;
+  }
+  export interface AppContainerProps {
+    data?: ContainerDataProps;
+    onAppDetails?: (phase: DialogStatusProps) => void;
+  }
+  export type ThemeList = {
+    name: string;
+    value: string;
+    label: string;
+    uid: string;
+    colors: ThemeColorProps;
+    backgroundColors: ThemeColorProps;
+  };
+
+  export interface StoreProps {
+    name: string;
+    storeId: string;
+    accountId: string;
+    title?: string;
+    hero?: string;
+    body?: string;
+    inventory: MerchProps[];
+  }
+  export interface AppListProps {
+    appName: string;
+    appId: string;
+    adminIds: AdminIdProps[];
+    logo: string;
+    owner: UserSchema;
+    menu?: MenuProps[];
+    media?: MediaProps;
+  }
+  export interface PageProps {
+    title: string;
+    tagline: string;
+    body: string;
+    hasCta: boolean;
+    hasSections: boolean;
+    hero: string;
+    cta: CallToActionProps[];
+    sections: SectionProps[];
+    name?: string;
+    isStore: boolean;
+    uid?: string;
+    pageId?: string;
+  }
+  export type ActiveMenuProps = {
+    menu?: MenuProps[];
+    appName?: string;
+    logo?: string;
+    appId?: string;
+    media?: MediaProps;
+  };
+  export type IconListItem = {
+    uid: string;
+    name: string;
+    value: string;
+    icon: string;
+    label: string;
+  };
+  export interface AppProps {
+    appName: string;
+    store: StoreProps;
+    appId: string;
+    adminIds: AdminIdProps[];
+    logo: string;
+    locale: string;
+    languageList: MenuItemProps[];
+    pages: PageProps[];
+    isLoading: boolean;
+    isOnline: boolean;
+    appList: AppListProps[];
+    welcomeMessage: string;
+    appError: string;
+    landing: PageProps;
+    owner: UserSchema;
+    newsletter: NewsletterProps;
+    media: MediaProps;
+    menu: MenuProps[];
+    activeMenu: MenuProps[];
+    themeList: ThemeList[];
+    iconList: MenuItemProps[];
+    calendar: CalendarProps;
+  }
   export interface DialogProps {
-    header?: { heading?: string; subtitle?: string; data?: string };
     media?: MediaItemProp;
-    status?: string;
+    status?: DialogStatusProps;
+    formValues?: unknown;
+    activePage?: PageProps;
+    activeMedia?: MediaItemProp;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;
@@ -18,6 +134,7 @@ declare module "app-types" {
     data?: { heading: string; name: string };
     name?: string;
     onRemove?: (page: PageProps) => void;
+    onAddPage?: (page: DialogStatusProps) => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {
@@ -26,12 +143,21 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
-  export interface MediaCardContainerProps {
-    data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
+  export interface PageContainerProps {
+    // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
     onClick?: () => void;
-    onAddMedia?: () => void;
+    onPhaseClick: (phase: DialogStatusProps) => void;
+    // onAddItem?: (phase: DialogStatusProps) => void;
+    // onEditDetails?: (phase: DialogStatusProps) => void;
+  }
+  export interface MediaCardContainerProps {
+    data?: ContainerDataProps;
+    onRemove?: (key: string) => void;
+    onMediaClick?: (key: MediaItemProp) => void;
+    onClick?: () => void;
+    onAdd?: (phase: DialogStatusProps) => void;
   }
   export interface CardContainerProps {
     data?: MediaItemProp[];
@@ -39,7 +165,23 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps = "idle" | "confirm-cancel" | "phase-two";
+  export type DialogStatusProps =
+    | "idle"
+    | "confirm-cancel"
+    | "configuration"
+    | "phase-one"
+    | "phase-two";
+  export interface AppSettingDialogProps {
+    pages: boolean;
+    media: boolean;
+    store: boolean;
+    app: boolean;
+  }
+  export interface DialogShowProps {
+    dialogName: AppSettingDialogOptions;
+    dialogStatus: DialogStatusProps;
+  }
+  export type AppSettingDialogOptions = "pages" | "media" | "store" | "app";
   export interface SectionProps {
     title: string;
     uid: string;
@@ -80,6 +222,7 @@ declare module "app-types" {
     category: string;
     isPrivate: boolean;
     isPage: boolean;
+    isStore?: boolean;
     isToggle: boolean;
     name: string;
     value: string;
@@ -111,10 +254,7 @@ declare module "app-types" {
     userId: string;
     role: string;
   };
-  export type ImageBuffer = {
-    data: { data: Buffer };
-    contentType: string;
-  };
+
   export type AssetProps = {
     url: string;
     alt: string;
@@ -176,10 +316,7 @@ declare module "app-types" {
     [key: string]: {
       schema?: {
         required?: string[];
-        unique?: {
-          name: string;
-          list: AppListProps[];
-        }[];
+        unique?: { name: string; list: AppListProps[] }[];
       };
       dataList?: { [key: string]: MenuItemProps[] };
       addEntries?: SectionEntryOganizer;

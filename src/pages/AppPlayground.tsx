@@ -2,7 +2,7 @@ import AppCard from "@components/app/AppCard";
 import CreateApp from "@components/app/CreateApp";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { AppListProps } from "app-context";
+import { AppListProps } from "app-types";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,8 +21,8 @@ const AppPlayground = () => {
   return (
     <div className="container">
       <CreateApp />
-      <div className="container">
-        <h2 className="heading">All your apps: </h2>
+      <h2 className="heading">All your apps: </h2>
+      <div className="card-container">
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => {
             const appName = app.appName.split(" ").join("+");
@@ -33,7 +33,7 @@ const AppPlayground = () => {
                 handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
                 handleSeeLive={() => handleSeeLive(app)}
                 owner={app.owner}
-                theme="card-row"
+                theme="highlight"
               />
             );
           })

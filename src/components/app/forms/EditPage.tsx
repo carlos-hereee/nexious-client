@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PreviewValueProps } from "app-forms";
-import { PageProps } from "app-context";
-import { formatPage } from "@forms/formatPage";
+import { PageProps } from "app-types";
+import { formatPage } from "@formatters/formatPage";
 
 const EditPage = () => {
   const { pagesForm, sectionEntries, editPage, isLoading } = useContext(AdminContext);
@@ -53,7 +53,7 @@ const EditPage = () => {
           addEntry={sectionEntries}
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
-          onCancel={() => navigate("/")}
+          onCancel={() => navigate("/dashboard")}
           heading="Edit page"
           onSubmit={(values: PreviewValueProps) => editPage(values, appId, activePage?.pageId)}
           submitLabel="Save and continue"

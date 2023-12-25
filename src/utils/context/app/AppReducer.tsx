@@ -1,4 +1,3 @@
-// import { APP_ACTIONS } from "@actions/AppActions";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { AppActionProps, AppStateProps } from "app-context";
 
@@ -6,14 +5,20 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
   switch (action.type) {
     case APP_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
+    case APP_ACTIONS.SET_LOADING_STATE:
+      return { ...state, loadingState: { ...state.loadingState, ...action.payload } };
     case APP_ACTIONS.SET_THEME_LIST:
       return { ...state, themeList: action.payload };
+    case APP_ACTIONS.SET_STRIPE_CONFIG:
+      return { ...state, stripeConfig: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:
       return { ...state, adminIds: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MENU:
       return { ...state, activeMenu: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MEDIA:
       return { ...state, activeMedia: action.payload };
+    case APP_ACTIONS.SET_STORE_INVENTORY:
+      return { ...state, inventory: action.payload };
     case APP_ACTIONS.SET_NEWSLETTER:
       return { ...state, newsletter: action.payload };
     case APP_ACTIONS.SET_APP_LIST:
@@ -22,6 +27,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, appId: action.payload };
     case APP_ACTIONS.SET_ACTIVE_APP_ID:
       return { ...state, activeAppId: action.payload };
+    case APP_ACTIONS.SET_STORE:
+      return { ...state, store: action.payload };
     case APP_ACTIONS.SET_MEDIA:
       return { ...state, media: action.payload };
     case APP_ACTIONS.SET_PAGES:
@@ -30,6 +37,10 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, owner: action.payload };
     case APP_ACTIONS.SET_APP_NAME:
       return { ...state, appName: action.payload };
+    case APP_ACTIONS.SET_APP_URL:
+      return { ...state, appUrl: action.payload };
+    case APP_ACTIONS.SET_APP_LINK:
+      return { ...state, appLink: action.payload };
     case APP_ACTIONS.SET_ACTIVE_APP_NAME:
       return { ...state, activeAppName: action.payload };
     case APP_ACTIONS.SET_APP_ERROR:
@@ -46,7 +57,7 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, menu: action.payload };
     case APP_ACTIONS.SET_LOCALE:
       return { ...state, locale: action.payload };
-    case APP_ACTIONS.SET_LANGUAGE_LIST:
+    case APP_ACTIONS.SET_LANGUAGES:
       return { ...state, languageList: action.payload };
     // case APP_ACTIONS.SET_EDIT_APP:
     //   return { ...state, editApp: action.payload };

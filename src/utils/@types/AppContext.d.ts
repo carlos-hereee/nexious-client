@@ -1,16 +1,18 @@
 declare module "app-context" {
+  import { MerchProps } from "services-context";
   import { UserSchema } from "auth-context";
+  import { AppAssetProps } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
     AdminIdProps,
-    // AssetProps,
+    AppListProps,
     CalendarProps,
-    CallToActionProps,
     MediaProps,
     MenuItemProps,
     MenuProps,
     NewsletterProps,
-    SectionProps,
+    PageProps,
+    StoreProps,
   } from "app-types";
 
   export interface AppCardProps {
@@ -21,97 +23,37 @@ declare module "app-context" {
     handleSeeLive: () => void;
     handleNavigation: (link: string) => void;
   }
-  export type ThemeList = {
-    name: string;
-    value: string;
-    label: string;
-    uid: string;
-    colors: { primary: string; secondary: string; altPrimary: string; altSecondary: string };
-    backgroundColors: {
-      primary: string;
-      secondary: string;
-      altPrimary: string;
-      altSecondary: string;
-    };
-  };
-  export interface AppProps {
-    appName: string;
-    appId: string;
-    adminIds: AdminIdProps[];
-    logo: string;
-    locale: string;
-    languageList: MenuItemProps[];
-    pages: PageProps[];
-    isLoading: boolean;
-    isOnline: boolean;
-    appList: AppListProps[];
-    welcomeMessage: string;
-    appError: string;
-    landing: PageProps;
-    owner: UserSchema;
-    newsletter: NewsletterProps;
-    media: MediaProps;
-    menu: MenuProps[];
-    activeMenu: MenuProps[];
-    themeList: ThemeList[];
-    iconList: MenuItemProps[];
-    calendar: CalendarProps;
+  export interface StripeConfigProps {
+    currency?: string;
+    readPrivacyPolicy?: boolean;
   }
-  export interface AppListProps {
-    appName: string;
-    appId: string;
-    adminIds: AdminIdProps[];
-    logo: string;
-    owner: UserSchema;
-    menu?: MenuProps[];
-    media?: MediaProps;
+  export interface StripeUpdateConfigProps {
+    readPrivacyPolicy?: boolean;
+    currency?: string;
   }
-  export interface PageProps {
-    title: string;
-    tagline: string;
-    body: string;
-    hasCta: boolean;
-    hasSections: boolean;
-    hero: string;
-    cta: CallToActionProps[];
-    sections: SectionProps[];
-    name?: string;
-    uid?: string;
-    pageId?: string;
-  }
-  export type ActiveMenuProps = {
-    menu?: MenuProps[];
-    appName?: string;
-    logo?: string;
-    appId?: string;
-    media?: MediaProps;
-  };
-  export type IconListItem = {
-    uid: string;
-    name: string;
-    value: string;
-    icon: string;
-    label: string;
-  };
-
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
+    loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
+    stripeConfig: StripeConfigProps;
     appList: AppListProps[];
     themeList: ThemeList[];
     iconList: IconListItem[];
     appError: string;
     appName: string;
+    email: string;
     activeAppName: string;
     welcomeMessage: string;
     landing?: PageProps;
     appId: string;
+    appUrl: string;
+    appLink: string;
     activeAppId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
-    pages?: PageProps[];
+    pages: PageProps[] | [];
     media: MediaProps;
     activeMedia: MediaProps;
     menu: MenuProps[];
@@ -121,57 +63,49 @@ declare module "app-context" {
     languageList: MenuItemProps[];
     locale: string;
     calendar: CalendarProps;
+    store: StoreProps;
+    inventory: MerchProps[];
   }
   // app context schema
-  export interface AppSchema {
-    // auth schema
-    isLoading: boolean;
-    isOnline: boolean;
-    activeLogo: string;
-    appList: AppListProps[];
-    themeList: ThemeList[];
-    iconList: IconListItem[];
-    appName: string;
-    activeAppName: string;
-    appError: string;
-    welcomeMessage: string;
-    landing?: PageProps;
-    pages?: PageProps[];
-    appId: string;
-    activeAppId: string;
-    owner: UserSchema;
-    adminIds: AdminIdProps[];
-    newsletter: NewsletterProps;
-    media: MediaProps;
-    menu: MenuProps[];
-    activeMenu: MenuProps[];
-    logo: string;
-    activeMedia: MediaProps;
-    locale: string;
-    calendar: CalendarProps;
-    updateAppData: (key: AppProps) => void;
-    getAppWithName: (appName: string) => void;
-    updateAppList: (appList: AppListProps[]) => void;
+  export interface AppSchema extends AppStateProps {
+    updateAppData: (props: AppAssetProps) => void;
+    updateStripeConfig: (config: StripeConfigProps) => void;
+    getAppWithName: (appName: string, setAsActive?: boolean) => void;
+    getAppStore: (appName: string) => void;
+    getAppList: () => void;
+    setLoading: (isLoading: boolean) => void;
+    getStoreInventory: (storeId: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
 
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
-    values?: AppProps;
+    app?: AppProps;
+    store?: StoreProps;
+    appList?: AppListProps[];
     logo?: string;
     media?: MediaProps;
     appName?: string;
+    config?: StripeUpdateConfigProps;
+    subscriptions?: AppListProps[];
+    storeId?: string;
+    isLoading?: boolean;
+    setAsActive?: boolean;
     appId?: string;
     menu?: MenuProps[];
     updateAppData?: (a: AppProps) => void;
+    updateActiveAppData?: (a: ActiveMenuProps) => void;
   }
 
   export type AppActionProps =
     | { type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON; payload: boolean }
+    | { type: APP_ACTIONS.SET_LOADING_STATE; payload: { [key: string]: boolean } }
     | {
         type:
           | APP_ACTIONS.SET_APP_ID
+          | APP_ACTIONS.SET_APP_URL
+          | APP_ACTIONS.SET_APP_LINK
           | APP_ACTIONS.SET_ACTIVE_APP_ID
           | APP_ACTIONS.SET_APP_LOGO
           | APP_ACTIONS.SET_ACTIVE_LOGO
@@ -182,11 +116,14 @@ declare module "app-context" {
         payload: string;
       }
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
-    | { type: APP_ACTIONS.SET_LANGUAGE_LIST; payload: MenuItemProps[] }
+    | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuItemProps[] }
+    | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfigProps }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
+    | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
     | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
+    | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }

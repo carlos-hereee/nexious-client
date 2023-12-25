@@ -1,23 +1,19 @@
-import { useContext, useEffect, useState } from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
+// import { useActiveAppMenus } from "@hooks/useActiveAppMenus";
+import { useActiveAppData } from "@hooks/useActiveAppData";
 
 const AppRoute = () => {
-  const { isOnline, getAppWithName, appError } = useContext(AppContext);
-  const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
+  const { isOnline, appError } = useContext(AppContext);
 
-  useEffect(() => {
-    const query = location.pathname.split("/");
-    const appName = query[query.length - 1];
-    // console.log("appName :>> ", appName);
-    if (appName) getAppWithName(appName);
-    setIsLoading(false);
-  }, []);
+  // useActiveAppMenus();
+  useActiveAppData();
+
+  // console.log("appError :>> ", appError);
 
   if (!isOnline) return <Navigate to="/offline" />;
-  if (isLoading) return <Outlet />;
-  if (!appError) return <Outlet />;
-  return <Navigate to="/" />;
+  if (appError) return <Navigate to="/" />;
+  return <Outlet />;
 };
 export default AppRoute;

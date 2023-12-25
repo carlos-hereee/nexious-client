@@ -2,29 +2,17 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
-import { formatStringToUrl } from "@app/formatStringToUrl";
-import { PageProps } from "app-context";
-import { Card, HeroCard, Loading } from "nexious-library";
+import { readableUrlString } from "@app/formatStringUrl";
+import { PageProps } from "app-types";
+import { Button, Card, HeroCard, Loading } from "nexious-library";
+import { ServicesContext } from "@context/services/ServicesContext";
 
 const AppPage = () => {
   const { pages, activeAppName } = useContext(AppContext);
+  const { cart } = useContext(ServicesContext);
   const [page, setPage] = useState<PageProps>();
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!pages) {
-      if (nexiousName === activeAppName) navigate("/");
-      else navigate(`/app/${formatStringToUrl(activeAppName)}`);
-    } else {
-      const query = pathname.split("/");
-      const pageName = query[query.length - 1];
-      if (pageName) {
-        const pageIdx = pages.findIndex((p) => p.name === pageName);
-        if (pageIdx >= 0) setPage(pages[pageIdx]);
-      }
-    }
-  }, [pathname]);
+  console.log("page :>> ", pages);
 
   if (!page) return <Loading message="loading page data..." />;
   return (
@@ -33,6 +21,9 @@ const AppPage = () => {
         {page.hero ? <HeroCard data={page} hero={{ url: page.hero }} /> : <Card data={page} />}
         {page.body && <p className="text-max">{page.body}</p>}
       </div>
+      {cart.length > 0 && (
+        <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />
+      )}
       {page.hasSections && (
         <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
           {page.sections.map((data) => {

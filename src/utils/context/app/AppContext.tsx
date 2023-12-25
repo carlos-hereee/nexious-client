@@ -1,102 +1,87 @@
-import {
-  ReactElement,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useReducer,
-} from "react";
+import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ChildProps, MenuProps } from "app-types";
-import { ActiveMenuProps, AppListProps, AppProps, AppSchema } from "app-context";
-import { APP_ACTIONS } from "@actions/AppActions";
+import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
+import { AppSchema, StripeConfigProps } from "app-context";
 import { useNavigate } from "react-router-dom";
-import { toggleAuthMenuItem } from "@app/toggleMenu";
-import { formatStringToUrl } from "@app/formatStringToUrl";
-import { nexiousName } from "@data/nexious.json";
+import { AppAssetProps } from "app-admin";
+import { readableUrlString } from "@app/formatStringUrl";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
-import { fetchAppWithName } from "./fetch/fetchAppWithName";
-import { fetchAppList } from "./fetch/fetchAppList";
+import { fetchAppWithName } from "./request/fetchAppWithName";
+import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
+import { setIsLoading } from "./dispatch/setIsLoading";
+import { getInventory } from "./request/getInventory";
+import { getAppStoreWithName } from "./request/getAppStoreWithName";
+import { setStripeConfig } from "./dispatch/setStripeConfig";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscriptions, subscribe, unSubscribe } =
+  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } =
     useContext(AuthContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // user is login
-    const oldValues = [...state.activeMenu];
-    // find auth menu
-    const authIdx = oldValues.findIndex((app) => app.isPrivate);
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    // is user logged in
-    if (accessToken) {
-      // check if is origin app
-      if (state.activeAppName !== nexiousName) {
-        // check user subscriptions
-        const subIdx = subscriptions.findIndex((sub) => sub.appName === state.activeAppName);
-        // if user is a sub
-        if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
-        else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "subscribe");
-        // otherwise user can logout
-      } else oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "logout");
-      // user logging out
-    } else if (oldValues[authIdx].name === "logout") {
-      oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "login");
-    }
-    dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: oldValues });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
-  }, [accessToken, state.activeAppName]);
-
   // update app data
-  const updateAppData = useCallback((a: AppProps) => setAppData({ dispatch, values: a }), []);
-  // update app list
-  const updateAppList = useCallback((a: AppListProps[]) => {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
+  const setLoading = useCallback((isLoading: boolean) => {
+    setIsLoading({ dispatch, isLoading });
   }, []);
-  // fetch app with app name
-  const getAppWithName = useCallback((a: string) => {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    fetchAppWithName({ dispatch, appName: a, updateAppData });
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
+  // update app data
+  const updateAppData = useCallback((props: AppAssetProps) => {
+    const { app, appList, store } = props;
+    setAppData({ dispatch, app, appList, store });
   }, []);
+  const updateStripeConfig = useCallback((config: StripeConfigProps) => {
+    // const { app, appList, store } = props;
+    setStripeConfig({ dispatch, config });
+  }, []);
+
   const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
     const { menu, appName, logo, media, appId } = props;
     setActiveData({ dispatch, menu, appName, logo, media, appId });
   }, []);
 
+  const getStoreInventory = useCallback((storeId: string) => {
+    getInventory({ dispatch, storeId });
+  }, []);
+  const getAppStore = useCallback((storeId: string) => {
+    getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
+  }, []);
+  // fetch app with app name
+  const getAppWithName = useCallback((a: string) => {
+    fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
+  }, []);
+  // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
-    const oldValues = [...state.activeMenu];
-    const { isToggle, isPrivate, category, name, link } = menuItem;
+    const { isPrivate, category, name, link } = menuItem;
+    // console.log("menuItem :>> ", menuItem);
     // if menu item is private navigate to route to retrieve credentials
     if (isPrivate) {
       if (name === "logout") logout();
       else if (name === "subscribe") subscribe(appId);
       else if (name === "unsubscribe") unSubscribe(appId);
-      else navigate(`/${link}` || "");
+      else navigate(`/${link || ""}`);
       // change theme
-    } else if (isToggle && category === "theme") setTheme(menuItem.value);
+    } else if (category === "theme") setTheme(menuItem.value);
+    else if (menuItem.value === "explore") navigate("/explore");
     // otherwise go to page
-    else if (menuItem.isPage) navigate(`/app/${formatStringToUrl(appName)}${link}` || "");
-    updateActiveAppData({ menu: oldValues });
+    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}` || "");
+    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
+      loadingState: state.loadingState,
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
+      stripeConfig: state.stripeConfig,
+      appUrl: state.appUrl,
+      appLink: state.appLink,
       appId: state.appId,
       activeAppId: state.activeAppId,
       landing: state.landing,
@@ -113,60 +98,44 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       owner: state.owner,
       appError: state.appError,
       logo: state.logo,
+      email: state.email,
       activeLogo: state.activeLogo,
+      store: state.store,
+      inventory: state.inventory,
       locale: state.locale,
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
       pages: state.pages,
       updateAppData,
-      updateAppList,
       getAppWithName,
       getAppList,
       updateActiveAppData,
       handleMenu,
+      setLoading,
+      getStoreInventory,
+      getAppStore,
+      updateStripeConfig,
     };
-  }, [state.isLoading, state.activeAppName, accessToken, state.appList, state.appName]);
+  }, [
+    state.isLoading,
+    state.activeAppName,
+    accessToken,
+    state.activeMenu,
+    state.stripeConfig,
+    state.menu,
+    state.appId,
+    state.landing,
+    state.inventory,
+    state.loadingState,
+    state.store,
+    state.appList,
+  ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;
-  // return (
-  //   <AppContext.Provider
-  //     value={{
-  //       isLoading: state.isLoading,
-  //       appList: state.appList,
-  //       iconList: state.iconList,
-  //       appName: state.appName,
-  //       appId: state.appId,
-  //       landing: state.landing,
-  //       themeList: state.themeList,
-  //       languageList: state.languageList,
-  //       adminIds: state.adminIds,
-  //       calendar: state.calendar,
-  //       isOnline: state.isOnline,
-  //       media: state.media,
-  //       menu: state.menu,
-  //       activeMenu: state.activeMenu,
-  //       owner: state.owner,
-  //       logo: state.logo,
-  //       locale: state.locale,
-  //       welcomeMessage: state.welcomeMessage,
-  //       newsletter: state.newsletter,
-  //       updateAppData: (a) => updateAppData({ dispatch, values: a }),
-  //       updateAppList: (a) => dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: a }),
-  //       getAppWithName: (appName) =>
-  //         getAppWithName({
-  //           dispatch,
-  //           appName,
-  //           updateApp: (e) => updateAppData({ dispatch, values: e }),
-  //         }),
-  //       // getAppList: () => getAppList({ dispatch }),
-  //       updateMenu: (a) => updateMenu({ dispatch, data: a }),
-  //     }}
-  //   >
-  //     {children}
-  //   </AppContext.Provider>
-  // );
 };
-
+/**
+ * 
+ 
 // import { uploadImage } from "./helpers/uploadImage";
 // import { getLatestAppData } from "./helpers/getLatestAppData";
 // import { getFiles } from "./helpers/getFiles";
@@ -252,4 +221,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 // getAppWithAppId: (a) => getAppWithAppId(dispatch, a),
 // setEditApp: (a) => setEditApp(dispatch, a),
 // updateEditAppState: (a) => dispatch({ type: "SET_EDIT_APP", payload: a }),
-// addPage: (a) => addPage(dispatch, a, appId, getLatestAppData),
+// addPage: (a) => addPage(dispatch, a, appId, getLatestAppData)
+
+*/

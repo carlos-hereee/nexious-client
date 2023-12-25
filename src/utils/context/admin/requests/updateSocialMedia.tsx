@@ -7,7 +7,7 @@ export const updateSocialMedia = async (props: AdminDisptachProps) => {
   // try {
   dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
   const { data } = await axiosMedia.post(`app/update-medias/${appId}`, values);
-  handleAppAssets(data);
+  if (handleAppAssets) handleAppAssets(data);
   dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   // } catch (error) {}
 };

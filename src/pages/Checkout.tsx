@@ -1,59 +1,91 @@
-// import { useContext, useEffect } from "react";
-// import { AppContext } from "@context/app/AppContext";
+import { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "@context/auth/AuthContext";
-// import { Cart, UserCard, PaymentMethods } from "nexious-library";
-// import { useNavigate } from "react-router-dom";
-// import {
-//   EmptySection,
-//   // Total
-// } from "nexious-library";
-// import { ServicesContext } from "@context/services/ServicesContext";
+import { Cart, PaymentMethods, Total, Button } from "nexious-library";
+// import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
+import { useNavigate } from "react-router-dom";
+import { ServicesContext } from "@context/services/ServicesContext";
+import { CartProps, MerchProps, PaymentMethod } from "services-context";
+import { formatTotal } from "@formatters/store/formatPenniesToDollars";
+// import { AppContext } from "@context/app/AppContext";
 
-// const Checkout = () => {
-//   const { checkout } = useContext(AppContext);
-//   const { cart, setTotal, total } = useContext(ServicesContext);
-//   const { user } = useContext(AuthContext);
-//   const navigate = useNavigate();
+const Checkout = () => {
+  const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } =
+    useContext(ServicesContext);
+  const navigate = useNavigate();
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
+  const [active, setActive] = useState<CartProps>();
 
-//   useEffect(() => {
-//     if (cart.length > 0) {
-//       let cost = cart.reduce((accumulator, currentValue) => {
-//         return accumulator + currentValue.service.cost;
-//       }, 0);
-//       setTotal(cost);
-//     } else setTotal(0);
-//   }, [JSON.stringify(cart)]);
-//   const handleSubmit = (e) => console.log("submit", e, "success");
-//   const handlePaypal = (e) => console.log("e", e);
-//   const handleInStorePayment = (e) => console.log("e", e);
-//   return (
-//     <section className="flex-d-column">
-//       {cart.length > 0 ? (
-//         <Cart data={cart} heading={checkout.heading} />
-//       ) : (
-//         <EmptySection
-//           heading="Your cart is empty"
-//           message="Head to services"
-//           click={() => navigate("/services")}
-//         />
-//       )}
-//       {/* {total > 0 && <Total total={total} />} */}
-//       {user.uid ? (
-//         <div className="flex-d-column">
-//           <h2 className="heading">Your details</h2>
-//           <UserCard user={user.hero} hideHero isRow />
-//           <PaymentMethods
-//             data={checkout.paymentMethods}
-//             visaPayment={handleSubmit}
-//             paypalPayment={handlePaypal}
-//             inStorePayment={handleInStorePayment}
-//           />
-//         </div>
-//       ) : (
-//         <h2 className="heading">Enter user information</h2>
-//       )}
-//     </section>
-//   );
-// };
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      setActive(cart[page]);
+      setTotal(formatTotal(cart[page].merch));
+    }
+  }, [page]);
 
-// export default Checkout;
+  const onRemoveFromCart = (e: unknown) => {
+    removeFromCart(cart, e as MerchProps);
+  };
+
+  const handleQuantity = (data: MerchProps, d: number) => {
+    const oldValues = [...cart];
+    const storeIdx = cart.findIndex((c) => c.storeId === data.storeId);
+    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === data.uid);
+    oldValues[storeIdx].merch[merchIdx].quantity = d;
+    // oldValues[storeIdx].merch[merchIdx].cost = formatDollarsToPennies(data.cost);
+    updateCart(oldValues);
+    setTotal(formatTotal(oldValues[storeIdx].merch));
+  };
+  const handlePaymentClick = (data: PaymentMethod) => {
+    if (active) {
+      if (data.type === "visa/credit") onCheckOutSession(active);
+    }
+  };
+  // console.log("active :>> ", active);
+  return (
+    <section className="container">
+      {cart.length > 0 ? (
+        <div className="split-container">
+          {active && (
+            <div className="container">
+              <h1 className="heading">Checkout {active.name}</h1>
+              {cart.length > 1 && (
+                <div className="buttons-navigation">
+                  {cart.map((c, idx) => (
+                    <Button
+                      label={c.name}
+                      key={c.storeId}
+                      theme={c.storeId === active.storeId && "btn-main btn-cta"}
+                      onClick={() => setPage(idx)}
+                    />
+                  ))}
+                </div>
+              )}
+              <Cart
+                data={active.merch}
+                heading="Review cart"
+                removeFromCart={onRemoveFromCart}
+                setQuantity={handleQuantity}
+              />
+            </div>
+          )}
+          <div className="container">
+            <h2 className="heading">Total:</h2>
+            <Total total={total} />
+            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} />
+          </div>
+        </div>
+      ) : (
+        <div className="btn-checkout-container">
+          <Button
+            label={`You have ${cart.length} items in your cart. Explore apps`}
+            theme="btn btn-main btn-checkout"
+            onClick={() => navigate("/explore")}
+          />
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Checkout;

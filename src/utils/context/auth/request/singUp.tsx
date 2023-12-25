@@ -1,10 +1,10 @@
 // import { isDev } from "@app/config";
 import { axiosAuth } from "@axios/axiosAuth";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
-import { AuthReducerProps } from "auth-context";
+import { AuthDispatchProps } from "auth-context";
 import { AxiosError } from "axios";
 
-export const singUp = async (props: AuthReducerProps) => {
+export const singUp = async (props: AuthDispatchProps) => {
   const { dispatch, credentials } = props;
   try {
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
@@ -20,15 +20,4 @@ export const singUp = async (props: AuthReducerProps) => {
       dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
     }
   }
-  // if (data && updateUser) updateUser(data.user);
-  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  // } catch (error: any) {
-  // if (isDev) console.log("register error", error);
-  // const { status, data } = error.response;
-  // dispatch({ type: AUTH_ACTIONS.SIGN_UP_ERROR, payload: data });
-  // dispatch({ type: AUTH_ACTIONS.SET_USER_DATA, payload: {} });
-  // dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
-  // dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-  // }
 };

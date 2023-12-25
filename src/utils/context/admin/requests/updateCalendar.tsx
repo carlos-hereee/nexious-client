@@ -9,7 +9,7 @@ export const updateCalendar = async (props: AdminDisptachProps) => {
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/app/update-calendar/${appId}`, values);
-    handleAppAssets(data);
+    if (handleAppAssets) handleAppAssets(data);
     // dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     // console.log("error :>> ", error);
