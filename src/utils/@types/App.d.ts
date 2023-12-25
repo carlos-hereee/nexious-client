@@ -52,6 +52,7 @@ declare module "app-types" {
   export interface StoreProps {
     name: string;
     storeId: string;
+    accountId: string;
     title?: string;
     hero?: string;
     body?: string;

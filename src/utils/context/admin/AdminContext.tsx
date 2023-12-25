@@ -45,7 +45,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const handleAppAssets = (values: AppAssetProps) => {
     if (values.app || values.appList) {
-      updateAppData({ app: values.app, appList: values.appList, store: values.store });
+      updateAppData({ app: values.app, appList: values.appList, store: values?.store });
     }
     if (values.user) updateUser(values.user);
     if (values) setFormStatus("SUCCESS");

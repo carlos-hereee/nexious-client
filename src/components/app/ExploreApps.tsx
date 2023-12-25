@@ -1,12 +1,17 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AppCard from "./AppCard";
 
 const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
   const { featuredOnly, heading } = props;
-  const { appList } = useContext(AppContext);
+  const { appList, getAppList } = useContext(AppContext);
   const navigate = useNavigate();
+  useEffect(() => {
+    // TODO: AVOID DOUBLE RENDDER
+    getAppList();
+    // console.log("appList :>> ", appList);
+  }, []);
 
   if (featuredOnly) {
     const featuredList = appList.slice(0, 5);

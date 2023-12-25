@@ -10,15 +10,18 @@ const AppStore = () => {
   const { store, inventory } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
+
+  const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
+
   // const { pathname } = useLocation();
 
   // console.log("activeMenu :>> ", store);
   // // useStoreInventory()
   // useEffect(() => {
   //   if (store.inventory.length > 0);
-  // }, [pathname]);
-  console.log("store.inventory :>> ", store.inventory, inventory);
-  console.log("cart :>> ", cart);
+  // // }, [pathname]);
+  // console.log("store.inventory :>> ", store.inventory, inventory);
+  // console.log("cart :>> ", cart);
   return (
     <div className="container">
       <div className="container">
@@ -42,11 +45,13 @@ const AppStore = () => {
             data={{ ...merch, cost: formatPenniesToDollars(merch.cost) }}
             hero={{ url: merch.hero }}
             // onAddToCart={(data: MerchProps) => console.log(cart, data)}
-            onAddToCart={(data: MerchProps) => addToCart(cart, data)}
+            onAddToCart={(data: MerchProps) => addToCart(cart, store, data)}
             onRemoveFromCart={(data: MerchProps) => removeFromCart(cart, data)}
             // TODO: on body click navigate to merch item details
             // onClick={(data: MerchProps) => console.log("data :>> ", data)}
-            canRemove={cart && cart.some((c: MerchProps) => c.uid === merch.uid)}
+            canRemove={
+              storeIdx >= 0 && cart[storeIdx].merch.some((c: MerchProps) => c.uid === merch.uid)
+            }
           />
         ))}
       </div>

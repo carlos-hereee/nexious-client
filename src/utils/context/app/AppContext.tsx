@@ -120,6 +120,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.inventory,
     state.loadingState,
     state.store,
+    state.appList,
   ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;

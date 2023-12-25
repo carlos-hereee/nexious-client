@@ -231,5 +231,23 @@
         "link": "https://github.com/carlos-hereee"
       }
     ]
-  }
+  },
+  "nexiousThemeList": [
+    {
+      "uid": "theme-light",
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "colors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" },
+      "backgroundColors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" }
+    },
+    {
+      "uid": "theme-dark",
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "colors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" },
+      "backgroundColors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" }
+    }
+  ]
 }

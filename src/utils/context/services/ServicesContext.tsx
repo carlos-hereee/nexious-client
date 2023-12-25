@@ -1,7 +1,7 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import servicesState from "@data/servicesState.json";
-import { MerchProps, ServiceSchema } from "services-context";
-import { ChildProps } from "app-types";
+import { CartProps, MerchProps, ServiceSchema } from "services-context";
+import { ChildProps, StoreProps } from "app-types";
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 import { reducer } from "./ServicesReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
@@ -24,24 +24,21 @@ export const ServicesContext = createContext<ServiceSchema>({} as ServiceSchema)
 export const ServicesState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, servicesState);
 
-  const addToCart = useCallback((cart: MerchProps[], merch: MerchProps) => {
-    onAddToCart({ dispatch, cart, merch });
+  const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
+    onAddToCart({ dispatch, cart, merch, store });
   }, []);
-  const removeFromCart = useCallback((cart: MerchProps[], merch: MerchProps) => {
+  const removeFromCart = useCallback((cart: CartProps[], merch: MerchProps) => {
     onRemoveFromCart({ dispatch, cart, merch });
   }, []);
-  const updateCart = useCallback((cart: MerchProps[]) => {
+  const updateCart = useCallback((cart: CartProps[]) => {
     dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart });
   }, []);
-  // const submitOrder = useCallback((props: SubmitPaymentProps) => {
-  //   const { cart } = props;
-  //   requestSecret({ cart, dispatch });
-  // }, []);
-  const submitOrder = useCallback((cart: MerchProps[]) => {
+
+  const submitOrder = useCallback((cart: CartProps[]) => {
     requestSecret({ cart, dispatch });
   }, []);
-  const onCheckOutSession = useCallback((cart: MerchProps[]) => {
-    checkOutSession({ cart, dispatch });
+  const onCheckOutSession = useCallback((cart: CartProps) => {
+    checkOutSession({ sessionCart: cart, dispatch });
   }, []);
   const confirmIntent = useCallback((sessionId: string) => {
     confirmCheckoutIntent({ dispatch, sessionId });

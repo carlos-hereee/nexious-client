@@ -1,4 +1,5 @@
 declare module "services-context" {
+  import { StoreProps } from "app-types";
   import { UserSchema } from "auth-context";
   import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 
@@ -31,20 +32,23 @@ declare module "services-context" {
     isLoading: boolean;
     stripeSecret: string;
     stripeConfirmation: StripeConfirmationProps;
-    cart: MerchProps[] | [];
+    cart: CartProps[];
     paymentMethods: PaymentMethod[] | [];
+  }
+  export interface CartProps extends StoreProps {
+    merch: MerchProps[];
   }
   export interface SubmitPaymentProps {
     user?: UserSchema;
     payment?: { [key: string]: string };
-    cart?: MerchProps[];
+    cart?: CartProps[];
   }
   export interface ServiceSchema extends ServiceStateProps {
-    addToCart: (cart: MerchProps[], key: MerchProps) => void;
-    removeFromCart: (cart: MerchProps[], key: MerchProps) => void;
-    updateCart: (cart: MerchProps[]) => void;
-    submitOrder: (cart: MerchProps[]) => void;
-    onCheckOutSession: (cart: MerchProps[]) => void;
+    addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
+    removeFromCart: (cart: CartProps[], key: MerchProps) => void;
+    updateCart: (cart: CartProps[]) => void;
+    submitOrder: (cart: CartProps[]) => void;
+    onCheckOutSession: (cart: CartProps) => void;
     confirmIntent: (sessionId: string) => void;
   }
   export interface ServicesDispatchProps {
@@ -52,8 +56,10 @@ declare module "services-context" {
     merch?: MerchProps;
     user?: UserSchema;
     sessionId?: string;
+    store?: StoreProps;
     payment?: { [key: string]: string };
-    cart?: MerchProps[];
+    cart?: CartProps[];
+    sessionCart?: CartProps;
   }
   export type ServiceActionProps =
     | { type: SERVICE_ACTIONS.IS_LOADING; payload: boolean }
@@ -64,6 +70,6 @@ declare module "services-context" {
           | SERVICE_ACTIONS.ADD_TO_CART
           | SERVICE_ACTIONS.REMOVE_FROM_CART
           | SERVICE_ACTIONS.UPDATE_CART;
-        payload: MerchProps[];
+        payload: CartProps[];
       };
 }

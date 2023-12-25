@@ -1,70 +1,78 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { AuthContext } from "@context/auth/AuthContext";
 import { Cart, PaymentMethods, Total, Button } from "nexious-library";
 // import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
-import { MerchProps, PaymentMethod } from "services-context";
+import { CartProps, MerchProps, PaymentMethod } from "services-context";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 // import { AppContext } from "@context/app/AppContext";
 
 const Checkout = () => {
   const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } =
     useContext(ServicesContext);
-  // const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  // const { store } = useContext(AppContext);
-  const [total, setTotal] = useState(formatTotal(cart));
-  const [active, setActive] = useState<PaymentMethod>();
-  // const cartData = formatMerchFromPenniesToDollars(cart);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(0);
+  const [active, setActive] = useState<CartProps>();
 
-  // console.log("store :>> ", cart);
-  // // console.log("stripeSecret :>> ", stripeSecret);
-  // console.log("cart :>> ", cart);
+  useEffect(() => {
+    if (cart && cart.length > 0) {
+      setActive(cart[page]);
+      setTotal(formatTotal(cart[page].merch));
+    }
+  }, [page]);
 
-  // console.log("total :>> ", total);
-  // console.log("cart :>> ", cart);
-  // console.log("user :>> ", user);
-
-  // const handleSubmit = (e) => console.log("submit", e, "success");
-  // const handlePaypal = (e) => console.log("e", e);
-  // const handleInStorePayment = (e) => console.log("e", e);
   const onRemoveFromCart = (e: unknown) => {
     removeFromCart(cart, e as MerchProps);
   };
 
   const handleQuantity = (data: MerchProps, d: number) => {
     const oldValues = [...cart];
-    const merchIdx = oldValues.findIndex((c) => c.uid === data.uid);
-    oldValues[merchIdx].quantity = d;
-    // oldValues[merchIdx].cost = formatDollarsToPennies(data.cost);
-
-    const t = formatTotal(oldValues);
+    const storeIdx = cart.findIndex((c) => c.storeId === data.storeId);
+    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === data.uid);
+    oldValues[storeIdx].merch[merchIdx].quantity = d;
+    // oldValues[storeIdx].merch[merchIdx].cost = formatDollarsToPennies(data.cost);
     updateCart(oldValues);
-    setTotal(t);
+    setTotal(formatTotal(oldValues[storeIdx].merch));
   };
   const handlePaymentClick = (data: PaymentMethod) => {
-    setActive(data);
-    if (data.type === "visa/credit") {
-      onCheckOutSession(cart);
-      // console.log("data :>> ", data);
+    if (active) {
+      if (data.type === "visa/credit") onCheckOutSession(active);
     }
-    // onCheckOutSession({ cart, payment: data, user });
   };
+  // console.log("active :>> ", active);
   return (
     <section className="container">
       {cart.length > 0 ? (
         <div className="split-container">
-          <Cart
-            data={cart}
-            heading="Review cart"
-            removeFromCart={onRemoveFromCart}
-            setQuantity={handleQuantity}
-          />
+          {active && (
+            <div className="container">
+              <h1 className="heading">Checkout {active.name}</h1>
+              {cart.length > 1 && (
+                <div className="buttons-navigation">
+                  {cart.map((c, idx) => (
+                    <Button
+                      label={c.name}
+                      key={c.storeId}
+                      theme={c.storeId === active.storeId && "btn-main btn-cta"}
+                      onClick={() => setPage(idx)}
+                    />
+                  ))}
+                </div>
+              )}
+              <Cart
+                data={active.merch}
+                heading="Review cart"
+                removeFromCart={onRemoveFromCart}
+                setQuantity={handleQuantity}
+              />
+            </div>
+          )}
           <div className="container">
             <h2 className="heading">Total:</h2>
             <Total total={total} />
-            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} active={active} />
+            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} />
           </div>
         </div>
       ) : (

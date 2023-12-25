@@ -3,6 +3,7 @@ import { ChildProps } from "app-types";
 import { LogMessageItem, LogSchema } from "log-context";
 import logState from "@data/logState.json";
 import { AuthContext } from "@context/auth/AuthContext";
+// import { AppContext } from "@context/app/AppContext";
 import { reducer } from "./LogReducer";
 import { addToLog } from "./disptach/addToLog";
 import { removeFromLog } from "./disptach/removeFromLog";
@@ -13,6 +14,7 @@ export const LogContext = createContext<LogSchema>({} as LogSchema);
 export const LogState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...logState, status: "PRE-LAUNCH" });
   const { setAccessToken } = useContext(AuthContext);
+  // const { getAppList } = useContext(AppContext);
 
   useEffect(() => {
     fetchRefreshToken({ dispatch, setAccessToken });

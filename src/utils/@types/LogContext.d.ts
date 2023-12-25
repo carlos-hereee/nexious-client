@@ -16,6 +16,7 @@ declare module "log-context" {
   export interface LogDispatchProps {
     dispatch: React.Dispatch<LogActionProps>;
     setAccessToken?: (accessToken: string) => void;
+    getAppList?: () => void;
     data?: LogMessageItem;
     status?: APP_STATUS;
     log?: LogMessageItem[];

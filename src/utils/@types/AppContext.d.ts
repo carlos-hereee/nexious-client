@@ -62,6 +62,7 @@ declare module "app-context" {
     updateAppData: (props: AppAssetProps) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppStore: (appName: string) => void;
+    getAppList: () => void;
     setLoading: (isLoading: boolean) => void;
     getStoreInventory: (storeId: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;

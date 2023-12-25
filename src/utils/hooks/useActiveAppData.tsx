@@ -20,8 +20,15 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppData = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu } =
-    useContext(AppContext);
+  const {
+    activeAppName,
+    updateActiveAppData,
+    getAppWithName,
+    getAppStore,
+    menu,
+    store,
+    getStoreInventory,
+  } = useContext(AppContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -37,7 +44,7 @@ export const useActiveAppData = () => {
       });
     } else if (pathname.includes("app")) {
       const routeAppName = pathname.split("/")[2];
-      console.log("routeAppName, pathname :>> ", routeAppName === activeAppName, pathname);
+      // console.log("routeAppName, pathname :>> ", routeAppName === activeAppName, pathname);
       //   // check route matches active app name
       if (routeAppName !== activeAppName) getAppWithName(routeAppName);
       else {
@@ -53,15 +60,17 @@ export const useActiveAppData = () => {
           // updateActiveAppData({ menu: oldValues });
           updateActiveAppData({ menu: oldValues });
         }
-        console.log("activeAppName, routeAppName :>> ", activeAppName, routeAppName);
-        // updateActiveAppData({ ...data.app, menu: oldValues });
+        // console.log("activeAppName, routeAppName :>> ", activeAppName, routeAppName);
       }
     } else if (pathname.includes("store")) {
       const routeAppName = pathname.split("/")[2];
-      console.log("routeAppName :>> ", routeAppName);
+      // console.log("routeAppName :>> ", routeAppName);
       if (routeAppName !== activeAppName) {
         getAppStore(routeAppName);
       }
+      if (store.storeId) getStoreInventory(store.storeId);
+      // console.log("store :>> ", store);
+      // console.log("routeAppName :>> ", routeAppName);
     }
     // update document details
   }, [pathname]);

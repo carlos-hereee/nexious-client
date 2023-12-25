@@ -10,8 +10,10 @@ const AppRoute = () => {
   // useActiveAppMenus();
   useActiveAppData();
 
+  // console.log("appError :>> ", appError);
+
   if (!isOnline) return <Navigate to="/offline" />;
-  if (!appError) return <Outlet />;
-  return <Navigate to="/" />;
+  if (appError) return <Navigate to="/" />;
+  return <Outlet />;
 };
 export default AppRoute;
