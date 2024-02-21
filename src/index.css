@@ -219,3 +219,14 @@ header {
   justify-content: space-between;
   gap: 1rem;
 }
+
+.primary-navigation .navigation {
+  width: 100%;
+  padding: 0.25rem;
+}
+.primary-navigation .navigation .nav-btn {
+  max-width: 150px;
+}
+.card-container {
+  justify-content: flex-start;
+}

@@ -15,7 +15,7 @@ const Login = () => {
     navigateTo("register");
   };
 
-  if (isLoading) return <Loading message="Loading user data" />;
+  if (isLoading) return <Loading message="..loading user data" />;
   return (
     <div className="container">
       {authErrors.userNotFound && (

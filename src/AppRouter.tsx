@@ -36,7 +36,7 @@ const AppRouter: React.FC = () => {
         {/* <Route path="/offline" element={<Offline />} /> */}
         <Route path="/build-app" element={<BuildApp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/register" element={<SignUp />} />
+        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />

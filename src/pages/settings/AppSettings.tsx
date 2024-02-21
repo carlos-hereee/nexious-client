@@ -79,7 +79,7 @@ const AppSettings = () => {
         name={appLink}
       />
       <StoreContainer
-      // onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })}
+        onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })}
       />
       <MediaContainer
         onMediaClick={handleMediaClick}

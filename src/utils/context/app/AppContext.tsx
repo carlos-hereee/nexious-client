@@ -34,7 +34,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setAppData({ dispatch, app, appList, store });
   }, []);
   const updateStripeConfig = useCallback((config: StripeConfigProps) => {
-    // const { app, appList, store } = props;
     setStripeConfig({ dispatch, config });
   }, []);
 
@@ -119,6 +118,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, [
     state.isLoading,
     state.activeAppName,
+    state.activeLogo,
+    state.activeAppId,
     accessToken,
     state.activeMenu,
     state.stripeConfig,
