@@ -4,14 +4,15 @@
   "theme": "light-mode",
   "locale": "",
   "authErrors": {
-    "emergencyPasswordChangeIsRequired": false,
-    "serverIsOffline": false,
-    "userNotFound": false,
-    "signInError": "",
-    "signUpError": "",
+    "login": "",
+    "register": "",
+    "logout": "",
+    "forgotPassword": "",
+    "subscribe": "",
+    "emergencyPasswordChangeIsRequired": "",
+    "offline": "",
     "changePasswordError": "",
-    "logOutError": "",
-    "forgotPasswordError": ""
+    "userNotFound": ""
   },
   "user": { "username": "", "email": "", "phone": "", "userId": "" },
   "dummyUser": { "username": "", "password": "" },

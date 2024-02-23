@@ -1,23 +1,30 @@
 declare module "app-errors" {
+  import { AppActionProps } from "app-context";
+  import { LogActionProps } from "log-context";
   import { AuthActionProps } from "auth-context";
-  import { AdminActionProps } from "app-admin";
 
-  export interface GenericErrorMessagesProps {
+  export interface AxiosError {
     error: unknown;
-    type: "form-error" | "auth";
-    target: "logout-error" | "sign-in-error";
     message?: string;
-    adminDispatch?: React.Dispatch<AdminActionProps>;
-    authDispatch?: React.Dispatch<AuthActionProps>;
+    target?: string;
   }
-  export interface AuthErrorProps {
-    emergencyPasswordChangeIsRequired: boolean;
-    userNotFound: boolean;
-    serverIsOffline: boolean;
-    signInError: string;
-    signUpError: string;
-    logOutError: string;
-    changePasswordError: string;
-    forgotPasswordError: string;
+
+  export type AuthErrorTarget = "logout" | "login" | "register" | "subscribe" | "offline" | "forgotPassword";
+  export type AppErrorTarget = "";
+
+  export interface AuthResponseError extends AxiosError {
+    type: "auth";
+    target: AuthErrorTarget;
+    dispatch: React.Dispatch<AuthActionProps>;
   }
+  export interface AppResponseError extends AxiosError {
+    type: "app";
+    dispatch: React.Dispatch<AppActionProps>;
+    target: AppErrorTarget;
+  }
+  export interface LogResponseError extends AxiosError {
+    type: "log";
+    dispatch: React.Dispatch<LogActionProps>;
+  }
+  export type AxiosResponseError = AuthResponseError | AppResponseError | LogResponseError;
 }

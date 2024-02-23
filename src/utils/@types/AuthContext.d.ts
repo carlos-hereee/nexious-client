@@ -1,9 +1,22 @@
 declare module "auth-context" {
-  import { AuthErrorProps } from "app-errors";
   import { AUTH_ACTIONS } from "@actions/AuthActions";
+  import { AuthErrorTarget } from "app-errors";
   import { AppListProps } from "app-types";
   import { AuthFormValueProps, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
 
+  export interface AuthErrorProps {
+    logout: string;
+    login: string;
+    register: string;
+    subscribe: string;
+    offline: string;
+    forgotPassword: string;
+    [x: AuthErrorTarget]: string;
+    // emergencyPasswordChangeIsRequired: string;
+    // userNotFound: string;
+    // serverIsOffline: string;
+    // changePasswordError: string;
+  }
   export interface UserSchema {
     // uid: string;
     userId: string;
@@ -64,20 +77,10 @@ declare module "auth-context" {
   }
 
   export type AuthActionProps =
-    | { type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED | AUTH_ACTIONS.SET_USER_NOT_FOUND; payload: boolean }
-    | {
-        type:
-          | AUTH_ACTIONS.SIGN_IN_ERROR
-          | AUTH_ACTIONS.LOGOUT_ERROR
-          | AUTH_ACTIONS.FORGOT_PASSWORD_ERROR
-          | AUTH_ACTIONS.CHANGE_PASSWORD_ERROR
-          | AUTH_ACTIONS.SIGN_UP_ERROR
-          | AUTH_ACTIONS.SET_ACCESS_TOKEN
-          | AUTH_ACTIONS.SET_THEME;
-        payload: string;
-      }
+    | { type: AUTH_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: AUTH_ACTIONS.SET_ACCESS_TOKEN | AUTH_ACTIONS.SET_THEME; payload: string }
     | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
-    | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
+    | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }

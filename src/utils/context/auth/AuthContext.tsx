@@ -22,17 +22,19 @@ export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
 
+  // user data
   const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
-
+  // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
-  const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
   const setAccessToken = useCallback((accessToken: string) => updateAccessToken({ dispatch, accessToken }), []);
   const forgotPassword = useCallback((e: ForgotPasswordValues) => setForgotPassword({ dispatch, credentials: e }), []);
-  const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
-
+  // auth errors
+  const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
+  const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
+  // user actions
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
   const subscribe = useCallback((e: string) => setSubscribe({ dispatch, appId: e, updateUser }), []);
   const unSubscribe = useCallback((e: string) => setUnsubscribe({ dispatch, appId: e, updateUser }), []);
@@ -66,7 +68,7 @@ export const AuthState = ({ children }: ChildProps) => {
       resetAuthErrors,
       setAccessToken,
     };
-  }, [state.accessToken, state.isLoading, state.theme, state.user, JSON.stringify(state.authErrors)]);
+  }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

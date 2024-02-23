@@ -8,7 +8,7 @@ export const reducer = (state: LogSchema, action: LogActionProps): LogSchema => 
     case LOG_ACTIONS.SET_LOG_STATUS:
       return { ...state, status: action.payload };
     case LOG_ACTIONS.ADD_MESSAGE_TO_LOG:
-      return { ...state, log: action.payload };
+      return { ...state, log: [...state.log, action.payload] };
     case LOG_ACTIONS.REMOVE_MESSAGE_FROM_LOG:
       return { ...state, log: action.payload };
     default:

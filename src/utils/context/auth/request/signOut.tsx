@@ -13,6 +13,6 @@ export const signOut = async ({ dispatch }: AuthDispatchProps) => {
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    axiosError({ authDispatch: dispatch, error, type: "auth", target: "logout-error" });
+    axiosError({ dispatch, error, type: "auth", target: "logout" });
   }
 };

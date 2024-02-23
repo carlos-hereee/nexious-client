@@ -2,7 +2,7 @@ declare module "log-context" {
   import { LOG_ACTIONS } from "@actions/LogActions";
 
   export type APP_STATUS = "PRE-LAUNCH" | "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
-  export interface LogMessageItem {
+  export interface LogMessage {
     uid: string;
     message: string;
     status: number;
@@ -11,22 +11,20 @@ declare module "log-context" {
   export interface LogSchema {
     isLoading: boolean;
     status: APP_STATUS;
-    log: LogMessageItem[] | [];
+    log: LogMessage[] | [];
   }
   export interface LogDispatchProps {
     dispatch: React.Dispatch<LogActionProps>;
     setAccessToken?: (accessToken: string) => void;
     getAppList?: () => void;
-    data?: LogMessageItem;
+    data?: LogMessage;
     status?: APP_STATUS;
-    log?: LogMessageItem[];
+    log?: LogMessage[];
   }
 
   export type LogActionProps =
     | { type: LOG_ACTIONS.IS_LOADING; payload: boolean }
     | { type: LOG_ACTIONS.SET_LOG_STATUS; payload: APP_STATUS }
-    | {
-        type: LOG_ACTIONS.REMOVE_MESSAGE_FROM_LOG | LOG_ACTIONS.ADD_MESSAGE_TO_LOG;
-        payload: LogMessageItem[];
-      };
+    | { type: LOG_ACTIONS.ADD_MESSAGE_TO_LOG; payload: LogMessage }
+    | { type: LOG_ACTIONS.REMOVE_MESSAGE_FROM_LOG; payload: LogMessage[] };
 }

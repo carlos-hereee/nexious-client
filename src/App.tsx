@@ -29,9 +29,7 @@ const App = ({ children }: ChildProps) => {
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
-  if (authErrors.serverIsOffline) {
-    return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
-  }
+  if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
   return (

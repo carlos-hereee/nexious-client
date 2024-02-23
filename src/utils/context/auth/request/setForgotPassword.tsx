@@ -1,26 +1,17 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { AuthDispatchProps } from "auth-context";
-import { AxiosError } from "axios";
+import { axiosError } from "@axios/axiosError";
 
-export const setForgotPassword = async (props: AuthDispatchProps) => {
-  const { dispatch, credentials } = props;
+export const setForgotPassword = async ({ dispatch, credentials }: AuthDispatchProps) => {
+  // require key variable
+  if (!credentials) throw Error("credentials is required");
   try {
-    if (credentials) {
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosAuth.post("/auth/forgot-password", credentials);
-      dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-    }
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
+    const { data } = await axiosAuth.post("/auth/forgot-password", credentials);
+    dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data });
+    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    const err = error as AxiosError;
-    if (err.code === "ERR_NETWORK") {
-      dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: true });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-    } else {
-      //   isDev && console.log("forgot password error ", error);
-      dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: "" });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-    }
+    axiosError({ target: "forgotPassword", dispatch, type: "auth", error });
   }
 };
