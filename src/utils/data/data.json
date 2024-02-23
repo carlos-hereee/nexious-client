@@ -1,0 +1,13 @@
+{
+  "resetAuthErrors": {
+    "emergencyPasswordChangeIsRequired": false,
+    "serverIsOffline": false,
+    "userNotFound": false,
+    "signInError": "",
+    "signUpError": "",
+    "changePasswordError": "",
+    "logOutError": "",
+    "forgotPasswordError": ""
+  },
+  "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] }
+}

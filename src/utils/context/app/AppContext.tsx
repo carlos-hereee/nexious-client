@@ -20,14 +20,11 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } =
-    useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // update app data
-  const setLoading = useCallback((isLoading: boolean) => {
-    setIsLoading({ dispatch, isLoading });
-  }, []);
+  const setLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
   const updateAppData = useCallback((props: AppAssetProps) => {
     const { app, appList, store } = props;

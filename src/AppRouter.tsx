@@ -67,9 +67,7 @@ const AppRouter: React.FC = () => {
       {/* All other routes */}
       <Route
         path="/*"
-        element={
-          <PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />
-        }
+        element={<PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />}
       />
     </Routes>
   );

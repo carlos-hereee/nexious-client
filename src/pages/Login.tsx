@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
-import { LoginFormValues } from "app-forms";
+import { LoginValues } from "app-forms";
 import { useAuthRouter } from "@hooks/useAuthRouter";
 
 const Login = () => {
@@ -29,7 +29,7 @@ const Login = () => {
           <Form
             initialValues={loginForm.initialValues}
             heading={loginForm.heading}
-            onSubmit={(val: LoginFormValues) => login(val)}
+            onSubmit={(val: LoginValues) => login(val)}
             schema={{ require: ["username", "password"] }}
           />
         )}

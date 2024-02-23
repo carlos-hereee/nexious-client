@@ -20,16 +20,11 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppData = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const {
-    activeAppName,
-    updateActiveAppData,
-    getAppWithName,
-    getAppStore,
-    menu,
-    store,
-    getStoreInventory,
-  } = useContext(AppContext);
+  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu, store, getStoreInventory, isLoading } =
+    useContext(AppContext);
   const { pathname } = useLocation();
+
+  console.log("isLoading :>> ", isLoading);
 
   useEffect(() => {
     // if user logged in
@@ -55,8 +50,7 @@ export const useActiveAppData = () => {
           // check user subscriptions
           const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
           // if user is subscribe to app toggle options
-          if (subIdx >= 0)
-            oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+          if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
           // updateActiveAppData({ menu: oldValues });
           updateActiveAppData({ menu: oldValues });
         }

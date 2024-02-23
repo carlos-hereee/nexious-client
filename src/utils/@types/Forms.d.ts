@@ -24,18 +24,18 @@ declare module "app-forms" {
     appName: string;
     logo: string;
   }
-  export interface LoginFormValues {
+  export interface LoginValues {
     username: string;
     password: string;
   }
-  export interface AuthFormValueProps extends LoginFormValues {
+  export interface AuthFormValueProps extends LoginValues {
     // username: string;
     password?: string;
     confirmPassword?: string;
     newPassword?: string;
     confirmNewPassword?: string;
   }
-  export interface ForgotPasswordFormProps {
+  export interface ForgotPasswordValues {
     username: string;
     newPassword: string;
     confirmNewPassword: string;

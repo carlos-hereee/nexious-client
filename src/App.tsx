@@ -22,17 +22,13 @@ const App = ({ children }: ChildProps) => {
     isLoading: loadingApp,
     handleMenu,
   } = useContext(AppContext);
-  // const { cart } = useContext(ServicesContext);
   const navigate = useNavigate();
-  // const { pathname } = useLocation();
 
-  // const isCartFull = cart.length > 0;
   const handleLogoClick = () => {
     if (activeAppName === nexiousName) navigate("/");
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
-  // console.log("activeMenu :>> ", activeMenu);
   if (authErrors.serverIsOffline) {
     return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   }
@@ -49,21 +45,6 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
       />
-      {/* {pathname !== "/explore" && !pathname.includes("store") && (
-        <div className="btn-checkout-container">
-          <Button
-            label={`You have ${cart.length} items in your cart.${
-              isCartFull
-                ? "Procceed to checkout"
-                : pathname.includes("app")
-                  ? "See store"
-                  : "Explore apps"
-            } `}
-            theme="btn btn-main btn-checkout"
-            onClick={() => navigate(isCartFull ? "/checkout" : "/explore")}
-          />
-        </div>
-      )} */}
 
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
