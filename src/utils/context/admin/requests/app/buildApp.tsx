@@ -1,18 +1,17 @@
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
+import { axiosError } from "@axios/axiosError";
 import { axiosMedia } from "@axios/axiosMedia";
-import { genericErrorMessages } from "@context/log/helpers/genericErrorMessages";
 import { AdminDisptachProps } from "app-admin";
 
-export const buildApp = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, values } = props;
+export const buildApp = async ({ dispatch, handleAppAssets, values }: AdminDisptachProps) => {
+  // require key variable
+  if (!values) throw Error("values is required");
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
-    if (values) {
-      dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.post(`/app/init-app`, values);
-      if (data && handleAppAssets) handleAppAssets(data);
-    }
+    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+    const { data } = await axiosMedia.post(`/app/init-app`, values);
+    if (data) handleAppAssets(data);
   } catch (error) {
-    const errorPayload = { error, adminDispatch: dispatch, target: "initAppFormError" };
-    genericErrorMessages({ ...errorPayload, type: "form-error" });
+    axiosError({ type: "form-error", error, dispatch, target: "initApp" });
   }
 };

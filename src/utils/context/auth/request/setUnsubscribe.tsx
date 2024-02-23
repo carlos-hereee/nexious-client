@@ -1,12 +1,14 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { axiosError } from "@axios/axiosError";
-import { AuthDispatchProps } from "auth-context";
+import { AuthDispatchProps, UserSchema } from "auth-context";
+import { DataResponse } from "utils/@types/response";
 
-export const setUnsubscribe = async (props: AuthDispatchProps) => {
-  const { dispatch, appId, updateUser } = props;
+export const setUnsubscribe = async ({ dispatch, appId, updateUser }: AuthDispatchProps) => {
+  // require key variable
+  if (!updateUser) throw Error("updateUser is required");
   try {
-    const { data } = await axiosAuth.post(`/app/unsubscribe/${appId}`);
-    if (data && updateUser) updateUser(data);
+    const { data }: DataResponse<UserSchema> = await axiosAuth.post(`/app/unsubscribe/${appId}`);
+    if (data) updateUser(data);
   } catch (error) {
     axiosError({ dispatch, type: "auth", error, target: "subscribe" });
   }

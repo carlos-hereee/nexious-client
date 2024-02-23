@@ -66,10 +66,7 @@ declare module "services-context" {
     | { type: SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
     | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET; payload: string }
     | {
-        type:
-          | SERVICE_ACTIONS.ADD_TO_CART
-          | SERVICE_ACTIONS.REMOVE_FROM_CART
-          | SERVICE_ACTIONS.UPDATE_CART;
+        type: SERVICE_ACTIONS.ADD_TO_CART | SERVICE_ACTIONS.REMOVE_FROM_CART | SERVICE_ACTIONS.UPDATE_CART;
         payload: CartProps[];
       };
 }

@@ -1,8 +1,7 @@
 import { LOG_ACTIONS } from "@actions/LogActions";
 import { LogDispatchProps } from "log-context";
 
-export const removeFromLog = (props: LogDispatchProps) => {
-  const { dispatch, data, log } = props;
+export const removeFromLog = ({ dispatch, data, log }: LogDispatchProps) => {
   // require key variable
   if (!data) throw Error("data is required");
   if (!log) throw Error("log is required");
