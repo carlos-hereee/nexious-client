@@ -14,7 +14,7 @@ declare module "app-admin" {
   };
   export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
 
-  export interface AppAssetProps {
+  export interface AppAssets {
     user?: UserSchema;
     store?: StoreProps;
     app?: AppProps;
@@ -80,7 +80,7 @@ declare module "app-admin" {
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
-    handleAppAssets?: (key: AppAssetProps) => void;
+    handleAppAssets?: (key: AppAssets) => void;
     setFormStatus?: (key: FORM_STATUS) => void;
     updateStripeConfig?: (key: StripeConfigProps) => void;
     appId?: string;

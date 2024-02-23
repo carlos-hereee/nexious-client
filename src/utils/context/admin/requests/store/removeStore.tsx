@@ -1,16 +1,17 @@
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { axiosAuth } from "@axios/axiosAuth";
-import { genericErrorMessages } from "@context/log/helpers/genericErrorMessages";
-import { AdminDisptachProps } from "app-admin";
+import { axiosError } from "@axios/axiosError";
+import { AdminDisptachProps, AppAssets } from "app-admin";
+import { DataResponse } from "utils/@types/response";
 
-export const removeStore = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, appId } = props;
+export const removeStore = async ({ dispatch, handleAppAssets, appId }: AdminDisptachProps) => {
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.delete(`/store/remove-store/${appId}`);
-    if (data && handleAppAssets) handleAppAssets(data);
+    const { data }: DataResponse<AppAssets> = await axiosAuth.delete(`/store/remove-store/${appId}`);
+    if (data) handleAppAssets(data);
   } catch (error) {
-    const errorPayload = { error, adminDispatch: dispatch, target: "buildAppFormError" };
-    genericErrorMessages({ ...errorPayload, type: "form-error" });
+    axiosError({ error, dispatch, target: "removeMerch", type: "form-error" });
   }
 };

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssetProps, FORM_STATUS } from "app-admin";
+import { AdminSchema, AppAssets, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
@@ -42,14 +42,9 @@ export const AdminState = ({ children }: ChildProps) => {
   const { updateUser, accessToken } = useContext(AuthContext);
   const { status } = useContext(LogContext);
 
-  const setFormStatus = useCallback((data: FORM_STATUS) => {
-    updateFormStatus({ dispatch, status: data });
-  }, []);
-
-  const handleAppAssets = (values: AppAssetProps) => {
-    if (values.app || values.appList) {
-      updateAppData({ app: values.app, appList: values.appList, store: values?.store });
-    }
+  const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
+  const handleAppAssets = (values: AppAssets) => {
+    if (values.app || values.appList) updateAppData(values);
     if (values.user) updateUser(values.user);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
@@ -59,9 +54,7 @@ export const AdminState = ({ children }: ChildProps) => {
     if (accessToken) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       fetchAccessToken({ dispatch, handleAppAssets });
-    } else if (status === "IDLE" && !accessToken) {
-      setLoading(false);
-    }
+    } else setLoading(false);
   }, [accessToken, status]);
 
   const initApp = useCallback((values: PreviewValueProps) => {

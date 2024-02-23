@@ -3,7 +3,7 @@ import appState from "@data/appState.json";
 import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
 import { AppSchema, StripeConfigProps } from "app-context";
 import { useNavigate } from "react-router-dom";
-import { AppAssetProps } from "app-admin";
+import { AppAssets } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -26,22 +26,18 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // update app data
   const setLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
-  const updateAppData = useCallback((props: AppAssetProps) => {
-    const { app, appList, store } = props;
+  const updateAppData = useCallback(({ app, appList, store }: AppAssets) => {
     setAppData({ dispatch, app, appList, store });
   }, []);
   const updateStripeConfig = useCallback((config: StripeConfigProps) => {
     setStripeConfig({ dispatch, config });
   }, []);
 
-  const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
-    const { menu, appName, logo, media, appId } = props;
+  const updateActiveAppData = useCallback(({ menu, appName, logo, media, appId }: ActiveMenuProps) => {
     setActiveData({ dispatch, menu, appName, logo, media, appId });
   }, []);
-
-  const getStoreInventory = useCallback((storeId: string) => {
-    getInventory({ dispatch, storeId });
-  }, []);
+  // view store inventory
+  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
   const getAppStore = useCallback((storeId: string) => {
     getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
   }, []);

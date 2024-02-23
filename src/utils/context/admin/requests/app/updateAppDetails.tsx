@@ -1,17 +1,18 @@
 import { axiosMedia } from "@axios/axiosMedia";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { AdminDisptachProps } from "app-admin";
-import { genericErrorMessages } from "@context/log/helpers/genericErrorMessages";
+import { AdminDisptachProps, AppAssets } from "app-admin";
+import { axiosError } from "@axios/axiosError";
+import { DataResponse } from "utils/@types/response";
 
-export const updateAppDetails = async (props: AdminDisptachProps) => {
-  const { dispatch, values, appId, handleAppAssets } = props;
+export const updateAppDetails = async ({ dispatch, values, appId, handleAppAssets }: AdminDisptachProps) => {
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosMedia.put(`/app/update-app-details/${appId}`, values);
-    if (data && handleAppAssets) handleAppAssets(data);
+    const { data }: DataResponse<AppAssets> = await axiosMedia.put(`/app/update-app-details/${appId}`, values);
+    if (data) handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    const errorPayload = { error, adminDispatch: dispatch, target: "updateAppDetailsFormError" };
-    genericErrorMessages({ ...errorPayload, type: "form-error" });
+    axiosError({ error, dispatch, target: "updateAppDetails", type: "form-error" });
   }
 };

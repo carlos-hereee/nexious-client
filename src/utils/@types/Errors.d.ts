@@ -12,7 +12,15 @@ declare module "app-errors" {
 
   export type AuthErrorTarget = "logout" | "login" | "register" | "subscribe" | "offline" | "forgotPassword";
   export type AppErrorTarget = "";
-  export type AdminErrorTarget = "initApp";
+  export type FormErrorTarget =
+    | "token"
+    | "updateAppDetails"
+    | "initApp"
+    | "updateLanding"
+    | "updateStore"
+    | "buildStore"
+    | "addMerch"
+    | "removeMerch";
 
   export interface AuthResponseError extends AxiosError {
     type: "auth";
@@ -28,10 +36,11 @@ declare module "app-errors" {
     type: "log";
     dispatch: React.Dispatch<LogActionProps>;
   }
-  export interface AdminResponseError extends AxiosError {
-    type: "form-error";
-    target: AdminErrorTarget;
+  export interface FormResponseError extends AxiosError {
+    type: "form-error" | "accessToken";
+    target: FormErrorTarget;
     dispatch: React.Dispatch<AdminActionProps>;
   }
-  export type AxiosResponseError = AuthResponseError | AppResponseError | LogResponseError | AdminResponseError;
+
+  export type AxiosResponseError = AuthResponseError | AppResponseError | LogResponseError | FormResponseError;
 }

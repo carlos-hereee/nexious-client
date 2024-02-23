@@ -1,7 +1,7 @@
 declare module "app-context" {
   import { MerchProps } from "services-context";
   import { UserSchema } from "auth-context";
-  import { AppAssetProps } from "app-admin";
+  import { AppAssets } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
     AdminIdProps,
@@ -68,7 +68,7 @@ declare module "app-context" {
   }
   // app context schema
   export interface AppSchema extends AppStateProps {
-    updateAppData: (props: AppAssetProps) => void;
+    updateAppData: (props: AppAssets) => void;
     updateStripeConfig: (config: StripeConfigProps) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppStore: (appName: string) => void;

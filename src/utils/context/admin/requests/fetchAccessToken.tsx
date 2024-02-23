@@ -1,9 +1,15 @@
 import { axiosAuth } from "@axios/axiosAuth";
-import { AdminDisptachProps } from "app-admin";
+import { axiosError } from "@axios/axiosError";
+import { AdminDisptachProps, AppAssets } from "app-admin";
+import { DataResponse } from "utils/@types/response";
 
-export const fetchAccessToken = async (props: AdminDisptachProps) => {
-  const { handleAppAssets } = props;
-  const { data } = await axiosAuth.get("/auth/access-token");
-
-  if (data && handleAppAssets) handleAppAssets(data);
+export const fetchAccessToken = async ({ handleAppAssets, dispatch }: AdminDisptachProps) => {
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
+  try {
+    const { data }: DataResponse<AppAssets> = await axiosAuth.get("/auth/access-token");
+    if (data) handleAppAssets(data);
+  } catch (error) {
+    axiosError({ dispatch, error, type: "accessToken", target: "token" });
+  }
 };

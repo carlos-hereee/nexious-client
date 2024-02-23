@@ -20,11 +20,11 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppData = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu, store, getStoreInventory, isLoading } =
+  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu, store, getStoreInventory } =
     useContext(AppContext);
   const { pathname } = useLocation();
 
-  console.log("isLoading :>> ", isLoading);
+  // console.log("isLoading :>> ", isLoading);
 
   useEffect(() => {
     // if user logged in
