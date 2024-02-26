@@ -5,8 +5,7 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
-const MediaContainer = (props: MediaCardContainerProps) => {
-  const { onRemove, onMediaClick, onAdd } = props;
+const MediaContainer = ({ onRemove, onMediaClick, onAdd }: MediaCardContainerProps) => {
   const { media } = useContext(AppContext);
 
   return (

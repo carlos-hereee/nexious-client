@@ -136,6 +136,7 @@ declare module "app-types" {
     name?: string;
     onRemove?: (page: PageProps) => void;
     onAddPage?: (page: DialogStatusProps) => void;
+    onEditLanding?: () => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {
@@ -167,7 +168,7 @@ declare module "app-types" {
     onMediaClick?: (key: MediaItemProp) => void;
   }
   export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two";
-  export interface AppSettingDialogProps {
+  export interface AppDialogProps {
     pages: boolean;
     media: boolean;
     store: boolean;

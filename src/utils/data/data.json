@@ -10,5 +10,9 @@
     "logout": "",
     "forgotPassword": ""
   },
-  "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] }
+  "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
+  "noInventoryHint": {
+    "title": "Hint!",
+    "body": "Your inventory is empty click on + add merch to add items to your inventory"
+  }
 }

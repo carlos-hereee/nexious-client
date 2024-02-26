@@ -4,8 +4,7 @@ import PreviewPage from "@components/app/preview/PreviewPage";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 
-const PagesList = (props: PagesContainerProps) => {
-  const { name, onRemove } = props;
+const PagesList = ({ name, onRemove }: PagesContainerProps) => {
   const navigate = useNavigate();
   const { pages } = useContext(AppContext);
 

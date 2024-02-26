@@ -4,11 +4,11 @@ import { Button } from "nexious-library";
 import { useContext } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
+import data from "@data/data.json";
 import CopyToClipboard from "../sections/CopyToClipboard";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
-const StoreContainer = (props: PageContainerProps) => {
-  const { onPhaseClick } = props;
+const StoreContainer = ({ onPhaseClick }: PageContainerProps) => {
   const { store, appLink } = useContext(AppContext);
 
   if (!store || !store.storeId) {
@@ -21,15 +21,10 @@ const StoreContainer = (props: PageContainerProps) => {
       </div>
     );
   }
-  const noInventoryHint = {
-    title: "Hint!",
-    body: "Your inventory is empty click on + add merch to add items to your inventory",
-  };
 
   return (
     <div className="container">
       <h2 className="heading">Store:</h2>
-      {/* <KeyWithDefinition label="Store name:" value={store.name || "No name"} labelLayout="bolden" /> */}
       <KeyWithDefinition label="Store url:" labelLayout="bolden">
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
       </KeyWithDefinition>
@@ -37,7 +32,7 @@ const StoreContainer = (props: PageContainerProps) => {
         <Button label="View configuration" onClick={() => onPhaseClick("configuration")} />
       </KeyWithDefinition>
       {!store.inventory || store.inventory.length === 0 ? (
-        <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={noInventoryHint}>
+        <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={data.noInventoryHint}>
           <Button label="+ Add merch" onClick={() => onPhaseClick("phase-two")} />
         </KeyWithDefinition>
       ) : (
