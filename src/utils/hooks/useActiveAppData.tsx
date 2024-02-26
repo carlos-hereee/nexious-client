@@ -24,12 +24,10 @@ export const useActiveAppData = () => {
     useContext(AppContext);
   const { pathname } = useLocation();
 
-  // console.log("isLoading :>> ", isLoading);
-
+  const homeRoutes = ["/", "/checkout", "/explore", "/build-app"];
   useEffect(() => {
-    // if user logged in
-    // check route homepage
-    if (pathname === "/" || pathname.includes("checkout") || pathname.includes("explore")) {
+    if (homeRoutes.includes(pathname)) {
+      // check route homepage
       updateActiveAppData({
         appId: nexiousAppId,
         appName: nexiousName,
@@ -59,9 +57,7 @@ export const useActiveAppData = () => {
     } else if (pathname.includes("store")) {
       const routeAppName = pathname.split("/")[2];
       // console.log("routeAppName :>> ", routeAppName);
-      if (routeAppName !== activeAppName) {
-        getAppStore(routeAppName);
-      }
+      if (routeAppName !== activeAppName) getAppStore(routeAppName);
       if (store.storeId) getStoreInventory(store.storeId);
       // console.log("store :>> ", store);
       // console.log("routeAppName :>> ", routeAppName);

@@ -3,12 +3,12 @@ import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link } from "react-router-dom";
 import { LoginValues } from "app-forms";
-import { useAuthRouter } from "@hooks/useAuthRouter";
+import { useNavigation } from "@hooks/useNavigation";
 
 const Login = () => {
   const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
 
-  const { navigateTo } = useAuthRouter();
+  const { navigateTo } = useNavigation();
 
   const handleClick = () => {
     resetAuthErrors();
@@ -18,9 +18,9 @@ const Login = () => {
   if (isLoading) return <Loading message="..loading user data" />;
   return (
     <div className="container">
-      {authErrors.userNotFound && (
+      {authErrors.login && (
         <div className="flex-center">
-          <p className="error-message"> {authErrors.signInError} </p>
+          <p className="error-message"> {authErrors.login} </p>
           <Button label="Sign up with this username?" onClick={handleClick} />
         </div>
       )}
