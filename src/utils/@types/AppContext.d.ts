@@ -17,7 +17,7 @@ declare module "app-context" {
 
   export interface AppCardProps {
     app: AppListProps;
-    owner: UserSchema;
+    owner?: UserSchema;
     theme?: string;
     errorMessage?: string;
     handleSeeLive: () => void;

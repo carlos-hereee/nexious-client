@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginValues } from "app-forms";
-import { useNavigation } from "@hooks/useNavigation";
 
 const Login = () => {
   const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
 
-  const { navigateTo } = useNavigation();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     resetAuthErrors();
-    navigateTo("register");
+    navigate("register");
   };
 
   if (isLoading) return <Loading message="..loading user data" />;

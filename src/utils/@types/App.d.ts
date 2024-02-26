@@ -61,6 +61,7 @@ declare module "app-types" {
   export interface AppListProps {
     appName: string;
     appId: string;
+    appUrl: string;
     adminIds: AdminIdProps[];
     logo: string;
     owner: UserSchema;

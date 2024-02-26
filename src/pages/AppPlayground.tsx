@@ -10,12 +10,9 @@ const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
   const { updateActiveAppData } = useContext(AppContext);
   const navigate = useNavigate();
-
   const handleSeeLive = (app: AppListProps) => {
-    const name = app.appName.split(" ").join("+");
-    const { logo, appName, menu, appId } = app;
-    updateActiveAppData({ menu, appName, logo, media: app.media, appId });
-    navigate(`/app/${name}`);
+    updateActiveAppData(app);
+    navigate(`/${app.appUrl}`);
   };
 
   return (
@@ -25,14 +22,12 @@ const AppPlayground = () => {
       <div className="card-container">
         {ownedApps.length > 0 ? (
           ownedApps.map((app) => {
-            const appName = app.appName.split(" ").join("+");
             return (
               <AppCard
                 app={app}
                 key={app.appId}
-                handleNavigation={(link: string) => navigate(`/${link}/${appName}`)}
+                handleNavigation={(link: string) => navigate(`/${link}/${app.appUrl}`)}
                 handleSeeLive={() => handleSeeLive(app)}
-                owner={app.owner}
                 theme="highlight"
               />
             );

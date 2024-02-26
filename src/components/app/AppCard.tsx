@@ -5,10 +5,11 @@ import { useContext } from "react";
 import MediaContainer from "./containers/MediaContainer";
 
 const AppCard = (props: AppCardProps) => {
-  const { app, theme, errorMessage, handleSeeLive, handleNavigation, owner } = props;
+  const { app, theme, errorMessage, handleSeeLive, handleNavigation } = props;
   const { user } = useContext(AuthContext);
-
-  const isAdmin = owner.userId === user.userId;
+  // if user has permissions
+  const isAdmin = app.adminIds.some((admin) => admin.userId === user.userId);
+  // logo alt data
   const heroData = { url: app.logo, alt: `industry-brand-${app.appName}` };
   return (
     <div className={`app-card${theme ? ` ${theme}` : ""}`}>
