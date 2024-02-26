@@ -19,6 +19,10 @@ export const axiosError = ({ error, type, target, dispatch }: AxiosResponseError
     // if service disconnect
     if (err.code === "ERR_NETWORK") dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: stranded });
     else dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: { [target]: message } });
+    // // if refresh token attempt failed
+    // if (target === "refresh-token") {
+    //   // console.log("error :>> ", error, target);
+    // }
     // update loading state
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   }
@@ -26,7 +30,6 @@ export const axiosError = ({ error, type, target, dispatch }: AxiosResponseError
   if (type === "app") {
     // if service disconnect
     if (err.code === "ERR_NETWORK") dispatch({ type: APP_ACTIONS.SET_APP_ERROR, payload: message });
-    //  subscribtions error
     // update loading state
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   }

@@ -4,12 +4,11 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { PreviewValueProps } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { LogContext } from "@context/log/LogContext";
 import { StripeConfigProps } from "app-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
-import { fetchAccessToken } from "./requests/fetchAccessToken";
+import { fetchAccessToken } from "../auth/request/fetchAccessToken";
 import { buildApp } from "./requests/app/buildApp";
 import { updateAppName } from "./requests/updateAppName";
 import { updateLandingPage } from "./requests/updateLandingPage";
@@ -38,9 +37,8 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
-  const { updateAppData, setLoading, updateStripeConfig } = useContext(AppContext);
+  const { updateAppData, setAppLoading, updateStripeConfig } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
-  const { status } = useContext(LogContext);
 
   const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
   const handleAppAssets = (values: AppAssets) => {
@@ -54,8 +52,8 @@ export const AdminState = ({ children }: ChildProps) => {
     if (accessToken) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       fetchAccessToken({ dispatch, handleAppAssets });
-    } else setLoading(false);
-  }, [accessToken, status]);
+    } else setAppLoading(false);
+  }, [accessToken]);
 
   const initApp = useCallback((values: PreviewValueProps) => {
     buildApp({ dispatch, values, handleAppAssets });

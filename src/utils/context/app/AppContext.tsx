@@ -23,8 +23,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // update app data
-  const setLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
+  const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
   const updateAppData = useCallback(({ app, appList, store }: AppAssets) => {
     setAppData({ dispatch, app, appList, store });
@@ -103,7 +102,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppList,
       updateActiveAppData,
       handleMenu,
-      setLoading,
+      setAppLoading,
       getStoreInventory,
       getAppStore,
       updateStripeConfig,

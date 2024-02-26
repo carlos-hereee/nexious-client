@@ -10,7 +10,14 @@ declare module "app-errors" {
     target?: string;
   }
 
-  export type AuthErrorTarget = "logout" | "login" | "register" | "subscribe" | "offline" | "forgotPassword";
+  export type AuthErrorTarget =
+    | "logout"
+    | "login"
+    | "register"
+    | "subscribe"
+    | "offline"
+    | "forgotPassword"
+    | "refresh-token";
   export type AppErrorTarget = "";
   export type FormErrorTarget =
     | "token"

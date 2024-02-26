@@ -1,4 +1,4 @@
-import { createContext, useReducer, useMemo, useCallback } from "react";
+import { createContext, useReducer, useMemo, useCallback, useEffect } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
@@ -16,11 +16,19 @@ import { clearStranded } from "./dispatch/clearStranded";
 import { updateDumnyData } from "./dispatch/updateDummyData";
 import { updateTheme } from "./dispatch/updateTheme";
 import { updateAccessToken } from "./dispatch/updateAccessToken";
+import { fetchRefreshToken } from "./request/fetchRefreshToken";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
+
+  // udpate accesstoken
+  const setAccessToken = useCallback((accessToken: string) => updateAccessToken({ dispatch, accessToken }), []);
+  // get accessToken
+  useEffect(() => {
+    fetchRefreshToken({ dispatch, setAccessToken });
+  }, []);
 
   // user data
   const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
@@ -28,7 +36,6 @@ export const AuthState = ({ children }: ChildProps) => {
   // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
-  const setAccessToken = useCallback((accessToken: string) => updateAccessToken({ dispatch, accessToken }), []);
   const forgotPassword = useCallback((e: ForgotPasswordValues) => setForgotPassword({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
   // auth errors

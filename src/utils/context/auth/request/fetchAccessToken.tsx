@@ -10,6 +10,7 @@ export const fetchAccessToken = async ({ handleAppAssets, dispatch }: AdminDispt
     const { data }: DataResponse<AppAssets> = await axiosAuth.get("/auth/access-token");
     if (data) handleAppAssets(data);
   } catch (error) {
+    // console.log("error :>> ", error);
     axiosError({ dispatch, error, type: "accessToken", target: "token" });
   }
 };
