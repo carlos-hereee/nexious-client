@@ -62,13 +62,10 @@ const AppRouter: React.FC = () => {
         <Route path="/add-page/:appName" element={<AddPage />} />
         <Route path="/edit-app/:appName" element={<EditApp />} />
         <Route path="/edit-page/:appName/page/:pageName" element={<EditPage />} />
-        <Route path="/settings/:appName" element={<AppSettings />} />
+        <Route path="/settings/app/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
-      <Route
-        path="/*"
-        element={<PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />}
-      />
+      <Route path="/*" element={<PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />} />
     </Routes>
   );
 };
