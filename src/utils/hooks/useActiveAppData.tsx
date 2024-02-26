@@ -49,7 +49,6 @@ export const useActiveAppData = () => {
           const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
           // if user is subscribe to app toggle options
           if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
-          // updateActiveAppData({ menu: oldValues });
           updateActiveAppData({ menu: oldValues });
         }
         // console.log("activeAppName, routeAppName :>> ", activeAppName, routeAppName);

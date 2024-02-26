@@ -17,11 +17,8 @@ declare module "app-context" {
 
   export interface AppCardProps {
     app: AppListProps;
-    owner?: UserSchema;
     theme?: string;
     errorMessage?: string;
-    handleSeeLive: () => void;
-    handleNavigation: (link: string) => void;
   }
   export interface StripeConfigProps {
     currency?: string;

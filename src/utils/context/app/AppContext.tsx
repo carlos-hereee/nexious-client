@@ -32,9 +32,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     setStripeConfig({ dispatch, config });
   }, []);
 
-  const updateActiveAppData = useCallback(({ menu, appName, logo, media, appId }: ActiveMenuProps) => {
-    setActiveData({ dispatch, menu, appName, logo, media, appId });
-  }, []);
+  const updateActiveAppData = useCallback((data: ActiveMenuProps) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
   const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
   const getAppStore = useCallback((storeId: string) => {

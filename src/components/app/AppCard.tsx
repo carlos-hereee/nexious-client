@@ -2,11 +2,21 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { AppCardProps } from "app-context";
 import { Button, Hero } from "nexious-library";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "@context/app/AppContext";
 import MediaContainer from "./containers/MediaContainer";
 
-const AppCard = (props: AppCardProps) => {
-  const { app, theme, errorMessage, handleSeeLive, handleNavigation } = props;
+const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const { user } = useContext(AuthContext);
+  const { updateActiveAppData } = useContext(AppContext);
+  const navigate = useNavigate();
+
+  const handleSeeLive = () => {
+    updateActiveAppData(app);
+    navigate(`/${app.appUrl}`);
+  };
+  const handleNavigation = (link: string) => navigate(`/${link}/${app.appUrl}`);
+
   // if user has permissions
   const isAdmin = app.adminIds.some((admin) => admin.userId === user.userId);
   // logo alt data
