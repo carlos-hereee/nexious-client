@@ -1,6 +1,6 @@
 declare module "app-types" {
   import { MerchProps } from "services-context";
-  import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
+  import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
@@ -165,12 +165,7 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps =
-    | "idle"
-    | "confirm-cancel"
-    | "configuration"
-    | "phase-one"
-    | "phase-two";
+  export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two";
   export interface AppSettingDialogProps {
     pages: boolean;
     media: boolean;
@@ -280,7 +275,7 @@ declare module "app-types" {
     logoId?: string;
   };
   export interface FilterDesiredProps {
-    values: PreviewValueProps;
+    values: AppValues;
     desiredData: string[];
   }
   export interface HeaderProps {
@@ -320,8 +315,8 @@ declare module "app-types" {
       };
       dataList?: { [key: string]: MenuItemProps[] };
       addEntries?: SectionEntryOganizer;
-      onViewPreview: (e: PreviewValueProps) => void;
-      onSubmit: (e: PreviewValueProps) => void;
+      onViewPreview: (e: AppValues) => void;
+      onSubmit: (e: AppValues) => void;
       form: FormProps;
     };
   };

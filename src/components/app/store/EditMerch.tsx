@@ -1,7 +1,7 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { formatMerch } from "@formatters/store/formatMerch";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { Button, ButtonCancel, Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 import { MerchProps } from "services-context";
@@ -39,7 +39,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
           types={merchForm.types}
           heading={`Add merchendise: ${appName}`}
           onCancel={() => setShow(true)}
-          onSubmit={(values: PreviewValueProps) => editMerch(values, appId, initValues.uid)}
+          onSubmit={(values: AppValues) => editMerch(values, appId, initValues.uid)}
           submitLabel="Save and continue"
           withFileUpload
           cancelLabel="Delete merch"

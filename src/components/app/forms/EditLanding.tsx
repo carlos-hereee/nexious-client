@@ -2,13 +2,12 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { OnclickProps } from "app-admin";
 import { formatPage } from "@formatters/formatPage";
 
 const EditLanding = (props: OnclickProps) => {
-  const { editLandingPage, landingForm, languageList, sectionEntries, iconList } =
-    useContext(AdminContext);
+  const { editLandingPage, landingForm, languageList, sectionEntries, iconList } = useContext(AdminContext);
   const { onCancelClick } = props;
   // initial data if any
   const { landing, isLoading, appName, appId } = useContext(AppContext);
@@ -37,7 +36,7 @@ const EditLanding = (props: OnclickProps) => {
         clearSelection={{ icon: true }}
         onCancel={onCancelClick}
         heading={`Editing landing page: ${appName}`}
-        onSubmit={(values: PreviewValueProps) => editLandingPage(values, appId)}
+        onSubmit={(values: AppValues) => editLandingPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         schema={{ required: ["appName", "logo"] }}

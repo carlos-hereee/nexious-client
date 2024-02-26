@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer 
 import { AdminSchema, AppAssets, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StripeConfigProps } from "app-context";
 import { reducer } from "./AdminReducer";
@@ -55,34 +55,32 @@ export const AdminState = ({ children }: ChildProps) => {
     } else setAppLoading(false);
   }, [accessToken]);
 
-  const initApp = useCallback((values: PreviewValueProps) => {
-    buildApp({ dispatch, values, handleAppAssets });
-  }, []);
+  const initApp = useCallback((values: AppValues) => buildApp({ dispatch, values, handleAppAssets }), []);
 
-  const editAppName = useCallback((values: PreviewValueProps, appId: string) => {
+  const editAppName = useCallback((values: AppValues, appId: string) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
+  const editLandingPage = useCallback((values: AppValues, appId: string) => {
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
   }, []);
-  const editAppDetails = useCallback((values: PreviewValueProps, appId: string) => {
+  const editAppDetails = useCallback((values: AppValues, appId: string) => {
     updateAppDetails({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editNewsletter = useCallback((values: PreviewValueProps, appId: string) => {
+  const editNewsletter = useCallback((values: AppValues, appId: string) => {
     updateNewsletter({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editSocialMedia = useCallback((values: PreviewValueProps, appId: string) => {
+  const editSocialMedia = useCallback((values: AppValues, appId: string) => {
     updateSocialMedia({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editCalendar = useCallback((a: PreviewValueProps, appId: string) => {
+  const editCalendar = useCallback((a: AppValues, appId: string) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
 
-  const editPage = useCallback((a: PreviewValueProps, appId: string, pageId?: string) => {
+  const editPage = useCallback((a: AppValues, appId: string, pageId?: string) => {
     updatePage({ dispatch, values: a, appId, handleAppAssets, pageId });
   }, []);
 
@@ -108,23 +106,23 @@ export const AdminState = ({ children }: ChildProps) => {
     getBucket({ dispatch, appId, handleAppAssets });
   }, []);
 
-  const addPage = useCallback((values: PreviewValueProps, appId: string) => {
+  const addPage = useCallback((values: AppValues, appId: string) => {
     createPage({ dispatch, appId, handleAppAssets, values });
   }, []);
 
-  const addMedia = useCallback((values: PreviewValueProps, appId: string) => {
+  const addMedia = useCallback((values: AppValues, appId: string) => {
     createMedia({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const addStore = useCallback((values: PreviewValueProps, appId: string) => {
+  const addStore = useCallback((values: AppValues, appId: string) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const editStore = useCallback((values: PreviewValueProps, appId: string) => {
+  const editStore = useCallback((values: AppValues, appId: string) => {
     updateStore({ dispatch, appId, handleAppAssets, values, setFormStatus });
   }, []);
-  const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
+  const addMerch = useCallback((values: AppValues, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const editMerch = useCallback((values: PreviewValueProps, appId: string, merchId: string) => {
+  const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
   const getAccount = useCallback((accountId: string) => {

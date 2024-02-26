@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InitAppProps, PreviewValueProps } from "app-forms";
+import { InitAppProps, AppValues } from "app-forms";
 import { KeyStringProp, MediaProps, NewsletterProps, PageProps } from "app-types";
 
 export const useFormOrganizer = () => {
@@ -11,7 +11,7 @@ export const useFormOrganizer = () => {
   const [previewPage, setPreviewPage] = useState<PageProps>();
   const [previewMedia, setPreviewMedia] = useState<MediaProps>();
 
-  const handlePreview = (formId: string, values: PreviewValueProps) => {
+  const handlePreview = (formId: string, values: AppValues) => {
     setActive(formId);
     if (formId === "initApp") setPreviewInitApp(values as InitAppProps);
     else if (formId === "newsletter") setPreviewNewsletter(values as NewsletterProps);

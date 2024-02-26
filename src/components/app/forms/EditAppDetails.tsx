@@ -2,14 +2,13 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { formatAppDetails } from "@formatters/formatAppDetails";
 import { OnclickProps } from "app-admin";
 import { uniqueApplist } from "@formatters/uniqeList";
 
 const EditAppDetails = (props: OnclickProps) => {
-  const { editAppDetails, appDetailsForm, languageList, themeList, iconList } =
-    useContext(AdminContext);
+  const { editAppDetails, appDetailsForm, languageList, themeList, iconList } = useContext(AdminContext);
   const { onCancelClick } = props;
   // initial data if any
   const { logo, isLoading, appName, appList, appId, locale } = useContext(AppContext);
@@ -38,7 +37,7 @@ const EditAppDetails = (props: OnclickProps) => {
         clearSelection={{ icon: true }}
         onCancel={onCancelClick}
         heading={`Editing app details: ${appName}`}
-        onSubmit={(values: PreviewValueProps) => editAppDetails(values, appId)}
+        onSubmit={(values: AppValues) => editAppDetails(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         schema={{

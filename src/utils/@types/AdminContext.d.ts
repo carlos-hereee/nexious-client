@@ -3,7 +3,7 @@ declare module "app-admin" {
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfigProps } from "app-context";
   import { UserSchema } from "auth-context";
-  import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
+  import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
   export type AdminFormErrors = {
     initAppFormError?: string;
@@ -54,29 +54,29 @@ declare module "app-admin" {
 
   export interface AdminSchema extends AdminStateProps {
     setFormStatus: (status: FORM_STATUS) => void;
-    initApp: (values: PreviewValueProps) => void;
+    initApp: (values: AppValues) => void;
     // stripe account
     getAccount: (accountId: string) => void;
     updateAccount: (config: StripeConfigProps) => void;
-    editAppDetails: (values: PreviewValueProps, appId: string) => void;
-    editAppName: (values: PreviewValueProps, appId: string) => void;
-    addPage: (values: PreviewValueProps, appId: string) => void;
-    addMedia: (values: PreviewValueProps, appId: string) => void;
-    editLandingPage: (values: PreviewValueProps, appId: string) => void;
-    editNewsletter: (values: PreviewValueProps, appId: string) => void;
-    editSocialMedia: (values: PreviewValueProps, appId: string) => void;
-    editCalendar: (values: PreviewValueProps, appId: string) => void;
-    editPage: (values: PreviewValueProps, appId: string, name?: string) => void;
+    editAppDetails: (values: AppValues, appId: string) => void;
+    editAppName: (values: AppValues, appId: string) => void;
+    addPage: (values: AppValues, appId: string) => void;
+    addMedia: (values: AppValues, appId: string) => void;
+    editLandingPage: (values: AppValues, appId: string) => void;
+    editNewsletter: (values: AppValues, appId: string) => void;
+    editSocialMedia: (values: AppValues, appId: string) => void;
+    editCalendar: (values: AppValues, appId: string) => void;
+    editPage: (values: AppValues, appId: string, name?: string) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
     deleteMerchItem: (appId: string, merchId: string) => void;
     deletePage: (appId: string, pageId: string) => void;
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
-    addStore: (values: PreviewValueProps, appId: string) => void;
-    editStore: (values: PreviewValueProps, appId: string) => void;
-    editMerch: (values: PreviewValueProps, appId: string, merhId: string) => void;
-    addMerch: (values: PreviewValueProps, appId: string) => void;
+    addStore: (values: AppValues, appId: string) => void;
+    editStore: (values: AppValues, appId: string) => void;
+    editMerch: (values: AppValues, appId: string, merhId: string) => void;
+    addMerch: (values: AppValues, appId: string) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
@@ -90,7 +90,7 @@ declare module "app-admin" {
     config?: StripeConfigProps;
     merchId?: string;
     status?: FORM_STATUS;
-    values?: PreviewValueProps;
+    values?: AppValues;
   }
   export type AdminActionProps =
     | { type: ADMIN_ACTIONS.IS_LOADING; payload: boolean }

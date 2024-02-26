@@ -1,7 +1,7 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { OnclickProps } from "app-admin";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 
@@ -15,7 +15,7 @@ const AddMedia = ({ onCancelClick }: OnclickProps) => {
     else setStatus("idle");
   }, [isLoading]);
 
-  const handleMedia = (values: PreviewValueProps) => {
+  const handleMedia = (values: AppValues) => {
     if (onCancelClick) onCancelClick();
     addMedia(values, appId);
   };
