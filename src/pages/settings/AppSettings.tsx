@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { useNavigate } from "react-router-dom";
-import { Button } from "nexious-library";
+// import { useNavigate } from "react-router-dom";
+// import { Button } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
@@ -21,7 +21,7 @@ const AppSettings = () => {
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("idle");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
@@ -47,15 +47,15 @@ const AppSettings = () => {
   };
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
-
+  // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
       <h1 className="heading">App settings: {appName}</h1>
-      <div className="navigation-container">
+      {/* <div className="navigation-container">
         <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
         <Button label="See live" onClick={() => navigate(`/app/${appLink}`)} />
-      </div>
+      </div> */}
       <AppContainer onAppDetails={(phase) => handleShow({ dialogName: "app", dialogStatus: phase })} />
       <PagesContainer
         onEditLanding={() => handleShow({ dialogName: "pages", dialogStatus: "phase-two" })}
