@@ -17,18 +17,18 @@ const Landing = () => {
     <div>
       <div className="flex-d-column">
         {landing.hero ? (
-          <HeroCard data={landing} hero={heroData} onClick={handleClick} />
+          <>
+            <HeroCard data={landing} hero={heroData} onClick={handleClick} />
+            {landing.body && <p className="text-max">{landing.body}</p>}
+          </>
         ) : (
-          <Card data={landing} cta={landing.cta} />
+          <Card data={landing} cta={landing.cta} theme="w-full" />
         )}
-        {landing.body && <p className="text-max">{landing.body}</p>}
       </div>
       <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
         {landing.sections.map((section: SectionProps) => (
           <div className="flex-d-column" key={section.uid}>
-            {section.sectionHero && (
-              <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />
-            )}
+            {section.sectionHero && <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />}
             {section.body && <p className="text-max">{section.body}</p>}
           </div>
         ))}

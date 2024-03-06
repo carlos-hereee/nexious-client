@@ -1,7 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-// import { useNavigate } from "react-router-dom";
-// import { Button } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
@@ -16,12 +14,19 @@ import AppDialog from "@components/app/dialog/AppDialog";
 
 const AppSettings = () => {
   const { appName, appId, appLink } = useContext(AppContext);
-  const { deletePage, deleteMedia } = useContext(AdminContext);
+  const { deletePage, deleteMedia, formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>({ pages: false, media: false, store: false, app: false });
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("idle");
-  // const navigate = useNavigate();
+
+  useEffect(() => {
+    // close form windows on form success
+    if (formStatus === "SUCCESS") {
+      setShow({ pages: false, media: false, store: false, app: false });
+      setFormStatus("IDLE");
+    }
+  }, [formStatus]);
 
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
@@ -58,9 +63,8 @@ const AppSettings = () => {
       </div> */}
       <AppContainer onAppDetails={(phase) => handleShow({ dialogName: "app", dialogStatus: phase })} />
       <PagesContainer
-        onEditLanding={() => handleShow({ dialogName: "pages", dialogStatus: "phase-two" })}
         onRemove={onDeletePage}
-        onAddPage={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
+        updatePhase={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
         name={appLink}
       />
       <StoreContainer onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })} />

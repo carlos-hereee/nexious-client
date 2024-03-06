@@ -135,8 +135,7 @@ declare module "app-types" {
     data?: { heading: string; name: string };
     name?: string;
     onRemove?: (page: PageProps) => void;
-    onAddPage?: (page: DialogStatusProps) => void;
-    onEditLanding?: () => void;
+    updatePhase?: (phase: DialogStatusProps) => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {

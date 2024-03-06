@@ -84,9 +84,7 @@ export const AdminState = ({ children }: ChildProps) => {
     updatePage({ dispatch, values: a, appId, handleAppAssets, pageId });
   }, []);
 
-  const deleteApp = useCallback((appId: string) => {
-    removeApp({ dispatch, appId, handleAppAssets });
-  }, []);
+  const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
 
   const deletePage = useCallback((appId: string, pageId: string) => {
     removePage({ dispatch, appId, handleAppAssets, pageId });

@@ -14,5 +14,21 @@
   "noInventoryHint": {
     "title": "Hint!",
     "body": "Your inventory is empty click on + add merch to add items to your inventory"
+  },
+  "mediaHint": {
+    "title": "Hint!",
+    "body": "Click on social media icon to edit details."
+  },
+  "noMediaHint": {
+    "title": "Hint!",
+    "body": "Click on + add social media to add your socials."
+  },
+  "merchShowHint": {
+    "title": "Hint!",
+    "body": "Click on inventory items to edit details."
+  },
+  "merchHideHint": {
+    "title": "Hint!",
+    "body": "Click on show inventory to view inventory. Then you can click on inventory items and edit them."
   }
 }

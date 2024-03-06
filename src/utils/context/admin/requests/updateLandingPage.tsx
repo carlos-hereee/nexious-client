@@ -9,7 +9,7 @@ export const updateLandingPage = async ({ dispatch, values, appId, handleAppAsse
   if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data }: DataResponse<AppAssets> = await axiosMedia.post(`/app/update-landing-page/${appId}`, values);
+    const { data }: DataResponse<AppAssets> = await axiosMedia.put(`/app/update-landing-page/${appId}`, values);
     if (data) handleAppAssets(data);
   } catch (error) {
     axiosError({ error, dispatch, type: "form-error", target: "updateLanding" });

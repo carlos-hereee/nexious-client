@@ -230,3 +230,9 @@ header {
 .card-container {
   justify-content: flex-start;
 }
+.w-full {
+  min-width: 100%;
+}
+.w-full .card-body-p {
+  min-width: 100%;
+}

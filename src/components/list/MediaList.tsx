@@ -1,37 +1,26 @@
 import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
 import { CardContainerProps } from "app-types";
 import { Button, Icon, IconButton } from "nexious-library";
+import hint from "@data/data.json";
 
-const MediaList = (props: CardContainerProps) => {
-  const { data, onRemove, onMediaClick } = props;
+const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {
   const handleRemove = (uid: string) => onRemove && onRemove(uid);
 
-  const hintData = {
-    title: "Hint!",
-    body: "Click on social media icon to edit details.",
-  };
-  const noMediaHint = {
-    title: "Hint!",
-    body: "Click on + add social media to add your socials",
-  };
   if (!data || data.length === 0) {
     return (
-      <KeyWithDefinition label="Social medias:" labelLayout="bolden" hint={noMediaHint}>
+      <KeyWithDefinition label="Social medias:" labelLayout="bolden" hint={hint.noMediaHint}>
         <p>No social media linked</p>
       </KeyWithDefinition>
     );
   }
   return (
-    <KeyWithDefinition label="social medias:" labelLayout="bolden" hint={hintData}>
+    <KeyWithDefinition label="Social medias:" labelLayout="bolden" hint={hint.mediaHint}>
       <div className="flex-wrap">
         {data.map((d) => (
           <div key={d.uid} className="media-wrapper">
             {onMediaClick ? (
               d.media ? (
-                <IconButton
-                  icon={{ icon: d.media, size: "5x", name: d.media }}
-                  onClick={() => onMediaClick(d)}
-                />
+                <IconButton icon={{ icon: d.media, size: "5x", name: d.media }} onClick={() => onMediaClick(d)} />
               ) : (
                 <Button label="?" theme="btn-rect" onClick={() => onMediaClick(d)} />
               )
@@ -40,9 +29,7 @@ const MediaList = (props: CardContainerProps) => {
                 {d.media && <Icon icon={d.media} name={d.media} size={onRemove ? "5x" : "3x"} />}
               </a>
             )}
-            {onRemove && (
-              <Button label="X" theme="btn-remove" onClick={() => handleRemove(d.uid)} />
-            )}
+            {onRemove && <Button label="X" theme="btn-remove" onClick={() => handleRemove(d.uid)} />}
           </div>
         ))}
       </div>

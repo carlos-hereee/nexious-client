@@ -6,7 +6,7 @@ const CreateApp = () => {
   return (
     <div className="container">
       <h2 className="heading">Build an app</h2>
-      <Button label="+ Create a new app" onClick={() => navigate("build-app")} />
+      <Button label="+ Create a new app" onClick={() => navigate("/build-app")} />
     </div>
   );
 };
