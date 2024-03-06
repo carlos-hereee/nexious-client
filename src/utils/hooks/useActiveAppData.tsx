@@ -20,7 +20,7 @@ import { MenuProps } from "app-types";
 
 export const useActiveAppData = () => {
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu, store, getStoreInventory } =
+  const { activeAppName, updateActiveAppData, getAppWithName, getAppStore, menu, store, getStoreInventory, getPageWithId } =
     useContext(AppContext);
   const { pathname } = useLocation();
 
@@ -37,9 +37,15 @@ export const useActiveAppData = () => {
       });
     } else if (pathname.includes("app")) {
       const routeAppName = pathname.split("/")[2];
-      // console.log("routeAppName, pathname :>> ", routeAppName === activeAppName, pathname);
-      //   // check route matches active app name
-      if (routeAppName !== activeAppName) getAppWithName(routeAppName);
+      const pageName = pathname.split("/")[3];
+      if (pageName) {
+        console.log("routeName :>> ", routeAppName, pageName);
+        console.log("menu:>> ", menu);
+        // const idx = menu.findIndex((m) => m.value === pageName);
+        // getPageWithId(menu[idx].menuId);
+      }
+      // check route matches active app name
+      else if (routeAppName !== activeAppName) getAppWithName(routeAppName);
       else {
         const noDups = combineArraysWithOutDups(nexiousAppMenu, menu);
         const oldValues = noDups as MenuProps[]; // find auth menu

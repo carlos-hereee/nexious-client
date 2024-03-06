@@ -15,6 +15,7 @@ import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
 import { getAppStoreWithName } from "./request/getAppStoreWithName";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
+import { fetchPage } from "./request/fetchPage";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -25,9 +26,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
-  const updateAppData = useCallback(({ app, appList, store }: AppAssets) => {
-    setAppData({ dispatch, app, appList, store });
-  }, []);
+  const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
   const updateStripeConfig = useCallback((config: StripeConfigProps) => {
     setStripeConfig({ dispatch, config });
   }, []);
@@ -38,6 +37,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAppStore = useCallback((storeId: string) => {
     getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
   }, []);
+  const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
@@ -56,8 +56,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     } else if (category === "theme") setTheme(menuItem.value);
     else if (menuItem.value === "explore") navigate("/explore");
     // otherwise go to page
-    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}` || "");
-    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
+    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}`);
+    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}`);
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -95,6 +95,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
       pages: state.pages,
+      page: state.page,
       updateAppData,
       getAppWithName,
       getAppList,
@@ -104,6 +105,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getStoreInventory,
       getAppStore,
       updateStripeConfig,
+      getPageWithId,
     };
   }, [
     state.isLoading,

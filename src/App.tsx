@@ -3,12 +3,10 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { Loading, Header, Footer } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
-// import { useLocation, useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-// import { ServicesContext } from "@context/services/ServicesContext";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
@@ -28,7 +26,6 @@ const App = ({ children }: ChildProps) => {
     if (activeAppName === nexiousName) navigate("/");
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
-
   if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
@@ -43,7 +40,6 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
       />
-
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
     </div>

@@ -70,15 +70,15 @@ declare module "app-types" {
   }
   export interface PageProps {
     title: string;
-    tagline: string;
     body: string;
     hasCta: boolean;
     hasSections: boolean;
     hero: string;
     cta: CallToActionProps[];
     sections: SectionProps[];
+    tagline?: string;
     name?: string;
-    isStore: boolean;
+    isStore?: boolean;
     uid?: string;
     pageId?: string;
   }

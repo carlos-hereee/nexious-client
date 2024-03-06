@@ -2,7 +2,7 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
-export const setAppData = ({ dispatch, app, appList, store }: AppDispatchProps) => {
+export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchProps) => {
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
     // assign values if they exists
@@ -29,5 +29,6 @@ export const setAppData = ({ dispatch, app, appList, store }: AppDispatchProps) 
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
   if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+  if (page) dispatch({ type: APP_ACTIONS.SET_PAGE, payload: page });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

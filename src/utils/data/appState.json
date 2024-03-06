@@ -75,6 +75,15 @@
   },
   "activeMenu": [],
   "pages": [],
+  "page": {
+    "title": "",
+    "body": "",
+    "hasCta": false,
+    "hasSections": false,
+    "hero": "",
+    "cta": [],
+    "sections": []
+  },
   "appList": [],
   "inventory": [],
   "store": { "name": "", "accountId": "", "storeId": "", "inventory": [] },

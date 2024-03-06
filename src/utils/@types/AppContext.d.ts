@@ -51,6 +51,7 @@ declare module "app-context" {
     adminIds: AdminIdProps[];
     newsletter: NewsletterProps;
     pages: PageProps[] | [];
+    page: PageProps;
     media: MediaProps;
     activeMedia: MediaProps;
     menu: MenuProps[];
@@ -72,6 +73,7 @@ declare module "app-context" {
     getAppList: () => void;
     setAppLoading: (isLoading: boolean) => void;
     getStoreInventory: (storeId: string) => void;
+    getPageWithId: (appName: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
   }
@@ -79,11 +81,13 @@ declare module "app-context" {
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     app?: AppProps;
+    page?: PageProps;
     store?: StoreProps;
     appList?: AppListProps[];
     logo?: string;
     media?: MediaProps;
     appName?: string;
+    pageId?: string;
     config?: StripeUpdateConfigProps;
     subscriptions?: AppListProps[];
     storeId?: string;
@@ -118,7 +122,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
-    | { type: APP_ACTIONS.SET_LANDING; payload: PageProps }
+    | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_PAGE; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
