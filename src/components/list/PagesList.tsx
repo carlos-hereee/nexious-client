@@ -7,7 +7,8 @@ import { AppContext } from "@context/app/AppContext";
 const PagesList = ({ name, onRemove }: PagesContainerProps) => {
   const navigate = useNavigate();
   const { pages } = useContext(AppContext);
-
+  // require key variable
+  if (!onRemove) throw Error("onRemove is required");
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
 
   return (
@@ -21,11 +22,9 @@ const PagesList = ({ name, onRemove }: PagesContainerProps) => {
             onClick={() => navigate(`/edit-page/${name}/page/${page.name}`)}
             layout="preview-thumbnail"
           />
-          {onRemove && (
-            <button className="btn-remove" type="button" onClick={() => onRemove(page)}>
-              X
-            </button>
-          )}
+          <button className="btn-remove" type="button" onClick={() => onRemove(page)}>
+            X
+          </button>
         </div>
       ))}
     </div>

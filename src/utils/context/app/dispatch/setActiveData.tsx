@@ -1,8 +1,7 @@
 import { APP_ACTIONS } from "@actions/AppActions";
 import { AppDispatchProps } from "app-context";
 
-export const setActiveData = (props: AppDispatchProps) => {
-  const { dispatch, menu, appName, logo, media, appId } = props;
+export const setActiveData = ({ dispatch, menu, appName, logo, media, appId }: AppDispatchProps) => {
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (menu) dispatch({ type: APP_ACTIONS.SET_ACTIVE_MENU, payload: menu });
   if (logo) dispatch({ type: APP_ACTIONS.SET_ACTIVE_LOGO, payload: logo });

@@ -143,6 +143,7 @@
   gap: 1rem;
 }
 .pages-container .preview-card {
+  max-width: 450px;
   flex: 1;
 }
 .key-with-definition {
