@@ -1,5 +1,5 @@
 declare module "app-admin" {
-  import { MenuItemProps, StoreProps } from "app-types";
+  import { MenuItemProps, PageProps, StoreProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
@@ -18,6 +18,7 @@ declare module "app-admin" {
     user?: UserSchema;
     store?: StoreProps;
     app?: AppProps;
+    page?: PageProps;
     appList?: AppListProps[];
   }
   export type OnclickProps = {

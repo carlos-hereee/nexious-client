@@ -5,19 +5,17 @@ import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 
 const PublicRoute = () => {
-  const { updateActiveAppData, activeAppName } = useContext(AppContext);
+  const { updateActiveAppData } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
 
   useEffect(() => {
-    if (activeAppName !== nexiousName) {
-      updateActiveAppData({
-        appId: nexiousAppId,
-        appName: nexiousName,
-        logo: nexiousLogo,
-        media: nexiousMedia,
-        menu: accessToken ? nexiousAuthMenu : nexiousMenu,
-      });
-    }
+    updateActiveAppData({
+      appId: nexiousAppId,
+      appName: nexiousName,
+      logo: nexiousLogo,
+      media: nexiousMedia,
+      menu: accessToken ? nexiousAuthMenu : nexiousMenu,
+    });
   }, [accessToken]);
 
   return <Outlet />;

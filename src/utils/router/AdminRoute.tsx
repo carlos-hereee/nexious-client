@@ -19,8 +19,6 @@ const AdminRoute = () => {
       media: nexiousMedia,
       menu: nexiousAuthMenu,
     });
-    console.log("routeAppName :>> ", routeAppName, appName);
-    // getAppWithName(routeAppName);
     if (routeAppName !== appName) getAppWithName(routeAppName);
   }, [pathname]);
 

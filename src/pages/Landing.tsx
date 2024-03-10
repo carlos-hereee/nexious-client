@@ -15,7 +15,7 @@ const Landing = () => {
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
   return (
     <div>
-      <div className="flex-d-column">
+      <div className="container">
         {landing.hero ? (
           <>
             <HeroCard data={landing} hero={heroData} onClick={handleClick} />
@@ -25,14 +25,16 @@ const Landing = () => {
           <Card data={landing} cta={landing.cta} theme="w-full" />
         )}
       </div>
-      <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
-        {landing.sections.map((section: SectionProps) => (
-          <div className="flex-d-column" key={section.uid}>
-            {section.sectionHero && <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />}
-            {section.body && <p className="text-max">{section.body}</p>}
-          </div>
-        ))}
-      </div>
+      {landing.sections && (
+        <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
+          {landing.sections.map((section: SectionProps) => (
+            <div className="flex-d-column" key={section.uid}>
+              {section.sectionHero && <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />}
+              {section.body && <p className="text-max">{section.body}</p>}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

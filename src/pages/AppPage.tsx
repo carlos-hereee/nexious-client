@@ -12,12 +12,16 @@ const AppPage = () => {
   if (!page) return <Loading message="loading page data..." />;
   return (
     <div className="container">
-      <div className="container">
-        {page.hero ? <HeroCard data={page} hero={{ url: page.hero }} /> : <Card data={page} />}
-        {page.body && <p className="text-max">{page.body}</p>}
-      </div>
+      {page.hero ? (
+        <>
+          <HeroCard data={page} hero={{ url: page.hero }} />
+          {page.body && <p className="text-max">{page.body}</p>}
+        </>
+      ) : (
+        <Card data={page} theme="w-full" />
+      )}
       {cart.length > 0 && <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />}
-      {page.hasSections && (
+      {page.hasSections && page.sections && (
         <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
           {page.sections.map((data) => {
             const { sectionHero, body, uid } = data;
