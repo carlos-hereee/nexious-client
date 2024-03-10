@@ -69,7 +69,7 @@
     "heading": ""
   },
   "loginForm": {
-    "initialValues": { "username": "qwerty", "password": "qwerty" },
+    "initialValues": { "username": "", "password": "" },
     "formId": "login",
     "hero": {
       "url": "/unsplash/retrosupply-jLwVAUtLOAQ-unsplash.jpg",

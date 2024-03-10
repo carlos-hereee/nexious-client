@@ -18,7 +18,7 @@ const ForgotPassword: React.FC = () => {
     <div>
       <GoBackButton onClick={() => navigate("/")} />
       <h2 className="heading">Forgot password</h2>
-      {authErrors && <p className="error-message">{authErrors.forgotPasswordError}</p>}
+      {authErrors && <p className="error-message">{authErrors.forgotPassword}</p>}
       {user.username ? (
         <Form
           initialValues={passwordChangeForm.initialValues}

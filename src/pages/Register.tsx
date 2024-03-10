@@ -8,14 +8,10 @@ const Register = () => {
 
   return (
     <div className="container">
-      {authErrors.signUpError && <p className="error-message">{authErrors.signUpError}</p>}
+      {authErrors.register && <p className="error-message">{authErrors.register}</p>}
       <div className="form-hero">
         {dummyUser.username ? (
-          <Form
-            initialValues={{ ...signUpForm.initialValues, ...dummyUser }}
-            heading="Sign up"
-            onSubmit={register}
-          />
+          <Form initialValues={{ ...signUpForm.initialValues, ...dummyUser }} heading="Sign up" onSubmit={register} />
         ) : (
           <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
         )}
