@@ -1,26 +1,25 @@
 import { useContext } from "react";
 import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Link } from "react-router-dom";
-import { LoginFormValues } from "app-forms";
-import { useAuthRouter } from "@hooks/useAuthRouter";
+import { Link, useNavigate } from "react-router-dom";
+import { LoginValues } from "app-forms";
 
 const Login = () => {
   const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
 
-  const { navigateTo } = useAuthRouter();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     resetAuthErrors();
-    navigateTo("register");
+    navigate("register");
   };
 
-  if (isLoading) return <Loading message="Loading user data" />;
+  if (isLoading) return <Loading message="..loading user data" />;
   return (
     <div className="container">
-      {authErrors.userNotFound && (
+      {authErrors.login && (
         <div className="flex-center">
-          <p className="error-message"> {authErrors.signInError} </p>
+          <p className="error-message"> {authErrors.login} </p>
           <Button label="Sign up with this username?" onClick={handleClick} />
         </div>
       )}
@@ -29,7 +28,7 @@ const Login = () => {
           <Form
             initialValues={loginForm.initialValues}
             heading={loginForm.heading}
-            onSubmit={(val: LoginFormValues) => login(val)}
+            onSubmit={(val: LoginValues) => login(val)}
             schema={{ require: ["username", "password"] }}
           />
         )}

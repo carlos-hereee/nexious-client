@@ -19,7 +19,7 @@ const PreviewLanding: React.FC<PreviewPageProps> = (props) => {
         )}
         {preview.body && <p className="text-max">{preview.body}</p>}
       </div>
-      {preview.hasSections && (
+      {preview.hasSections && preview.sections && (
         <div className={preview.sections?.length > 3 ? "sections-container" : "grid"}>
           {preview.sections.map((data) => {
             const { sectionHero, sharedKey, body, uid, title } = data;

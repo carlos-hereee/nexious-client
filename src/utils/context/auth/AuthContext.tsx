@@ -1,8 +1,8 @@
-import { createContext, useReducer, useContext, useMemo, useCallback } from "react";
+import { createContext, useReducer, useMemo, useCallback, useEffect } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, UserSchema } from "auth-context";
-import { ForgotPasswordFormProps, LoginFormValues, RegisterFormProps } from "app-forms";
+import { ForgotPasswordValues, LoginValues, RegisterFormProps } from "app-forms";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -16,42 +16,35 @@ import { clearStranded } from "./dispatch/clearStranded";
 import { updateDumnyData } from "./dispatch/updateDummyData";
 import { updateTheme } from "./dispatch/updateTheme";
 import { updateAccessToken } from "./dispatch/updateAccessToken";
+import { fetchRefreshToken } from "./request/fetchRefreshToken";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
 
-  const forgotPassword = useCallback((e: ForgotPasswordFormProps) => {
-    setForgotPassword({ dispatch, credentials: e });
+  // udpate accesstoken
+  const setAccessToken = useCallback((accessToken: string) => updateAccessToken({ dispatch, accessToken }), []);
+  // get accessToken
+  useEffect(() => {
+    fetchRefreshToken({ dispatch, setAccessToken });
   }, []);
 
-  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
-
+  // user data
+  const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
-  const setDummyUser = useCallback((user: LoginFormValues) => {
-    updateDumnyData({ dispatch, login: user });
-  }, []);
-  const setAccessToken = useCallback((accessToken: string) => {
-    updateAccessToken({ dispatch, accessToken });
-  }, []);
-
-  const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
-  const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
-
+  // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
-  const login = useCallback((e: LoginFormValues) => {
-    singIn({ dispatch, login: e, setDummyUser });
-  }, []);
+  const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
+  const forgotPassword = useCallback((e: ForgotPasswordValues) => setForgotPassword({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
-
-  const subscribe = useCallback((e: string) => {
-    setSubscribe({ dispatch, appId: e, updateUser });
-  }, []);
-
-  const unSubscribe = useCallback((e: string) => {
-    setUnsubscribe({ dispatch, appId: e, updateUser });
-  }, []);
+  // auth errors
+  const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
+  const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
+  // user actions
+  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
+  const subscribe = useCallback((e: string) => setSubscribe({ dispatch, appId: e, updateUser }), []);
+  const unSubscribe = useCallback((e: string) => setUnsubscribe({ dispatch, appId: e, updateUser }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -82,20 +75,7 @@ export const AuthState = ({ children }: ChildProps) => {
       resetAuthErrors,
       setAccessToken,
     };
-  }, [
-    state.accessToken,
-    state.isLoading,
-    state.theme,
-    state.user,
-    JSON.stringify(state.authErrors),
-  ]);
+  }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
-};
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an auth provider");
-  }
-  return context;
 };

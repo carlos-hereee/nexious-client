@@ -10,29 +10,30 @@ const Landing = () => {
 
   if (!landing) return <div />;
 
+  const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
   const heroData = { url: landing.hero || "", alt: "page hero" };
-
-  const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
   return (
     <div>
-      <div className="flex-d-column">
+      <div className="container">
         {landing.hero ? (
-          <HeroCard data={landing} hero={heroData} onClick={handleClick} />
+          <>
+            <HeroCard data={landing} hero={heroData} onClick={handleClick} />
+            {landing.body && <p className="text-max">{landing.body}</p>}
+          </>
         ) : (
-          <Card data={landing} cta={landing.cta} />
+          <Card data={landing} cta={landing.cta} theme="w-full" />
         )}
-        {landing.body && <p className="text-max">{landing.body}</p>}
       </div>
-      <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
-        {landing.sections.map((section: SectionProps) => (
-          <div className="flex-d-column" key={section.uid}>
-            {section.sectionHero && (
-              <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />
-            )}
-            {section.body && <p className="text-max">{section.body}</p>}
-          </div>
-        ))}
-      </div>
+      {landing.sections && (
+        <div className={landing.sections.length > 3 ? "sections-container" : "grid"}>
+          {landing.sections.map((section: SectionProps) => (
+            <div className="flex-d-column" key={section.uid}>
+              {section.sectionHero && <HeroCard data={section} hero={{ url: section.sectionHero, alt: section.title }} />}
+              {section.body && <p className="text-max">{section.body}</p>}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

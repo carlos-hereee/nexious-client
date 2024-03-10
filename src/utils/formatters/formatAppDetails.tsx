@@ -1,7 +1,6 @@
 import { AppDetailsFormProps, AppDetailsProps } from "app-types";
 
-export const formatAppDetails = (props: AppDetailsFormProps) => {
-  const { app, desiredOrder } = props;
+export const formatAppDetails = ({ app, desiredOrder }: AppDetailsFormProps) => {
   // console.log("store, desiredOrder :>> ", store, desiredOrder);
 
   return Object.assign(

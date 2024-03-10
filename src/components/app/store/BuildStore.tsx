@@ -4,7 +4,7 @@ import { Form, Hero, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 
 const BuildStore = () => {
   const { storeForm, addStore, isLoading } = useContext(AdminContext);
@@ -18,7 +18,7 @@ const BuildStore = () => {
       <div className="form-hero">
         <Form
           initialValues={{ ...storeForm.initialValues, email: email || "" }}
-          onSubmit={(values: PreviewValueProps) => addStore(values, appId)}
+          onSubmit={(values: AppValues) => addStore(values, appId)}
           heading={storeForm.heading}
           submitLabel={storeForm.submitLabel}
           types={storeForm.types}

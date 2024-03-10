@@ -11,7 +11,7 @@ import { useFormOrganizer } from "@hooks/useFormOrganizer";
 import { formatPage } from "@formatters/formatPage";
 import { formatNewsletter } from "@formatters/formatNewsletter";
 import { formatMedia } from "@formatters/formatMedia";
-import { InitPaginateFormProps, PreviewValueProps } from "app-forms";
+import { InitPaginateFormProps, AppValues } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
 import { uniqueApplist } from "@formatters/uniqeList";
 import PreviewNewsletter from "../preview/PreviewNewsletter";
@@ -86,7 +86,7 @@ const EditApp = () => {
           },
           dataList: { theme: themeList },
           onSubmit: (e: any) => editAppName(e, appId),
-          onViewPreview: (e: PreviewValueProps) => handlePreview("initApp", e),
+          onViewPreview: (e: AppValues) => handlePreview("initApp", e),
           form: initAppForm,
           formId: "initApp",
         },
@@ -99,7 +99,7 @@ const EditApp = () => {
             desiredOrder: landingForm.desiredOrder || [""],
             hasEntry: sectionEntries,
           }),
-          onViewPreview: (e: PreviewValueProps) => handlePreview("landingPage", e),
+          onViewPreview: (e: AppValues) => handlePreview("landingPage", e),
           form: landingForm,
           addEntry: sectionEntries,
           clearSelection: { icon: true },
@@ -108,8 +108,8 @@ const EditApp = () => {
         {
           ...socialMediaForm,
           dataList: { media: mediaList },
-          onViewPreview: (e: PreviewValueProps) => handlePreview("medias", e),
-          onSubmit: (e: PreviewValueProps) => editSocialMedia(e, appId),
+          onViewPreview: (e: AppValues) => handlePreview("medias", e),
+          onSubmit: (e: AppValues) => editSocialMedia(e, appId),
           addEntry: { hasMedias: mediaEntryForm },
           form: socialMediaForm,
           formId: "medias",
@@ -121,8 +121,8 @@ const EditApp = () => {
         },
         {
           ...newsletterForm,
-          onViewPreview: (e: PreviewValueProps) => handlePreview("newsletter", e),
-          onSubmit: (e: PreviewValueProps) => editNewsletter(e, appId),
+          onViewPreview: (e: AppValues) => handlePreview("newsletter", e),
+          onSubmit: (e: AppValues) => editNewsletter(e, appId),
           form: newsletterForm,
           formId: "newsletter",
           initialValues: formatNewsletter({
@@ -135,8 +135,8 @@ const EditApp = () => {
         //   // dataList: { theme: calendarThemeList },
         //   initialValues: formatCalendar({ calendar, form: calendarForm }),
         //   form: calendarForm,
-        //   onSubmit: (e: PreviewValueProps) => editCalendar(e, appId),
-        //   onViewPreview: (e: PreviewValueProps) => handlePreview("calendar", e),
+        //   onSubmit: (e: AppValues) => editCalendar(e, appId),
+        //   onViewPreview: (e: AppValues) => handlePreview("calendar", e),
         //   formId: "calendar",
         // },
       ]);

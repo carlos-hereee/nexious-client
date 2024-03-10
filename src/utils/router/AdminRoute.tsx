@@ -1,24 +1,26 @@
 import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-// import { useContext } from "react";
-// import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
+import { nexiousName, nexiousMedia, nexiousLogo, nexiousAuthMenu, nexiousAppId } from "@data/nexious.json";
 
 const AdminRoute = () => {
   const { accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
-  const { isLoading: isAppLoading, getAppWithName, appName } = useContext(AppContext);
-  // const { user, accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
-  // const { owner, isLoading: isAppLoading, getAppWithName, appName } = useContext(AppContext);
+  const { isLoading: isAppLoading, getAppWithName, updateActiveAppData, appName } = useContext(AppContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     const query = pathname.split("/");
     const routeAppName = query[query.length - 1];
-    if (!appName) {
-      if (routeAppName) getAppWithName(routeAppName);
-    } else if (routeAppName !== appName) getAppWithName(routeAppName);
-  }, [pathname, appName]);
+    updateActiveAppData({
+      appId: nexiousAppId,
+      appName: nexiousName,
+      logo: nexiousLogo,
+      media: nexiousMedia,
+      menu: nexiousAuthMenu,
+    });
+    if (routeAppName !== appName) getAppWithName(routeAppName);
+  }, [pathname]);
 
   if (isAppLoading) return <Outlet />;
   if (isAuthLoading) return <Outlet />;

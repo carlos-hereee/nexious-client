@@ -1,15 +1,22 @@
 declare module "auth-context" {
-  import { AuthErrorProps } from "app-errors";
   import { AUTH_ACTIONS } from "@actions/AuthActions";
+  import { AuthErrorTarget } from "app-errors";
   import { AppListProps } from "app-types";
-  import {
-    AuthFormValueProps,
-    ForgotPasswordFormProps,
-    FormProps,
-    LoginFormValues,
-    RegisterFormProps,
-  } from "app-forms";
+  import { AuthFormValueProps, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
 
+  export interface AuthErrorProps {
+    logout: string;
+    login: string;
+    register: string;
+    subscribe: string;
+    offline: string;
+    forgotPassword: string;
+    [x: AuthErrorTarget]: string;
+    // emergencyPasswordChangeIsRequired: string;
+    // userNotFound: string;
+    // serverIsOffline: string;
+    // changePasswordError: string;
+  }
   export interface UserSchema {
     // uid: string;
     userId: string;
@@ -30,7 +37,7 @@ declare module "auth-context" {
     ownedApps: AppListProps[];
     authErrors: AuthErrorProps;
     user: UserSchema;
-    dummyUser: LoginFormValues;
+    dummyUser: LoginValues;
     userForm: FormProps;
     loginForm: FormProps;
     signUpForm: FormProps;
@@ -46,11 +53,11 @@ declare module "auth-context" {
     resetStranded: () => void;
     resetAuthErrors: () => void;
     setAccessToken: (accessToken: string) => void;
-    login: (values: LoginFormValues) => void;
+    login: (values: LoginValues) => void;
     register: (values: RegisterFormProps) => void;
-    setDummyUser: (values: LoginFormValues) => void;
+    setDummyUser: (values: LoginValues) => void;
     updateUser: (values: UserSchema) => void;
-    forgotPassword: (values: ForgotPasswordFormProps) => void;
+    forgotPassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;
     subscribe: (appId: string) => void;
     unSubscribe: (appId: string) => void;
@@ -62,34 +69,18 @@ declare module "auth-context" {
     user?: UserSchema;
     data?: string;
     accessToken?: string;
-    login?: LoginFormValues;
+    login?: LoginValues;
     appId?: string;
     updateUser?: (user: UserSchema) => void;
-    setDummyUser?: (user: LoginFormValues) => void;
+    setDummyUser?: (user: LoginValues) => void;
     setAccessToken?: (token: string) => void;
   }
 
   export type AuthActionProps =
-    | {
-        type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_STRANDED | AUTH_ACTIONS.SET_USER_NOT_FOUND;
-        payload: boolean;
-      }
-    | {
-        type:
-          | AUTH_ACTIONS.SIGN_IN_ERROR
-          | AUTH_ACTIONS.LOGOUT_ERROR
-          | AUTH_ACTIONS.FORGOT_PASSWORD_ERROR
-          | AUTH_ACTIONS.CHANGE_PASSWORD_ERROR
-          | AUTH_ACTIONS.SIGN_UP_ERROR
-          | AUTH_ACTIONS.SET_ACCESS_TOKEN
-          | AUTH_ACTIONS.SET_THEME;
-        payload: string;
-      }
-    | {
-        type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS;
-        payload: AppListProps[];
-      }
-    | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginFormValues }
+    | { type: AUTH_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: AUTH_ACTIONS.SET_ACCESS_TOKEN | AUTH_ACTIONS.SET_THEME; payload: string }
+    | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
+    | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
-    | { type: AUTH_ACTIONS.SET_ERROR; payload: AuthErrorProps };
+    | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }

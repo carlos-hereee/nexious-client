@@ -2,12 +2,10 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
-export const setAppData = (props: AppDispatchProps) => {
-  const { dispatch, app, appList, store } = props;
+export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchProps) => {
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
-    // console.log("app.store :>> ", app.store);
-    // if values exists other wise use default typec\
+    // assign values if they exists
     if (app.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: app.logo });
     if (app.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: app.adminIds });
     if (app.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: app.appId });
@@ -31,5 +29,6 @@ export const setAppData = (props: AppDispatchProps) => {
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
   if (store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+  if (page) dispatch({ type: APP_ACTIONS.SET_PAGE, payload: page });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

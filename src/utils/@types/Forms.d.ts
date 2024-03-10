@@ -24,30 +24,30 @@ declare module "app-forms" {
     appName: string;
     logo: string;
   }
-  export interface LoginFormValues {
+  export interface LoginValues {
     username: string;
     password: string;
   }
-  export interface AuthFormValueProps extends LoginFormValues {
+  export interface AuthFormValueProps extends LoginValues {
     // username: string;
     password?: string;
     confirmPassword?: string;
     newPassword?: string;
     confirmNewPassword?: string;
   }
-  export interface ForgotPasswordFormProps {
+  export interface ForgotPasswordValues {
     username: string;
     newPassword: string;
     confirmNewPassword: string;
   }
   export interface MediaFormUpdateProps {
     onCancelClick?: () => void;
-    onSubmit?: (key: PreviewValueProps) => void;
+    onSubmit?: (key: AppValues) => void;
     media?: MediaItemProp;
   }
   export type FormProps = {
     formId: string;
-    initialValues: PreviewValueProps;
+    initialValues: AppValues;
     labels?: { [key: string]: string | undefined };
     types?: { [key: string]: string | undefined };
     hero?: AssetProps;
@@ -75,7 +75,7 @@ declare module "app-forms" {
   export interface SectionEntryOganizer {
     [key: string]: FormProps;
   }
-  export type PreviewValueProps =
+  export type AppValues =
     | InitAppProps
     | PageProps
     | NewsletterProps
@@ -85,7 +85,7 @@ declare module "app-forms" {
     | { [key: string]: string | boolean }
     | FormData;
   export interface InitPaginateFormProps {
-    initialValues: PreviewValueProps;
+    initialValues: AppValues;
     form: FormProps;
     formId: string;
     withFileUpload?: boolean;
@@ -94,8 +94,8 @@ declare module "app-forms" {
     previewLabel?: string;
     dataList?: { [key: string]: MenuItemProps[] };
     clearSelection?: { [key: string]: boolean };
-    onSubmit?: (key: PreviewValueProps) => void;
-    onViewPreview?: (key: PreviewValueProps) => void;
+    onSubmit?: (key: AppValues) => void;
+    onViewPreview?: (key: AppValues) => void;
     schema?: {
       required?: string[];
       unique?: { name: string; list: AppListProps[] }[];
@@ -103,7 +103,7 @@ declare module "app-forms" {
   }
 
   export interface ReorderFormValueProps {
-    values: PreviewValueProps;
+    values: AppValues;
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
@@ -124,7 +124,7 @@ declare module "app-forms" {
     hasEntry?: SectionEntryOganizer;
   }
   export interface InitValueProps {
-    initialValues: PreviewValueProps;
+    initialValues: AppValues;
     formId: "initApp" | "landingPage" | "medias" | "newsletter";
   }
 }

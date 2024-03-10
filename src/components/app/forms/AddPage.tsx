@@ -1,7 +1,7 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { OnclickProps } from "app-admin";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
@@ -48,7 +48,7 @@ const AddPage = (props: OnclickProps) => {
         heading="Add page content"
         onCancel={onCancelClick}
         // onCancel={() => navigate("/dashboard")}
-        onSubmit={(values: PreviewValueProps) => addPage(values, appId)}
+        onSubmit={(values: AppValues) => addPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         noScroll

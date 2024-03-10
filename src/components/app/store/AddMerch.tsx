@@ -1,6 +1,6 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const AddMerch = () => {
         clearSelection={{ icon: true }}
         heading={`Add merchendise: ${appName}`}
         onCancel={() => navigate("/dashboard")}
-        onSubmit={(values: PreviewValueProps) => addMerch(values, appId)}
+        onSubmit={(values: AppValues) => addMerch(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         noScroll

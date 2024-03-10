@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Form, Hero, Loading } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
@@ -7,12 +7,15 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { uniqueApplist } from "@formatters/uniqeList";
 
 const BuildApp = () => {
-  const { initAppForm, initApp, themeList, languageList, formErrors, isLoading } =
-    useContext(AdminContext);
+  const { initAppForm, initApp, themeList, languageList, formErrors, isLoading, formStatus } = useContext(AdminContext);
   const { appList } = useContext(AppContext);
   const { theme, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // redirect to dashboard on successful build
+    if (formStatus === "SUCCESS") navigate("/dashboard");
+  }, [formStatus]);
   if (isLoading) return <Loading message="loading app assets.." />;
   return (
     <div className="container">
@@ -34,7 +37,7 @@ const BuildApp = () => {
           disableForm={!accessToken}
           responseError={formErrors.initAppFormError}
           placeholders={initAppForm.placeholders}
-          onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
+          // onCancel={() => navigate(accessToken ? "/dashboard" : "/")}
           dataList={{ theme: themeList, locale: languageList, language: languageList }}
           fieldHeading={initAppForm.fieldHeading}
           schema={{

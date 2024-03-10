@@ -1,22 +1,15 @@
-import { AUTH_ACTIONS } from "@actions/AuthActions";
 import { axiosAuth } from "@axios/axiosAuth";
-import { AuthDispatchProps } from "auth-context";
-import { AxiosError } from "axios";
+import { axiosError } from "@axios/axiosError";
+import { AuthDispatchProps, UserSchema } from "auth-context";
+import { DataResponse } from "utils/@types/response";
 
-export const setUnsubscribe = async (props: AuthDispatchProps) => {
-  const { dispatch, appId, updateUser } = props;
+export const setUnsubscribe = async ({ dispatch, appId, updateUser }: AuthDispatchProps) => {
+  // require key variable
+  if (!updateUser) throw Error("updateUser is required");
   try {
-    const { data } = await axiosAuth.post(`/app/unsubscribe/${appId}`);
-    if (data && updateUser) updateUser(data);
+    const { data }: DataResponse<UserSchema> = await axiosAuth.post(`/app/unsubscribe/${appId}`);
+    if (data) updateUser(data);
   } catch (error) {
-    const err = error as AxiosError;
-    if (err.code === "ERR_NETWORK") {
-      dispatch({ type: AUTH_ACTIONS.SET_STRANDED, payload: true });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-    } else {
-      // console.log("err :>> ", err);
-      dispatch({ type: AUTH_ACTIONS.SIGN_IN_ERROR, payload: `${err.response?.data}` });
-      dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
-    }
+    axiosError({ dispatch, type: "auth", error, target: "subscribe" });
   }
 };

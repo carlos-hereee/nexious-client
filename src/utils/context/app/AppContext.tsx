@@ -1,9 +1,9 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
-import { AppSchema, StripeConfigProps } from "app-context";
+import { AppSchema, StripeConfig } from "app-context";
 import { useNavigate } from "react-router-dom";
-import { AppAssetProps } from "app-admin";
+import { AppAssets } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -15,40 +15,27 @@ import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
 import { getAppStoreWithName } from "./request/getAppStoreWithName";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
+import { fetchPage } from "./request/fetchPage";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } =
-    useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
-  const setLoading = useCallback((isLoading: boolean) => {
-    setIsLoading({ dispatch, isLoading });
-  }, []);
-  // update app data
-  const updateAppData = useCallback((props: AppAssetProps) => {
-    const { app, appList, store } = props;
-    setAppData({ dispatch, app, appList, store });
-  }, []);
-  const updateStripeConfig = useCallback((config: StripeConfigProps) => {
-    // const { app, appList, store } = props;
-    setStripeConfig({ dispatch, config });
-  }, []);
+  const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
+  const updateStripeConfig = useCallback((config: StripeConfig) => setStripeConfig({ dispatch, config }), []);
 
-  const updateActiveAppData = useCallback((props: ActiveMenuProps) => {
-    const { menu, appName, logo, media, appId } = props;
-    setActiveData({ dispatch, menu, appName, logo, media, appId });
-  }, []);
-
-  const getStoreInventory = useCallback((storeId: string) => {
-    getInventory({ dispatch, storeId });
-  }, []);
+  const updateActiveAppData = useCallback((data: ActiveMenuProps) => setActiveData({ dispatch, ...data }), []);
+  // view store inventory
+  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
   const getAppStore = useCallback((storeId: string) => {
     getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
   }, []);
+  const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
@@ -67,8 +54,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     } else if (category === "theme") setTheme(menuItem.value);
     else if (menuItem.value === "explore") navigate("/explore");
     // otherwise go to page
-    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}` || "");
-    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}` || "");
+    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}`);
+    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}`);
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
 
@@ -106,19 +93,23 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       welcomeMessage: state.welcomeMessage,
       newsletter: state.newsletter,
       pages: state.pages,
+      page: state.page,
       updateAppData,
       getAppWithName,
       getAppList,
       updateActiveAppData,
       handleMenu,
-      setLoading,
+      setAppLoading,
       getStoreInventory,
       getAppStore,
       updateStripeConfig,
+      getPageWithId,
     };
   }, [
     state.isLoading,
     state.activeAppName,
+    state.activeLogo,
+    state.activeAppId,
     accessToken,
     state.activeMenu,
     state.stripeConfig,
@@ -128,6 +119,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.inventory,
     state.loadingState,
     state.store,
+    state.page,
     state.appList,
   ]);
 

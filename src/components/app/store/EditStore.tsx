@@ -3,7 +3,7 @@ import { Button, ButtonCancel, Form, Hero } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { formatStore } from "@formatters/store/formatStore";
 
 const EditStore = () => {
@@ -30,7 +30,7 @@ const EditStore = () => {
         <div className="form-hero">
           <Form
             initialValues={initialValues}
-            onSubmit={(values: PreviewValueProps) => editStore(values, appId)}
+            onSubmit={(values: AppValues) => editStore(values, appId)}
             heading="Edit store details"
             submitLabel={storeForm.submitLabel}
             types={storeForm.types}

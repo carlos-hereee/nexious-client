@@ -1,30 +1,31 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { nexiousName } from "@data/nexious.json";
-import { readableUrlString } from "@app/formatStringUrl";
-import { PageProps } from "app-types";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
+import { CallToActionProps } from "app-types";
 
 const AppPage = () => {
-  const { pages, activeAppName } = useContext(AppContext);
+  const { activeAppName, page } = useContext(AppContext);
   const { cart } = useContext(ServicesContext);
-  const [page, setPage] = useState<PageProps>();
   const navigate = useNavigate();
-  console.log("page :>> ", pages);
 
   if (!page) return <Loading message="loading page data..." />;
+
+  const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
+  const heroData = { url: page.hero || "", alt: "page hero" };
   return (
     <div className="container">
-      <div className="container">
-        {page.hero ? <HeroCard data={page} hero={{ url: page.hero }} /> : <Card data={page} />}
-        {page.body && <p className="text-max">{page.body}</p>}
-      </div>
-      {cart.length > 0 && (
-        <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />
+      {page.hero ? (
+        <>
+          <HeroCard data={page} hero={heroData} onClick={handleClick} theme="reverse" />
+          {page.body && <p className="text-max">{page.body}</p>}
+        </>
+      ) : (
+        <Card data={page} theme="w-full" />
       )}
-      {page.hasSections && (
+      {cart.length > 0 && <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />}
+      {page.hasSections && page.sections && (
         <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
           {page.sections.map((data) => {
             const { sectionHero, body, uid } = data;

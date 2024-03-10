@@ -1,15 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssetProps, FORM_STATUS } from "app-admin";
+import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
-import { PreviewValueProps } from "app-forms";
+import { AppValues } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { LogContext } from "@context/log/LogContext";
-import { StripeConfigProps } from "app-context";
+import { StripeConfig } from "app-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
-import { fetchAccessToken } from "./requests/fetchAccessToken";
+import { fetchAccessToken } from "../auth/request/fetchAccessToken";
 import { buildApp } from "./requests/app/buildApp";
 import { updateAppName } from "./requests/updateAppName";
 import { updateLandingPage } from "./requests/updateLandingPage";
@@ -38,18 +37,12 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
-  const { updateAppData, setLoading, updateStripeConfig } = useContext(AppContext);
+  const { updateAppData, setAppLoading, updateStripeConfig } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
-  const { status } = useContext(LogContext);
 
-  const setFormStatus = useCallback((data: FORM_STATUS) => {
-    updateFormStatus({ dispatch, status: data });
-  }, []);
-
-  const handleAppAssets = (values: AppAssetProps) => {
-    if (values.app || values.appList) {
-      updateAppData({ app: values.app, appList: values.appList, store: values?.store });
-    }
+  const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
+  const handleAppAssets = (values: AppAssets) => {
+    if (values.app || values.appList) updateAppData(values);
     if (values.user) updateUser(values.user);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
@@ -59,53 +52,43 @@ export const AdminState = ({ children }: ChildProps) => {
     if (accessToken) {
       dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
       fetchAccessToken({ dispatch, handleAppAssets });
-    } else if (status === "IDLE" && !accessToken) {
-      setLoading(false);
-    }
-  }, [accessToken, status]);
+    } else setAppLoading(false);
+  }, [accessToken]);
 
-  const initApp = useCallback((values: PreviewValueProps) => {
-    buildApp({ dispatch, values, handleAppAssets });
-  }, []);
+  const initApp = useCallback((values: AppValues) => buildApp({ dispatch, values, handleAppAssets }), []);
 
-  const editAppName = useCallback((values: PreviewValueProps, appId: string) => {
+  const editAppName = useCallback((values: AppValues, appId: string) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editLandingPage = useCallback((values: PreviewValueProps, appId: string) => {
+  const editLandingPage = useCallback((values: AppValues, appId: string) => {
     updateLandingPage({ dispatch, values, handleAppAssets, appId });
   }, []);
-  const editAppDetails = useCallback((values: PreviewValueProps, appId: string) => {
+  const editAppDetails = useCallback((values: AppValues, appId: string) => {
     updateAppDetails({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editNewsletter = useCallback((values: PreviewValueProps, appId: string) => {
+  const editNewsletter = useCallback((values: AppValues, appId: string) => {
     updateNewsletter({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editSocialMedia = useCallback((values: PreviewValueProps, appId: string) => {
+  const editSocialMedia = useCallback((values: AppValues, appId: string) => {
     updateSocialMedia({ dispatch, values, handleAppAssets, appId });
   }, []);
 
-  const editCalendar = useCallback((a: PreviewValueProps, appId: string) => {
+  const editCalendar = useCallback((a: AppValues, appId: string) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
 
-  const editPage = useCallback((a: PreviewValueProps, appId: string, pageId?: string) => {
-    updatePage({ dispatch, values: a, appId, handleAppAssets, pageId });
-  }, []);
+  const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);
 
-  const deleteApp = useCallback((appId: string) => {
-    removeApp({ dispatch, appId, handleAppAssets });
-  }, []);
+  const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
 
   const deletePage = useCallback((appId: string, pageId: string) => {
     removePage({ dispatch, appId, handleAppAssets, pageId });
   }, []);
 
-  const deleteStore = useCallback((appId: string) => {
-    removeStore({ dispatch, appId });
-  }, []);
+  const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId }), []);
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
   }, []);
@@ -117,29 +100,29 @@ export const AdminState = ({ children }: ChildProps) => {
     getBucket({ dispatch, appId, handleAppAssets });
   }, []);
 
-  const addPage = useCallback((values: PreviewValueProps, appId: string) => {
+  const addPage = useCallback((values: AppValues, appId: string) => {
     createPage({ dispatch, appId, handleAppAssets, values });
   }, []);
 
-  const addMedia = useCallback((values: PreviewValueProps, appId: string) => {
+  const addMedia = useCallback((values: AppValues, appId: string) => {
     createMedia({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const addStore = useCallback((values: PreviewValueProps, appId: string) => {
+  const addStore = useCallback((values: AppValues, appId: string) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const editStore = useCallback((values: PreviewValueProps, appId: string) => {
+  const editStore = useCallback((values: AppValues, appId: string) => {
     updateStore({ dispatch, appId, handleAppAssets, values, setFormStatus });
   }, []);
-  const addMerch = useCallback((values: PreviewValueProps, appId: string) => {
+  const addMerch = useCallback((values: AppValues, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
   }, []);
-  const editMerch = useCallback((values: PreviewValueProps, appId: string, merchId: string) => {
+  const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
   const getAccount = useCallback((accountId: string) => {
     getStripeAccount({ dispatch, handleAppAssets, accountId, updateStripeConfig });
   }, []);
-  const updateAccount = useCallback((config: StripeConfigProps) => {
+  const updateAccount = useCallback((config: StripeConfig) => {
     updateStripeAccount({ dispatch, handleAppAssets, config, updateStripeConfig });
   }, []);
 

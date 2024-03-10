@@ -143,6 +143,7 @@
   gap: 1rem;
 }
 .pages-container .preview-card {
+  max-width: 450px;
   flex: 1;
 }
 .key-with-definition {
@@ -218,4 +219,26 @@ header {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+}
+
+.primary-navigation .navigation {
+  width: 100%;
+  padding: 0.25rem;
+}
+.primary-navigation .navigation .nav-btn {
+  max-width: 150px;
+}
+.card-container {
+  justify-content: flex-start;
+}
+.w-full {
+  min-width: 100%;
+}
+.w-full .card-body-p {
+  min-width: 100%;
+}
+.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
 }

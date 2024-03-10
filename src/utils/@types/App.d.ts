@@ -1,6 +1,6 @@
 declare module "app-types" {
   import { MerchProps } from "services-context";
-  import { FormProps, PreviewValueProps, SectionEntryOganizer } from "app-forms";
+  import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
     children: React.ReactNode;
@@ -13,7 +13,7 @@ declare module "app-types" {
     children?: React.ReactNode;
   }
   export interface AppDetailsProps {
-    locale: string;
+    locale?: string;
     appName: string;
     logo: string;
   }
@@ -61,6 +61,7 @@ declare module "app-types" {
   export interface AppListProps {
     appName: string;
     appId: string;
+    appUrl: string;
     adminIds: AdminIdProps[];
     logo: string;
     owner: UserSchema;
@@ -68,16 +69,16 @@ declare module "app-types" {
     media?: MediaProps;
   }
   export interface PageProps {
-    title: string;
-    tagline: string;
-    body: string;
-    hasCta: boolean;
-    hasSections: boolean;
-    hero: string;
-    cta: CallToActionProps[];
-    sections: SectionProps[];
+    title?: string;
+    body?: string;
+    hasCta?: boolean;
+    hasSections?: boolean;
+    hero?: string;
+    cta?: CallToActionProps[];
+    sections?: SectionProps[];
+    tagline?: string;
     name?: string;
-    isStore: boolean;
+    isStore?: boolean;
     uid?: string;
     pageId?: string;
   }
@@ -134,7 +135,7 @@ declare module "app-types" {
     data?: { heading: string; name: string };
     name?: string;
     onRemove?: (page: PageProps) => void;
-    onAddPage?: (page: DialogStatusProps) => void;
+    updatePhase?: (phase: DialogStatusProps) => void;
     pages?: PageProps[];
   }
   export interface CallToActionProps {
@@ -165,13 +166,8 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps =
-    | "idle"
-    | "confirm-cancel"
-    | "configuration"
-    | "phase-one"
-    | "phase-two";
-  export interface AppSettingDialogProps {
+  export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two" | "phase-edit";
+  export interface AppDialogProps {
     pages: boolean;
     media: boolean;
     store: boolean;
@@ -280,7 +276,7 @@ declare module "app-types" {
     logoId?: string;
   };
   export interface FilterDesiredProps {
-    values: PreviewValueProps;
+    values: AppValues;
     desiredData: string[];
   }
   export interface HeaderProps {
@@ -320,8 +316,8 @@ declare module "app-types" {
       };
       dataList?: { [key: string]: MenuItemProps[] };
       addEntries?: SectionEntryOganizer;
-      onViewPreview: (e: PreviewValueProps) => void;
-      onSubmit: (e: PreviewValueProps) => void;
+      onViewPreview: (e: AppValues) => void;
+      onSubmit: (e: AppValues) => void;
       form: FormProps;
     };
   };

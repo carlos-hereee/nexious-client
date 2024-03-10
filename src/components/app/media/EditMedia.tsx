@@ -1,6 +1,6 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { formatMediaItem } from "@formatters/formatMediaItem";
-import { MediaFormUpdateProps, PreviewValueProps } from "app-forms";
+import { MediaFormUpdateProps, AppValues } from "app-forms";
 import { Form, Loading } from "nexious-library";
 import { useContext, useState, useEffect } from "react";
 
@@ -19,7 +19,7 @@ const EditMedia = (props: MediaFormUpdateProps) => {
     }
   }, [status]);
 
-  const handleMedia = (values: PreviewValueProps) => {
+  const handleMedia = (values: AppValues) => {
     if (onCancelClick) onCancelClick();
     if (onSubmit) onSubmit(values);
   };

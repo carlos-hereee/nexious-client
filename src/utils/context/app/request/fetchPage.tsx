@@ -2,17 +2,16 @@ import { axiosAuth } from "@axios/axiosAuth";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { AppDispatchProps } from "app-context";
 import { AxiosError } from "axios";
+import { PageProps } from "app-types";
 import { DataResponse } from "utils/@types/response";
-import { AppValues } from "app-forms";
 
-export const fetchAppWithName = async (props: AppDispatchProps) => {
-  const { appName, dispatch, updateAppData, updateActiveAppData } = props;
+export const fetchPage = async ({ dispatch, pageId, updateAppData }: AppDispatchProps) => {
+  // require key variable
   // require key variable
   if (!updateAppData) throw Error("updateAppData is required");
-  if (!updateActiveAppData) throw Error("updateActiveAppData is required");
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    const { data }: DataResponse<AppValues> = await axiosAuth.get(`/app/${appName}`);
+    const { data }: DataResponse<PageProps> = await axiosAuth.get(`/app/page/${pageId}`);
     updateAppData(data);
   } catch (error) {
     const err = error as AxiosError;

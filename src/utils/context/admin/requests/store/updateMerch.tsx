@@ -1,18 +1,18 @@
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
+import { axiosError } from "@axios/axiosError";
 import { axiosMedia } from "@axios/axiosMedia";
-import { genericErrorMessages } from "@context/log/helpers/genericErrorMessages";
-import { AdminDisptachProps } from "app-admin";
+import { AdminDisptachProps, AppAssets } from "app-admin";
+import { DataResponse } from "utils/@types/response";
 
-export const updateMerch = async (props: AdminDisptachProps) => {
-  const { dispatch, handleAppAssets, values, appId, merchId } = props;
+export const updateMerch = async ({ dispatch, handleAppAssets, values, appId, merchId }: AdminDisptachProps) => {
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
+  if (!values) throw Error("values is required");
   try {
-    if (values) {
-      dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-      const { data } = await axiosMedia.put(`/store/update-merch/${appId}/${merchId}`, values);
-      if (data && handleAppAssets) handleAppAssets(data);
-    }
+    dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+    const { data }: DataResponse<AppAssets> = await axiosMedia.put(`/store/update-merch/${appId}/${merchId}`, values);
+    if (data) handleAppAssets(data);
   } catch (error) {
-    const errorPayload = { error, adminDispatch: dispatch, target: "editMerchFormError" };
-    genericErrorMessages({ ...errorPayload, type: "form-error" });
+    axiosError({ error, dispatch, target: "removeMerch", type: "form-error" });
   }
 };
