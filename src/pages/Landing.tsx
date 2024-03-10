@@ -10,9 +10,8 @@ const Landing = () => {
 
   if (!landing) return <div />;
 
+  const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
   const heroData = { url: landing.hero || "", alt: "page hero" };
-
-  const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
   return (
     <div>
       <div className="container">

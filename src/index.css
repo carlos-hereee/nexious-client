@@ -237,3 +237,8 @@ header {
 .w-full .card-body-p {
   min-width: 100%;
 }
+.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+}

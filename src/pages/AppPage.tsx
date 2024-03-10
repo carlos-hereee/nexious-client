@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
+import { CallToActionProps } from "app-types";
 
 const AppPage = () => {
   const { activeAppName, page } = useContext(AppContext);
@@ -10,11 +11,14 @@ const AppPage = () => {
   const navigate = useNavigate();
 
   if (!page) return <Loading message="loading page data..." />;
+
+  const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
+  const heroData = { url: page.hero || "", alt: "page hero" };
   return (
     <div className="container">
       {page.hero ? (
         <>
-          <HeroCard data={page} hero={{ url: page.hero }} />
+          <HeroCard data={page} hero={heroData} onClick={handleClick} theme="reverse" />
           {page.body && <p className="text-max">{page.body}</p>}
         </>
       ) : (
