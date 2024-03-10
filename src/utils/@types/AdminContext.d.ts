@@ -26,6 +26,11 @@ declare module "app-admin" {
     onClick?: () => void;
     data?: { title: string; body: string };
   };
+  export interface EditPageValues {
+    values: PageProps;
+    appId: string;
+    pageId: string;
+  }
   export interface AdminStateProps {
     isLoading: boolean;
     formStatus: FORM_STATUS;
@@ -67,7 +72,7 @@ declare module "app-admin" {
     editNewsletter: (values: AppValues, appId: string) => void;
     editSocialMedia: (values: AppValues, appId: string) => void;
     editCalendar: (values: AppValues, appId: string) => void;
-    editPage: (values: AppValues, appId: string, name?: string) => void;
+    editPage: ({ values, pageId, appId }: { values: PageProps; appId: string; pageId: string }) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
     deleteMerchItem: (appId: string, merchId: string) => void;

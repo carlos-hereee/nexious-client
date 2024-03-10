@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssets, FORM_STATUS } from "app-admin";
+import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { AppValues } from "app-forms";
@@ -80,9 +80,7 @@ export const AdminState = ({ children }: ChildProps) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
 
-  const editPage = useCallback((a: AppValues, appId: string, pageId?: string) => {
-    updatePage({ dispatch, values: a, appId, handleAppAssets, pageId });
-  }, []);
+  const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);
 
   const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
 

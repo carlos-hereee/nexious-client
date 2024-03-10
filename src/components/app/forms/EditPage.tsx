@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { Form } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { AppValues } from "app-forms";
 import { PageProps } from "app-types";
 import { formatPage } from "@formatters/formatPage";
 
@@ -20,6 +19,7 @@ const EditPage = () => {
       setStatus("idle");
     }
   }, [status]);
+
   return (
     initialValues && (
       <Form
@@ -31,7 +31,7 @@ const EditPage = () => {
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
         heading="Edit page"
-        onSubmit={(values: AppValues) => editPage(values, appId, page.pageId)}
+        onSubmit={(values: PageProps) => editPage({ values, appId, pageId: page.pageId || "" })}
         submitLabel="Save and continue"
         withFileUpload
         noScroll
