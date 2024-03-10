@@ -2,7 +2,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
 import { Form, uniqueId } from "nexious-library";
-import { StripeConfigProps } from "app-context";
+import { StripeConfig } from "app-context";
 
 const UpdateStripeConfig = () => {
   const { store, stripeConfig } = useContext(AppContext);
@@ -31,11 +31,9 @@ const UpdateStripeConfig = () => {
         labels={stripeForm.labels}
         dataList={{ currency: [{ name: "usd", label: "usd", value: "usd", uid: uniqueId() }] }}
         populateLink={{
-          readPrivacyPolicy: [
-            { word: "Stripes's privacy policy", link: "https://stripe.com/privacy" },
-          ],
+          readPrivacyPolicy: [{ word: "Stripes's privacy policy", link: "https://stripe.com/privacy" }],
         }}
-        onSubmit={(values: StripeConfigProps) => updateAccount(values)}
+        onSubmit={(values: StripeConfig) => updateAccount(values)}
       />
     </div>
   );

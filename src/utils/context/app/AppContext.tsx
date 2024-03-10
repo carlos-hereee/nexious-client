@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
-import { AppSchema, StripeConfigProps } from "app-context";
+import { AppSchema, StripeConfig } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssets } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
@@ -27,9 +27,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
   const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
-  const updateStripeConfig = useCallback((config: StripeConfigProps) => {
-    setStripeConfig({ dispatch, config });
-  }, []);
+  const updateStripeConfig = useCallback((config: StripeConfig) => setStripeConfig({ dispatch, config }), []);
 
   const updateActiveAppData = useCallback((data: ActiveMenuProps) => setActiveData({ dispatch, ...data }), []);
   // view store inventory

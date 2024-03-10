@@ -20,7 +20,7 @@ declare module "app-context" {
     theme?: string;
     errorMessage?: string;
   }
-  export interface StripeConfigProps {
+  export interface StripeConfig {
     currency?: string;
     readPrivacyPolicy?: boolean;
   }
@@ -33,7 +33,7 @@ declare module "app-context" {
     isLoading: boolean;
     loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
-    stripeConfig: StripeConfigProps;
+    stripeConfig: StripeConfig;
     appList: AppListProps[];
     themeList: ThemeList[];
     iconList: IconListItem[];
@@ -67,7 +67,7 @@ declare module "app-context" {
   // app context schema
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssets) => void;
-    updateStripeConfig: (config: StripeConfigProps) => void;
+    updateStripeConfig: (config: StripeConfig) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppStore: (appName: string) => void;
     getAppList: () => void;
@@ -118,7 +118,7 @@ declare module "app-context" {
       }
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
     | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuItemProps[] }
-    | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfigProps }
+    | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }

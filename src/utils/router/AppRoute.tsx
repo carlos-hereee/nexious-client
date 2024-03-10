@@ -16,8 +16,8 @@ const AppRoute = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    const routeAppName = pathname.split("/")[2];
     if (pathname.includes("app")) {
-      const routeAppName = pathname.split("/")[2];
       const pageName = pathname.split("/")[3];
       if (pageName) {
         console.log("routeName :>> ", routeAppName, pageName);
@@ -48,7 +48,6 @@ const AppRoute = () => {
         // console.log("activeAppName, routeAppName :>> ", activeAppName, routeAppName);
       }
     } else if (pathname.includes("store")) {
-      const routeAppName = pathname.split("/")[2];
       // console.log("routeAppName :>> ", routeAppName);
       if (routeAppName !== activeAppName) getAppStore(routeAppName);
       if (store.storeId) getStoreInventory(store.storeId);

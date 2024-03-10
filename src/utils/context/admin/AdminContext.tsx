@@ -4,7 +4,7 @@ import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { AppValues } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { StripeConfigProps } from "app-context";
+import { StripeConfig } from "app-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -90,9 +90,7 @@ export const AdminState = ({ children }: ChildProps) => {
     removePage({ dispatch, appId, handleAppAssets, pageId });
   }, []);
 
-  const deleteStore = useCallback((appId: string) => {
-    removeStore({ dispatch, appId });
-  }, []);
+  const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId }), []);
   const deleteMedia = useCallback((appId: string, name: string) => {
     removeMedia({ dispatch, appId, handleAppAssets, name });
   }, []);
@@ -126,7 +124,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const getAccount = useCallback((accountId: string) => {
     getStripeAccount({ dispatch, handleAppAssets, accountId, updateStripeConfig });
   }, []);
-  const updateAccount = useCallback((config: StripeConfigProps) => {
+  const updateAccount = useCallback((config: StripeConfig) => {
     updateStripeAccount({ dispatch, handleAppAssets, config, updateStripeConfig });
   }, []);
 

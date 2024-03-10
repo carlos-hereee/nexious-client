@@ -1,7 +1,7 @@
 declare module "app-admin" {
   import { MenuItemProps, StoreProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
-  import { AppListProps, AppProps, StripeConfigProps } from "app-context";
+  import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
@@ -57,7 +57,7 @@ declare module "app-admin" {
     initApp: (values: AppValues) => void;
     // stripe account
     getAccount: (accountId: string) => void;
-    updateAccount: (config: StripeConfigProps) => void;
+    updateAccount: (config: StripeConfig) => void;
     editAppDetails: (values: AppValues, appId: string) => void;
     editAppName: (values: AppValues, appId: string) => void;
     addPage: (values: AppValues, appId: string) => void;
@@ -82,12 +82,12 @@ declare module "app-admin" {
     dispatch: React.Dispatch<AdminActionProps>;
     handleAppAssets?: (key: AppAssets) => void;
     setFormStatus?: (key: FORM_STATUS) => void;
-    updateStripeConfig?: (key: StripeConfigProps) => void;
+    updateStripeConfig?: (key: StripeConfig) => void;
     appId?: string;
     name?: string;
     pageId?: string;
     accountId?: string;
-    config?: StripeConfigProps;
+    config?: StripeConfig;
     merchId?: string;
     status?: FORM_STATUS;
     values?: AppValues;
