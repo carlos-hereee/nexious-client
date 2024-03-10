@@ -119,6 +119,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.inventory,
     state.loadingState,
     state.store,
+    state.page,
     state.appList,
   ]);
 

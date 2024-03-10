@@ -21,7 +21,7 @@ const AppContainer = ({ onAppDetails }: AppContainerProps) => {
         <CopyToClipboard data={appUrl} />
       </KeyWithDefinition>
       <KeyWithDefinition label="App language:" labelLayout="bolden">
-        {locale || "Coming soon!"}
+        {locale || "Coming Soon!"}
       </KeyWithDefinition>
       <KeyWithDefinition label="App details:" labelLayout="bolden">
         <Button label="Edit app details" onClick={() => onAppDetails("phase-one")} />

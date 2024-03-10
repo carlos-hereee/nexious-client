@@ -6,6 +6,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import AddPage from "../forms/AddPage";
 import EditLanding from "../forms/EditLanding";
+import EditPage from "../forms/EditPage";
 
 const PageDialog = ({ onClose, status, activePage }: DialogProps) => {
   const { theme } = useContext(AuthContext);
@@ -23,7 +24,8 @@ const PageDialog = ({ onClose, status, activePage }: DialogProps) => {
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={dialogPageHeader}>
       {status === "phase-one" && <AddPage />}
-      {status === "phase-two" && <EditLanding onCancelClick={onClose} />}
+      {status === "phase-two" && <EditLanding />}
+      {status === "phase-edit" && <EditPage />}
       {status === "confirm-cancel" && (
         <div className="flex-center">
           <ButtonCancel onClick={onClose} theme="btn-main" />

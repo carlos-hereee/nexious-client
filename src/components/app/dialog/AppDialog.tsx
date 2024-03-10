@@ -12,7 +12,7 @@ const AppDialog = ({ onClose, status }: DialogProps) => {
     <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && <EditAppDetails />}
-      {status === "phase-two" && <EditLanding onCancelClick={onClose} />}
+      {status === "phase-two" && <EditLanding />}
     </Dialog>
   );
 };
