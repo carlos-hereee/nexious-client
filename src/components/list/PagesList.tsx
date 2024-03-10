@@ -1,14 +1,13 @@
 import { PageProps, PagesContainerProps } from "app-types";
-import { useNavigate } from "react-router-dom";
 import PreviewPage from "@components/app/preview/PreviewPage";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 
-const PagesList = ({ name, onRemove }: PagesContainerProps) => {
-  const navigate = useNavigate();
+const PagesList = ({ onRemove, updatePhase }: PagesContainerProps) => {
   const { pages } = useContext(AppContext);
   // require key variable
   if (!onRemove) throw Error("onRemove is required");
+  if (!updatePhase) throw Error("updatePhase is required");
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
 
   return (
@@ -19,7 +18,7 @@ const PagesList = ({ name, onRemove }: PagesContainerProps) => {
             preview={page}
             hero={page.hero}
             heading={page.name}
-            onClick={() => navigate(`/edit-page/${name}/page/${page.name}`)}
+            onClick={() => updatePhase("phase-edit")}
             layout="preview-thumbnail"
           />
           <button className="btn-remove" type="button" onClick={() => onRemove(page)}>

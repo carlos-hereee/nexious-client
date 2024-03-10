@@ -8,6 +8,8 @@ import KeyWithDefinition from "../sections/KeyWithDefinition";
 const AppContainer = ({ onAppDetails }: AppContainerProps) => {
   const { appUrl, locale } = useContext(AppContext);
 
+  // require key variable
+  if (!onAppDetails) throw Error("onAppDetails is required");
   // <KeyWithDefinition label="App homepage: " labelLayout="bolden">
   //   {/* <CopyToClipboard data={appUrl} /> */}
   //   {onAppDetails && <Button label="Edit homepage" onClick={() => onAppDetails("phase-two")} />}
@@ -19,13 +21,11 @@ const AppContainer = ({ onAppDetails }: AppContainerProps) => {
         <CopyToClipboard data={appUrl} />
       </KeyWithDefinition>
       <KeyWithDefinition label="App language:" labelLayout="bolden">
-        {locale || "Comming soon "}
+        {locale || "Coming soon!"}
       </KeyWithDefinition>
-      {onAppDetails && (
-        <KeyWithDefinition label="App details:" labelLayout="bolden">
-          <Button label="Edit app details" onClick={() => onAppDetails("phase-one")} />
-        </KeyWithDefinition>
-      )}
+      <KeyWithDefinition label="App details:" labelLayout="bolden">
+        <Button label="Edit app details" onClick={() => onAppDetails("phase-one")} />
+      </KeyWithDefinition>
     </div>
   );
 };

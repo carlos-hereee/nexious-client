@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
 
-const PagesContainer = ({ onRemove, name, updatePhase }: PagesContainerProps) => {
+const PagesContainer = ({ onRemove, updatePhase }: PagesContainerProps) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
   const { appUrl } = useContext(AppContext);
@@ -17,7 +17,7 @@ const PagesContainer = ({ onRemove, name, updatePhase }: PagesContainerProps) =>
         <Button label="Edit landing page" onClick={() => updatePhase("phase-two")} />
       </KeyWithDefinition>
       <KeyWithDefinition label="Your pages:" labelLayout="bolden">
-        <PagesList name={appUrl || name} onRemove={onRemove} />
+        <PagesList name={appUrl} onRemove={onRemove} updatePhase={updatePhase} />
       </KeyWithDefinition>
       <KeyWithDefinition label="More options:" labelLayout="bolden">
         <Button label="+ Add Page" onClick={() => updatePhase("phase-one")} />

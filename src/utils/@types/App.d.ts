@@ -13,7 +13,7 @@ declare module "app-types" {
     children?: React.ReactNode;
   }
   export interface AppDetailsProps {
-    locale: string;
+    locale?: string;
     appName: string;
     logo: string;
   }
@@ -166,7 +166,7 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two";
+  export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two" | "phase-edit";
   export interface AppDialogProps {
     pages: boolean;
     media: boolean;

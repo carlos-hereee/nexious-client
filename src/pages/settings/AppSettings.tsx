@@ -7,14 +7,14 @@ import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
 import { AppDialogProps, DialogShowProps, DialogStatusProps, MediaItemProp, PageProps } from "app-types";
-import StoreContainer from "@components/app/containers/StoreContainer";
 import StoreDialog from "@components/app/dialog/StoreDialog";
 import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
+import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
-  const { appName, appId, appLink } = useContext(AppContext);
-  const { deletePage, deleteMedia, formStatus, setFormStatus } = useContext(AdminContext);
+  const { appName, appId } = useContext(AppContext);
+  const { deleteMedia, formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>({ pages: false, media: false, store: false, app: false });
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
@@ -31,10 +31,6 @@ const AppSettings = () => {
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
     setActivePage(data);
-  };
-  const handleConfirm = () => {
-    setShow({ ...show, pages: false });
-    if (activePage?.pageId) deletePage(appId, activePage.pageId);
   };
   const handleMediaClick = (m: MediaItemProp) => {
     setShow({ ...show, media: true });
@@ -65,7 +61,6 @@ const AppSettings = () => {
       <PagesContainer
         onRemove={onDeletePage}
         updatePhase={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
-        name={appLink}
       />
       <StoreContainer onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })} />
       <MediaContainer
@@ -75,7 +70,6 @@ const AppSettings = () => {
       {show.pages && (
         <PageDialog
           onClose={() => handleClose({ dialogName: "pages", dialogStatus: "idle" })}
-          onConfirm={handleConfirm}
           status={status}
           activePage={activePage}
         />
