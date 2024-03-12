@@ -1,5 +1,5 @@
 {
-  "nexiousName": "Nexious Tech",
+  "nexiousName": "Nexious Beta",
   "nexiousAppId": "Nexious-Tech-id",
   "nexiousMenu": [
     {
@@ -120,7 +120,7 @@
   "nexiousLogo": "/icons/logo.svg",
   "nexiousHomepage": {
     "title": "Create Your Dream App Today",
-    "tagline": "Turn Your Idea into a Stunning App",
+    "tagline": "Join Turn Your Idea Into A Stunning App",
     "hasCta": true,
     "hero": {
       "url": "/unsplash/austin-chan-ukzHlkoz1IE-unsplash.jpg",
