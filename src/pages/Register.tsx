@@ -1,10 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Form, Hero } from "nexious-library";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { register, authErrors, signUpForm, dummyUser } = useContext(AuthContext);
+  const { register, authErrors, signUpForm, dummyUser, accessToken } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (accessToken) navigate("/dashboard");
+  }, [accessToken]);
 
   return (
     <div className="container">

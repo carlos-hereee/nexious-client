@@ -1,13 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginValues } from "app-forms";
 
 const Login = () => {
-  const { isLoading, login, authErrors, loginForm, resetAuthErrors } = useContext(AuthContext);
-
+  const { isLoading, login, authErrors, loginForm, resetAuthErrors, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (accessToken) navigate("/dashboard");
+  }, [accessToken]);
 
   const handleClick = () => {
     resetAuthErrors();
