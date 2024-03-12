@@ -83,10 +83,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);
 
   const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
-
-  const deletePage = useCallback((appId: string, pageId: string) => {
-    removePage({ dispatch, appId, handleAppAssets, pageId });
-  }, []);
+  const deletePage = useCallback((data: EditPageValues) => removePage({ dispatch, handleAppAssets, ...data }), []);
 
   const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId }), []);
   const deleteMedia = useCallback((appId: string, name: string) => {

@@ -27,7 +27,7 @@ declare module "app-admin" {
     data?: { title: string; body: string };
   };
   export interface EditPageValues {
-    values: PageProps;
+    values?: PageProps;
     appId: string;
     pageId: string;
   }
@@ -72,11 +72,11 @@ declare module "app-admin" {
     editNewsletter: (values: AppValues, appId: string) => void;
     editSocialMedia: (values: AppValues, appId: string) => void;
     editCalendar: (values: AppValues, appId: string) => void;
-    editPage: ({ values, pageId, appId }: { values: PageProps; appId: string; pageId: string }) => void;
+    editPage: ({ values, pageId, appId }: EditPageValues) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
     deleteMerchItem: (appId: string, merchId: string) => void;
-    deletePage: (appId: string, pageId: string) => void;
+    deletePage: ({ appId, pageId }: EditPageValues) => void;
     deleteMedia: (appId: string, name: string) => void;
     listBucket: (appId: string) => void;
     addStore: (values: AppValues, appId: string) => void;

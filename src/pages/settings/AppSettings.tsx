@@ -31,6 +31,7 @@ const AppSettings = () => {
   const onDeletePage = (data: PageProps) => {
     setShow({ ...show, pages: true });
     setActivePage(data);
+    setStatus("confirm-cancel");
   };
   const handleMediaClick = (m: MediaItemProp) => {
     setShow({ ...show, media: true });

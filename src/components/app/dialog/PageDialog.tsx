@@ -12,14 +12,13 @@ const PageDialog = ({ onClose, status, activePage }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deletePage } = useContext(AdminContext);
   const { appId } = useContext(AppContext);
-
   const dialogPageHeader =
     status === "confirm-cancel"
       ? { heading: `Are you sure you want to delete ${activePage?.name}'s page`, data: `This will delete all progress` }
       : undefined;
 
   const handleConfirm = () => {
-    if (activePage?.pageId) deletePage(appId, activePage.pageId);
+    if (activePage?.pageId) deletePage({ appId, pageId: activePage.pageId });
   };
   return (
     <Dialog theme={theme} onDialogClose={onClose} header={dialogPageHeader}>
