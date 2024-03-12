@@ -5,12 +5,12 @@ import { CallToActionProps, SectionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
-  const { landing } = useContext(AppContext);
+  const { landing, appLink } = useContext(AppContext);
   const navigate = useNavigate();
 
   if (!landing) return <div />;
 
-  const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
+  const handleClick = (data: CallToActionProps) => navigate(`/app/${appLink}/${data.link}`);
   const heroData = { url: landing.hero || "", alt: "page hero" };
   return (
     <div>
