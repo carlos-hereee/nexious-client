@@ -10,7 +10,6 @@ import { signOut } from "./request/signOut";
 import { setUser } from "./dispatch/setUser";
 import { setForgotPassword } from "./request/setForgotPassword";
 import { setSubscribe } from "./request/setSubscribe";
-import { setUnsubscribe } from "./request/setUnsubscribe";
 import { clearAuthErrors } from "./dispatch/clearAuthErrors";
 import { clearStranded } from "./dispatch/clearStranded";
 import { updateDumnyData } from "./dispatch/updateDummyData";
@@ -43,8 +42,7 @@ export const AuthState = ({ children }: ChildProps) => {
   const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
   // user actions
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
-  const subscribe = useCallback((e: string) => setSubscribe({ dispatch, appId: e, updateUser }), []);
-  const unSubscribe = useCallback((e: string) => setUnsubscribe({ dispatch, appId: e, updateUser }), []);
+  const subscribe = useCallback((appId: string) => setSubscribe({ dispatch, appId, updateUser }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -69,7 +67,6 @@ export const AuthState = ({ children }: ChildProps) => {
       logout,
       forgotPassword,
       subscribe,
-      unSubscribe,
       setDummyUser,
       resetStranded,
       resetAuthErrors,

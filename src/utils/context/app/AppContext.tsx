@@ -21,7 +21,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, unSubscribe, subscriptions } = useContext(AuthContext);
+  const { accessToken, setTheme, logout, subscribe, subscriptions } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
@@ -43,12 +43,10 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // TODO: move menu handling to dispatch folder
   const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
     const { isPrivate, category, name, link } = menuItem;
-    // console.log("menuItem :>> ", menuItem);
+    if (category === "subscribe") subscribe(appId);
     // if menu item is private navigate to route to retrieve credentials
-    if (isPrivate) {
+    else if (isPrivate) {
       if (name === "logout") logout();
-      else if (name === "subscribe") subscribe(appId);
-      else if (name === "unsubscribe") unSubscribe(appId);
       else navigate(`/${link || ""}`);
       // change theme
     } else if (category === "theme") setTheme(menuItem.value);

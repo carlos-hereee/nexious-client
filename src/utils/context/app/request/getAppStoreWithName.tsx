@@ -4,7 +4,7 @@ import { AppDispatchProps } from "app-context";
 import { AxiosError } from "axios";
 import { combineArraysWithOutDups } from "nexious-library";
 import { nexiousAppMenu } from "@data/nexious.json";
-import { toggleAuthMenuItem } from "@app/toggleMenu";
+import { toggleMenuValues } from "@app/toggleMenu";
 import { MenuProps } from "app-types";
 
 export const getAppStoreWithName = async (props: AppDispatchProps) => {
@@ -12,7 +12,6 @@ export const getAppStoreWithName = async (props: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.get(`/store/app/${appName}`);
-    console.log("data :>> ", data);
     if (data && updateAppData) {
       updateAppData(data);
       if (updateActiveAppData && subscriptions) {
@@ -24,8 +23,7 @@ export const getAppStoreWithName = async (props: AppDispatchProps) => {
           // check user subscriptions
           const subIdx = subscriptions.findIndex((subs) => subs.appName === data.app.appName);
           // if user is subscribe to app toggle options
-          if (subIdx >= 0)
-            oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+          if (subIdx >= 0) oldValues[authIdx] = toggleMenuValues(oldValues[authIdx], "unsubscribe");
           // updateActiveAppData({ menu: oldValues });
           updateActiveAppData({ ...data.app, menu: oldValues });
         }

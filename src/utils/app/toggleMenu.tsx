@@ -1,6 +1,6 @@
 import { MenuProps } from "app-types";
 
-export const toggleAuthMenuItem = (menuItem: MenuProps, target: string) => {
+export const toggleMenuValues = (menuItem: MenuProps, target: string) => {
   const oldValues = menuItem;
   if (oldValues?.name) oldValues.name = target;
   if (oldValues?.value) oldValues.value = target;

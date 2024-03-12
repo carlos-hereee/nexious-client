@@ -2,13 +2,21 @@ import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { nexiousMedia, nexiousMenu, nexiousLogo, nexiousAuthMenu, nexiousAppMenu, nexiousName } from "@data/nexious.json";
+import {
+  nexiousMedia,
+  nexiousMenu,
+  nexiousLogo,
+  nexiousAuthMenu,
+  nexiousAppMenu,
+  nexiousName,
+  nexiousAppId,
+} from "@data/nexious.json";
 import { combineArraysWithOutDups } from "nexious-library";
-import { toggleAuthMenuItem } from "@app/toggleMenu";
+import { toggleMenuValues } from "@app/toggleMenu";
 import { MenuProps } from "app-types";
 
 const AppRoute = () => {
-  const { isOnline, appError } = useContext(AppContext);
+  const { isOnline, appError, appId } = useContext(AppContext);
 
   const { accessToken, subscriptions } = useContext(AuthContext);
   const {
@@ -53,14 +61,20 @@ const AppRoute = () => {
         // check user subscriptions
         const subIdx = subscriptions.findIndex((subs) => subs.appName === activeAppName);
         // if user is subscribe to app toggle options
-        if (subIdx >= 0) oldValues[authIdx] = toggleAuthMenuItem(oldValues[authIdx], "unsubscribe");
+        oldValues[authIdx] = toggleMenuValues(oldValues[authIdx], subIdx >= 0 ? "unsubscribe" : "subscribe");
       }
-      updateActiveAppData({ appName, logo, media, menu: oldValues });
+      updateActiveAppData({ appName, logo, media, menu: oldValues, appId });
     } else {
       const menuValue = accessToken ? nexiousAuthMenu : nexiousMenu;
-      updateActiveAppData({ appName: nexiousName, logo: nexiousLogo, media: nexiousMedia, menu: menuValue });
+      updateActiveAppData({
+        appName: nexiousName,
+        logo: nexiousLogo,
+        media: nexiousMedia,
+        menu: menuValue,
+        appId: nexiousAppId,
+      });
     }
-  }, [appName]);
+  }, [appName, subscriptions]);
 
   if (!isOnline) return <Navigate to="/offline" />;
   if (appError) return <Navigate to="/" />;

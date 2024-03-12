@@ -60,7 +60,6 @@ declare module "auth-context" {
     forgotPassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;
     subscribe: (appId: string) => void;
-    unSubscribe: (appId: string) => void;
   }
 
   export interface AuthDispatchProps {
