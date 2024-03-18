@@ -5,7 +5,7 @@ import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
-import ErrorPage from "@pages/ErrorPage";
+import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
 
 const App = ({ children }: ChildProps) => {

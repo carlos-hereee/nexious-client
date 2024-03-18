@@ -3,6 +3,7 @@ import { Button, Form, Hero, Loading } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginValues } from "app-forms";
+import { isDev } from "@config";
 
 const Login = () => {
   const { isLoading, login, authErrors, loginForm, resetAuthErrors, accessToken } = useContext(AuthContext);
@@ -29,7 +30,7 @@ const Login = () => {
       <div className="form-hero">
         {loginForm.initialValues && (
           <Form
-            initialValues={loginForm.initialValues}
+            initialValues={isDev ? { username: "qwerty", password: "qwerty" } : loginForm.initialValues}
             heading={loginForm.heading}
             onSubmit={(val: LoginValues) => login(val)}
             schema={{ require: ["username", "password"] }}

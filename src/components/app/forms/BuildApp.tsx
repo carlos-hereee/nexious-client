@@ -16,6 +16,7 @@ const BuildApp = () => {
     // redirect to dashboard on successful build
     if (formStatus === "SUCCESS") navigate("/dashboard");
   }, [formStatus]);
+
   if (isLoading) return <Loading message="loading app assets.." />;
   return (
     <div className="container">

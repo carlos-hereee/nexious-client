@@ -40,7 +40,7 @@
       "@pages/*": [
         "pages/*"
       ],
-      "@type/*": [
+      "@types/*": [
         "utils/types/*"
       ],
       "@data/*": [

@@ -25,6 +25,7 @@ declare module "app-admin" {
     onCancelClick?: () => void;
     onClick?: () => void;
     data?: { title: string; body: string };
+    message?: string;
   };
   export interface EditPageValues {
     values?: PageProps;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IconButton } from "nexious-library";
 import WelcomeBanner from "@components/app/banners/WelcomeBanner";
 import AppPlayground from "./AppPlayground";
-import AccountSettings from "./settings/AccountSettings";
+import AccountSettings from "./AccountSettings";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<"apps" | "account">("apps");

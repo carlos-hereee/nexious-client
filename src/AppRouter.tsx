@@ -7,20 +7,19 @@ import AppRoute from "@router/AppRoute";
 import AdminRoute from "@router/AdminRoute";
 import PublicRoute from "@router/PublicRoute";
 import Landing from "@pages/Landing";
-import SignUp from "@pages/Register";
+import SignUp from "@pages/auth/Register";
 import ForgotPassword from "@components/form/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
-import Login from "@pages/Login";
-import UserPlayground from "@pages/UserPlayground";
+import Login from "@pages/auth/Login";
+import UserPlayground from "@pages/settings/UserPlayground";
 import Homepage from "@pages/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AppPage from "@pages/AppPage";
 import AppStore from "@pages/AppStore";
-import Checkout from "@pages/Checkout";
+import Checkout from "@pages/public/Checkout";
 import ExploreApps from "@components/app/ExploreApps";
 import CheckoutSuccess from "@components/app/store/CheckoutSuccess";
 // import AddPage from "@components/app/forms/AddPage";
-// import Offline from "@components/app/Offline";
 // import EditApp from "@components/app/forms/EditApp";
 // import EditPage from "@components/app/forms/EditPage";
 
@@ -33,14 +32,13 @@ const AppRouter: React.FC = () => {
       {/* Public Routes */}
       <Route element={<PublicRoute />}>
         {/* // if server not coaperating use offline data */}
-        {/* <Route path="/offline" element={<Offline />} /> */}
         <Route path="/build-app" element={<BuildApp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
-        <Route path="/checkout/error" element={<CheckoutSuccess />} />
+        {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
         <Route path="/" element={<Homepage />} />
       </Route>

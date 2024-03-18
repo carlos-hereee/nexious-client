@@ -7,7 +7,7 @@ const CheckoutSuccess = () => {
   const { confirmIntent, stripeConfirmation, isLoading } = useContext(ServicesContext);
   const { search } = useLocation();
 
-  console.log("stripeConfirmation :>> ", stripeConfirmation);
+  // console.log("stripeConfirmation :>> ", stripeConfirmation);
   useEffect(() => {
     confirmIntent(search);
   }, []);
