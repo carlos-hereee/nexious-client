@@ -28,6 +28,7 @@ const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const navigateClick = () => navigate(accessToken ? "/dashboard" : "/");
   return (
     <Routes>
       {/* Public Routes */}
@@ -65,7 +66,7 @@ const AppRouter: React.FC = () => {
         <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
       {/* All other routes */}
-      <Route path="/*" element={<PageNotFound to={accessToken ? "/dashboard" : "/"} handleClick={() => navigate("/")} />} />
+      <Route path="/*" element={<PageNotFound to={accessToken ? "dashboard" : "home"} handleClick={navigateClick} />} />
     </Routes>
   );
 };

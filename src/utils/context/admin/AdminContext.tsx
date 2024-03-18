@@ -16,7 +16,7 @@ import { updateNewsletter } from "./requests/updateNewsletter";
 import { updateSocialMedia } from "./requests/updateSocialMedia";
 import { removeApp } from "./requests/app/removeApp";
 import { updateCalendar } from "./requests/updateCalendar";
-import { getBucket } from "./requests/getBucket";
+// import { getBucket } from "./requests/getBucket";
 import { createPage } from "./requests/createPage";
 import { updatePage } from "./requests/updatePage";
 import { removePage } from "./requests/removePage";
@@ -93,9 +93,9 @@ export const AdminState = ({ children }: ChildProps) => {
     removeMerch({ dispatch, appId, merchId, handleAppAssets });
   }, []);
 
-  const listBucket = useCallback((appId: string) => {
-    getBucket({ dispatch, appId, handleAppAssets });
-  }, []);
+  // const listBucket = useCallback((appId: string) => {
+  //   getBucket({ dispatch, appId, handleAppAssets });
+  // }, []);
 
   const addPage = useCallback((values: AppValues, appId: string) => {
     createPage({ dispatch, appId, handleAppAssets, values });
@@ -157,7 +157,7 @@ export const AdminState = ({ children }: ChildProps) => {
       deletePage,
       deleteMedia,
       editCalendar,
-      listBucket,
+      // listBucket,
       addPage,
       editPage,
       addMedia,

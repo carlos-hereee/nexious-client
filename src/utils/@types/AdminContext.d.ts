@@ -79,7 +79,7 @@ declare module "app-admin" {
     deleteMerchItem: (appId: string, merchId: string) => void;
     deletePage: ({ appId, pageId }: EditPageValues) => void;
     deleteMedia: (appId: string, name: string) => void;
-    listBucket: (appId: string) => void;
+    // listBucket: (appId: string) => void;
     addStore: (values: AppValues, appId: string) => void;
     editStore: (values: AppValues, appId: string) => void;
     editMerch: (values: AppValues, appId: string, merhId: string) => void;
