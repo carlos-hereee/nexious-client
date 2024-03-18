@@ -242,3 +242,7 @@ header {
   flex-direction: row-reverse;
   justify-content: space-evenly;
 }
+.container .calendar-week {
+  display: grid;
+  text-align: center;
+}
