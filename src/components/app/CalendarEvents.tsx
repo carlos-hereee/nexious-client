@@ -1,27 +1,27 @@
 // import { MeetingDetails } from "@nxs-atoms";
 // import { CalendarEventList, IconButton } from "@nxs-molecules";
-import { CardSection, CartRow, IconButton } from "nexious-library";
+// import { CardSection, CartRow, IconButton } from "nexious-library";
 // import { setActive } from "@context/services/helpers/setActive";
-import { useContext } from "react";
-import { ServicesContext } from "@context/services/ServicesContext";
-import { CalendarContext } from "@context/calendar/CalendarContext";
+// import { useContext } from "react";
+// import { ServicesContext } from "@context/services/ServicesContext";
+// import { CalendarContext } from "@context/calendar/CalendarContext";
 // import { findNextOpenApp } from "@utils/app/findNextOpenApp";
 // import { AuthContext } from "@context/auth/AuthContext";
 
 const CalendarEvents = () => {
   // const { handleCheckout, user } = useContext(AuthContext);
-  const { active, services, setActive } = useContext(ServicesContext);
-  const { selectedDay, meeting, events, setMeeting, error, setError } = useContext(CalendarContext);
+  // const { active, services, setActive } = useContext(ServicesContext);
+  // const { selectedDay, meeting, events, setMeeting, error, setError } = useContext(CalendarContext);
 
-  const findNextOpen = (e) => {
-    // const { error, event } = findNextOpenApp(events);
-    if (error) return setError(error);
-    // setMeeting(event);
-  };
+  // const findNextOpen = (e) => {
+  //   // const { error, event } = findNextOpenApp(events);
+  //   if (error) return setError(error);
+  //   // setMeeting(event);
+  // };
 
   return (
     <div className="calendar-events">
-      <div className="calendar-package-details">
+      {/* <div className="calendar-package-details">
         <h2 className="heading">Selected package</h2>
         {active ? (
           <CardSection data={active} />
@@ -51,7 +51,7 @@ const CalendarEvents = () => {
             )}
           </div>
         )}
-      </div>
+      </div> */}
       {/* <div className="event-wrapper">
 
         {meeting.uid ? (

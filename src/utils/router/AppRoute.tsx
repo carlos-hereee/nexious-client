@@ -45,6 +45,10 @@ const AppRoute = () => {
       if (routeAppName !== activeAppName) getAppStore(routeAppName);
       if (store.storeId) getStoreInventory(store.storeId);
     }
+    if (pathname.includes("booking")) {
+      // if (routeAppName !== activeAppName) getAppCalendar(routeAppName);
+      // if (calendar.calendarId) getCalendarEvents(calendar.calendarId);
+    }
   }, [pathname]);
 
   useEffect(() => {

@@ -4,10 +4,10 @@ import { AppState } from "@context/app/AppContext";
 import { AuthState } from "@context/auth/AuthContext";
 import { LogState } from "@context/log/LogContext";
 import { ServicesState } from "@context/services/ServicesContext";
-// import { CalendarState } from "@context/calendar/CalendarContext";
 import { AdminState } from "@context/admin/AdminContext";
 import { isDev } from "@config";
 import ScrollToTop from "@router/ScrollToTop";
+import { CalendarState } from "@context/calendar/CalendarContext";
 import App from "./App";
 import AppRouter from "./AppRouter";
 import "nexious-library/@index.css";
@@ -24,13 +24,13 @@ if (elementRoot) {
         <LogState>
           <AppState>
             <ServicesState>
-              {/* <CalendarState> */}
-              <AdminState>
-                <App>
-                  <AppRouter />
-                </App>
-              </AdminState>
-              {/* </CalendarState> */}
+              <CalendarState>
+                <AdminState>
+                  <App>
+                    <AppRouter />
+                  </App>
+                </AdminState>
+              </CalendarState>
             </ServicesState>
           </AppState>
         </LogState>

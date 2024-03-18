@@ -6,7 +6,7 @@ import PrivateRoute from "@router/PrivateRoute";
 import AppRoute from "@router/AppRoute";
 import AdminRoute from "@router/AdminRoute";
 import PublicRoute from "@router/PublicRoute";
-import Landing from "@pages/Landing";
+import Landing from "@pages/app/Landing";
 import SignUp from "@pages/auth/Register";
 import ForgotPassword from "@components/form/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
@@ -14,11 +14,12 @@ import Login from "@pages/auth/Login";
 import UserPlayground from "@pages/settings/UserPlayground";
 import Homepage from "@pages/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
-import AppPage from "@pages/AppPage";
-import AppStore from "@pages/AppStore";
+import AppPage from "@pages/app/AppPage";
+import AppStore from "@pages/app/AppStore";
 import Checkout from "@pages/public/Checkout";
 import ExploreApps from "@components/app/ExploreApps";
 import CheckoutSuccess from "@components/app/store/CheckoutSuccess";
+import AppBooking from "@pages/app/AppBooking";
 // import AddPage from "@components/app/forms/AddPage";
 // import EditApp from "@components/app/forms/EditApp";
 // import EditPage from "@components/app/forms/EditPage";
@@ -46,7 +47,10 @@ const AppRouter: React.FC = () => {
       <Route element={<AppRoute />}>
         <Route path="/app/:appName" element={<Landing />} />
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
+        {/* TODO: REMOVE PARAM STORENAME MAYBE ITS REDUNDANTS  */}
+        {/* <Route path="/store/:appName" element={<AppStore />} /> */}
         <Route path="/store/:appName/:storeName" element={<AppStore />} />
+        <Route path="/booking/:appName" element={<AppBooking />} />
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
