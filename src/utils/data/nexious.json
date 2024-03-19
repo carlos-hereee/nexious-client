@@ -249,5 +249,12 @@
       "colors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" },
       "backgroundColors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" }
     }
-  ]
+  ],
+  "nexiousDashboardMenu": {
+    "pages": false,
+    "media": false,
+    "store": false,
+    "app": false,
+    "calendar": false
+  }
 }

@@ -11,11 +11,13 @@ import StoreDialog from "@components/app/dialog/StoreDialog";
 import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
 import StoreContainer from "@components/app/containers/StoreContainer";
+import CalendarContainer from "@components/app/containers/CalendarContainer";
+import { nexiousDashboardMenu } from "@data/nexious.json";
 
 const AppSettings = () => {
   const { appName, appId } = useContext(AppContext);
   const { deleteMedia, formStatus, setFormStatus } = useContext(AdminContext);
-  const [show, setShow] = useState<AppDialogProps>({ pages: false, media: false, store: false, app: false });
+  const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("idle");
@@ -23,7 +25,7 @@ const AppSettings = () => {
   useEffect(() => {
     // close form windows on form success
     if (formStatus === "SUCCESS") {
-      setShow({ pages: false, media: false, store: false, app: false });
+      setShow({ pages: false, media: false, store: false, app: false, calendar: false });
       setFormStatus("IDLE");
     }
   }, [formStatus]);
@@ -63,11 +65,12 @@ const AppSettings = () => {
         onRemove={onDeletePage}
         updatePhase={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
       />
-      <StoreContainer onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })} />
       <MediaContainer
         onMediaClick={handleMediaClick}
         onAdd={(phase) => handleShow({ dialogName: "media", dialogStatus: phase })}
       />
+      <CalendarContainer onPhaseClick={(phase) => handleShow({ dialogName: "calendar", dialogStatus: phase })} />
+      <StoreContainer onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })} />
       {show.pages && (
         <PageDialog
           onClose={() => handleClose({ dialogName: "pages", dialogStatus: "idle" })}

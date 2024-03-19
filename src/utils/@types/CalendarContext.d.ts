@@ -36,4 +36,13 @@ declare module "app-calendar" {
     calendar: CalendarSchema;
     selectedDay: IEvent;
   }
+  export interface CalendarContainerProps {
+    // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
+    onRemove?: (key: string) => void;
+    onMediaClick?: (key: MediaItemProp) => void;
+    onClick?: () => void;
+    onPhaseClick: (phase: DialogStatusProps) => void;
+    // onAddItem?: (phase: DialogStatusProps) => void;
+    // onEditDetails?: (phase: DialogStatusProps) => void;
+  }
 }

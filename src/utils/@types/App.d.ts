@@ -171,13 +171,14 @@ declare module "app-types" {
     pages: boolean;
     media: boolean;
     store: boolean;
+    calendar: boolean;
     app: boolean;
   }
   export interface DialogShowProps {
     dialogName: AppSettingDialogOptions;
     dialogStatus: DialogStatusProps;
   }
-  export type AppSettingDialogOptions = "pages" | "media" | "store" | "app";
+  export type AppSettingDialogOptions = "pages" | "media" | "store" | "app" | "calendar";
   export interface SectionProps {
     title: string;
     uid: string;
