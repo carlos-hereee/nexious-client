@@ -72,7 +72,6 @@ declare module "app-admin" {
     editLandingPage: (values: AppValues, appId: string) => void;
     editNewsletter: (values: AppValues, appId: string) => void;
     editSocialMedia: (values: AppValues, appId: string) => void;
-    editCalendar: (values: AppValues, appId: string) => void;
     editPage: ({ values, pageId, appId }: EditPageValues) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
@@ -81,6 +80,8 @@ declare module "app-admin" {
     deleteMedia: (appId: string, name: string) => void;
     // listBucket: (appId: string) => void;
     addStore: (values: AppValues, appId: string) => void;
+    // calendar
+    editCalendar: (data: FormValueData) => void;
     createCalendar: (data: FormValueData) => void;
     editStore: (values: AppValues, appId: string) => void;
     editMerch: (values: AppValues, appId: string, merhId: string) => void;

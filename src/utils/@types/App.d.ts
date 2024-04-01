@@ -231,6 +231,7 @@ declare module "app-types" {
     name: string;
     theme?: string;
     calendarId: string;
+    hero?: string;
     schedule: KeyStringProp[];
   }
   export interface HeroProps {

@@ -78,9 +78,7 @@ export const AdminState = ({ children }: ChildProps) => {
   }, []);
 
   // calendar requests
-  const editCalendar = useCallback((a: AppValues, appId: string) => {
-    updateCalendar({ dispatch, values: a, appId, handleAppAssets });
-  }, []);
+  const editCalendar = useCallback((data: FormValueData) => updateCalendar({ dispatch, ...data, handleAppAssets }), []);
   const createCalendar = useCallback((data: FormValueData) => addCalendar({ dispatch, ...data, handleAppAssets }), []);
 
   const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);

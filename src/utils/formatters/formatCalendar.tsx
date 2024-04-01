@@ -5,8 +5,7 @@ type FormatCalendarProps = {
   calendar: CalendarProps;
   form: FormProps;
 };
-export const formatCalendar = (props: FormatCalendarProps) => {
-  const { calendar, form } = props;
+export const formatCalendar = ({ calendar, form }: FormatCalendarProps) => {
   const { desiredOrder } = form;
   if (desiredOrder) {
     return Object.assign(

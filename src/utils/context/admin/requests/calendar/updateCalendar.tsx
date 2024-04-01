@@ -9,7 +9,7 @@ export const updateCalendar = async (props: AdminDisptachProps) => {
   if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/calendar/update-calendar/${appId}`, values);
+    const { data } = await axiosAuth.put(`/calendar/update/${appId}`, values);
     handleAppAssets(data);
     // dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
