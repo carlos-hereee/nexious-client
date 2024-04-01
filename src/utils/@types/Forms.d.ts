@@ -84,6 +84,7 @@ declare module "app-forms" {
     | KeyStringProp
     | { [key: string]: string | boolean }
     | FormData;
+  export type FormValueData = { values: AppValues; appId: string };
   export interface InitPaginateFormProps {
     initialValues: AppValues;
     form: FormProps;

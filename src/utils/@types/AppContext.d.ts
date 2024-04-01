@@ -6,6 +6,7 @@ declare module "app-context" {
   import {
     AdminIdProps,
     AppListProps,
+    AppProps,
     CalendarProps,
     MediaProps,
     MenuItemProps,

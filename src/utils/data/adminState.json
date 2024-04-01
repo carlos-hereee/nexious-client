@@ -193,14 +193,14 @@
   "calendarForm": {
     "heading": "Configure your calendar details here!",
     "submitLabel": "Save and continue",
-    "formId": "calendar",
+    "formId": "calendar123",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "title": "", "theme": "" },
-    "labels": { "title": "Name", "theme": "Calendar theme" },
-    "placeholders": { "title": "app calendar name", "email": "" },
-    "types": { "title": "text", "email": "text", "theme": "select" },
-    "desiredOrder": ["title", "theme"]
+    "initialValues": { "name": "", "hero": "" },
+    "labels": { "name": "Calendar Name", "hero": "Add background image" },
+    "placeholders": { "name": "Calendar name", "email": "" },
+    "types": { "name": "text", "email": "text", "theme": "select", "hero": "file" },
+    "desiredOrder": ["name", "hero"]
   },
   "pagesForm": {
     "heading": "",

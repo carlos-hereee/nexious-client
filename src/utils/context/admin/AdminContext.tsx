@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useReducer 
 import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
-import { AppValues } from "app-forms";
+import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StripeConfig } from "app-context";
 import { reducer } from "./AdminReducer";
@@ -15,7 +15,7 @@ import { updateLandingPage } from "./requests/updateLandingPage";
 import { updateNewsletter } from "./requests/updateNewsletter";
 import { updateSocialMedia } from "./requests/updateSocialMedia";
 import { removeApp } from "./requests/app/removeApp";
-import { updateCalendar } from "./requests/updateCalendar";
+import { updateCalendar } from "./requests/calendar/updateCalendar";
 // import { getBucket } from "./requests/getBucket";
 import { createPage } from "./requests/createPage";
 import { updatePage } from "./requests/updatePage";
@@ -32,6 +32,7 @@ import { removeStore } from "./requests/store/removeStore";
 import { removeMerch } from "./requests/store/removeMerch";
 import { getStripeAccount } from "./requests/store/getStripeAccount";
 import { updateStripeAccount } from "./requests/store/updateStripeAccount";
+import { addCalendar } from "./requests/calendar/addCalendar";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -76,9 +77,11 @@ export const AdminState = ({ children }: ChildProps) => {
     updateSocialMedia({ dispatch, values, handleAppAssets, appId });
   }, []);
 
+  // calendar requests
   const editCalendar = useCallback((a: AppValues, appId: string) => {
     updateCalendar({ dispatch, values: a, appId, handleAppAssets });
   }, []);
+  const createCalendar = useCallback((data: FormValueData) => addCalendar({ dispatch, ...data, handleAppAssets }), []);
 
   const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);
 
@@ -157,6 +160,7 @@ export const AdminState = ({ children }: ChildProps) => {
       deletePage,
       deleteMedia,
       editCalendar,
+      createCalendar,
       // listBucket,
       addPage,
       editPage,

@@ -5,11 +5,12 @@ import { AdminDisptachProps } from "app-admin";
 
 export const updateCalendar = async (props: AdminDisptachProps) => {
   const { dispatch, appId, handleAppAssets, values } = props;
-
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/app/update-calendar/${appId}`, values);
-    if (handleAppAssets) handleAppAssets(data);
+    const { data } = await axiosAuth.post(`/calendar/update-calendar/${appId}`, values);
+    handleAppAssets(data);
     // dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
     // console.log("error :>> ", error);

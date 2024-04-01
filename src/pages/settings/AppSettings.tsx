@@ -13,6 +13,7 @@ import AppDialog from "@components/app/dialog/AppDialog";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu } from "@data/nexious.json";
+import CalendarDialog from "@components/app/dialog/CalendarDialog";
 
 const AppSettings = () => {
   const { appName, appId } = useContext(AppContext);
@@ -91,6 +92,9 @@ const AppSettings = () => {
         <StoreDialog onClose={() => handleClose({ dialogName: "store", dialogStatus: "idle" })} status={status} />
       )}
       {show.app && <AppDialog onClose={() => handleClose({ dialogName: "app", dialogStatus: "idle" })} status={status} />}
+      {show.calendar && (
+        <CalendarDialog onClose={() => handleClose({ dialogName: "calendar", dialogStatus: "idle" })} status={status} />
+      )}
       <DangerZone />
     </div>
   );

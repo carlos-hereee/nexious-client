@@ -30,7 +30,7 @@
     "medias": []
   },
   "menu": [],
-  "calendar": { "name": "", "calendarId": "", "events": [{}] },
+  "calendar": { "name": "", "calendarId": "", "schedule": [{}] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
   "activeMedia": {

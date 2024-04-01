@@ -3,7 +3,7 @@ declare module "app-admin" {
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
-  import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
+  import { FormProps, AppValues, SectionEntryOganizer, FormValueData } from "app-forms";
 
   export type AdminFormErrors = {
     initAppFormError?: string;
@@ -81,6 +81,7 @@ declare module "app-admin" {
     deleteMedia: (appId: string, name: string) => void;
     // listBucket: (appId: string) => void;
     addStore: (values: AppValues, appId: string) => void;
+    createCalendar: (data: FormValueData) => void;
     editStore: (values: AppValues, appId: string) => void;
     editMerch: (values: AppValues, appId: string, merhId: string) => void;
     addMerch: (values: AppValues, appId: string) => void;
