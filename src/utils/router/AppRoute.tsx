@@ -17,38 +17,30 @@ import { MenuProps } from "app-types";
 
 const AppRoute = () => {
   const { isOnline, appError, appId } = useContext(AppContext);
-
   const { accessToken, subscriptions } = useContext(AuthContext);
-  const {
-    activeAppName,
-    menu,
-    store,
-    logo,
-    appName,
-    media,
-    pages,
-    updateActiveAppData,
-    getAppWithName,
-    getAppStore,
-    updateAppData,
-    getStoreInventory,
-  } = useContext(AppContext);
+  const { activeAppName, menu, logo, appName, media, pages, updateActiveAppData, getAppWithName, updateAppData } =
+    useContext(AppContext);
+  // getAppStore,
+  // store,
+  // getStoreInventory,
   const { pathname } = useLocation();
 
   useEffect(() => {
     // fetch app data
     const routeAppName = pathname.split("/")[2];
-    if (pathname.includes("app")) {
-      if (appName !== routeAppName) getAppWithName(routeAppName);
-    }
-    if (pathname.includes("store")) {
-      if (routeAppName !== activeAppName) getAppStore(routeAppName);
-      if (store.storeId) getStoreInventory(store.storeId);
-    }
-    if (pathname.includes("booking")) {
-      // if (routeAppName !== activeAppName) getAppCalendar(routeAppName);
-      // if (calendar.calendarId) getCalendarEvents(calendar.calendarId);
-    }
+    if (appName !== routeAppName) getAppWithName(routeAppName);
+    // if (pathname.includes("app")) {
+    //   if (appName !== routeAppName) getAppWithName(routeAppName);
+    // }
+    // if (pathname.includes("store")) {
+    //   if (routeAppName !== activeAppName) getAppStore(routeAppName);
+    //   if (store.storeId) getStoreInventory(store.storeId);
+    // }
+    // if (pathname.includes("booking")) {
+    //   if (appName !== routeAppName) getAppWithName(routeAppName);
+    //   // if (routeAppName !== activeAppName) getAppCalendar(routeAppName);
+    //   // if (calendar.calendarId) getCalendarEvents(calendar.calendarId);
+    // }
   }, [pathname]);
 
   useEffect(() => {

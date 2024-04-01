@@ -12,6 +12,7 @@ const MediaContainer = ({ onRemove, onMediaClick, onAdd }: MediaCardContainerPro
   return (
     <div className="container">
       <h2 className="heading">Social Media:</h2>
+      <p className="text-max">**Linking your social media will only redirect users via hyperlink**</p>
       <MediaList onRemove={onRemove} data={media.medias} onMediaClick={onMediaClick} />
       <KeyWithDefinition label="More options:" labelLayout="bolden">
         <Button label="+ Add Social media" onClick={() => onAdd("phase-two")} />

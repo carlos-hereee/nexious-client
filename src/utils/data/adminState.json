@@ -196,11 +196,11 @@
     "formId": "calendar123",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "" },
+    "initialValues": { "name": "" },
     "labels": { "name": "Calendar Name", "hero": "Add background image" },
     "placeholders": { "name": "Calendar name", "email": "" },
     "types": { "name": "text", "email": "text", "theme": "select", "hero": "file" },
-    "desiredOrder": ["name", "hero"]
+    "desiredOrder": ["name"]
   },
   "pagesForm": {
     "heading": "",

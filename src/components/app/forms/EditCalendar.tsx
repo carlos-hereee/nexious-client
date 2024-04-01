@@ -8,9 +8,8 @@ const EditCalendar = () => {
   const { calendarForm, editCalendar } = useContext(AdminContext);
   // initial data if any
   const { isLoading, appId, calendar } = useContext(AppContext);
-  console.log("calendar :>> ", calendar);
 
-  const initialValues = { ...calendarForm.initialValues, name: calendar.name || "", hero: calendar.hero || "" };
+  const initialValues = { ...calendarForm.initialValues, name: calendar.name || "" };
   if (isLoading) return <Loading message="Loading app data" />;
   return (
     <div className="container">
