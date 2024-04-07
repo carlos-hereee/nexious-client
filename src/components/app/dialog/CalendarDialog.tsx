@@ -13,7 +13,6 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
     <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
       <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
-      <KeyWithDefinition label="Calendar booking: ">Comming Soon!</KeyWithDefinition>
       {status === "phase-one" && <CreateCalendar />}
       {status === "phase-two" && <EditCalendar />}
     </Dialog>

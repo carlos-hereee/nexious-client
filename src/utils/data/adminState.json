@@ -195,11 +195,25 @@
     "submitLabel": "Save and continue",
     "formId": "calendar123",
     "previewLabel": "See changes",
-    "fieldHeading": {},
-    "initialValues": { "name": "" },
-    "labels": { "name": "Calendar Name", "hero": "Add background image" },
-    "placeholders": { "name": "Calendar name", "email": "" },
-    "types": { "name": "text", "email": "text", "theme": "select", "hero": "file" },
+    "fieldHeading": { "workWeek": "Hours of operation", "altHours": "Alternative times" },
+    "initialValues": { "name": "", "workWeek": "", "startTime": "", "closeTime": "", "altHours": false },
+    "labels": {
+      "name": "Calendar Name",
+      "workWeek": "What days are you open",
+      "startTime": "Start time",
+      "closeTime": "Close time",
+      "day": "Day of the week",
+      "altHours": "Do you open on a different time depending on the day?"
+    },
+    "placeholders": { "name": "Calendar name" },
+    "types": {
+      "name": "text",
+      "workWeek": "datalist",
+      "theme": "select",
+      "altHours": "checkbox",
+      "startTime": "select",
+      "closeTime": "select"
+    },
     "desiredOrder": ["name"]
   },
   "pagesForm": {
@@ -207,14 +221,7 @@
     "formId": "buildPage",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": {
-      "name": "",
-      "title": "",
-      "hero": "",
-      "body": "",
-      "hasCta": false,
-      "hasSections": false
-    },
+    "initialValues": { "name": "", "title": "", "hero": "", "body": "", "hasCta": false, "hasSections": false },
     "types": {
       "title": "text",
       "body": "textarea",
@@ -386,6 +393,25 @@
       "groupName": "sections",
       "group": "hasSections",
       "desiredOrder": ["title", "body", "sectionHero"]
+    },
+    "altHours": {
+      "formId": "alt-hours",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "day": "", "startTime": "", "closeTime": "" },
+      "labels": {
+        "day": "Day of the week",
+        "startTime": "Start time",
+        "closeTime": "Close time"
+      },
+      "placeholders": {},
+      "types": { "day": "select", "startTime": "select", "closeTime": "select" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "groupName": "alternative-hours",
+      "group": "altHours",
+      "desiredOrder": ["day", "startTime", "closeTime"]
     }
   },
   "iconList": [

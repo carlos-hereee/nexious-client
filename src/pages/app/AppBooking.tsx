@@ -6,12 +6,14 @@
 import { Calendar } from "nexious-library";
 // import { AuthContext } from "@context/auth/AuthContext";
 import CalendarEvents from "@components/app/CalendarEvents";
+import { AppContext } from "@context/app/AppContext";
+import { useContext } from "react";
 // import { AppContext } from "@context/app/AppContext";
 
 const AppBooking = () => {
   // const { selectedDay, meeting, setMeeting, setDay } = useContext(CalendarContext);
   // const { bookable, removeFromCart, cart, active, setActive, addToCart } = useContext(ServicesContext);
-  // const { calendar } = useContext(AppContext);
+  const { calendar } = useContext(AppContext);
   // const { user } = useContext(AuthContext);
   // const navigate = useNavigate();
 
@@ -31,6 +33,7 @@ const AppBooking = () => {
   // };
   return (
     <section className="primary-container">
+      {calendar.name && <h1 className="heading">{calendar.name}</h1>}
       <Calendar
         value={new Date()}
         // onDayClick={handleDayClick}

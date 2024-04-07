@@ -3,9 +3,10 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
+import cal from "@data/data.json";
 
 const CreateCalendar = () => {
-  const { calendarForm, createCalendar } = useContext(AdminContext);
+  const { calendarForm, createCalendar, sectionEntries } = useContext(AdminContext);
   // initial data if any
   const { isLoading, appId } = useContext(AppContext);
 
@@ -17,10 +18,16 @@ const CreateCalendar = () => {
         labels={calendarForm.labels}
         placeholders={calendarForm.placeholders}
         types={calendarForm.types}
+        addEntry={sectionEntries}
         fieldHeading={calendarForm.fieldHeading}
+        dataList={{
+          workWeek: cal.calendarData.week,
+          day: cal.calendarData.week,
+          startTime: cal.calendarData.hours,
+          closeTime: cal.calendarData.hours,
+        }}
         onSubmit={(values: AppValues) => createCalendar({ values, appId })}
         submitLabel="Save and continue"
-        withFileUpload
         schema={{ required: ["name"] }}
         noScroll
       />

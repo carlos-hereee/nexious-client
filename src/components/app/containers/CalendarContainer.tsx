@@ -29,6 +29,9 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
       <KeyWithDefinition label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />
       </KeyWithDefinition>
+      <KeyWithDefinition label="Calendar booking:" labelLayout="bolden">
+        Comming Soon!
+      </KeyWithDefinition>
     </div>
   );
 };
