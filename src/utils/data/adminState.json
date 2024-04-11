@@ -208,11 +208,11 @@
     "placeholders": { "name": "Calendar name" },
     "types": {
       "name": "text",
-      "workWeek": "datalist",
       "theme": "select",
       "altHours": "checkbox",
-      "startTime": "select",
-      "closeTime": "select"
+      "workWeek": "date-week",
+      "startTime": "date-time",
+      "closeTime": "date-time"
     },
     "desiredOrder": ["name"]
   },
@@ -405,7 +405,7 @@
         "closeTime": "Close time"
       },
       "placeholders": {},
-      "types": { "day": "select", "startTime": "select", "closeTime": "select" },
+      "types": { "day": "date-day", "startTime": "date-time", "closeTime": "date-time" },
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,

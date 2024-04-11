@@ -255,6 +255,6 @@
     "media": false,
     "store": false,
     "app": false,
-    "calendar": false
+    "calendar": true
   }
 }

@@ -27,9 +27,6 @@
   justify-content: space-around;
   gap: 1rem;
 }
-.m-tb {
-  margin: 1rem 0;
-}
 
 .team-roster {
   display: flex;
@@ -82,13 +79,6 @@
     justify-content: center;
   }
 }
-.sections-grid {
-  display: grid;
-  gap: 1rem;
-  justify-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-}
-
 .section-card {
   display: grid;
   gap: 1rem;
@@ -146,11 +136,7 @@
   max-width: 450px;
   flex: 1;
 }
-.key-with-definition {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: flex-start;
-}
+
 .inventory-container {
   display: flex;
   flex-wrap: wrap;
@@ -178,7 +164,6 @@
   background-color: aliceblue;
   padding: 1rem;
   border-radius: 10px;
-
   position: absolute;
   top: 0;
   left: 50%;
@@ -231,9 +216,7 @@ header {
 .card-container {
   justify-content: flex-start;
 }
-.w-full {
-  min-width: 100%;
-}
+
 .w-full .card-body-p {
   min-width: 100%;
 }
@@ -245,17 +228,4 @@ header {
 .container .calendar-week {
   display: grid;
   text-align: center;
-}
-@media only screen and (max-width: 600px) {
-  .card-container {
-    justify-content: center;
-  }
-  .sections-grid,
-  .hero-card {
-    margin-top: 1rem;
-    grid-template-columns: 1fr;
-  }
-}
-.btn-main {
-  white-space: nowrap;
 }
