@@ -5,6 +5,7 @@ import { Dialog } from "nexious-library";
 import CreateCalendar from "../forms/CreateCalendar";
 import EditCalendar from "../forms/EditCalendar";
 import KeyWithDefinition from "../sections/KeyWithDefinition";
+import EditBooking from "../forms/EditBooking";
 
 const CalendarDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
@@ -12,9 +13,20 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
   return (
     <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}
-      <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
-      {status === "phase-one" && <CreateCalendar />}
-      {status === "phase-two" && <EditCalendar />}
+
+      {status === "phase-one" && (
+        <>
+          <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
+          <CreateCalendar />
+        </>
+      )}
+      {status === "phase-two" && (
+        <>
+          <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
+          <EditCalendar />
+        </>
+      )}
+      {status === "phase-three" && <EditBooking />}
     </Dialog>
   );
 };

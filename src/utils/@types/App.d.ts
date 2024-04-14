@@ -166,7 +166,14 @@ declare module "app-types" {
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
-  export type DialogStatusProps = "idle" | "confirm-cancel" | "configuration" | "phase-one" | "phase-two" | "phase-edit";
+  export type DialogStatusProps =
+    | "idle"
+    | "confirm-cancel"
+    | "configuration"
+    | "phase-one"
+    | "phase-two"
+    | "phase-three"
+    | "phase-edit";
   export interface AppDialogProps {
     pages: boolean;
     media: boolean;

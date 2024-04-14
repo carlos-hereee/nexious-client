@@ -3,7 +3,6 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import cal from "@data/data.json";
 
 const EditCalendar = () => {
   // const { calendarForm, editCalendar, sectionEntries } = useContext(AdminContext);
@@ -25,16 +24,10 @@ const EditCalendar = () => {
         fieldHeading={calendarForm.fieldHeading}
         addEntry={sectionEntries}
         heading="Edit calendar"
-        dataList={{
-          workWeek: cal.calendarData.week,
-          day: cal.calendarData.week,
-          startTime: cal.calendarData.hours,
-          closeTime: cal.calendarData.hours,
-        }}
         // onSubmit={(values: AppValues) => editCalendar({ values, appId })}
         onSubmit={(values: AppValues) => console.log("values :>> ", values)}
         submitLabel="Save and continue"
-        schema={{ required: ["name"] }}
+        schema={{ required: ["name", "startTime", "closeTime"] }}
         noScroll
       />
     </div>

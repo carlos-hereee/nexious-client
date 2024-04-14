@@ -136,6 +136,7 @@ export const AdminState = ({ children }: ChildProps) => {
       sectionForm: state.sectionForm,
       newsletterForm: state.newsletterForm,
       calendarThemeList: state.calendarThemeList,
+      calendarBookingForm: state.calendarBookingForm,
       landingForm: state.landingForm,
       heroForm: state.heroForm,
       ctaForm: state.ctaForm,

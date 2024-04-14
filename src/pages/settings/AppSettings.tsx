@@ -21,7 +21,7 @@ const AppSettings = () => {
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [activePage, setActivePage] = useState<PageProps>();
   const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
-  const [status, setStatus] = useState<DialogStatusProps>("phase-two");
+  const [status, setStatus] = useState<DialogStatusProps>("phase-three");
 
   useEffect(() => {
     // close form windows on form success

@@ -30,7 +30,7 @@
     "medias": []
   },
   "menu": [],
-  "calendar": { "name": "", "calendarId": "", "schedule": [{}] },
+  "calendar": { "name": "", "calendarId": "asdf", "schedule": [{}] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
   "activeMedia": {

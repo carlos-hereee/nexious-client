@@ -49,6 +49,7 @@ declare module "app-admin" {
     ctaForm: FormProps;
     storeForm: FormProps;
     mediaEntryForm: FormProps;
+    calendarBookingForm: FormProps;
     formErrors: AdminFormErrors;
     themeList: MenuItemProps[];
     calendarThemeList: MenuItemProps[];

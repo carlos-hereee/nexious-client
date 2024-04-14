@@ -216,6 +216,33 @@
     },
     "desiredOrder": ["name"]
   },
+  "calendarBookingForm": {
+    "heading": "Configure your calendar booking here!",
+    "submitLabel": "Save and continue",
+    "formId": "calendarBooking123",
+    "previewLabel": "See changes",
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "fieldHeading": { "workWeek": "Customize the days you take apointments" },
+    "initialValues": { "frequency": "", "workWeek": "", "startTime": "", "endTime": "" },
+    "labels": {
+      "workWeek": "Days of the week",
+      "frequency": "Frequency of recurrence",
+      "startTime": "Start time",
+      "endTime": "End time"
+    },
+    "placeholders": {},
+    "canMultiply": true,
+    "types": {
+      "frequency": "select",
+      "isRecurring": "checkbox",
+      "workWeek": "date-week",
+      "startTime": "date-time",
+      "endTime": "date-time"
+    },
+    "groupName": "bookingRecurring",
+    "desiredOrder": []
+  },
   "pagesForm": {
     "heading": "",
     "formId": "buildPage",

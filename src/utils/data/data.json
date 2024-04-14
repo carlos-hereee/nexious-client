@@ -32,6 +32,12 @@
     "body": "Click on show inventory to view inventory. Then you can click on inventory items and edit them."
   },
   "calendarData": {
+    "frequency": [
+      { "value": "Weekly", "name": "Weekly", "label": "Weekly", "uid": "Weekly" },
+      { "value": "Bi-Weekly", "name": "Bi-Weekly", "label": "Bi-Weekly", "uid": "Bi-Weekly" },
+      { "value": "Monthly", "name": "Monthly", "label": "Monthly", "uid": "Monthly" },
+      { "value": "Yearly", "name": "Yearly", "label": "Yearly", "uid": "Yearly" }
+    ],
     "week": [
       { "value": "Monday", "name": "Monday", "label": "Monday", "uid": "Monday" },
       { "value": "Tuesday", "name": "Tuesday", "label": "Tuesday", "uid": "Tuesday" },
