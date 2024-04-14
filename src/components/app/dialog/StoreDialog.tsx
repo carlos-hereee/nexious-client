@@ -13,6 +13,7 @@ const StoreDialog = (props: DialogProps) => {
   const { store } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 
+  console.log("store :>> ", store);
   return (
     <Dialog theme={theme} onDialogClose={onClose}>
       {/* TODO add preview store */}

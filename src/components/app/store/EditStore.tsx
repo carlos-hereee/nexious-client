@@ -2,14 +2,12 @@ import { useContext, useState } from "react";
 import { Button, ButtonCancel, Form, Hero } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { AuthContext } from "@context/auth/AuthContext";
 import { AppValues } from "app-forms";
 import { formatStore } from "@formatters/store/formatStore";
 
 const EditStore = () => {
   const { storeForm, editStore, deleteStore } = useContext(AdminContext);
   const { appId, store } = useContext(AppContext);
-  const { accessToken } = useContext(AuthContext);
 
   const [show, setShow] = useState(false);
   // const
@@ -35,7 +33,6 @@ const EditStore = () => {
             submitLabel={storeForm.submitLabel}
             types={storeForm.types}
             labels={storeForm.labels}
-            disableForm={!accessToken}
             placeholders={storeForm.placeholders}
             onCancel={() => setShow(true)}
             cancelLabel="Delete store"

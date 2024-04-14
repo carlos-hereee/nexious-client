@@ -253,8 +253,8 @@
   "nexiousDashboardMenu": {
     "pages": false,
     "media": false,
-    "store": false,
+    "store": true,
     "app": false,
-    "calendar": true
+    "calendar": false
   }
 }

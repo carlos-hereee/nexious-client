@@ -327,11 +327,9 @@
     "previewLabel": "See changes",
     "fieldHeading": { "isRegistered": "Register your account with stripe" },
     "initialValues": {
-      "pageName": "",
-      "email": "",
       "storeName": "",
+      "email": "",
       "title": "",
-      "hero": "",
       "description": "",
       "isRegistered": false,
       "termsOfService": false
@@ -340,7 +338,6 @@
       "description": "textarea",
       "storeName": "text",
       "title": "text",
-      "hero": "file",
       "pageName": "text",
       "email": "email",
       "isRegistered": "checkbox",
@@ -348,8 +345,7 @@
     },
     "labels": {
       "storeName": "Store name",
-      "pageName": "Page name",
-      "title": "Heading",
+      "title": "Store tagline/motto",
       "email": "Forwarding email",
       "description": "About",
       "hero": "Add image",
@@ -357,7 +353,7 @@
       "termsOfService": "Payment processing services for account holders on Nexious.tech are provided by Stripe and are subject to the Stripe Connected Account Agreement, which includes the Stripe Terms of Service (collectively, the “Stripe Services Agreement”). By agreeing to [this agreement / these terms / and so on] or continuing to operate as a an account holders on Nexious.tech, you agree to be bound by the Stripe Services Agreement, as the same may be modified by Stripe from time to time. As a condition of Nexious.tech enabling payment processing services through Stripe, you agree to provide Nexious.tech accurate and complete information about you and your business, and you authorize Nexious.tech to share it and transaction information related to your use of the payment processing services provided by Stripe."
     },
     "placeholders": { "hero": "", "description": "", "storeName": "", "pageName": "Store/Shop" },
-    "desiredOrder": ["pageName", "email", "storeName", "title", "hero", "description", "isRegistered", "termsOfService"]
+    "desiredOrder": ["email", "storeName", "title", "description", "isRegistered", "termsOfService"]
   },
   "merchForm": {
     "heading": "Add merch",
