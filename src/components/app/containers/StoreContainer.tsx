@@ -30,9 +30,15 @@ const StoreContainer = ({ onPhaseClick }: PageContainerProps) => {
       <KeyWithDefinition label="Store url:" labelLayout="bolden">
         <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
       </KeyWithDefinition>
-      <KeyWithDefinition label="Stripe Settings:" labelLayout="bolden">
-        <Button label="View configuration" onClick={() => onPhaseClick("configuration")} />
-      </KeyWithDefinition>
+      {store.onBoardingRequired ? (
+        <KeyWithDefinition label="Stripe Onboarding:" labelLayout="bolden" hint={data.stripeOnboarding}>
+          <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => onPhaseClick("configuration")} />
+        </KeyWithDefinition>
+      ) : (
+        <KeyWithDefinition label="Stripe Settings:" labelLayout="bolden">
+          <Button label="View configuration" onClick={() => onPhaseClick("configuration")} />
+        </KeyWithDefinition>
+      )}
       {!store.inventory || store.inventory.length === 0 ? (
         <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={data.noInventoryHint}>
           <Button label="+ Add merch" onClick={() => onPhaseClick("phase-two")} />
@@ -41,6 +47,7 @@ const StoreContainer = ({ onPhaseClick }: PageContainerProps) => {
         <MerchList />
       )}
       <KeyWithDefinition label="More options: " labelLayout="bolden">
+        {/* <Button label="Edit store details" onClick={() => onPhaseClick("phase-one")} /> */}
         <div className="flex-g">
           <Button label="Edit store details" onClick={() => onPhaseClick("phase-one")} />
           <Button label="+ Add merch" onClick={() => onPhaseClick("phase-two")} />

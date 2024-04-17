@@ -53,6 +53,7 @@ declare module "app-types" {
     name: string;
     storeId: string;
     accountId: string;
+    onBoardingRequired: string;
     title?: string;
     hero?: string;
     body?: string;

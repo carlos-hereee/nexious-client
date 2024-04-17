@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
+import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS, MediaValues } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
@@ -86,17 +86,11 @@ export const AdminState = ({ children }: ChildProps) => {
   const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
   const deletePage = useCallback((data: EditPageValues) => removePage({ dispatch, handleAppAssets, ...data }), []);
 
-  const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId }), []);
-  const deleteMedia = useCallback((appId: string, name: string) => {
-    removeMedia({ dispatch, appId, handleAppAssets, name });
-  }, []);
+  const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId, handleAppAssets }), []);
+  const deleteMedia = useCallback((data: MediaValues) => removeMedia({ dispatch, handleAppAssets, ...data }), []);
   const deleteMerchItem = useCallback((appId: string, merchId: string) => {
     removeMerch({ dispatch, appId, merchId, handleAppAssets });
   }, []);
-
-  // const listBucket = useCallback((appId: string) => {
-  //   getBucket({ dispatch, appId, handleAppAssets });
-  // }, []);
 
   const addPage = useCallback((values: AppValues, appId: string) => {
     createPage({ dispatch, appId, handleAppAssets, values });

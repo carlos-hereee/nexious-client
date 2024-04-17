@@ -27,6 +27,10 @@ declare module "app-admin" {
     data?: { title: string; body: string };
     message?: string;
   };
+  export interface MediaValues {
+    appId: string;
+    name: string;
+  }
   export interface EditPageValues {
     values?: PageProps;
     appId: string;

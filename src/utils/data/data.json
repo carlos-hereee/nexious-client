@@ -15,6 +15,10 @@
     "title": "Hint!",
     "body": "Your inventory is empty click on + add merch to add items to your inventory"
   },
+  "stripeOnboarding": {
+    "title": "Hint!",
+    "body": "Click on 'Onboarding' to continue with stripe onboarding to activate online payments"
+  },
   "mediaHint": {
     "title": "Hint!",
     "body": "Click on social media icon to edit details."

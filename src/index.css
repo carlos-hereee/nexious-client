@@ -235,3 +235,6 @@ header {
   display: grid;
   text-align: center;
 }
+.btn-required {
+  color: crimson;
+}
