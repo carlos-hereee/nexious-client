@@ -1,7 +1,7 @@
 import { AppContext } from "@context/app/AppContext";
 import { PageContainerProps } from "app-types";
 import { Button } from "nexious-library";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import data from "@data/data.json";
@@ -11,7 +11,11 @@ import CopyToClipboard from "../sections/CopyToClipboard";
 const StoreContainer = ({ onPhaseClick }: PageContainerProps) => {
   // require key variable
   if (!onPhaseClick) throw Error("onPhaseClick is required");
-  const { store, appLink } = useContext(AppContext);
+  const { store, appLink, stripeOnboarding, appId, redirectUrl } = useContext(AppContext);
+
+  useEffect(() => {
+    if (redirectUrl) window.location.href = redirectUrl;
+  }, [redirectUrl]);
 
   if (!store || !store.storeId) {
     return (
@@ -32,7 +36,7 @@ const StoreContainer = ({ onPhaseClick }: PageContainerProps) => {
       </KeyWithDefinition>
       {store.onBoardingRequired ? (
         <KeyWithDefinition label="Stripe Onboarding:" labelLayout="bolden" hint={data.stripeOnboarding}>
-          <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => onPhaseClick("configuration")} />
+          <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => stripeOnboarding(appId)} />
         </KeyWithDefinition>
       ) : (
         <KeyWithDefinition label="Stripe Settings:" labelLayout="bolden">

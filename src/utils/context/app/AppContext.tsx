@@ -16,6 +16,7 @@ import { getInventory } from "./request/getInventory";
 import { getAppStoreWithName } from "./request/getAppStoreWithName";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { fetchPage } from "./request/fetchPage";
+import { startStripeOnboarding } from "./request/startStripeOnboarding";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -36,6 +37,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
   }, []);
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
+  const stripeOnboarding = useCallback((appId: string) => startStripeOnboarding({ dispatch, appId }), []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
@@ -84,6 +86,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appError: state.appError,
       logo: state.logo,
       email: state.email,
+      redirectUrl: state.redirectUrl,
       activeLogo: state.activeLogo,
       store: state.store,
       inventory: state.inventory,
@@ -100,6 +103,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setAppLoading,
       getStoreInventory,
       getAppStore,
+      stripeOnboarding,
       updateStripeConfig,
       getPageWithId,
     };
@@ -116,6 +120,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.landing,
     state.inventory,
     state.loadingState,
+    state.redirectUrl,
     state.store,
     state.page,
     state.appList,

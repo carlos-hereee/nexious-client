@@ -39,6 +39,7 @@ declare module "app-context" {
     themeList: ThemeList[];
     iconList: IconListItem[];
     appError: string;
+    redirectUrl: string;
     appName: string;
     email: string;
     activeAppName: string;
@@ -74,6 +75,7 @@ declare module "app-context" {
     getAppList: () => void;
     setAppLoading: (isLoading: boolean) => void;
     getStoreInventory: (storeId: string) => void;
+    stripeOnboarding: (appId: string) => void;
     getPageWithId: (appName: string) => void;
     updateActiveAppData: (props: ActiveMenuProps) => void;
     handleMenu: (props: MenuProps, appName: string, appId: string) => void;
@@ -114,7 +116,8 @@ declare module "app-context" {
           | APP_ACTIONS.SET_APP_NAME
           | APP_ACTIONS.SET_APP_ERROR
           | APP_ACTIONS.SET_LOCALE
-          | APP_ACTIONS.SET_ACTIVE_APP_NAME;
+          | APP_ACTIONS.SET_ACTIVE_APP_NAME
+          | APP_ACTIONS.SET_REDIRECT_URL;
         payload: string;
       }
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
