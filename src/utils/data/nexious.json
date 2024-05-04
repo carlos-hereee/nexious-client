@@ -251,10 +251,11 @@
     }
   ],
   "nexiousDashboardMenu": {
+    "app": false,
     "pages": false,
     "media": false,
     "store": false,
-    "app": false,
-    "calendar": false
+    "calendar": false,
+    "danger": false
   }
 }

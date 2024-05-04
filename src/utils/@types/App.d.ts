@@ -161,6 +161,7 @@ declare module "app-types" {
     store: boolean;
     calendar: boolean;
     app: boolean;
+    danger: boolean;
   }
   export interface DialogShowProps {
     name: AppSettingDialogOptions;

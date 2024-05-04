@@ -14,17 +14,19 @@ import StoreContainer from "@components/app/containers/StoreContainer";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
+import { Button, capFirstCharacter } from "nexious-library";
 
 const AppSettings = () => {
   const { appName } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
+  const [nav, setNav] = useState<keyof AppDialogProps>("app");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
     // close form windows on form success
     if (formStatus === "SUCCESS") {
-      setShow({ pages: false, media: false, store: false, app: false, calendar: false });
+      setShow({ pages: false, media: false, store: false, app: false, calendar: false, danger: false });
       setFormStatus("IDLE");
     }
   }, [formStatus]);
@@ -43,17 +45,20 @@ const AppSettings = () => {
   // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
-      <h1 className="heading">App settings: {appName}</h1>
-      {/* <div className="navigation-container">
-        <Button label="Dashboard" onClick={() => navigate("/dashboard")} />
-        <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
-        <Button label="See live" onClick={() => navigate(`/app/${appLink}`)} />
-      </div> */}
-      <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />
-      <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />
-      <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />
-      <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />
-      <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />
+      <h1 className="heading">
+        Settings: {nav} {appName}
+      </h1>
+      <div className="button-container">
+        {Object.keys(nexiousDashboardMenu).map((menu) => (
+          <Button key={menu} label={capFirstCharacter(menu)} onClick={() => setNav(menu as keyof AppDialogProps)} />
+        ))}
+      </div>
+      {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}
+      {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
+      {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
+      {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
+      {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
+      {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (
         <MediaDialog
@@ -65,7 +70,6 @@ const AppSettings = () => {
       {show.store && <StoreDialog onClose={() => handleClose({ name: "store", stat: "idle" })} status={status} />}
       {show.app && <AppDialog onClose={() => handleClose({ name: "app", stat: "idle" })} status={status} />}
       {show.calendar && <CalendarDialog onClose={() => handleClose({ name: "calendar", stat: "idle" })} status={status} />}
-      <DangerZone />
     </div>
   );
 };
