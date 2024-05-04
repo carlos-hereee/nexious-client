@@ -30,6 +30,7 @@
     "hero": { "url": "", "alt": "", "uid": "", "heroId": "", "hero": "" },
     "medias": []
   },
+  "socialMedia": { "media": "", "link": "", "uid": "" },
   "menu": [],
   "calendar": { "name": "", "calendarId": "asdf", "schedule": [{}] },
   "logo": "",
@@ -77,6 +78,15 @@
   "activeMenu": [],
   "pages": [],
   "page": {
+    "title": "",
+    "body": "",
+    "hasCta": false,
+    "hasSections": false,
+    "hero": "",
+    "cta": [],
+    "sections": []
+  },
+  "activePage": {
     "title": "",
     "body": "",
     "hasCta": false,

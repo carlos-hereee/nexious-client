@@ -8,6 +8,7 @@ declare module "app-context" {
     AppListProps,
     AppProps,
     CalendarProps,
+    MediaItemProp,
     MediaProps,
     MenuItemProps,
     MenuProps,
@@ -54,7 +55,9 @@ declare module "app-context" {
     newsletter: NewsletterProps;
     pages: PageProps[] | [];
     page: PageProps;
+    activePage: PageProps;
     media: MediaProps;
+    socialMedia: MediaItemProp;
     activeMedia: MediaProps;
     menu: MenuProps[];
     activeMenu: MenuProps[];
@@ -74,6 +77,8 @@ declare module "app-context" {
     getAppStore: (appName: string) => void;
     getAppList: () => void;
     setAppLoading: (isLoading: boolean) => void;
+    setActivePage: (page: PageProps) => void;
+    setSocialMedia: (media: MediaItemProp) => void;
     getStoreInventory: (storeId: string) => void;
     stripeOnboarding: (appId: string) => void;
     getPageWithId: (appName: string) => void;
@@ -126,12 +131,13 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
-    | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_PAGE; payload: PageProps }
+    | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
     | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
+    | { type: APP_ACTIONS.SET_MEDIA_ITEM; payload: MediaItemProp }
     | { type: APP_ACTIONS.SET_ADMIN_IDS; payload: AdminIdProps[] };
 }

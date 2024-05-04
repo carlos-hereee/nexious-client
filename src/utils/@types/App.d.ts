@@ -36,10 +36,7 @@ declare module "app-types" {
     data: string;
     isCopy?: boolean;
   }
-  export interface AppContainerProps {
-    data?: ContainerDataProps;
-    onAppDetails?: (phase: DialogStatusProps) => void;
-  }
+
   export type ThemeList = {
     name: string;
     value: string;
@@ -122,17 +119,15 @@ declare module "app-types" {
     calendar: CalendarProps;
   }
   export interface DialogProps {
-    media?: MediaItemProp;
     status?: DialogStatusProps;
-    formValues?: unknown;
-    activePage?: PageProps;
-    activeMedia?: MediaItemProp;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;
+    updateStatus?: (key: DialogStatusProps) => void;
     onSubmit?: () => void;
   }
-  export interface PagesContainerProps {
+
+  export interface SettingsContainer {
     data?: { heading: string; name: string };
     name?: string;
     onRemove?: (page: PageProps) => void;
@@ -145,22 +140,7 @@ declare module "app-types" {
     icon: string;
     uid: string;
   }
-  export interface PageContainerProps {
-    // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
-    onRemove?: (key: string) => void;
-    onMediaClick?: (key: MediaItemProp) => void;
-    onClick?: () => void;
-    onPhaseClick: (phase: DialogStatusProps) => void;
-    // onAddItem?: (phase: DialogStatusProps) => void;
-    // onEditDetails?: (phase: DialogStatusProps) => void;
-  }
-  export interface MediaCardContainerProps {
-    data?: ContainerDataProps;
-    onRemove?: (key: string) => void;
-    onMediaClick?: (key: MediaItemProp) => void;
-    onClick?: () => void;
-    onAdd?: (phase: DialogStatusProps) => void;
-  }
+
   export interface CardContainerProps {
     data?: MediaItemProp[];
     hint?: string;
@@ -183,8 +163,8 @@ declare module "app-types" {
     app: boolean;
   }
   export interface DialogShowProps {
-    dialogName: AppSettingDialogOptions;
-    dialogStatus: DialogStatusProps;
+    name: AppSettingDialogOptions;
+    stat: DialogStatusProps;
   }
   export type AppSettingDialogOptions = "pages" | "media" | "store" | "app" | "calendar";
   export interface SectionProps {

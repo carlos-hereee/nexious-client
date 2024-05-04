@@ -23,7 +23,7 @@ const MerchList = () => {
   if (!store.inventory || store.inventory.length === 0) {
     return (
       <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hint.noInventoryHint}>
-        <p>No merchendise</p>
+        <strong>Inventory emtpy</strong>
       </KeyWithDefinition>
     );
   }

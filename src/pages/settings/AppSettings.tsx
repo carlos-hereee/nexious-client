@@ -6,7 +6,7 @@ import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
-import { AppDialogProps, DialogShowProps, DialogStatusProps, MediaItemProp, PageProps } from "app-types";
+import { AppDialogProps, DialogShowProps, DialogStatusProps } from "app-types";
 import StoreDialog from "@components/app/dialog/StoreDialog";
 import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
@@ -16,11 +16,9 @@ import { nexiousDashboardMenu } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
 
 const AppSettings = () => {
-  const { appName, appId } = useContext(AppContext);
-  const { deleteMedia, formStatus, setFormStatus } = useContext(AdminContext);
+  const { appName } = useContext(AppContext);
+  const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [activePage, setActivePage] = useState<PageProps>();
-  const [activeMedia, setActiveMedia] = useState<MediaItemProp>();
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
@@ -31,24 +29,14 @@ const AppSettings = () => {
     }
   }, [formStatus]);
 
-  const onDeletePage = (data: PageProps) => {
-    setShow({ ...show, pages: true });
-    setActivePage(data);
-    setStatus("confirm-cancel");
-  };
-  const handleMediaClick = (m: MediaItemProp) => {
-    setShow({ ...show, media: true });
-    setActiveMedia(m);
+  const handleClose = ({ name, stat }: DialogShowProps) => {
+    setShow({ ...show, [name]: false });
+    setStatus(stat);
   };
 
-  const handleClose = ({ dialogName, dialogStatus }: DialogShowProps) => {
-    setShow({ ...show, [dialogName]: false });
-    setStatus(dialogStatus);
-  };
-
-  const handleShow = ({ dialogName, dialogStatus }: DialogShowProps) => {
-    setShow({ ...show, [dialogName]: true });
-    setStatus(dialogStatus);
+  const handleShow = ({ name, stat }: DialogShowProps) => {
+    setShow({ ...show, [name]: true });
+    setStatus(stat);
   };
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
@@ -61,40 +49,22 @@ const AppSettings = () => {
         <Button label="Edit app" onClick={() => navigate(`/edit-app/${appLink}`)} />
         <Button label="See live" onClick={() => navigate(`/app/${appLink}`)} />
       </div> */}
-      <AppContainer onAppDetails={(phase) => handleShow({ dialogName: "app", dialogStatus: phase })} />
-      <PagesContainer
-        onRemove={onDeletePage}
-        updatePhase={(phase) => handleShow({ dialogName: "pages", dialogStatus: phase })}
-      />
-      <MediaContainer
-        onMediaClick={handleMediaClick}
-        onAdd={(phase) => handleShow({ dialogName: "media", dialogStatus: phase })}
-      />
-      <CalendarContainer onPhaseClick={(phase) => handleShow({ dialogName: "calendar", dialogStatus: phase })} />
-      <StoreContainer onPhaseClick={(phase) => handleShow({ dialogName: "store", dialogStatus: phase })} />
-      {show.pages && (
-        <PageDialog
-          onClose={() => handleClose({ dialogName: "pages", dialogStatus: "idle" })}
-          status={status}
-          activePage={activePage}
-        />
-      )}
+      <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />
+      <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />
+      <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />
+      <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />
+      <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />
+      {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (
         <MediaDialog
-          media={activeMedia}
           status={status}
-          onClose={() => handleClose({ dialogName: "media", dialogStatus: "idle" })}
+          onClose={() => handleClose({ name: "media", stat: "idle" })}
           onCancel={(stat: DialogStatusProps) => setStatus(stat)}
-          onConfirm={() => deleteMedia(appId, activeMedia?.uid || "")}
         />
       )}
-      {show.store && (
-        <StoreDialog onClose={() => handleClose({ dialogName: "store", dialogStatus: "idle" })} status={status} />
-      )}
-      {show.app && <AppDialog onClose={() => handleClose({ dialogName: "app", dialogStatus: "idle" })} status={status} />}
-      {show.calendar && (
-        <CalendarDialog onClose={() => handleClose({ dialogName: "calendar", dialogStatus: "idle" })} status={status} />
-      )}
+      {show.store && <StoreDialog onClose={() => handleClose({ name: "store", stat: "idle" })} status={status} />}
+      {show.app && <AppDialog onClose={() => handleClose({ name: "app", stat: "idle" })} status={status} />}
+      {show.calendar && <CalendarDialog onClose={() => handleClose({ name: "calendar", stat: "idle" })} status={status} />}
       <DangerZone />
     </div>
   );

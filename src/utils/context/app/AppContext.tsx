@@ -1,10 +1,11 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProps, ChildProps, MenuProps } from "app-types";
+import { ActiveMenuProps, ChildProps, MediaItemProp, MenuProps, PageProps } from "app-types";
 import { AppSchema, StripeConfig } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssets } from "app-admin";
 import { readableUrlString } from "@app/formatStringUrl";
+import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -58,6 +59,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}`);
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
+  const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
+  const setSocialMedia = useCallback(
+    (data: MediaItemProp) => dispatch({ payload: data, type: APP_ACTIONS.SET_MEDIA_ITEM }),
+    []
+  );
 
   const appValues = useMemo(() => {
     return {
@@ -95,6 +101,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       newsletter: state.newsletter,
       pages: state.pages,
       page: state.page,
+      activePage: state.activePage,
+      socialMedia: state.socialMedia,
       updateAppData,
       getAppWithName,
       getAppList,
@@ -103,6 +111,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setAppLoading,
       getStoreInventory,
       getAppStore,
+      setActivePage,
+      setSocialMedia,
       stripeOnboarding,
       updateStripeConfig,
       getPageWithId,

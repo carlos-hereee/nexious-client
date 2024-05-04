@@ -8,10 +8,11 @@ import AddPage from "../forms/AddPage";
 import EditLanding from "../forms/EditLanding";
 import EditPage from "../forms/EditPage";
 
-const PageDialog = ({ onClose, status, activePage }: DialogProps) => {
+const PageDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deletePage } = useContext(AdminContext);
-  const { appId } = useContext(AppContext);
+  const { appId, activePage } = useContext(AppContext);
+
   const dialogPageHeader =
     status === "confirm-cancel"
       ? { heading: `Are you sure you want to delete ${activePage?.name}'s page`, data: `This will delete all progress` }
