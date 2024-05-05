@@ -55,8 +55,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     } else if (category === "theme") setTheme(menuItem.value);
     else if (menuItem.value === "explore") navigate("/explore");
     // otherwise go to page
-    else if (menuItem.isStore) navigate(`/store/${readableUrlString(appName)}${link}`);
-    else if (menuItem.isPage) navigate(`/app/${readableUrlString(appName)}${link}`);
+    else if (menuItem.isStore) {
+      navigate(`/store/${readableUrlString(appName)}${menuItem.link}`);
+    } else if (menuItem.isPage) {
+      if (menuItem.link === "/booking") navigate(`/booking/${readableUrlString(appName)}`);
+    }
   }, []);
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);

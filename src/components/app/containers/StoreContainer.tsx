@@ -16,7 +16,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   useEffect(() => {
     if (redirectUrl) window.location.href = redirectUrl;
   }, [redirectUrl]);
-  console.log("store :>> ", store);
+  // console.log("store :>> ", store);
 
   if (!store || !store.storeId) {
     return (

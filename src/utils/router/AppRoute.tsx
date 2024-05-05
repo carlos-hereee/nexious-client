@@ -2,16 +2,7 @@ import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import {
-  nexiousMedia,
-  nexiousMenu,
-  nexiousLogo,
-  nexiousAuthMenu,
-  nexiousAppMenu,
-  nexiousName,
-  nexiousAppId,
-} from "@data/nexious.json";
-import { combineArraysWithOutDups } from "nexious-library";
+import { nexiousMedia, nexiousMenu, nexiousLogo, nexiousAuthMenu, nexiousName, nexiousAppId } from "@data/nexious.json";
 import { toggleMenuValues } from "@app/toggleMenu";
 import { MenuProps } from "app-types";
 
@@ -50,8 +41,8 @@ const AppRoute = () => {
         const page = pages.filter((p) => p.name === pageName);
         if (page) updateAppData({ page: page[0] });
       }
-      const noDups = combineArraysWithOutDups(nexiousAppMenu, menu);
-      const oldValues = noDups as MenuProps[]; // find auth menu
+      // const noDups = combineArraysWithOutDups(nexiousAppMenu, menu);
+      const oldValues = menu as MenuProps[]; // find auth menu
       const authIdx = oldValues.findIndex((val) => val.category === "subscribe");
       if (authIdx >= 0) {
         // check user subscriptions

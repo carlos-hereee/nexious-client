@@ -42,7 +42,6 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
       />
-      {/* <AppSettings /> */}
       {children}
       <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
     </div>

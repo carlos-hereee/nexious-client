@@ -4,18 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { CallToActionProps } from "app-types";
+import AppInProgress from "@components/app/AppInProgress";
+import UserMenu from "@components/app/UserMenu";
 
 const AppPage = () => {
   const { activeAppName, page } = useContext(AppContext);
   const { cart } = useContext(ServicesContext);
   const navigate = useNavigate();
-
   if (!page) return <Loading message="loading page data..." />;
-
+  if (!page.body && !page.title && !page.hero) return <AppInProgress />;
   const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
   const heroData = { url: page.hero || "", alt: "page hero" };
   return (
     <div className="container">
+      <UserMenu />
       {page.hero ? (
         <>
           <HeroCard data={page} hero={heroData} onClick={handleClick} theme="reverse" />

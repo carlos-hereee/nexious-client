@@ -8,6 +8,7 @@ import { Calendar } from "nexious-library";
 import CalendarEvents from "@components/app/CalendarEvents";
 import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
+import UserMenu from "@components/app/UserMenu";
 // import { AppContext } from "@context/app/AppContext";
 
 const AppBooking = () => {
@@ -33,6 +34,7 @@ const AppBooking = () => {
   // };
   return (
     <section className="primary-container">
+      <UserMenu />
       {calendar.name && <h1 className="heading">{calendar.name}</h1>}
       <Calendar
         value={new Date()}

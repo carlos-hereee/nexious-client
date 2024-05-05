@@ -1,9 +1,8 @@
 import { PageProps, SettingsContainer } from "app-types";
 import PagesList from "@components/list/PagesList";
-import { Button } from "nexious-library/@nxs-atoms";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { ItemDetail } from "nexious-library";
+import { ItemDetail, Button } from "nexious-library";
 
 const PagesContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
