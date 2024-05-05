@@ -25,6 +25,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
       <ItemDetail label="Copy calendar link:" labelLayout="bolden">
         <CopyButton data={appUrl.replace("app/", "booking/")} />
       </ItemDetail>
+      <p className="w-max text-center">More comming soon!</p>
       {/* <ItemDetail label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />
       </ItemDetail>
