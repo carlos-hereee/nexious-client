@@ -8,8 +8,7 @@ import { Dialog } from "nexious-library";
 import { MerchProps } from "services-context";
 import EditMerch from "../store/EditMerch";
 
-const MerchDialog = (props: DialogProps) => {
-  const { onClose, formValues } = props;
+const MerchDialog = ({ onClose, formValues }: DialogProps) => {
   // const { store } = useContext(AppContext);
   const { theme } = useContext(AuthContext);
 

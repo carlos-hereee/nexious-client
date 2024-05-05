@@ -1,4 +1,4 @@
-import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
+import { ItemDetail } from "nexious-library";
 import { CardContainerProps } from "app-types";
 import { Button, Icon, IconButton } from "nexious-library";
 import hint from "@data/data.json";
@@ -8,13 +8,13 @@ const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {
 
   if (!data || data.length === 0) {
     return (
-      <KeyWithDefinition label="Social medias:" labelLayout="bolden" hint={hint.noMediaHint}>
+      <ItemDetail label="Social medias:" labelLayout="bolden" hint={hint.noMediaHint}>
         <p>No social media linked</p>
-      </KeyWithDefinition>
+      </ItemDetail>
     );
   }
   return (
-    <KeyWithDefinition label="Social medias:" labelLayout="bolden" hint={hint.mediaHint}>
+    <ItemDetail label="Social medias:" labelLayout="bolden" hint={hint.mediaHint}>
       <div className="flex-wrap">
         {data.map((d) => (
           <div key={d.uid} className="media-wrapper">
@@ -33,7 +33,7 @@ const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {
           </div>
         ))}
       </div>
-    </KeyWithDefinition>
+    </ItemDetail>
   );
 };
 export default MediaList;

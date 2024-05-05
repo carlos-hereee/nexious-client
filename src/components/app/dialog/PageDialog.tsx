@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
-import { Button, ButtonCancel, Dialog } from "nexious-library";
+import { Dialog } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
+import { Button, ButtonCancel } from "nexious-library/@nxs-atoms";
 import AddPage from "../forms/AddPage";
 import EditLanding from "../forms/EditLanding";
 import EditPage from "../forms/EditPage";

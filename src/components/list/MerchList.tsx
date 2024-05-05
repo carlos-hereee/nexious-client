@@ -1,10 +1,11 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
-import { Button, Hero, Spinner } from "nexious-library";
+import { Button, Spinner } from "nexious-library/@nxs-atoms";
 import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "services-context";
-import KeyWithDefinition from "@components/app/sections/KeyWithDefinition";
+import { ItemDetail } from "nexious-library";
 import hint from "@data/data.json";
+import { Hero } from "nexious-library/@nxs-molecules";
 
 const MerchList = () => {
   const { store, getStoreInventory, loadingState, inventory } = useContext(AppContext);
@@ -22,13 +23,13 @@ const MerchList = () => {
   };
   if (!store.inventory || store.inventory.length === 0) {
     return (
-      <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={hint.noInventoryHint}>
-        <strong>Inventory emtpy</strong>
-      </KeyWithDefinition>
+      <ItemDetail label="Inventory:" labelLayout="bolden" hint={hint.noInventoryHint}>
+        <strong>Inventory empty</strong>
+      </ItemDetail>
     );
   }
   return (
-    <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={show ? hint.merchShowHint : hint.merchHideHint}>
+    <ItemDetail label="Inventory:" labelLayout="bolden" hint={show ? hint.merchShowHint : hint.merchHideHint}>
       {show.inventory ? (
         <div className="container">
           <Button
@@ -57,7 +58,7 @@ const MerchList = () => {
         <Button label="Show inventory" onClick={openInventory} />
       )}
       {show.item && editValues && <MerchDialog onClose={onClose} formValues={editValues} />}
-    </KeyWithDefinition>
+    </ItemDetail>
   );
 };
 export default MerchList;

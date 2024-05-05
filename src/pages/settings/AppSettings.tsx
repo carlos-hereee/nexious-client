@@ -12,15 +12,15 @@ import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
-import { nexiousDashboardMenu } from "@data/nexious.json";
+import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
-import { Button, capFirstCharacter } from "nexious-library";
+import { Button } from "nexious-library/@nxs-atoms";
 
 const AppSettings = () => {
   const { appName } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("app");
+  const [nav, setNav] = useState<keyof AppDialogProps>("store");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
@@ -40,17 +40,18 @@ const AppSettings = () => {
     setShow({ ...show, [name]: true });
     setStatus(stat);
   };
+  const handleNav = (value: keyof AppDialogProps) => setNav(value);
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
   // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
       <h1 className="heading">
-        Settings: {nav} {appName}
+        Settings <i>{appName}</i>: {nav}
       </h1>
-      <div className="button-container">
-        {Object.keys(nexiousDashboardMenu).map((menu) => (
-          <Button key={menu} label={capFirstCharacter(menu)} onClick={() => setNav(menu as keyof AppDialogProps)} />
+      <div className="navigation-container">
+        {menus.map(({ label, value, theme, activeTheme }) => (
+          <Button key={value} label={label} theme={nav === value ? activeTheme : theme} onClick={handleNav} />
         ))}
       </div>
       {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}

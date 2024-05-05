@@ -5,13 +5,7 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
-  export interface KeyWithDefinitionProps {
-    label?: string;
-    value?: string;
-    hint?: { title: string; body: string };
-    labelLayout?: "bolden";
-    children?: React.ReactNode;
-  }
+
   export interface AppDetailsProps {
     locale?: string;
     appName: string;
@@ -48,6 +42,7 @@ declare module "app-types" {
 
   export interface StoreProps {
     name: string;
+    storeName?: string;
     storeId: string;
     accountId: string;
     onBoardingRequired?: string;
@@ -120,6 +115,7 @@ declare module "app-types" {
   }
   export interface DialogProps {
     status?: DialogStatusProps;
+    formValues?: unknown;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;

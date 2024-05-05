@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Dialog } from "nexious-library";
 import CreateCalendar from "../forms/CreateCalendar";
 import EditCalendar from "../forms/EditCalendar";
-import KeyWithDefinition from "../sections/KeyWithDefinition";
+import { ItemDetail } from "nexious-library";
 import EditBooking from "../forms/EditBooking";
 
 const CalendarDialog = ({ onClose, status }: DialogProps) => {
@@ -16,13 +16,13 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
 
       {status === "phase-one" && (
         <>
-          <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
+          <ItemDetail label="Calendar theme: ">Comming Soon!</ItemDetail>
           <CreateCalendar />
         </>
       )}
       {status === "phase-two" && (
         <>
-          <KeyWithDefinition label="Calendar theme: ">Comming Soon!</KeyWithDefinition>
+          <ItemDetail label="Calendar theme: ">Comming Soon!</ItemDetail>
           <EditCalendar />
         </>
       )}

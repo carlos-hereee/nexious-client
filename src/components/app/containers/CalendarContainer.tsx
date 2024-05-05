@@ -1,8 +1,8 @@
 import { CalendarContainerProps } from "app-calendar";
-import { Button } from "nexious-library";
+import { Button } from "nexious-library/@nxs-atoms";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import KeyWithDefinition from "../sections/KeyWithDefinition";
+import { ItemDetail } from "nexious-library";
 import CopyToClipboard from "../sections/CopyToClipboard";
 
 const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
@@ -15,23 +15,23 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
     return (
       <div className="container">
         <h2 className="heading">Calendar:</h2>
-        <KeyWithDefinition label="Calendar settings: " labelLayout="bolden">
+        <ItemDetail label="Calendar settings: " labelLayout="bolden">
           <Button label="+ Create calendar" onClick={() => onPhaseClick("phase-one")} />
-        </KeyWithDefinition>
+        </ItemDetail>
       </div>
     );
   return (
     <div className="container">
       <h2 className="heading">Calendar</h2>
-      <KeyWithDefinition label="Copy calendar link:" labelLayout="bolden">
+      <ItemDetail label="Copy calendar link:" labelLayout="bolden">
         <CopyToClipboard data={appUrl.replace("app/", "booking/")} />
-      </KeyWithDefinition>
-      <KeyWithDefinition label="Calendar settings: " labelLayout="bolden">
+      </ItemDetail>
+      <ItemDetail label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />
-      </KeyWithDefinition>
-      <KeyWithDefinition label="Calendar booking:" labelLayout="bolden">
+      </ItemDetail>
+      <ItemDetail label="Calendar booking:" labelLayout="bolden">
         <Button label="Edit calendar booking" onClick={() => onPhaseClick("phase-three")} />
-      </KeyWithDefinition>
+      </ItemDetail>
     </div>
   );
 };

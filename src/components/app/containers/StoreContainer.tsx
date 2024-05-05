@@ -1,12 +1,12 @@
 import { AppContext } from "@context/app/AppContext";
 import { SettingsContainer } from "app-types";
-import { Button } from "nexious-library";
+import { Button } from "nexious-library/@nxs-atoms";
 import { useContext, useEffect } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import data from "@data/data.json";
-import KeyWithDefinition from "../sections/KeyWithDefinition";
-import CopyToClipboard from "../sections/CopyToClipboard";
+import { ItemDetail } from "nexious-library";
+import { CopyButton } from "nexious-library/@nxs-molecules";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
@@ -22,9 +22,9 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
     return (
       <div className="container">
         <h2 className="heading">Store:</h2>
-        <KeyWithDefinition label="Store details:" labelLayout="bolden">
+        <ItemDetail label="Store details:" labelLayout="bolden">
           <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-        </KeyWithDefinition>
+        </ItemDetail>
       </div>
     );
   }
@@ -32,33 +32,35 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   return (
     <div className="container">
       <h2 className="heading">Store:</h2>
-      <KeyWithDefinition label="Store url:" labelLayout="bolden">
-        <CopyToClipboard data={formatStoreUrl(appLink, store.name)} />
-      </KeyWithDefinition>
+      <ItemDetail label="Store url:" labelLayout="bolden">
+        <CopyButton data={formatStoreUrl(appLink, store.name)} />
+      </ItemDetail>
       {/* TODO: CHECK STATUS WHEN USER COMPLETES STRIPE ONBOARDING  */}
       {store.onBoardingRequired ? (
-        <KeyWithDefinition label="Stripe Onboarding:" labelLayout="bolden" hint={data.stripeOnboarding}>
+        <ItemDetail label="Stripe Onboarding:" labelLayout="bolden" hint={data.stripeOnboarding}>
           <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => stripeOnboarding(appId)} />
-        </KeyWithDefinition>
+        </ItemDetail>
       ) : (
-        <KeyWithDefinition label="Stripe Settings:" labelLayout="bolden">
+        <ItemDetail label="Stripe Settings:" labelLayout="bolden">
           <Button label="View configuration" onClick={() => updatePhase("configuration")} />
-        </KeyWithDefinition>
+        </ItemDetail>
       )}
       <MerchList />
       {/* {!store.inventory || store.inventory.length === 0 ? (
-        <KeyWithDefinition label="Inventory:" labelLayout="bolden" hint={data.noInventoryHint}>
+        <ItemDetail label="Inventory:" labelLayout="bolden" hint={data.noInventoryHint}>
           <Button label="+ Add merch" onClick={() => updatePhase("phase-two")} />
-        </KeyWithDefinition>
+        </ItemDetail>
       ) : (
       )} */}
-      <KeyWithDefinition label="More options: " labelLayout="bolden">
-        {/* <Button label="Edit store details" onClick={() => updatePhase("phase-one")} /> */}
-        <div className="flex-g">
-          <Button label="Edit store details" onClick={() => updatePhase("phase-one")} />
-          <Button label="+ Add merch" onClick={() => updatePhase("phase-two")} />
-        </div>
-      </KeyWithDefinition>
+      <ItemDetail label="Add merchendise: " labelLayout="bolden">
+        <Button label="+ Add merch" onClick={() => updatePhase("phase-two")} />
+      </ItemDetail>
+      <ItemDetail label="Store details:" labelLayout="bolden">
+        <Button label="Edit store details" onClick={() => updatePhase("phase-one")} />
+      </ItemDetail>
+      <ItemDetail label="Remove store:" labelLayout="bolden">
+        <Button label="Delete store" theme="btn-main btn-danger" onClick={() => updatePhase("confirm-cancel")} />
+      </ItemDetail>
     </div>
   );
 };
