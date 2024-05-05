@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-// import { AuthContext } from "@context/auth/AuthContext";
-import { Cart, PaymentMethods, Total, Button } from "nexious-library";
-// import { Cart, UserCard, PaymentMethods, Total, Button } from "nexious-library";
+import { Button } from "nexious-library";
+import { Cart, PaymentMethods, Total } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { CartProps, MerchProps, PaymentMethod } from "services-context";
@@ -9,8 +8,7 @@ import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 // import { AppContext } from "@context/app/AppContext";
 
 const Checkout = () => {
-  const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } =
-    useContext(ServicesContext);
+  const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } = useContext(ServicesContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(0);

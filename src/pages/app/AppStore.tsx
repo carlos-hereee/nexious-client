@@ -1,6 +1,8 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
-import { Button, Hero, MerchCard } from "nexious-library";
+import { MerchCard } from "nexious-library/@nxs-organism";
+import { Hero } from "nexious-library/@nxs-molecules";
+import { Button } from "nexious-library/@nxs-atoms";
 import { MerchProps } from "services-context";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { useNavigate } from "react-router-dom";
@@ -49,9 +51,7 @@ const AppStore = () => {
             onRemoveFromCart={(data: MerchProps) => removeFromCart(cart, data)}
             // TODO: on body click navigate to merch item details
             // onClick={(data: MerchProps) => console.log("data :>> ", data)}
-            canRemove={
-              storeIdx >= 0 && cart[storeIdx].merch.some((c: MerchProps) => c.uid === merch.uid)
-            }
+            canRemove={storeIdx >= 0 && cart[storeIdx].merch.some((c: MerchProps) => c.uid === merch.uid)}
           />
         ))}
       </div>

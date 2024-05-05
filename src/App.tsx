@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Loading, Header, Footer } from "nexious-library";
+import { Header, Footer } from "nexious-library";
+import { Loading } from "nexious-library/@nxs-molecules";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProps } from "app-types";
 import { useNavigate } from "react-router-dom";

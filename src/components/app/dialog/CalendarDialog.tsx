@@ -1,10 +1,9 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
 import { useContext } from "react";
-import { Dialog } from "nexious-library";
+import { Dialog, ItemDetail } from "nexious-library";
 import CreateCalendar from "../forms/CreateCalendar";
 import EditCalendar from "../forms/EditCalendar";
-import { ItemDetail } from "nexious-library";
 import EditBooking from "../forms/EditBooking";
 
 const CalendarDialog = ({ onClose, status }: DialogProps) => {

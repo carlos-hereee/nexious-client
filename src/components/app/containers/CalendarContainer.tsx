@@ -2,8 +2,7 @@ import { CalendarContainerProps } from "app-calendar";
 import { Button } from "nexious-library/@nxs-atoms";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { ItemDetail } from "nexious-library";
-import CopyToClipboard from "../sections/CopyToClipboard";
+import { ItemDetail, CopyButton } from "nexious-library";
 
 const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   // require key variable
@@ -24,7 +23,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
     <div className="container">
       <h2 className="heading">Calendar</h2>
       <ItemDetail label="Copy calendar link:" labelLayout="bolden">
-        <CopyToClipboard data={appUrl.replace("app/", "booking/")} />
+        <CopyButton data={appUrl.replace("app/", "booking/")} />
       </ItemDetail>
       <ItemDetail label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />

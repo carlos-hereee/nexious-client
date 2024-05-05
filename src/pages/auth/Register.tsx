@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Form, Hero } from "nexious-library";
+import { Form } from "nexious-library";
+import { Hero } from "nexious-library/@nxs-molecules";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
