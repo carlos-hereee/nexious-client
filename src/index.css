@@ -238,3 +238,11 @@ header {
 .btn-required {
   color: crimson;
 }
+.form-center {
+  /* justify-content: center; */
+  /* align-items: center; */
+  margin: auto;
+}
+.form-center .form-field {
+  max-width: 100%;
+}
