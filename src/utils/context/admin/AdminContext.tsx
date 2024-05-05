@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS, MediaValues } from "app-admin";
+import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
 import { ChildProps } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
@@ -87,7 +87,10 @@ export const AdminState = ({ children }: ChildProps) => {
   const deletePage = useCallback((data: EditPageValues) => removePage({ dispatch, handleAppAssets, ...data }), []);
 
   const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId, handleAppAssets }), []);
-  const deleteMedia = useCallback((data: MediaValues) => removeMedia({ dispatch, handleAppAssets, ...data }), []);
+  const deleteMedia = useCallback(
+    (data: { appId: string; name: string }) => removeMedia({ dispatch, handleAppAssets, ...data }),
+    []
+  );
   const deleteMerchItem = useCallback((appId: string, merchId: string) => {
     removeMerch({ dispatch, appId, merchId, handleAppAssets });
   }, []);
@@ -154,7 +157,6 @@ export const AdminState = ({ children }: ChildProps) => {
       deleteMedia,
       editCalendar,
       createCalendar,
-      // listBucket,
       addPage,
       editPage,
       addMedia,

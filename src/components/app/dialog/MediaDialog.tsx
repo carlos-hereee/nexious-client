@@ -26,7 +26,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
       {status === "confirm-cancel" ? (
         <div className="flex-center">
           <ButtonCancel onClick={() => onCancel("idle")} theme="btn-main" />
-          <Button label="Confirm" onClick={() => deleteMedia(appId, socialMedia.uid)} />
+          <Button label="Confirm" onClick={() => deleteMedia({ appId, name: socialMedia.uid })} />
         </div>
       ) : status === "phase-two" ? (
         <AddMedia onCancelClick={onClose} />

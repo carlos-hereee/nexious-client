@@ -1,9 +1,9 @@
-import { PageProps, PagesContainerProps } from "app-types";
+import { PageProps, SettingsContainer } from "app-types";
 import PreviewPage from "@components/app/preview/PreviewPage";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 
-const PagesList = ({ onRemove, updatePhase }: PagesContainerProps) => {
+const PagesList = ({ onRemove, updatePhase }: SettingsContainer) => {
   const { pages, updateAppData } = useContext(AppContext);
   // require key variable
   if (!onRemove) throw Error("onRemove is required");

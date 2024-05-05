@@ -3,7 +3,7 @@ import { AppCardProps } from "app-context";
 import { Button, Hero } from "nexious-library";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import MediaContainer from "./containers/MediaContainer";
+// import MediaContainer from "./containers/MediaContainer";
 
 const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const { user } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
         <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
         <h2 className="heading">{app?.appName || "No name"}</h2>
         <div className="card-row-body">
-          {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />}
+          {/* {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />} */}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </button>
