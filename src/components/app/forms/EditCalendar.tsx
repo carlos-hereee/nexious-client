@@ -15,7 +15,7 @@ const EditCalendar = () => {
   const initialValues = { ...calendarForm.initialValues, name: calendar.name || "" };
   if (isLoading) return <Loading message="Loading app data" />;
   return (
-    <div className="container">
+    <div className="primary-container">
       <Form
         initialValues={initialValues}
         labels={calendarForm.labels}

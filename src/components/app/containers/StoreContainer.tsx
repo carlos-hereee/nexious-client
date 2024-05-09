@@ -18,16 +18,16 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   }, [redirectUrl]);
   // console.log("store :>> ", store);
 
-  if (!store || !store.storeId) {
-    return (
-      <div className="container">
-        <h2 className="heading">Store:</h2>
-        <ItemDetail label="Store details:" labelLayout="bolden">
-          <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-        </ItemDetail>
-      </div>
-    );
-  }
+  // if (!store || !store.storeId) {
+  //   return (
+  //     <div className="container">
+  //       <h2 className="heading">Store:</h2>
+  //       <ItemDetail label="Store details:" labelLayout="bolden">
+  //         <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
+  //       </ItemDetail>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="container">
@@ -46,17 +46,11 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         </ItemDetail>
       )}
       <MerchList />
-      {/* {!store.inventory || store.inventory.length === 0 ? (
-        <ItemDetail label="Inventory:" labelLayout="bolden" hint={data.noInventoryHint}>
-          <Button label="+ Add merch" onClick={() => updatePhase("phase-two")} />
-        </ItemDetail>
-      ) : (
-      )} */}
-      <ItemDetail label="Add merchendise: " labelLayout="bolden">
-        <Button label="+ Add merch" onClick={() => updatePhase("phase-two")} />
+      <ItemDetail label="Add merchendise:" labelLayout="bolden">
+        <Button label="+ Add merch" onClick={() => updatePhase("phase-three")} />
       </ItemDetail>
       <ItemDetail label="Store details:" labelLayout="bolden">
-        <Button label="Edit store details" onClick={() => updatePhase("phase-one")} />
+        <Button label="Edit store details" onClick={() => updatePhase("phase-two")} />
       </ItemDetail>
       <ItemDetail label="Remove store:" labelLayout="bolden">
         <Button label="Delete store" theme="btn-main btn-danger" onClick={() => updatePhase("confirm-cancel")} />

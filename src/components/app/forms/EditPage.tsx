@@ -21,23 +21,24 @@ const EditPage = () => {
   }, [status]);
 
   return (
-    initialValues && (
-      <Form
-        initialValues={initialValues}
-        labels={pagesForm.labels}
-        placeholders={pagesForm.placeholders}
-        types={pagesForm.types}
-        addEntry={sectionEntries}
-        dataList={{ icon: iconList }}
-        clearSelection={{ icon: true }}
-        heading="Edit page"
-        onSubmit={(values: PageProps) => editPage({ values, appId, pageId: page.pageId || "" })}
-        submitLabel="Save and continue"
-        withFileUpload
-        noScroll
-        schema={{ required: ["title", "name"] }}
-      />
-    )
+    <div className="primary-container">
+      {initialValues && (
+        <Form
+          initialValues={initialValues}
+          labels={pagesForm.labels}
+          placeholders={pagesForm.placeholders}
+          types={pagesForm.types}
+          addEntry={sectionEntries}
+          dataList={{ icon: iconList }}
+          clearSelection={{ icon: true }}
+          heading="Edit page"
+          onSubmit={(values: PageProps) => editPage({ values, appId, pageId: page.pageId || "" })}
+          submitLabel="Save and continue"
+          withFileUpload
+          schema={{ required: ["title", "name"] }}
+        />
+      )}
+    </div>
   );
 };
 export default EditPage;

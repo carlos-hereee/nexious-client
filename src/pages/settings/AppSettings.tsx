@@ -10,18 +10,18 @@ import { AppDialogProps, DialogShowProps, DialogStatusProps } from "app-types";
 import StoreDialog from "@components/app/dialog/StoreDialog";
 import AppContainer from "@components/app/containers/AppContainer";
 import AppDialog from "@components/app/dialog/AppDialog";
-// import StoreContainer from "@components/app/containers/StoreContainer";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
 import { Button } from "nexious-library/@nxs-atoms";
-import AppInProgress from "@components/app/AppInProgress";
+// import AppInProgress from "@components/app/AppInProgress";
+import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
   const { appName } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("app");
+  const [nav, setNav] = useState<keyof AppDialogProps>("store");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
@@ -64,8 +64,8 @@ const AppSettings = () => {
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
-      {/* {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />} */}
-      {nav === "store" && <AppInProgress />}
+      {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
+      {/* {nav === "store" && <AppInProgress />} */}
       {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (

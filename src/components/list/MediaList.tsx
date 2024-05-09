@@ -1,6 +1,5 @@
-import { ItemDetail } from "nexious-library";
 import { CardContainerProps } from "app-types";
-import { Button, Icon, IconButton } from "nexious-library";
+import { Button, Icon, IconButton, ItemDetail } from "nexious-library";
 import hint from "@data/data.json";
 
 const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {

@@ -21,7 +21,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   if (status === "pending") return <Loading message="sending request.." />;
   if (status === "loading") return <Loading message="loading app assets.." />;
   return (
-    <div className="flex-d-column">
+    <div className="primary-container">
       {show ? (
         <div className="container">
           <h2 className="heading">Are you sure you want to delete {initValues?.name}</h2>

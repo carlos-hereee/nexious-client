@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IconButton } from "nexious-library";
 import WelcomeBanner from "@components/app/banners/WelcomeBanner";
-import AppInProgress from "@components/app/AppInProgress";
+import AppInProgress from "@pages/public/AppInProgress";
 import AppPlayground from "./AppPlayground";
 import AccountSettings from "./AccountSettings";
 

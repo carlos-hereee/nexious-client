@@ -365,7 +365,7 @@
       "description": "textarea",
       "name": "text",
       "hero": "file",
-      "cost": "price",
+      "cost": "price-dollars-cents",
       "inStock": "number"
     },
     "labels": {

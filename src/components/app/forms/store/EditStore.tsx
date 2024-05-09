@@ -14,7 +14,7 @@ const EditStore = () => {
   const initialValues = formatStore({ store, desiredOrder: storeForm.desiredOrder });
 
   return (
-    <div className="container">
+    <div className="primary-container">
       <div className="form-hero">
         <Form
           initialValues={initialValues}

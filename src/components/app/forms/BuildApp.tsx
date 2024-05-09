@@ -20,7 +20,7 @@ const BuildApp = () => {
 
   if (isLoading) return <Loading message="loading app assets.." />;
   return (
-    <div className="container">
+    <div className="primary-container">
       {!accessToken && (
         <div className="flex-center">
           <h3 className="heading">It looks like your not logged in</h3>{" "}

@@ -14,11 +14,11 @@ import { formatMedia } from "@formatters/formatMedia";
 import { InitPaginateFormProps, AppValues } from "app-forms";
 // import { formatCalendar } from "@forms/formatCalendar";
 import { uniqueApplist } from "@formatters/uniqeList";
-import PreviewNewsletter from "../preview/PreviewNewsletter";
-import PreviewSocials from "../preview/PreviewSocials";
+import PreviewNewsletter from "../containers/preview/PreviewNewsletter";
+import PreviewSocials from "../containers/preview/PreviewSocials";
 // import PreviewCalendar from "./preview/PreviewCalendar";
-import PreviewAppName from "../preview/PreviewAppName";
-import PreviewLanding from "../preview/PreviewLanding";
+import PreviewAppName from "../containers/preview/PreviewAppName";
+import PreviewLanding from "../containers/preview/PreviewLanding";
 
 const EditApp = () => {
   const {
@@ -148,7 +148,7 @@ const EditApp = () => {
   if (isFormLoading) return <Loading message="Loading app data" />;
   // console.log("formValues :>> ", formValues[2].initialValues);
   return (
-    <div className="container">
+    <div className="primary-container">
       <h2 className="heading">Editing app: {appName}</h2>
       {formValues && (
         <PaginateForm

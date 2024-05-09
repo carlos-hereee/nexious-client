@@ -18,7 +18,7 @@ const EditBooking = () => {
   if (isLoading) return <Loading message="Loading app data" />;
   if (events.length <= 0) {
     return (
-      <div className="container">
+      <div className="primary-container">
         <Form
           initialValues={initialValues}
           labels={calendarBookingForm.labels}

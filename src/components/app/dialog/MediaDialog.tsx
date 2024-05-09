@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { Button, ButtonCancel, Dialog } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import EditMedia from "../media/EditMedia";
-import AddMedia from "../media/AddMedia";
+import EditMedia from "../forms/media/EditMedia";
+import AddMedia from "../forms/media/AddMedia";
 
 const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
   if (!onCancel) throw Error("onCancel is required");

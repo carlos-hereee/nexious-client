@@ -1,5 +1,5 @@
 import { PageProps, SettingsContainer } from "app-types";
-import PreviewPage from "@components/app/preview/PreviewPage";
+import PreviewPage from "@components/app/containers/preview/PreviewPage";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 

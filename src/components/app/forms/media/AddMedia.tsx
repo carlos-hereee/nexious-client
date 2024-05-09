@@ -22,7 +22,7 @@ const AddMedia = ({ onCancelClick }: OnclickProps) => {
   if (status === "pending") return <Loading message="sending request.." />;
   if (status === "loading") return <Loading message="loading app assets.." />;
   return (
-    <div className="flex-d-column">
+    <div className="primary-container">
       <Form
         initialValues={mediaEntryForm.initialValues}
         labels={mediaEntryForm.labels}

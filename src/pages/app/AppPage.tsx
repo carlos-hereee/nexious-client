@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Card, HeroCard, Loading } from "nexious-library";
 import { ServicesContext } from "@context/services/ServicesContext";
 import { CallToActionProps } from "app-types";
-import AppInProgress from "@components/app/AppInProgress";
+import AppInProgress from "@pages/public/AppInProgress";
 import UserMenu from "@components/app/UserMenu";
 
 const AppPage = () => {

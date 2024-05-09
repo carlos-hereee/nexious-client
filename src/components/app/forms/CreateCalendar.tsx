@@ -12,7 +12,7 @@ const CreateCalendar = () => {
 
   if (isLoading) return <Loading message="Loading app data" />;
   return (
-    <div className="container">
+    <div className="primary-container">
       <Form
         initialValues={calendarForm.initialValues}
         labels={calendarForm.labels}

@@ -11,7 +11,7 @@ const BuildStore = () => {
 
   if (isLoading) return <Loading message="loading app assets.." />;
   return (
-    <div className="container">
+    <div className="primary-container">
       <div className="form-hero">
         <Form
           initialValues={{ ...storeForm.initialValues, email: email || "" }}

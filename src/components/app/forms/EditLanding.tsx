@@ -17,7 +17,7 @@ const EditLanding = () => {
   // console.log("landing :>> ", landing);
 
   return (
-    <div className="container">
+    <div className="primary-container">
       <Form
         initialValues={initialValues}
         labels={landingForm.labels}
