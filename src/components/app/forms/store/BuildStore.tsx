@@ -44,7 +44,6 @@ const BuildStore = () => {
           schema={{
             required: ["storeName", "email", "isRegistered", "termsOfService"],
           }}
-          noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}
       </div>

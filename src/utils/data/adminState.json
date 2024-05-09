@@ -360,11 +360,12 @@
     "formId": "merchForm",
     "previewLabel": "See changes",
     "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "description": "", "cost": "", "inStock": "" },
+    "initialValues": { "name": "", "hero": "", "images": false, "description": "", "cost": "", "inStock": "" },
     "types": {
       "description": "textarea",
       "name": "text",
       "hero": "file",
+      "images": "checkbox",
       "cost": "price-dollars-cents",
       "inStock": "number"
     },
@@ -372,6 +373,7 @@
       "name": "Merch name",
       "description": "Description",
       "hero": "Add image",
+      "images": "Add more images",
       "cost": "Cost",
       "inStock": "Quantity"
     },
@@ -394,6 +396,7 @@
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
+      "max": 3,
       "groupName": "cta",
       "group": "hasCta",
       "desiredOrder": ["label", "link", "icon"]
@@ -413,6 +416,7 @@
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
+      "max": 5,
       "groupName": "sections",
       "group": "hasSections",
       "desiredOrder": ["title", "body", "sectionHero"]
@@ -432,9 +436,26 @@
       "additionLabel": "Add another",
       "removalLabel": "Remove",
       "canMultiply": true,
+      "max": 10,
       "groupName": "alternative-hours",
       "group": "altHours",
       "desiredOrder": ["day", "startTime", "closeTime"]
+    },
+    "images": {
+      "formId": "images-1",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "image": "" },
+      "labels": { "image": "Images" },
+      "placeholders": {},
+      "types": { "image": "file" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 10,
+      "groupName": "catalog-images",
+      "group": "img",
+      "desiredOrder": ["image"]
     }
   },
   "iconList": [

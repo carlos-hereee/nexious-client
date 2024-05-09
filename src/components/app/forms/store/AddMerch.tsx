@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from "react";
 // import { useLocation } from "react-router-dom";
 
 const AddMerch = () => {
-  const { merchForm, addMerch, isLoading } = useContext(AdminContext);
+  const { merchForm, addMerch, isLoading, sectionEntries } = useContext(AdminContext);
   const { iconList, appId, appName } = useContext(AppContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
 
@@ -24,6 +24,7 @@ const AddMerch = () => {
         placeholders={merchForm.placeholders}
         types={merchForm.types}
         dataList={{ icon: iconList }}
+        addEntry={sectionEntries}
         clearSelection={{ icon: true }}
         heading={`Add merchendise: ${appName}`}
         onSubmit={(values: AppValues) => addMerch(values, appId)}
