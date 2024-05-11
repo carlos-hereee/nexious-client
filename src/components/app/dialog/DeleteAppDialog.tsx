@@ -9,7 +9,7 @@ const DeleteAppDialog = ({ onClose, onConfirm }: DialogProps) => {
   const { appName } = useContext(AppContext);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose}>
+    <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       <h2 className="heading">Are you sure you want to delete {appName}</h2>
       <p>This will delete all progress</p>
       <div className="flex-center">

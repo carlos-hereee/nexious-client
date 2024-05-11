@@ -1,9 +1,7 @@
 import { SettingsContainer } from "app-types";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { ItemDetail } from "nexious-library";
-import { CopyButton } from "nexious-library/@nxs-molecules";
-import { Button } from "nexious-library/@nxs-atoms";
+import { ItemDetail, Button, CopyButton } from "nexious-library";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
   const { appUrl, locale } = useContext(AppContext);

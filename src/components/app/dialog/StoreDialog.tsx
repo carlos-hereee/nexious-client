@@ -12,7 +12,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose}>
+    <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && <BuildStore />}
       {status === "phase-two" && <EditStore />}

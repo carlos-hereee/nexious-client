@@ -359,7 +359,7 @@
     "heading": "Add merch",
     "formId": "merchForm",
     "previewLabel": "See changes",
-    "fieldHeading": {},
+    "fieldHeading": { "images": "Additional images" },
     "initialValues": { "name": "", "hero": "", "images": false, "description": "", "cost": "", "inStock": "" },
     "types": {
       "description": "textarea",
@@ -372,7 +372,7 @@
     "labels": {
       "name": "Merch name",
       "description": "Description",
-      "hero": "Add image",
+      "hero": "Add thumbnail image",
       "images": "Add more images",
       "cost": "Cost",
       "inStock": "Quantity"

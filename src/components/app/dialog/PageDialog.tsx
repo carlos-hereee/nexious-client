@@ -23,7 +23,7 @@ const PageDialog = ({ onClose, status }: DialogProps) => {
     if (activePage?.pageId) deletePage({ appId, pageId: activePage.pageId });
   };
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={dialogPageHeader}>
+    <Dialog theme={`alt-${theme}`} onDialogClose={onClose} header={dialogPageHeader}>
       {status === "phase-one" && <AddPage />}
       {status === "phase-two" && <EditLanding />}
       {status === "phase-edit" && <EditPage />}

@@ -23,6 +23,7 @@ const AddMerch = () => {
         labels={merchForm.labels}
         placeholders={merchForm.placeholders}
         types={merchForm.types}
+        fieldHeading={merchForm.fieldHeading}
         dataList={{ icon: iconList }}
         addEntry={sectionEntries}
         clearSelection={{ icon: true }}

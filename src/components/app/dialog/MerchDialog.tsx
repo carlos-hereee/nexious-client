@@ -13,7 +13,7 @@ const MerchDialog = ({ onClose, formValues }: DialogProps) => {
   const { theme } = useContext(AuthContext);
 
   return (
-    <Dialog theme={theme} onDialogClose={onClose}>
+    <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {formValues && <EditMerch initValues={formValues as MerchProps} />}
     </Dialog>

@@ -1,8 +1,7 @@
 import { CalendarContainerProps } from "app-calendar";
-import { Button } from "nexious-library/@nxs-atoms";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { ItemDetail, CopyButton } from "nexious-library";
+import { ItemDetail, CopyButton, Button } from "nexious-library";
 
 const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   // require key variable

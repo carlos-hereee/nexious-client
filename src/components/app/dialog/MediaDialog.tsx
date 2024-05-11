@@ -22,7 +22,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
         }
       : undefined;
   return (
-    <Dialog theme={theme} onDialogClose={onClose} header={dialogMediaHeader}>
+    <Dialog theme={`alt-${theme}`} onDialogClose={onClose} header={dialogMediaHeader}>
       {status === "confirm-cancel" ? (
         <div className="flex-center">
           <ButtonCancel onClick={() => onCancel("idle")} theme="btn-main" />

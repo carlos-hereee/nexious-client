@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IconButton } from "nexious-library";
-import WelcomeBanner from "@components/app/banners/WelcomeBanner";
 import AppInProgress from "@pages/public/AppInProgress";
-import AppPlayground from "./AppPlayground";
+import { Banner } from "nexious-library/@nxs-organism";
+import { AuthContext } from "@context/auth/AuthContext";
+import { AppContext } from "@context/app/AppContext";
 import AccountSettings from "./AccountSettings";
+import AppPlayground from "./AppPlayground";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<"apps" | "account" | "feed" | "notifications">("apps");
-
+  const { user } = useContext(AuthContext);
+  const { welcomeMessage } = useContext(AppContext);
   return (
     <div className="container">
-      <WelcomeBanner />
+      <Banner message={`${welcomeMessage} ${user.nickname ? user.nickname : user.username}`} />;
       {/* <button type="button" onClick={() => listBucket(appId)}>
         List bucket
       </button> */}
