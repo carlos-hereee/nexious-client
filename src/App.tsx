@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-import { isDev } from "@config";
-import AppSettings from "@pages/settings/AppSettings";
+// import { isDev } from "@config";
+// import AppSettings from "@pages/settings/AppSettings";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);

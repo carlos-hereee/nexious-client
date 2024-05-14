@@ -6,18 +6,12 @@ import { useContext } from "react";
 const DeleteStore = () => {
   const { store, appId } = useContext(AppContext);
   const { deleteStore } = useContext(AdminContext);
-  // const [typeConfirm, setConfirm] = useState("");
-  // const [error, setError] = useState("");
 
-  // const handleConfirm = () => {
-  //   if (typeConfirm === "CONFIRM") {
-  //     setError("");
-  //     deleteStore(appId);
-  //   } else setError("Must enter 'CONFIRM' to delete");
-  // };
-  // const handleChange = (e: { value: string }[]) => {
-  //   const val = e[0].value;
-  //   setConfirm(val);
+  const handleConfirm = (data: { confirm: string }) => {
+    // redundant delete
+    if (data.confirm === "CONFIRM") deleteStore(appId);
+  };
+
   return (
     <div className="container text-center">
       <h2 className="heading w-max text-center">Are you sure you want to delete your store {store?.storeName}</h2>
@@ -28,7 +22,7 @@ const DeleteStore = () => {
         initialValues={{ confirm: "" }}
         labels={{ confirm: "Type CONFIRM to delete" }}
         schema={{ required: ["confirm"], match: [{ name: "confirm", value: "CONFIRM" }] }}
-        onSubmit={(data) => console.log("data :>> ", data)}
+        onSubmit={(data: { confirm: string }) => handleConfirm(data)}
       />
     </div>
   );
