@@ -44,7 +44,6 @@ declare module "services-context" {
   }
   export interface ServiceSchema extends ServiceStateProps {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
-    removeFromCart: (cart: CartProps[], key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
     onCheckOutSession: (cart: CartProps) => void;

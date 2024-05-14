@@ -5,7 +5,6 @@ import { ChildProps, StoreProps } from "app-types";
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 import { reducer } from "./ServicesReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
-import { onRemoveFromCart } from "./dispatch/onRemoveFromCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
@@ -27,9 +26,7 @@ export const ServicesState = ({ children }: ChildProps) => {
   const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
     onAddToCart({ dispatch, cart, merch, store });
   }, []);
-  const removeFromCart = useCallback((cart: CartProps[], merch: MerchProps) => {
-    onRemoveFromCart({ dispatch, cart, merch });
-  }, []);
+
   const updateCart = useCallback((cart: CartProps[]) => {
     dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart });
   }, []);
@@ -50,7 +47,6 @@ export const ServicesState = ({ children }: ChildProps) => {
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
       addToCart,
-      removeFromCart,
       updateCart,
       submitOrder,
       onCheckOutSession,

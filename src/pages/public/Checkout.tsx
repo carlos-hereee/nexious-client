@@ -9,7 +9,7 @@ import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 import { paymentMethods } from "@data/nexious.json";
 
 const Checkout = () => {
-  const { cart, removeFromCart, updateCart, onCheckOutSession } = useContext(ServicesContext);
+  const { cart, updateCart, onCheckOutSession } = useContext(ServicesContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [storeIdx, setStore] = useState(0);
@@ -22,8 +22,22 @@ const Checkout = () => {
     }
   }, [storeIdx]);
 
-  const onRemoveFromCart = (e: MerchProps) => {
-    removeFromCart(cart, e as MerchProps);
+  const handleRemove = (merch: MerchProps) => {
+    if (active) {
+      // avoid mutating values
+      const oldValues = [...cart];
+      const removedMerch = oldValues[storeIdx].merch.filter((m) => m.merchId !== merch.merchId);
+      // if removed merch was the last item in cart remove store from cart
+      if (removedMerch.length === 0) {
+        const removedStore = oldValues.filter((val) => val.storeId !== active.storeId);
+        updateCart(removedStore);
+      } else {
+        // otherwise remove merch item
+        oldValues[storeIdx].merch = removedMerch;
+        // update cart
+        updateCart(oldValues);
+      }
+    }
   };
 
   const handleQuantity = (merch: MerchProps, d: number) => {
@@ -60,12 +74,7 @@ const Checkout = () => {
                   ))}
                 </div>
               )}
-              <Cart
-                data={active.merch}
-                heading="Review cart"
-                removeFromCart={onRemoveFromCart}
-                setQuantity={handleQuantity}
-              />
+              <Cart data={active.merch} heading="Review cart" removeFromCart={handleRemove} setQuantity={handleQuantity} />
             </div>
           )}
           <div className="container">
