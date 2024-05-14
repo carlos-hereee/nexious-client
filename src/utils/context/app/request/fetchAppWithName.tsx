@@ -13,6 +13,7 @@ export const fetchAppWithName = async (props: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data }: DataResponse<AppValues> = await axiosAuth.get(`/app/${appName}`);
+    console.log("data :>> ", data);
     updateAppData(data);
   } catch (error) {
     const err = error as AxiosError;

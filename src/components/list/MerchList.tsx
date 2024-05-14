@@ -1,11 +1,10 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
-import { Button, Spinner } from "nexious-library/@nxs-atoms";
 import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "services-context";
-import { ItemDetail } from "nexious-library";
+import { ItemDetail, Hero } from "nexious-library";
+import { Button, Spinner } from "nexious-library/@nxs-atoms";
 import hint from "@data/data.json";
-import { Hero } from "nexious-library/@nxs-molecules";
 
 const MerchList = () => {
   const { store, getStoreInventory, loadingState, inventory } = useContext(AppContext);
@@ -18,7 +17,8 @@ const MerchList = () => {
     setShow({ ...show, item: true });
   };
   const openInventory = () => {
-    getStoreInventory(store.storeId);
+    // avoid redundant request
+    if (inventory.length <= 0) getStoreInventory(store.storeId);
     setShow({ ...show, inventory: true });
   };
   if (!store.inventory || store.inventory.length === 0) {

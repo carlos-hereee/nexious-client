@@ -8,9 +8,8 @@ export const getInventory = async (props: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.SET_LOADING_STATE, payload: { isLoadingInventory: true } });
     const { data } = await axiosAuth.get(`/store/inventory/${storeId}`);
-    // console.log("data :>> ", data);
     dispatch({ type: APP_ACTIONS.SET_STORE_INVENTORY, payload: data });
-    // console.log("data :>> ", data);
+    console.log("data :>> ", data);
     dispatch({ type: APP_ACTIONS.SET_LOADING_STATE, payload: { isLoadingInventory: false } });
   } catch (error) {
     const err = error as AxiosError;

@@ -1,18 +1,16 @@
 import { AppContext } from "@context/app/AppContext";
 import { SettingsContainer } from "app-types";
-import { Button } from "nexious-library/@nxs-atoms";
 import { useContext, useEffect } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import data from "@data/data.json";
-import { ItemDetail } from "nexious-library";
-import { CopyButton } from "nexious-library/@nxs-molecules";
+import { ItemDetail, CopyButton, Button } from "nexious-library";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
   const { store, appLink, stripeOnboarding, appId, redirectUrl } = useContext(AppContext);
-
+  console.log("store :>> ", store);
   useEffect(() => {
     if (redirectUrl) window.location.href = redirectUrl;
   }, [redirectUrl]);

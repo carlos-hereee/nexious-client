@@ -19,13 +19,13 @@ const AppRoute = () => {
   useEffect(() => {
     // fetch app data
     const routeAppName = pathname.split("/")[2];
+    console.log("routeAppName :>> ", routeAppName);
     if (appName !== routeAppName) getAppWithName(routeAppName);
     // if (pathname.includes("app")) {
     //   if (appName !== routeAppName) getAppWithName(routeAppName);
     // }
     // if (pathname.includes("store")) {
     //   if (routeAppName !== activeAppName) getAppStore(routeAppName);
-    //   if (store.storeId) getStoreInventory(store.storeId);
     // }
     // if (pathname.includes("booking")) {
     //   if (appName !== routeAppName) getAppWithName(routeAppName);

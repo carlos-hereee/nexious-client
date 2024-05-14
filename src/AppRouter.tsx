@@ -50,7 +50,7 @@ const AppRouter: React.FC = () => {
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
         {/* TODO: REMOVE PARAM STORENAME MAYBE ITS REDUNDANTS  */}
         {/* <Route path="/store/:appName" element={<AppStore />} /> */}
-        <Route path="/store/:appName/:storeName" element={<AppStore />} />
+        <Route path="/store/:appName" element={<AppStore />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
       </Route>
       {/* Private routes for account holders and authorized user */}

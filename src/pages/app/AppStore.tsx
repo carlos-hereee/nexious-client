@@ -1,5 +1,5 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { MerchCard } from "nexious-library/@nxs-organism";
 import { Hero } from "nexious-library/@nxs-molecules";
 import { Button } from "nexious-library/@nxs-atoms";
@@ -10,21 +10,18 @@ import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars
 import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {
-  const { store } = useContext(AppContext);
+  const { store, getStoreInventory, inventory } = useContext(AppContext);
   const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
   const navigate = useNavigate();
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
 
-  // const { pathname } = useLocation();
+  useEffect(() => {
+    // avoid redundant request if num of merch dont match get store inventory
+    if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
+    // rerender request per store id
+  }, [store.storeId]);
 
-  // console.log("activeMenu :>> ", store);
-  // // useStoreInventory()
-  // useEffect(() => {
-  //   if (store.inventory.length > 0);
-  // // }, [pathname]);
-  // console.log("store.inventory :>> ", store.inventory, inventory);
-  // console.log("cart :>> ", cart);
   return (
     <div className="container">
       <UserMenu />
@@ -43,8 +40,8 @@ const AppStore = () => {
         </div>
       )}
       <div className="store-inventory-container">
-        {store.inventory.length > 0 ? (
-          store.inventory.map((merch: MerchProps) => (
+        {inventory.length > 0 ? (
+          inventory.map((merch: MerchProps) => (
             <MerchCard
               key={merch.uid}
               data={{ ...merch, cost: formatPenniesToDollars(merch.cost) }}

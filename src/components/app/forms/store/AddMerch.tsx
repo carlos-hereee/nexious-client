@@ -10,12 +10,12 @@ const AddMerch = () => {
   const { iconList, appId, appName } = useContext(AppContext);
   const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
 
-  useEffect(() => {
-    if (isLoading) setStatus("loading");
-  }, [isLoading]);
+  // useEffect(() => {
+  //   if (isLoading) setStatus("loading");
+  // }, [isLoading]);
 
-  if (status === "pending") return <Loading message="sending request.." />;
-  if (status === "loading") return <Loading message="loading app assets.." />;
+  // if (status === "pending") return <Loading message="sending request.." />;
+  // if (status === "loading") return <Loading message="loading app assets.." />;
   return (
     <div className="primary-container">
       <Form

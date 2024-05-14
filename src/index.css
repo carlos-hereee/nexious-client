@@ -163,6 +163,7 @@
   padding: 0.25rem;
 }
 .store-inventory-container {
+  justify-content: center;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -170,7 +171,7 @@
 .btn-checkout-container {
   background-color: #fafafa;
   position: sticky;
-  z-index: 100;
+  z-index: 3;
   top: 0;
   border-radius: 4px;
   margin: 1rem;
