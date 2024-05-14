@@ -1,8 +1,7 @@
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
 import { ServicesDispatchProps } from "services-context";
 
-export const onAddToCart = (props: ServicesDispatchProps) => {
-  const { dispatch, merch, cart, store } = props;
+export const onAddToCart = ({ dispatch, merch, cart, store }: ServicesDispatchProps) => {
   try {
     if (merch && cart && store) {
       dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: true });

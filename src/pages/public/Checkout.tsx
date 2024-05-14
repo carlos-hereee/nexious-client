@@ -6,55 +6,56 @@ import { ServicesContext } from "@context/services/ServicesContext";
 import { CartProps, MerchProps, PaymentMethod } from "services-context";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 // import { AppContext } from "@context/app/AppContext";
+import { paymentMethods } from "@data/nexious.json";
 
 const Checkout = () => {
-  const { cart, removeFromCart, paymentMethods, updateCart, onCheckOutSession } = useContext(ServicesContext);
+  const { cart, removeFromCart, updateCart, onCheckOutSession } = useContext(ServicesContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(0);
+  const [storeIdx, setStore] = useState(0);
   const [active, setActive] = useState<CartProps>();
 
   useEffect(() => {
     if (cart && cart.length > 0) {
-      setActive(cart[page]);
-      setTotal(formatTotal(cart[page].merch));
+      setActive(cart[storeIdx]);
+      setTotal(formatTotal(cart[storeIdx].merch));
     }
-  }, [page]);
+  }, [storeIdx]);
 
-  const onRemoveFromCart = (e: unknown) => {
+  const onRemoveFromCart = (e: MerchProps) => {
     removeFromCart(cart, e as MerchProps);
   };
 
-  const handleQuantity = (data: MerchProps, d: number) => {
+  const handleQuantity = (merch: MerchProps, d: number) => {
+    // avoid mutating cart data
     const oldValues = [...cart];
-    const storeIdx = cart.findIndex((c) => c.storeId === data.storeId);
-    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === data.uid);
+    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === merch.uid);
     oldValues[storeIdx].merch[merchIdx].quantity = d;
-    // oldValues[storeIdx].merch[merchIdx].cost = formatDollarsToPennies(data.cost);
     updateCart(oldValues);
     setTotal(formatTotal(oldValues[storeIdx].merch));
   };
   const handlePaymentClick = (data: PaymentMethod) => {
     if (active) {
       if (data.type === "visa/credit") onCheckOutSession(active);
+      // TODO ADD REQUEST FOR INSTORE PAYMENTS
+      // if (data.type === "store") onCheckOutSession(active);
     }
   };
-  // console.log("active :>> ", active);
   return (
     <section className="container">
       {cart.length > 0 ? (
         <div className="split-container">
           {active && (
             <div className="container">
-              <h1 className="heading">Checkout {active.name}</h1>
+              <h1 className="heading">Checkout: {active.storeName}</h1>
               {cart.length > 1 && (
                 <div className="buttons-navigation">
                   {cart.map((c, idx) => (
                     <Button
-                      label={c.name}
+                      label={c.storeName}
                       key={c.storeId}
                       theme={c.storeId === active.storeId && "btn-main btn-cta"}
-                      onClick={() => setPage(idx)}
+                      onClick={() => setStore(idx)}
                     />
                   ))}
                 </div>

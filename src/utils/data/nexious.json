@@ -265,5 +265,25 @@
     { "label": "Store", "value": "store", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "Calendar", "value": "calendar", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "Danger Zone", "value": "danger", "activeTheme": "btn-main btn-danger", "theme": "btn-main btn-danger" }
+  ],
+  "paymentMethods": [
+    {
+      "uid": "payment-1",
+      "type": "visa/credit",
+      "name": "Debit/Credit card",
+      "icon": "visa",
+      "hero": {
+        "url": "icons/bebit-credit.svg",
+        "small": "small/icons/bebit-credit.jpg",
+        "name": "mastercard",
+        "alt": "mastercard"
+      }
+    },
+    {
+      "uid": "payment-3",
+      "type": "store",
+      "name": "Store",
+      "icon": "store"
+    }
   ]
 }

@@ -49,7 +49,6 @@ export const ServicesState = ({ children }: ChildProps) => {
       cart: state.cart,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
-      paymentMethods: state.paymentMethods,
       addToCart,
       removeFromCart,
       updateCart,

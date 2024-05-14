@@ -17,7 +17,7 @@ declare module "services-context" {
   }
   export interface PaymentMethod {
     uid: string;
-    type: string;
+    type: "visa/credit" | "store" | "paypal";
     name: string;
     icon: string;
     hero?: { url: string; small: string; name: string; alt: string };
@@ -33,7 +33,6 @@ declare module "services-context" {
     stripeSecret: string;
     stripeConfirmation: StripeConfirmationProps;
     cart: CartProps[];
-    paymentMethods: PaymentMethod[] | [];
   }
   export interface CartProps extends StoreProps {
     merch: MerchProps[];

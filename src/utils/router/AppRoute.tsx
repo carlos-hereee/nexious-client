@@ -19,7 +19,6 @@ const AppRoute = () => {
   useEffect(() => {
     // fetch app data
     const routeAppName = pathname.split("/")[2];
-    console.log("routeAppName :>> ", routeAppName);
     if (appName !== routeAppName) getAppWithName(routeAppName);
     // if (pathname.includes("app")) {
     //   if (appName !== routeAppName) getAppWithName(routeAppName);

@@ -11,7 +11,7 @@ import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
-  const { cart, addToCart, removeFromCart } = useContext(ServicesContext);
+  const { cart, addToCart, updateCart } = useContext(ServicesContext);
   const navigate = useNavigate();
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
@@ -22,6 +22,21 @@ const AppStore = () => {
     // rerender request per store id
   }, [store.storeId]);
 
+  const handleRemove = (merch: MerchProps) => {
+    // avoid mutating values
+    const oldValues = [...cart];
+    const removedMerch = oldValues[storeIdx].merch.filter((m) => m.merchId !== merch.merchId);
+    // if removed merch was the last item in cart remove store from cart
+    if (removedMerch.length === 0) {
+      const removedStore = oldValues.filter((val) => val.storeId !== store.storeId);
+      updateCart(removedStore);
+    } else {
+      // otherwise remove merch item
+      oldValues[storeIdx].merch = removedMerch;
+      // update cart
+      updateCart(oldValues);
+    }
+  };
   return (
     <div className="container">
       <UserMenu />
@@ -48,7 +63,7 @@ const AppStore = () => {
               hero={{ url: merch.hero }}
               // onAddToCart={(data: MerchProps) => console.log(cart, data)}
               onAddToCart={(data: MerchProps) => addToCart(cart, store, data)}
-              onRemoveFromCart={(data: MerchProps) => removeFromCart(cart, data)}
+              onRemoveFromCart={(data: MerchProps) => handleRemove(data)}
               // TODO: on body click navigate to merch item details
               // onClick={(data: MerchProps) => console.log("data :>> ", data)}
               canRemove={storeIdx >= 0 && cart[storeIdx].merch.some((c: MerchProps) => c.uid === merch.uid)}
