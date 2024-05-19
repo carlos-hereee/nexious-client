@@ -250,6 +250,16 @@
       "backgroundColors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" }
     }
   ],
+  "hints": {
+    "appMenuButton": {
+      "title": "View and edit menu data",
+      "body": "Click the name of the menu item you want to view and update"
+    },
+    "appMenuRemoveButton": {
+      "title": "Something went wrong!",
+      "body": "Click on Remove from menu button to remove from menu"
+    }
+  },
   "nexiousDashboardMenu": {
     "app": false,
     "pages": false,

@@ -1,5 +1,5 @@
 declare module "app-admin" {
-  import { PageProps, StoreProps } from "app-types";
+  import { PageProps, StoreProps, StringObjProp } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
@@ -92,6 +92,9 @@ declare module "app-admin" {
     editStore: (values: AppValues, appId: string) => void;
     editMerch: (values: AppValues, appId: string, merhId: string) => void;
     addMerch: (values: AppValues, appId: string) => void;
+    // app data
+    deleteMenuItem: (appId: string, menuId: string) => void;
+    editMenuItem: (appId: string, menuId: string, values: StringObjProp) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
@@ -101,6 +104,7 @@ declare module "app-admin" {
     appId?: string;
     name?: string;
     pageId?: string;
+    uid?: string;
     accountId?: string;
     config?: StripeConfig;
     merchId?: string;

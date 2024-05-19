@@ -6,15 +6,12 @@
     "submitLabel": "Save and continue",
     "formId": "initApp",
     "fieldHeading": {},
-    "initialValues": { "name": "" },
-    "labels": {},
+    "initialValues": { "icon": "" },
+    "labels": { "icon": "Add an icon" },
     "placeholders": {},
-    "types": {
-      "name": "text"
-    },
-    "withFileUpload": false,
+    "types": { "icon": "select" },
     "previewLabel": "See changes",
-    "desiredOrder": ["name"]
+    "desiredOrder": ["icon"]
   },
   "appDetailsForm": {
     "heading": "Initialize your app!",

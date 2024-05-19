@@ -209,7 +209,7 @@ declare module "app-types" {
   export interface MenuProp {
     uid: string;
     menuId: string;
-    category: string;
+    category: "page" | "calendar" | "store";
     isPrivate: boolean;
     isPage: boolean;
     isStore?: boolean;

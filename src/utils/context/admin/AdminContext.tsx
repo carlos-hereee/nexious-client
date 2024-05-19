@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
-import { ChildProps } from "app-types";
+import { ChildProps, StringObjProp } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StripeConfig } from "app-context";
@@ -33,6 +33,8 @@ import { removeMerch } from "./requests/store/removeMerch";
 import { getStripeAccount } from "./requests/store/getStripeAccount";
 import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 import { addCalendar } from "./requests/calendar/addCalendar";
+import { removeMenuItem } from "./requests/app/removeMenuItem";
+import { updateMenuItem } from "./requests/app/updateMenuItem";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -58,8 +60,18 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const initApp = useCallback((values: AppValues) => buildApp({ dispatch, values, handleAppAssets }), []);
 
+  // app data
   const editAppName = useCallback((values: AppValues, appId: string) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
+  }, []);
+
+  // TODO: HANDLE REQEUST
+  // app data menu item request
+  const deleteMenuItem = useCallback((appId: string, uid: string) => {
+    removeMenuItem({ dispatch, appId, uid, handleAppAssets });
+  }, []);
+  const editMenuItem = useCallback((appId: string, uid: string, values: StringObjProp) => {
+    updateMenuItem({ dispatch, appId, uid, handleAppAssets, values });
   }, []);
 
   const editLandingPage = useCallback((values: AppValues, appId: string) => {
@@ -171,6 +183,8 @@ export const AdminState = ({ children }: ChildProps) => {
       deleteMerchItem,
       getAccount,
       updateAccount,
+      deleteMenuItem,
+      editMenuItem,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
