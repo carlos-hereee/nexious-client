@@ -1,10 +1,8 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, ChildProps, MediaItemProp, MenuProp, PageProps } from "app-types";
+import { ActiveMenuProp, ChildProps, MediaItemProp, PageProps } from "app-types";
 import { AppSchema, StripeConfig } from "app-context";
-import { useNavigate } from "react-router-dom";
 import { AppAssets } from "app-admin";
-import { readableUrlString } from "@app/formatStringUrl";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -23,8 +21,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, subscriptions } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { accessToken, subscriptions } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
@@ -43,24 +40,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
   }, []);
-  // TODO: move menu handling to dispatch folder
-  const handleMenu = useCallback((menuItem: MenuProp, appName: string, appId: string) => {
-    const { isPrivate, category, name, link } = menuItem;
-    if (category === "subscribe") subscribe(appId);
-    // if menu item is private navigate to route to retrieve credentials
-    else if (isPrivate) {
-      if (name === "logout") logout();
-      else navigate(`/${link || ""}`);
-      // change theme
-    } else if (category === "theme") setTheme(menuItem.value);
-    else if (menuItem.value === "explore") navigate("/explore");
-    // otherwise go to page
-    else if (menuItem.isStore) {
-      navigate(`/store/${readableUrlString(appName)}${menuItem.link}`);
-    } else if (menuItem.isPage) {
-      if (menuItem.link === "/booking") navigate(`/booking/${readableUrlString(appName)}`);
-    }
-  }, []);
+
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   const setSocialMedia = useCallback(
@@ -110,7 +90,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppWithName,
       getAppList,
       updateActiveAppData,
-      handleMenu,
       setAppLoading,
       getStoreInventory,
       getAppStore,

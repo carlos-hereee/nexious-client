@@ -3,11 +3,10 @@
   "nexiousAppId": "Nexious-Tech-id",
   "nexiousMenu": [
     {
-      "isToggle": false,
       "isPrivate": false,
       "isPage": false,
       "uid": "explore-1",
-      "category": "explore",
+      "category": "page",
       "menuId": "explore-1",
       "label": "explore",
       "value": "explore",
@@ -15,11 +14,10 @@
       "name": "explore"
     },
     {
-      "isToggle": false,
       "isPrivate": true,
       "isPage": false,
       "uid": "auth-1",
-      "category": "auth",
+      "category": "page",
       "menuId": "auth-1",
       "label": "login",
       "value": "login",
@@ -29,11 +27,10 @@
   ],
   "nexiousAuthMenu": [
     {
-      "isToggle": false,
       "isPrivate": false,
       "isPage": false,
       "uid": "explore-1",
-      "category": "explore",
+      "category": "page",
       "menuId": "explore-1",
       "label": "explore",
       "value": "explore",
@@ -42,11 +39,10 @@
     },
 
     {
-      "isToggle": false,
       "isPrivate": true,
       "isPage": false,
       "uid": "auth-2",
-      "category": "auth",
+      "category": "page",
       "menuId": "auth-2",
       "label": "dashboard",
       "value": "dashboard",
@@ -54,7 +50,6 @@
       "name": "dashboard"
     },
     {
-      "isToggle": false,
       "isPrivate": true,
       "isPage": false,
       "uid": "auth-1",

@@ -213,7 +213,8 @@ declare module "app-types" {
     isPrivate: boolean;
     isPage: boolean;
     isStore?: boolean;
-    isToggle: boolean;
+    isBooking?: boolean;
+    isToggle?: boolean;
     name: string;
     value: string;
     label: string;

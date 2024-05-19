@@ -78,6 +78,7 @@
   "activeMenu": [],
   "pages": [],
   "page": {
+    "uid": "",
     "title": "",
     "body": "",
     "hasCta": false,
@@ -88,6 +89,7 @@
   },
   "activePage": {
     "title": "",
+    "uid": "",
     "body": "",
     "hasCta": false,
     "hasSections": false,

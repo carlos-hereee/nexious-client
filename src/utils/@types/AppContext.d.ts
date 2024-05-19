@@ -82,7 +82,6 @@ declare module "app-context" {
     stripeOnboarding: (appId: string) => void;
     getPageWithId: (appName: string) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
-    handleMenu: (props: MenuProp, appName: string, appId: string) => void;
   }
 
   export interface AppDispatchProps {

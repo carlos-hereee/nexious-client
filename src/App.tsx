@@ -7,38 +7,43 @@ import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-import { isDev } from "@config";
-import AppSettings from "@pages/settings/AppSettings";
+// import { isDev } from "@config";
+// import AppSettings from "@pages/settings/AppSettings";
 
 const App = ({ children }: ChildProps) => {
-  const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
-  const {
-    activeLogo,
-    activeMenu,
-    activeAppName,
-    activeAppId,
-    activeMedia,
-    themeList,
-    isLoading: loadingApp,
-    handleMenu,
-  } = useContext(AppContext);
+  const { isLoading, theme, setTheme, authErrors, resetStranded, logout } = useContext(AuthContext);
+  const { activeLogo, activeMenu, activeAppName, activeMedia, themeList, isLoading: loadingApp } = useContext(AppContext);
   const navigate = useNavigate();
+
+  if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
+  if (isLoading) return <Loading message="Fetching user assets.." />;
+  if (loadingApp) return <Loading message="Fetching app data.." />;
+  // if (isDev) return <AppSettings />;
 
   const handleLogoClick = () => {
     if (activeAppName === nexiousName) navigate("/");
     else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
-  if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
-  if (isLoading) return <Loading message="Fetching user assets.." />;
-  if (loadingApp) return <Loading message="Fetching app data.." />;
-
-  if (isDev) return <AppSettings />;
+  const handleMenu = (menuItem: MenuProp) => {
+    // navigate to calendar
+    if (menuItem.isBooking) return navigate(`/booking/${activeAppName.split(" ").join("+")}`);
+    // navigate to store
+    if (menuItem.isStore) return navigate(`/store/${activeAppName.split(" ").join("+")}`);
+    // navigate to app page
+    if (menuItem.isPage) return navigate(`/app/${activeAppName.split(" ").join("+")}${menuItem.link}`);
+    // navigate to a home page
+    if (menuItem.category === "page") return navigate(menuItem.link);
+    // log out button
+    if (menuItem.value === "logout") return logout();
+    return null;
+  };
+  const logo = { url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` };
   return (
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
       <Header
         menu={activeMenu}
-        logo={{ url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` }}
-        updateMenu={(menuItem: MenuProp) => handleMenu(menuItem, activeAppName, activeAppId)}
+        logo={logo}
+        updateMenu={handleMenu}
         onLogoClick={handleLogoClick}
         handleTheme={setTheme}
         themeList={themeList}
