@@ -4,10 +4,12 @@ import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, Button, CopyButton } from "nexious-library";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
-  const { appUrl, locale } = useContext(AppContext);
+  const { appUrl, locale, menu } = useContext(AppContext);
 
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
+
+  console.log("menu :>> ", menu);
 
   return (
     <div className="container">
@@ -20,6 +22,9 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       </ItemDetail>
       <ItemDetail label="App details:" labelLayout="bolden">
         <Button label="Edit app details" onClick={() => updatePhase("phase-one")} />
+      </ItemDetail>
+      <ItemDetail label="App menu:" labelLayout="bolden">
+        <Button label="Edit app menu" onClick={() => updatePhase("phase-two")} />
       </ItemDetail>
     </div>
   );

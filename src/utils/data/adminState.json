@@ -1,6 +1,21 @@
 {
   "isLoading": false,
   "formErrors": { "initAppFormError": "" },
+  "appMenuForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "formId": "initApp",
+    "fieldHeading": {},
+    "initialValues": { "name": "" },
+    "labels": {},
+    "placeholders": {},
+    "types": {
+      "name": "text"
+    },
+    "withFileUpload": false,
+    "previewLabel": "See changes",
+    "desiredOrder": ["name"]
+  },
   "appDetailsForm": {
     "heading": "Initialize your app!",
     "submitLabel": "Save and continue",

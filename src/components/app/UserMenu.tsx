@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { nexiousAuthMenu } from "@data/nexious.json";
 import { Navbar } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
-import { MenuProps } from "app-types";
+import { MenuProp } from "app-types";
 import { IconButton } from "nexious-library";
 
 const UserMenu = () => {
@@ -19,7 +19,7 @@ const UserMenu = () => {
         show={{ isActive }}
         menu={nexiousAuthMenu}
         includeHome
-        click={(e: MenuProps) => navigate(`/${e.link}`)}
+        click={(e: MenuProp) => navigate(`/${e.link}`)}
         onHomeClick={() => navigate("/")}
       />
     </nav>

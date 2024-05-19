@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Header, Footer, Loading } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
-import { ChildProps, MenuProps } from "app-types";
+import { ChildProps, MenuProp } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
@@ -38,7 +38,7 @@ const App = ({ children }: ChildProps) => {
       <Header
         menu={activeMenu}
         logo={{ url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` }}
-        updateMenu={(menuItem: MenuProps) => handleMenu(menuItem, activeAppName, activeAppId)}
+        updateMenu={(menuItem: MenuProp) => handleMenu(menuItem, activeAppName, activeAppId)}
         onLogoClick={handleLogoClick}
         handleTheme={setTheme}
         themeList={themeList}

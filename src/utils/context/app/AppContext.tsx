@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProps, ChildProps, MediaItemProp, MenuProps, PageProps } from "app-types";
+import { ActiveMenuProp, ChildProps, MediaItemProp, MenuProp, PageProps } from "app-types";
 import { AppSchema, StripeConfig } from "app-context";
 import { useNavigate } from "react-router-dom";
 import { AppAssets } from "app-admin";
@@ -31,7 +31,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
   const updateStripeConfig = useCallback((config: StripeConfig) => setStripeConfig({ dispatch, config }), []);
 
-  const updateActiveAppData = useCallback((data: ActiveMenuProps) => setActiveData({ dispatch, ...data }), []);
+  const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
   const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
   const getAppStore = useCallback((storeId: string) => {
@@ -44,7 +44,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
   }, []);
   // TODO: move menu handling to dispatch folder
-  const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
+  const handleMenu = useCallback((menuItem: MenuProp, appName: string, appId: string) => {
     const { isPrivate, category, name, link } = menuItem;
     if (category === "subscribe") subscribe(appId);
     // if menu item is private navigate to route to retrieve credentials

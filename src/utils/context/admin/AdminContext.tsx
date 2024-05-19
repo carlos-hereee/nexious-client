@@ -127,6 +127,7 @@ export const AdminState = ({ children }: ChildProps) => {
       formStatus: state.formStatus,
       initAppForm: state.initAppForm,
       appDetailsForm: state.appDetailsForm,
+      appMenuForm: state.appMenuForm,
       pagesForm: state.pagesForm,
       calendarForm: state.calendarForm,
       mediaList: state.mediaList,

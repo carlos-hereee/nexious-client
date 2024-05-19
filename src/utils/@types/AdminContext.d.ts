@@ -1,5 +1,5 @@
 declare module "app-admin" {
-  import { MenuItemProps, PageProps, StoreProps } from "app-types";
+  import { PageProps, StoreProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
@@ -40,6 +40,7 @@ declare module "app-admin" {
     isLoading: boolean;
     formStatus: FORM_STATUS;
     initAppForm: FormProps;
+    appMenuForm: FormProps;
     appDetailsForm: FormProps;
     pagesForm: FormProps;
     calendarForm: FormProps;
@@ -55,10 +56,10 @@ declare module "app-admin" {
     mediaEntryForm: FormProps;
     calendarBookingForm: FormProps;
     formErrors: AdminFormErrors;
-    themeList: MenuItemProps[];
-    calendarThemeList: MenuItemProps[];
-    mediaList: MenuItemProps[];
-    languageList: MenuItemProps[];
+    themeList: MenuItemProp[];
+    calendarThemeList: MenuItemProp[];
+    mediaList: MenuItemProp[];
+    languageList: MenuItemProp[];
     sectionEntries: SectionEntryOganizer;
     themeList: ThemeList[];
     iconList: IconListItem[];

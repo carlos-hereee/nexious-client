@@ -15,6 +15,14 @@ declare module "app-types" {
     app: AppDetailsProps;
     desiredOrder: string[];
   }
+  export type MenuItemProp = {
+    name: string;
+    label: string;
+    value: string;
+    icon: string;
+    uid: string;
+  };
+
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {
     primary: string;
@@ -58,10 +66,11 @@ declare module "app-types" {
     adminIds: AdminIdProps[];
     logo: string;
     owner: UserSchema;
-    menu?: MenuProps[];
+    menu?: MenuProp[];
     media?: MediaProps;
   }
   export interface PageProps {
+    uid: string;
     title?: string;
     body?: string;
     hasCta?: boolean;
@@ -72,11 +81,10 @@ declare module "app-types" {
     tagline?: string;
     name?: string;
     isStore?: boolean;
-    uid?: string;
     pageId?: string;
   }
-  export type ActiveMenuProps = {
-    menu?: MenuProps[];
+  export type ActiveMenuProp = {
+    menu?: MenuProp[];
     appName?: string;
     logo?: string;
     appId?: string;
@@ -96,7 +104,7 @@ declare module "app-types" {
     adminIds: AdminIdProps[];
     logo: string;
     locale: string;
-    languageList: MenuItemProps[];
+    languageList: MenuProp[];
     pages: PageProps[];
     isLoading: boolean;
     isOnline: boolean;
@@ -107,10 +115,10 @@ declare module "app-types" {
     owner: UserSchema;
     newsletter: NewsletterProps;
     media: MediaProps;
-    menu: MenuProps[];
-    activeMenu: MenuProps[];
+    menu: MenuProp[];
+    activeMenu: MenuProp[];
     themeList: ThemeList[];
-    iconList: MenuItemProps[];
+    iconList: MenuProp[];
     calendar: CalendarProps;
   }
   export interface DialogProps {
@@ -198,7 +206,7 @@ declare module "app-types" {
     hasMedias?: boolean;
     medias: MediaItemProp[];
   }
-  export interface MenuProps {
+  export interface MenuProp {
     uid: string;
     menuId: string;
     category: string;
@@ -217,7 +225,7 @@ declare module "app-types" {
     theme?: string;
     calendarId: string;
     hero?: string;
-    schedule: KeyStringProp[];
+    schedule: StringObjProp[];
   }
   export interface HeroProps {
     url: string;
@@ -282,9 +290,8 @@ declare module "app-types" {
   export type PreviewSocialMediaProps = {
     preview?: MediaProps;
   };
-  export interface KeyStringProp {
-    [key: string]: string;
-  }
+  export type StringObjProp = { [key: string]: string };
+  export type StringBooleanObjProp = { [key: string]: string };
   export interface SectionDataProps {
     uid: string;
     hero?: string;
@@ -301,7 +308,7 @@ declare module "app-types" {
         required?: string[];
         unique?: { name: string; list: AppListProps[] }[];
       };
-      dataList?: { [key: string]: MenuItemProps[] };
+      dataList?: { [key: string]: MenuProp[] };
       addEntries?: SectionEntryOganizer;
       onViewPreview: (e: AppValues) => void;
       onSubmit: (e: AppValues) => void;

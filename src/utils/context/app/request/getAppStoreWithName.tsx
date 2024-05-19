@@ -5,7 +5,7 @@ import { AxiosError } from "axios";
 import { combineArraysWithOutDups } from "nexious-library";
 import { nexiousAppMenu } from "@data/nexious.json";
 import { toggleMenuValues } from "@app/toggleMenu";
-import { MenuProps } from "app-types";
+import { MenuProp } from "app-types";
 
 export const getAppStoreWithName = async (props: AppDispatchProps) => {
   const { appName, dispatch, updateAppData, updateActiveAppData, subscriptions } = props;
@@ -16,7 +16,7 @@ export const getAppStoreWithName = async (props: AppDispatchProps) => {
       updateAppData(data);
       if (updateActiveAppData && subscriptions) {
         const noDups = combineArraysWithOutDups(nexiousAppMenu, data.app.menu);
-        const oldValues = noDups as MenuProps[];
+        const oldValues = noDups as MenuProp[];
         // find auth menu
         const authIdx = oldValues.findIndex((val) => val.category === "subscribe");
         if (authIdx >= 0) {

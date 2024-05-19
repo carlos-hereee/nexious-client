@@ -5,7 +5,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 // import { formatHeaderValues } from "@forms/formatHeaderValues";
-// import { MenuProps } from "app-types";
+// import { MenuProp } from "app-types";
 import { scrollToId } from "@app/scrollToElement";
 import { useFormOrganizer } from "@hooks/useFormOrganizer";
 import { formatPage } from "@formatters/formatPage";

@@ -1,15 +1,16 @@
 declare module "app-forms" {
   import { MerchProps } from "services-context";
-  import { AppListProps, PageProps } from "app-context";
+  import { AppListProps } from "app-context";
   import {
     AssetProps,
     CalendarProps,
-    KeyStringProp,
+    StringObjProp,
     MediaItemProp,
     MediaProps,
-    MenuItemProps,
+    MenuProp,
     NewsletterProps,
     StoreProps,
+    PageProps,
   } from "app-types";
 
   export interface FormatStoreFormProps {
@@ -75,15 +76,6 @@ declare module "app-forms" {
   export interface SectionEntryOganizer {
     [key: string]: FormProps;
   }
-  export type AppValues =
-    | InitAppProps
-    | PageProps
-    | NewsletterProps
-    | MediaProps
-    | CalendarProps
-    | KeyStringProp
-    | { [key: string]: string | boolean }
-    | FormData;
   export type FormValueData = { values: AppValues; appId: string };
   export interface InitPaginateFormProps {
     initialValues: AppValues;
@@ -93,7 +85,7 @@ declare module "app-forms" {
     addEntry?: { [key: string]: FormProps };
     theme?: string;
     previewLabel?: string;
-    dataList?: { [key: string]: MenuItemProps[] };
+    dataList?: { [key: string]: MenuProp[] };
     clearSelection?: { [key: string]: boolean };
     onSubmit?: (key: AppValues) => void;
     onViewPreview?: (key: AppValues) => void;
@@ -128,4 +120,20 @@ declare module "app-forms" {
     initialValues: AppValues;
     formId: "initApp" | "landingPage" | "medias" | "newsletter";
   }
+  export type AppValues =
+    | InitAppProps
+    | PageProps
+    | NewsletterProps
+    | MediaProps
+    | MenuProp
+    | CalendarProps
+    | StringObjProp
+    | StringBooleanObjProp;
+
+  export interface FormatInitialFormValues<V> {
+    values: V;
+    desiredOrder: string[];
+  }
+  export type FormatAppMenuValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;
+  export type FormatFormValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;
 }

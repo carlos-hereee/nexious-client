@@ -10,8 +10,7 @@ declare module "app-context" {
     CalendarProps,
     MediaItemProp,
     MediaProps,
-    MenuItemProps,
-    MenuProps,
+    MenuProp,
     NewsletterProps,
     PageProps,
     StoreProps,
@@ -59,11 +58,11 @@ declare module "app-context" {
     media: MediaProps;
     socialMedia: MediaItemProp;
     activeMedia: MediaProps;
-    menu: MenuProps[];
-    activeMenu: MenuProps[];
+    menu: MenuProp[];
+    activeMenu: MenuProp[];
     logo: string;
     activeLogo: string;
-    languageList: MenuItemProps[];
+    languageList: MenuProp[];
     locale: string;
     calendar: CalendarProps;
     store: StoreProps;
@@ -82,8 +81,8 @@ declare module "app-context" {
     getStoreInventory: (storeId: string) => void;
     stripeOnboarding: (appId: string) => void;
     getPageWithId: (appName: string) => void;
-    updateActiveAppData: (props: ActiveMenuProps) => void;
-    handleMenu: (props: MenuProps, appName: string, appId: string) => void;
+    updateActiveAppData: (props: ActiveMenuProp) => void;
+    handleMenu: (props: MenuProp, appName: string, appId: string) => void;
   }
 
   export interface AppDispatchProps {
@@ -102,9 +101,9 @@ declare module "app-context" {
     isLoading?: boolean;
     setAsActive?: boolean;
     appId?: string;
-    menu?: MenuProps[];
+    menu?: MenuProp[];
     updateAppData?: (a: AppProps) => void;
-    updateActiveAppData?: (a: ActiveMenuProps) => void;
+    updateActiveAppData?: (a: ActiveMenuProp) => void;
   }
 
   export type AppActionProps =
@@ -126,11 +125,11 @@ declare module "app-context" {
         payload: string;
       }
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
-    | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuItemProps[] }
+    | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
-    | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProps[] }
+    | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
