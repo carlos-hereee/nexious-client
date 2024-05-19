@@ -16,6 +16,7 @@ import { getAppStoreWithName } from "./request/getAppStoreWithName";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { fetchPage } from "./request/fetchPage";
 import { startStripeOnboarding } from "./request/startStripeOnboarding";
+import { upgradeLatest } from "./request/upgradeLatest";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -43,6 +44,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
+  // ask user to upgrade app if they havent been online in a while
+  const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
   const setSocialMedia = useCallback(
     (data: MediaItemProp) => dispatch({ payload: data, type: APP_ACTIONS.SET_MEDIA_ITEM }),
     []
@@ -67,6 +70,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       calendar: state.calendar,
       isOnline: state.isOnline,
       activeAppName: state.activeAppName,
+      dbVersion: state.dbVersion,
       media: state.media,
       activeMedia: state.activeMedia,
       menu: state.menu,
@@ -98,6 +102,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       stripeOnboarding,
       updateStripeConfig,
       getPageWithId,
+      upgradeToLatest,
     };
   }, [
     state.isLoading,

@@ -3,14 +3,12 @@ import { AppContext } from "@context/app/AppContext";
 import { Button, CopyButton, Form, ItemDetail, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { MenuProp, StringObjProp } from "app-types";
-// import { AuthContext } from "@context/auth/AuthContext";
 import { formatAppMenuValues } from "@formatters/formatInitialFormValues";
 import { hints } from "@data/nexious.json";
 
 const EditAppMenu = () => {
   const { appMenuForm, iconList, deleteMenuItem, editMenuItem } = useContext(AdminContext);
-  const { isLoading, appName, menu, appUrl, appId } = useContext(AppContext);
-
+  const { isLoading, appName, menu, appId } = useContext(AppContext);
   const { desiredOrder } = appMenuForm;
 
   const [initialValues, setInitialValues] = useState(formatAppMenuValues({ values: menu[0], desiredOrder }));
@@ -21,8 +19,8 @@ const EditAppMenu = () => {
     setInitialValues(menuInitialValue);
     setActiveMenu(menuItem);
   };
-  console.log("initialValues :>> ", initialValues);
   if (isLoading || !activeMenu || !activeMenu.uid) return <Loading message="Loading app menu data" />;
+
   return (
     <div className="primary-container">
       <h2 className="heading">Editing app menu: {appName}</h2>
@@ -44,7 +42,7 @@ const EditAppMenu = () => {
           {activeMenu.value ? (
             <>
               <ItemDetail label="Page url:" labelLayout="bolden">
-                <CopyButton data={`${appUrl}${activeMenu.link}`} />
+                <CopyButton data={activeMenu.link} />
               </ItemDetail>
               <ItemDetail label="Category:" labelLayout="bolden">
                 {activeMenu.category || "Page"}

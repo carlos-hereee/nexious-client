@@ -41,6 +41,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, owner: action.payload };
     case APP_ACTIONS.SET_APP_NAME:
       return { ...state, appName: action.payload };
+    case APP_ACTIONS.SET_DB_VERSION:
+      return { ...state, dbVersion: action.payload };
     case APP_ACTIONS.SET_APP_URL:
       return { ...state, appUrl: action.payload };
     case APP_ACTIONS.SET_APP_LINK:

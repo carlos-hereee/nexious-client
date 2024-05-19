@@ -4,6 +4,7 @@
   "isOnline": true,
   "appName": "",
   "appError": "",
+  "dbVersion": "",
   "email": "",
   "appUrl": "",
   "appLink": "",
@@ -32,7 +33,7 @@
   },
   "socialMedia": { "media": "", "link": "", "uid": "" },
   "menu": [],
-  "calendar": { "name": "", "calendarId": "asdf", "schedule": [{}] },
+  "calendar": { "name": "", "calendarId": "", "schedule": [{}] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
   "activeMedia": {

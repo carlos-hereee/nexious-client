@@ -64,6 +64,7 @@ declare module "app-context" {
     activeLogo: string;
     languageList: MenuProp[];
     locale: string;
+    dbVersion?: string;
     calendar: CalendarProps;
     store: StoreProps;
     inventory: MerchProps[];
@@ -81,6 +82,7 @@ declare module "app-context" {
     getStoreInventory: (storeId: string) => void;
     stripeOnboarding: (appId: string) => void;
     getPageWithId: (appName: string) => void;
+    upgradeToLatest: (appId: string) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
 
@@ -119,6 +121,7 @@ declare module "app-context" {
           | APP_ACTIONS.SET_APP_NAME
           | APP_ACTIONS.SET_APP_ERROR
           | APP_ACTIONS.SET_LOCALE
+          | APP_ACTIONS.SET_DB_VERSION
           | APP_ACTIONS.SET_ACTIVE_APP_NAME
           | APP_ACTIONS.SET_REDIRECT_URL;
         payload: string;

@@ -9,6 +9,7 @@ export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchP
     if (app.logo) dispatch({ type: APP_ACTIONS.SET_APP_LOGO, payload: app.logo });
     if (app.adminIds) dispatch({ type: APP_ACTIONS.SET_ADMIN_IDS, payload: app.adminIds });
     if (app.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: app.appId });
+    if (app.dbVersion) dispatch({ type: APP_ACTIONS.SET_DB_VERSION, payload: app.dbVersion });
     if (app.locale) dispatch({ type: APP_ACTIONS.SET_LOCALE, payload: app.locale });
     if (app.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: app.calendar });
     if (app.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: app.landing });

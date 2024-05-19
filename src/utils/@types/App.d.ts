@@ -120,6 +120,7 @@ declare module "app-types" {
     themeList: ThemeList[];
     iconList: MenuProp[];
     calendar: CalendarProps;
+    dbVersion?: string;
   }
   export interface DialogProps {
     status?: DialogStatusProps;
@@ -209,11 +210,8 @@ declare module "app-types" {
   export interface MenuProp {
     uid: string;
     menuId: string;
-    category: "page" | "calendar" | "store";
+    category: "page" | "calendar" | "store" | "home";
     isPrivate: boolean;
-    isPage: boolean;
-    isStore?: boolean;
-    isBooking?: boolean;
     isToggle?: boolean;
     name: string;
     value: string;

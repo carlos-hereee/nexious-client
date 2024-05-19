@@ -4,9 +4,8 @@
   "nexiousMenu": [
     {
       "isPrivate": false,
-      "isPage": false,
       "uid": "explore-1",
-      "category": "page",
+      "category": "home",
       "menuId": "explore-1",
       "label": "explore",
       "value": "explore",
@@ -15,9 +14,8 @@
     },
     {
       "isPrivate": true,
-      "isPage": false,
       "uid": "auth-1",
-      "category": "page",
+      "category": "home",
       "menuId": "auth-1",
       "label": "login",
       "value": "login",
@@ -28,9 +26,8 @@
   "nexiousAuthMenu": [
     {
       "isPrivate": false,
-      "isPage": false,
       "uid": "explore-1",
-      "category": "page",
+      "category": "home",
       "menuId": "explore-1",
       "label": "explore",
       "value": "explore",
@@ -40,9 +37,8 @@
 
     {
       "isPrivate": true,
-      "isPage": false,
       "uid": "auth-2",
-      "category": "page",
+      "category": "home",
       "menuId": "auth-2",
       "label": "dashboard",
       "value": "dashboard",
@@ -51,7 +47,6 @@
     },
     {
       "isPrivate": true,
-      "isPage": false,
       "uid": "auth-1",
       "category": "auth",
       "menuId": "auth-1",
@@ -65,7 +60,6 @@
     {
       "isToggle": false,
       "isPrivate": false,
-      "isPage": false,
       "uid": "explore-1",
       "category": "explore",
       "menuId": "explore-1",
@@ -78,7 +72,6 @@
     {
       "isToggle": false,
       "isPrivate": true,
-      "isPage": false,
       "uid": "auth-12",
       "category": "auth",
       "menuId": "auth-12",
@@ -90,7 +83,6 @@
     {
       "isToggle": false,
       "isPrivate": true,
-      "isPage": false,
       "uid": "auth-11",
       "category": "auth",
       "menuId": "auth-11",
@@ -102,7 +94,6 @@
     {
       "isToggle": false,
       "isPrivate": false,
-      "isPage": false,
       "uid": "auth-13-12",
       "category": "subscribe",
       "menuId": "auth-13-12",

@@ -18,7 +18,7 @@ import { Button } from "nexious-library/@nxs-atoms";
 import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
-  const { appName } = useContext(AppContext);
+  const { appName, dbVersion, upgradeToLatest, appId } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("app");
@@ -47,6 +47,14 @@ const AppSettings = () => {
   // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
+      {dbVersion !== "1.0.0" && (
+        <div className="container flex-center">
+          <h3>Notice!</h3>
+          <p>Your app version is not update</p>
+          <p>Some features may not work as intented</p>
+          <Button label="Upgrade app" onClick={() => upgradeToLatest(appId)} />
+        </div>
+      )}
       <h1 className="heading">
         Settings <i>{appName}</i>: {nav}
       </h1>
@@ -60,6 +68,7 @@ const AppSettings = () => {
           />
         ))}
       </div>
+
       {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}

@@ -26,13 +26,13 @@ const App = ({ children }: ChildProps) => {
   };
   const handleMenu = (menuItem: MenuProp) => {
     // navigate to calendar
-    if (menuItem.isBooking) return navigate(`/booking/${activeAppName.split(" ").join("+")}`);
+    if (menuItem.category === "calendar") return navigate(`/booking/${activeAppName.split(" ").join("+")}`);
     // navigate to store
-    if (menuItem.isStore) return navigate(`/store/${activeAppName.split(" ").join("+")}`);
+    if (menuItem.category === "store") return navigate(`/store/${activeAppName.split(" ").join("+")}`);
     // navigate to app page
-    if (menuItem.isPage) return navigate(`/app/${activeAppName.split(" ").join("+")}${menuItem.link}`);
+    if (menuItem.category === "page") return navigate(`/app/${activeAppName.split(" ").join("+")}${menuItem.link}`);
     // navigate to a home page
-    if (menuItem.category === "page") return navigate(menuItem.link);
+    if (menuItem.category === "home") return navigate(menuItem.link);
     // log out button
     if (menuItem.value === "logout") return logout();
     return null;
