@@ -50,7 +50,7 @@ const AppSettings = () => {
       {dbVersion !== "1.0.0" && (
         <div className="container flex-center">
           <h3>Notice!</h3>
-          <p>Your app version is not update</p>
+          <p>Your app version is not up to date</p>
           <p>Some features may not work as intented</p>
           <Button label="Upgrade app" onClick={() => upgradeToLatest(appId)} />
         </div>

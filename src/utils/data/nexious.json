@@ -1,6 +1,7 @@
 {
   "nexiousName": "Nexious Beta",
   "nexiousAppId": "Nexious-Tech-id",
+  "nexiousUrl": "https://nexious.tech",
   "nexiousMenu": [
     {
       "isPrivate": false,
@@ -58,8 +59,6 @@
   ],
   "nexiousAppMenu": [
     {
-      "isToggle": false,
-      "isPrivate": false,
       "uid": "explore-1",
       "category": "explore",
       "menuId": "explore-1",
@@ -70,8 +69,6 @@
     },
 
     {
-      "isToggle": false,
-      "isPrivate": true,
       "uid": "auth-12",
       "category": "auth",
       "menuId": "auth-12",
@@ -81,8 +78,6 @@
       "name": "dashboard"
     },
     {
-      "isToggle": false,
-      "isPrivate": true,
       "uid": "auth-11",
       "category": "auth",
       "menuId": "auth-11",
@@ -92,8 +87,6 @@
       "name": "logout"
     },
     {
-      "isToggle": false,
-      "isPrivate": false,
       "uid": "auth-13-12",
       "category": "subscribe",
       "menuId": "auth-13-12",
@@ -240,6 +233,10 @@
     "appMenuButton": {
       "title": "View and edit menu data",
       "body": "Click the name of the menu item you want to view and update"
+    },
+    "appMenuUrlDontMatch": {
+      "title": "Notice",
+      "body": "If url target is incorrect head to appropriate tab in settings"
     },
     "appMenuRemoveButton": {
       "title": "Something went wrong!",

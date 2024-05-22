@@ -5,6 +5,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { MenuProp, StringObjProp } from "app-types";
 import { formatAppMenuValues } from "@formatters/formatInitialFormValues";
 import { hints } from "@data/nexious.json";
+import { homeUrl } from "@config";
 
 const EditAppMenu = () => {
   const { appMenuForm, iconList, deleteMenuItem, editMenuItem } = useContext(AdminContext);
@@ -34,18 +35,18 @@ const EditAppMenu = () => {
                   key={m.uid}
                   onClick={() => handleClick(m)}
                   theme={activeMenu.uid === m.uid ? `btn-active highlight` : `highlight`}
-                  label={m.label || "no value"}
+                  label={m.label}
                 />
               ))}
             </div>
           </ItemDetail>
           {activeMenu.value ? (
             <>
-              <ItemDetail label="Page url:" labelLayout="bolden">
-                <CopyButton data={activeMenu.link} />
+              <ItemDetail label="Page url:" labelLayout="bolden" hint={hints.appMenuUrlDontMatch}>
+                <CopyButton data={homeUrl + activeMenu.link} />
               </ItemDetail>
               <ItemDetail label="Category:" labelLayout="bolden">
-                {activeMenu.category || "Page"}
+                {activeMenu.category}
               </ItemDetail>
               <Form
                 initialValues={initialValues}

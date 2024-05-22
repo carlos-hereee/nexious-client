@@ -211,8 +211,6 @@ declare module "app-types" {
     uid: string;
     menuId: string;
     category: "page" | "calendar" | "store" | "home";
-    isPrivate: boolean;
-    isToggle?: boolean;
     name: string;
     value: string;
     label: string;
