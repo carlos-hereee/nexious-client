@@ -1,20 +1,19 @@
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Form } from "nexious-library";
+import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import { formatPage } from "@formatters/formatPage";
+import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
 
 const EditLanding = () => {
-  const { editLandingPage, landingForm, languageList, sectionEntries, iconList } = useContext(AdminContext);
+  const { editLandingPage, landingForm, sectionEntries, iconList } = useContext(AdminContext);
   // initial data if any
   const { landing, appName, appId } = useContext(AppContext);
-  useContext(AppContext);
 
-  const initialValues = formatPage({ values: landing, desiredOrder: landingForm.desiredOrder, hasEntry: sectionEntries });
+  if (!landing) return <Loading />;
 
-  // console.log("initialValues :>> ", initialValues);
-  // console.log("landing :>> ", landing);
+  const initialValues = formatInitialValues({ landing, desiredOrder: landingForm.desiredOrder });
+  const entryValues = formatInitialEntryValues({ page: landing, addEntry: sectionEntries });
 
   return (
     <div className="primary-container">
@@ -25,14 +24,14 @@ const EditLanding = () => {
         types={landingForm.types}
         fieldHeading={landingForm.fieldHeading}
         addEntry={sectionEntries}
-        dataList={{ language: languageList, locale: languageList, icon: iconList }}
+        entries={entryValues}
+        dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
         heading={`Editing landing page: ${appName}`}
         onSubmit={(values: AppValues) => editLandingPage(values, appId)}
         submitLabel="Save and continue"
         withFileUpload
         schema={{ required: ["appName", "logo"] }}
-        noScroll
       />
     </div>
   );

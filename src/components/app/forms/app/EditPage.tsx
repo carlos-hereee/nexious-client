@@ -1,24 +1,27 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Form } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PageProps } from "app-types";
-import { formatPage } from "@formatters/formatPage";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
+// import { formatPage } from "@formatters/formatPage";
 
 const EditPage = () => {
   const { pagesForm, sectionEntries, editPage } = useContext(AdminContext);
-  const { iconList, appId, page } = useContext(AppContext);
-  const [status, setStatus] = useState<"idle" | "pending" | "loading">("pending");
+  const { iconList, appId, activePage } = useContext(AppContext);
+  // const [status, setStatus] = useState<"idle" | "pending" | "loading">("pending");
   // require key variable
-  const [initialValues, setValues] = useState<PageProps>();
+  // const [initialValues, setValues] = useState<PageProps>();
 
-  useEffect(() => {
-    if (status === "pending") {
-      const data = formatPage({ desiredOrder: pagesForm.desiredOrder, hasEntry: sectionEntries, values: page });
-      setValues(data);
-      setStatus("idle");
-    }
-  }, [status]);
+  const initialValues = formatInitialValues({ desiredOrder: pagesForm.desiredOrder, page: activePage });
+  // useEffect(() => {
+  //   if (status === "pending") {
+  //     setValues(data);
+  //     setStatus("idle");
+  //   }
+  // }, [status]);
+
+  console.log("initialValues :>> ", initialValues);
 
   return (
     <div className="primary-container">
@@ -32,7 +35,7 @@ const EditPage = () => {
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
           heading="Edit page"
-          onSubmit={(values: PageProps) => editPage({ values, appId, pageId: page.pageId || "" })}
+          onSubmit={(values: PageProps) => editPage({ values, appId, pageId: activePage.pageId || "" })}
           submitLabel="Save and continue"
           withFileUpload
           schema={{ required: ["title", "name"] }}

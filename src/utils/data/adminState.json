@@ -110,14 +110,7 @@
     "withFileUpload": true,
     "previewLabel": "See changes",
     "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
-    "initialValues": {
-      "title": "",
-      "tagline": "",
-      "body": "",
-      "hero": "",
-      "hasCta": false,
-      "hasSections": false
-    },
+    "initialValues": { "title": "", "tagline": "", "body": "", "hero": "", "hasCta": true, "hasSections": true },
     "types": {
       "title": "text",
       "tagline": "text",
@@ -140,16 +133,8 @@
       "link": "What page or url does it point to",
       "icon": "Choose icon"
     },
-    "placeholders": {
-      "title": "",
-      "tagline": "",
-      "body": "",
-      "cta": "",
-      "hasSection": "",
-      "hasCta": "",
-      "hero": "file"
-    },
-    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "cta", "hasSections", "sections"]
+    "placeholders": { "title": "", "tagline": "", "body": "", "cta": "", "hasSection": "", "hasCta": "", "hero": "file" },
+    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "hasSections"]
   },
   "socialMediaForm": {
     "heading": "Link your social media here!",

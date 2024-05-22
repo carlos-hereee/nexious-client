@@ -288,7 +288,7 @@ declare module "app-types" {
     preview?: MediaProps;
   };
   export type StringObjProp = { [key: string]: string };
-  export type StringBooleanObjProp = { [key: string]: string };
+  export type StringBooleanObjProp = { [key: string]: string | boolean };
   export interface SectionDataProps {
     uid: string;
     hero?: string;

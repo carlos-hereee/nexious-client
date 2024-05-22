@@ -11,6 +11,7 @@ declare module "app-forms" {
     NewsletterProps,
     StoreProps,
     PageProps,
+    StringBooleanObjProp,
   } from "app-types";
 
   export interface FormatStoreFormProps {
@@ -101,9 +102,8 @@ declare module "app-forms" {
     hasEntry?: SectionEntryOganizer;
   }
   export interface FormatPageProps {
-    values?: PageProps;
-    desiredOrder: string[];
-    hasEntry?: SectionEntryOganizer;
+    page?: PageProps;
+    addEntry: SectionEntryOganizer;
   }
   export interface FormatNewsletterProps {
     values: NewsletterProps;
@@ -131,9 +131,12 @@ declare module "app-forms" {
     | StringBooleanObjProp;
 
   export interface FormatInitialFormValues<V> {
-    values: V;
+    values?: V;
+    landing?: PageProps;
+    page?: PageProps;
+    menu?: MenuProp;
     desiredOrder: string[];
   }
   export type FormatAppMenuValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;
-  export type FormatFormValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;
+  export type FormatFormValue<I = StringBooleanObjProp> = (data: FormatInitialFormValues<I>) => StringBooleanObjProp;
 }

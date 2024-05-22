@@ -107,6 +107,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   }, [
     state.isLoading,
     state.activeAppName,
+    state.activePage,
     state.activeLogo,
     state.activeAppId,
     accessToken,

@@ -21,7 +21,7 @@ const AppSettings = () => {
   const { appName, dbVersion, upgradeToLatest, appId } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("app");
+  const [nav, setNav] = useState<keyof AppDialogProps>("pages");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
@@ -47,14 +47,14 @@ const AppSettings = () => {
   // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
-      {dbVersion !== "1.0.0" && (
+      {/* {dbVersion !== "1.0.0" && (
         <div className="container flex-center">
           <h3>Notice!</h3>
           <p>Your app version is not up to date</p>
           <p>Some features may not work as intented</p>
           <Button label="Upgrade app" onClick={() => upgradeToLatest(appId)} />
         </div>
-      )}
+      )} */}
       <h1 className="heading">
         Settings <i>{appName}</i>: {nav}
       </h1>

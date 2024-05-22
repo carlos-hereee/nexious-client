@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-// import { isDev } from "@config";
-// import AppSettings from "@pages/settings/AppSettings";
+import { isDev } from "@config";
+import AppSettings from "@pages/settings/AppSettings";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded, logout } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const App = ({ children }: ChildProps) => {
   if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
-  // if (isDev) return <AppSettings />;
+  if (isDev) return <AppSettings />;
 
   const handleLogoClick = () => {
     if (activeAppName === nexiousName) navigate("/");
