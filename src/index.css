@@ -5,7 +5,9 @@
   align-items: start;
   justify-content: flex-start;
 }
-
+.overflow-x {
+  overflow-x: auto;
+}
 .testimonial-form {
   display: flex;
   flex-direction: row;

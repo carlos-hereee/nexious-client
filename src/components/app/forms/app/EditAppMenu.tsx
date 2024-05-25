@@ -21,7 +21,6 @@ const EditAppMenu = () => {
     setActiveMenu(menuItem);
   };
   if (isLoading || !activeMenu || !activeMenu.uid) return <Loading message="Loading app menu data" />;
-
   return (
     <div className="primary-container">
       <h2 className="heading">Editing app menu: {appName}</h2>
@@ -29,7 +28,7 @@ const EditAppMenu = () => {
         <div />
         <div className="container">
           <ItemDetail label="Menu page name:" labelLayout="bolden" hint={hints.appMenuButton}>
-            <div className="flex-row">
+            <div className="flex-row overflow-x">
               {menu.map((m) => (
                 <Button
                   key={m.uid}
@@ -55,8 +54,10 @@ const EditAppMenu = () => {
                 types={appMenuForm.types}
                 fieldHeading={appMenuForm.fieldHeading}
                 dataList={{ icon: iconList }}
+                onCancel={() => deleteMenuItem(appId, activeMenu.uid)}
                 onSubmit={(values: StringObjProp) => editMenuItem(appId, activeMenu.uid, values)}
                 submitLabel="Save and continue"
+                cancelLabel="Remove"
               />
             </>
           ) : (

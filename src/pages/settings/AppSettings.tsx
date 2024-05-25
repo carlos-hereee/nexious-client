@@ -18,10 +18,10 @@ import { Button } from "nexious-library/@nxs-atoms";
 import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
-  const { appName, dbVersion, upgradeToLatest, appId } = useContext(AppContext);
+  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("pages");
+  const [nav, setNav] = useState<keyof AppDialogProps>("app");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
 
   useEffect(() => {
@@ -31,6 +31,14 @@ const AppSettings = () => {
       setFormStatus("IDLE");
     }
   }, [formStatus]);
+  useEffect(() => {
+    if (dbVersion) {
+      if (dbVersion === "1.0.0") upgradeToLatest(appId);
+    }
+  }, [dbVersion]);
+  useEffect(() => {
+    if (redirectUrl) window.location.href = redirectUrl;
+  }, [redirectUrl]);
 
   const handleClose = ({ name, stat }: DialogShowProps) => {
     setShow({ ...show, [name]: false });
@@ -47,17 +55,17 @@ const AppSettings = () => {
   // TODO: UPDATE APP SETTING  NAVIGATION
   return (
     <div className="container">
-      {/* {dbVersion !== "1.0.0" && (
+      <h1 className="heading">
+        Settings <i>{appName}</i>: {nav}
+      </h1>{" "}
+      {!dbVersion && (
         <div className="container flex-center">
           <h3>Notice!</h3>
           <p>Your app version is not up to date</p>
           <p>Some features may not work as intented</p>
           <Button label="Upgrade app" onClick={() => upgradeToLatest(appId)} />
         </div>
-      )} */}
-      <h1 className="heading">
-        Settings <i>{appName}</i>: {nav}
-      </h1>
+      )}
       <div className="navigation-container">
         {menus.map(({ label, value, theme, activeTheme }) => (
           <Button
@@ -68,7 +76,6 @@ const AppSettings = () => {
           />
         ))}
       </div>
-
       {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}

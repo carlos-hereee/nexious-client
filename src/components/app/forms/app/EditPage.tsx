@@ -3,7 +3,7 @@ import { Form } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PageProps } from "app-types";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
 // import { formatPage } from "@formatters/formatPage";
 
 const EditPage = () => {
@@ -14,14 +14,14 @@ const EditPage = () => {
   // const [initialValues, setValues] = useState<PageProps>();
 
   const initialValues = formatInitialValues({ desiredOrder: pagesForm.desiredOrder, page: activePage });
+  const entryValues = formatInitialEntryValues({ page: activePage, addEntry: sectionEntries });
+
   // useEffect(() => {
   //   if (status === "pending") {
   //     setValues(data);
   //     setStatus("idle");
   //   }
   // }, [status]);
-
-  console.log("initialValues :>> ", initialValues);
 
   return (
     <div className="primary-container">
@@ -34,6 +34,7 @@ const EditPage = () => {
           addEntry={sectionEntries}
           dataList={{ icon: iconList }}
           clearSelection={{ icon: true }}
+          entries={entryValues}
           heading="Edit page"
           onSubmit={(values: PageProps) => editPage({ values, appId, pageId: activePage.pageId || "" })}
           submitLabel="Save and continue"

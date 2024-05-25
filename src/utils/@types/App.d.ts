@@ -70,7 +70,7 @@ declare module "app-types" {
     media?: MediaProps;
   }
   export interface PageProps {
-    uid: string;
+    uid?: string;
     title?: string;
     body?: string;
     hasCta?: boolean;

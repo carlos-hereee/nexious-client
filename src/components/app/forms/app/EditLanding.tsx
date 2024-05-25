@@ -4,12 +4,13 @@ import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
 import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
+// import data from "@data/data.json";
 
 const EditLanding = () => {
   const { editLandingPage, landingForm, sectionEntries, iconList } = useContext(AdminContext);
   // initial data if any
   const { landing, appName, appId } = useContext(AppContext);
-
+  // const { landing, appName, appId } = data;
   if (!landing) return <Loading />;
 
   const initialValues = formatInitialValues({ landing, desiredOrder: landingForm.desiredOrder });
