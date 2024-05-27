@@ -1,8 +1,5 @@
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
-import {
-  ServiceActionProps as ActionProps,
-  ServiceStateProps as StateProps,
-} from "services-context";
+import { ServiceActionProps as ActionProps, ServiceStateProps as StateProps } from "services-context";
 
 export const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {
@@ -12,6 +9,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
       return { ...state, cart: action.payload };
     case SERVICE_ACTIONS.SET_STRIPE_SECRET:
       return { ...state, stripeSecret: action.payload };
+    case SERVICE_ACTIONS.SET_ERROR:
+      return { ...state, error: action.payload };
     case SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION:
       return { ...state, stripeConfirmation: action.payload };
     // case "UPDATE_BOOKABLE":

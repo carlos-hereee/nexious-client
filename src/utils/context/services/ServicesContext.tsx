@@ -46,6 +46,7 @@ export const ServicesState = ({ children }: ChildProps) => {
     return {
       isLoading: state.isLoading,
       cart: state.cart,
+      error: state.error,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
       addToCart,
@@ -71,7 +72,7 @@ export const ServicesState = ({ children }: ChildProps) => {
       // setIsUserReq: (a) => setIsUserReq(dispatch, a),
       // setTotal: (a) => setTotal(dispatch, a),
     };
-  }, [state.isLoading, state.cart, state.stripeSecret]);
+  }, [state.isLoading, state.cart, state.stripeSecret, state.error]);
   return <ServicesContext.Provider value={servicesValues}>{children}</ServicesContext.Provider>;
 };
 

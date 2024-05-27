@@ -9,7 +9,7 @@ import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 import { paymentMethods } from "@data/nexious.json";
 
 const Checkout = () => {
-  const { cart, updateCart, onCheckOutSession, onStoreCheckout } = useContext(ServicesContext);
+  const { cart, updateCart, onCheckOutSession, onStoreCheckout, error } = useContext(ServicesContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [storeIdx, setStore] = useState(0);
@@ -88,6 +88,7 @@ const Checkout = () => {
           <div className="container">
             <h2 className="heading">Total:</h2>
             <Total total={total} />
+            {error && <p className="required">{error}</p>}
             <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
           </div>
         </div>

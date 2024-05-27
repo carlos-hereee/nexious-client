@@ -32,6 +32,7 @@ declare module "services-context" {
   export interface ServiceStateProps {
     isLoading: boolean;
     stripeSecret: string;
+    error: string;
     stripeConfirmation: StripeConfirmationProps;
     cart: CartProps[];
   }
@@ -64,7 +65,7 @@ declare module "services-context" {
   export type ServiceActionProps =
     | { type: SERVICE_ACTIONS.IS_LOADING; payload: boolean }
     | { type: SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
-    | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET; payload: string }
+    | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET | SERVICE_ACTIONS.SET_ERROR; payload: string }
     | {
         type: SERVICE_ACTIONS.ADD_TO_CART | SERVICE_ACTIONS.REMOVE_FROM_CART | SERVICE_ACTIONS.UPDATE_CART;
         payload: CartProps[];
