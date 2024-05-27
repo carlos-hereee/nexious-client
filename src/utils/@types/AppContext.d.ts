@@ -34,7 +34,7 @@ declare module "app-context" {
     isLoading: boolean;
     loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
-    stripeConfig: StripeConfig;
+    stripeConfig?: StripeConfig;
     appList: AppListProps[];
     themeList: ThemeList[];
     iconList: IconListItem[];
@@ -80,7 +80,7 @@ declare module "app-context" {
     setActivePage: (page: PageProps) => void;
     setSocialMedia: (media: MediaItemProp) => void;
     getStoreInventory: (storeId: string) => void;
-    stripeOnboarding: (appId: string) => void;
+    getStripeAccountLink: (appId: string) => void;
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;

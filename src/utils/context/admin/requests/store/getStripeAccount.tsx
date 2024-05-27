@@ -1,12 +1,12 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { AdminDisptachProps } from "app-admin";
 
-export const getStripeAccount = async (props: AdminDisptachProps) => {
-  const { accountId, updateStripeConfig } = props;
+export const getStripeAccount = async ({ appId, handleAppAssets }: AdminDisptachProps) => {
+  // require key variable
+  if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
-    const { data } = await axiosAuth.get(`/store/account/${accountId}`);
-    // console.log("data :>> ", data);
-    if (data && updateStripeConfig) updateStripeConfig(data);
+    const { data } = await axiosAuth.get(`/store/stripe-account/${appId}`);
+    if (data) handleAppAssets(data);
   } catch (error) {
     console.log("error :>> ", error);
   }

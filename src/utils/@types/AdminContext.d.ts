@@ -18,6 +18,7 @@ declare module "app-admin" {
     user?: UserSchema;
     store?: StoreProps;
     app?: AppProps;
+    account?: StripeConfig;
     page?: PageProps;
     appList?: AppListProps[];
   }
@@ -69,7 +70,7 @@ declare module "app-admin" {
     setFormStatus: (status: FORM_STATUS) => void;
     initApp: (values: AppValues) => void;
     // stripe account
-    getAccount: (accountId: string) => void;
+    getAccount: (appId: string) => void;
     updateAccount: (config: StripeConfig) => void;
     editAppDetails: (values: AppValues, appId: string) => void;
     editAppName: (values: AppValues, appId: string) => void;

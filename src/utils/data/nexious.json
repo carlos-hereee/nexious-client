@@ -241,6 +241,14 @@
     "appMenuRemoveButton": {
       "title": "Something went wrong!",
       "body": "Click on Remove from menu button to remove from menu"
+    },
+    "stripeOnboarding": {
+      "title": "Hint!",
+      "body": "Click on 'Onboarding' to continue with stripe onboarding to activate online payments"
+    },
+    "stripeConfiguration": {
+      "title": "Notice!",
+      "body": "View your stripe settings and allow online payments."
     }
   },
   "nexiousDashboardMenu": {

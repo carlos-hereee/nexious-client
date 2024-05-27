@@ -15,8 +15,8 @@ import { getInventory } from "./request/getInventory";
 import { getAppStoreWithName } from "./request/getAppStoreWithName";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { fetchPage } from "./request/fetchPage";
-import { startStripeOnboarding } from "./request/startStripeOnboarding";
 import { upgradeLatest } from "./request/upgradeLatest";
+import { stripeAccountLink } from "./request/stripeAccountLink";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -36,7 +36,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
   }, []);
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
-  const stripeOnboarding = useCallback((appId: string) => startStripeOnboarding({ dispatch, appId }), []);
+  const getStripeAccountLink = useCallback((appId: string) => stripeAccountLink({ dispatch, appId }), []);
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => {
     fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
@@ -99,7 +99,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppStore,
       setActivePage,
       setSocialMedia,
-      stripeOnboarding,
+      getStripeAccountLink,
       updateStripeConfig,
       getPageWithId,
       upgradeToLatest,

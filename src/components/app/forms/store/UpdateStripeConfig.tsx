@@ -1,40 +1,47 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
-import { Form, uniqueId } from "nexious-library";
-import { StripeConfig } from "app-context";
+import { Button, ItemDetail, Loading } from "nexious-library";
+import { hints } from "@data/nexious.json";
 
 const UpdateStripeConfig = () => {
-  const { store, stripeConfig } = useContext(AppContext);
-  const { getAccount, updateAccount, stripeForm } = useContext(AdminContext);
+  const { store, stripeConfig, getStripeAccountLink, appId } = useContext(AppContext);
+  // const { getAccount, updateAccount, stripeForm } = useContext(AdminContext);
+  const { getAccount } = useContext(AdminContext);
+
+  useEffect(() => {
+    if (!stripeConfig && store.accountId) getAccount(appId);
+  }, []);
+
+  if (!store) return <Loading />;
+  // console.log("store :>> ", store);
   // console.log("store :>> ", store);
   // console.log("stripeConfig :>> ", stripeConfig);
 
-  useEffect(() => {
-    if (store.accountId) getAccount(store.accountId);
-  }, []);
-
-  if (!store.accountId) {
-    return (
-      <div className="container">
-        <h2 className="heading">Configuration {store.name} Required</h2>
-      </div>
-    );
-  }
   return (
-    <div className="container">
-      <h2 className="heading">Configuration: {store.name}</h2>
-      <Form
-        initialValues={{ currency: stripeConfig.currency, readPrivacyPolicy: false }}
-        types={stripeForm.types}
-        placeholders={stripeForm.placeholders}
-        labels={stripeForm.labels}
-        dataList={{ currency: [{ name: "usd", label: "usd", value: "usd", uid: uniqueId() }] }}
-        populateLink={{
-          readPrivacyPolicy: [{ word: "Stripes's privacy policy", link: "https://stripe.com/privacy" }],
-        }}
-        onSubmit={(values: StripeConfig) => updateAccount(values)}
-      />
+    <div className="primary-container">
+      <h2 className="heading">Stripe configuration: {store.storeName}</h2>
+      <div className="g-center">
+        <div />
+        <div className="container">
+          {store.onBoardingRequired ? (
+            <ItemDetail label="Stripe Onboarding:" labelLayout="bolden" hint={hints.stripeOnboarding}>
+              <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => getStripeAccountLink(appId)} />
+            </ItemDetail>
+          ) : (
+            <ItemDetail label="View stripe configuration:" labelLayout="bolden" hint={hints.stripeOnboarding}>
+              <Button label="View configuration" onClick={() => getStripeAccountLink(appId)} />
+            </ItemDetail>
+          )}
+          <ItemDetail label="Email:" labelLayout="bolden">
+            {store.email}
+          </ItemDetail>
+          <ItemDetail label="Currency:" labelLayout="bolden">
+            {store.currency}
+          </ItemDetail>
+        </div>
+      </div>
+      <div />
     </div>
   );
 };

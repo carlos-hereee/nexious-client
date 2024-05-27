@@ -47,6 +47,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const handleAppAssets = (values: AppAssets) => {
     if (values.app || values.appList) updateAppData(values);
     if (values.user) updateUser(values.user);
+    if (values.account) updateStripeConfig(values.account);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
@@ -126,11 +127,10 @@ export const AdminState = ({ children }: ChildProps) => {
   const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
-  const getAccount = useCallback((accountId: string) => {
-    getStripeAccount({ dispatch, handleAppAssets, accountId, updateStripeConfig });
-  }, []);
+  const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, handleAppAssets, appId }), []);
+
   const updateAccount = useCallback((config: StripeConfig) => {
-    updateStripeAccount({ dispatch, handleAppAssets, config, updateStripeConfig });
+    updateStripeAccount({ dispatch, handleAppAssets, config });
   }, []);
 
   const adminValues = useMemo(() => {

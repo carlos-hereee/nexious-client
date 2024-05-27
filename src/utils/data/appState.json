@@ -16,7 +16,6 @@
   "locale": "",
   "adminIds": [{ "userId": "", "role": "" }],
   "owner": { "userId": "", "username": "" },
-  "stripeConfig": {},
   "newsletter": {
     "title": "Join the newsletter",
     "subtitle": "Suscribe to get the latest content by email",

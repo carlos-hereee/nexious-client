@@ -56,6 +56,8 @@ declare module "app-types" {
     onBoardingRequired?: string;
     title?: string;
     hero?: string;
+    currency?: string;
+    email?: string;
     body?: string;
     inventory: MerchProps[];
   }
