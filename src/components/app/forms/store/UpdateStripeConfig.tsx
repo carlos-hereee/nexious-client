@@ -10,6 +10,7 @@ const UpdateStripeConfig = () => {
   const { getAccount } = useContext(AdminContext);
 
   useEffect(() => {
+    // TODO: avoid closing dialog
     if (!stripeConfig && store.accountId) getAccount(appId);
   }, []);
 

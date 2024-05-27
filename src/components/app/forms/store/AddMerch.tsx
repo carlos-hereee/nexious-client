@@ -7,7 +7,7 @@ import { useContext } from "react";
 
 const AddMerch = () => {
   const { merchForm, addMerch, sectionEntries } = useContext(AdminContext);
-  const { iconList, appId, appName } = useContext(AppContext);
+  const { appId, appName } = useContext(AppContext);
   // const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
 
   // useEffect(() => {
@@ -24,9 +24,7 @@ const AddMerch = () => {
         placeholders={merchForm.placeholders}
         types={merchForm.types}
         fieldHeading={merchForm.fieldHeading}
-        dataList={{ icon: iconList }}
         addEntry={sectionEntries}
-        clearSelection={{ icon: true }}
         heading={`Add merchendise: ${appName}`}
         onSubmit={(values: AppValues) => addMerch(values, appId)}
         submitLabel="Save and continue"

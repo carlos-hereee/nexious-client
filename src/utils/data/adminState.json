@@ -375,7 +375,7 @@
       "inStock": "Quantity"
     },
     "placeholders": { "hero": "", "description": "", "name": "item name" },
-    "desiredOrder": ["name", "hero", "description", "cost", "inStock"]
+    "desiredOrder": ["name", "hero", "images", "description", "cost", "inStock"]
   },
   "sectionEntries": {
     "hasCta": {

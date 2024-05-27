@@ -18,7 +18,6 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
       {status === "phase-two" && <EditStore />}
       {status === "phase-three" && <AddMerch />}
       {status === "configuration" && <UpdateStripeConfig />}
-      {/* {status === "configuration" && <UpdateStripeConfig />} */}
       {status === "confirm-cancel" && <DeleteStore />}
     </Dialog>
   );

@@ -13,6 +13,7 @@ declare module "services-context" {
     name: string;
     body: string;
     hero: string;
+    catalog: string[];
     uid: string;
   }
   export interface PaymentMethod {

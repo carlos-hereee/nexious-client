@@ -103,6 +103,7 @@ declare module "app-forms" {
   }
   export interface FormatPageProps {
     page?: PageProps;
+    merch?: MerchProps;
     addEntry: SectionEntryOganizer;
   }
   export interface FormatNewsletterProps {
@@ -133,6 +134,7 @@ declare module "app-forms" {
   export interface FormatInitialFormValues<V> {
     values?: V;
     landing?: PageProps;
+    merch?: MerchProps;
     page?: PageProps;
     menu?: MenuProp;
     desiredOrder: string[];

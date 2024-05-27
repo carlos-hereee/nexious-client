@@ -21,6 +21,7 @@ const MerchList = () => {
     if (inventory.length <= 0) getStoreInventory(store.storeId);
     setShow({ ...show, inventory: true });
   };
+  console.log("inventory :>> ", inventory);
   if (!store.inventory || store.inventory.length === 0) {
     return (
       <ItemDetail label="Inventory:" labelLayout="bolden" hint={hint.noInventoryHint}>

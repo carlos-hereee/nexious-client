@@ -14,18 +14,19 @@ const addArrayInObj = ({ obj, key, value }: AddArrayInObject) => {
 };
 
 export const formatInitialValues: FormatFormValue = (data) => {
-  const { values, desiredOrder, landing, menu, page } = data;
+  const { values, desiredOrder, landing, menu, page, merch } = data;
   //  values
-  if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] || "" })));
+  if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] })));
+  if (merch) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: merch[key] })));
   //  landing
   if (landing) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: landing[key] })));
   if (page) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: page[key] })));
   //  app menu
-  if (menu) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: menu[key] || "" })));
+  if (menu) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: menu[key] })));
   // default to assigning a field for each item in disired order
   return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: "" })));
 };
-export const formatInitialEntryValues = ({ addEntry, page }: FormatPageProps) => {
+export const formatInitialEntryValues = ({ addEntry, page, merch }: FormatPageProps) => {
   // find extra values for pages
   const entries = {};
   if (page) {
@@ -39,6 +40,25 @@ export const formatInitialEntryValues = ({ addEntry, page }: FormatPageProps) =>
           if (page[groupName].length > 0) {
             page[groupName].forEach((p: StringBooleanObjProp) => {
               const entry = formatInitialValues({ desiredOrder, page: p });
+              addArrayInObj({ obj: entries, key: groupName, value: entry });
+            });
+          } else {
+            const entry = formatInitialValues({ desiredOrder });
+            addArrayInObj({ obj: entries, key: groupName, value: entry });
+          }
+        }
+      }
+    });
+  }
+  if (merch) {
+    //  iterate initial values
+    Object.keys(merch).forEach((value) => {
+      if (merch[value] && addEntry[value]) {
+        const { desiredOrder, groupName } = addEntry[value];
+        if (groupName) {
+          if (merch[groupName].length > 0) {
+            merch[groupName].forEach((m) => {
+              const entry = formatInitialValues({ desiredOrder, values: m });
               addArrayInObj({ obj: entries, key: groupName, value: entry });
             });
           } else {
