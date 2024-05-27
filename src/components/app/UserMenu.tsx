@@ -1,6 +1,6 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useState } from "react";
-import { nexiousAuthMenu } from "@data/nexious.json";
+import { nexiousAuthMenu, nexiousMenu } from "@data/nexious.json";
 import { Navbar } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
 import { MenuProp } from "app-types";
@@ -18,7 +18,6 @@ const UserMenu = () => {
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false });
   const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);
 
-  if (!accessToken) return <div />;
   const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
 
   const handleClick = (item: keyof ActiveUserMenu | null) => {
@@ -42,7 +41,7 @@ const UserMenu = () => {
       )}
       <Navbar
         show={{ isActive: active && activeMenu[active] }}
-        menu={nexiousAuthMenu}
+        menu={accessToken ? nexiousAuthMenu : nexiousMenu}
         includeHome
         click={(e: MenuProp) => navigate(`/${e.link}`)}
         onHomeClick={() => navigate("/")}
