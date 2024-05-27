@@ -14,7 +14,6 @@ import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
 import { Button } from "nexious-library/@nxs-atoms";
-// import AppInProgress from "@components/app/AppInProgress";
 import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
@@ -81,7 +80,6 @@ const AppSettings = () => {
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
-      {/* {nav === "store" && <AppInProgress />} */}
       {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (

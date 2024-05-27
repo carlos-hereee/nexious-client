@@ -9,16 +9,24 @@ import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 import { paymentMethods } from "@data/nexious.json";
 
 const Checkout = () => {
-  const { cart, updateCart, onCheckOutSession } = useContext(ServicesContext);
+  const { cart, updateCart, onCheckOutSession, onStoreCheckout } = useContext(ServicesContext);
   const navigate = useNavigate();
   const [total, setTotal] = useState(0);
   const [storeIdx, setStore] = useState(0);
   const [active, setActive] = useState<CartProps>();
+  const [paymentTypes, setPaymentTypes] = useState(paymentMethods);
 
   useEffect(() => {
     if (cart && cart.length > 0) {
+      let methods = [...paymentMethods];
+      // if stripe is not active remove as option
+      if (!cart[storeIdx].isStripeActive) methods = methods.filter((method) => method.type !== "visa/credit");
+      // set active store
       setActive(cart[storeIdx]);
+      // set total for current store
       setTotal(formatTotal(cart[storeIdx].merch));
+      // update payment method types
+      setPaymentTypes(methods);
     }
   }, [storeIdx]);
 
@@ -52,7 +60,7 @@ const Checkout = () => {
     if (active) {
       if (data.type === "visa/credit") onCheckOutSession(active);
       // TODO ADD REQUEST FOR INSTORE PAYMENTS
-      // if (data.type === "store") onCheckOutSession(active);
+      if (data.type === "store") onStoreCheckout(active);
     }
   };
   return (
@@ -80,7 +88,7 @@ const Checkout = () => {
           <div className="container">
             <h2 className="heading">Total:</h2>
             <Total total={total} />
-            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} />
+            <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
           </div>
         </div>
       ) : (

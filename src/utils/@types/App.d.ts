@@ -54,6 +54,7 @@ declare module "app-types" {
     storeId: string;
     accountId: string;
     onBoardingRequired?: string;
+    isStripeActive?: string;
     title?: string;
     hero?: string;
     currency?: string;

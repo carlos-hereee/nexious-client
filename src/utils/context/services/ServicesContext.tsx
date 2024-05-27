@@ -8,6 +8,7 @@ import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
+import { checkoutStoreSession } from "./request/checkoutStoreSession";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
 // import { filter } from "./helpers/filter";
@@ -34,9 +35,10 @@ export const ServicesState = ({ children }: ChildProps) => {
   const submitOrder = useCallback((cart: CartProps[]) => {
     requestSecret({ cart, dispatch });
   }, []);
-  const onCheckOutSession = useCallback((cart: CartProps) => {
-    checkOutSession({ sessionCart: cart, dispatch });
-  }, []);
+  // stripe checkout session
+  const onCheckOutSession = useCallback((cart: CartProps) => checkOutSession({ sessionCart: cart, dispatch }), []);
+  // store checkout
+  const onStoreCheckout = useCallback((cart: CartProps) => checkoutStoreSession({ sessionCart: cart, dispatch }), []);
   const confirmIntent = useCallback((sessionId: string) => {
     confirmCheckoutIntent({ dispatch, sessionId });
   }, []);
@@ -51,6 +53,7 @@ export const ServicesState = ({ children }: ChildProps) => {
       submitOrder,
       onCheckOutSession,
       confirmIntent,
+      onStoreCheckout,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

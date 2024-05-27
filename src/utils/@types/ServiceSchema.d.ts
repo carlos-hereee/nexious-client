@@ -48,6 +48,7 @@ declare module "services-context" {
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
     onCheckOutSession: (cart: CartProps) => void;
+    onStoreCheckout: (cart: CartProps) => void;
     confirmIntent: (sessionId: string) => void;
   }
   export interface ServicesDispatchProps {

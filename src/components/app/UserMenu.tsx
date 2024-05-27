@@ -35,7 +35,7 @@ const UserMenu = () => {
       {!activeMenu.user && (
         <IconButton
           icon={{ icon: "checkout", size: "3x" }}
-          onClick={() => navigate("/checkout")}
+          onClick={() => merchCount > 0 && navigate("/checkout")}
           ping={merchCount > 0 ? merchCount : undefined}
         />
       )}
