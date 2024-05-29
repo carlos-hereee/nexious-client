@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { AdminContext } from "@context/admin/AdminContext";
-import { Button } from "nexious-library/@nxs-atoms";
-import DeleteAppDialog from "./dialog/DeleteAppDialog";
+import { Button } from "nexious-library";
+import DeleteAppDialog from "@components/app/dialog/DeleteAppDialog";
 
 const DangerZone = () => {
   const { appId } = useContext(AppContext);

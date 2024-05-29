@@ -15,7 +15,7 @@ const App = ({ children }: ChildProps) => {
   const { activeLogo, activeMenu, activeAppName, activeMedia, themeList, isLoading: loadingApp } = useContext(AppContext);
   const navigate = useNavigate();
 
-  if (authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
+  if (authErrors && authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
   // if (isDev) return <AppSettings />;

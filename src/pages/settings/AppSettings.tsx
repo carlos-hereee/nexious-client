@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { AdminContext } from "@context/admin/AdminContext";
-import DangerZone from "@components/app/DangerZone";
 import MediaContainer from "@components/app/containers/MediaContainer";
 import PagesContainer from "@components/app/containers/PagesContainer";
 import PageDialog from "@components/app/dialog/PageDialog";
@@ -13,8 +12,9 @@ import AppDialog from "@components/app/dialog/AppDialog";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
-import { Button } from "nexious-library/@nxs-atoms";
+import { Button } from "nexious-library";
 import StoreContainer from "@components/app/containers/StoreContainer";
+import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
   const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, store } = useContext(AppContext);
