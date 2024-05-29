@@ -1,10 +1,10 @@
-import { ServicesContext } from "@context/services/ServicesContext";
+import { StoreContext } from "@context/store/StoreContext";
 import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Loading } from "nexious-library";
 
 const CheckoutSuccess = () => {
-  const { confirmIntent, stripeConfirmation, isLoading } = useContext(ServicesContext);
+  const { confirmIntent, stripeConfirmation, isLoading } = useContext(StoreContext);
   const { search } = useLocation();
 
   // console.log("stripeConfirmation :>> ", stripeConfirmation);

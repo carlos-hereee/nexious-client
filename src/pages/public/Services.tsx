@@ -1,11 +1,11 @@
 // import { useContext } from "react";
 // import { AppContext } from "@context/app/AppContext";
 // import Container from "@components/app/Container";
-// import { ServicesContext } from "@context/services/ServicesContext";
+// import { StoreContext } from "@context/store/StoreContext";
 
 // const Services = () => {
 //   const { services } = useContext(AppContext);
-//   const { filtered, filter, isFiltered, cart } = useContext(ServicesContext);
+//   const { filtered, filter, isFiltered, cart } = useContext(StoreContext);
 //   return (
 //     <Container
 //       data={services}

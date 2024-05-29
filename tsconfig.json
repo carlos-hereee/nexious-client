@@ -29,7 +29,7 @@
         "utils/formatters/*"
       ],
       "@actions/*": [
-        "utils/@types/actions/*"
+        "@types/actions/*"
       ],
       "@axios/*": [
         "utils/axios/*"
@@ -41,10 +41,10 @@
         "pages/*"
       ],
       "@types/*": [
-        "utils/types/*"
+        "@types/*"
       ],
       "@data/*": [
-        "utils/data/*"
+        "data/*"
       ]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "forceConsistentCasingInFileNames": true,

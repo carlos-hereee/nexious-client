@@ -11,6 +11,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   if (!updatePhase) throw Error("updatePhase is required");
   const { store, appLink } = useContext(AppContext);
 
+  console.log("store :>> ", store);
   if (!store || !store.storeId) {
     return (
       <div className="container">

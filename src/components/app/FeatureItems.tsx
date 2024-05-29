@@ -1,12 +1,12 @@
 // import { useContext } from "react";
-// import { ServicesContext } from "@context/services/ServicesContext";
+// import { StoreContext } from "@context/store/StoreContext";
 // import { AppContext } from "@context/app/AppContext";
 // import { useNavigate } from "react-router-dom";
 // import { CartRow } from "nexious-library/@nxs-molecules";
 
 // const FeatureItems = () => {
 //   // const {  } = useContext(AppContext);
-//   const { setActive, services } = useContext(ServicesContext);
+//   const { setActive, services } = useContext(StoreContext);
 //   const navigate = useNavigate();
 
 //   const handleClick = (data) => {

@@ -3,13 +3,13 @@ import { useContext, useEffect } from "react";
 import { MerchCard } from "nexious-library/@nxs-organism";
 import { Hero } from "nexious-library/@nxs-molecules";
 import { MerchProps } from "services-context";
-import { ServicesContext } from "@context/services/ServicesContext";
+import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
-  const { cart, addToCart, updateCart } = useContext(ServicesContext);
+  const { cart, addToCart, updateCart } = useContext(StoreContext);
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
 

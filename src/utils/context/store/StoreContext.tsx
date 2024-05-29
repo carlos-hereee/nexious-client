@@ -1,9 +1,9 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
-import servicesState from "@data/servicesState.json";
-import { CartProps, MerchProps, ServiceSchema } from "services-context";
+import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
-import { reducer } from "./ServicesReducer";
+import { CartProps, MerchProps, ServiceSchema } from "store-context";
+import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
@@ -20,9 +20,9 @@ import { checkoutStoreSession } from "./request/checkoutStoreSession";
 // import { setActive } from "./helpers/setActive";
 // import { updateServices } from "./helpers/updateServices";
 
-export const ServicesContext = createContext<ServiceSchema>({} as ServiceSchema);
-export const ServicesState = ({ children }: ChildProps) => {
-  const [state, dispatch] = useReducer(reducer, servicesState);
+export const StoreContext = createContext<ServiceSchema>({} as ServiceSchema);
+export const StoreState = ({ children }: ChildProps) => {
+  const [state, dispatch] = useReducer(reducer, storeState);
 
   const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
     onAddToCart({ dispatch, cart, merch, store });
@@ -73,11 +73,11 @@ export const ServicesState = ({ children }: ChildProps) => {
       // setTotal: (a) => setTotal(dispatch, a),
     };
   }, [state.isLoading, state.cart, state.stripeSecret, state.error]);
-  return <ServicesContext.Provider value={servicesValues}>{children}</ServicesContext.Provider>;
+  return <StoreContext.Provider value={servicesValues}>{children}</StoreContext.Provider>;
 };
 
 // return (
-//   <ServicesContext.Provider
+//   <StoreContext.Provider
 //     value={{
 //       isLoading: state.isLoading,
 //       isFiltered: state.isFiltered,
@@ -99,4 +99,4 @@ export const ServicesState = ({ children }: ChildProps) => {
 //     }}
 //   >
 //     {children}
-//   </ServicesContext.Provider>
+//   </StoreContext.Provider>

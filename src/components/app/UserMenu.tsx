@@ -5,7 +5,7 @@ import { Navbar } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
 import { MenuProp } from "app-types";
 import { IconButton } from "nexious-library";
-import { ServicesContext } from "@context/services/ServicesContext";
+import { StoreContext } from "@context/store/StoreContext";
 
 interface ActiveUserMenu {
   user: boolean;
@@ -13,7 +13,7 @@ interface ActiveUserMenu {
 }
 const UserMenu = () => {
   const { accessToken, theme } = useContext(AuthContext);
-  const { cart } = useContext(ServicesContext);
+  const { cart } = useContext(StoreContext);
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false });
   const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);

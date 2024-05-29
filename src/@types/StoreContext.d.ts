@@ -1,4 +1,4 @@
-declare module "services-context" {
+declare module "store-context" {
   import { StoreProps } from "app-types";
   import { UserSchema } from "auth-context";
   import { SERVICE_ACTIONS } from "@actions/ServiceActions";
