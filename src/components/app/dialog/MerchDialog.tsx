@@ -5,7 +5,7 @@ import { Dialog } from "nexious-library";
 // import AddMerch from "../store/AddMerch";
 // import BuildStore from "../store/BuildStore";
 // import EditStore from "../store/EditStore";
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 import EditMerch from "../forms/store/EditMerch";
 
 const MerchDialog = ({ onClose, formValues }: DialogProps) => {

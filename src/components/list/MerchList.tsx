@@ -1,7 +1,7 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
 import MerchDialog from "@components/app/dialog/MerchDialog";
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 import { ItemDetail, Hero } from "nexious-library";
 import { Button, Spinner } from "nexious-library/@nxs-atoms";
 import hint from "@data/data.json";

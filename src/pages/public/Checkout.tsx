@@ -3,7 +3,7 @@ import { Button } from "nexious-library";
 import { Cart, PaymentMethods, Total } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "@context/store/StoreContext";
-import { CartProps, MerchProps, PaymentMethod } from "services-context";
+import { CartProps, MerchProps, PaymentMethod } from "store-context";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 // import { AppContext } from "@context/app/AppContext";
 import { paymentMethods } from "@data/nexious.json";

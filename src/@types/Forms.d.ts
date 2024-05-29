@@ -1,5 +1,5 @@
 declare module "app-forms" {
-  import { MerchProps } from "services-context";
+  import { MerchProps } from "store-context";
   import { AppListProps } from "app-context";
   import {
     AssetProps,

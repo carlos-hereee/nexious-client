@@ -1,5 +1,5 @@
 declare module "app-types" {
-  import { MerchProps } from "services-context";
+  import { OrderShema, MerchProps } from "store-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
   export interface ChildProps {
@@ -61,6 +61,9 @@ declare module "app-types" {
     email?: string;
     body?: string;
     inventory: MerchProps[];
+    pendingOrders?: OrderShema[];
+    completedOrders?: OrderShema[];
+    inCompleteOrders?: OrderShema[];
   }
   export interface AppListProps {
     appName: string;

@@ -1,5 +1,5 @@
 declare module "app-context" {
-  import { MerchProps } from "services-context";
+  import { MerchProps } from "store-context";
   import { UserSchema } from "auth-context";
   import { AppAssets } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";

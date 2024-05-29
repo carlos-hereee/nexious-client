@@ -17,7 +17,7 @@ import { Button } from "nexious-library/@nxs-atoms";
 import StoreContainer from "@components/app/containers/StoreContainer";
 
 const AppSettings = () => {
-  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl } = useContext(AppContext);
+  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, store } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("app");
@@ -48,7 +48,7 @@ const AppSettings = () => {
     setShow({ ...show, [name]: true });
     setStatus(stat);
   };
-
+  // console.log("store :>> ", store);
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
   // TODO: UPDATE APP SETTING  NAVIGATION
@@ -71,6 +71,13 @@ const AppSettings = () => {
             key={value}
             label={label}
             theme={nav === value ? activeTheme : theme}
+            ping={
+              value === "store"
+                ? store.pendingOrders && store.pendingOrders?.length > 0
+                  ? store.pendingOrders.length
+                  : undefined
+                : undefined
+            }
             onClick={() => setNav(value as keyof AppDialogProps)}
           />
         ))}

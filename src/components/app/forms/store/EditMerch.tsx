@@ -4,7 +4,7 @@ import { formatInitialEntryValues, formatInitialValues } from "@formatters/forma
 import { AppValues } from "app-forms";
 import { Button, ButtonCancel, Form } from "nexious-library";
 import { useContext, useState } from "react";
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 
 const EditMerch = (props: { initValues: MerchProps }) => {
   const { merchForm, editMerch, deleteMerchItem, sectionEntries } = useContext(AdminContext);

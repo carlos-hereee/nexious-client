@@ -1,4 +1,4 @@
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 
 export const formatPenniesToDollars = (cost: number) => cost / 100;
 export const formatDollarsToPennies = (cost: number) => cost * 100;

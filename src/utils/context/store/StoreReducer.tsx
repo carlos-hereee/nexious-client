@@ -1,5 +1,5 @@
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
-import { ServiceActionProps as ActionProps, ServiceStateProps as StateProps } from "services-context";
+import { ServiceActionProps as ActionProps, ServiceStateProps as StateProps } from "store-context";
 
 export const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {

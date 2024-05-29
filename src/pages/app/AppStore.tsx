@@ -2,7 +2,7 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
 import { MerchCard } from "nexious-library/@nxs-organism";
 import { Hero } from "nexious-library/@nxs-molecules";
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 import UserMenu from "@components/app/UserMenu";
