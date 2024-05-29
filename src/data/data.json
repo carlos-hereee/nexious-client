@@ -39,27 +39,6 @@
     "forgotPassword": ""
   },
   "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
-  "noInventoryHint": {
-    "title": "Hint!",
-    "body": "Your inventory is empty click on + add merch to add items to your inventory"
-  },
-
-  "mediaHint": {
-    "title": "Hint!",
-    "body": "Click on social media icon to edit details."
-  },
-  "noMediaHint": {
-    "title": "Hint!",
-    "body": "Click on + add social media to add your socials."
-  },
-  "merchShowHint": {
-    "title": "Hint!",
-    "body": "Click on inventory items to edit details."
-  },
-  "merchHideHint": {
-    "title": "Hint!",
-    "body": "Click on show inventory to view inventory. Then you can click on inventory items and edit them."
-  },
   "calendarData": {
     "frequency": [
       { "value": "Weekly", "name": "Weekly", "label": "Weekly", "uid": "Weekly" },
@@ -111,5 +90,14 @@
       { "value": "11:00 pm", "name": "11:00", "label": "11:00 pm", "uid": "23:00" },
       { "value": "12:00 pm", "name": "12:00", "label": "12:00 pm", "uid": "24:00" }
     ]
+  },
+  "forms": {
+    "userInformation": {
+      "desiredOrder": ["name", "email", "phone"],
+      "labels": { "name": "Your name", "email": "Email", "phone": "Phone number" }
+    }
+  },
+  "errors": {
+    "clientInformationRequired": "client information is required to continue"
   }
 }

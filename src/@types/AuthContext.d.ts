@@ -23,6 +23,7 @@ declare module "auth-context" {
     username: string;
     email?: string;
     nickname?: string;
+    name?: string;
     languageId?: string;
     phone?: string;
     subscriptions?: AppListProps[];

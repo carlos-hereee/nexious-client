@@ -2,7 +2,7 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
 import { SERVICE_ACTIONS } from "@actions/ServiceActions";
-import { CartProps, MerchProps, ServiceSchema } from "store-context";
+import { CartProps, MerchProps, ServiceSchema, StoreCheckout } from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
@@ -28,9 +28,8 @@ export const StoreState = ({ children }: ChildProps) => {
     onAddToCart({ dispatch, cart, merch, store });
   }, []);
 
-  const updateCart = useCallback((cart: CartProps[]) => {
-    dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart });
-  }, []);
+  const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart }), []);
+  const setLoading = useCallback((loading: boolean) => dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: loading }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => {
     requestSecret({ cart, dispatch });
@@ -38,7 +37,7 @@ export const StoreState = ({ children }: ChildProps) => {
   // stripe checkout session
   const onCheckOutSession = useCallback((cart: CartProps) => checkOutSession({ sessionCart: cart, dispatch }), []);
   // store checkout
-  const onStoreCheckout = useCallback((cart: CartProps) => checkoutStoreSession({ sessionCart: cart, dispatch }), []);
+  const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
   const confirmIntent = useCallback((sessionId: string) => {
     confirmCheckoutIntent({ dispatch, sessionId });
   }, []);
@@ -55,6 +54,7 @@ export const StoreState = ({ children }: ChildProps) => {
       onCheckOutSession,
       confirmIntent,
       onStoreCheckout,
+      setLoading,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

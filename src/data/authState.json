@@ -33,7 +33,7 @@
     },
     "types": { "username": "text", "email": "text" },
     "fieldHeading": {},
-    "desiredOrder": [""],
+    "desiredOrder": ["username", "email", "phone", "nickname"],
     "heading": ""
   },
   "signUpForm": {

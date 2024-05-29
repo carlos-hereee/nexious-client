@@ -1,4 +1,5 @@
 declare module "app-forms" {
+  import { UserSchema } from "auth-context";
   import { MerchProps } from "store-context";
   import { AppListProps } from "app-context";
   import {
@@ -136,6 +137,7 @@ declare module "app-forms" {
     landing?: PageProps;
     merch?: MerchProps;
     page?: PageProps;
+    user?: UserSchema;
     menu?: MenuProp;
     desiredOrder: string[];
   }
