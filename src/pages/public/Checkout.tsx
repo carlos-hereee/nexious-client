@@ -12,7 +12,7 @@ import CartList from "@components/list/CartList";
 import { scrollToId } from "@app/scrollToElement";
 
 const Checkout = () => {
-  const { cart, onCheckOutSession, onStoreCheckout, error, isLoading, setLoading } = useContext(StoreContext);
+  const { cart, onCheckOutSession, onStoreCheckout, error, isLoading, setLoading, order } = useContext(StoreContext);
   const { user } = useContext(AuthContext);
   const [total, setTotal] = useState(0);
   const [storeIdx, setStore] = useState(0);
@@ -38,7 +38,10 @@ const Checkout = () => {
       scrollToId("client-information", "start");
       setLoading(false);
     }
-  }, [error, isLoading]);
+    // if order was confirmed navigate to checkout success
+    if (order?.storeId) navigate("/checkout/success");
+  }, [error, isLoading, order]);
+
   // no items in cart
   if (!cart || cart.length === 0) {
     return (

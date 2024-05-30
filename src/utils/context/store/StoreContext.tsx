@@ -1,7 +1,7 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
-import { SERVICE_ACTIONS } from "@actions/ServiceActions";
+import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { CartProps, MerchProps, ServiceSchema, StoreCheckout } from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
@@ -28,8 +28,8 @@ export const StoreState = ({ children }: ChildProps) => {
     onAddToCart({ dispatch, cart, merch, store });
   }, []);
 
-  const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: SERVICE_ACTIONS.UPDATE_CART, payload: cart }), []);
-  const setLoading = useCallback((loading: boolean) => dispatch({ type: SERVICE_ACTIONS.IS_LOADING, payload: loading }), []);
+  const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
+  const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => {
     requestSecret({ cart, dispatch });
@@ -46,6 +46,7 @@ export const StoreState = ({ children }: ChildProps) => {
       isLoading: state.isLoading,
       cart: state.cart,
       error: state.error,
+      order: state.order,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
       addToCart,

@@ -1,18 +1,20 @@
-import { SERVICE_ACTIONS } from "@actions/ServiceActions";
-import { ServiceActionProps as ActionProps, ServiceStateProps as StateProps } from "store-context";
+import { STORE_ACTIONS } from "@actions/ServiceActions";
+import { ServiceActionProps as ActionProps, StoreStateProps as StateProps } from "store-context";
 
 export const reducer = (state: StateProps, action: ActionProps): StateProps => {
   switch (action.type) {
-    case SERVICE_ACTIONS.IS_LOADING:
+    case STORE_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
-    case SERVICE_ACTIONS.UPDATE_CART:
+    case STORE_ACTIONS.UPDATE_CART:
       return { ...state, cart: action.payload };
-    case SERVICE_ACTIONS.SET_STRIPE_SECRET:
+    case STORE_ACTIONS.SET_STRIPE_SECRET:
       return { ...state, stripeSecret: action.payload };
-    case SERVICE_ACTIONS.SET_ERROR:
+    case STORE_ACTIONS.SET_ERROR:
       return { ...state, error: action.payload };
-    case SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION:
+    case STORE_ACTIONS.SET_STRIPE_CONFIRMATION:
       return { ...state, stripeConfirmation: action.payload };
+    case STORE_ACTIONS.SET_STORE_ORDER:
+      return { ...state, order: action.payload };
     // case "UPDATE_BOOKABLE":
     //   return { ...state, isLoading: false, bookable: action.payload };
     // case "UPDATE_BOOKED":
@@ -49,4 +51,4 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
 //     cart: state.cart.map((c) => (c.uid === action.payload.uid ? action.payload : c)),
 //   };
 // };
-// type ReducerProps = (state: ServiceStateProps, action: ServiceActionProps) => void;
+// type ReducerProps = (state: StoreStateProps, action: ServiceActionProps) => void;

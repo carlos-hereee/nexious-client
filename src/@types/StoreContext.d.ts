@@ -1,7 +1,7 @@
 declare module "store-context" {
   import { StoreProps } from "app-types";
   import { UserSchema } from "auth-context";
-  import { SERVICE_ACTIONS } from "@actions/ServiceActions";
+  import { STORE_ACTIONS } from "@actions/ServiceActions";
 
   export interface MerchProps {
     cost: number;
@@ -35,11 +35,12 @@ declare module "store-context" {
     customer: null | unknown;
     // intent: string;
   }
-  export interface ServiceStateProps {
+  export interface StoreStateProps {
     isLoading: boolean;
     stripeSecret: string;
     error: string;
     stripeConfirmation: StripeConfirmationProps;
+    order?: OrderShema;
     cart: CartProps[];
   }
   export interface CartProps extends StoreProps {
@@ -54,7 +55,7 @@ declare module "store-context" {
     sessionCart: CartProps;
     user: UserSchema;
   }
-  export interface ServiceSchema extends ServiceStateProps {
+  export interface ServiceSchema extends StoreStateProps {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
@@ -74,11 +75,12 @@ declare module "store-context" {
     sessionCart?: CartProps;
   }
   export type ServiceActionProps =
-    | { type: SERVICE_ACTIONS.IS_LOADING; payload: boolean }
-    | { type: SERVICE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
-    | { type: SERVICE_ACTIONS.SET_STRIPE_SECRET | SERVICE_ACTIONS.SET_ERROR; payload: string }
+    | { type: STORE_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: STORE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
+    | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
+    | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderShema }
     | {
-        type: SERVICE_ACTIONS.ADD_TO_CART | SERVICE_ACTIONS.REMOVE_FROM_CART | SERVICE_ACTIONS.UPDATE_CART;
+        type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
         payload: CartProps[];
       };
 }
