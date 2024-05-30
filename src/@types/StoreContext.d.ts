@@ -16,10 +16,17 @@ declare module "store-context" {
     catalog: string[];
     uid: string;
   }
-  export interface OrderShema {
+  export interface OrderStoreInfo {
     storeId: string;
+    email: string;
+    location: string;
+    location2?: string;
+  }
+  export interface OrderShema {
+    store: OrderStoreInfo;
     status: "pending" | "completed" | "accepted" | "declined";
     client: ClientSchema;
+    paymentMethod: "in-store" | "stripe";
     merch: OrderMerchSchema[];
   }
   export interface PaymentMethod {

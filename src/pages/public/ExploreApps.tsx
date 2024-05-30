@@ -10,21 +10,25 @@ const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
     const featuredList = appList.slice(0, 5);
     if (featuredList.length === 0) return <div />;
     return (
-      <div className="card-container">
+      <>
         {heading && <h2 className="heading">{heading}</h2>}
-        {featuredList.map((app) => (
-          <AppCard app={app} key={app.appId} theme="highlight" />
-        ))}
-      </div>
+        <div className="card-container">
+          {featuredList.map((app) => (
+            <AppCard app={app} key={app.appId} theme="highlight" />
+          ))}
+        </div>
+      </>
     );
   }
   return (
-    <div className="card-container">
-      <h2 className="heading">Featured Apps</h2>
-      {appList.map((app) => (
-        <AppCard app={app} key={app.appId} theme="highlight" />
-      ))}
-    </div>
+    <>
+      <h2 className="heading">Explore</h2>
+      <div className="card-container">
+        {appList.map((app) => (
+          <AppCard app={app} key={app.appId} theme="highlight" />
+        ))}
+      </div>
+    </>
   );
 };
 export default ExploreApps;

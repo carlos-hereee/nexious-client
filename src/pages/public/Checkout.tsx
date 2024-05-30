@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { StoreContext } from "@context/store/StoreContext";
 import { CartProps, PaymentMethod } from "store-context";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
-// import { AppContext } from "@context/app/AppContext";
 import { paymentMethods } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import UserInformation from "@components/form/UserInformation";
@@ -39,7 +38,7 @@ const Checkout = () => {
       setLoading(false);
     }
     // if order was confirmed navigate to checkout success
-    if (order?.storeId) navigate("/checkout/success");
+    if (order?.store.storeId) navigate("/checkout/success");
   }, [error, isLoading, order]);
 
   // no items in cart
