@@ -165,6 +165,7 @@ declare module "app-types" {
     | "phase-one"
     | "phase-two"
     | "phase-three"
+    | "phase-view-order-pending"
     | "phase-edit";
   export interface AppDialogProps {
     pages: boolean;

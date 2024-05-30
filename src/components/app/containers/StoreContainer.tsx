@@ -29,6 +29,9 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Store url:" labelLayout="bolden">
         <CopyButton data={formatStoreUrl(appLink, store.name)} />
       </ItemDetail>
+      <ItemDetail label="Pending orders:" labelLayout="bolden">
+        <Button label="View orders" onClick={() => updatePhase("phase-view-order-pending")} />
+      </ItemDetail>
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />
       </ItemDetail>
