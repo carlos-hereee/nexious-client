@@ -70,6 +70,7 @@ declare module "store-context" {
     onStoreCheckout: (data: StoreCheckout) => void;
     confirmIntent: (sessionId: string) => void;
     setLoading: (state: boolean) => void;
+    setOrder: (state?: OrderShema) => void;
   }
   export interface ServicesDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -85,7 +86,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.IS_LOADING; payload: boolean }
     | { type: STORE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
     | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
-    | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderShema }
+    | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderShema | undefined }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
         payload: CartProps[];

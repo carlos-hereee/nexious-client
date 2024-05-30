@@ -1,8 +1,9 @@
 import { StoreContext } from "@context/store/StoreContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "nexious-library";
 import ExploreApps from "@pages/public/ExploreApps";
+import { OrderShema } from "store-context";
 
 const ContinueShopping = () => {
   const { cart } = useContext(StoreContext);
@@ -21,8 +22,9 @@ const ContinueShopping = () => {
 };
 
 const CheckoutSuccess = () => {
-  const { confirmIntent, stripeConfirmation, order, cart, updateCart } = useContext(StoreContext);
+  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
   const { search } = useLocation();
+  const [orderData, setOrderData] = useState<OrderShema | undefined>();
 
   useEffect(() => {
     if (search) confirmIntent(search);
@@ -32,6 +34,8 @@ const CheckoutSuccess = () => {
         const removal = cart.filter((c) => c.storeId !== order.store.storeId);
         updateCart(removal);
       }
+      setOrderData(order);
+      setOrder();
     }
   }, [order, search]);
 
@@ -50,16 +54,20 @@ const CheckoutSuccess = () => {
     );
   }
   // if order checkout was successful
-  if (order?.paymentMethod === "in-store") {
+  if (orderData?.paymentMethod === "in-store") {
     // TODO: address click navigation
     return (
       <div className="primary-container">
-        <h1 className="heading">Thanks for your order! {order.client.name}</h1>
+        <h1 className="heading">Thanks for your order! {orderData.client.name}</h1>
         <p className="text-max text-center">
-          We appreciate your business! If you have any questions, please email
-          {order.store.email && <a href={`mailto:${order.store.email}`}>{order.store.email}</a>}
+          We appreciate your business! If you have any questions, please email{" "}
+          {orderData.store.email && <a href={`mailto:${orderData.store.email}`}>{orderData.store.email}</a>}
         </p>
-        <p className="text-max text-center">We look forward to seeing you here! We are located at {order.store.location}</p>
+        {orderData.store.location && (
+          <p className="text-max text-center">
+            We look forward to seeing you here! We are located at {orderData.store.location}
+          </p>
+        )}
         <ContinueShopping />
       </div>
     );
