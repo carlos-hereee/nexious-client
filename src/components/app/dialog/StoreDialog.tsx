@@ -2,14 +2,13 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
 import { useContext } from "react";
 import { Dialog } from "nexious-library";
-import { StoreContext } from "@context/store/StoreContext";
+import { AppContext } from "@context/app/AppContext";
 import AddMerch from "../forms/store/AddMerch";
 import BuildStore from "../forms/store/BuildStore";
 import EditStore from "../forms/store/EditStore";
 import UpdateStripeConfig from "../forms/store/UpdateStripeConfig";
 import DeleteStore from "../forms/store/DeleteStore";
 import ViewOrders from "../ViewOrders";
-import { AppContext } from "@context/app/AppContext";
 
 const StoreDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);

@@ -71,13 +71,7 @@ const AppSettings = () => {
             key={value}
             label={label}
             theme={nav === value ? activeTheme : theme}
-            ping={
-              value === "store"
-                ? store.pendingOrders && store.pendingOrders?.length > 0
-                  ? store.pendingOrders.length
-                  : undefined
-                : undefined
-            }
+            ping={value === "store" ? store.pendingOrders?.length || 0 : undefined}
             onClick={() => setNav(value as keyof AppDialogProps)}
           />
         ))}

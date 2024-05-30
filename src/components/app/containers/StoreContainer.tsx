@@ -11,7 +11,6 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   if (!updatePhase) throw Error("updatePhase is required");
   const { store, appLink } = useContext(AppContext);
 
-  console.log("store :>> ", store);
   if (!store || !store.storeId) {
     return (
       <div className="container">
@@ -30,7 +29,11 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         <CopyButton data={formatStoreUrl(appLink, store.name)} />
       </ItemDetail>
       <ItemDetail label="Pending orders:" labelLayout="bolden">
-        <Button label="View orders" onClick={() => updatePhase("phase-view-order-pending")} />
+        <Button
+          label="View orders"
+          onClick={() => updatePhase("phase-view-order-pending")}
+          ping={store.pendingOrders?.length}
+        />
       </ItemDetail>
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />

@@ -10,7 +10,7 @@ import AppPlayground from "./AppPlayground";
 const UserPlayground = () => {
   const [active, setActive] = useState<"apps" | "account" | "feed" | "notifications">("apps");
   const { user } = useContext(AuthContext);
-  const { welcomeMessage } = useContext(AppContext);
+  const { welcomeMessage, store } = useContext(AppContext);
   return (
     <div className="container">
       <Banner message={`${welcomeMessage} ${user.nickname ? user.nickname : user.username}`} />;
@@ -35,6 +35,7 @@ const UserPlayground = () => {
             icon={{ icon: "app", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("notifications")}
+            ping={store.pendingOrders?.length}
           />
           <IconButton
             icon={{ icon: "account", label: "Account" }}
