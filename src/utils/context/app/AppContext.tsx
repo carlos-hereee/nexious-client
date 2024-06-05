@@ -46,10 +46,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
-  const setSocialMedia = useCallback(
-    (data: MediaItemProp) => dispatch({ payload: data, type: APP_ACTIONS.SET_MEDIA_ITEM }),
-    []
-  );
+  const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
 
   const appValues = useMemo(() => {
     return {

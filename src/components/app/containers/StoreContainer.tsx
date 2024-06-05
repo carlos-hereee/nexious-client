@@ -1,6 +1,6 @@
 import { AppContext } from "@context/app/AppContext";
 import { SettingsContainer } from "app-types";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import { hints } from "@data/nexious.json";
@@ -9,18 +9,22 @@ import { ItemDetail, CopyButton, Button } from "nexious-library";
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
-  const { store, appLink } = useContext(AppContext);
-
-  if (!store || !store.storeId) {
-    return (
-      <div className="container">
-        <h2 className="heading">Store:</h2>
-        <ItemDetail label="Store details:" labelLayout="bolden">
-          <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-        </ItemDetail>
-      </div>
-    );
-  }
+  const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
+  useEffect(() => {
+    // avoid redundant request if num of merch dont match get store inventory
+    if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
+    // rerender request per store id
+  }, [store.storeId]);
+  // if (!store || !store.storeId) {
+  //   return (
+  //     <div className="container">
+  //       <h2 className="heading">Store:</h2>
+  //       <ItemDetail label="Store details:" labelLayout="bolden">
+  //         <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
+  //       </ItemDetail>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="container">

@@ -15,6 +15,7 @@ declare module "store-context" {
     hero: string;
     catalog: string[];
     uid: string;
+    thumbnail?: string;
   }
   export interface OrderStoreInfo {
     storeId: string;
@@ -27,6 +28,7 @@ declare module "store-context" {
     status: "pending" | "completed" | "accepted" | "declined";
     client: ClientSchema;
     paymentMethod: "in-store" | "stripe";
+    orderId?: string;
     merch: OrderMerchSchema[];
   }
   export interface PaymentMethod {
