@@ -1,10 +1,10 @@
 import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { axiosAuth } from "@axios/axiosAuth";
 import { AxiosError } from "axios";
-import { ServicesDispatchProps } from "store-context";
+import { StoreDispatchProps } from "store-context";
 import { errors } from "@data/data.json";
 
-export const checkoutStoreSession = async ({ dispatch, sessionCart, user }: ServicesDispatchProps) => {
+export const checkoutStoreSession = async ({ dispatch, sessionCart, user }: StoreDispatchProps) => {
   // require key variable
   if (!sessionCart) throw Error("sessionCart is required");
   dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });

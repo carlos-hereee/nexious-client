@@ -2,13 +2,14 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/ServiceActions";
-import { CartProps, MerchProps, OrderShema, ServiceSchema, StoreCheckout } from "store-context";
+import { CartProps, MerchProps, OrderSchema, ServiceSchema, StoreCheckout, StoreOrderUpdate } from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
 import { checkoutStoreSession } from "./request/checkoutStoreSession";
+import { updateOrder } from "./request/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
 // import { filter } from "./helpers/filter";
@@ -30,7 +31,7 @@ export const StoreState = ({ children }: ChildProps) => {
 
   const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
-  const setOrder = useCallback((data?: OrderShema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
+  const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => {
     requestSecret({ cart, dispatch });
@@ -42,6 +43,7 @@ export const StoreState = ({ children }: ChildProps) => {
   const confirmIntent = useCallback((sessionId: string) => {
     confirmCheckoutIntent({ dispatch, sessionId });
   }, []);
+  const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data }), []);
   const servicesValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -58,6 +60,7 @@ export const StoreState = ({ children }: ChildProps) => {
       onStoreCheckout,
       setLoading,
       setOrder,
+      handleOrderClick,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

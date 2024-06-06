@@ -1,8 +1,8 @@
 import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { axiosAuth } from "@axios/axiosAuth";
-import { ServicesDispatchProps } from "store-context";
+import { StoreDispatchProps } from "store-context";
 
-export const requestSecret = async (props: ServicesDispatchProps) => {
+export const requestSecret = async (props: StoreDispatchProps) => {
   const { dispatch, cart } = props;
   try {
     dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });

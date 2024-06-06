@@ -3,6 +3,7 @@ import { DialogProps } from "app-types";
 import { useContext, useState } from "react";
 import { Dialog } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
+import { StoreContext } from "@context/store/StoreContext";
 import AddMerch from "../forms/store/AddMerch";
 import BuildStore from "../forms/store/BuildStore";
 import EditStore from "../forms/store/EditStore";
@@ -12,7 +13,8 @@ import ViewOrders from "../ViewOrders";
 
 const StoreDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
-  const { store } = useContext(AppContext);
+  const { store, appId } = useContext(AppContext);
+  const { handleOrderClick } = useContext(StoreContext);
   const [superSeed, setSuperSeed] = useState(false);
   const [closePage, setClosePage] = useState(false);
 
@@ -24,6 +26,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
     else setClosePage(true);
   };
   const handleSuperSeed = (d: boolean) => setSuperSeed(d);
+
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={handleClose}>
       {/* TODO add preview store */}
@@ -36,6 +39,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           heading="Pending Orders"
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
+          onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
         />
       )}
       {status === "configuration" && <UpdateStripeConfig />}

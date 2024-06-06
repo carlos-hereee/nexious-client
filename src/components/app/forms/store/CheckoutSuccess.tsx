@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "nexious-library";
 import ExploreApps from "@pages/public/ExploreApps";
-import { OrderShema } from "store-context";
+import { OrderSchema } from "store-context";
 
 const ContinueShopping = () => {
   const { cart } = useContext(StoreContext);
@@ -24,7 +24,7 @@ const ContinueShopping = () => {
 const CheckoutSuccess = () => {
   const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
   const { search } = useLocation();
-  const [orderData, setOrderData] = useState<OrderShema | undefined>();
+  const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
   useEffect(() => {
     if (search) confirmIntent(search);

@@ -1,8 +1,8 @@
 import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { isDev } from "@config";
-import { ServicesDispatchProps } from "store-context";
+import { StoreDispatchProps } from "store-context";
 
-export const onAddToCart = ({ dispatch, merch, cart, store }: ServicesDispatchProps) => {
+export const onAddToCart = ({ dispatch, merch, cart, store }: StoreDispatchProps) => {
   // require key variable
   if (!dispatch) throw Error("dispatch is required");
   if (!merch) throw Error("merch is required");

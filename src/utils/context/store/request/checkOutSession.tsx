@@ -1,8 +1,8 @@
 import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { axiosAuth } from "@axios/axiosAuth";
-import { ServicesDispatchProps } from "store-context";
+import { StoreDispatchProps } from "store-context";
 
-export const checkOutSession = async ({ dispatch, sessionCart }: ServicesDispatchProps) => {
+export const checkOutSession = async ({ dispatch, sessionCart }: StoreDispatchProps) => {
   // require key variable
   if (!sessionCart) throw Error("sessionCart is required");
   try {

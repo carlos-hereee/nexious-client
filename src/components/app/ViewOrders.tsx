@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { OrderShema } from "store-context";
+import { OrderSchema } from "store-context";
 import { Navigation, Button, Loading } from "nexious-library";
 import OrderDetails from "./OrderDetails";
 // import { StoreContext } from "@context/store/StoreContext";
@@ -7,22 +7,22 @@ import OrderDetails from "./OrderDetails";
 type MenuOptions = ["#", "status", "client", "payment type", "number of items", "location"] | string[];
 type OrderOptions = "decline" | "complete";
 interface ViewOrdersProps {
-  orders: OrderShema[];
+  orders: OrderSchema[];
   heading?: string;
   closePage?: boolean;
   menus?: MenuOptions;
-  onOrderClick?: (order: OrderShema, option: string) => void;
+  onOrderClick?: (order: OrderSchema, option: OrderOptions) => void;
   handleSuperSeed?: (e: boolean) => void;
 }
 
 const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, closePage }: ViewOrdersProps) => {
   const [active, setActive] = useState<string>("");
   const [activeMenu, setMenu] = useState<MenuOptions>();
-  const [activeOrder, setActiveOrder] = useState<OrderShema | undefined>();
+  const [activeOrder, setActiveOrder] = useState<OrderSchema | undefined>();
 
   useEffect(() => {
     if (active) {
-      // sort orders with active
+      // TODO: sort orders with active
       // const ordersList = [...orders];
       // console.log("ordersList :>> ", ordersList);
     } else if (menus && menus.length > 0) {
@@ -48,7 +48,7 @@ const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, clo
     return <OrderDetails order={activeOrder} onClick={handleOrderClick} />;
   }
 
-  const handleActiveOrder = (order: OrderShema) => {
+  const handleActiveOrder = (order: OrderSchema) => {
     setActiveOrder(order);
     // set secondary page to supperseed closing
     if (handleSuperSeed) handleSuperSeed(true);

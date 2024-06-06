@@ -23,14 +23,20 @@ declare module "store-context" {
     location: string;
     location2?: string;
   }
-  export interface OrderShema {
+  export interface OrderSchema {
     store: OrderStoreInfo;
     status: "pending" | "completed" | "accepted" | "declined";
     client: ClientSchema;
     paymentMethod: "in-store" | "stripe";
-    orderId?: string;
+    orderId: string;
     merch: OrderMerchSchema[];
   }
+  export type OrderOptions = "decline" | "complete";
+  export interface OrderDetailsProps {
+    order: OrderSchema;
+    onClick?: (option: OrderOptions) => void;
+  }
+
   export interface PaymentMethod {
     uid: string;
     type: "visa/credit" | "store" | "paypal";
@@ -49,7 +55,7 @@ declare module "store-context" {
     stripeSecret: string;
     error: string;
     stripeConfirmation: StripeConfirmationProps;
-    order?: OrderShema;
+    order?: OrderSchema;
     cart: CartProps[];
   }
   export interface CartProps extends StoreProps {
@@ -64,6 +70,11 @@ declare module "store-context" {
     sessionCart: CartProps;
     user: UserSchema;
   }
+  export interface StoreOrderUpdate {
+    order: OrderSchema;
+    option: OrderOptions;
+    appId: string;
+  }
   export interface ServiceSchema extends StoreStateProps {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
@@ -72,13 +83,17 @@ declare module "store-context" {
     onStoreCheckout: (data: StoreCheckout) => void;
     confirmIntent: (sessionId: string) => void;
     setLoading: (state: boolean) => void;
-    setOrder: (state?: OrderShema) => void;
+    setOrder: (state?: OrderSchema) => void;
+    handleOrderClick: (order: StoreOrderUpdate) => void;
   }
-  export interface ServicesDispatchProps {
+  export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
     merch?: MerchProps;
     user?: UserSchema;
     sessionId?: string;
+    appId?: string;
+    option?: OrderOptions;
+    order?: OrderSchema;
     store?: StoreProps;
     payment?: { [key: string]: string };
     cart?: CartProps[];
@@ -88,7 +103,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.IS_LOADING; payload: boolean }
     | { type: STORE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
     | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
-    | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderShema | undefined }
+    | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderSchema | undefined }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
         payload: CartProps[];
