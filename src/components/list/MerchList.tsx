@@ -2,9 +2,8 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
 import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "store-context";
-import { ItemDetail, Hero } from "nexious-library";
-import { Button, Spinner } from "nexious-library/@nxs-atoms";
-import hint from "@data/data.json";
+import { ItemDetail, Hero, Button, Spinner } from "nexious-library";
+import { hints } from "@data/nexious.json";
 
 const MerchList = () => {
   const { store, getStoreInventory, loadingState, inventory } = useContext(AppContext);
@@ -21,16 +20,16 @@ const MerchList = () => {
     if (inventory.length <= 0) getStoreInventory(store.storeId);
     setShow({ ...show, inventory: true });
   };
-  console.log("inventory :>> ", inventory);
+  // console.log("inventory :>> ", inventory);
   if (!store.inventory || store.inventory.length === 0) {
     return (
-      <ItemDetail label="Inventory:" labelLayout="bolden" hint={hint.noInventoryHint}>
+      <ItemDetail label="Inventory:" labelLayout="bolden" hint={hints.noInventoryHint}>
         <strong>Inventory empty</strong>
       </ItemDetail>
     );
   }
   return (
-    <ItemDetail label="Inventory:" labelLayout="bolden" hint={show ? hint.merchShowHint : hint.merchHideHint}>
+    <ItemDetail label="Inventory:" labelLayout="bolden" hint={show ? hints.merchShowHint : hints.merchHideHint}>
       {show.inventory ? (
         <div className="container">
           <Button

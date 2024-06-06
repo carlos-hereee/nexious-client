@@ -254,3 +254,32 @@ header {
   justify-content: center;
   grid-template-columns: 1fr 2fr 1fr;
 }
+
+.order-row {
+  width: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-content: center;
+}
+.order-row:hover {
+  border: 1px solid #727272;
+}
+.order-row:focus {
+  border: 1px solid #fafafa;
+}
+
+.navigation-bar {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+.navigation-bar .navigation {
+  width: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-content: center;
+}
+.navigation-bar .navigation .nav-btn {
+  justify-content: center;
+}
