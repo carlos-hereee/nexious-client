@@ -35,6 +35,7 @@ declare module "store-context" {
   export type OrderOptions = "decline" | "complete" | "accepted";
   export interface OrderDetailsProps {
     order: OrderSchema;
+    labels?: { accepted: string; decline: string };
     onClick?: (option: OrderOptions) => void;
   }
 

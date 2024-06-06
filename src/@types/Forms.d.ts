@@ -59,6 +59,7 @@ declare module "app-forms" {
     dataList?: { [key: string]: string[] };
     heading?: string;
     fieldHeading: { [key: string]: string | undefined };
+    schema?: { [key: string]: string | undefined | string[] };
     desiredOrder: string[];
     submitLabel?: string;
     additionLabel?: string;
@@ -137,6 +138,7 @@ declare module "app-forms" {
     landing?: PageProps;
     merch?: MerchProps;
     page?: PageProps;
+    store?: StoreProps;
     user?: UserSchema;
     menu?: MenuProp;
     desiredOrder: string[];

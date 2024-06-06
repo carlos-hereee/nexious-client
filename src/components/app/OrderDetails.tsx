@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { OrderDetailsProps } from "store-context";
 import { Button, MerchCard, UserCard } from "nexious-library";
 
-const OrderDetails = ({ order, onClick }: OrderDetailsProps) => {
+const OrderDetails = ({ order, onClick, labels }: OrderDetailsProps) => {
   const { inventory } = useContext(AppContext);
   return (
     <div className="container w-full" key={order.orderId}>
@@ -26,12 +26,14 @@ const OrderDetails = ({ order, onClick }: OrderDetailsProps) => {
         </div>
       </div>
       <small className="flex-end">Order Id:{order.orderId}</small>
-      {onClick && (
+      {onClick && labels && (
         <div className="flex-center">
-          <Button onClick={() => onClick("accepted")}>Reserve merch on hold</Button>
-          <Button onClick={() => onClick("decline")} theme="btn-main btn-cancel">
-            Decline order
-          </Button>
+          {labels.accepted && <Button onClick={() => onClick("accepted")}>{labels?.accepted}</Button>}
+          {labels.decline && (
+            <Button onClick={() => onClick("decline")} theme="btn-main btn-cancel">
+              {labels?.decline}
+            </Button>
+          )}
         </div>
       )}
     </div>

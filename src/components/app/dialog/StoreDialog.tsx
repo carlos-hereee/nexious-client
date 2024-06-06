@@ -23,7 +23,10 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
   const handleClose = () => {
     // when closing dialog if a secondary page is open close that page instead
     if (!superSeed) onClose();
-    else setClosePage(true);
+    else {
+      setClosePage(true);
+      setSuperSeed(false);
+    }
   };
   const handleSuperSeed = (d: boolean) => setSuperSeed(d);
 
@@ -40,6 +43,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
           onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
+          labels={{ accepted: "Reserve merch on hold", decline: "Decline order" }}
         />
       )}
       {status === "phase-view-order-incomplete" && (
@@ -49,6 +53,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
           onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
+          labels={{ accepted: "Mark as complete", decline: "Decline order" }}
         />
       )}
       {status === "phase-view-order-complete" && (

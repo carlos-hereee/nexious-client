@@ -8,13 +8,14 @@ type MenuOptions = ["#", "status", "client", "payment type", "number of items", 
 interface ViewOrdersProps {
   orders: OrderSchema[];
   heading?: string;
+  labels?: { accepted: string; decline: string };
   closePage?: boolean;
   menus?: MenuOptions;
   onOrderClick?: (order: OrderSchema, option: OrderOptions) => void;
   handleSuperSeed?: (e: boolean) => void;
 }
 
-const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, closePage }: ViewOrdersProps) => {
+const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, closePage, labels }: ViewOrdersProps) => {
   const [active, setActive] = useState<string>("");
   const [activeMenu, setMenu] = useState<MenuOptions>();
   const [activeOrder, setActiveOrder] = useState<OrderSchema | undefined>();
@@ -44,7 +45,7 @@ const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, clo
       if (onOrderClick) onOrderClick(activeOrder, option);
       setActiveOrder(undefined);
     };
-    return <OrderDetails order={activeOrder} onClick={handleOrderClick} />;
+    return <OrderDetails order={activeOrder} onClick={handleOrderClick} labels={labels} />;
   }
 
   const handleActiveOrder = (order: OrderSchema) => {
