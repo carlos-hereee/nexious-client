@@ -3,11 +3,9 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { AppDispatchProps } from "app-context";
 import { AxiosError } from "axios";
 
-export const fetchAppWithName = async (props: AppDispatchProps) => {
-  const { appName, dispatch, updateAppData, updateActiveAppData } = props;
-  // require key variable
+export const fetchAppWithName = async ({ appName, dispatch, updateAppData }: AppDispatchProps) => {
+  // require key va  riable
   if (!updateAppData) throw Error("updateAppData is required");
-  if (!updateActiveAppData) throw Error("updateActiveAppData is required");
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.get(`/app/${appName}`);

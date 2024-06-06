@@ -2,14 +2,14 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/ServiceActions";
-import { CartProps, MerchProps, OrderSchema, ServiceSchema, StoreCheckout, StoreOrderUpdate } from "store-context";
+import { CartProps, MerchProps, OrderSchema, StoreSchema, StoreCheckout } from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
 import { checkoutStoreSession } from "./request/checkoutStoreSession";
-import { updateOrder } from "./request/updateOder";
+// import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
 // import { filter } from "./helpers/filter";
@@ -21,7 +21,7 @@ import { updateOrder } from "./request/updateOder";
 // import { setActive } from "./helpers/setActive";
 // import { updateServices } from "./helpers/updateServices";
 
-export const StoreContext = createContext<ServiceSchema>({} as ServiceSchema);
+export const StoreContext = createContext<StoreSchema>({} as StoreSchema);
 export const StoreState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, storeState);
 
@@ -33,17 +33,13 @@ export const StoreState = ({ children }: ChildProps) => {
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
   const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
 
-  const submitOrder = useCallback((cart: CartProps[]) => {
-    requestSecret({ cart, dispatch });
-  }, []);
+  const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
   // stripe checkout session
   const onCheckOutSession = useCallback((cart: CartProps) => checkOutSession({ sessionCart: cart, dispatch }), []);
   // store checkout
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
-  const confirmIntent = useCallback((sessionId: string) => {
-    confirmCheckoutIntent({ dispatch, sessionId });
-  }, []);
-  const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data }), []);
+  const confirmIntent = useCallback((sessionId: string) => confirmCheckoutIntent({ dispatch, sessionId }), []);
+
   const servicesValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -60,7 +56,6 @@ export const StoreState = ({ children }: ChildProps) => {
       onStoreCheckout,
       setLoading,
       setOrder,
-      handleOrderClick,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

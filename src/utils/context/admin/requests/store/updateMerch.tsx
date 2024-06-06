@@ -1,8 +1,7 @@
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { axiosError } from "@axios/axiosError";
 import { axiosMedia } from "@axios/axiosMedia";
-import { AdminDisptachProps, AppAssets } from "app-admin";
-import { DataResponse } from "utils/@types/response";
+import { AdminDisptachProps } from "app-admin";
 
 export const updateMerch = async ({ dispatch, handleAppAssets, values, appId, merchId }: AdminDisptachProps) => {
   // require key variable
@@ -10,7 +9,7 @@ export const updateMerch = async ({ dispatch, handleAppAssets, values, appId, me
   if (!values) throw Error("values is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
-    const { data }: DataResponse<AppAssets> = await axiosMedia.put(`/store/update-merch/${appId}/${merchId}`, values);
+    const { data } = await axiosMedia.put(`/store/update-merch/${appId}/${merchId}`, values);
     if (data) handleAppAssets(data);
   } catch (error) {
     axiosError({ error, dispatch, target: "removeMerch", type: "form-error" });

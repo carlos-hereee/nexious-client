@@ -3,7 +3,7 @@ import { DialogProps } from "app-types";
 import { useContext, useState } from "react";
 import { Dialog } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
-import { StoreContext } from "@context/store/StoreContext";
+import { AdminContext } from "@context/admin/AdminContext";
 import AddMerch from "../forms/store/AddMerch";
 import BuildStore from "../forms/store/BuildStore";
 import EditStore from "../forms/store/EditStore";
@@ -14,7 +14,7 @@ import ViewOrders from "../ViewOrders";
 const StoreDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { store, appId } = useContext(AppContext);
-  const { handleOrderClick } = useContext(StoreContext);
+  const { handleOrderClick } = useContext(AdminContext);
   const [superSeed, setSuperSeed] = useState(false);
   const [closePage, setClosePage] = useState(false);
 
@@ -40,6 +40,23 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
           onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
+        />
+      )}
+      {status === "phase-view-order-incomplete" && (
+        <ViewOrders
+          orders={store.inCompleteOrders || []}
+          heading="Incomplete Orders"
+          closePage={closePage}
+          handleSuperSeed={handleSuperSeed}
+          onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
+        />
+      )}
+      {status === "phase-view-order-complete" && (
+        <ViewOrders
+          orders={store.completedOrders || []}
+          heading="Complete Orders"
+          closePage={closePage}
+          handleSuperSeed={handleSuperSeed}
         />
       )}
       {status === "configuration" && <UpdateStripeConfig />}

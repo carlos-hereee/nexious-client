@@ -74,7 +74,6 @@ declare module "app-context" {
     updateAppData: (props: AppAssets) => void;
     updateStripeConfig: (config: StripeConfig) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
-    getAppStore: (appName: string) => void;
     getAppList: () => void;
     setAppLoading: (isLoading: boolean) => void;
     setActivePage: (page: PageProps) => void;

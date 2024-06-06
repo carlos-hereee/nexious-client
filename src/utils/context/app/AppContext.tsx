@@ -12,17 +12,16 @@ import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
-import { getAppStoreWithName } from "./request/getAppStoreWithName";
-import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { fetchPage } from "./request/fetchPage";
 import { upgradeLatest } from "./request/upgradeLatest";
 import { stripeAccountLink } from "./request/stripeAccountLink";
+import { setStripeConfig } from "./dispatch/setStripeConfig";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, subscriptions } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
@@ -32,15 +31,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
   const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
-  const getAppStore = useCallback((storeId: string) => {
-    getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
-  }, []);
+
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
   const getStripeAccountLink = useCallback((appId: string) => stripeAccountLink({ dispatch, appId }), []);
   // fetch app with app name
-  const getAppWithName = useCallback((a: string) => {
-    fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
-  }, []);
+  const getAppWithName = useCallback((a: string) => fetchAppWithName({ dispatch, appName: a, updateAppData }), []);
 
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
@@ -93,12 +88,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateActiveAppData,
       setAppLoading,
       getStoreInventory,
-      getAppStore,
       setActivePage,
       setSocialMedia,
       getStripeAccountLink,
-      updateStripeConfig,
       getPageWithId,
+      updateStripeConfig,
       upgradeToLatest,
     };
   }, [

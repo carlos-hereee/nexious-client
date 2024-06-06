@@ -5,6 +5,7 @@ import { ChildProps, StringObjProp } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StripeConfig } from "app-context";
+import { StoreOrderUpdate } from "store-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -35,6 +36,7 @@ import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 import { addCalendar } from "./requests/calendar/addCalendar";
 import { removeMenuItem } from "./requests/app/removeMenuItem";
 import { updateMenuItem } from "./requests/app/updateMenuItem";
+import { updateOrder } from "./requests/store/updateOder";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -133,6 +135,7 @@ export const AdminState = ({ children }: ChildProps) => {
     updateStripeAccount({ dispatch, handleAppAssets, config });
   }, []);
 
+  const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data, handleAppAssets }), []);
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -185,6 +188,7 @@ export const AdminState = ({ children }: ChildProps) => {
       updateAccount,
       deleteMenuItem,
       editMenuItem,
+      handleOrderClick,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

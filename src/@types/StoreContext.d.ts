@@ -75,7 +75,7 @@ declare module "store-context" {
     option: OrderOptions;
     appId: string;
   }
-  export interface ServiceSchema extends StoreStateProps {
+  export interface StoreSchema extends StoreStateProps {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
@@ -84,7 +84,6 @@ declare module "store-context" {
     confirmIntent: (sessionId: string) => void;
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
-    handleOrderClick: (order: StoreOrderUpdate) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;

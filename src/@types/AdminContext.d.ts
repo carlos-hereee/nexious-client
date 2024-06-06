@@ -1,4 +1,5 @@
 declare module "app-admin" {
+  import { OrderSchema } from "store-context";
   import { PageProps, StoreProps, StringObjProp } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
@@ -96,6 +97,7 @@ declare module "app-admin" {
     // app data
     deleteMenuItem: (appId: string, menuId: string) => void;
     editMenuItem: (appId: string, menuId: string, values: StringObjProp) => void;
+    handleOrderClick: (order: StoreOrderUpdate) => void;
   }
   export interface AdminDisptachProps {
     dispatch: React.Dispatch<AdminActionProps>;
@@ -104,6 +106,8 @@ declare module "app-admin" {
     updateStripeConfig?: (key: StripeConfig) => void;
     appId?: string;
     name?: string;
+    option?: string;
+    order?: OrderSchema;
     pageId?: string;
     uid?: string;
     accountId?: string;

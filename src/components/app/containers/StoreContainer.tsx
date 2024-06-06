@@ -39,6 +39,20 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
           ping={store.pendingOrders?.length}
         />
       </ItemDetail>
+      <ItemDetail label="Incomplete orders:" labelLayout="bolden">
+        <Button
+          label="View incomplete orders"
+          onClick={() => updatePhase("phase-view-order-incomplete")}
+          ping={store.inCompleteOrders?.length}
+        />
+      </ItemDetail>
+      <ItemDetail label="Complete orders:" labelLayout="bolden">
+        <Button
+          label="View completed orders"
+          onClick={() => updatePhase("phase-view-order-complete")}
+          ping={store.completedOrders?.length}
+        />
+      </ItemDetail>
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />
       </ItemDetail>
