@@ -8,7 +8,7 @@ import { nexiousMedia, nexiousMenu, nexiousLogo, nexiousAuthMenu, nexiousName, n
 
 const AppRoute = () => {
   const { isOnline, appError, appId } = useContext(AppContext);
-  const { accessToken, subscriptions } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   const { menu, logo, appName, media, updateActiveAppData, getAppWithName } = useContext(AppContext);
   // getAppStore,
   // store,
@@ -32,7 +32,7 @@ const AppRoute = () => {
         appId: nexiousAppId,
       });
     }
-  }, [appName, subscriptions]);
+  }, [appName]);
 
   if (!isOnline) return <Navigate to="/offline" />;
   if (appError) return <Navigate to="/" />;

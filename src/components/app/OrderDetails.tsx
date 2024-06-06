@@ -12,7 +12,7 @@ const OrderDetails = ({ order, onClick }: OrderDetailsProps) => {
           <strong>Client Details:</strong>
           <UserCard user={{ ...order.client, name: order.client.name || order.client.email }} />
         </div>
-        <div className="container">
+        <div className="container overflow-y">
           <strong>Order Details:</strong>
           {order.merch.map((m) => {
             const merchIdx = inventory.findIndex((i) => i.merchId === m.merchId);
@@ -28,7 +28,7 @@ const OrderDetails = ({ order, onClick }: OrderDetailsProps) => {
       <small className="flex-end">Order Id:{order.orderId}</small>
       {onClick && (
         <div className="flex-center">
-          <Button onClick={() => onClick("complete")}>Mark as complete</Button>
+          <Button onClick={() => onClick("accepted")}>Reserve merch on hold</Button>
           <Button onClick={() => onClick("decline")} theme="btn-main btn-cancel">
             Decline order
           </Button>

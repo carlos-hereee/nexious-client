@@ -283,3 +283,6 @@ header {
 .navigation-bar .navigation .nav-btn {
   justify-content: center;
 }
+.overflow-y {
+  overflow-y: auto;
+}

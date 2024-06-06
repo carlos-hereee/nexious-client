@@ -31,7 +31,7 @@ declare module "store-context" {
     orderId: string;
     merch: OrderMerchSchema[];
   }
-  export type OrderOptions = "decline" | "complete";
+  export type OrderOptions = "decline" | "complete" | "accepted";
   export interface OrderDetailsProps {
     order: OrderSchema;
     onClick?: (option: OrderOptions) => void;

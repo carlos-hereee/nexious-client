@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { OrderSchema } from "store-context";
+import { OrderOptions, OrderSchema } from "store-context";
 import { Navigation, Button, Loading } from "nexious-library";
 import OrderDetails from "./OrderDetails";
 // import { StoreContext } from "@context/store/StoreContext";
 
 type MenuOptions = ["#", "status", "client", "payment type", "number of items", "location"] | string[];
-type OrderOptions = "decline" | "complete";
 interface ViewOrdersProps {
   orders: OrderSchema[];
   heading?: string;

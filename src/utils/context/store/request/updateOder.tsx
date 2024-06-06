@@ -10,7 +10,7 @@ export const updateOrder = async ({ dispatch, option, appId, order }: StoreDispa
   if (!order) throw Error("order is required");
   try {
     dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/store/${appId}/order/${order.orderId}/${option}`);
+    const { data } = await axiosAuth.put(`/store/${appId}/order/${option}`, { order });
 
     console.log("data :>> ", data);
     // dispatch({ type: STORE_ACTIONS.SET_STRIPE_SECRET, payload: data });

@@ -1,4 +1,8 @@
 // default generic for data response should be string
-export interface DataResponse<T = string> {
-  data: T;
+declare module "data-response" {
+  import { AppProps } from "app-types";
+
+  export interface DataResponse<T = string | AppProps> {
+    data: T;
+  }
 }
