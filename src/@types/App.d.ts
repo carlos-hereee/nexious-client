@@ -130,7 +130,7 @@ declare module "app-types" {
   }
   export interface DialogProps {
     status?: DialogStatusProps;
-    formValues?: unknown;
+    merch?: MerchProps;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;

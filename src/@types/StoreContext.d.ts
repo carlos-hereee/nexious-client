@@ -10,6 +10,7 @@ declare module "store-context" {
     storeId: string;
     merchId: string;
     priceId: string;
+    productId: string;
     name: string;
     body: string;
     hero: string;

@@ -56,7 +56,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />
       </ItemDetail>
-      <MerchList />
+      <MerchList updateStatus={() => updatePhase("configuration")} />
       <ItemDetail label="Add merchendise:" labelLayout="bolden">
         <Button label="+ Add merch" onClick={() => updatePhase("phase-three")} />
       </ItemDetail>

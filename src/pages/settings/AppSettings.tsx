@@ -12,7 +12,7 @@ import AppDialog from "@components/app/dialog/AppDialog";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
-import { Button } from "nexious-library";
+import { Button, Loading } from "nexious-library";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import DangerZone from "./DangerZone";
 
@@ -26,7 +26,10 @@ const AppSettings = () => {
   useEffect(() => {
     // close form windows on form success
     if (formStatus === "SUCCESS") {
-      setShow({ pages: false, media: false, store: false, app: false, calendar: false, danger: false });
+      // exception for store stripe configuration window
+      if (nav !== "store" && status !== "configuration") {
+        setShow({ pages: false, media: false, store: false, app: false, calendar: false, danger: false });
+      }
       setFormStatus("IDLE");
     }
   }, [formStatus]);
@@ -52,6 +55,7 @@ const AppSettings = () => {
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
   // TODO: UPDATE APP SETTING  NAVIGATION
+  if (formStatus === "LOADING") return <Loading message="Request sent" />;
   return (
     <div className="container">
       <h1 className="heading">

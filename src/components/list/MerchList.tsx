@@ -4,13 +4,16 @@ import MerchDialog from "@components/app/dialog/MerchDialog";
 import { MerchProps } from "store-context";
 import { ItemDetail, Hero, Button, Spinner } from "nexious-library";
 import { hints } from "@data/nexious.json";
+import { DialogStatusProps } from "app-types";
 
-const MerchList = () => {
+const MerchList = ({ updateStatus }: { updateStatus?: (key: DialogStatusProps) => void }) => {
   const { store, getStoreInventory, loadingState, inventory } = useContext(AppContext);
   const [show, setShow] = useState({ inventory: false, item: false });
   const [editValues, setEdit] = useState<MerchProps>();
 
-  const onClose = () => setShow({ ...show, item: false });
+  const onClose = () => {
+    setShow({ ...show, item: false });
+  };
   const handleClick = (item: MerchProps) => {
     setEdit(item);
     setShow({ ...show, item: true });
@@ -57,7 +60,7 @@ const MerchList = () => {
       ) : (
         <Button label="Show inventory" onClick={openInventory} />
       )}
-      {show.item && editValues && <MerchDialog onClose={onClose} formValues={editValues} />}
+      {show.item && editValues && <MerchDialog onClose={onClose} merch={editValues} updateStatus={updateStatus} />}
     </ItemDetail>
   );
 };

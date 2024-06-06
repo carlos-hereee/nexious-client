@@ -8,7 +8,7 @@ import { MerchProps } from "store-context";
 
 const EditMerch = (props: { initValues: MerchProps }) => {
   const { merchForm, editMerch, deleteMerchItem, sectionEntries } = useContext(AdminContext);
-  const { appId, appName } = useContext(AppContext);
+  const { appId } = useContext(AppContext);
   const { initValues } = props;
   const [show, setShow] = useState(false);
   // console.log("initValues :>> ", initValues);
@@ -38,7 +38,6 @@ const EditMerch = (props: { initValues: MerchProps }) => {
           addEntry={sectionEntries}
           entires={entryValues}
           fieldHeading={merchForm.fieldHeading}
-          heading={`Add merchendise: ${appName}`}
           onCancel={() => setShow(true)}
           onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}
           submitLabel="Save and continue"

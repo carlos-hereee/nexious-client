@@ -30,8 +30,8 @@ export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchP
   }
   if (appList) dispatch({ type: APP_ACTIONS.SET_APP_LIST, payload: appList });
   if (store) {
-    // console.log("store :>> ", store);
     dispatch({ type: APP_ACTIONS.SET_STORE, payload: store });
+    dispatch({ type: APP_ACTIONS.SET_STORE_INVENTORY, payload: store.inventory });
   }
   if (page) dispatch({ type: APP_ACTIONS.SET_PAGE, payload: page });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
