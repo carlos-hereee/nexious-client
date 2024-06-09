@@ -4,9 +4,10 @@ import { AxiosError } from "axios";
 import { StoreDispatchProps } from "store-context";
 import { errors } from "@data/data.json";
 
-export const checkoutStoreSession = async ({ dispatch, sessionCart, user }: StoreDispatchProps) => {
+export const checkoutStoreSession = async ({ dispatch, sessionCart, user, merchandise }: StoreDispatchProps) => {
   // require key variable
   if (!sessionCart) throw Error("sessionCart is required");
+  if (!merchandise) throw Error("merchandise is required");
   dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });
   if (!user || !user.name || !user.email || !user.phone) {
     // checkout error client information is required
@@ -15,7 +16,7 @@ export const checkoutStoreSession = async ({ dispatch, sessionCart, user }: Stor
     try {
       // reset error
       dispatch({ type: STORE_ACTIONS.SET_ERROR, payload: "" });
-      const cart = sessionCart.merch.map((m) => ({ merchId: m.merchId, quantity: m.quantity || 1 }));
+      const cart = merchandise.map((m) => ({ merchId: m.merchId, quantity: m.quantity || 1 }));
       const { data } = await axiosAuth.post(`/store/checkout-store-session/${sessionCart.storeId}`, { cart, client: user });
       dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data });
       dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: false });

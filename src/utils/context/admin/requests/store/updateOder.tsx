@@ -11,6 +11,7 @@ export const updateOrder = async ({ dispatch, option, appId, order, handleAppAss
   if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+    dispatch({ type: ADMIN_ACTIONS.SET_FORM_STATUS, payload: "LOADING" });
     const { data } = await axiosAuth.put(`/store/${appId}/order/${option}`, { order });
     handleAppAssets(data);
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });

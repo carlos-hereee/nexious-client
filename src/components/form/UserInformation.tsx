@@ -1,13 +1,18 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { formatInitialValues } from "@formatters/formatInitialFormValues";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { forms } from "@data/data.json";
 import { Button, Form, UserCard } from "nexious-library";
 import { UserSchema } from "auth-context";
 
-const UserInformation = ({ errorMessage }: { errorMessage?: string }) => {
-  const { user, updateUser } = useContext(AuthContext);
-  const [show, setShow] = useState(false);
+interface UserInformationProps {
+  errorMessage?: string;
+  user: UserSchema;
+  setShow: (show: boolean) => void;
+  show: boolean;
+}
+const UserInformation = ({ errorMessage, user, setShow, show }: UserInformationProps) => {
+  const { updateUser } = useContext(AuthContext);
 
   if (user.name && user.phone && user.email && !show) {
     return (

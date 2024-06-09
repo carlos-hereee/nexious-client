@@ -4,20 +4,24 @@ import { StoreContext } from "@context/store/StoreContext";
 import { useContext } from "react";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
 
+type Menu = "All" | "Online" | "In store";
 interface CartListProps {
   active: CartProps;
   storeIdx: number;
-  cart: CartProps[];
+  activeNav: string;
+  navigation: Menu[];
+  merch: MerchProps[];
   setTotal?: (total: number) => void;
-  setStoreIdx?: (idx: number) => void;
+  setActiveNav?: (nav: Menu) => void;
 }
-const CartList = ({ cart, active, storeIdx, setTotal, setStoreIdx }: CartListProps) => {
-  const { updateCart } = useContext(StoreContext);
 
-  const handleRemove = (merch: MerchProps) => {
+const CartList = ({ active, storeIdx, setTotal, setActiveNav, activeNav, navigation, merch }: CartListProps) => {
+  const { updateCart, cart } = useContext(StoreContext);
+
+  const handleRemove = (merchandise: MerchProps) => {
     // avoid mutating values
     const oldValues = [...cart];
-    const removedMerch = oldValues[storeIdx].merch.filter((m) => m.merchId !== merch.merchId);
+    const removedMerch = oldValues[storeIdx].merch.filter((m) => m.merchId !== merchandise.merchId);
     // if removed merch was the last item in cart remove store from cart
     if (removedMerch.length === 0) {
       const removedStore = oldValues.filter((val) => val.storeId !== active.storeId);
@@ -29,30 +33,37 @@ const CartList = ({ cart, active, storeIdx, setTotal, setStoreIdx }: CartListPro
       updateCart(oldValues);
     }
   };
-  const handleQuantity = (merch: MerchProps, d: number) => {
+  const handleQuantity = (merchandise: MerchProps, d: number) => {
     // avoid mutating cart data
     const oldValues = [...cart];
-    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === merch.uid);
+    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === merchandise.uid);
     oldValues[storeIdx].merch[merchIdx].quantity = d;
     updateCart(oldValues);
     if (setTotal) setTotal(formatTotal(oldValues[storeIdx].merch));
   };
+
   return (
     <div className="container">
-      <h1 className="heading">Checkout: {active.storeName}</h1>
-      {cart.length > 1 && (
-        <div className="buttons-navigation">
-          {cart.map((c, idx) => (
-            <Button
-              label={c.storeName}
-              key={c.storeId}
-              theme={c.storeId === active.storeId && "btn-main"}
-              onClick={() => setStoreIdx && setStoreIdx(idx)}
-            />
-          ))}
+      {navigation.length > 1 && (
+        <div className="container">
+          <h3 className="heading text-center">**Some items are only availible at the store**</h3>
+          <div className="buttons-navigation">
+            {navigation.map((nav) => (
+              <Button
+                label={nav}
+                key={nav}
+                onClick={() => setActiveNav && setActiveNav(nav)}
+                theme={activeNav === nav ? "btn-main btn-active" : "btn-main"}
+              />
+            ))}
+          </div>
         </div>
       )}
-      <Cart data={active.merch} heading="Review cart" removeFromCart={handleRemove} setQuantity={handleQuantity} />
+      {merch && merch.length > 0 ? (
+        <Cart data={merch} heading="Review cart" removeFromCart={handleRemove} setQuantity={handleQuantity} />
+      ) : (
+        <p className="text-center">No more items availible for purchase</p>
+      )}
     </div>
   );
 };

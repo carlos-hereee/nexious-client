@@ -71,6 +71,7 @@ declare module "store-context" {
   export interface StoreCheckout {
     sessionCart: CartProps;
     user: UserSchema;
+    merchandise: MerchProps[];
   }
   export interface StoreOrderUpdate {
     order: OrderSchema;
@@ -90,6 +91,7 @@ declare module "store-context" {
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
     merch?: MerchProps;
+    merchandise?: MerchProps[];
     user?: UserSchema;
     sessionId?: string;
     appId?: string;

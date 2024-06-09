@@ -15,16 +15,16 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
     if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
     // rerender request per store id
   }, [store.storeId]);
-  // if (!store || !store.storeId) {
-  //   return (
-  //     <div className="container">
-  //       <h2 className="heading">Store:</h2>
-  //       <ItemDetail label="Store details:" labelLayout="bolden">
-  //         <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-  //       </ItemDetail>
-  //     </div>
-  //   );
-  // }
+  if (!store || !store.storeId) {
+    return (
+      <div className="container">
+        <h2 className="heading">Store:</h2>
+        <ItemDetail label="Store details:" labelLayout="bolden">
+          <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
+        </ItemDetail>
+      </div>
+    );
+  }
 
   return (
     <div className="container">

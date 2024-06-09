@@ -1,4 +1,5 @@
 import { axiosAuth } from "@axios/axiosAuth";
+import { isDev } from "@config";
 import { AdminDisptachProps } from "app-admin";
 
 export const getStripeAccount = async ({ appId, handleAppAssets }: AdminDisptachProps) => {
@@ -8,6 +9,6 @@ export const getStripeAccount = async ({ appId, handleAppAssets }: AdminDisptach
     const { data } = await axiosAuth.get(`/store/stripe-account/${appId}`);
     if (data) handleAppAssets(data);
   } catch (error) {
-    console.log("error :>> ", error);
+    if (isDev) console.log("error :>> ", error);
   }
 };

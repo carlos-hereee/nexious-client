@@ -8,6 +8,7 @@ export const removeMerch = async ({ dispatch, handleAppAssets, appId, merchId }:
   if (!handleAppAssets) throw Error("handleAppAssets is required");
   try {
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: true });
+    dispatch({ type: ADMIN_ACTIONS.SET_FORM_STATUS, payload: "LOADING" });
     const { data } = await axiosAuth.delete(`/store/remove-merch/${appId}/${merchId}`);
     if (data) handleAppAssets(data);
   } catch (error) {

@@ -121,7 +121,7 @@ export const AdminState = ({ children }: ChildProps) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const editStore = useCallback((values: AppValues, appId: string) => {
-    updateStore({ dispatch, appId, handleAppAssets, values, setFormStatus });
+    updateStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const addMerch = useCallback((values: AppValues, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
