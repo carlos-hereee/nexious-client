@@ -8,8 +8,8 @@ type Menu = "All" | "Online" | "In store";
 interface CartListProps {
   active: CartProps;
   storeIdx: number;
-  activeNav: string;
-  navigation: Menu[];
+  activeNav?: string;
+  navigation?: Menu[];
   merch: MerchProps[];
   setTotal?: (total: number) => void;
   setActiveNav?: (nav: Menu) => void;
@@ -41,12 +41,13 @@ const CartList = ({ active, storeIdx, setTotal, setActiveNav, activeNav, navigat
     updateCart(oldValues);
     if (setTotal) setTotal(formatTotal(oldValues[storeIdx].merch));
   };
+  console.log("merch :>> ", merch);
 
   return (
     <div className="container">
-      {navigation.length > 1 && (
+      {navigation && navigation.length > 1 && (
         <div className="container">
-          <h3 className="heading text-center">**Some items are only availible at the store**</h3>
+          <h3 className="heading text-center required">**Some items are only availible at the store**</h3>
           <div className="buttons-navigation">
             {navigation.map((nav) => (
               <Button
@@ -60,7 +61,13 @@ const CartList = ({ active, storeIdx, setTotal, setActiveNav, activeNav, navigat
         </div>
       )}
       {merch && merch.length > 0 ? (
-        <Cart data={merch} heading="Review cart" removeFromCart={handleRemove} setQuantity={handleQuantity} />
+        <Cart
+          data={merch}
+          heading={activeNav ? undefined : "Review cart"}
+          removeFromCart={handleRemove}
+          setQuantity={handleQuantity}
+          readOnly={activeNav && activeNav}
+        />
       ) : (
         <p className="text-center">No more items availible for purchase</p>
       )}

@@ -49,7 +49,7 @@ const AppStore = () => {
               key={merch.uid}
               data={{ ...merch, cost: formatPenniesToDollars(merch.cost) }}
               hero={{ url: merch.hero }}
-              onAddToCart={(data: MerchProps) => addToCart(cart, store, data)}
+              onAddToCart={(data: MerchProps) => addToCart(cart, store, { ...data, quantity: 1 })}
               onRemoveFromCart={(data: MerchProps) => handleRemove(data)}
               // TODO: on body click navigate to merch item details
               // onClick={(data: MerchProps) => console.log("data :>> ", data)}

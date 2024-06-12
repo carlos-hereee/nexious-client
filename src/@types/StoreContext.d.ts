@@ -71,7 +71,7 @@ declare module "store-context" {
   export interface StoreCheckout {
     sessionCart: CartProps;
     user: UserSchema;
-    merchandise: MerchProps[];
+    merchandise?: MerchProps[];
   }
   export interface StoreOrderUpdate {
     order: OrderSchema;

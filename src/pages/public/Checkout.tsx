@@ -34,20 +34,13 @@ const Checkout = () => {
       if (!cart[storeIdx].isStripeActive) {
         methods = methods.filter((method) => method.type !== "visa/credit");
         setNavigation(["In store"]);
-        setActiveNav("In store");
       } else {
         // handle other store limitations
         const someInStore = cart[storeIdx].merch.some((m) => !m.productId);
         const someOnline = cart[storeIdx].merch.some((m) => m.productId);
-        if (!someOnline && someInStore) {
-          setNavigation(["In store"]);
-          setActiveNav("In store");
-        }
+        if (!someOnline && someInStore) setNavigation(["In store"]);
         if (someOnline && !someInStore) setNavigation(["Online"]);
-        if (someOnline && someInStore) {
-          setNavigation(["Online", "In store"]);
-          setActiveNav("Online");
-        }
+        if (someOnline && someInStore) setNavigation(["Online", "In store"]);
       }
       // set active store
       setActive(cart[storeIdx]);
@@ -59,23 +52,29 @@ const Checkout = () => {
   useEffect(() => {
     if (storeIdx >= 0 && active) {
       if (activeNav === "Online") {
-        const filteredMerch = cart[storeIdx].merch.filter((m) => m.productId);
+        const filteredMerch = active.merch.filter((m) => m.productId);
         setMerch(filteredMerch);
       }
       if (activeNav === "In store") {
-        const filteredMerch = cart[storeIdx].merch.filter((m) => !m.productId);
+        const filteredMerch = active.merch.filter((m) => !m.productId);
         setMerch(filteredMerch);
       }
       if (activeNav === "All") {
-        setMerch(cart[storeIdx].merch);
-        setTotal(formatTotal(cart[storeIdx].merch));
+        setMerch(active.merch);
+        setTotal(formatTotal(active.merch));
       }
     }
     // update merch data when cart is update or menu is toggled
-  }, [activeNav, cart]);
+  }, [activeNav, active]);
   useEffect(() => {
     if (merch && merch.length > 0) setTotal(formatTotal(merch));
-  }, [merch]);
+  }, [merch, cart]);
+  useEffect(() => {
+    if (show) {
+      if (navigation.length > 1) setActiveNav(navigation[0]);
+      setTotal(formatTotal(merch));
+    }
+  }, [show]);
 
   useEffect(() => {
     if (error) {
@@ -103,11 +102,11 @@ const Checkout = () => {
 
   const handlePaymentClick = (data?: PaymentMethod) => {
     if (!data) {
-      if (activeNav === "In store") onStoreCheckout({ sessionCart: active, user, merchandise: merch });
+      if (activeNav === "In store") onStoreCheckout({ sessionCart: active, user });
       if (activeNav === "Online") onCheckOutSession(active);
     } else {
+      if (data.type === "store") onStoreCheckout({ sessionCart: active, user });
       if (data.type === "visa/credit") onCheckOutSession(active);
-      if (data.type === "store") onStoreCheckout({ sessionCart: active, user, merchandise: merch });
     }
   };
   return (
@@ -126,25 +125,31 @@ const Checkout = () => {
             ))}
           </div>
         )}
-        <CartList
-          active={active}
-          navigation={navigation}
-          storeIdx={storeIdx}
-          merch={merch}
-          setActiveNav={(nav) => setActiveNav(nav)}
-          activeNav={activeNav}
-        />
+        <CartList active={active} storeIdx={storeIdx} merch={active.merch} />
       </div>
       <div className="container">
         <UserInformation errorMessage={error} user={user} setShow={(s) => setShow(s)} show={show} />
-        <Total total={total} heading="Total:" />
+        {activeNav === "All" && <Total total={total} heading="Total:" />}
         {!show &&
-          (activeNav === "All" ? (
-            <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
+          (activeNav !== "All" ? (
+            <>
+              {navigation.length > 1 && (
+                <CartList
+                  active={active}
+                  navigation={navigation}
+                  storeIdx={storeIdx}
+                  merch={merch}
+                  setActiveNav={(nav) => setActiveNav(nav)}
+                  activeNav={activeNav}
+                />
+              )}
+              <Total total={total} heading="Total:" />
+              <div className="flex-center">
+                <Button label="Continue with checkout" onClick={() => handlePaymentClick()} />
+              </div>
+            </>
           ) : (
-            <div className="flex-center">
-              <Button label="Continue with checkout" onClick={() => handlePaymentClick()} />
-            </div>
+            <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
           ))}
       </div>
     </section>

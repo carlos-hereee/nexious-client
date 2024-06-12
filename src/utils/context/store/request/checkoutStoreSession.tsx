@@ -16,7 +16,7 @@ export const checkoutStoreSession = async ({ dispatch, sessionCart, user, mercha
     try {
       // reset error
       dispatch({ type: STORE_ACTIONS.SET_ERROR, payload: "" });
-      const cart = merchandise.map((m) => ({ merchId: m.merchId, quantity: m.quantity || 1 }));
+      const cart = sessionCart.merch.map((m) => ({ merchId: m.merchId, quantity: m.quantity || 1 }));
       const { data } = await axiosAuth.post(`/store/checkout-store-session/${sessionCart.storeId}`, { cart, client: user });
       dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data });
       dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: false });
