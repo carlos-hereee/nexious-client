@@ -4,10 +4,9 @@ import { AxiosError } from "axios";
 import { StoreDispatchProps } from "store-context";
 import { errors } from "@data/data.json";
 
-export const checkoutStoreSession = async ({ dispatch, sessionCart, user, merchandise }: StoreDispatchProps) => {
+export const checkoutStoreSession = async ({ dispatch, sessionCart, user }: StoreDispatchProps) => {
   // require key variable
   if (!sessionCart) throw Error("sessionCart is required");
-  if (!merchandise) throw Error("merchandise is required");
   dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });
   if (!user || !user.name || !user.email || !user.phone) {
     // checkout error client information is required
