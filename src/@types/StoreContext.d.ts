@@ -82,7 +82,7 @@ declare module "store-context" {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
-    onCheckOutSession: (cart: CartProps) => void;
+    onCheckOutSession: (cart: StoreCheckout) => void;
     onStoreCheckout: (data: StoreCheckout) => void;
     confirmIntent: (sessionId: string) => void;
     setLoading: (state: boolean) => void;

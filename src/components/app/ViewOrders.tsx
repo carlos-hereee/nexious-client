@@ -65,7 +65,7 @@ const ViewOrders = ({ orders, heading, menus, onOrderClick, handleSuperSeed, clo
           <span>{order.client.name || order.client.email}</span>
           <span>{order.paymentMethod}</span>
           <span>{order.merch.length}</span>
-          <span>{order.store.location || "no-location"}</span>
+          <span>{(order.store && order.store.location) || "no-location"}</span>
         </Button>
       ))}
     </div>

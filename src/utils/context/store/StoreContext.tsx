@@ -35,7 +35,7 @@ export const StoreState = ({ children }: ChildProps) => {
 
   const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
   // stripe checkout session
-  const onCheckOutSession = useCallback((cart: CartProps) => checkOutSession({ sessionCart: cart, dispatch }), []);
+  const onCheckOutSession = useCallback((data: StoreCheckout) => checkOutSession({ ...data, dispatch }), []);
   // store checkout
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
   const confirmIntent = useCallback((sessionId: string) => confirmCheckoutIntent({ dispatch, sessionId }), []);

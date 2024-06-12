@@ -41,7 +41,6 @@ const CartList = ({ active, storeIdx, setTotal, setActiveNav, activeNav, navigat
     updateCart(oldValues);
     if (setTotal) setTotal(formatTotal(oldValues[storeIdx].merch));
   };
-  console.log("merch :>> ", merch);
 
   return (
     <div className="container">

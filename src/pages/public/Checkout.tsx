@@ -103,10 +103,10 @@ const Checkout = () => {
   const handlePaymentClick = (data?: PaymentMethod) => {
     if (!data) {
       if (activeNav === "In store") onStoreCheckout({ sessionCart: active, user });
-      if (activeNav === "Online") onCheckOutSession(active);
+      if (activeNav === "Online") onCheckOutSession({ sessionCart: active, user });
     } else {
       if (data.type === "store") onStoreCheckout({ sessionCart: active, user });
-      if (data.type === "visa/credit") onCheckOutSession(active);
+      if (data.type === "visa/credit") onCheckOutSession({ sessionCart: active, user });
     }
   };
   return (
