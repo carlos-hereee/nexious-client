@@ -8,7 +8,7 @@ type MenuOptions = ["#", "status", "client", "payment type", "number of items", 
 interface ViewOrdersProps {
   orders: OrderSchema[];
   heading?: string;
-  labels?: { accepted: string; decline: string };
+  labels?: { accepted?: string; decline?: string; completed?: string };
   closePage?: boolean;
   menus?: MenuOptions;
   onOrderClick?: (order: OrderSchema, option: OrderOptions) => void;

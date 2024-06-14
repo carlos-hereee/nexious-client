@@ -42,7 +42,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           heading="Pending Orders"
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
-          onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
+          onOrderClick={(order, option) => handleOrderClick({ order, option, appId, from: "pending" })}
           labels={{ accepted: "Reserve merch on hold", decline: "Decline order" }}
         />
       )}
@@ -52,8 +52,8 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
           heading="Incomplete Orders"
           closePage={closePage}
           handleSuperSeed={handleSuperSeed}
-          onOrderClick={(order, option) => handleOrderClick({ order, option, appId })}
-          labels={{ accepted: "Mark as complete", decline: "Decline order" }}
+          onOrderClick={(order, option) => handleOrderClick({ order, option, appId, from: "incomplete" })}
+          labels={{ completed: "Mark as complete", decline: "Decline order" }}
         />
       )}
       {status === "phase-view-order-complete" && (

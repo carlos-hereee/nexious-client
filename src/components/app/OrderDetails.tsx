@@ -18,9 +18,21 @@ const OrderDetails = ({ order, onClick, labels }: OrderDetailsProps) => {
             const merchIdx = inventory.findIndex((i) => i.merchId === m.merchId);
             const merch = inventory[merchIdx];
             return (
-              <MerchCard key={m.merchId} hideButtons data={{ ...merch, title: merch.name }} hero={{ url: merch.thumbnail }}>
-                <strong>Quantity: {m.quantity}</strong>
-                {m.paymentStatus && <strong>Payment status: {m.paymentStatus}</strong>}
+              <MerchCard
+                key={m.merchId}
+                theme="merch-row"
+                hideButtons
+                data={{ ...merch, title: merch.name }}
+                hero={{ url: merch.thumbnail }}
+              >
+                <div className="merch-card-footer">
+                  <strong>Quantity: {m.quantity}</strong>
+                  {m.paymentStatus && (
+                    <p>
+                      <strong>Payment status: {m.paymentStatus}</strong>
+                    </p>
+                  )}
+                </div>
               </MerchCard>
             );
           })}
@@ -30,6 +42,7 @@ const OrderDetails = ({ order, onClick, labels }: OrderDetailsProps) => {
       {onClick && labels && (
         <div className="flex-center">
           {labels.accepted && <Button onClick={() => onClick("accepted")}>{labels?.accepted}</Button>}
+          {labels.completed && <Button onClick={() => onClick("completed")}>{labels?.completed}</Button>}
           {labels.decline && (
             <Button onClick={() => onClick("decline")} theme="btn-main btn-cancel">
               {labels?.decline}

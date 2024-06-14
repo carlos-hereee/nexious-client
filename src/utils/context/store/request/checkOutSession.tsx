@@ -25,7 +25,7 @@ export const checkOutSession = async ({ dispatch, sessionCart, user }: StoreDisp
     // dispatch({ type: STORE_ACTIONS.SET_STRIPE_SECRET, payload: data });
     dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    console.log("error :>> ", error);
+    // console.log("error :>> ", error);
     dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: false });
   }
 };

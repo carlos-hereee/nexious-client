@@ -39,10 +39,10 @@ declare module "store-context" {
     orderId: string;
     merch: OrderMerchSchema[];
   }
-  export type OrderOptions = "decline" | "complete" | "accepted";
+  export type OrderOptions = "decline" | "completed" | "accepted" | "incomplete" | "pending";
   export interface OrderDetailsProps {
     order: OrderSchema;
-    labels?: { accepted: string; decline: string };
+    labels?: { accepted?: string; decline?: string; completed?: string };
     onClick?: (option: OrderOptions) => void;
   }
 
@@ -84,6 +84,7 @@ declare module "store-context" {
     order: OrderSchema;
     option: OrderOptions;
     appId: string;
+    from?: OrderOptions;
   }
   export interface StoreSchema extends StoreStateProps {
     addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;

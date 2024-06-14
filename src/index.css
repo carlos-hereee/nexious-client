@@ -286,3 +286,32 @@ header {
 .overflow-y {
   overflow-y: auto;
 }
+.merch-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+.merch-row:hover {
+  border: 1px solid #888888;
+  border-radius: 1rem;
+  /* filter: brightness(0.7); */
+  /* -webkit-filter: brightness(70%);
+  
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease; */
+}
+.merch-row .merch-card-header {
+  width: 50%;
+}
+.merch-row .merch-card-body {
+  width: 100%;
+}
+.merch-row .merch-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}

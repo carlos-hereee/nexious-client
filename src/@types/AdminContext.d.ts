@@ -1,5 +1,5 @@
 declare module "app-admin" {
-  import { OrderSchema } from "store-context";
+  import { OrderSchema, StoreOrderUpdate } from "store-context";
   import { PageProps, StoreProps, StringObjProp } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
@@ -107,6 +107,7 @@ declare module "app-admin" {
     appId?: string;
     name?: string;
     option?: string;
+    from?: OrderOptions;
     order?: OrderSchema;
     pageId?: string;
     uid?: string;
