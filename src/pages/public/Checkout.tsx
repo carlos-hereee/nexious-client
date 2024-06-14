@@ -144,9 +144,7 @@ const Checkout = () => {
                 />
               )}
               <Total total={total} heading="Total:" />
-              <div className="flex-center">
-                <Button label="Continue with checkout" onClick={() => handlePaymentClick()} />
-              </div>
+              <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
             </>
           ) : (
             <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />

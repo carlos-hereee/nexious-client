@@ -16,8 +16,8 @@ export const checkOutSession = async ({ dispatch, sessionCart, user }: StoreDisp
     });
     const { data } = await axiosAuth.post("/store/create-checkout-session", {
       accountId: sessionCart.accountId,
+      client: user,
       cart,
-      user,
     });
     // redirect
     document.location.href = data;
