@@ -24,6 +24,13 @@ declare module "store-context" {
     location: string;
     location2?: string;
   }
+  export interface OrderMerchSchema {
+    merchId: string;
+    productId?: string;
+    priceId?: string;
+    paymentStatus?: "paid" | "unpaid" | "no_payment_required";
+    quantity: number;
+  }
   export interface OrderSchema {
     store: OrderStoreInfo;
     status: "pending" | "completed" | "accepted" | "declined";

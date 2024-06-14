@@ -20,6 +20,7 @@ const OrderDetails = ({ order, onClick, labels }: OrderDetailsProps) => {
             return (
               <MerchCard key={m.merchId} hideButtons data={{ ...merch, title: merch.name }} hero={{ url: merch.thumbnail }}>
                 <strong>Quantity: {m.quantity}</strong>
+                {m.paymentStatus && <strong>Payment status: {m.paymentStatus}</strong>}
               </MerchCard>
             );
           })}
