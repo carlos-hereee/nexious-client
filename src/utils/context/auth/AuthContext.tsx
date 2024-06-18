@@ -53,6 +53,7 @@ export const AuthState = ({ children }: ChildProps) => {
       dummyUser: state.dummyUser,
       theme: state.theme,
       locale: state.locale,
+      notifications: state.notifications,
       userForm: state.userForm,
       loginForm: state.loginForm,
       signUpForm: state.signUpForm,

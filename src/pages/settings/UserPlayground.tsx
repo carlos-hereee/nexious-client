@@ -5,13 +5,18 @@ import { Banner } from "nexious-library/@nxs-organism";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";
+import { useNotifications } from "@hooks/useNotifications";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "./AppPlayground";
 
+type Menu = "apps" | "account" | "feed" | "notifications" | "orders";
+
 const UserPlayground = () => {
-  const [active, setActive] = useState<"apps" | "account" | "feed" | "notifications">("apps");
+  const [active, setActive] = useState<Menu>("apps");
   const { user } = useContext(AuthContext);
-  const { welcomeMessage, store } = useContext(AppContext);
+  const { welcomeMessage } = useContext(AppContext);
+  const { ping } = useNotifications();
+
   return (
     <div className="container">
       <Banner message={`${welcomeMessage} ${user.nickname ? user.nickname : user.username}`} />;
@@ -33,10 +38,16 @@ const UserPlayground = () => {
           />
           {/* TODO: USER NOTIFICATIONS I.E. INCOMING/PENDING ORDERS  */}
           <IconButton
+            icon={{ icon: "checkout", label: "orders" }}
+            theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("orders")}
+            ping={ping.orders || undefined}
+          />
+          <IconButton
             icon={{ icon: "app", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("notifications")}
-            ping={store.pendingOrders?.length}
+            ping={ping.notifications || undefined}
           />
           <IconButton
             icon={{ icon: "account", label: "Account" }}
@@ -47,6 +58,7 @@ const UserPlayground = () => {
 
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
+        {active === "orders" && <AppInProgress />}
         {active === "notifications" && <Notification />}
         {active === "account" && <AccountSettings />}
       </div>

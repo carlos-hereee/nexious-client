@@ -3,6 +3,11 @@ declare module "store-context" {
   import { UserSchema } from "auth-context";
   import { STORE_ACTIONS } from "@actions/ServiceActions";
 
+  export interface ViewOrderStatusKey {
+    pending: DialogStatusProps;
+    incomplete: DialogStatusProps;
+    complete: DialogStatusProps;
+  }
   export interface MerchProps {
     cost: number;
     inStock: number;

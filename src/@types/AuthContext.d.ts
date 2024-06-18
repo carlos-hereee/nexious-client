@@ -1,7 +1,7 @@
 declare module "auth-context" {
   import { AUTH_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
-  import { AppListProps } from "app-types";
+  import { AppListProps, Notification } from "app-types";
   import { AuthFormValueProps, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
 
   export interface AuthErrorProps {
@@ -27,6 +27,7 @@ declare module "auth-context" {
     languageId?: string;
     phone?: string;
     subscriptions?: AppListProps[];
+    notifications?: Notification[];
     ownedApps?: AppListProps[];
   }
 
@@ -36,6 +37,7 @@ declare module "auth-context" {
     // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     ownedApps: AppListProps[];
+    notifications: Notification[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     dummyUser: LoginValues;
@@ -82,5 +84,6 @@ declare module "auth-context" {
     | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
+    | { type: AUTH_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }

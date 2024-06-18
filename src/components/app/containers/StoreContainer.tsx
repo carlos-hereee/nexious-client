@@ -5,11 +5,16 @@ import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
+import { useNotifications } from "@hooks/useNotifications";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
+
   const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
+
+  const { ping } = useNotifications();
+
   useEffect(() => {
     // avoid redundant request if num of merch dont match get store inventory
     if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
@@ -32,26 +37,8 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Store url:" labelLayout="bolden">
         <CopyButton data={formatStoreUrl(appLink, store.name)} />
       </ItemDetail>
-      <ItemDetail label="Pending orders:" labelLayout="bolden">
-        <Button
-          label="View orders"
-          onClick={() => updatePhase("phase-view-order-pending")}
-          ping={store.pendingOrders?.length}
-        />
-      </ItemDetail>
-      <ItemDetail label="Incomplete orders:" labelLayout="bolden">
-        <Button
-          label="View incomplete orders"
-          onClick={() => updatePhase("phase-view-order-incomplete")}
-          ping={store.inCompleteOrders?.length}
-        />
-      </ItemDetail>
-      <ItemDetail label="Complete orders:" labelLayout="bolden">
-        <Button
-          label="View completed orders"
-          onClick={() => updatePhase("phase-view-order-complete")}
-          ping={store.completedOrders?.length}
-        />
+      <ItemDetail label="Orders:" labelLayout="bolden">
+        <Button label="View orders" onClick={() => updatePhase("phase-view-order")} ping={store.orders || undefined} />
       </ItemDetail>
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />

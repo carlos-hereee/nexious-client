@@ -3,6 +3,7 @@
   "accessToken": "",
   "theme": "light-mode",
   "locale": "",
+  "notifications": [],
   "authErrors": {
     "login": "",
     "register": "",
@@ -66,8 +67,10 @@
     },
     "fieldHeading": {},
     "desiredOrder": [""],
+
     "heading": ""
   },
+
   "loginForm": {
     "initialValues": { "username": "", "password": "" },
     "formId": "login",

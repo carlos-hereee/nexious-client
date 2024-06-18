@@ -22,6 +22,14 @@ declare module "app-types" {
     icon: string;
     uid: string;
   };
+  export interface Notification {
+    message: string;
+    link: string;
+    type: string;
+    name: string;
+    uid: string;
+    ping: number;
+  }
 
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {
@@ -63,6 +71,7 @@ declare module "app-types" {
     inventory: MerchProps[];
     pendingOrders?: OrderSchema[];
     completedOrders?: OrderSchema[];
+    orders?: OrderSchema[];
     inCompleteOrders?: OrderSchema[];
   }
   export interface AppListProps {
@@ -131,6 +140,7 @@ declare module "app-types" {
   export interface DialogProps {
     status?: DialogStatusProps;
     merch?: MerchProps;
+    order?: OrderSchema;
     onClose: () => void;
     onConfirm?: () => void;
     onCancel?: (key: DialogStatusProps) => void;
@@ -165,9 +175,9 @@ declare module "app-types" {
     | "phase-one"
     | "phase-two"
     | "phase-three"
-    | "phase-view-order-pending"
-    | "phase-view-order-incomplete"
-    | "phase-view-order-complete"
+    | "phase-view-order"
+    // | "phase-view-order-incomplete"
+    // | "phase-view-order-complete"
     | "phase-edit";
   export interface AppDialogProps {
     pages: boolean;

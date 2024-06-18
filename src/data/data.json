@@ -38,6 +38,13 @@
     "logout": "",
     "forgotPassword": ""
   },
+  "dashboardMenu": {
+    "apps": 0,
+    "account": 0,
+    "feed": 0,
+    "notifications": 0,
+    "orders": 0
+  },
   "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
   "calendarData": {
     "frequency": [

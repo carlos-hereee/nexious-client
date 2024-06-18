@@ -10,14 +10,16 @@ const AppPlayground = () => {
     <section className="container">
       <h2 className="heading">All your apps: </h2>
       <div className="app-playground">
+        <div className="primary-container">
+          {ownedApps.length > 0 ? (
+            ownedApps.map((app) => {
+              return <AppCard app={app} key={app.appId} theme="highlight" />;
+            })
+          ) : (
+            <p>You dont own any apps</p>
+          )}
+        </div>
         <CreateApp />
-        {ownedApps.length > 0 ? (
-          ownedApps.map((app) => {
-            return <AppCard app={app} key={app.appId} theme="highlight" />;
-          })
-        ) : (
-          <p>You dont own any apps</p>
-        )}
       </div>
     </section>
   );
