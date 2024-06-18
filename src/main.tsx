@@ -13,7 +13,7 @@ import AppRouter from "./AppRouter";
 // eslint-disable-next-line import/no-relative-packages
 // import "../node_modules/nexious-library/dist/css/index.css";
 import "nexious-library/@index.css";
-import "./index.css";
+import "./stylesheets/index.css";
 
 const elementRoot: Element | DocumentFragment | null = document.getElementById("root");
 

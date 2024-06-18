@@ -101,6 +101,7 @@ const Checkout = () => {
   if (!active) return <Loading />;
 
   const handlePaymentClick = (data?: PaymentMethod) => {
+    // TODO: add shipping options
     if (!data) {
       if (activeNav === "In store") onStoreCheckout({ sessionCart: active, user });
       if (activeNav === "Online") onCheckOutSession({ sessionCart: active, user });

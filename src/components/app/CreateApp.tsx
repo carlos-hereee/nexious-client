@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 const CreateApp = () => {
   const navigate = useNavigate();
   return (
-    <div className="container">
+    <div className="full-container">
       <h2 className="heading">Build an app</h2>
-      <Button label="+ Create a new app" onClick={() => navigate("/build-app")} />
+      <Button label="+ Create a new app" theme="btn-main" onClick={() => navigate("/build-app")} />
     </div>
   );
 };

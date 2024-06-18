@@ -1,0 +1,32 @@
+.navigation-bar {
+  width: 100%;
+  padding: 0.5rem 1rem;
+}
+.navigation-bar .navigation {
+  width: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-content: center;
+}
+.navigation-bar .navigation .nav-btn {
+  justify-content: center;
+}
+.user-menu {
+  border-radius: 4px;
+  z-index: 99;
+  position: fixed;
+  bottom: 10%;
+  right: 5%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+}
+.user-menu .navigation {
+  position: relative;
+  flex-direction: column;
+  justify-content: flex-end;
+  top: 0%;
+  bottom: 5%;
+  z-index: 1;
+}

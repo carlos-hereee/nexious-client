@@ -4,6 +4,7 @@ import AppInProgress from "@pages/public/AppInProgress";
 import { Banner } from "nexious-library/@nxs-organism";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
+import Notification from "@pages/dashboard/Notification";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "./AppPlayground";
 
@@ -46,7 +47,7 @@ const UserPlayground = () => {
 
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
-        {active === "notifications" && <AppInProgress />}
+        {active === "notifications" && <Notification />}
         {active === "account" && <AccountSettings />}
       </div>
     </div>
