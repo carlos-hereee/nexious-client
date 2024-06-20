@@ -17,6 +17,7 @@ export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchP
     if (app.media) dispatch({ type: APP_ACTIONS.SET_MEDIA, payload: app.media });
     if (app.owner) dispatch({ type: APP_ACTIONS.SET_OWNER, payload: app.owner });
     if (app.themeList) dispatch({ type: APP_ACTIONS.SET_THEME_LIST, payload: app.themeList });
+    if (app.notifications) dispatch({ type: APP_ACTIONS.SET_NOTIFICATIONS, payload: app.notifications });
     if (app.pages) dispatch({ type: APP_ACTIONS.SET_PAGES, payload: app.pages });
     if (app.languageList) dispatch({ type: APP_ACTIONS.SET_LANGUAGES, payload: app.languageList });
     if (app.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: app.store });

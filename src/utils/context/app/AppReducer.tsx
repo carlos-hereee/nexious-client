@@ -67,6 +67,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, locale: action.payload };
     case APP_ACTIONS.SET_LANGUAGES:
       return { ...state, languageList: action.payload };
+    case APP_ACTIONS.SET_NOTIFICATIONS:
+      return { ...state, notifications: action.payload };
     // case APP_ACTIONS.SET_EDIT_APP:
     //   return { ...state, editApp: action.payload };
     // case APP_ACTIONS.COMING_SOON:

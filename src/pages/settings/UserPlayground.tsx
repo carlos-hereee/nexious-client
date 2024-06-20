@@ -6,6 +6,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
+import ViewOrdersContainer from "@components/app/containers/ViewOrdersContainer";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "./AppPlayground";
 
@@ -37,12 +38,12 @@ const UserPlayground = () => {
             onClick={() => setActive("feed")}
           />
           {/* TODO: USER NOTIFICATIONS I.E. INCOMING/PENDING ORDERS  */}
-          <IconButton
+          {/* <IconButton
             icon={{ icon: "checkout", label: "orders" }}
             theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("orders")}
             ping={ping.orders || undefined}
-          />
+          /> */}
           <IconButton
             icon={{ icon: "app", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
@@ -58,7 +59,7 @@ const UserPlayground = () => {
 
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
-        {active === "orders" && <AppInProgress />}
+        {active === "orders" && <ViewOrdersContainer heading="Orders" />}
         {active === "notifications" && <Notification />}
         {active === "account" && <AccountSettings />}
       </div>

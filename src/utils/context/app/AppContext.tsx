@@ -55,6 +55,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appLink: state.appLink,
       appId: state.appId,
       activeAppId: state.activeAppId,
+      notifications: state.notifications,
       landing: state.landing,
       themeList: state.themeList,
       languageList: state.languageList,

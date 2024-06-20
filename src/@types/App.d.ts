@@ -25,7 +25,7 @@ declare module "app-types" {
   export interface Notification {
     message: string;
     link: string;
-    type: string;
+    category: string;
     name: string;
     uid: string;
     ping: number;
@@ -133,6 +133,7 @@ declare module "app-types" {
     menu: MenuProp[];
     activeMenu: MenuProp[];
     themeList: ThemeList[];
+    notifications: Notification[];
     iconList: MenuProp[];
     calendar: CalendarProps;
     dbVersion?: string;

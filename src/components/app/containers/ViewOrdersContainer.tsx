@@ -6,18 +6,28 @@ import ViewOrders from "../ViewOrders";
 import ViewOrdersDialog from "../dialog/ViewOrdersDialog";
 
 type MenuOptions = "pending" | "incomplete" | "complete";
+interface ViewOrderContainerProps {
+  heading?: string;
+}
 
-const ViewOrdersContainer = () => {
+const ViewOrdersContainer = ({ heading }: ViewOrderContainerProps) => {
   const [active, setNavigation] = useState<MenuOptions>("pending");
+  // const { store, order } = useContext(AppContext);
   const { store } = useContext(AppContext);
-
+  // const [orders, setOrders] = useState();
   const [activeOrder, setActiveOrder] = useState<OrderSchema | undefined>();
 
+  // useEffect(() => {
+  //   if (active) {
+  //     console.log("active :>> ", active);
+  //   }
+  // }, []);
+  // console.log("order :>> ", order);
   const statusKey: ViewOrderStatusKey = { pending: "phase-one", incomplete: "phase-two", complete: "phase-three" };
 
   return (
     <div>
-      <h1 className="heading">View Orders</h1>
+      {heading && <h1 className="heading">{heading}</h1>}
       <Navigation
         menus={["pending", "incomplete", "complete"]}
         theme="navigation-bar"

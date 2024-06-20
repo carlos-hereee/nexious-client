@@ -12,6 +12,7 @@ declare module "app-context" {
     MediaProps,
     MenuProp,
     NewsletterProps,
+    Notification,
     PageProps,
     StoreProps,
   } from "app-types";
@@ -51,6 +52,7 @@ declare module "app-context" {
     activeAppId: string;
     owner: UserSchema;
     adminIds: AdminIdProps[];
+    notifications: Notification[];
     newsletter: NewsletterProps;
     pages: PageProps[] | [];
     page: PageProps;
@@ -138,6 +140,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
     | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
+    | { type: APP_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: APP_ACTIONS.SET_MEDIA_ITEM; payload: MediaItemProp }
     | { type: APP_ACTIONS.SET_ADMIN_IDS; payload: AdminIdProps[] };
 }

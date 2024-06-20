@@ -1,6 +1,6 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Dialog } from "nexious-library";
 import AddMerch from "../forms/store/AddMerch";
 import BuildStore from "../forms/store/BuildStore";
@@ -18,7 +18,7 @@ const StoreDialog = ({ onClose, status }: DialogProps) => {
       {status === "phase-one" && <BuildStore />}
       {status === "phase-two" && <EditStore />}
       {status === "phase-three" && <AddMerch />}
-      {status === "phase-view-order" && <ViewOrdersContainer />}
+      {status === "phase-view-order" && <ViewOrdersContainer heading="View orders" />}
       {status === "configuration" && <UpdateStripeConfig />}
       {status === "confirm-cancel" && <DeleteStore />}
     </Dialog>
