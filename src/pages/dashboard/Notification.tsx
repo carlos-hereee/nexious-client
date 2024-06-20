@@ -1,17 +1,20 @@
+import { homeUrl } from "@config";
 import { AuthContext } from "@context/auth/AuthContext";
-import { useNotifications } from "@hooks/useNotifications";
-import { Button, Navigation } from "nexious-library";
+import { Notification as N } from "app-types";
+import { Button, CopyButton, Navigation } from "nexious-library";
 import { useContext } from "react";
 
-const Notification = () => {
-  const { notifications } = useNotifications();
+interface Props {
+  notifications: N[];
+}
+const Notification = ({ notifications }: Props) => {
   const { clearNotification } = useContext(AuthContext);
 
   return (
     <div className="container">
       <h1 className="heading">Notifications</h1>
       <div className="primary-container">
-        <Navigation menus={["Type", "Action taken", "Message", "Link", "Remove"]} theme="navigation-bar" />
+        <Navigation menus={["Type", "Action taken", "Message", "Link", "Remove"]} theme="navigation-bar hide-on-mobile" />
         {notifications.length > 0 ? (
           notifications.map((notification) => (
             <div key={notification.notificationId} className="notification-row highlight">
@@ -22,8 +25,12 @@ const Notification = () => {
                 <strong>{notification.name}</strong>
               </p>
               <p className="text-fit text-center">{notification.message}</p>
-              <p className="text-fit text-center">{notification.link}</p>
-              <Button label="X" theme="btn-cancel" onClick={() => clearNotification(notification.notificationId)} />
+              <CopyButton data={homeUrl + notification.link} />
+              <Button
+                label="X"
+                theme="btn-cancel hide-on-mobile"
+                onClick={() => clearNotification(notification.notificationId)}
+              />
             </div>
           ))
         ) : (

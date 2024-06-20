@@ -14,7 +14,7 @@ type Menu = "apps" | "account" | "feed" | "notifications" | "orders";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<Menu>("apps");
-  const { user } = useContext(AuthContext);
+  const { user, notifications } = useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { ping } = useNotifications();
 
@@ -60,7 +60,7 @@ const UserPlayground = () => {
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
         {active === "orders" && <ViewOrdersContainer heading="Orders" />}
-        {active === "notifications" && <Notification />}
+        {active === "notifications" && <Notification notifications={notifications} />}
         {active === "account" && <AccountSettings />}
       </div>
     </div>

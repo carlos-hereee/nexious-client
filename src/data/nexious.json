@@ -272,6 +272,7 @@
     }
   },
   "nexiousDashboardMenu": {
+    "notifications": false,
     "app": false,
     "pages": false,
     "media": false,
@@ -280,6 +281,7 @@
     "danger": false
   },
   "dashboardMenus": [
+    { "label": "Notifications", "value": "notifications", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "App", "value": "app", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "Pages", "value": "pages", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "Media", "value": "media", "activeTheme": "btn-main btn-active", "theme": "btn-main" },

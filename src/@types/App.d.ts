@@ -79,6 +79,7 @@ declare module "app-types" {
     appId: string;
     appUrl: string;
     adminIds: AdminIdProps[];
+    notifications: string[];
     logo: string;
     owner: UserSchema;
     menu?: MenuProp[];
@@ -185,6 +186,7 @@ declare module "app-types" {
     media: boolean;
     store: boolean;
     calendar: boolean;
+    notifications: boolean;
     app: boolean;
     danger: boolean;
   }

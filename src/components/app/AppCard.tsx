@@ -28,7 +28,7 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
       </button>
       {isAdmin && (
         <div className="navigation-container">
-          <Button label="Settings" onClick={handleSetting} />
+          <Button label="Settings" onClick={handleSetting} ping={app.notifications.length || undefined} />
         </div>
       )}
     </div>

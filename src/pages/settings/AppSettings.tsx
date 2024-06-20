@@ -14,21 +14,32 @@ import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.jso
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
 import { Button, Loading } from "nexious-library";
 import StoreContainer from "@components/app/containers/StoreContainer";
+import { useNotifications } from "@hooks/useNotifications";
+import Notification from "@pages/dashboard/Notification";
 import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
-  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, store } = useContext(AppContext);
+  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, notifications } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("store");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
+  const { ping } = useNotifications();
 
   useEffect(() => {
     // close form windows on form success
     if (formStatus === "SUCCESS") {
       // exception for store stripe configuration window
       if (nav !== "store" && status !== "configuration") {
-        setShow({ pages: false, media: false, store: false, app: false, calendar: false, danger: false });
+        setShow({
+          pages: false,
+          media: false,
+          store: false,
+          app: false,
+          calendar: false,
+          danger: false,
+          notifications: false,
+        });
       }
       setFormStatus("IDLE");
     }
@@ -75,7 +86,7 @@ const AppSettings = () => {
             key={value}
             label={label}
             theme={nav === value ? activeTheme : theme}
-            ping={value === "store" ? store.pendingOrders?.length || 0 : undefined}
+            ping={value === "store" ? ping.orders || undefined : value === "notifications" ? ping.app : undefined}
             onClick={() => setNav(value as keyof AppDialogProps)}
           />
         ))}
@@ -84,6 +95,7 @@ const AppSettings = () => {
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
+      {nav === "notifications" && <Notification notifications={notifications} />}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
       {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
