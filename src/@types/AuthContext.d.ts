@@ -63,6 +63,7 @@ declare module "auth-context" {
     editUser: (values: UserSchema) => void;
     forgotPassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;
+    clearNotification: (key: string) => void;
     subscribe: (appId: string) => void;
   }
 

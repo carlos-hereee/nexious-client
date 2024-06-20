@@ -17,6 +17,7 @@ import { updateTheme } from "./dispatch/updateTheme";
 import { updateAccessToken } from "./dispatch/updateAccessToken";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { editUserRequest } from "./request/editUserRequest";
+import { removeNotification } from "./request/removeNotification";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -45,6 +46,7 @@ export const AuthState = ({ children }: ChildProps) => {
   // user actions
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
   const subscribe = useCallback((appId: string) => setSubscribe({ dispatch, appId, updateUser }), []);
+  const clearNotification = useCallback((data: string) => removeNotification({ dispatch, data, updateUser }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -75,6 +77,7 @@ export const AuthState = ({ children }: ChildProps) => {
       resetStranded,
       resetAuthErrors,
       setAccessToken,
+      clearNotification,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 

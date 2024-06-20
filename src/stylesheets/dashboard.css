@@ -4,3 +4,12 @@
   justify-content: space-around;
   gap: 1rem;
 }
+.notification-row {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+.notification-row * {
+  flex-grow: 1;
+  flex-basis: 0;
+}

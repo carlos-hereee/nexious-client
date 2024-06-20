@@ -27,7 +27,7 @@ declare module "app-types" {
     link: string;
     category: string;
     name: string;
-    uid: string;
+    notificationId: string;
     ping: number;
   }
 

@@ -241,3 +241,6 @@ header {
 .overflow-y {
   overflow-y: auto;
 }
+.text-fit {
+  max-width: 100%;
+}
