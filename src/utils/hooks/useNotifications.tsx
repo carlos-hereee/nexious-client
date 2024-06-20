@@ -25,12 +25,14 @@ export const useNotifications = () => {
     if (userNotifications && userNotifications.length > 0) {
       userNotifications.forEach((notification) => {
         if (notification.category === "orders") notificationCount.orders += 1;
+        notificationCount.notifications += 1;
       });
       notificationData = [...notificationData, ...userNotifications];
     }
     if (appNotifications && appNotifications.length > 0) {
       appNotifications.forEach((notification) => {
         if (notification.category === "app") notificationCount.app += 1;
+        notificationCount.notifications += 1;
       });
       notificationData = [...notificationData, ...userNotifications];
     }

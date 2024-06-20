@@ -1,16 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Form } from "nexious-library";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
 
 const AccountSettings = () => {
   const { user, userForm, editUser } = useContext(AuthContext);
+  const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
 
-  const initialValues = {
-    ...userForm.initialValues,
-    username: user.username || "",
-    nickname: user.nickname || "",
-    email: user.email || "",
-  };
   return (
     <div className="container">
       <h2 className="heading">Update account settings</h2>
