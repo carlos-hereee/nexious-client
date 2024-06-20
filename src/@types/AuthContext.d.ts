@@ -60,6 +60,7 @@ declare module "auth-context" {
     register: (values: RegisterFormProps) => void;
     setDummyUser: (values: LoginValues) => void;
     updateUser: (values: UserSchema) => void;
+    editUser: (values: UserSchema) => void;
     forgotPassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;
     subscribe: (appId: string) => void;
