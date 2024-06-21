@@ -19,7 +19,8 @@ import Notification from "@pages/dashboard/Notification";
 import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
-  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, notifications } = useContext(AppContext);
+  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } =
+    useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("store");
@@ -95,7 +96,9 @@ const AppSettings = () => {
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
-      {nav === "notifications" && <Notification notifications={notifications} />}
+      {nav === "notifications" && (
+        <Notification notifications={notifications} clearNotification={(id) => clearNotification({ appId, id })} />
+      )}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
       {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}

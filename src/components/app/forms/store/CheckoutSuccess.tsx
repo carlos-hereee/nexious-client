@@ -12,7 +12,7 @@ const ContinueShopping = () => {
     <>
       {cart.length > 0 && (
         <div className="container">
-          <h2 className="heading">Stores still left to checkout {cart.length}</h2>
+          <h2 className="heading">Stores still left at checkout {cart.length}</h2>
           <Button label="Continue to checkout" onClick={() => navigate("/checkout")} />
         </div>
       )}
@@ -26,8 +26,6 @@ const CheckoutSuccess = () => {
   const { search } = useLocation();
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
-  console.log("order :>> ", order);
-  console.log("search :>> ", search);
   useEffect(() => {
     if (search) confirmIntent(search);
     if (order) {

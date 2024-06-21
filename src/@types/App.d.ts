@@ -30,6 +30,10 @@ declare module "app-types" {
     notificationId: string;
     ping: number;
   }
+  export interface NProps {
+    appId: string;
+    id: string;
+  }
 
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {

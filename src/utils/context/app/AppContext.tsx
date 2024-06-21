@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, ChildProps, MediaItemProp, PageProps } from "app-types";
+import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps } from "app-types";
 import { AppSchema, StripeConfig } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
@@ -16,6 +16,7 @@ import { fetchPage } from "./request/fetchPage";
 import { upgradeLatest } from "./request/upgradeLatest";
 import { stripeAccountLink } from "./request/stripeAccountLink";
 import { setStripeConfig } from "./dispatch/setStripeConfig";
+import { removeNotification } from "./request/removeNotification";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -41,6 +42,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
+  const clearNotification = useCallback((data: NProps) => removeNotification({ dispatch, updateAppData, ...data }), []);
   const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
 
   const appValues = useMemo(() => {
@@ -95,6 +97,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getPageWithId,
       updateStripeConfig,
       upgradeToLatest,
+      clearNotification,
     };
   }, [
     state.isLoading,

@@ -1,14 +1,13 @@
 import { homeUrl } from "@config";
-import { AuthContext } from "@context/auth/AuthContext";
 import { Notification as N } from "app-types";
 import { Button, CopyButton, Navigation } from "nexious-library";
-import { useContext } from "react";
 
 interface Props {
   notifications: N[];
+  clearNotification: (key: string) => void;
 }
-const Notification = ({ notifications }: Props) => {
-  const { clearNotification } = useContext(AuthContext);
+const Notification = ({ notifications, clearNotification }: Props) => {
+  // const { clearNotification } = useContext(AuthContext);
 
   return (
     <div className="container">
