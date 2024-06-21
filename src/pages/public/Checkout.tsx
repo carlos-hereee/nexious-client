@@ -34,14 +34,17 @@ const Checkout = () => {
       if (!cart[storeIdx].isStripeActive) {
         methods = methods.filter((method) => method.type !== "visa/credit");
         setNavigation(["In store"]);
-      } else {
-        // handle other store limitations
-        const someInStore = cart[storeIdx].merch.some((m) => !m.productId);
-        const someOnline = cart[storeIdx].merch.some((m) => m.productId);
-        if (!someOnline && someInStore) setNavigation(["In store"]);
-        if (someOnline && !someInStore) setNavigation(["Online"]);
-        if (someOnline && someInStore) setNavigation(["Online", "In store"]);
       }
+      // handle other store limitations
+      const someInStore = cart[storeIdx].merch.some((m) => !m.productId);
+      const someOnline = cart[storeIdx].merch.some((m) => m.productId);
+      if (!someOnline && someInStore) {
+        methods = methods.filter((method) => method.type !== "visa/credit");
+        setActiveNav("In store");
+        setNavigation(["In store"]);
+      }
+      if (someOnline && !someInStore) setNavigation(["Online"]);
+      if (someOnline && someInStore) setNavigation(["Online", "In store"]);
       // set active store
       setActive(cart[storeIdx]);
       // update payment method types

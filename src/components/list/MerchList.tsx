@@ -31,6 +31,7 @@ const MerchList = ({ updateStatus }: { updateStatus?: (key: DialogStatusProps) =
       </ItemDetail>
     );
   }
+
   return (
     <ItemDetail label="Inventory:" labelLayout="bolden" hint={show ? hints.merchShowHint : hints.merchHideHint}>
       {show.inventory ? (

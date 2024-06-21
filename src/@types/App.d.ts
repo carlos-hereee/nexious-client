@@ -59,6 +59,7 @@ declare module "app-types" {
   export interface StoreProps {
     name: string;
     storeName?: string;
+    storeLink?: string;
     storeId: string;
     accountId: string;
     onBoardingRequired?: string;

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { MenuProp } from "app-types";
 import { IconButton } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
+import { AppContext } from "@context/app/AppContext";
 
 interface ActiveUserMenu {
   user: boolean;
@@ -14,6 +15,7 @@ interface ActiveUserMenu {
 const UserMenu = () => {
   const { accessToken, theme } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
+  const { store } = useContext(AppContext);
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false });
   const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);
@@ -35,7 +37,7 @@ const UserMenu = () => {
       {!activeMenu.user && (
         <IconButton
           icon={{ icon: "checkout", size: "3x" }}
-          onClick={() => merchCount > 0 && navigate("/checkout")}
+          onClick={() => (merchCount > 0 ? navigate("/checkout") : store.storeLink ? navigate(store.storeLink) : undefined)}
           ping={merchCount > 0 ? merchCount : undefined}
         />
       )}

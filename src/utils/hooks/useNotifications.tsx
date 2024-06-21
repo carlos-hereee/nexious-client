@@ -33,7 +33,7 @@ export const useNotifications = () => {
     if (userNotifications && userNotifications.length > 0) {
       userNotifications.forEach((notification) => {
         if (notification.category === "orders") notificationCount.orders += 1;
-        if (notification.category === "store-merch") notificationCount.store += 1;
+        // if (notification.category === "store-merch") notificationCount.store += 1;
         notificationCount.notifications += 1;
       });
     }
@@ -41,9 +41,7 @@ export const useNotifications = () => {
       appNotifications.forEach((notification) => {
         if (notification.category === "store-merch") notificationCount.store += 1;
         notificationCount.app += 1;
-        notificationCount.notifications += 1;
       });
-      console.log("appNotifications :>> ", appNotifications);
     }
     setPing(notificationCount);
     setNotifications(userNotifications);

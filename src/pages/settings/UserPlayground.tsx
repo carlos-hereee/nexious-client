@@ -37,13 +37,6 @@ const UserPlayground = () => {
             theme={active === "feed" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("feed")}
           />
-          {/* TODO: USER NOTIFICATIONS I.E. INCOMING/PENDING ORDERS  */}
-          {/* <IconButton
-            icon={{ icon: "checkout", label: "orders" }}
-            theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
-            onClick={() => setActive("orders")}
-            ping={ping.orders || undefined}
-          /> */}
           <IconButton
             icon={{ icon: "app", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}

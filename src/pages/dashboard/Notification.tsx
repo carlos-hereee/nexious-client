@@ -25,7 +25,11 @@ const Notification = ({ notifications }: Props) => {
                 <strong>{notification.name}</strong>
               </p>
               <p className="text-fit text-center">{notification.message}</p>
-              <CopyButton data={homeUrl + notification.link} />
+              {notification.link ? (
+                <CopyButton data={homeUrl + notification.link} />
+              ) : (
+                <p className="text-fit text-center"> no-link</p>
+              )}
               <Button
                 label="X"
                 theme="btn-cancel hide-on-mobile"

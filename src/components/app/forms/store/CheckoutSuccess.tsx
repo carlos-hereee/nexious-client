@@ -26,6 +26,8 @@ const CheckoutSuccess = () => {
   const { search } = useLocation();
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
+  console.log("order :>> ", order);
+  console.log("search :>> ", search);
   useEffect(() => {
     if (search) confirmIntent(search);
     if (order) {
@@ -53,6 +55,7 @@ const CheckoutSuccess = () => {
       </div>
     );
   }
+  console.log("orderData :>> ", orderData);
   // if order checkout was successful
   if (orderData?.paymentMethod === "in-store") {
     // TODO: address click navigation

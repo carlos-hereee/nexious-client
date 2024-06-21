@@ -30,7 +30,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
   const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
-  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
+  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId, updateAppData }), []);
 
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
   const getStripeAccountLink = useCallback((appId: string) => stripeAccountLink({ dispatch, appId }), []);
