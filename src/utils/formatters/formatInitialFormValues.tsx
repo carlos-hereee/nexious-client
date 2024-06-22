@@ -14,9 +14,10 @@ const addArrayInObj = ({ obj, key, value }: AddArrayInObject) => {
 };
 
 export const formatInitialValues: FormatFormValue = (data) => {
-  const { values, desiredOrder, landing, menu, page, merch, user, store } = data;
+  const { values, desiredOrder, landing, menu, page, merch, user, store, media } = data;
   //  values
   if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] })));
+  if (media) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: media[key] })));
   if (merch) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: merch[key] })));
   if (user) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: user[key] })));
   if (store) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: store[key] })));

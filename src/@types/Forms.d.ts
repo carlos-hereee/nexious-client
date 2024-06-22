@@ -139,6 +139,7 @@ declare module "app-forms" {
     merch?: MerchProps;
     page?: PageProps;
     store?: StoreProps;
+    media?: MediaItemProp;
     user?: UserSchema;
     menu?: MenuProp;
     desiredOrder: string[];

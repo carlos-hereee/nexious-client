@@ -31,7 +31,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
       ) : status === "phase-two" ? (
         <AddMedia onCancelClick={onClose} />
       ) : (
-        <EditMedia onCancelClick={() => onCancel("confirm-cancel")} media={socialMedia} onSubmit={onSubmit} />
+        <EditMedia onCancelClick={() => onCancel("confirm-cancel")} onSubmit={onSubmit} />
       )}
     </Dialog>
   );

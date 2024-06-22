@@ -109,6 +109,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.appId,
     state.landing,
     state.inventory,
+    state.socialMedia,
     state.loadingState,
     state.redirectUrl,
     state.store,

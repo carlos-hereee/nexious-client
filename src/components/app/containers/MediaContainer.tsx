@@ -1,5 +1,5 @@
 import MediaList from "@components/list/MediaList";
-import { SettingsContainer } from "app-types";
+import { MediaItemProp, SettingsContainer } from "app-types";
 import { Button } from "nexious-library/@nxs-atoms";
 import { ItemDetail } from "nexious-library";
 import { useContext } from "react";
@@ -8,12 +8,12 @@ import { AppContext } from "@context/app/AppContext";
 const MediaContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("onAdd is required");
-  const { media } = useContext(AppContext);
-  const handleRemove = () => {
-    updatePhase("confirm-cancel");
-  };
-  const handleMediaClick = () => {
+  const { media, setSocialMedia } = useContext(AppContext);
+
+  const handleRemove = () => updatePhase("confirm-cancel");
+  const handleMediaClick = (m: MediaItemProp) => {
     updatePhase("phase-one");
+    setSocialMedia(m);
   };
   return (
     <div className="container">

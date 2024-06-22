@@ -1,19 +1,17 @@
 import { CardContainerProps } from "app-types";
 import { Button, Icon, IconButton, ItemDetail } from "nexious-library";
-import hint from "@data/data.json";
+import { hints } from "@data/nexious.json";
 
 const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {
-  const handleRemove = (uid: string) => onRemove && onRemove(uid);
-
   if (!data || data.length === 0) {
     return (
-      <ItemDetail label="Social medias:" labelLayout="bolden" hint={hint.noMediaHint}>
+      <ItemDetail label="Social medias:" labelLayout="bolden" hint={hints.noMediaHint}>
         <p>No social media linked</p>
       </ItemDetail>
     );
   }
   return (
-    <ItemDetail label="Social medias:" labelLayout="bolden" hint={hint.mediaHint}>
+    <ItemDetail label="Social medias:" labelLayout="bolden" hint={hints.mediaHint}>
       <div className="flex-wrap">
         {data.map((d) => (
           <div key={d.uid} className="media-wrapper">
@@ -28,7 +26,7 @@ const MediaList = ({ data, onRemove, onMediaClick }: CardContainerProps) => {
                 {d.media && <Icon icon={d.media} name={d.media} size={onRemove ? "5x" : "3x"} />}
               </a>
             )}
-            {onRemove && <Button label="X" theme="btn-remove" onClick={() => handleRemove(d.uid)} />}
+            {/* {onRemove && <Button label="X" theme="btn-remove" onClick={() => handleRemove(d.uid)} />} */}
           </div>
         ))}
       </div>

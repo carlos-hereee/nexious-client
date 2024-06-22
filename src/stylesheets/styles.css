@@ -244,3 +244,9 @@ header {
 .text-fit {
   max-width: 100%;
 }
+.btn-remove {
+  z-index: 1;
+}
+.hint-container {
+  z-index: 4;
+}
