@@ -53,7 +53,6 @@ const CheckoutSuccess = () => {
       </div>
     );
   }
-  console.log("orderData :>> ", orderData);
   // if order checkout was successful
   if (orderData?.paymentMethod === "in-store") {
     // TODO: address click navigation
@@ -76,7 +75,7 @@ const CheckoutSuccess = () => {
   return (
     <div className="primary-container">
       <h1 className="heading text-center">Thank you for visiting us!</h1>
-      <h2 className="heading text-center">Thanks for your order! </h2>
+      <h2 className="heading text-center">Your order was submitted </h2>
       <ContinueShopping />
     </div>
   );
