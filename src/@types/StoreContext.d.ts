@@ -1,5 +1,6 @@
 declare module "store-context" {
   import { StoreProps } from "app-types";
+  import { StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
   import { STORE_ACTIONS } from "@actions/ServiceActions";
 
@@ -72,9 +73,10 @@ declare module "store-context" {
   export interface StoreStateProps {
     isLoading: boolean;
     stripeSecret: string;
+    stripeConfig?: StripeConfig;
     error: string;
     stripeConfirmation: StripeConfirmationProps;
-    stripeBalance: StripeBalance;
+    stripeBalance?: StripeBalance;
     order?: OrderSchema;
     cart: CartProps[];
   }
@@ -107,6 +109,8 @@ declare module "store-context" {
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
+    handlePayouts: (appId: string, option: "withdraw" | "deposit") => void;
+    getAccount: (appId: string) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -115,6 +119,7 @@ declare module "store-context" {
     user?: UserSchema;
     sessionId?: string;
     appId?: string;
+    data?: string;
     option?: OrderOptions;
     order?: OrderSchema;
     store?: StoreProps;
@@ -128,6 +133,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
     | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderSchema | undefined }
     | { type: STORE_ACTIONS.SET_STRIPE_BALANCE; payload: StripeBalance }
+    | { type: STORE_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
         payload: CartProps[];

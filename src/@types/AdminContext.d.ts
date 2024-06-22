@@ -70,8 +70,7 @@ declare module "app-admin" {
   export interface AdminSchema extends AdminStateProps {
     setFormStatus: (status: FORM_STATUS) => void;
     initApp: (values: AppValues) => void;
-    // stripe account
-    getAccount: (appId: string) => void;
+
     updateAccount: (config: StripeConfig) => void;
     editAppDetails: (values: AppValues, appId: string) => void;
     editAppName: (values: AppValues, appId: string) => void;

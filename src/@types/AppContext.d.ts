@@ -37,7 +37,7 @@ declare module "app-context" {
     isLoading: boolean;
     loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
-    stripeConfig?: StripeConfig;
+
     appList: AppListProps[];
     themeList: ThemeList[];
     iconList: IconListItem[];

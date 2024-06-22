@@ -1,15 +1,13 @@
-import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
 import { Button, ItemDetail, Loading } from "nexious-library";
 import { hints } from "@data/nexious.json";
+import { StoreContext } from "@context/store/StoreContext";
 
 const UpdateStripeConfig = () => {
-  const { store, stripeConfig, getStripeAccountLink, appId } = useContext(AppContext);
-  // const { getAccount, updateAccount, stripeForm } = useContext(AdminContext);
-  const { getAccount } = useContext(AdminContext);
+  const { store, getStripeAccountLink, appId } = useContext(AppContext);
+  const { getAccount, stripeConfig } = useContext(StoreContext);
 
-  console.log("stripeConfig :>> ", stripeConfig);
   useEffect(() => {
     // TODO: avoid closing dialog
     if (!stripeConfig && store.accountId) getAccount(appId);

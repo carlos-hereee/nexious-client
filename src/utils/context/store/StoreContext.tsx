@@ -10,6 +10,8 @@ import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
 import { checkoutStoreSession } from "./request/checkoutStoreSession";
 import { getStripeBalance } from "./request/getStripeBalance";
+import { managePayouts } from "./request/managePayouts";
+import { getStripeAccount } from "./request/getStripeAccount";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -41,6 +43,8 @@ export const StoreState = ({ children }: ChildProps) => {
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
   const confirmIntent = useCallback((sessionId: string) => confirmCheckoutIntent({ dispatch, sessionId }), []);
   const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
+  const handlePayouts = useCallback((appId: string, data: string) => managePayouts({ dispatch, appId, data }), []);
+  const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, appId }), []);
 
   const servicesValues = useMemo(() => {
     return {
@@ -60,6 +64,8 @@ export const StoreState = ({ children }: ChildProps) => {
       setLoading,
       setOrder,
       getBalance,
+      handlePayouts, // stripe account
+      getAccount,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,
@@ -77,7 +83,7 @@ export const StoreState = ({ children }: ChildProps) => {
       // setIsUserReq: (a) => setIsUserReq(dispatch, a),
       // setTotal: (a) => setTotal(dispatch, a),
     };
-  }, [state.isLoading, state.cart, state.stripeSecret, state.error]);
+  }, [state.isLoading, state.cart, state.stripeBalance, state.stripeConfig, state.error]);
   return <StoreContext.Provider value={servicesValues}>{children}</StoreContext.Provider>;
 };
 

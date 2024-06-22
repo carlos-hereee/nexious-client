@@ -31,7 +31,6 @@ import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/app/updateAppDetails";
 import { removeStore } from "./requests/store/removeStore";
 import { removeMerch } from "./requests/store/removeMerch";
-import { getStripeAccount } from "./requests/store/getStripeAccount";
 import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 import { addCalendar } from "./requests/calendar/addCalendar";
 import { removeMenuItem } from "./requests/app/removeMenuItem";
@@ -129,7 +128,6 @@ export const AdminState = ({ children }: ChildProps) => {
   const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
-  const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, handleAppAssets, appId }), []);
 
   const updateAccount = useCallback((config: StripeConfig) => {
     updateStripeAccount({ dispatch, handleAppAssets, config });
@@ -184,7 +182,6 @@ export const AdminState = ({ children }: ChildProps) => {
       setFormStatus,
       deleteStore,
       deleteMerchItem,
-      getAccount,
       updateAccount,
       deleteMenuItem,
       editMenuItem,
