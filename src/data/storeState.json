@@ -3,6 +3,7 @@
   "stripeSecret": "",
   "error": "",
   "cart": [],
+  "stripeBalance": {},
   "stripeConfirmation": {
     "status": "",
     "paymentStatus": "",

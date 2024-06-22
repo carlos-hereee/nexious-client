@@ -18,7 +18,7 @@ import AppPage from "@pages/app/AppPage";
 import AppStore from "@pages/app/AppStore";
 import Checkout from "@pages/public/Checkout";
 import ExploreApps from "@pages/public/ExploreApps";
-import CheckoutSuccess from "@components/app/forms/store/CheckoutSuccess";
+import CheckoutSuccess from "@pages/public/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
 // import AddPage from "@components/app/forms/AddPage";
 // import EditApp from "@components/app/forms/EditApp";

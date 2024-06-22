@@ -9,6 +9,7 @@ const UpdateStripeConfig = () => {
   // const { getAccount, updateAccount, stripeForm } = useContext(AdminContext);
   const { getAccount } = useContext(AdminContext);
 
+  console.log("stripeConfig :>> ", stripeConfig);
   useEffect(() => {
     // TODO: avoid closing dialog
     if (!stripeConfig && store.accountId) getAccount(appId);
@@ -25,6 +26,9 @@ const UpdateStripeConfig = () => {
       <div className="g-center">
         <div />
         <div className="container">
+          <ItemDetail label="Online payments:" labelLayout="bolden">
+            {stripeConfig?.charges_enabled ? <p>Active</p> : <p>Disabled</p>}
+          </ItemDetail>
           {store.onBoardingRequired ? (
             <ItemDetail label="Stripe Onboarding:" labelLayout="bolden" hint={hints.stripeOnboarding}>
               <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => getStripeAccountLink(appId)} />

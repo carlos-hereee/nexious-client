@@ -8,6 +8,10 @@ declare module "store-context" {
     incomplete: DialogStatusProps;
     complete: DialogStatusProps;
   }
+  export interface StripeBalance {
+    available?: { amount: number; currency: string; source_type: { card: number } }[];
+    pending?: { amount: number; currency: string; source_type: { card: number } }[];
+  }
   export interface MerchProps {
     cost: number;
     inStock: number;
@@ -64,11 +68,13 @@ declare module "store-context" {
     customer: null | unknown;
     // intent: string;
   }
+
   export interface StoreStateProps {
     isLoading: boolean;
     stripeSecret: string;
     error: string;
     stripeConfirmation: StripeConfirmationProps;
+    stripeBalance: StripeBalance;
     order?: OrderSchema;
     cart: CartProps[];
   }
@@ -100,6 +106,7 @@ declare module "store-context" {
     confirmIntent: (sessionId: string) => void;
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
+    getBalance: (appId: string) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -120,6 +127,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.SET_STRIPE_CONFIRMATION; payload: StripeConfirmationProps }
     | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
     | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderSchema | undefined }
+    | { type: STORE_ACTIONS.SET_STRIPE_BALANCE; payload: StripeBalance }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
         payload: CartProps[];

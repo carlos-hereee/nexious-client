@@ -13,6 +13,7 @@
   "activeAppName": "Nexious Tech",
   "appId": "",
   "activeAppId": "",
+
   "welcomeMessage": "Welcome back!",
   "locale": "",
   "adminIds": [{ "userId": "", "role": "" }],

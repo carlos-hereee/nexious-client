@@ -13,6 +13,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
       return { ...state, error: action.payload };
     case STORE_ACTIONS.SET_STRIPE_CONFIRMATION:
       return { ...state, stripeConfirmation: action.payload };
+    case STORE_ACTIONS.SET_STRIPE_BALANCE:
+      return { ...state, stripeBalance: action.payload };
     case STORE_ACTIONS.SET_STORE_ORDER:
       return { ...state, order: action.payload };
     // case "UPDATE_BOOKABLE":

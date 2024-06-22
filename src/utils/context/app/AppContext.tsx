@@ -84,6 +84,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       pages: state.pages,
       page: state.page,
       activePage: state.activePage,
+
       socialMedia: state.socialMedia,
       updateAppData,
       getAppWithName,
@@ -95,6 +96,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setSocialMedia,
       getStripeAccountLink,
       getPageWithId,
+
       updateStripeConfig,
       upgradeToLatest,
       clearNotification,

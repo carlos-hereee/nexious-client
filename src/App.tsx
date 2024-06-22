@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { isDev } from "@config";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import AppSettings from "@pages/settings/AppSettings";
+// // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import { isDev } from "@config";
+// // eslint-disable-next-line @typescript-eslint/no-unused-vars
+// import AppSettings from "@pages/settings/AppSettings";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);

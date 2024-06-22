@@ -24,8 +24,10 @@ declare module "app-context" {
   }
   export interface StripeConfig {
     currency?: string;
+    charges_enabled?: string;
     readPrivacyPolicy?: boolean;
   }
+
   export interface StripeUpdateConfigProps {
     readPrivacyPolicy?: boolean;
     currency?: string;
@@ -69,6 +71,7 @@ declare module "app-context" {
     dbVersion?: string;
     calendar: CalendarProps;
     store: StoreProps;
+
     inventory: MerchProps[];
   }
   // app context schema
@@ -85,6 +88,7 @@ declare module "app-context" {
     clearNotification: ({ appId: string, id: string }) => void;
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
+
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
 

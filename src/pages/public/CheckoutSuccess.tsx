@@ -75,7 +75,8 @@ const CheckoutSuccess = () => {
   }
   return (
     <div className="primary-container">
-      <h1 className="heading">Thank you for visiting us!</h1>
+      <h1 className="heading text-center">Thank you for visiting us!</h1>
+      <h2 className="heading text-center">Thanks for your order! </h2>
       <ContinueShopping />
     </div>
   );

@@ -97,7 +97,10 @@ const AppSettings = () => {
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
       {nav === "notifications" && (
-        <Notification notifications={notifications} clearNotification={(id) => clearNotification({ appId, id })} />
+        <Notification
+          notifications={notifications.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime())}
+          clearNotification={(id) => clearNotification({ appId, id })}
+        />
       )}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
       {nav === "danger" && <DangerZone />}

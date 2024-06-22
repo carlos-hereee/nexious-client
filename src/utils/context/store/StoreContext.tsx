@@ -9,6 +9,7 @@ import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
 import { checkoutStoreSession } from "./request/checkoutStoreSession";
+import { getStripeBalance } from "./request/getStripeBalance";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -39,6 +40,7 @@ export const StoreState = ({ children }: ChildProps) => {
   // store checkout
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
   const confirmIntent = useCallback((sessionId: string) => confirmCheckoutIntent({ dispatch, sessionId }), []);
+  const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
 
   const servicesValues = useMemo(() => {
     return {
@@ -48,6 +50,7 @@ export const StoreState = ({ children }: ChildProps) => {
       order: state.order,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
+      stripeBalance: state.stripeBalance,
       addToCart,
       updateCart,
       submitOrder,
@@ -56,6 +59,7 @@ export const StoreState = ({ children }: ChildProps) => {
       onStoreCheckout,
       setLoading,
       setOrder,
+      getBalance,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

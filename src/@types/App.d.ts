@@ -28,6 +28,7 @@ declare module "app-types" {
     category: string;
     name: string;
     notificationId: string;
+    updatedAt: Date;
     ping: number;
   }
   export interface NProps {
@@ -183,8 +184,7 @@ declare module "app-types" {
     | "phase-two"
     | "phase-three"
     | "phase-view-order"
-    // | "phase-view-order-incomplete"
-    // | "phase-view-order-complete"
+    | "phase-view-balance"
     | "phase-edit";
   export interface AppDialogProps {
     pages: boolean;
