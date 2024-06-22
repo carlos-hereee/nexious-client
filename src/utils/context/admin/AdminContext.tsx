@@ -4,7 +4,6 @@ import adminState from "@data/adminState.json";
 import { ChildProps, StringObjProp } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { StripeConfig } from "app-context";
 import { StoreOrderUpdate } from "store-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
@@ -31,7 +30,6 @@ import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/app/updateAppDetails";
 import { removeStore } from "./requests/store/removeStore";
 import { removeMerch } from "./requests/store/removeMerch";
-import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 import { addCalendar } from "./requests/calendar/addCalendar";
 import { removeMenuItem } from "./requests/app/removeMenuItem";
 import { updateMenuItem } from "./requests/app/updateMenuItem";
@@ -41,14 +39,14 @@ export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
-  const { updateAppData, setAppLoading, updateStripeConfig } = useContext(AppContext);
+  const { updateAppData, setAppLoading } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
 
   const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
   const handleAppAssets = (values: AppAssets) => {
     if (values.app || values.appList) updateAppData(values);
     if (values.user) updateUser(values.user);
-    if (values.account) updateStripeConfig(values.account);
+    // if (values.account) updateStripeConfig(values.account);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
@@ -129,10 +127,6 @@ export const AdminState = ({ children }: ChildProps) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
 
-  const updateAccount = useCallback((config: StripeConfig) => {
-    updateStripeAccount({ dispatch, handleAppAssets, config });
-  }, []);
-
   const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data, handleAppAssets }), []);
   const adminValues = useMemo(() => {
     return {
@@ -182,7 +176,7 @@ export const AdminState = ({ children }: ChildProps) => {
       setFormStatus,
       deleteStore,
       deleteMerchItem,
-      updateAccount,
+      // updateAccount,
       deleteMenuItem,
       editMenuItem,
       handleOrderClick,

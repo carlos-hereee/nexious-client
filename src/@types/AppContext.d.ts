@@ -22,11 +22,6 @@ declare module "app-context" {
     theme?: string;
     errorMessage?: string;
   }
-  export interface StripeConfig {
-    currency?: string;
-    charges_enabled?: string;
-    readPrivacyPolicy?: boolean;
-  }
 
   export interface StripeUpdateConfigProps {
     readPrivacyPolicy?: boolean;
@@ -77,7 +72,7 @@ declare module "app-context" {
   // app context schema
   export interface AppSchema extends AppStateProps {
     updateAppData: (props: AppAssets) => void;
-    updateStripeConfig: (config: StripeConfig) => void;
+    // updateStripeConfig: (config: StripeConfig) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppList: () => void;
     setAppLoading: (isLoading: boolean) => void;

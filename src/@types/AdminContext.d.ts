@@ -71,7 +71,7 @@ declare module "app-admin" {
     setFormStatus: (status: FORM_STATUS) => void;
     initApp: (values: AppValues) => void;
 
-    updateAccount: (config: StripeConfig) => void;
+    // updateAccount: (config: StripeConfig) => void;
     editAppDetails: (values: AppValues, appId: string) => void;
     editAppName: (values: AppValues, appId: string) => void;
     addPage: (values: AppValues, appId: string) => void;

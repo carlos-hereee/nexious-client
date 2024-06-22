@@ -246,6 +246,10 @@
       "title": "Hint!",
       "body": "Click on 'Onboarding' to continue with stripe onboarding to activate online payments"
     },
+    "stripeBalance": {
+      "title": "Hint!",
+      "body": "Head to your stripe dashboard to edit funds"
+    },
     "stripeConfiguration": {
       "title": "Notice!",
       "body": "View your stripe settings and allow online payments."

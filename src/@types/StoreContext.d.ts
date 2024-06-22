@@ -1,6 +1,5 @@
 declare module "store-context" {
   import { StoreProps } from "app-types";
-  import { StripeConfig } from "app-context";
   import { UserSchema } from "auth-context";
   import { STORE_ACTIONS } from "@actions/ServiceActions";
 
@@ -63,6 +62,14 @@ declare module "store-context" {
     icon: string;
     hero?: { url: string; small: string; name: string; alt: string };
   }
+  export interface StripeConfig {
+    currency?: string;
+    charges_enabled?: string;
+    readPrivacyPolicy?: boolean;
+    settings: {
+      payouts: { schedule: { delay_days: number; interval: string } };
+    };
+  }
   export interface StripeConfirmationProps {
     status: string;
     paymentStatus: string;
@@ -88,6 +95,11 @@ declare module "store-context" {
     payment?: { [key: string]: string };
     cart?: CartProps[];
   }
+  export interface PayoutAmmount {
+    data: string;
+    appId: string;
+    amount: string;
+  }
   export interface StoreCheckout {
     sessionCart: CartProps;
     user: UserSchema;
@@ -109,7 +121,7 @@ declare module "store-context" {
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
-    handlePayouts: (appId: string, option: "withdraw" | "deposit") => void;
+    handlePayouts: (data: PayoutAmmount) => void;
     getAccount: (appId: string) => void;
   }
   export interface StoreDispatchProps {
@@ -120,6 +132,7 @@ declare module "store-context" {
     sessionId?: string;
     appId?: string;
     data?: string;
+    amount?: string;
     option?: OrderOptions;
     order?: OrderSchema;
     store?: StoreProps;

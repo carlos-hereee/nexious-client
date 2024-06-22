@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps } from "app-types";
-import { AppSchema, StripeConfig } from "app-context";
+import { AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
@@ -15,7 +15,6 @@ import { getInventory } from "./request/getInventory";
 import { fetchPage } from "./request/fetchPage";
 import { upgradeLatest } from "./request/upgradeLatest";
 import { stripeAccountLink } from "./request/stripeAccountLink";
-import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { removeNotification } from "./request/removeNotification";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
@@ -27,7 +26,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
   const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
-  const updateStripeConfig = useCallback((config: StripeConfig) => setStripeConfig({ dispatch, config }), []);
 
   const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
@@ -96,7 +94,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getStripeAccountLink,
       getPageWithId,
 
-      updateStripeConfig,
       upgradeToLatest,
       clearNotification,
     };
