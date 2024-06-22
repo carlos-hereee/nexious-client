@@ -1,11 +1,11 @@
-import { KeyStringProp, SectionDataProps } from "app-types";
+import { StringObjProp, SectionDataProps } from "app-types";
 import { objToArray, urlFile } from "nexious-library";
 
 type SharedPayloadProps = {
-  [key: string]: KeyStringProp;
+  [key: string]: StringObjProp;
 };
 
-export const formatSharedKeyData = (values: KeyStringProp[]): SectionDataProps[] => {
+export const formatSharedKeyData = (values: StringObjProp[]): SectionDataProps[] => {
   // keep track of unique ids
   const uniqueData: SharedPayloadProps = {};
   for (let item = 0; item < values.length; item += 1) {

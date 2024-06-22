@@ -2,10 +2,10 @@
 // import { Heading } from "nexious-library/@nxs-atoms";
 // import { useNavigate } from "react-router-dom";
 // import { useContext } from "react";
-// import { ServicesContext } from "@context/services/ServicesContext";
+// import { StoreContext } from "@context/store/StoreContext";
 
 // const Container = ({ filter, filtered, isFiltered, data }) => {
-//   const { setActive } = useContext(ServicesContext);
+//   const { setActive } = useContext(StoreContext);
 //   const navigate = useNavigate();
 
 //   const handleClick = (e) => {

@@ -1,6 +1,6 @@
-import { MenuProps } from "app-types";
+import { MenuProp } from "app-types";
 
-export const toggleMenuValues = (menuItem: MenuProps, target: string) => {
+export const toggleMenuValues = (menuItem: MenuProp, target: string) => {
   const oldValues = menuItem;
   if (oldValues?.name) oldValues.name = target;
   if (oldValues?.value) oldValues.value = target;

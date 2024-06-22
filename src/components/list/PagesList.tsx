@@ -4,14 +4,14 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 
 const PagesList = ({ onRemove, updatePhase }: SettingsContainer) => {
-  const { pages, updateAppData } = useContext(AppContext);
+  const { pages, setActivePage } = useContext(AppContext);
   // require key variable
   if (!onRemove) throw Error("onRemove is required");
   if (!updatePhase) throw Error("updatePhase is required");
   if (!pages || pages.length === 0) return <p>No pages added. Add more pages to your app</p>;
 
   const handleEditPage = (p: PageProps) => {
-    updateAppData({ page: p });
+    setActivePage(p);
     updatePhase("phase-edit");
   };
   return (

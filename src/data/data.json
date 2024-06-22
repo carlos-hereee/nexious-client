@@ -1,0 +1,115 @@
+{
+  "appName": "test",
+  "appId": "test-123",
+  "landing": {
+    "_id": "65e7fa54c7e981bfe10834f3",
+    "type": "landing",
+    "title": "Lorem",
+    "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos  sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias error harum maxime adipisci amet laborum. Perspiciatis minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur fugiat, temporibus enim commodi iusto libero magni deleniti quod quam consequuntur! Commodi minima excepturi repudiandae velit hic maxime doloremque. Quaerat provident commodi consectetur veniam similique ad earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores labore suscipit quas? Nulla, placeat.",
+    "hero": "https://nexious.s3.us-east-2.amazonaws.com/1709712579307-test-bg.jfif",
+    "tagline": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+    "name": "Lorem",
+    "isStore": false,
+    "hasCta": true,
+    "hasSections": true,
+    "pageId": "1ce3ecd8-b40d-4f2f-bd88-3c55cea5914f",
+    "sections": [],
+    "cta": [
+      {
+        "label": "reserve now",
+        "link": "services",
+        "icon": "confirm",
+        "uid": "%}TIomOxy4?O",
+        "_id": "65f08462cd3380b370701785"
+      }
+    ],
+    "createdAt": "2024-03-06T05:08:36.102Z",
+    "updatedAt": "2024-03-12T16:35:46.539Z",
+    "__v": 11
+  },
+  "resetAuthErrors": {
+    "emergencyPasswordChangeIsRequired": "",
+    "offline": "",
+    "subscribe": "",
+    "userNotFound": "",
+    "login": "",
+    "register": "",
+    "changePasswordError": "",
+    "logout": "",
+    "forgotPassword": ""
+  },
+  "dashboardMenu": {
+    "apps": 0,
+    "app": 0,
+    "store": 0,
+    "account": 0,
+    "feed": 0,
+    "notifications": 0,
+    "orders": 0
+  },
+  "currencySymbols": {
+    "usd": "$"
+  },
+  "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
+  "calendarData": {
+    "frequency": [
+      { "value": "Weekly", "name": "Weekly", "label": "Weekly", "uid": "Weekly" },
+      { "value": "Bi-Weekly", "name": "Bi-Weekly", "label": "Bi-Weekly", "uid": "Bi-Weekly" },
+      { "value": "Monthly", "name": "Monthly", "label": "Monthly", "uid": "Monthly" },
+      { "value": "Yearly", "name": "Yearly", "label": "Yearly", "uid": "Yearly" }
+    ],
+    "week": [
+      { "value": "Monday", "name": "Monday", "label": "Monday", "uid": "Monday" },
+      { "value": "Tuesday", "name": "Tuesday", "label": "Tuesday", "uid": "Tuesday" },
+      { "value": "Wednesday", "name": "Wednesday", "label": "Wednesday", "uid": "Wednesday" },
+      { "value": "Thursday", "name": "Thursday", "label": "Thursday", "uid": "Thursday" },
+      { "value": "Friday", "name": "Friday", "label": "Friday", "uid": "Friday" },
+      { "value": "Saturday", "name": "Saturday", "label": "Saturday", "uid": "Saturday" },
+      { "value": "Sunday", "name": "Sunday", "label": "Sunday", "uid": "Sunday" }
+    ],
+    "sundayFirst": [
+      { "value": "Sunday", "name": "Sunday", "label": "Sunday", "uid": "Sunday" },
+      { "value": "Monday", "name": "Monday", "label": "Monday", "uid": "Monday" },
+      { "value": "Tuesday", "name": "Tuesday", "label": "Tuesday", "uid": "Tuesday" },
+      { "value": "Wednesday", "name": "Wednesday", "label": "Wednesday", "uid": "Wednesday" },
+      { "value": "Thursday", "name": "Thursday", "label": "Thursday", "uid": "Thursday" },
+      { "value": "Friday", "name": "Friday", "label": "Friday", "uid": "Friday" },
+      { "value": "Saturday", "name": "Saturday", "label": "Saturday", "uid": "Saturday" }
+    ],
+    "hours": [
+      { "value": "1:00 am", "name": "1:00", "label": "1:00 am", "uid": "1:00" },
+      { "value": "2:00 am", "name": "2:00", "label": "2:00 am", "uid": "2:00" },
+      { "value": "3:00 am", "name": "3:00", "label": "3:00 am", "uid": "3:00" },
+      { "value": "4:00 am", "name": "4:00", "label": "4:00 am", "uid": "4:00" },
+      { "value": "5:00 am", "name": "5:00", "label": "5:00 am", "uid": "5:00" },
+      { "value": "6:00 am", "name": "6:00", "label": "6:00 am", "uid": "6:00" },
+      { "value": "7:00 am", "name": "7:00", "label": "7:00 am", "uid": "7:00" },
+      { "value": "8:00 am", "name": "8:00", "label": "8:00 am", "uid": "8:00" },
+      { "value": "9:00 am", "name": "9:00", "label": "9:00 am", "uid": "9:00" },
+      { "value": "10:00 am", "name": "10:00", "label": "10:00 am", "uid": "10:00" },
+      { "value": "11:00 am", "name": "11:00", "label": "11:00 am", "uid": "11:00" },
+      { "value": "12:00 am", "name": "12:00", "label": "12:00 am", "uid": "12:00" },
+      { "value": "1:00 pm", "name": "1:00", "label": "1:00 pm", "uid": "13:00" },
+      { "value": "2:00 pm", "name": "2:00", "label": "2:00 pm", "uid": "14:00" },
+      { "value": "3:00 pm", "name": "3:00", "label": "3:00 pm", "uid": "15:00" },
+      { "value": "4:00 pm", "name": "4:00", "label": "4:00 pm", "uid": "16:00" },
+      { "value": "5:00 pm", "name": "5:00", "label": "5:00 pm", "uid": "17:00" },
+      { "value": "6:00 pm", "name": "6:00", "label": "6:00 pm", "uid": "18:00" },
+      { "value": "7:00 pm", "name": "7:00", "label": "7:00 pm", "uid": "19:00" },
+      { "value": "8:00 pm", "name": "8:00", "label": "8:00 pm", "uid": "20:00" },
+      { "value": "9:00 pm", "name": "9:00", "label": "9:00 pm", "uid": "21:00" },
+      { "value": "10:00 pm", "name": "10:00", "label": "10:00 pm", "uid": "22:00" },
+      { "value": "11:00 pm", "name": "11:00", "label": "11:00 pm", "uid": "23:00" },
+      { "value": "12:00 pm", "name": "12:00", "label": "12:00 pm", "uid": "24:00" }
+    ]
+  },
+  "forms": {
+    "userInformation": {
+      "desiredOrder": ["name", "email", "phone"],
+      "labels": { "name": "Your name", "email": "Email", "phone": "Phone number" }
+    }
+  },
+  "errors": {
+    "clientInformationRequired": "client information is required to continue"
+  }
+}

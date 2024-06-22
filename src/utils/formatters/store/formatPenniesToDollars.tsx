@@ -1,6 +1,6 @@
-import { MerchProps } from "services-context";
+import { MerchProps } from "store-context";
 
-export const formatPenniesToDollars = (cost: number) => cost / 100;
+export const formatPenniesToDollars = (cost: number) => (cost / 100).toFixed(2);
 export const formatDollarsToPennies = (cost: number) => cost * 100;
 export const formatMerchFromPenniesToDollars = (data: MerchProps[]) => {
   // avoid mutating original array

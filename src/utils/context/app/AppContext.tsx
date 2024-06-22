@@ -1,10 +1,8 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProps, ChildProps, MediaItemProp, MenuProps, PageProps } from "app-types";
-import { AppSchema, StripeConfig } from "app-context";
-import { useNavigate } from "react-router-dom";
+import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps } from "app-types";
+import { AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
-import { readableUrlString } from "@app/formatStringUrl";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -14,59 +12,36 @@ import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
-import { getAppStoreWithName } from "./request/getAppStoreWithName";
-import { setStripeConfig } from "./dispatch/setStripeConfig";
 import { fetchPage } from "./request/fetchPage";
-import { startStripeOnboarding } from "./request/startStripeOnboarding";
+import { upgradeLatest } from "./request/upgradeLatest";
+import { stripeAccountLink } from "./request/stripeAccountLink";
+import { removeNotification } from "./request/removeNotification";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken, setTheme, logout, subscribe, subscriptions } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { accessToken } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
   const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
-  const updateStripeConfig = useCallback((config: StripeConfig) => setStripeConfig({ dispatch, config }), []);
 
-  const updateActiveAppData = useCallback((data: ActiveMenuProps) => setActiveData({ dispatch, ...data }), []);
+  const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
-  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId }), []);
-  const getAppStore = useCallback((storeId: string) => {
-    getAppStoreWithName({ dispatch, storeId, updateAppData, updateActiveAppData, subscriptions });
-  }, []);
+  const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId, updateAppData }), []);
+
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
-  const stripeOnboarding = useCallback((appId: string) => startStripeOnboarding({ dispatch, appId }), []);
+  const getStripeAccountLink = useCallback((appId: string) => stripeAccountLink({ dispatch, appId }), []);
   // fetch app with app name
-  const getAppWithName = useCallback((a: string) => {
-    fetchAppWithName({ dispatch, appName: a, updateAppData, updateActiveAppData, subscriptions });
-  }, []);
-  // TODO: move menu handling to dispatch folder
-  const handleMenu = useCallback((menuItem: MenuProps, appName: string, appId: string) => {
-    const { isPrivate, category, name, link } = menuItem;
-    if (category === "subscribe") subscribe(appId);
-    // if menu item is private navigate to route to retrieve credentials
-    else if (isPrivate) {
-      if (name === "logout") logout();
-      else navigate(`/${link || ""}`);
-      // change theme
-    } else if (category === "theme") setTheme(menuItem.value);
-    else if (menuItem.value === "explore") navigate("/explore");
-    // otherwise go to page
-    else if (menuItem.isStore) {
-      navigate(`/store/${readableUrlString(appName)}${menuItem.link}`);
-    } else if (menuItem.isPage) {
-      if (menuItem.link === "/booking") navigate(`/booking/${readableUrlString(appName)}`);
-    }
-  }, []);
+  const getAppWithName = useCallback((a: string) => fetchAppWithName({ dispatch, appName: a, updateAppData }), []);
+
   const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
-  const setSocialMedia = useCallback(
-    (data: MediaItemProp) => dispatch({ payload: data, type: APP_ACTIONS.SET_MEDIA_ITEM }),
-    []
-  );
+  // ask user to upgrade app if they havent been online in a while
+  const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
+  const clearNotification = useCallback((data: NProps) => removeNotification({ dispatch, updateAppData, ...data }), []);
+  const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -75,11 +50,11 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
-      stripeConfig: state.stripeConfig,
       appUrl: state.appUrl,
       appLink: state.appLink,
       appId: state.appId,
       activeAppId: state.activeAppId,
+      notifications: state.notifications,
       landing: state.landing,
       themeList: state.themeList,
       languageList: state.languageList,
@@ -87,6 +62,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       calendar: state.calendar,
       isOnline: state.isOnline,
       activeAppName: state.activeAppName,
+      dbVersion: state.dbVersion,
       media: state.media,
       activeMedia: state.activeMedia,
       menu: state.menu,
@@ -105,33 +81,35 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       pages: state.pages,
       page: state.page,
       activePage: state.activePage,
+
       socialMedia: state.socialMedia,
       updateAppData,
       getAppWithName,
       getAppList,
       updateActiveAppData,
-      handleMenu,
       setAppLoading,
       getStoreInventory,
-      getAppStore,
       setActivePage,
       setSocialMedia,
-      stripeOnboarding,
-      updateStripeConfig,
+      getStripeAccountLink,
       getPageWithId,
+
+      upgradeToLatest,
+      clearNotification,
     };
   }, [
     state.isLoading,
     state.activeAppName,
+    state.activePage,
     state.activeLogo,
     state.activeAppId,
     accessToken,
     state.activeMenu,
-    state.stripeConfig,
     state.menu,
     state.appId,
     state.landing,
     state.inventory,
+    state.socialMedia,
     state.loadingState,
     state.redirectUrl,
     state.store,

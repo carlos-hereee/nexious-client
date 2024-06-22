@@ -1,4 +1,4 @@
-// // import { MenuItemProps } from "app-types";
+// // import { MenuProp } from "app-types";
 
 // export const formatInitApp = (appName: string, logo: string) => {
 //   return {

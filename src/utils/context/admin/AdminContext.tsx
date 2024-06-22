@@ -1,10 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
-import { ChildProps } from "app-types";
+import { ChildProps, StringObjProp } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
-import { StripeConfig } from "app-context";
+import { StoreOrderUpdate } from "store-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -30,21 +30,23 @@ import { updateMerch } from "./requests/store/updateMerch";
 import { updateAppDetails } from "./requests/app/updateAppDetails";
 import { removeStore } from "./requests/store/removeStore";
 import { removeMerch } from "./requests/store/removeMerch";
-import { getStripeAccount } from "./requests/store/getStripeAccount";
-import { updateStripeAccount } from "./requests/store/updateStripeAccount";
 import { addCalendar } from "./requests/calendar/addCalendar";
+import { removeMenuItem } from "./requests/app/removeMenuItem";
+import { updateMenuItem } from "./requests/app/updateMenuItem";
+import { updateOrder } from "./requests/store/updateOder";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, { ...adminState, formStatus: "IDLE" });
 
-  const { updateAppData, setAppLoading, updateStripeConfig } = useContext(AppContext);
+  const { updateAppData, setAppLoading } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
 
   const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
   const handleAppAssets = (values: AppAssets) => {
     if (values.app || values.appList) updateAppData(values);
     if (values.user) updateUser(values.user);
+    // if (values.account) updateStripeConfig(values.account);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
   };
@@ -58,8 +60,18 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const initApp = useCallback((values: AppValues) => buildApp({ dispatch, values, handleAppAssets }), []);
 
+  // app data
   const editAppName = useCallback((values: AppValues, appId: string) => {
     updateAppName({ dispatch, values, handleAppAssets, appId });
+  }, []);
+
+  // TODO: HANDLE REQEUST
+  // app data menu item request
+  const deleteMenuItem = useCallback((appId: string, uid: string) => {
+    removeMenuItem({ dispatch, appId, uid, handleAppAssets });
+  }, []);
+  const editMenuItem = useCallback((appId: string, uid: string, values: StringObjProp) => {
+    updateMenuItem({ dispatch, appId, uid, handleAppAssets, values });
   }, []);
 
   const editLandingPage = useCallback((values: AppValues, appId: string) => {
@@ -106,7 +118,7 @@ export const AdminState = ({ children }: ChildProps) => {
     buildStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const editStore = useCallback((values: AppValues, appId: string) => {
-    updateStore({ dispatch, appId, handleAppAssets, values, setFormStatus });
+    updateStore({ dispatch, appId, handleAppAssets, values });
   }, []);
   const addMerch = useCallback((values: AppValues, appId: string) => {
     addMerchendise({ dispatch, appId, handleAppAssets, values });
@@ -114,19 +126,15 @@ export const AdminState = ({ children }: ChildProps) => {
   const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
     updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
   }, []);
-  const getAccount = useCallback((accountId: string) => {
-    getStripeAccount({ dispatch, handleAppAssets, accountId, updateStripeConfig });
-  }, []);
-  const updateAccount = useCallback((config: StripeConfig) => {
-    updateStripeAccount({ dispatch, handleAppAssets, config, updateStripeConfig });
-  }, []);
 
+  const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data, handleAppAssets }), []);
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       formStatus: state.formStatus,
       initAppForm: state.initAppForm,
       appDetailsForm: state.appDetailsForm,
+      appMenuForm: state.appMenuForm,
       pagesForm: state.pagesForm,
       calendarForm: state.calendarForm,
       mediaList: state.mediaList,
@@ -168,8 +176,10 @@ export const AdminState = ({ children }: ChildProps) => {
       setFormStatus,
       deleteStore,
       deleteMerchItem,
-      getAccount,
-      updateAccount,
+      // updateAccount,
+      deleteMenuItem,
+      editMenuItem,
+      handleOrderClick,
     };
   }, [state.isLoading, state.formStatus]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;

@@ -1,17 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Form } from "nexious-library";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
 
 const AccountSettings = () => {
-  const { user, updateUser } = useContext(AuthContext);
-  const { userForm } = useContext(AuthContext);
-
-  const initialValues = {
-    ...userForm.initialValues,
-    username: user.username || "",
-    email: user.email || "",
-    nickname: user.nickname || "",
-  };
+  const { user, userForm, editUser } = useContext(AuthContext);
+  const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
 
   return (
     <div className="container">
@@ -20,7 +14,7 @@ const AccountSettings = () => {
         initialValues={initialValues}
         labels={userForm.labels}
         placeholders={userForm.placeholders}
-        onSubmit={updateUser}
+        onSubmit={editUser}
         submitLabel="Save and continue"
       />
       {/* <h2 className="heading">More options:</h2>

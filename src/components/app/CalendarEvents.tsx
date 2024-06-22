@@ -3,14 +3,14 @@
 // import { CardSection, CartRow, IconButton } from "nexious-library";
 // import { setActive } from "@context/services/helpers/setActive";
 // import { useContext } from "react";
-// import { ServicesContext } from "@context/services/ServicesContext";
+// import { StoreContext } from "@context/store/StoreContext";
 // import { CalendarContext } from "@context/calendar/CalendarContext";
 // import { findNextOpenApp } from "@utils/app/findNextOpenApp";
 // import { AuthContext } from "@context/auth/AuthContext";
 
 const CalendarEvents = () => {
   // const { handleCheckout, user } = useContext(AuthContext);
-  // const { active, services, setActive } = useContext(ServicesContext);
+  // const { active, services, setActive } = useContext(StoreContext);
   // const { selectedDay, meeting, events, setMeeting, error, setError } = useContext(CalendarContext);
 
   // const findNextOpen = (e) => {

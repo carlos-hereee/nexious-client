@@ -1,0 +1,570 @@
+{
+  "isLoading": false,
+  "formErrors": { "initAppFormError": "" },
+  "appMenuForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "formId": "initApp",
+    "fieldHeading": {},
+    "initialValues": { "icon": "" },
+    "labels": { "icon": "Add an icon" },
+    "placeholders": {},
+    "types": { "icon": "select" },
+    "previewLabel": "See changes",
+    "desiredOrder": ["icon"]
+  },
+  "appDetailsForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "formId": "initApp",
+    "fieldHeading": { "language": "App language", "theme": "App theme" },
+    "initialValues": { "appName": "", "logo": "", "locale": "", "email": "" },
+    "labels": {
+      "appName": "Enter app name",
+      "logo": "Add new app logo",
+      "email": "Forwarding email",
+      "theme": "Select custom themes to include for your app",
+      "locale": "What is the primary language of your app? (can be changed at any time)",
+      "language": "Increase your target audience by adding making it assecible to more people"
+    },
+    "placeholders": {
+      "appName": "Enter appname ..",
+      "logo": "Choose file",
+      "theme": "Choose a theme"
+    },
+    "types": {
+      "appName": "text",
+      "logo": "file",
+      "theme": "datalist",
+      "language": "datalist",
+      "locale": "select",
+      "email": "email"
+    },
+    "withFileUpload": true,
+    "previewLabel": "See changes",
+    "desiredOrder": ["appName", "logo", "email", "theme"],
+    "hero": {
+      "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
+      "alt": "build app",
+      "uid": "build-app-hero-uid",
+      "heroId": "build-app-hero",
+      "creditTo": {
+        "artistName": "Gia Oris",
+        "artistUrl": "https://unsplash.com/@giabyte?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/photos/pink-star-here-text-_uM5_nG2ssc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    }
+  },
+  "stripeForm": {
+    "heading": "",
+    "submitLabel": "Save and continue",
+    "formId": "stripe-config",
+    "fieldHeading": {},
+    "initialValues": { "readPrivacyPolicy": false, "currency": "" },
+    "labels": {
+      "currency": "Default currency - usd",
+      "readPrivacyPolicy": "Confirm you have read and agree with Stripes's privacy policy"
+    },
+    "placeholders": { "currency": "usd" },
+    "types": { "readPrivacyPolicy": "checkbox", "currency": "select" },
+    "withFileUpload": false,
+    "previewLabel": "See changes",
+    "desiredOrder": ["readPrivacyPolicy", "currency"]
+  },
+  "initAppForm": {
+    "heading": "Initialize your app!",
+    "submitLabel": "Save and continue",
+    "formId": "initApp",
+    "fieldHeading": { "appName": "App name", "logo": "Logo" },
+    "initialValues": { "appName": "", "logo": "" },
+    "labels": {
+      "appName": "Enter app name",
+      "logo": "Add new app logo",
+      "theme": "Select custom themes to include for your app"
+    },
+    "placeholders": {
+      "appName": "Enter appname ..",
+      "logo": "Choose file",
+      "theme": "Choose a theme"
+    },
+    "types": { "appName": "text", "logo": "file", "theme": "datalist" },
+    "withFileUpload": true,
+    "previewLabel": "See changes",
+    "desiredOrder": ["appName", "logo"],
+    "hero": {
+      "url": "/unsplash/gia-oris-_uM5_nG2ssc-unsplash.jpg",
+      "alt": "build app",
+      "uid": "build-app-hero-uid",
+      "heroId": "build-app-hero",
+      "creditTo": {
+        "artistName": "Gia Oris",
+        "artistUrl": "https://unsplash.com/@giabyte?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash",
+        "assetUrl": "https://unsplash.com/photos/pink-star-here-text-_uM5_nG2ssc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      }
+    }
+  },
+  "landingForm": {
+    "heading": "Update landing page data",
+    "submitLabel": "Save and continue",
+    "formId": "landingPage",
+    "withFileUpload": true,
+    "previewLabel": "See changes",
+    "fieldHeading": { "hasCta": "Call To Action", "hasSections": "Subsections" },
+    "initialValues": { "title": "", "tagline": "", "body": "", "hero": "", "hasCta": true, "hasSections": true },
+    "types": {
+      "title": "text",
+      "tagline": "text",
+      "body": "textarea",
+      "cta": "text",
+      "hasSections": "checkbox",
+      "hasCta": "checkbox",
+      "hero": "file",
+      "sections": "text",
+      "icon": "select"
+    },
+    "labels": {
+      "title": "Page heading",
+      "tagline": "What's your app's tagline?",
+      "body": "Enter page details",
+      "hero": "Add background image",
+      "hasCta": "This part of the app has a Call To Action",
+      "hasSections": "This part of the app has a sub section",
+      "label": "Enter display data",
+      "link": "What page or url does it point to",
+      "icon": "Choose icon"
+    },
+    "placeholders": { "title": "", "tagline": "", "body": "", "cta": "", "hasSection": "", "hasCta": "", "hero": "file" },
+    "desiredOrder": ["title", "tagline", "hero", "body", "hasCta", "hasSections"]
+  },
+  "socialMediaForm": {
+    "heading": "Link your social media here!",
+    "submitLabel": "Save and continue",
+    "formId": "medias",
+    "previewLabel": "See changes",
+    "fieldHeading": { "hasMedias": "Social Medias" },
+    "withFileUpload": true,
+    "initialValues": { "title": "", "subtitle": "", "hero": "", "hasMedias": false },
+    "labels": {
+      "title": "Page title",
+      "hero": "Add background image",
+      "subtitle": "Subtitle",
+      "hasMedias": "Add social media"
+    },
+    "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
+    "types": { "title": "text", "hero": "file", "subtitle": "text", "hasMedias": "checkbox" },
+    "desiredOrder": ["title", "subtitle", "hero", "hasMedias", "medias"]
+  },
+  "mediaEntryForm": {
+    "formId": "mediaEntryForm",
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "media": "", "link": "" },
+    "labels": { "media": "Social media", "link": "Username" },
+    "placeholders": { "media": "", "link": "" },
+    "types": { "media": "select", "link": "text" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "medias",
+    "desiredOrder": ["media", "link"]
+  },
+  "newsletterForm": {
+    "heading": "Configure your newsletter details here!",
+    "submitLabel": "Save and continue",
+    "formId": "newsletter",
+    "previewLabel": "See changes",
+    "fieldHeading": {},
+    "withFileUpload": true,
+    "initialValues": { "title": "", "subtitle": "", "hero": "", "email": "" },
+    "labels": {
+      "title": "Title",
+      "hero": "Add background image",
+      "subtitle": "Subtitle",
+      "details": "Add disclaimer data",
+      "email": "Forwarding email"
+    },
+    "placeholders": { "title": "", "hero": "Choose file", "subtitle": "" },
+    "types": { "title": "text", "hero": "file", "details": "text", "email": "text" },
+    "desiredOrder": ["title", "subtitle", "details", "hero", "email"]
+  },
+  "calendarForm": {
+    "heading": "Configure your calendar details here!",
+    "submitLabel": "Save and continue",
+    "formId": "calendar123",
+    "previewLabel": "See changes",
+    "fieldHeading": { "workWeek": "Hours of operation", "altHours": "Alternative times" },
+    "initialValues": { "name": "", "workWeek": "", "startTime": "", "closeTime": "", "altHours": false },
+    "labels": {
+      "name": "Calendar Name",
+      "workWeek": "What days are you open",
+      "startTime": "Start time",
+      "closeTime": "Close time",
+      "day": "Day of the week",
+      "altHours": "Do you open on a different time depending on the day?"
+    },
+    "placeholders": { "name": "Calendar name" },
+    "types": {
+      "name": "text",
+      "theme": "select",
+      "altHours": "checkbox",
+      "workWeek": "date-week",
+      "startTime": "date-time",
+      "closeTime": "date-time"
+    },
+    "desiredOrder": ["name"]
+  },
+  "calendarBookingForm": {
+    "heading": "Configure your calendar booking here!",
+    "submitLabel": "Save and continue",
+    "formId": "calendarBooking123",
+    "previewLabel": "See changes",
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "fieldHeading": { "workWeek": "Customize the days you take apointments" },
+    "initialValues": { "frequency": "", "workWeek": "", "startTime": "", "endTime": "" },
+    "labels": {
+      "workWeek": "Days of the week",
+      "frequency": "Frequency of recurrence",
+      "startTime": "Start time",
+      "endTime": "End time"
+    },
+    "placeholders": {},
+    "canMultiply": true,
+    "types": {
+      "frequency": "select",
+      "isRecurring": "checkbox",
+      "workWeek": "date-week",
+      "startTime": "date-time",
+      "endTime": "date-time"
+    },
+    "groupName": "bookingRecurring",
+    "desiredOrder": []
+  },
+  "pagesForm": {
+    "heading": "",
+    "formId": "buildPage",
+    "previewLabel": "See changes",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "title": "", "hero": "", "body": "", "hasCta": false, "hasSections": false },
+    "types": {
+      "title": "text",
+      "body": "textarea",
+      "name": "text",
+      "hero": "file",
+      "hasSections": "checkbox",
+      "hasCta": "checkbox"
+    },
+    "labels": {
+      "name": "Page name",
+      "title": "Page heading",
+      "body": "Page body text",
+      "hero": "Add background image",
+      "hasSections": "This part cta the app has sub sections",
+      "hasCta": "This part of the app has a call to action"
+    },
+    "placeholders": {
+      "title": "Page headline",
+      "hero": "",
+      "body": "Text body",
+      "name": "Page name, eg. services/checkout/booking",
+      "hasSections": "",
+      "hasCta": ""
+    },
+    "desiredOrder": ["name", "title", "hero", "body", "hasCta", "hasSections"]
+  },
+  "sectionForm": {
+    "formId": "sectionForm",
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "title": "", "body": "", "sectionHero": "" },
+    "labels": {
+      "title": "Section title",
+      "body": "Section details",
+      "sectionHero": "Add background image"
+    },
+    "placeholders": { "title": "", "body": "", "sectionHero": "" },
+    "types": { "title": "text", "body": "text", "sectionHero": "file" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "sections",
+    "desiredOrder": ["title", "body", "sectionHero"]
+  },
+  "ctaForm": {
+    "formId": "ctaForm",
+    "heading": "",
+    "fieldHeading": {},
+    "initialValues": { "label": "", "link": "", "icon": "" },
+    "labels": {
+      "label": "Enter display data",
+      "link": "What page or url does it point to",
+      "icon": "Choose icon"
+    },
+    "placeholders": { "label": "", "link": "", "icon": "" },
+    "types": { "label": "", "link": "", "icon": "select" },
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "canMultiply": true,
+    "groupName": "cta",
+    "desiredOrder": ["label", "link", "icon"]
+  },
+  "heroForm": {
+    "heading": "",
+    "formId": "heroForm",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "hero": "", "link": "", "label": "" },
+    "desiredOrder": [],
+    "labels": { "name": "", "hero": "", "link": "", "label": "" },
+    "placeholders": { "name": "", "hero": "", "link": "", "label": "" },
+    "types": { "name": "", "hero": "", "link": "", "label": "" }
+  },
+  "storeForm": {
+    "heading": "Create store",
+    "formId": "storeForm",
+    "previewLabel": "See changes",
+    "fieldHeading": { "isRegistered": "Register your account with stripe" },
+    "initialValues": {
+      "storeName": "",
+      "email": "",
+      "title": "",
+      "description": "",
+      "currency": "",
+      "isRegistered": false,
+      "termsOfService": false
+    },
+    "types": {
+      "description": "textarea",
+      "storeName": "text",
+      "title": "text",
+      "pageName": "text",
+      "email": "email",
+      "isRegistered": "checkbox",
+      "termsOfService": "checkbox"
+    },
+    "schema": { "required": ["name", "title", "pageName", "currency", "email"] },
+    "labels": {
+      "storeName": "Store name",
+      "title": "Store tagline/motto",
+      "email": "Forwarding email",
+      "description": "About",
+      "currency": "Currency",
+      "hero": "Add image",
+      "isRegistered": "By registering your account, you agree to our Services Agreement and the Stripe Connected Account Agreement.",
+      "termsOfService": "Payment processing services for account holders on Nexious.tech are provided by Stripe and are subject to the Stripe Connected Account Agreement, which includes the Stripe Terms of Service (collectively, the “Stripe Services Agreement”). By agreeing to [this agreement / these terms / and so on] or continuing to operate as a an account holders on Nexious.tech, you agree to be bound by the Stripe Services Agreement, as the same may be modified by Stripe from time to time. As a condition of Nexious.tech enabling payment processing services through Stripe, you agree to provide Nexious.tech accurate and complete information about you and your business, and you authorize Nexious.tech to share it and transaction information related to your use of the payment processing services provided by Stripe."
+    },
+    "placeholders": { "hero": "", "description": "", "storeName": "", "pageName": "Store/Shop" },
+    "desiredOrder": ["email", "storeName", "title", "description", "currency", "isRegistered", "termsOfService"]
+  },
+  "merchForm": {
+    "heading": "Add merch",
+    "formId": "merchForm",
+    "previewLabel": "See changes",
+    "fieldHeading": { "images": "Additional images" },
+    "initialValues": { "name": "", "hero": "", "images": false, "description": "", "cost": "", "inStock": "" },
+    "types": {
+      "description": "textarea",
+      "name": "text",
+      "hero": "file",
+      "images": "checkbox",
+      "cost": "price-dollars-cents",
+      "inStock": "number"
+    },
+    "labels": {
+      "name": "Merch name",
+      "description": "Description",
+      "hero": "Add thumbnail image",
+      "images": "Add more images",
+      "cost": "Cost",
+      "inStock": "Quantity"
+    },
+    "placeholders": { "hero": "", "description": "", "name": "item name" },
+    "desiredOrder": ["name", "hero", "images", "description", "cost", "inStock"]
+  },
+  "sectionEntries": {
+    "hasCta": {
+      "formId": "ctaForm",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "label": "", "link": "", "icon": "" },
+      "labels": {
+        "label": "Enter display data",
+        "link": "What page or url does it point to",
+        "icon": "Choose icon"
+      },
+      "placeholders": { "label": "", "link": "", "icon": "" },
+      "types": { "label": "", "link": "", "icon": "select" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 3,
+      "groupName": "cta",
+      "group": "hasCta",
+      "desiredOrder": ["label", "link", "icon"]
+    },
+    "hasSections": {
+      "formId": "sectionForm",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "title": "", "body": "", "sectionHero": "" },
+      "labels": {
+        "title": "Section title",
+        "body": "Section details",
+        "sectionHero": "Add background image"
+      },
+      "placeholders": { "title": "", "body": "", "hero": "" },
+      "types": { "title": "text", "body": "text", "sectionHero": "file" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 5,
+      "groupName": "sections",
+      "group": "hasSections",
+      "desiredOrder": ["title", "body", "sectionHero"]
+    },
+    "altHours": {
+      "formId": "alt-hours",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "day": "", "startTime": "", "closeTime": "" },
+      "labels": {
+        "day": "Day of the week",
+        "startTime": "Start time",
+        "closeTime": "Close time"
+      },
+      "placeholders": {},
+      "types": { "day": "date-day", "startTime": "date-time", "closeTime": "date-time" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 10,
+      "groupName": "alternative-hours",
+      "group": "altHours",
+      "desiredOrder": ["day", "startTime", "closeTime"]
+    },
+    "images": {
+      "formId": "images-1",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "catalog": "" },
+      "labels": { "catalog": "Images" },
+      "placeholders": {},
+      "types": { "catalog": "file" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 10,
+      "groupName": "catalog",
+      "group": "img",
+      "desiredOrder": ["image"]
+    }
+  },
+  "iconList": [
+    {
+      "name": "confirm",
+      "label": "Confirm",
+      "value": "confirm",
+      "icon": "confirm",
+      "uid": "icon-1"
+    }
+  ],
+  "themeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "uid": "light-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "uid": "dark-mode",
+      "colors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      },
+      "backgroundColors": {
+        "primary": "",
+        "secondary": "",
+        "altPrimary": "",
+        "altSecondary": ""
+      }
+    }
+  ],
+  "languageList": [
+    {
+      "name": "english",
+      "label": "English",
+      "value": "en-US (English)",
+      "locale": "en-US",
+      "uid": "language-english-en"
+    },
+    {
+      "name": "spanish",
+      "label": "Espanol",
+      "value": "es-US (Espanol)",
+      "locale": "es-US",
+      "uid": "language-spanish-en"
+    }
+  ],
+  "mediaList": [
+    {
+      "name": "facebook",
+      "value": "facebook",
+      "label": "Facebook",
+      "icon": "facebook",
+      "uid": "theme-facebook"
+    },
+    {
+      "name": "x",
+      "value": "x",
+      "label": "x (Twitter)",
+      "icon": "x",
+      "uid": "theme-x"
+    },
+    {
+      "name": "instagram",
+      "value": "instagram",
+      "label": "Instagram",
+      "icon": "instagram",
+      "uid": "theme-instagram"
+    }
+  ],
+  "calendarThemeList": [
+    {
+      "name": "light-mode",
+      "value": "light-mode",
+      "label": "light-mode",
+      "themeId": "theme-light",
+      "uid": "theme-light"
+    },
+    {
+      "name": "dark-mode",
+      "value": "dark-mode",
+      "label": "dark-mode",
+      "themeId": "theme-dark-mode",
+      "uid": "theme-dark-mode"
+    },
+    {
+      "name": "seasonal",
+      "value": "seasonal",
+      "label": "seasonal",
+      "themeId": "theme-seasonal",
+      "uid": "theme-seasonal"
+    }
+  ]
+}

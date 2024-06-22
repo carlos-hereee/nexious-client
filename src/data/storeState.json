@@ -1,0 +1,24 @@
+{
+  "isLoading": true,
+  "stripeSecret": "",
+  "error": "",
+  "cart": [],
+  "stripeConfirmation": {
+    "status": "",
+    "paymentStatus": "",
+    "customer": null,
+    "intent": ""
+  },
+  "paypal": {
+    "uid": "payment-2",
+    "type": "paypal",
+    "name": "Paypal",
+    "icon": "paypal",
+    "hero": {
+      "url": "icons/paypal.svg",
+      "small": "small/icons/paypal.jpg",
+      "name": "paypal",
+      "alt": "paypal"
+    }
+  }
+}

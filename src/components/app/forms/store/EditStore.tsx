@@ -1,18 +1,15 @@
 import { useContext } from "react";
-import { Form } from "nexious-library";
+import { Form, Hero } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
-import { formatStore } from "@formatters/store/formatStore";
-import { Hero } from "nexious-library/@nxs-molecules";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
 
 const EditStore = () => {
   const { storeForm, editStore } = useContext(AdminContext);
   const { appId, store } = useContext(AppContext);
 
-  // const
-  const initialValues = formatStore({ store, desiredOrder: storeForm.desiredOrder });
-
+  const initialValues = formatInitialValues({ store, desiredOrder: storeForm.desiredOrder });
   return (
     <div className="primary-container">
       <div className="form-hero">
@@ -25,7 +22,7 @@ const EditStore = () => {
           labels={storeForm.labels}
           placeholders={storeForm.placeholders}
           fieldHeading={storeForm.fieldHeading}
-          schema={{ required: ["name", "title", "pageName", "email"] }}
+          schema={storeForm.schema}
           noScroll
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}

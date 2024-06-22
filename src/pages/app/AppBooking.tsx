@@ -1,7 +1,7 @@
 // import { useContext } from "react";
 // import { useContext, useEffect } from "react";
 // import { CalendarContext } from "@context/calendar/CalendarContext";
-// import { ServicesContext } from "@context/services/ServicesContext";
+// import { StoreContext } from "@context/store/StoreContext";
 // import { useNavigate } from "react-router-dom";
 import { Calendar } from "nexious-library";
 // import { AuthContext } from "@context/auth/AuthContext";
@@ -13,7 +13,7 @@ import UserMenu from "@components/app/UserMenu";
 
 const AppBooking = () => {
   // const { selectedDay, meeting, setMeeting, setDay } = useContext(CalendarContext);
-  // const { bookable, removeFromCart, cart, active, setActive, addToCart } = useContext(ServicesContext);
+  // const { bookable, removeFromCart, cart, active, setActive, addToCart } = useContext(StoreContext);
   const { calendar } = useContext(AppContext);
   // const { user } = useContext(AuthContext);
   // const navigate = useNavigate();

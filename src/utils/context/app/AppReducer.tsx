@@ -9,10 +9,11 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, loadingState: { ...state.loadingState, ...action.payload } };
     case APP_ACTIONS.SET_THEME_LIST:
       return { ...state, themeList: action.payload };
-    case APP_ACTIONS.SET_STRIPE_CONFIG:
-      return { ...state, stripeConfig: action.payload };
+
     case APP_ACTIONS.SET_ADMIN_IDS:
       return { ...state, adminIds: action.payload };
+    case APP_ACTIONS.SET_MEDIA_ITEM:
+      return { ...state, socialMedia: action.payload };
     case APP_ACTIONS.SET_REDIRECT_URL:
       return { ...state, redirectUrl: action.payload };
     case APP_ACTIONS.SET_ACTIVE_MENU:
@@ -27,6 +28,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, appList: action.payload };
     case APP_ACTIONS.SET_APP_ID:
       return { ...state, appId: action.payload };
+    case APP_ACTIONS.SET_ACTIVE_PAGE:
+      return { ...state, activePage: action.payload };
     case APP_ACTIONS.SET_ACTIVE_APP_ID:
       return { ...state, activeAppId: action.payload };
     case APP_ACTIONS.SET_STORE:
@@ -41,6 +44,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, owner: action.payload };
     case APP_ACTIONS.SET_APP_NAME:
       return { ...state, appName: action.payload };
+    case APP_ACTIONS.SET_DB_VERSION:
+      return { ...state, dbVersion: action.payload };
     case APP_ACTIONS.SET_APP_URL:
       return { ...state, appUrl: action.payload };
     case APP_ACTIONS.SET_APP_LINK:
@@ -63,6 +68,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, locale: action.payload };
     case APP_ACTIONS.SET_LANGUAGES:
       return { ...state, languageList: action.payload };
+    case APP_ACTIONS.SET_NOTIFICATIONS:
+      return { ...state, notifications: action.payload };
     // case APP_ACTIONS.SET_EDIT_APP:
     //   return { ...state, editApp: action.payload };
     // case APP_ACTIONS.COMING_SOON:

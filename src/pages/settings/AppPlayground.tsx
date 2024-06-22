@@ -7,19 +7,21 @@ const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
 
   return (
-    <div className="container">
-      <CreateApp />
+    <section className="container">
       <h2 className="heading">All your apps: </h2>
-      <div className="card-container">
-        {ownedApps.length > 0 ? (
-          ownedApps.map((app) => {
-            return <AppCard app={app} key={app.appId} theme="highlight" />;
-          })
-        ) : (
-          <p>You dont own any apps</p>
-        )}
+      <div className="app-playground">
+        <div className="primary-container">
+          {ownedApps.length > 0 ? (
+            ownedApps.map((app) => {
+              return <AppCard app={app} key={app.appId} theme="highlight" />;
+            })
+          ) : (
+            <p>You dont own any apps</p>
+          )}
+        </div>
+        <CreateApp />
       </div>
-    </div>
+    </section>
   );
 };
 export default AppPlayground;

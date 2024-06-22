@@ -3,17 +3,17 @@ import ReactDOM from "react-dom/client";
 import { AppState } from "@context/app/AppContext";
 import { AuthState } from "@context/auth/AuthContext";
 import { LogState } from "@context/log/LogContext";
-import { ServicesState } from "@context/services/ServicesContext";
 import { AdminState } from "@context/admin/AdminContext";
 import { isDev } from "@config";
 import ScrollToTop from "@router/ScrollToTop";
 // import { CalendarState } from "@context/calendar/CalendarContext";
+import { StoreState } from "@context/store/StoreContext";
 import App from "./App";
 import AppRouter from "./AppRouter";
 // eslint-disable-next-line import/no-relative-packages
 // import "../node_modules/nexious-library/dist/css/index.css";
 import "nexious-library/@index.css";
-import "./index.css";
+import "./stylesheets/index.css";
 
 const elementRoot: Element | DocumentFragment | null = document.getElementById("root");
 
@@ -25,7 +25,7 @@ if (elementRoot) {
       <AuthState>
         <LogState>
           <AppState>
-            <ServicesState>
+            <StoreState>
               {/* <CalendarState> */}
               <AdminState>
                 <App>
@@ -33,7 +33,7 @@ if (elementRoot) {
                 </App>
               </AdminState>
               {/* </CalendarState> */}
-            </ServicesState>
+            </StoreState>
           </AppState>
         </LogState>
       </AuthState>

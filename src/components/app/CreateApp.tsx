@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 const CreateApp = () => {
   const navigate = useNavigate();
   return (
-    <div className="container">
-      <h2 className="heading">Build an app</h2>
-      <Button label="+ Create a new app" onClick={() => navigate("/build-app")} />
-    </div>
+    <Button theme="primary-container container-card highlight" onClick={() => navigate("/build-app")}>
+      <strong>+ Create a new app</strong>
+    </Button>
   );
 };
 export default CreateApp;

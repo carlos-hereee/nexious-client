@@ -1,97 +1,159 @@
 import { useContext, useEffect, useState } from "react";
-import { Button } from "nexious-library";
-import { Cart, PaymentMethods, Total } from "nexious-library/@nxs-organism";
+import { Button, Loading, PaymentMethods, Total } from "nexious-library";
 import { useNavigate } from "react-router-dom";
-import { ServicesContext } from "@context/services/ServicesContext";
-import { CartProps, MerchProps, PaymentMethod } from "services-context";
+import { StoreContext } from "@context/store/StoreContext";
+import { CartProps, MerchProps, PaymentMethod } from "store-context";
 import { formatTotal } from "@formatters/store/formatPenniesToDollars";
-// import { AppContext } from "@context/app/AppContext";
 import { paymentMethods } from "@data/nexious.json";
+import { AuthContext } from "@context/auth/AuthContext";
+import UserInformation from "@components/form/UserInformation";
+import CartList from "@components/list/CartList";
+import { scrollToId } from "@app/scrollToElement";
+
+type Menu = "All" | "Online" | "In store";
 
 const Checkout = () => {
-  const { cart, updateCart, onCheckOutSession } = useContext(ServicesContext);
-  const navigate = useNavigate();
+  const { cart, onCheckOutSession, onStoreCheckout, error, isLoading, setLoading, order } = useContext(StoreContext);
+  const { user } = useContext(AuthContext);
   const [total, setTotal] = useState(0);
   const [storeIdx, setStore] = useState(0);
+  const [show, setShow] = useState(false);
   const [active, setActive] = useState<CartProps>();
+  const [paymentTypes, setPaymentTypes] = useState(paymentMethods);
+  const [activeNav, setActiveNav] = useState<Menu>("All");
+  const [merch, setMerch] = useState<MerchProps[]>([]);
+  const [navigation, setNavigation] = useState<Menu[]>(["Online", "In store"]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cart && cart.length > 0) {
+      // require user details
+      if (!user.email && !user.phone && !user.name) setShow(true);
+      let methods = [...paymentMethods];
+      // if stripe is not active remove as option
+      if (!cart[storeIdx].isStripeActive) {
+        methods = methods.filter((method) => method.type !== "visa/credit");
+        setNavigation(["In store"]);
+      }
+      // handle other store limitations
+      const someInStore = cart[storeIdx].merch.some((m) => !m.productId);
+      const someOnline = cart[storeIdx].merch.some((m) => m.productId);
+      if (!someOnline && someInStore) {
+        methods = methods.filter((method) => method.type !== "visa/credit");
+        setActiveNav("In store");
+        setNavigation(["In store"]);
+      }
+      if (someOnline && !someInStore) setNavigation(["Online"]);
+      if (someOnline && someInStore) setNavigation(["Online", "In store"]);
+      // set active store
       setActive(cart[storeIdx]);
-      setTotal(formatTotal(cart[storeIdx].merch));
+      // update payment method types
+      setPaymentTypes(methods);
     }
   }, [storeIdx]);
 
-  const handleRemove = (merch: MerchProps) => {
-    if (active) {
-      // avoid mutating values
-      const oldValues = [...cart];
-      const removedMerch = oldValues[storeIdx].merch.filter((m) => m.merchId !== merch.merchId);
-      // if removed merch was the last item in cart remove store from cart
-      if (removedMerch.length === 0) {
-        const removedStore = oldValues.filter((val) => val.storeId !== active.storeId);
-        updateCart(removedStore);
-      } else {
-        // otherwise remove merch item
-        oldValues[storeIdx].merch = removedMerch;
-        // update cart
-        updateCart(oldValues);
+  useEffect(() => {
+    if (storeIdx >= 0 && active) {
+      if (activeNav === "Online") {
+        const filteredMerch = active.merch.filter((m) => m.productId);
+        setMerch(filteredMerch);
+      }
+      if (activeNav === "In store") {
+        const filteredMerch = active.merch.filter((m) => !m.productId);
+        setMerch(filteredMerch);
+      }
+      if (activeNav === "All") {
+        setMerch(active.merch);
+        setTotal(formatTotal(active.merch));
       }
     }
-  };
+    // update merch data when cart is update or menu is toggled
+  }, [activeNav, active]);
+  useEffect(() => {
+    if (merch && merch.length > 0) setTotal(formatTotal(merch));
+  }, [merch, cart]);
+  useEffect(() => {
+    if (show) {
+      if (navigation.length > 1) setActiveNav(navigation[0]);
+      setTotal(formatTotal(merch));
+    }
+  }, [show]);
 
-  const handleQuantity = (merch: MerchProps, d: number) => {
-    // avoid mutating cart data
-    const oldValues = [...cart];
-    const merchIdx = oldValues[storeIdx].merch.findIndex((c) => c.uid === merch.uid);
-    oldValues[storeIdx].merch[merchIdx].quantity = d;
-    updateCart(oldValues);
-    setTotal(formatTotal(oldValues[storeIdx].merch));
-  };
-  const handlePaymentClick = (data: PaymentMethod) => {
-    if (active) {
-      if (data.type === "visa/credit") onCheckOutSession(active);
-      // TODO ADD REQUEST FOR INSTORE PAYMENTS
-      // if (data.type === "store") onCheckOutSession(active);
+  useEffect(() => {
+    if (error) {
+      scrollToId("client-information", "start");
+      setLoading(false);
+    }
+    // if order was confirmed navigate to checkout success
+    if (order?.store.storeId) navigate("/checkout/success");
+  }, [error, isLoading, order]);
+
+  // no items in cart
+  if (!cart || cart.length === 0) {
+    return (
+      <section className="btn-checkout-container">
+        <Button
+          label={`You have ${cart.length} items in your cart. Explore apps`}
+          theme="btn btn-main btn-checkout"
+          onClick={() => navigate("/explore")}
+        />
+      </section>
+    );
+  }
+  // set loading screen if no store is active
+  if (!active) return <Loading />;
+
+  const handlePaymentClick = (data?: PaymentMethod) => {
+    // TODO: add shipping options
+    if (!data) {
+      if (activeNav === "In store") onStoreCheckout({ sessionCart: active, user });
+      if (activeNav === "Online") onCheckOutSession({ sessionCart: active, user });
+    } else {
+      if (data.type === "store") onStoreCheckout({ sessionCart: active, user });
+      if (data.type === "visa/credit") onCheckOutSession({ sessionCart: active, user });
     }
   };
   return (
-    <section className="container">
-      {cart.length > 0 ? (
-        <div className="split-container">
-          {active && (
-            <div className="container">
-              <h1 className="heading">Checkout: {active.storeName}</h1>
-              {cart.length > 1 && (
-                <div className="buttons-navigation">
-                  {cart.map((c, idx) => (
-                    <Button
-                      label={c.storeName}
-                      key={c.storeId}
-                      theme={c.storeId === active.storeId && "btn-main btn-cta"}
-                      onClick={() => setStore(idx)}
-                    />
-                  ))}
-                </div>
-              )}
-              <Cart data={active.merch} heading="Review cart" removeFromCart={handleRemove} setQuantity={handleQuantity} />
-            </div>
-          )}
-          <div className="container">
-            <h2 className="heading">Total:</h2>
-            <Total total={total} />
-            <PaymentMethods data={paymentMethods} onClick={handlePaymentClick} />
+    <section className="split-container">
+      <div className="container">
+        <h1 className="heading">Checkout: {active.storeName}</h1>
+        {cart.length > 1 && (
+          <div className="buttons-navigation">
+            {cart.map((c, idx) => (
+              <Button
+                label={c.storeName}
+                key={c.storeId}
+                theme={c.storeId === active.storeId ? "btn-main btn-active" : "btn-main"}
+                onClick={() => setStore(idx)}
+              />
+            ))}
           </div>
-        </div>
-      ) : (
-        <div className="btn-checkout-container">
-          <Button
-            label={`You have ${cart.length} items in your cart. Explore apps`}
-            theme="btn btn-main btn-checkout"
-            onClick={() => navigate("/explore")}
-          />
-        </div>
-      )}
+        )}
+        <CartList active={active} storeIdx={storeIdx} merch={active.merch} />
+      </div>
+      <div className="container">
+        <UserInformation errorMessage={error} user={user} setShow={(s) => setShow(s)} show={show} />
+        {activeNav === "All" && <Total total={total} heading="Total:" />}
+        {!show &&
+          (activeNav !== "All" ? (
+            <>
+              {navigation.length > 1 && (
+                <CartList
+                  active={active}
+                  navigation={navigation}
+                  storeIdx={storeIdx}
+                  merch={merch}
+                  setActiveNav={(nav) => setActiveNav(nav)}
+                  activeNav={activeNav}
+                />
+              )}
+              <Total total={total} heading="Total:" />
+              <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
+            </>
+          ) : (
+            <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
+          ))}
+      </div>
     </section>
   );
 };

@@ -1,20 +1,30 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Card, HeroCard, Loading } from "nexious-library";
-import { ServicesContext } from "@context/services/ServicesContext";
+import { useContext, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Card, HeroCard, Loading } from "nexious-library";
 import { CallToActionProps } from "app-types";
 import AppInProgress from "@pages/public/AppInProgress";
 import UserMenu from "@components/app/UserMenu";
 
 const AppPage = () => {
-  const { activeAppName, page } = useContext(AppContext);
-  const { cart } = useContext(ServicesContext);
+  const { page, pages, updateAppData } = useContext(AppContext);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const pageName = pathname.split("/")[3];
+    if (pageName) {
+      const p = pages.filter((pa) => pa.name === pageName);
+      if (p) updateAppData({ page: p[0] });
+    }
+  }, [pathname]);
+
   if (!page) return <Loading message="loading page data..." />;
+
   if (!page.body && !page.title && !page.hero) return <AppInProgress />;
   const handleClick = (data: CallToActionProps) => navigate(`/app/${data.link}`);
   const heroData = { url: page.hero || "", alt: "page hero" };
+
   return (
     <div className="container">
       <UserMenu />
@@ -26,7 +36,6 @@ const AppPage = () => {
       ) : (
         <Card data={page} theme="w-full" />
       )}
-      {cart.length > 0 && <Button label="Procced to checkout" onClick={() => navigate(`${activeAppName}/checkout`)} />}
       {page.hasSections && page.sections && (
         <div className={page.sections?.length > 3 ? "sections-container" : "grid"}>
           {page.sections.map((data) => {

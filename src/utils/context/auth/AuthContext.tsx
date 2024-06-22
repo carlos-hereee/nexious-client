@@ -16,6 +16,8 @@ import { updateDumnyData } from "./dispatch/updateDummyData";
 import { updateTheme } from "./dispatch/updateTheme";
 import { updateAccessToken } from "./dispatch/updateAccessToken";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
+import { editUserRequest } from "./request/editUserRequest";
+import { removeNotification } from "./request/removeNotification";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -32,6 +34,7 @@ export const AuthState = ({ children }: ChildProps) => {
   // user data
   const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
+  const editUser = useCallback((user: UserSchema) => editUserRequest({ dispatch, user, updateUser }), []);
   // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
@@ -43,6 +46,7 @@ export const AuthState = ({ children }: ChildProps) => {
   // user actions
   const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
   const subscribe = useCallback((appId: string) => setSubscribe({ dispatch, appId, updateUser }), []);
+  const clearNotification = useCallback((data: string) => removeNotification({ dispatch, data, updateUser }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -53,6 +57,7 @@ export const AuthState = ({ children }: ChildProps) => {
       dummyUser: state.dummyUser,
       theme: state.theme,
       locale: state.locale,
+      notifications: state.notifications,
       userForm: state.userForm,
       loginForm: state.loginForm,
       signUpForm: state.signUpForm,
@@ -68,9 +73,11 @@ export const AuthState = ({ children }: ChildProps) => {
       forgotPassword,
       subscribe,
       setDummyUser,
+      editUser,
       resetStranded,
       resetAuthErrors,
       setAccessToken,
+      clearNotification,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 

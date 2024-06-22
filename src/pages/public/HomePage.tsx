@@ -2,7 +2,7 @@ import { HeroCard } from "nexious-library";
 import { CallToActionProps, SectionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousHomepage } from "@data/nexious.json";
-import ExploreApps from "@components/app/ExploreApps";
+import ExploreApps from "@pages/public/ExploreApps";
 
 const Homepage = () => {
   const navigate = useNavigate();

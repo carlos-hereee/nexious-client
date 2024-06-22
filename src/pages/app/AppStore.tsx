@@ -2,17 +2,14 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
 import { MerchCard } from "nexious-library/@nxs-organism";
 import { Hero } from "nexious-library/@nxs-molecules";
-import { Button } from "nexious-library/@nxs-atoms";
-import { MerchProps } from "services-context";
-import { ServicesContext } from "@context/services/ServicesContext";
-import { useNavigate } from "react-router-dom";
+import { MerchProps } from "store-context";
+import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
-  const { cart, addToCart, updateCart } = useContext(ServicesContext);
-  const navigate = useNavigate();
+  const { cart, addToCart, updateCart } = useContext(StoreContext);
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
 
@@ -45,15 +42,6 @@ const AppStore = () => {
         {store.hero && <Hero hero={{ url: store.hero }} />}
         {store.body && <p className="text-max">{store.body}</p>}
       </div>
-      {cart.length > 0 && (
-        <div className="btn-checkout-container">
-          <Button
-            label={`You have ${cart.length} items in your cart. Procced to checkout`}
-            theme="btn btn-main btn-checkout"
-            onClick={() => navigate("/checkout")}
-          />
-        </div>
-      )}
       <div className="store-inventory-container">
         {inventory.length > 0 ? (
           inventory.map((merch: MerchProps) => (
@@ -61,8 +49,7 @@ const AppStore = () => {
               key={merch.uid}
               data={{ ...merch, cost: formatPenniesToDollars(merch.cost) }}
               hero={{ url: merch.hero }}
-              // onAddToCart={(data: MerchProps) => console.log(cart, data)}
-              onAddToCart={(data: MerchProps) => addToCart(cart, store, data)}
+              onAddToCart={(data: MerchProps) => addToCart(cart, store, { ...data, quantity: 1 })}
               onRemoveFromCart={(data: MerchProps) => handleRemove(data)}
               // TODO: on body click navigate to merch item details
               // onClick={(data: MerchProps) => console.log("data :>> ", data)}

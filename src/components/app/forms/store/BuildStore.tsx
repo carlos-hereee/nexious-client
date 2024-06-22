@@ -3,18 +3,24 @@ import { Form, Hero, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { StoreProps } from "app-types";
 
 const BuildStore = () => {
   const { storeForm, addStore, isLoading } = useContext(AdminContext);
-  // const { storeForm, isLoading } = useContext(AdminContext);
-  const { appId, email } = useContext(AppContext);
+  const { appId } = useContext(AppContext);
 
   if (isLoading) return <Loading message="loading app assets.." />;
+  const initialValues = formatInitialValues({
+    store: storeForm.initialValues as StoreProps,
+    desiredOrder: storeForm.desiredOrder,
+  });
+
   return (
     <div className="primary-container">
       <div className="form-hero">
         <Form
-          initialValues={{ ...storeForm.initialValues, email: email || "" }}
+          initialValues={initialValues}
           onSubmit={(values: AppValues) => addStore(values, appId)}
           // onSubmit={(values: AppValues) => console.log("values", values, appId)}
           heading={storeForm.heading}
@@ -41,9 +47,7 @@ const BuildStore = () => {
             ],
           }}
           fieldHeading={storeForm.fieldHeading}
-          schema={{
-            required: ["storeName", "email", "isRegistered", "termsOfService"],
-          }}
+          schema={storeForm.schema}
         />
         {storeForm.hero && <Hero hero={storeForm.hero} layout="hide-on-tablet" />}
       </div>

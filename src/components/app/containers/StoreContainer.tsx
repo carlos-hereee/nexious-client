@@ -2,20 +2,24 @@ import { AppContext } from "@context/app/AppContext";
 import { SettingsContainer } from "app-types";
 import { useContext, useEffect } from "react";
 import { formatStoreUrl } from "@app/formatStringUrl";
-// import MerchList from "@components/list/MerchList";
-// import data from "@data/data.json";
+import MerchList from "@components/list/MerchList";
+import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
+import { useNotifications } from "@hooks/useNotifications";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
-  // const { store, appLink, stripeOnboarding, appId, redirectUrl } = useContext(AppContext);
-  const { store, appLink, redirectUrl } = useContext(AppContext);
-  useEffect(() => {
-    if (redirectUrl) window.location.href = redirectUrl;
-  }, [redirectUrl]);
-  // console.log("store :>> ", store);
 
+  const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
+
+  const { ping } = useNotifications();
+
+  useEffect(() => {
+    // avoid redundant request if num of merch dont match get store inventory
+    if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
+    // rerender request per store id
+  }, [store.storeId]);
   if (!store || !store.storeId) {
     return (
       <div className="container">
@@ -33,21 +37,13 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Store url:" labelLayout="bolden">
         <CopyButton data={formatStoreUrl(appLink, store.name)} />
       </ItemDetail>
-      <ItemDetail label="Store details:" labelLayout="bolden">
-        <p>More coming soon</p>
-        {/* <CopyButton data={formatStoreUrl(appLink, store.name)} /> */}
+      <ItemDetail label="Orders:" labelLayout="bolden">
+        <Button label="View orders" onClick={() => updatePhase("phase-view-order")} ping={ping.orders || undefined} />
       </ItemDetail>
-      {/* TODO: CHECK STATUS WHEN USER COMPLETES STRIPE ONBOARDING 
-      {store.onBoardingRequired ? (
-        <ItemDetail label="Stripe Onboarding:" labelLayout="bolden" hint={data.stripeOnboarding}>
-          <Button label="*Onboarding" theme="btn-main btn-required" onClick={() => stripeOnboarding(appId)} />
-        </ItemDetail>
-      ) : (
-        <ItemDetail label="Stripe Settings:" labelLayout="bolden">
-          <Button label="View configuration" onClick={() => updatePhase("configuration")} />
-        </ItemDetail>
-      )}
-      <MerchList />
+      <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
+        <Button label="View configuration" onClick={() => updatePhase("configuration")} />
+      </ItemDetail>
+      <MerchList updateStatus={() => updatePhase("configuration")} />
       <ItemDetail label="Add merchendise:" labelLayout="bolden">
         <Button label="+ Add merch" onClick={() => updatePhase("phase-three")} />
       </ItemDetail>
@@ -56,7 +52,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
       </ItemDetail>
       <ItemDetail label="Remove store:" labelLayout="bolden">
         <Button label="Delete store" theme="btn-main btn-danger" onClick={() => updatePhase("confirm-cancel")} />
-      </ItemDetail> */}
+      </ItemDetail>
     </div>
   );
 };

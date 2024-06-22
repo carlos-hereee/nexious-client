@@ -21,6 +21,9 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="App details:" labelLayout="bolden">
         <Button label="Edit app details" onClick={() => updatePhase("phase-one")} />
       </ItemDetail>
+      <ItemDetail label="App menu:" labelLayout="bolden">
+        <Button label="Edit app menu" onClick={() => updatePhase("phase-two")} />
+      </ItemDetail>
     </div>
   );
 };
