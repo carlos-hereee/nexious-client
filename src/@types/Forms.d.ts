@@ -138,6 +138,7 @@ declare module "app-forms" {
     landing?: PageProps;
     merch?: MerchProps;
     page?: PageProps;
+    calendar?: CalendarProps;
     store?: StoreProps;
     media?: MediaItemProp;
     user?: UserSchema;

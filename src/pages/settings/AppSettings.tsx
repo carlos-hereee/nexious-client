@@ -23,7 +23,7 @@ const AppSettings = () => {
     useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("store");
+  const [nav, setNav] = useState<keyof AppDialogProps>("calendar");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
   const { ping } = useNotifications();
 
@@ -98,7 +98,7 @@ const AppSettings = () => {
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
       {nav === "notifications" && (
         <Notification
-          notifications={notifications.sort((a, b) => new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime())}
+          notifications={notifications.sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())}
           clearNotification={(id) => clearNotification({ appId, id })}
         />
       )}

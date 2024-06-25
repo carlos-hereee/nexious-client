@@ -211,7 +211,7 @@
       "startTime": "date-time",
       "closeTime": "date-time"
     },
-    "desiredOrder": ["name"]
+    "desiredOrder": ["name", "workWeek", "startTime", "closeTime", "altHours"]
   },
   "calendarBookingForm": {
     "heading": "Configure your calendar booking here!",

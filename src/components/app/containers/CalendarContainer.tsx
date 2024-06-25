@@ -9,7 +9,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   const { calendar, appUrl } = useContext(AppContext);
 
   // if no calendar has been created
-  if (!calendar || !calendar.calendarId)
+  if (!calendar || !calendar.calendarId) {
     return (
       <div className="container">
         <h2 className="heading">Calendar:</h2>
@@ -18,6 +18,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
         </ItemDetail>
       </div>
     );
+  }
   return (
     <div className="container">
       <h2 className="heading">Calendar</h2>
@@ -25,20 +26,23 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
         <CopyButton data={appUrl.replace("app/", "booking/")} />
       </ItemDetail>
       <ItemDetail label="Calendar theme:" labelLayout="bolden">
-        Comming Soon!
+        Coming Soon!
+      </ItemDetail>
+
+      <ItemDetail label="Schedule:" labelLayout="bolden">
+        {/* <Button label="View schedule" onClick={() => onPhaseClick("phase-four")} /> */}
+        Coming Soon!
       </ItemDetail>
       <ItemDetail label="Bookings:" labelLayout="bolden">
-        Comming Soon!
+        {/* <Button label="View booking" onClick={() => onPhaseClick("phase-three")} /> */}
+        Coming Soon!
       </ItemDetail>
       <ItemDetail label="Add event:" labelLayout="bolden">
-        Comming Soon!
+        Coming Soon!
       </ItemDetail>
-      {/* <ItemDetail label="Calendar settings: " labelLayout="bolden">
+      <ItemDetail label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />
       </ItemDetail>
-      <ItemDetail label="Calendar booking:" labelLayout="bolden">
-        <Button label="Edit calendar booking" onClick={() => onPhaseClick("phase-three")} />
-      </ItemDetail> */}
     </div>
   );
 };

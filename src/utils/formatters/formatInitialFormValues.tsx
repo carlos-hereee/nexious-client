@@ -14,18 +14,19 @@ const addArrayInObj = ({ obj, key, value }: AddArrayInObject) => {
 };
 
 export const formatInitialValues: FormatFormValue = (data) => {
-  const { values, desiredOrder, landing, menu, page, merch, user, store, media } = data;
+  const { values, desiredOrder, landing, menu, page, merch, user, store, media, calendar } = data;
   //  values
-  if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] })));
-  if (media) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: media[key] })));
-  if (merch) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: merch[key] })));
-  if (user) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: user[key] })));
-  if (store) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: store[key] })));
+  if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] || "" })));
+  if (media) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: media[key] || "" })));
+  if (calendar) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: calendar[key] || "" })));
+  if (merch) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: merch[key] || "" })));
+  if (user) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: user[key] || "" })));
+  if (store) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: store[key] || "" })));
   //  landing
-  if (landing) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: landing[key] })));
-  if (page) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: page[key] })));
+  if (landing) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: landing[key] || "" })));
+  if (page) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: page[key] || "" })));
   //  app menu
-  if (menu) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: menu[key] })));
+  if (menu) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: menu[key] || "" })));
   // default to assigning a field for each item in disired order
   return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: "" })));
 };
