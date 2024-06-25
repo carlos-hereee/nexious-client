@@ -20,6 +20,7 @@ import Checkout from "@pages/public/Checkout";
 import ExploreApps from "@pages/public/ExploreApps";
 import CheckoutSuccess from "@pages/public/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
+import Logout from "@pages/auth/Logout";
 // import AddPage from "@components/app/forms/AddPage";
 // import EditApp from "@components/app/forms/EditApp";
 // import EditPage from "@components/app/forms/EditPage";
@@ -38,6 +39,7 @@ const AppRouter: React.FC = () => {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
