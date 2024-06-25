@@ -19,6 +19,7 @@ import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { editUserRequest } from "./request/editUserRequest";
 import { removeNotification } from "./request/removeNotification";
 import { getUser } from "./request/getUser";
+import { setChangePassword } from "./request/changePassword";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -41,6 +42,7 @@ export const AuthState = ({ children }: ChildProps) => {
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
   const forgotPassword = useCallback((e: ForgotPasswordValues) => setForgotPassword({ dispatch, credentials: e }), []);
+  const changePassword = useCallback((e: ForgotPasswordValues) => setChangePassword({ dispatch, credentials: e }), []);
   const logout = useCallback(() => signOut({ dispatch }), []);
   // auth errors
   const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
@@ -81,6 +83,7 @@ export const AuthState = ({ children }: ChildProps) => {
       setAccessToken,
       clearNotification,
       fetchUser,
+      changePassword,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 

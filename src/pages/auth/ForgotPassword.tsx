@@ -5,7 +5,7 @@ import { ForgotPasswordValues, LoginValues } from "app-forms";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword: React.FC = () => {
-  const { forgotPasswordForm, forgotPassword, user, fetchUser, passwordChangeForm, accessToken } = useContext(AuthContext);
+  const { forgotPasswordForm, forgotPassword, user, fetchUser, accessToken } = useContext(AuthContext);
   const { authErrors } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -22,9 +22,9 @@ const ForgotPassword: React.FC = () => {
         <>
           <h2 className="heading text-center">User found</h2>
           <Form
-            initialValues={passwordChangeForm.initialValues}
-            labels={passwordChangeForm.labels}
-            placeholders={passwordChangeForm.placeholders}
+            initialValues={forgotPasswordForm.initialValues}
+            labels={forgotPasswordForm.labels}
+            placeholders={forgotPasswordForm.placeholders}
             onSubmit={(values: ForgotPasswordValues) => forgotPassword({ ...values, username: user.username })}
           />
         </>

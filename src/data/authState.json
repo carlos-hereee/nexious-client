@@ -106,7 +106,7 @@
   "passwordChangeForm": {
     "formId": "passwordChange",
     "desiredOrder": [""],
-    "initialValues": { "newPassword": "", "confirmNewPassword": "" },
+    "initialValues": { "oldPassword": "", "newPassword": "", "confirmNewPassword": "" },
     "labels": {
       "username": "Username: ",
       "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
