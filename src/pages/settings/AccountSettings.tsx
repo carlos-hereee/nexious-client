@@ -17,6 +17,7 @@ const AccountSettings = () => {
   };
   return (
     <div className="container">
+      <h1 className="heading">Account settings</h1>
       <ItemDetail labelLayout="bolden" label="Account:">
         <Button label="Update account" onClick={() => handleClick("user")} />
       </ItemDetail>

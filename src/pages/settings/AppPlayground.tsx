@@ -10,7 +10,7 @@ const AppPlayground = () => {
     <section className="container">
       <h2 className="heading">All your apps: </h2>
       <div className="app-playground">
-        <div className="primary-container">
+        <div className="appcard-container">
           {ownedApps.length > 0 ? (
             ownedApps.map((app) => {
               return <AppCard app={app} key={app.appId} theme="highlight" />;
