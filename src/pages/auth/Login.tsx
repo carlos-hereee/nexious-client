@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleClick = () => {
     resetAuthErrors();
-    navigate("/register");
+    navigate("/sign-up");
   };
 
   if (isLoading) return <Loading message="..loading user data" />;
