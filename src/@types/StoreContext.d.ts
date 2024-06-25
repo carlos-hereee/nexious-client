@@ -7,6 +7,7 @@ declare module "store-context" {
     pending: DialogStatusProps;
     incomplete: DialogStatusProps;
     complete: DialogStatusProps;
+    accepted: DialogStatusProps;
   }
   export interface StripeBalance {
     available?: { amount: number; currency: string; source_type: { card: number } }[];
