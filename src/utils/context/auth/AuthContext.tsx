@@ -18,6 +18,7 @@ import { updateAccessToken } from "./dispatch/updateAccessToken";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { editUserRequest } from "./request/editUserRequest";
 import { removeNotification } from "./request/removeNotification";
+import { getUser } from "./request/getUser";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -33,6 +34,7 @@ export const AuthState = ({ children }: ChildProps) => {
 
   // user data
   const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
+  const fetchUser = useCallback((user: LoginValues) => getUser({ dispatch, login: user }), []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
   const editUser = useCallback((user: UserSchema) => editUserRequest({ dispatch, user, updateUser }), []);
   // auth
@@ -78,6 +80,7 @@ export const AuthState = ({ children }: ChildProps) => {
       resetAuthErrors,
       setAccessToken,
       clearNotification,
+      fetchUser,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 

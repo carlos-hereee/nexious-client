@@ -8,7 +8,7 @@ export const setForgotPassword = async ({ dispatch, credentials }: AuthDispatchP
   if (!credentials) throw Error("credentials is required");
   try {
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post("/auth/forgot-password", credentials);
+    const { data } = await axiosAuth.post(`/auth/forgot-password/${credentials.username}`, credentials);
     dispatch({ type: AUTH_ACTIONS.SET_ACCESS_TOKEN, payload: data });
     dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

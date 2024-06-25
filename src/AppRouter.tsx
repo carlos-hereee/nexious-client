@@ -8,7 +8,7 @@ import AdminRoute from "@router/AdminRoute";
 import PublicRoute from "@router/PublicRoute";
 import Landing from "@pages/app/Landing";
 import SignUp from "@pages/auth/Register";
-import ForgotPassword from "@components/form/ForgotPassword";
+import ForgotPassword from "@pages/auth/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
 import Login from "@pages/auth/Login";
 import UserPlayground from "@pages/settings/UserPlayground";
@@ -21,9 +21,6 @@ import ExploreApps from "@pages/public/ExploreApps";
 import CheckoutSuccess from "@pages/public/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
 import Logout from "@pages/auth/Logout";
-// import AddPage from "@components/app/forms/AddPage";
-// import EditApp from "@components/app/forms/EditApp";
-// import EditPage from "@components/app/forms/EditPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);

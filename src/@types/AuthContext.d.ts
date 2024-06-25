@@ -57,6 +57,7 @@ declare module "auth-context" {
     resetAuthErrors: () => void;
     setAccessToken: (accessToken: string) => void;
     login: (values: LoginValues) => void;
+    fetchUser: (values: LoginValues) => void;
     register: (values: RegisterFormProps) => void;
     setDummyUser: (values: LoginValues) => void;
     updateUser: (values: UserSchema) => void;
