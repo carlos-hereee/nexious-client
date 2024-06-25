@@ -9,6 +9,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, authErrors: { ...state.authErrors, ...action.payload } };
     case AUTH_ACTIONS.SET_SUBSCRIPTIONS:
       return { ...state, subscriptions: action.payload };
+    case AUTH_ACTIONS.SET_ACCOUNT_TIERS:
+      return { ...state, accountTier: action.payload };
     case AUTH_ACTIONS.SET_NOTIFICATIONS:
       return { ...state, notifications: action.payload };
     case AUTH_ACTIONS.SET_DUMMY_DATA:

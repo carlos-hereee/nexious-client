@@ -17,6 +17,16 @@ declare module "auth-context" {
     // serverIsOffline: string;
     // changePasswordError: string;
   }
+  export interface AccountTier {
+    tier: "free" | "basic" | "advanced" | string;
+    tierId: string;
+    calendarEvent: boolean;
+    calendarBooking: boolean;
+    storeCheckout: boolean;
+    maxApps: 1 | 3 | 10 | number;
+    cost: number;
+    maxPagesPerApp: 5 | 10 | 20 | number;
+  }
   export interface UserSchema {
     // uid: string;
     userId: string;
@@ -29,6 +39,7 @@ declare module "auth-context" {
     subscriptions?: AppListProps[];
     notifications?: Notification[];
     ownedApps?: AppListProps[];
+    accountTier?: AccountTier;
   }
 
   export interface AuthStateProps {
@@ -47,6 +58,7 @@ declare module "auth-context" {
     passwordChangeForm: FormProps;
     subscriptions: AppListProps[];
     forgotPasswordForm: FormProps;
+    accountTier?: AccountTier;
     theme: string;
     locale: string;
   }
@@ -87,6 +99,7 @@ declare module "auth-context" {
     | { type: AUTH_ACTIONS.SET_ACCESS_TOKEN | AUTH_ACTIONS.SET_THEME; payload: string }
     | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
+    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIERS; payload: AccountTier }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };

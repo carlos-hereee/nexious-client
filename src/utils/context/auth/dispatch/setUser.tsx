@@ -11,5 +11,6 @@ export const setUser = ({ user, dispatch }: AuthDispatchProps) => {
   if (user.ownedApps) dispatch({ type: AUTH_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
   if (user.subscriptions) dispatch({ type: AUTH_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
   if (user.notifications) dispatch({ type: AUTH_ACTIONS.SET_NOTIFICATIONS, payload: user.notifications });
+  if (user.accountTier) dispatch({ type: AUTH_ACTIONS.SET_ACCOUNT_TIERS, payload: user.accountTier });
   dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
 };

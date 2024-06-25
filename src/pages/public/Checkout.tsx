@@ -113,6 +113,7 @@ const Checkout = () => {
       if (data.type === "visa/credit") onCheckOutSession({ sessionCart: active, user });
     }
   };
+  // TODO: ADD SHIPPING DETAILS
   return (
     <section className="split-container">
       <div className="container">

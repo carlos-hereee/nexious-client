@@ -131,6 +131,7 @@ declare module "store-context" {
     merchandise?: MerchProps[];
     user?: UserSchema;
     sessionId?: string;
+    storeId?: string;
     appId?: string;
     data?: string;
     amount?: string;
