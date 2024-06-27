@@ -383,19 +383,22 @@
   "subscriptionForm": {
     "heading": "",
     "formId": "subcription-form",
-    "fieldHeading": {},
-    "initialValues": { "name": "", "hero": "", "description": "", "cost": "" },
+    "fieldHeading": { "addFeatures": "What kind of features will customers except while subscribed" },
+    "initialValues": { "name": "", "description": "", "recurring": "", "addFeatures": false, "cost": "" },
     "types": {
       "description": "textarea",
       "name": "text",
       "hero": "file",
-      "images": "checkbox",
+      "recurring": "select",
+      "addFeatures": "checkbox",
       "cost": "price-dollars-cents"
     },
     "labels": {
       "name": "Subscription name",
       "hero": "Add thumbnail image",
+      "recurring": "Frequancy",
       "description": "Description",
+      "addFeatures": "Add features",
       "cost": "Cost"
     },
     "placeholders": { "hero": "", "description": "", "name": "item name" },
@@ -421,6 +424,26 @@
       "groupName": "cta",
       "group": "hasCta",
       "desiredOrder": ["label", "link", "icon"]
+    },
+    "addFeatures": {
+      "formId": "addfeatures",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "name": "", "value": "", "valueType": "" },
+      "labels": {
+        "name": "Name of feature",
+        "value": "Content of feature (if checkbox type anything to mark as checked)",
+        "valueType": "Value type (leave empty if value is a message)"
+      },
+      "desiredOrder": ["name", "value", "icon"],
+      "placeholders": { "name": " ", "value": "", "valueType": "" },
+      "types": { "name": "", "value": "", "valueType": "select" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 10,
+      "groupName": "features",
+      "group": "addFeatures"
     },
     "hasSections": {
       "formId": "sectionForm",

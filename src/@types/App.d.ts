@@ -223,6 +223,7 @@ declare module "app-types" {
     name: string;
     description: string;
     hero: string;
+    cost: string;
   }
   export interface SubcriptionProp {
     appId: string;

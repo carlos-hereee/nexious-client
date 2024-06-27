@@ -101,7 +101,7 @@ declare module "app-context" {
     appName?: string;
     pageId?: string;
     config?: StripeUpdateConfigProps;
-    subscriptions?: AppListProps[];
+    subscription?: Subcription;
     storeId?: string;
     isLoading?: boolean;
     setAsActive?: boolean;

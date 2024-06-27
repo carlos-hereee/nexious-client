@@ -3,9 +3,10 @@ import { AppContext } from "@context/app/AppContext";
 import { Subcription } from "app-types";
 import { Form } from "nexious-library";
 import { useContext } from "react";
+import { recurring, featureType } from "@data/data.json";
 
 const AddSubscription = () => {
-  const { subscriptionForm } = useContext(AdminContext);
+  const { subscriptionForm, sectionEntries } = useContext(AdminContext);
   const { appId, createSubscription } = useContext(AppContext);
 
   return (
@@ -16,11 +17,12 @@ const AddSubscription = () => {
         placeholders={subscriptionForm.placeholders}
         types={subscriptionForm.types}
         fieldHeading={subscriptionForm.fieldHeading}
+        addEntry={sectionEntries}
+        dataList={{ recurring, valueType: featureType }}
         heading="Create new subscription:"
         onSubmit={(values: Subcription) => createSubscription({ subscription: values, appId })}
         submitLabel="Save and continue"
-        withFileUpload
-        schema={{ required: ["name", "description", "cost", "quantity"] }}
+        schema={{ required: ["name", "description", "cost"] }}
       />
     </div>
   );

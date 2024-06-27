@@ -111,5 +111,13 @@
   },
   "errors": {
     "clientInformationRequired": "client information is required to continue"
-  }
+  },
+  "recurring": [
+    { "name": "Monthly", "label": "Monthly", "uid": "Monthly", "value": "Monthly" },
+    { "name": "Yearly", "label": "Yearly", "uid": "Yearly", "value": "Yearly" }
+  ],
+  "featureType": [
+    { "name": "Message", "label": "Message", "uid": "Message", "value": "Message" },
+    { "name": "Checkbox", "label": "Checkbox", "uid": "Checkbox", "value": "Checkbox" }
+  ]
 }
