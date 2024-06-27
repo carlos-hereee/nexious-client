@@ -74,6 +74,7 @@ declare module "auth-context" {
     setDummyUser: (values: LoginValues) => void;
     updateUser: (values: UserSchema) => void;
     editUser: (values: UserSchema) => void;
+    updateTier: (values: UserSchema) => void;
     forgotPassword: (values: ForgotPasswordValues) => void;
     changePassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;

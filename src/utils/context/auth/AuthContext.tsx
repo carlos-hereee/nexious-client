@@ -20,6 +20,7 @@ import { editUserRequest } from "./request/editUserRequest";
 import { removeNotification } from "./request/removeNotification";
 import { getUser } from "./request/getUser";
 import { setChangePassword } from "./request/changePassword";
+import { upgradeTier } from "./request/upgradeTier";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -38,6 +39,7 @@ export const AuthState = ({ children }: ChildProps) => {
   const fetchUser = useCallback((user: LoginValues) => getUser({ dispatch, login: user }), []);
   const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
   const editUser = useCallback((user: UserSchema) => editUserRequest({ dispatch, user, updateUser }), []);
+  const updateTier = useCallback((user: UserSchema) => upgradeTier({ dispatch, user, updateUser }), []);
   // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
@@ -68,6 +70,7 @@ export const AuthState = ({ children }: ChildProps) => {
       passwordChangeForm: state.passwordChangeForm,
       forgotPasswordForm: state.forgotPasswordForm,
       ownedApps: state.ownedApps,
+      accountTier: state.accountTier,
       subscriptions: state.subscriptions,
       register,
       updateUser,
@@ -84,6 +87,7 @@ export const AuthState = ({ children }: ChildProps) => {
       clearNotification,
       fetchUser,
       changePassword,
+      updateTier,
     };
   }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
 

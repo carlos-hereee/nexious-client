@@ -266,5 +266,6 @@ header {
   width: 100%;
   justify-content: space-around;
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }

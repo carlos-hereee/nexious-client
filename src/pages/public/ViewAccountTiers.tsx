@@ -3,13 +3,16 @@ import { useContext, useState } from "react";
 import { serviceTiers } from "@data/nexious.json";
 import { AccountTier } from "auth-context";
 import { Button, Icon, ItemDetail, capFirstCharacter } from "nexious-library";
+import { useNavigate } from "react-router-dom";
 
 const ViewAccountTiers = () => {
-  const { accountTier, user } = useContext(AuthContext);
+  const { accountTier, user, accessToken, updateTier } = useContext(AuthContext);
   const [active, setActive] = useState<"free" | "basic" | "advanced" | string>("free");
+  const navigate = useNavigate();
 
   const subscribeToPlan = (plan: AccountTier) => {
-    console.log("plan :>> ", plan);
+    if (!accessToken) navigate("/login");
+    else updateTier({ ...user, accountTier: plan });
   };
 
   return (
@@ -19,9 +22,7 @@ const ViewAccountTiers = () => {
         {serviceTiers.map((service: AccountTier) => (
           <div key={service.tierId} className="container flex-center">
             <Button
-              theme={`service-card highlight${active === service.tier ? " service-card-active" : ""}${
-                accountTier?.tier === service.tier ? " btn-active" : ""
-              }`}
+              theme={`service-card highlight${active === service.tier ? " service-card-active" : ""}`}
               onClick={() => setActive(service.tier)}
             >
               <h2 className="heading text-center">{capFirstCharacter(service.tier)}</h2>
@@ -41,7 +42,7 @@ const ViewAccountTiers = () => {
                 <span> {service.maxPagesPerApp}</span>
               </ItemDetail>
               <ItemDetail label="Price" labelLayout="bolden">
-                <span> ${service.cost}/Monthly</span>
+                <span> ${service.cost}/Mo</span>
               </ItemDetail>
             </Button>
             {service.tier === accountTier?.tier && <Button theme="btn-main btn-active" label="Subscribed" />}
