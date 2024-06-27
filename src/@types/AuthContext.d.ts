@@ -31,6 +31,7 @@ declare module "auth-context" {
     // uid: string;
     userId: string;
     username: string;
+    isPlatformOwner?: boolean;
     email?: string;
     nickname?: string;
     name?: string;
@@ -40,11 +41,13 @@ declare module "auth-context" {
     notifications?: Notification[];
     ownedApps?: AppListProps[];
     accountTier?: AccountTier;
+    accountTiers?: AccountTier[];
   }
 
   export interface AuthStateProps {
     // auth schema
     isLoading: boolean;
+    isPlatformOwner: boolean;
     // emergencyPasswordChangeIsRequired: boolean;
     accessToken: string;
     ownedApps: AppListProps[];
@@ -59,6 +62,7 @@ declare module "auth-context" {
     subscriptions: AppListProps[];
     forgotPasswordForm: FormProps;
     accountTier?: AccountTier;
+    accountTiers?: AccountTier[];
     theme: string;
     locale: string;
   }
@@ -96,11 +100,12 @@ declare module "auth-context" {
   }
 
   export type AuthActionProps =
-    | { type: AUTH_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: AUTH_ACTIONS.IS_LOADING | AUTH_ACTIONS.SET_PLATFORM_OWNER; payload: boolean }
     | { type: AUTH_ACTIONS.SET_ACCESS_TOKEN | AUTH_ACTIONS.SET_THEME; payload: string }
     | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
-    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIERS; payload: AccountTier }
+    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIER; payload: AccountTier }
+    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIERS; payload: AccountTier[] }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };

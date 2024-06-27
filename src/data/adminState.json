@@ -380,6 +380,27 @@
     "placeholders": { "hero": "", "description": "", "name": "item name" },
     "desiredOrder": ["name", "hero", "images", "description", "cost", "inStock"]
   },
+  "subscriptionForm": {
+    "heading": "",
+    "formId": "subcription-form",
+    "fieldHeading": {},
+    "initialValues": { "name": "", "hero": "", "description": "", "cost": "" },
+    "types": {
+      "description": "textarea",
+      "name": "text",
+      "hero": "file",
+      "images": "checkbox",
+      "cost": "price-dollars-cents"
+    },
+    "labels": {
+      "name": "Subscription name",
+      "hero": "Add thumbnail image",
+      "description": "Description",
+      "cost": "Cost"
+    },
+    "placeholders": { "hero": "", "description": "", "name": "item name" },
+    "desiredOrder": ["name", "hero", "description", "cost"]
+  },
   "sectionEntries": {
     "hasCta": {
       "formId": "ctaForm",

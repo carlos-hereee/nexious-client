@@ -48,6 +48,7 @@ declare module "app-admin" {
     calendarForm: FormProps;
     sectionForm: FormProps;
     landingForm: FormProps;
+    subscriptionForm: FormProps;
     stripeForm: FormProps;
     heroForm: FormProps;
     newsletterForm: FormProps;

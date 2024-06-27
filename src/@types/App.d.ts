@@ -219,6 +219,15 @@ declare module "app-types" {
     email: string;
     hero: AssetProps;
   }
+  export interface Subcription {
+    name: string;
+    description: string;
+    hero: string;
+  }
+  export interface SubcriptionProp {
+    appId: string;
+    subscription: Subcription;
+  }
   export type MediaItemProp = {
     media: string;
     link: string;

@@ -146,6 +146,7 @@ export const AdminState = ({ children }: ChildProps) => {
       heroForm: state.heroForm,
       ctaForm: state.ctaForm,
       storeForm: state.storeForm,
+      subscriptionForm: state.subscriptionForm,
       socialMediaForm: state.socialMediaForm,
       sectionEntries: state.sectionEntries,
       formErrors: state.formErrors,

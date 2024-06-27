@@ -57,6 +57,7 @@ export const AuthState = ({ children }: ChildProps) => {
   const authValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
+      isPlatformOwner: state.isPlatformOwner,
       authErrors: state.authErrors,
       accessToken: state.accessToken,
       user: state.user,

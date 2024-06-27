@@ -1,5 +1,6 @@
 {
   "isLoading": true,
+  "isPlatformOwner": false,
   "accessToken": "",
   "theme": "light-mode",
   "locale": "",

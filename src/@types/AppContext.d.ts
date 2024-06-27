@@ -15,6 +15,7 @@ declare module "app-context" {
     Notification,
     PageProps,
     StoreProps,
+    SubcriptionProp,
   } from "app-types";
 
   export interface AppCardProps {
@@ -83,6 +84,7 @@ declare module "app-context" {
     clearNotification: ({ appId: string, id: string }) => void;
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
+    createSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }

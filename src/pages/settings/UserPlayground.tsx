@@ -7,14 +7,15 @@ import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
 import ViewOrdersContainer from "@components/app/containers/ViewOrdersContainer";
+import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "./AppPlayground";
 
-type Menu = "apps" | "account" | "feed" | "notifications" | "orders";
+type Menu = "apps" | "account" | "feed" | "notifications" | "orders" | "admin";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<Menu>("apps");
-  const { user, notifications, clearNotification } = useContext(AuthContext);
+  const { user, notifications, clearNotification, isPlatformOwner } = useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { ping } = useNotifications();
 
@@ -26,6 +27,13 @@ const UserPlayground = () => {
       </button> */}
       <div className="container">
         <div className="navigation-container">
+          {isPlatformOwner && (
+            <IconButton
+              icon={{ icon: "account", label: "Admin" }}
+              theme={active === "admin" ? "btn-main btn-active" : "btn-main"}
+              onClick={() => setActive("admin")}
+            />
+          )}
           <IconButton
             icon={{ icon: "app", label: "My apps" }}
             theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
@@ -50,6 +58,7 @@ const UserPlayground = () => {
           />
         </div>
 
+        {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
         {active === "orders" && <ViewOrdersContainer heading="Orders" />}

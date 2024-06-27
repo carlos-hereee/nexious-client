@@ -3,19 +3,11 @@ import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
 import { Form } from "nexious-library";
 import { useContext } from "react";
-// import { useLocation } from "react-router-dom";
 
 const AddMerch = () => {
   const { merchForm, addMerch, sectionEntries } = useContext(AdminContext);
   const { appId, appName } = useContext(AppContext);
-  // const [status, setStatus] = useState<"idle" | "pending" | "loading">("idle");
 
-  // useEffect(() => {
-  //   if (isLoading) setStatus("loading");
-  // }, [isLoading]);
-
-  // if (status === "pending") return <Loading message="sending request.." />;
-  // if (status === "loading") return <Loading message="loading app assets.." />;
   return (
     <div className="primary-container">
       <Form
