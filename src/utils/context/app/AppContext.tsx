@@ -22,7 +22,7 @@ export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, updateUser } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
@@ -41,15 +41,17 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
+  const setAppMessage = useCallback((M: string) => dispatch({ payload: M, type: APP_ACTIONS.SET_APP_MESSAGE }), []);
   const clearNotification = useCallback((data: NProps) => removeNotification({ dispatch, updateAppData, ...data }), []);
   const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
   // create and manage subscriptions
-  const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data }), []);
+  const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
 
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       loadingState: state.loadingState,
+      appMessage: state.appMessage,
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
@@ -100,6 +102,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
 
       upgradeToLatest,
       clearNotification,
+      setAppMessage,
     };
   }, [
     state.isLoading,

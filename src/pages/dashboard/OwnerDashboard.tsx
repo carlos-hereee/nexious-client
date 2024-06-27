@@ -1,17 +1,25 @@
 import AddSubscription from "@components/app/forms/store/AddSubscription";
+import { AppContext } from "@context/app/AppContext";
 // import { AppContext } from "@context/app/AppContext";
 import ViewAccountTiers from "@pages/public/ViewAccountTiers";
 import { Button, Dialog, ItemDetail } from "nexious-library";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { useContext, useState } from "react";
 
 type Menu = "create-sub" | "view-sub" | "";
 const OwnerDashboard = () => {
-  // const { createSubscription } = useContext(AppContext);
+  const { appMessage, setAppMessage } = useContext(AppContext);
   // const { appId } = useContext(AppContext);
   const [active, setActive] = useState<Menu>("");
   const [show, setShow] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (appMessage === "SUCCESS") {
+      setShow(false);
+      setActive("");
+      setAppMessage("");
+    }
+  }, [appMessage]);
   const handleClick = (value: Menu) => {
     setShow(!!value);
     setActive(value);

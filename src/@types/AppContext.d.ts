@@ -39,6 +39,7 @@ declare module "app-context" {
     iconList: IconListItem[];
     appError: string;
     redirectUrl: string;
+    appMessage?: string;
     appName: string;
     email: string;
     activeAppName: string;
@@ -84,6 +85,7 @@ declare module "app-context" {
     clearNotification: ({ appId: string, id: string }) => void;
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
+    setAppMessage: (appId: string) => void;
     createSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
@@ -108,6 +110,7 @@ declare module "app-context" {
     appId?: string;
     menu?: MenuProp[];
     updateAppData?: (a: AppProps) => void;
+    updateUser?: (a: UserSchema) => void;
     updateActiveAppData?: (a: ActiveMenuProp) => void;
   }
 
@@ -126,6 +129,7 @@ declare module "app-context" {
           | APP_ACTIONS.SET_APP_ERROR
           | APP_ACTIONS.SET_LOCALE
           | APP_ACTIONS.SET_DB_VERSION
+          | APP_ACTIONS.SET_APP_MESSAGE
           | APP_ACTIONS.SET_ACTIVE_APP_NAME
           | APP_ACTIONS.SET_REDIRECT_URL;
         payload: string;
