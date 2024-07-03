@@ -7,10 +7,9 @@
   min-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-items: center;
   justify-content: center;
-}
-.navigation-bar .navigation .nav-btn {
-  justify-content: center;
+  align-items: center;
 }
 
 .user-menu {
