@@ -9,12 +9,10 @@ import { formatInitialEntryValues, formatInitialValues } from "@formatters/forma
 
 const EditSubscription = ({ subscription }: { subscription: SubscriptionSchema }) => {
   const { subscriptionForm, sectionEntries } = useContext(AdminContext);
-  const { appId, updateSubscription } = useContext(AppContext);
-  console.log("subscription :>> ", subscription);
+  const { appId, updateSubscription, deleteSubscription } = useContext(AppContext);
+  // format values
   const initialValues = formatInitialValues({ subscription, desiredOrder: subscriptionForm.desiredOrder });
-  console.log("initialValues :>> ", initialValues);
   const entryValues = formatInitialEntryValues({ subscription, addEntry: sectionEntries });
-  console.log("entryValues :>> ", entryValues);
   return (
     <div className="primary-container">
       <Form
@@ -30,6 +28,9 @@ const EditSubscription = ({ subscription }: { subscription: SubscriptionSchema }
         onSubmit={(values: Subcription) =>
           updateSubscription({ subscription: values, appId, id: subscription.subscriptionId })
         }
+        onCancel={() => deleteSubscription({ appId, id: subscription.subscriptionId })}
+        confirmRemovals
+        cancelLabel="Remove subscription"
         // onSubmit={(values: Subcription) => console.log("values :>> ", values)}
         submitLabel="Save and continue"
         schema={{ required: ["name", "description", "cost", "recurring"] }}

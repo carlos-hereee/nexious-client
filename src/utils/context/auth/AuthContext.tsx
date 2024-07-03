@@ -91,7 +91,15 @@ export const AuthState = ({ children }: ChildProps) => {
       changePassword,
       updateTier,
     };
-  }, [state.accessToken, state.isLoading, state.theme, state.user, state.authErrors]);
+  }, [
+    state.accessToken,
+    state.isLoading,
+    state.theme,
+    state.user,
+    state.authErrors,
+    state.accountTiers,
+    state.notifications,
+  ]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;
 };

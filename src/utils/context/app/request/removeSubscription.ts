@@ -4,11 +4,12 @@ import { axiosAuth } from "@axios/axiosAuth";
 import { isDev } from "@config";
 import { AppDispatchProps } from "app-context";
 
-export const addSubscription = async ({ dispatch, appId, subscription, updateUser }: AppDispatchProps) => {
+export const removeSub = async ({ dispatch, appId, id, updateUser }: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/app/create-subscription/${appId || "platform"}`, subscription);
+    const { data } = await axiosAuth.delete(`/app/delete-subscription/${appId || "platform"}/${id}`);
     if (updateUser) updateUser(data.user);
+    console.log("data :>> ", data);
     dispatch({ type: APP_ACTIONS.SET_APP_MESSAGE, payload: "SUCCESS" });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

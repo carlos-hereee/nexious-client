@@ -227,7 +227,7 @@ declare module "app-types" {
   }
   export interface SubcriptionProp {
     appId: string;
-    subscription: Subcription;
+    subscription?: Subcription;
     id?: string;
   }
   export type MediaItemProp = {

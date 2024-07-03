@@ -399,7 +399,9 @@
       "recurring": "Frequency",
       "description": "Description",
       "addFeatures": "Add features",
-      "cost": "Cost"
+      "cost": "Cost",
+      "value": "Content of feature (if checkbox type anything to mark as checked)",
+      "valueType": "Value type (leave empty if value is a message)"
     },
     "placeholders": { "hero": "", "description": "", "name": "item name" },
     "desiredOrder": ["name", "description", "recurring", "addFeatures", "cost"]
@@ -435,7 +437,7 @@
         "value": "Content of feature (if checkbox type anything to mark as checked)",
         "valueType": "Value type (leave empty if value is a message)"
       },
-      "desiredOrder": ["name", "value", "icon"],
+      "desiredOrder": ["name", "value", "valueType"],
       "placeholders": { "name": " ", "value": "", "valueType": "" },
       "types": { "name": "", "value": "", "valueType": "select" },
       "additionLabel": "Add another",

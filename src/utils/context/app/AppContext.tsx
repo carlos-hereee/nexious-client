@@ -18,6 +18,7 @@ import { stripeAccountLink } from "./request/stripeAccountLink";
 import { removeNotification } from "./request/removeNotification";
 import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
+import { removeSub } from "./request/removeSubscription";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -48,6 +49,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // create and manage subscriptions
   const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
   const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
+  const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -101,6 +103,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getStripeAccountLink,
       getPageWithId,
       createSubscription,
+      deleteSubscription,
       updateSubscription,
       upgradeToLatest,
       clearNotification,
@@ -120,6 +123,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.inventory,
     state.socialMedia,
     state.loadingState,
+    state.appMessage,
     state.redirectUrl,
     state.store,
     state.page,

@@ -88,6 +88,7 @@ declare module "app-context" {
     setAppMessage: (appId: string) => void;
     createSubscription: (appId: SubcriptionProp) => void;
     updateSubscription: (appId: SubcriptionProp) => void;
+    deleteSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }

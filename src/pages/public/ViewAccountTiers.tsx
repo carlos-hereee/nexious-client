@@ -1,21 +1,28 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { serviceTiers } from "@data/nexious.json";
 import { SubscriptionSchema } from "auth-context";
 import { Button, Dialog, Icon, ItemDetail, Loading, capFirstCharacter } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import EditSubscription from "@components/app/forms/store/EditSubscription";
+import { AppContext } from "@context/app/AppContext";
 
 const ViewAccountTiers = () => {
-  // const ViewAccountTiers = ({ onClick }: { onClick?: (p: SubscriptionSchema) => void }) => {
   const { accountTier, user, accessToken, updateTier, accountTiers, isPlatformOwner } = useContext(AuthContext);
+  const { setAppMessage, appMessage } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
   const [activePlan, setActivePlan] = useState<SubscriptionSchema | undefined>();
 
   const navigate = useNavigate();
 
-  console.log("accountTiers :>> ", accountTiers);
-  console.log("isPlatformOwner :>> ", isPlatformOwner);
+  // console.log("accountTiers :>> ", accountTiers);
+  // console.log("isPlatformOwner :>> ", isPlatformOwner);
+  useEffect(() => {
+    if (appMessage === "SUCCESS") {
+      setActivePlan(undefined);
+      setAppMessage("");
+    }
+  }, [appMessage]);
   if (!accountTiers) return <Loading />;
   const subscribeToPlan = (plan: SubscriptionSchema) => {
     if (!accessToken) navigate("/login");
