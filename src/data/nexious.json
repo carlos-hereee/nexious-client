@@ -5,6 +5,16 @@
   "nexiousMenu": [
     {
       "isPrivate": false,
+      "uid": "pricing",
+      "category": "home",
+      "menuId": "pricing",
+      "label": "pricing",
+      "value": "pricing",
+      "link": "pricing",
+      "name": "pricing"
+    },
+    {
+      "isPrivate": false,
       "uid": "explore-1",
       "category": "home",
       "menuId": "explore-1",

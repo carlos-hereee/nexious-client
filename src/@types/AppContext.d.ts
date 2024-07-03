@@ -1,6 +1,6 @@
 declare module "app-context" {
   import { MerchProps } from "store-context";
-  import { UserSchema } from "auth-context";
+  import { SubscriptionSchema, UserSchema } from "auth-context";
   import { AppAssets } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
@@ -70,6 +70,7 @@ declare module "app-context" {
     store: StoreProps;
 
     inventory: MerchProps[];
+    subscriptionTiers: SubscriptionSchema[];
   }
   // app context schema
   export interface AppSchema extends AppStateProps {
@@ -77,6 +78,7 @@ declare module "app-context" {
     // updateStripeConfig: (config: StripeConfig) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppList: () => void;
+    getPlatformTiers: () => void;
     setAppLoading: (isLoading: boolean) => void;
     setActivePage: (page: PageProps) => void;
     setSocialMedia: (media: MediaItemProp) => void;
@@ -147,6 +149,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
+    | { type: APP_ACTIONS.SET_APP_SUBSCRIPTIONS; payload: SubscriptionSchema[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
     | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
     | { type: APP_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }

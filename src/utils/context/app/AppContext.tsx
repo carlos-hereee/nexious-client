@@ -19,6 +19,7 @@ import { removeNotification } from "./request/removeNotification";
 import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
+import { getTiers } from "./request/getTiers";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -27,6 +28,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const { accessToken, updateUser } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
+  const getPlatformTiers = useCallback(() => getTiers({ dispatch }), []);
   // update app data
   const updateAppData = useCallback((data: AppAssets) => setAppData({ dispatch, ...data }), []);
 
@@ -92,6 +94,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       activePage: state.activePage,
 
       socialMedia: state.socialMedia,
+      subscriptionTiers: state.subscriptionTiers,
+      getPlatformTiers,
       updateAppData,
       getAppWithName,
       getAppList,

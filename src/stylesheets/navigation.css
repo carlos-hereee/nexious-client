@@ -11,6 +11,11 @@
   justify-content: center;
   align-items: center;
 }
+.navigation-bar .navigation .nav-btn {
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
+}
 
 .user-menu {
   border-radius: 4px;

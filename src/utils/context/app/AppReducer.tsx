@@ -11,7 +11,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, themeList: action.payload };
     case APP_ACTIONS.SET_APP_MESSAGE:
       return { ...state, appMessage: action.payload };
-
+    case APP_ACTIONS.SET_APP_SUBSCRIPTIONS:
+      return { ...state, subscriptionTiers: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:
       return { ...state, adminIds: action.payload };
     case APP_ACTIONS.SET_MEDIA_ITEM:

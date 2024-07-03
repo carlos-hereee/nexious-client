@@ -6,14 +6,16 @@ import { Button, Dialog, Icon, ItemDetail, Loading, Navigation, capFirstCharacte
 import { useNavigate } from "react-router-dom";
 import EditSubscription from "@components/app/forms/store/EditSubscription";
 import { AppContext } from "@context/app/AppContext";
+import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 
-type Menu = "Monthly" | "Yearly";
+type Menu = "day" | "month" | "week" | "year";
+
 const ViewAccountTiers = () => {
-  const { accountTier, user, accessToken, updateTier, accountTiers, isPlatformOwner } = useContext(AuthContext);
-  const { setAppMessage, appMessage } = useContext(AppContext);
+  const { accountTier, user, accessToken, updateTier, isPlatformOwner } = useContext(AuthContext);
+  const { setAppMessage, appMessage, getPlatformTiers, subscriptionTiers } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
   const [activePlan, setActivePlan] = useState<SubscriptionSchema | undefined>();
-  const [menu, setMenu] = useState<Menu>("Monthly");
+  const [menu, setMenu] = useState<Menu>("month");
   const [filteredTiers, setFilteredTiers] = useState<SubscriptionSchema[]>();
   const navigate = useNavigate();
 
@@ -23,13 +25,15 @@ const ViewAccountTiers = () => {
       setAppMessage("");
     }
   }, [appMessage]);
+
   useEffect(() => {
-    if (accountTiers) {
-      const filtered = accountTiers.filter((tier) => tier.recurring === menu);
+    if (subscriptionTiers && subscriptionTiers.length > 0) {
+      const filtered = subscriptionTiers.filter((tier) => tier.recurring === menu);
       setFilteredTiers(filtered);
-    }
-  }, [menu]);
-  if (!accountTiers) return <Loading />;
+    } else getPlatformTiers();
+  }, [menu, subscriptionTiers]);
+
+  if (!filteredTiers) return <Loading />;
   const subscribeToPlan = (plan: SubscriptionSchema) => {
     if (!accessToken) navigate("/login");
     else updateTier({ ...user, accountTier: plan });
@@ -38,9 +42,14 @@ const ViewAccountTiers = () => {
   return (
     <div className="primary-container">
       <h1 className="heading">View service tiers</h1>
-      <Navigation menus={["Monthly", "Yearly"]} theme="navigation-bar" active={menu} onClick={(m: Menu) => setMenu(m)} />
+      <Navigation
+        menus={["day", "month", "week", "year"]}
+        theme="navigation-bar"
+        active={menu}
+        onClick={(m: Menu) => setMenu(m)}
+      />
       <div className="btn-card-container">
-        {filteredTiers && filteredTiers.length > 0 ? (
+        {filteredTiers.length > 0 ? (
           filteredTiers.map((service: SubscriptionSchema) => (
             <div key={service.subscriptionId} className="container flex-center ">
               <Button
@@ -49,6 +58,9 @@ const ViewAccountTiers = () => {
               >
                 <div className="container">
                   <h2 className="heading text-center">{capFirstCharacter(service.name)}</h2>
+                  <ItemDetail label="Subscription details" labelLayout="bolden">
+                    <span>{service.description}</span>
+                  </ItemDetail>
                   {service.features.map((feature) => (
                     <ItemDetail key={feature.featureId} label={service.name} labelLayout="bolden">
                       <span>
@@ -61,7 +73,7 @@ const ViewAccountTiers = () => {
                 </div>
                 <ItemDetail label="Price" labelLayout="bolden">
                   <span>
-                    ${service.cost}/{service.recurring}
+                    ${formatPenniesToDollars(service.cost)}/{service.recurring}
                   </span>
                 </ItemDetail>
               </Button>
