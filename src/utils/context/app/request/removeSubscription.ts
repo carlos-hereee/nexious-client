@@ -9,7 +9,6 @@ export const removeSub = async ({ dispatch, appId, id, updateUser }: AppDispatch
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.delete(`/app/delete-subscription/${appId || "platform"}/${id}`);
     if (updateUser) updateUser(data.user);
-    console.log("data :>> ", data);
     dispatch({ type: APP_ACTIONS.SET_APP_MESSAGE, payload: "SUCCESS" });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

@@ -1,8 +1,9 @@
+import ConfirmRemovals from "@components/app/containers/ConfirmRemoval";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
 import { AppValues } from "app-forms";
-import { Button, ButtonCancel, Form } from "nexious-library";
+import { Form } from "nexious-library";
 import { useContext, useState } from "react";
 import { MerchProps } from "store-context";
 
@@ -14,17 +15,11 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const initialValues = formatInitialValues({ merch: initValues, desiredOrder: merchForm.desiredOrder });
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
 
+  const handleRemove = () => deleteMerchItem(appId, initValues.merchId);
   return (
     <div className="primary-container">
       {show ? (
-        <div className="container">
-          <h2 className="heading">Are you sure you want to delete {initValues?.name}</h2>
-          <p className="text-center">This will delete all progress</p>
-          <div className="flex-center">
-            <ButtonCancel onClick={() => setShow(false)} theme="btn-main" />
-            <Button label="Confirm" onClick={() => deleteMerchItem(appId, initValues.merchId)} />
-          </div>
-        </div>
+        <ConfirmRemovals name={initValues.name} onConfirm={handleRemove} onReturn={() => setShow(false)} />
       ) : (
         <Form
           initialValues={initialValues}

@@ -33,7 +33,6 @@ export const formatInitialValues: FormatFormValue = (data) => {
 };
 export const formatInitialEntryValues = ({ addEntry, page, merch, subscription }: FormatEntryProps) => {
   // find extra values for pages
-  console.log("subscription :>> ", subscription);
   const entries = {};
   if (subscription) {
     //  iterate initial values
