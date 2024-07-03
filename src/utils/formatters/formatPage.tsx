@@ -1,9 +1,9 @@
-// import { FormatPageProps } from "app-forms";
+// import { FormatEntryProps } from "app-forms";
 // import { PageProps, SectionProps } from "app-types";
 // import { uniqueId } from "nexious-library";
 // import { entryKey } from "./entryKeys";
 
-// export const formatPage = ({ addEntry, values }: FormatPageProps): PageProps => {
+// export const formatPage = ({ addEntry, values }: FormatEntryProps): PageProps => {
 //   console.log("desiredOrder :>> ", addEntry);
 //   const { desiredOrder } = addEntry;
 //   return values;

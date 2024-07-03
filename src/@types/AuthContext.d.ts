@@ -17,15 +17,28 @@ declare module "auth-context" {
     // serverIsOffline: string;
     // changePasswordError: string;
   }
-  export interface AccountTier {
-    tier: "free" | "basic" | "advanced" | string;
-    tierId: string;
-    calendarEvent: boolean;
-    calendarBooking: boolean;
-    storeCheckout: boolean;
-    maxApps: 1 | 3 | 10 | number;
+  export interface SubsciptionFeatures {
+    featureId: string;
+    name: string;
+    value: string;
+    valueType: "Checkbox" | "Message";
+  }
+  export interface SubscriptionSchema {
+    subscriptionId: string;
+    // stripe generated id
+    productId?: string;
+    // stripe generated id
+    priceId?: string;
+    thumbnail: string;
+    name: string;
+    description: string;
+    recurring: "Monthly" | "Yearly";
     cost: number;
-    maxPagesPerApp: 5 | 10 | 20 | number;
+    productId: string;
+    priceId: string;
+    isPlatformSubscription: boolean;
+    link: string;
+    features: SubsciptionFeatures[];
   }
   export interface UserSchema {
     // uid: string;
@@ -40,8 +53,8 @@ declare module "auth-context" {
     subscriptions?: AppListProps[];
     notifications?: Notification[];
     ownedApps?: AppListProps[];
-    accountTier?: AccountTier;
-    accountTiers?: AccountTier[];
+    accountTier?: SubscriptionSchema;
+    accountTiers?: SubscriptionSchema[];
   }
 
   export interface AuthStateProps {
@@ -61,8 +74,8 @@ declare module "auth-context" {
     passwordChangeForm: FormProps;
     subscriptions: AppListProps[];
     forgotPasswordForm: FormProps;
-    accountTier?: AccountTier;
-    accountTiers?: AccountTier[];
+    accountTier?: SubscriptionSchema;
+    accountTiers?: SubscriptionSchema[];
     theme: string;
     locale: string;
   }
@@ -104,8 +117,8 @@ declare module "auth-context" {
     | { type: AUTH_ACTIONS.SET_ACCESS_TOKEN | AUTH_ACTIONS.SET_THEME; payload: string }
     | { type: AUTH_ACTIONS.SET_OWNED_APPS | AUTH_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: AUTH_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
-    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIER; payload: AccountTier }
-    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIERS; payload: AccountTier[] }
+    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIER; payload: SubscriptionSchema }
+    | { type: AUTH_ACTIONS.SET_ACCOUNT_TIERS; payload: SubscriptionSchema[] }
     | { type: AUTH_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: AUTH_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: AUTH_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };

@@ -11,13 +11,9 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const { appId } = useContext(AppContext);
   const { initValues } = props;
   const [show, setShow] = useState(false);
-  // console.log("initValues :>> ", initValues);
   const initialValues = formatInitialValues({ merch: initValues, desiredOrder: merchForm.desiredOrder });
-  // const initialValues = formatMerch({ merch: initValues, desiredOrder: merchForm.desiredOrder });
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
-  // console.log("entryValues :>> ", entryValues);
-  // if (status === "pending") return <Loading message="sending request.." />;
-  // if (status === "loading") return <Loading message="loading app assets.." />;
+
   return (
     <div className="primary-container">
       {show ? (
@@ -36,7 +32,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
           placeholders={merchForm.placeholders}
           types={merchForm.types}
           addEntry={sectionEntries}
-          entires={entryValues}
+          entries={entryValues}
           fieldHeading={merchForm.fieldHeading}
           onCancel={() => setShow(true)}
           onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}

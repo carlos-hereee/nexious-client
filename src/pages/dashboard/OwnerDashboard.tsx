@@ -6,7 +6,7 @@ import { Button, Dialog, ItemDetail } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
 // import { useContext, useState } from "react";
 
-type Menu = "create-sub" | "view-sub" | "";
+type Menu = "create-sub" | "view-sub" | "" | "edit-sub";
 const OwnerDashboard = () => {
   const { appMessage, setAppMessage } = useContext(AppContext);
   // const { appId } = useContext(AppContext);
@@ -24,6 +24,7 @@ const OwnerDashboard = () => {
     setShow(!!value);
     setActive(value);
   };
+
   return (
     <div className="app-container">
       <div className="header-menu">

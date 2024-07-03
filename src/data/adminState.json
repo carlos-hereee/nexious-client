@@ -396,13 +396,13 @@
     "labels": {
       "name": "Subscription name",
       "hero": "Add thumbnail image",
-      "recurring": "Frequancy",
+      "recurring": "Frequency",
       "description": "Description",
       "addFeatures": "Add features",
       "cost": "Cost"
     },
     "placeholders": { "hero": "", "description": "", "name": "item name" },
-    "desiredOrder": ["name", "hero", "description", "cost"]
+    "desiredOrder": ["name", "description", "recurring", "addFeatures", "cost"]
   },
   "sectionEntries": {
     "hasCta": {

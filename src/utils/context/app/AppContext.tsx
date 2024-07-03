@@ -16,7 +16,8 @@ import { fetchPage } from "./request/fetchPage";
 import { upgradeLatest } from "./request/upgradeLatest";
 import { stripeAccountLink } from "./request/stripeAccountLink";
 import { removeNotification } from "./request/removeNotification";
-import { addSubscription } from "./helpers/addSubscription";
+import { addSubscription } from "./request/addSubscription";
+import { editSubscription } from "./request/editSubscription";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -46,6 +47,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
   // create and manage subscriptions
   const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
+  const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -99,7 +101,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getStripeAccountLink,
       getPageWithId,
       createSubscription,
-
+      updateSubscription,
       upgradeToLatest,
       clearNotification,
       setAppMessage,

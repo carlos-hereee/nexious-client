@@ -87,6 +87,7 @@ declare module "app-context" {
     upgradeToLatest: (appId: string) => void;
     setAppMessage: (appId: string) => void;
     createSubscription: (appId: SubcriptionProp) => void;
+    updateSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
