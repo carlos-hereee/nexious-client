@@ -27,20 +27,22 @@ const ViewAccountTiers = () => {
       <h1 className="heading">View service tiers</h1>
       <div className="btn-card-container">
         {accountTiers.map((service: SubscriptionSchema) => (
-          <div key={service.subscriptionId} className="container flex-center">
+          <div key={service.subscriptionId} className="container flex-center ">
             <Button
               theme={`service-card highlight${active === service.subscriptionId ? " service-card-active" : ""}`}
               onClick={() => setActive(service.subscriptionId)}
             >
-              <h2 className="heading text-center">{capFirstCharacter(service.name)}</h2>
-              {service.features.map((feature) => (
-                <ItemDetail key={feature.featureId} label={service.name} labelLayout="bolden">
-                  <span>
-                    {feature.valueType === "Checkbox" && (feature.value ? <Icon icon="check" /> : <Icon icon="uncheck" />)}
-                    {feature.valueType === "Message" && feature.value}
-                  </span>
-                </ItemDetail>
-              ))}
+              <div className="container">
+                <h2 className="heading text-center">{capFirstCharacter(service.name)}</h2>
+                {service.features.map((feature) => (
+                  <ItemDetail key={feature.featureId} label={service.name} labelLayout="bolden">
+                    <span>
+                      {feature.valueType === "Checkbox" && (feature.value ? <Icon icon="check" /> : <Icon icon="uncheck" />)}
+                      {feature.valueType === "Message" && feature.value}
+                    </span>
+                  </ItemDetail>
+                ))}
+              </div>
               <ItemDetail label="Price" labelLayout="bolden">
                 <span>
                   ${service.cost}/{service.recurring}
