@@ -1,6 +1,6 @@
 import AddSubscription from "@components/app/forms/store/AddSubscription";
 import { AppContext } from "@context/app/AppContext";
-import ViewAccountTiers from "@pages/public/ViewAccountTiers";
+import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { Button, Dialog, ItemDetail } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
 

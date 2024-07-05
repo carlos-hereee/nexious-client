@@ -3,7 +3,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { Button, Dialog, Form, ItemDetail } from "nexious-library";
 import { formatInitialValues } from "@formatters/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
-import ViewAccountTiers from "@pages/public/ViewAccountTiers";
+import ViewAccountTiers from "@components/app/ViewAccountTiers";
 
 type Menu = "user" | "password-change" | "account-tier";
 const AccountSettings = () => {

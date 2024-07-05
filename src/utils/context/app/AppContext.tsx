@@ -8,7 +8,6 @@ import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./request/fetchAppWithName";
-import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
@@ -19,6 +18,7 @@ import { removeNotification } from "./request/removeNotification";
 import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
+import { fetchPlatformData } from "./request/fetchPlatformData";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -39,7 +39,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => fetchAppWithName({ dispatch, appName: a, updateAppData }), []);
 
-  const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
+  const getPlatformData = useCallback(() => fetchPlatformData({ dispatch }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
@@ -95,7 +95,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       subscriptionTiers: state.subscriptionTiers,
       updateAppData,
       getAppWithName,
-      getAppList,
+      getPlatformData,
       updateActiveAppData,
       setAppLoading,
       getStoreInventory,
