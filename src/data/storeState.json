@@ -6,8 +6,13 @@
   "stripeConfirmation": {
     "status": "",
     "paymentStatus": "",
-    "customer": null,
-    "intent": ""
+    "customer": "",
+    "intent": "",
+    "customerDetails": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
   },
   "paypal": {
     "uid": "payment-2",

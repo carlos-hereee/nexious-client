@@ -12,6 +12,7 @@ import { checkoutStoreSession } from "./request/checkoutStoreSession";
 import { getStripeBalance } from "./request/getStripeBalance";
 import { managePayouts } from "./request/managePayouts";
 import { getStripeAccount } from "./request/getStripeAccount";
+import { billingPortal } from "./request/billingPortal";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -45,6 +46,7 @@ export const StoreState = ({ children }: ChildProps) => {
   const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
   const handlePayouts = useCallback((data: PayoutAmmount) => managePayouts({ dispatch, ...data }), []);
   const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, appId }), []);
+  const manageBilling = useCallback((sessionId: string) => billingPortal({ dispatch, sessionId }), []);
   // const updateAccount = useCallback((config: StripeConfig) => {
   //   updateStripeAccount({ dispatch, config });
   // }, []);
@@ -69,6 +71,7 @@ export const StoreState = ({ children }: ChildProps) => {
       getBalance,
       handlePayouts, // stripe account
       getAccount,
+      manageBilling,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

@@ -22,7 +22,7 @@ const ContinueShopping = () => {
 };
 
 const CheckoutSuccess = () => {
-  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
+  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder, manageBilling } = useContext(StoreContext);
   const { search } = useLocation();
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
@@ -38,17 +38,21 @@ const CheckoutSuccess = () => {
       setOrder();
     }
   }, [order, search]);
-
   // if stripe checkout was successful
-  if (stripeConfirmation.status === "complete" && stripeConfirmation.paymentStatus === "paid") {
+  if (stripeConfirmation.status === "complete") {
     return (
       <div className="primary-container">
-        <h1 className="heading">Thanks for your order!</h1>
+        {stripeConfirmation.paymentStatus === "paid" ? (
+          <h1 className="heading">Thanks for your order! {stripeConfirmation.customerDetails.name}</h1>
+        ) : (
+          <h1 className="heading">Thanks for your order!</h1>
+        )}
         <p>
           We appreciate your business!
           {/* If you have any questions, please email */}
           {/* <a href="mailto:orders@example.com">orders@example.com</a>. */}
         </p>
+        <Button label="Manage billing" onClick={() => manageBilling(stripeConfirmation.customer)} />
         <ContinueShopping />
       </div>
     );

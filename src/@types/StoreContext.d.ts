@@ -74,7 +74,12 @@ declare module "store-context" {
   export interface StripeConfirmationProps {
     status: string;
     paymentStatus: string;
-    customer: null | unknown;
+    customer: string;
+    customerDetails: {
+      email: string;
+      name: string;
+      phone: string;
+    };
     // intent: string;
   }
 
@@ -119,6 +124,7 @@ declare module "store-context" {
     onCheckOutSession: (cart: StoreCheckout) => void;
     onStoreCheckout: (data: StoreCheckout) => void;
     confirmIntent: (sessionId: string) => void;
+    manageBilling: (sessionId: string) => void;
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
