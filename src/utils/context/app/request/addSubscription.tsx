@@ -8,6 +8,7 @@ export const addSubscription = async ({ dispatch, appId, subscription, updateUse
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/app/create-subscription/${appId || "platform"}`, subscription);
+    // TODO: ADD SUBSCRIPTION TO LOCAL STATE
     if (updateUser) updateUser(data.user);
     dispatch({ type: APP_ACTIONS.SET_APP_MESSAGE, payload: "SUCCESS" });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });

@@ -270,3 +270,9 @@ header {
   flex-wrap: wrap;
   gap: 1rem;
 }
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}

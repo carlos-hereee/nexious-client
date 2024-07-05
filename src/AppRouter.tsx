@@ -22,9 +22,11 @@ import CheckoutSuccess from "@pages/public/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
 import Logout from "@pages/auth/Logout";
 import ViewAccountTiers from "@pages/public/ViewAccountTiers";
+import { AppContext } from "@context/app/AppContext";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
+  const { platformTiers } = useContext(AppContext);
   const navigate = useNavigate();
 
   const navigateClick = () => navigate(accessToken ? "/dashboard" : "/");
@@ -39,7 +41,7 @@ const AppRouter: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/pricing" element={<ViewAccountTiers />} />
+        <Route path="/pricing" element={<ViewAccountTiers subscriptions={platformTiers} />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />

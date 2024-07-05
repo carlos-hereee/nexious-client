@@ -75,7 +75,7 @@ declare module "auth-context" {
     subscriptions: AppListProps[];
     forgotPasswordForm: FormProps;
     accountTier?: SubscriptionSchema;
-    accountTiers?: SubscriptionSchema[];
+    accountTiers: SubscriptionSchema[];
     theme: string;
     locale: string;
   }

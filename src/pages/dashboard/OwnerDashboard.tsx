@@ -1,15 +1,12 @@
 import AddSubscription from "@components/app/forms/store/AddSubscription";
 import { AppContext } from "@context/app/AppContext";
-// import { AppContext } from "@context/app/AppContext";
 import ViewAccountTiers from "@pages/public/ViewAccountTiers";
 import { Button, Dialog, ItemDetail } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
-// import { useContext, useState } from "react";
 
 type Menu = "create-sub" | "view-sub" | "" | "edit-sub";
 const OwnerDashboard = () => {
-  const { appMessage, setAppMessage } = useContext(AppContext);
-  // const { appId } = useContext(AppContext);
+  const { appMessage, setAppMessage, platformTiers } = useContext(AppContext);
   const [active, setActive] = useState<Menu>("");
   const [show, setShow] = useState<boolean>(false);
 
@@ -41,7 +38,7 @@ const OwnerDashboard = () => {
       {show && (
         <Dialog onDialogClose={() => handleClick("")}>
           {active === "create-sub" && <AddSubscription />}
-          {active === "view-sub" && <ViewAccountTiers />}
+          {active === "view-sub" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}
     </div>

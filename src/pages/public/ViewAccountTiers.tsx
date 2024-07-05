@@ -7,16 +7,17 @@ import { useNavigate } from "react-router-dom";
 import EditSubscription from "@components/app/forms/store/EditSubscription";
 import { AppContext } from "@context/app/AppContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
+import { useNavigationMenus } from "@hooks/useNavigationMenus";
 
-type Menu = "day" | "month" | "week" | "year";
-
-const ViewAccountTiers = () => {
+const ViewAccountTiers = ({ subscriptions }: { subscriptions: SubscriptionSchema[] }) => {
   const { accountTier, user, accessToken, updateTier, isPlatformOwner } = useContext(AuthContext);
-  const { setAppMessage, appMessage, getPlatformTiers, subscriptionTiers } = useContext(AppContext);
+  const { setAppMessage, appMessage } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
   const [activePlan, setActivePlan] = useState<SubscriptionSchema | undefined>();
-  const [menu, setMenu] = useState<Menu>("month");
-  const [filteredTiers, setFilteredTiers] = useState<SubscriptionSchema[]>();
+  const { filteredItems, menus, activeMenu, updateActiveMenu } = useNavigationMenus<SubscriptionSchema>({
+    filterKey: "recurring",
+    items: subscriptions,
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,14 +27,8 @@ const ViewAccountTiers = () => {
     }
   }, [appMessage]);
 
-  useEffect(() => {
-    if (subscriptionTiers && subscriptionTiers.length > 0) {
-      const filtered = subscriptionTiers.filter((tier) => tier.recurring === menu);
-      setFilteredTiers(filtered);
-    } else getPlatformTiers();
-  }, [menu, subscriptionTiers]);
+  if (!filteredItems) return <Loading />;
 
-  if (!filteredTiers) return <Loading />;
   const subscribeToPlan = (plan: SubscriptionSchema) => {
     if (!accessToken) navigate("/login");
     else updateTier({ ...user, accountTier: plan });
@@ -42,15 +37,10 @@ const ViewAccountTiers = () => {
   return (
     <div className="primary-container">
       <h1 className="heading">View service tiers</h1>
-      <Navigation
-        menus={["day", "month", "week", "year"]}
-        theme="navigation-bar"
-        active={menu}
-        onClick={(m: Menu) => setMenu(m)}
-      />
+      <Navigation menus={menus} theme="navigation-bar" active={activeMenu} onClick={updateActiveMenu} />
       <div className="btn-card-container">
-        {filteredTiers.length > 0 ? (
-          filteredTiers.map((service: SubscriptionSchema) => (
+        {filteredItems.length > 0 ? (
+          filteredItems.map((service: SubscriptionSchema) => (
             <div key={service.subscriptionId} className="container flex-center ">
               <Button
                 theme={`service-card highlight${active === service.subscriptionId ? " service-card-active" : ""}`}
@@ -58,18 +48,20 @@ const ViewAccountTiers = () => {
               >
                 <div className="container">
                   <h2 className="heading text-center">{capFirstCharacter(service.name)}</h2>
-                  <ItemDetail label="Subscription details" labelLayout="bolden">
-                    <span>{service.description}</span>
-                  </ItemDetail>
-                  {service.features.map((feature) => (
-                    <ItemDetail key={feature.featureId} label={service.name} labelLayout="bolden">
-                      <span>
-                        {feature.valueType === "Checkbox" &&
-                          (feature.value ? <Icon icon="check" /> : <Icon icon="uncheck" />)}
-                        {feature.valueType === "Message" && feature.value}
-                      </span>
+                  <div className="text-left">
+                    <ItemDetail label="Subscription details" labelLayout="bolden">
+                      <span className="text-center">{service.description}</span>
                     </ItemDetail>
-                  ))}
+                    {service.features.map((feature) => (
+                      <ItemDetail key={feature.featureId} label={feature.name} labelLayout="bolden">
+                        <span className="text-center">
+                          {feature.valueType === "Checkbox" &&
+                            (feature.value ? <Icon icon="check" /> : <Icon icon="uncheck" />)}
+                          {feature.valueType === "Message" && feature.value}
+                        </span>
+                      </ItemDetail>
+                    ))}
+                  </div>
                 </div>
                 <ItemDetail label="Price" labelLayout="bolden">
                   <span>

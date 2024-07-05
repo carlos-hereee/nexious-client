@@ -8,6 +8,7 @@ export const editSubscription = async ({ dispatch, appId, subscription, updateUs
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.put(`/app/update-subscription/${appId || "platform"}/${id}`, subscription);
+    //  // TODO: UPDATE SUBSCRIPTION TO LOCAL STATE
     if (updateUser) updateUser(data.user);
     dispatch({ type: APP_ACTIONS.SET_APP_MESSAGE, payload: "SUCCESS" });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });

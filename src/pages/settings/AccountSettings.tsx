@@ -7,7 +7,7 @@ import ViewAccountTiers from "@pages/public/ViewAccountTiers";
 
 type Menu = "user" | "password-change" | "account-tier";
 const AccountSettings = () => {
-  const { user, userForm, editUser, theme, accountTier } = useContext(AuthContext);
+  const { user, userForm, editUser, theme, accountTier, accountTiers } = useContext(AuthContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
   const [nav, setNav] = useState<Menu>("user");
   const [show, setShow] = useState(false);
@@ -24,7 +24,7 @@ const AccountSettings = () => {
         <Button label="Update account" onClick={() => handleClick("user")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Account tiers:">
-        <Button label={accountTier?.tier || "View tiers"} onClick={() => handleClick("account-tier")} />
+        <Button label={accountTier?.name || "View tiers"} onClick={() => handleClick("account-tier")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />
@@ -44,7 +44,7 @@ const AccountSettings = () => {
             </div>
           )}
           {nav === "password-change" && <ChangePassword />}
-          {nav === "account-tier" && <ViewAccountTiers />}
+          {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTiers} />}
         </Dialog>
       )}
     </div>

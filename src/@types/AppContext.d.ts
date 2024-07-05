@@ -68,7 +68,7 @@ declare module "app-context" {
     dbVersion?: string;
     calendar: CalendarProps;
     store: StoreProps;
-
+    platformTiers: SubscriptionSchema[];
     inventory: MerchProps[];
     subscriptionTiers: SubscriptionSchema[];
   }
@@ -78,7 +78,6 @@ declare module "app-context" {
     // updateStripeConfig: (config: StripeConfig) => void;
     getAppWithName: (appName: string, setAsActive?: boolean) => void;
     getAppList: () => void;
-    getPlatformTiers: () => void;
     setAppLoading: (isLoading: boolean) => void;
     setActivePage: (page: PageProps) => void;
     setSocialMedia: (media: MediaItemProp) => void;
@@ -101,6 +100,7 @@ declare module "app-context" {
     page?: PageProps;
     store?: StoreProps;
     appList?: AppListProps[];
+    platformTiers?: SubscriptionSchema[];
     logo?: string;
     id?: string;
     media?: MediaProps;
@@ -149,7 +149,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
-    | { type: APP_ACTIONS.SET_APP_SUBSCRIPTIONS; payload: SubscriptionSchema[] }
+    | { type: APP_ACTIONS.SET_APP_SUBSCRIPTIONS | APP_ACTIONS.SET_PLATFORM_TIERS; payload: SubscriptionSchema[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
     | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
     | { type: APP_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }

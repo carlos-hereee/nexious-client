@@ -12,7 +12,7 @@ const ConfirmRemovals = ({ name, onConfirm, onReturn }: Props) => {
     if (data.confirm === "CONFIRM") onConfirm();
   };
   return (
-    <div className="container">
+    <>
       <h2 className="heading">Are you sure you want to delete {name}</h2>
       <p className="text-center">This will delete all progress</p>
       <Form
@@ -22,7 +22,7 @@ const ConfirmRemovals = ({ name, onConfirm, onReturn }: Props) => {
         onSubmit={(data: { confirm: string }) => handleConfirm(data)}
         onCancel={() => onReturn && onReturn()}
       />
-    </div>
+    </>
   );
 };
 export default ConfirmRemovals;

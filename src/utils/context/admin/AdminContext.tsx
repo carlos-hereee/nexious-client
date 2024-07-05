@@ -8,7 +8,7 @@ import { StoreOrderUpdate } from "store-context";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
-import { fetchAccessToken } from "../auth/request/fetchAccessToken";
+import { fetchAccessToken } from "./requests/fetchAccessToken";
 import { buildApp } from "./requests/app/buildApp";
 import { updateAppName } from "./requests/updateAppName";
 import { updateLandingPage } from "./requests/updateLandingPage";
@@ -44,7 +44,7 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
   const handleAppAssets = (values: AppAssets) => {
-    if (values.app || values.appList) updateAppData(values);
+    if (values.app || values.appList || values.platformTiers) updateAppData(values);
     if (values.user) updateUser(values.user);
     // if (values.account) updateStripeConfig(values.account);
     if (values) setFormStatus("SUCCESS");

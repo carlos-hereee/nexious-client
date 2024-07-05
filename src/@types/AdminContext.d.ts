@@ -3,7 +3,7 @@ declare module "app-admin" {
   import { PageProps, StoreProps, StringObjProp } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
-  import { UserSchema } from "auth-context";
+  import { SubscriptionSchema, UserSchema } from "auth-context";
   import { FormProps, AppValues, SectionEntryOganizer, FormValueData } from "app-forms";
 
   export type AdminFormErrors = {
@@ -22,6 +22,7 @@ declare module "app-admin" {
     account?: StripeConfig;
     page?: PageProps;
     appList?: AppListProps[];
+    platformTiers?: SubscriptionSchema[];
   }
   export type OnclickProps = {
     onCancelClick?: () => void;
