@@ -1,7 +1,7 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useEffect, useState } from "react";
 // import { serviceTiers } from "@data/nexious.json";
-import { SubscriptionSchema } from "auth-context";
+import { ISubscription } from "auth-context";
 import { Button, Dialog, Icon, ItemDetail, Loading, Navigation, capFirstCharacter } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import EditSubscription from "@components/app/forms/store/EditSubscription";
@@ -9,17 +9,16 @@ import { AppContext } from "@context/app/AppContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 import { useNavigationMenus } from "@hooks/useNavigationMenus";
 
-const ViewAccountTiers = ({ subscriptions }: { subscriptions: SubscriptionSchema[] }) => {
-  const { accountTier, user, accessToken, updateTier, isPlatformOwner } = useContext(AuthContext);
+const ViewAccountTiers = ({ subscriptions }: { subscriptions: ISubscription[] }) => {
+  const { accountTier, user, accessToken, updateTier, isPlatformOwner, setUpdateTier } = useContext(AuthContext);
   const { setAppMessage, appMessage } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
-  const [activePlan, setActivePlan] = useState<SubscriptionSchema | undefined>();
-  const { filteredItems, menus, activeMenu, updateActiveMenu } = useNavigationMenus<SubscriptionSchema>({
+  const [activePlan, setActivePlan] = useState<ISubscription | undefined>();
+  const { filteredItems, menus, activeMenu, updateActiveMenu } = useNavigationMenus<ISubscription>({
     filterKey: "recurring",
     items: subscriptions,
   });
   const navigate = useNavigate();
-
   useEffect(() => {
     if (appMessage === "SUCCESS") {
       setActivePlan(undefined);
@@ -29,9 +28,11 @@ const ViewAccountTiers = ({ subscriptions }: { subscriptions: SubscriptionSchema
 
   if (!filteredItems) return <Loading />;
 
-  const subscribeToPlan = (plan: SubscriptionSchema) => {
-    if (!accessToken) navigate("/login");
-    else updateTier({ ...user, accountTier: plan });
+  const subscribeToPlan = (plan: ISubscription) => {
+    if (!accessToken) {
+      setUpdateTier(plan);
+      navigate("/login");
+    } else updateTier({ ...user, accountTier: plan });
   };
 
   return (
@@ -40,7 +41,7 @@ const ViewAccountTiers = ({ subscriptions }: { subscriptions: SubscriptionSchema
       <Navigation menus={menus} theme="navigation-bar" active={activeMenu} onClick={updateActiveMenu} />
       <div className="btn-card-container">
         {filteredItems.length > 0 ? (
-          filteredItems.map((service: SubscriptionSchema) => (
+          filteredItems.map((service: ISubscription) => (
             <div key={service.subscriptionId} className="container flex-center ">
               <Button
                 theme={`service-card highlight${active === service.subscriptionId ? " service-card-active" : ""}`}

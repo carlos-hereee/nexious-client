@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IconButton } from "nexious-library";
 import AppInProgress from "@pages/public/AppInProgress";
 import { Banner } from "nexious-library/@nxs-organism";
@@ -8,16 +8,26 @@ import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
 import ViewOrdersContainer from "@components/app/containers/ViewOrdersContainer";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
-import AccountSettings from "./AccountSettings";
-import AppPlayground from "./AppPlayground";
+import AccountSettings from "../settings/AccountSettings";
+import AppPlayground from "../settings/AppPlayground";
 
 type Menu = "apps" | "account" | "feed" | "notifications" | "orders" | "admin";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<Menu>("apps");
-  const { user, notifications, clearNotification, isPlatformOwner } = useContext(AuthContext);
+  const { user, notifications, clearNotification, isPlatformOwner, tierUpdate, setUpdateTier, updateTier } =
+    useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { ping } = useNotifications();
+
+  useEffect(() => {
+    // handle account update for new users
+    if (tierUpdate) {
+      console.log("tierUpdate :>> ", tierUpdate);
+      updateTier({ ...user, accountTier: tierUpdate });
+      // setUpdateTier(undefined);
+    }
+  }, [tierUpdate]);
 
   return (
     <div className="container">

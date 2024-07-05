@@ -11,7 +11,7 @@ import SignUp from "@pages/auth/Register";
 import ForgotPassword from "@pages/auth/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
 import Login from "@pages/auth/Login";
-import UserPlayground from "@pages/settings/UserPlayground";
+import UserPlayground from "@pages/dashboard/UserPlayground";
 import Homepage from "@pages/public/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AppPage from "@pages/app/AppPage";
@@ -49,8 +49,6 @@ const AppRouter: React.FC = () => {
       <Route element={<AppRoute />}>
         <Route path="/app/:appName" element={<Landing />} />
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
-        {/* TODO: REMOVE PARAM STORENAME MAYBE ITS REDUNDANTS  */}
-        {/* <Route path="/store/:appName" element={<AppStore />} /> */}
         <Route path="/store/:appName" element={<AppStore />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
       </Route>

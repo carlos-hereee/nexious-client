@@ -1,4 +1,4 @@
-export enum AUTH_ACTIONS {
+export enum A_ACTIONS {
   // boolean payloads
   IS_LOADING,
   SET_STRANDED,
@@ -19,4 +19,5 @@ export enum AUTH_ACTIONS {
   SET_ACCOUNT_TIERS,
   SET_PLATFORM_OWNER,
   SET_ACCOUNT_TIER,
+  SET_UPDATE_TIER,
 }

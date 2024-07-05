@@ -1,5 +1,5 @@
 import { APP_ACTIONS } from "@actions/AppActions";
-import { AUTH_ACTIONS } from "@actions/AuthActions";
+import { A_ACTIONS } from "@actions/AuthActions";
 import { LOG_ACTIONS } from "@actions/LogActions";
 import { AxiosResponseError } from "app-errors";
 import { AxiosError } from "axios";
@@ -17,14 +17,14 @@ export const axiosError = ({ error, type, target, dispatch }: AxiosResponseError
   // auth response errors
   if (type === "auth") {
     // if service disconnect
-    if (err.code === "ERR_NETWORK") dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: stranded });
-    else dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: { [target]: message } });
+    if (err.code === "ERR_NETWORK") dispatch({ type: A_ACTIONS.SET_ERROR, payload: stranded });
+    else dispatch({ type: A_ACTIONS.SET_ERROR, payload: { [target]: message } });
     // // if refresh token attempt failed
     // if (target === "refresh-token") {
     //   // console.log("error :>> ", error, target);
     // }
     // update loading state
-    dispatch({ type: AUTH_ACTIONS.IS_LOADING, payload: false });
+    dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
   }
   // app response errors
   if (type === "app") {

@@ -1,13 +1,11 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { AuthDispatchProps } from "auth-context";
 
-export const upgradeTier = async ({ user, updateUser }: AuthDispatchProps) => {
-  // require key variable
-  // if (!updateUser) throw Error("updateUser is required");
+export const upgradeTier = async ({ user }: AuthDispatchProps) => {
   try {
     const { data } = await axiosAuth.post("/auth/upgrade-account", user);
-    console.log("data :>> ", data);
-    // if (data) updateUser(data);
+    // redirect to checkout
+    window.location.href = data;
   } catch (error) {
     console.log("error updating user data :>> ", error);
   }

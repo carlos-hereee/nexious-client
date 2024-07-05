@@ -1,6 +1,6 @@
 declare module "app-context" {
   import { MerchProps } from "store-context";
-  import { SubscriptionSchema, UserSchema } from "auth-context";
+  import { ISubscription, UserSchema } from "auth-context";
   import { AppAssets } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
@@ -15,6 +15,7 @@ declare module "app-context" {
     Notification,
     PageProps,
     StoreProps,
+    Subcription,
     SubcriptionProp,
   } from "app-types";
 
@@ -68,9 +69,9 @@ declare module "app-context" {
     dbVersion?: string;
     calendar: CalendarProps;
     store: StoreProps;
-    platformTiers: SubscriptionSchema[];
+    platformTiers: ISubscription[];
     inventory: MerchProps[];
-    subscriptionTiers: SubscriptionSchema[];
+    subscriptionTiers: ISubscription[];
   }
   // app context schema
   export interface AppSchema extends AppStateProps {
@@ -100,7 +101,7 @@ declare module "app-context" {
     page?: PageProps;
     store?: StoreProps;
     appList?: AppListProps[];
-    platformTiers?: SubscriptionSchema[];
+    platformTiers?: ISubscription[];
     logo?: string;
     id?: string;
     media?: MediaProps;
@@ -149,7 +150,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }
-    | { type: APP_ACTIONS.SET_APP_SUBSCRIPTIONS | APP_ACTIONS.SET_PLATFORM_TIERS; payload: SubscriptionSchema[] }
+    | { type: APP_ACTIONS.SET_APP_SUBSCRIPTIONS | APP_ACTIONS.SET_PLATFORM_TIERS; payload: ISubscription[] }
     | { type: APP_ACTIONS.SET_NEWSLETTER; payload: NewsletterProps }
     | { type: APP_ACTIONS.SET_MEDIA | APP_ACTIONS.SET_ACTIVE_MEDIA; payload: MediaProps }
     | { type: APP_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }

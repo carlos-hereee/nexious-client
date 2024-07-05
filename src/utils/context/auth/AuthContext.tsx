@@ -1,8 +1,9 @@
 import { createContext, useReducer, useMemo, useCallback, useEffect } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
-import { AuthSchema, UserSchema } from "auth-context";
+import { AuthSchema, ISubscription, UserSchema } from "auth-context";
 import { ForgotPasswordValues, LoginValues, RegisterFormProps } from "app-forms";
+import { A_ACTIONS } from "@actions/AuthActions";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -13,7 +14,6 @@ import { setSubscribe } from "./request/setSubscribe";
 import { clearAuthErrors } from "./dispatch/clearAuthErrors";
 import { clearStranded } from "./dispatch/clearStranded";
 import { updateDumnyData } from "./dispatch/updateDummyData";
-import { updateTheme } from "./dispatch/updateTheme";
 import { updateAccessToken } from "./dispatch/updateAccessToken";
 import { fetchRefreshToken } from "./request/fetchRefreshToken";
 import { editUserRequest } from "./request/editUserRequest";
@@ -50,7 +50,8 @@ export const AuthState = ({ children }: ChildProps) => {
   const resetAuthErrors = useCallback(() => clearAuthErrors({ dispatch }), []);
   const resetStranded = useCallback(() => clearStranded({ dispatch }), []);
   // user actions
-  const setTheme = useCallback((data: string) => updateTheme({ dispatch, data }), []);
+  const setTheme = useCallback((data: string) => dispatch({ type: A_ACTIONS.SET_THEME, payload: data }), []);
+  const setUpdateTier = useCallback((a?: ISubscription) => dispatch({ type: A_ACTIONS.SET_UPDATE_TIER, payload: a }), []);
   const subscribe = useCallback((appId: string) => setSubscribe({ dispatch, appId, updateUser }), []);
   const clearNotification = useCallback((data: string) => removeNotification({ dispatch, data, updateUser }), []);
 
@@ -72,6 +73,7 @@ export const AuthState = ({ children }: ChildProps) => {
       forgotPasswordForm: state.forgotPasswordForm,
       ownedApps: state.ownedApps,
       accountTier: state.accountTier,
+      tierUpdate: state.tierUpdate,
       accountTiers: state.accountTiers,
       subscriptions: state.subscriptions,
       register,
@@ -90,11 +92,13 @@ export const AuthState = ({ children }: ChildProps) => {
       fetchUser,
       changePassword,
       updateTier,
+      setUpdateTier,
     };
   }, [
     state.accessToken,
     state.isLoading,
     state.theme,
+    state.tierUpdate,
     state.user,
     state.authErrors,
     state.accountTiers,

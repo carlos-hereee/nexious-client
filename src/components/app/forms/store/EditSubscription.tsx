@@ -4,11 +4,11 @@ import { Subcription } from "app-types";
 import { Form } from "nexious-library";
 import { useContext, useState } from "react";
 import { recurring, featureType } from "@data/data.json";
-import { SubscriptionSchema } from "auth-context";
+import { ISubscription } from "auth-context";
 import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
 import ConfirmRemovals from "@components/app/containers/ConfirmRemoval";
 
-const EditSubscription = ({ subscription }: { subscription: SubscriptionSchema }) => {
+const EditSubscription = ({ subscription }: { subscription: ISubscription }) => {
   const { subscriptionForm, sectionEntries } = useContext(AdminContext);
   const { appId, updateSubscription, deleteSubscription } = useContext(AppContext);
   const [show, setShow] = useState(false);
