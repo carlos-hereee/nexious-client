@@ -9,7 +9,7 @@ import { AppContext } from "@context/app/AppContext";
 import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
 import { useNavigationMenus } from "@hooks/useNavigationMenus";
 
-const ViewAccountTiers = ({ subscriptions }: { subscriptions: ISubscription[] }) => {
+const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscription[]; heading?: string }) => {
   const { accountTier, user, accessToken, updateTier, isPlatformOwner, setUpdateTier } = useContext(AuthContext);
   const { setAppMessage, appMessage } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
@@ -37,7 +37,7 @@ const ViewAccountTiers = ({ subscriptions }: { subscriptions: ISubscription[] })
 
   return (
     <div className="primary-container">
-      <h1 className="heading">View service tiers</h1>
+      {heading ? <h1 className="heading">{heading}</h1> : <h1 className="heading">View service tiers</h1>}
       <Navigation menus={menus} theme="navigation-bar" active={activeMenu} onClick={updateActiveMenu} />
       <div className="btn-card-container">
         {filteredItems.length > 0 ? (

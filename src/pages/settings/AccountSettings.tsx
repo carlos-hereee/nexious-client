@@ -4,10 +4,12 @@ import { Button, Dialog, Form, ItemDetail } from "nexious-library";
 import { formatInitialValues } from "@formatters/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
+import { AppContext } from "@context/app/AppContext";
 
-type Menu = "user" | "password-change" | "account-tier";
+type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account";
 const AccountSettings = () => {
   const { user, userForm, editUser, theme, accountTier, accountTiers } = useContext(AuthContext);
+  const { platformTiers } = useContext(AppContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
   const [nav, setNav] = useState<Menu>("user");
   const [show, setShow] = useState(false);
@@ -23,8 +25,14 @@ const AccountSettings = () => {
       <ItemDetail labelLayout="bolden" label="Account:">
         <Button label="Update account" onClick={() => handleClick("user")} />
       </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Account tiers:">
-        <Button label={accountTier?.name || "View tiers"} onClick={() => handleClick("account-tier")} />
+      <ItemDetail labelLayout="bolden" label="Platform account tiers:">
+        <Button label={accountTier?.name || "View tiers"} onClick={() => handleClick("platform-tier")} />
+      </ItemDetail>
+      <ItemDetail labelLayout="bolden" label="Platform account:">
+        <Button label={accountTier?.name || "View your account"} onClick={() => handleClick("your-account")} />
+      </ItemDetail>
+      <ItemDetail labelLayout="bolden" label="Subscriptions tiers:">
+        <Button label="View your subscriptions" onClick={() => handleClick("account-tier")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />
@@ -33,9 +41,9 @@ const AccountSettings = () => {
         <Dialog theme={`alt-${theme}`} onDialogClose={() => setShow(false)}>
           {nav === "user" && (
             <div className="primary-container">
-              <h2 className="heading">Update account</h2>
               <Form
                 initialValues={initialValues}
+                heading="Update account"
                 labels={userForm.labels}
                 placeholders={userForm.placeholders}
                 onSubmit={editUser}
@@ -45,6 +53,7 @@ const AccountSettings = () => {
           )}
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTiers} />}
+          {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}
     </div>

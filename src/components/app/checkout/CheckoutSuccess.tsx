@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "nexious-library";
 import ExploreApps from "@pages/public/ExploreApps";
 import { OrderSchema } from "store-context";
+import SuccessDisplay from "./SuccessDisplay";
 
 const ContinueShopping = () => {
   const { cart } = useContext(StoreContext);
@@ -22,7 +23,7 @@ const ContinueShopping = () => {
 };
 
 const CheckoutSuccess = () => {
-  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder, manageBilling } = useContext(StoreContext);
+  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
   const { search } = useLocation();
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
@@ -52,7 +53,7 @@ const CheckoutSuccess = () => {
           {/* If you have any questions, please email */}
           {/* <a href="mailto:orders@example.com">orders@example.com</a>. */}
         </p>
-        <Button label="Manage billing" onClick={() => manageBilling(stripeConfirmation.customer)} />
+        <SuccessDisplay />
         <ContinueShopping />
       </div>
     );

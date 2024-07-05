@@ -1,20 +1,14 @@
-interface DisplayProps {
-  sessionId: string;
-}
-const SuccessDisplay = ({ sessionId }: DisplayProps) => {
+import { StoreContext } from "@context/store/StoreContext";
+import { Button } from "nexious-library";
+import { useContext } from "react";
+
+const SuccessDisplay = () => {
+  const { stripeConfirmation, manageBilling } = useContext(StoreContext);
+
   return (
-    <section>
-      <div className="product Box-root">
-        <div className="description Box-root">
-          <h3>Subscription to starter plan successful!</h3>
-        </div>
-      </div>
-      <form action="/create-portal-session" method="POST">
-        <input type="hidden" id="session-id" name="session_id" value={sessionId} />
-        <button id="checkout-and-portal-button" type="submit">
-          Manage your billing information
-        </button>
-      </form>
+    <section className="container">
+      <h3 className="heading">Subscription to starter plan successful!</h3>
+      <Button label="Manage billing" onClick={() => manageBilling(stripeConfirmation.customer)} />
     </section>
   );
 };

@@ -113,8 +113,6 @@
     "clientInformationRequired": "client information is required to continue"
   },
   "recurring": [
-    { "name": "day", "label": "day", "uid": "day", "value": "day" },
-    { "name": "week", "label": "week", "uid": "week", "value": "week" },
     { "name": "month", "label": "month", "uid": "month", "value": "month" },
     { "name": "year", "label": "year", "uid": "year", "value": "year" }
   ],
