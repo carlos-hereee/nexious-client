@@ -75,12 +75,15 @@ declare module "store-context" {
     status: string;
     paymentStatus: string;
     customer: string;
+    mode: string;
+    subscription: string;
+    metadata?: { [key: string]: string };
+    intent: string;
     customerDetails: {
       email: string;
       name: string;
       phone: string;
     };
-    // intent: string;
   }
 
   export interface StoreStateProps {

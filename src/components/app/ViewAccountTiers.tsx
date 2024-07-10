@@ -10,7 +10,7 @@ import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars
 import { useNavigationMenus } from "@hooks/useNavigationMenus";
 
 const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscription[]; heading?: string }) => {
-  const { accountTier, user, accessToken, updateTier, isPlatformOwner, setUpdateTier } = useContext(AuthContext);
+  const { accountTier, user, accessToken, addTier, isPlatformOwner, setUpdateTier } = useContext(AuthContext);
   const { setAppMessage, appMessage } = useContext(AppContext);
   const [active, setActive] = useState<string>("");
   const [activePlan, setActivePlan] = useState<ISubscription | undefined>();
@@ -19,6 +19,7 @@ const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscrip
     items: subscriptions,
   });
   const navigate = useNavigate();
+
   useEffect(() => {
     if (appMessage === "SUCCESS") {
       setActivePlan(undefined);
@@ -32,7 +33,7 @@ const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscrip
     if (!accessToken) {
       setUpdateTier(plan);
       navigate("/login");
-    } else updateTier({ ...user, accountTier: plan });
+    } else addTier({ user, plan });
   };
 
   return (

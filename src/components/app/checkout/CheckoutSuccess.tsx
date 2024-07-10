@@ -1,30 +1,14 @@
 import { StoreContext } from "@context/store/StoreContext";
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Button } from "nexious-library";
-import ExploreApps from "@pages/public/ExploreApps";
+import { useLocation } from "react-router-dom";
 import { OrderSchema } from "store-context";
 import SuccessDisplay from "./SuccessDisplay";
-
-const ContinueShopping = () => {
-  const { cart } = useContext(StoreContext);
-  const navigate = useNavigate();
-  return (
-    <>
-      {cart.length > 0 && (
-        <div className="container">
-          <h2 className="heading">Stores still left at checkout {cart.length}</h2>
-          <Button label="Continue to checkout" onClick={() => navigate("/checkout")} />
-        </div>
-      )}
-      <ExploreApps featuredOnly heading="Explore stores" />
-    </>
-  );
-};
+import ContinueShopping from "./ContinueShopping";
 
 const CheckoutSuccess = () => {
   const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
   const { search } = useLocation();
+
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
   useEffect(() => {
@@ -39,26 +23,22 @@ const CheckoutSuccess = () => {
       setOrder();
     }
   }, [order, search]);
-  // if stripe checkout was successful
+  // stripe checkout was successful
   if (stripeConfirmation.status === "complete") {
     return (
       <div className="primary-container">
         {stripeConfirmation.paymentStatus === "paid" ? (
-          <h1 className="heading">Thanks for your order! {stripeConfirmation.customerDetails.name}</h1>
+          <h1 className="heading text-center">Thanks for your order! {stripeConfirmation.customerDetails.email}</h1>
         ) : (
-          <h1 className="heading">Thanks for your order!</h1>
+          <h1 className="heading text-center">Thanks for your order!</h1>
         )}
-        <p>
-          We appreciate your business!
-          {/* If you have any questions, please email */}
-          {/* <a href="mailto:orders@example.com">orders@example.com</a>. */}
-        </p>
+        <p>We appreciate your business!</p>
         <SuccessDisplay />
         <ContinueShopping />
       </div>
     );
   }
-  // if order checkout was successful
+  // order checkout was successful
   if (orderData?.paymentMethod === "in-store") {
     // TODO: address click navigation
     return (

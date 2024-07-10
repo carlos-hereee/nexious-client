@@ -1,4 +1,5 @@
 declare module "auth-context" {
+  import { StripeConfirmationProps } from "store-context";
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
   import { AppListProps, Notification } from "app-types";
@@ -56,6 +57,11 @@ declare module "auth-context" {
     accountTier?: ISubscription;
     accountTiers?: ISubscription[];
   }
+  export interface CustomerSub {
+    user: UserSchema;
+    stripeConfirmation?: StripeConfirmationProps;
+    plan?: ISubscription;
+  }
 
   export interface AuthStateProps {
     // auth schema
@@ -93,7 +99,8 @@ declare module "auth-context" {
     setDummyUser: (values: LoginValues) => void;
     updateUser: (values: UserSchema) => void;
     editUser: (values: UserSchema) => void;
-    updateTier: (values: UserSchema) => void;
+    updateTier: (values: CustomerSub) => void;
+    addTier: (values: CustomerSub) => void;
     forgotPassword: (values: ForgotPasswordValues) => void;
     changePassword: (values: ForgotPasswordValues) => void;
     setTheme: (key: string) => void;
@@ -106,6 +113,8 @@ declare module "auth-context" {
     credentials?: AuthFormValueProps;
     user?: UserSchema;
     data?: string;
+    stripeConfirmation?: StripeConfirmationProps;
+    plan?: ISubscription;
     accessToken?: string;
     login?: LoginValues;
     appId?: string;
