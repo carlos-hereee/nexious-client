@@ -10,8 +10,6 @@ const AppRoute = () => {
   const { isOnline, appError, appId } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
   const { menu, logo, appName, media, updateActiveAppData, getAppWithName } = useContext(AppContext);
-  // store,
-  // getStoreInventory,
   const { pathname } = useLocation();
 
   useEffect(() => {

@@ -6,20 +6,26 @@ import MerchList from "@components/list/MerchList";
 import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useNotifications } from "@hooks/useNotifications";
+import { useAccountLimitations } from "@hooks/useAccountLimitations";
+import AppLimitations from "../AppLimitations";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
 
   const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
-
   const { ping } = useNotifications();
+  const { limitations } = useAccountLimitations();
 
   useEffect(() => {
     // avoid redundant request if num of merch dont match get store inventory
     if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
     // rerender request per store id
   }, [store.storeId]);
+
+  if (!limitations.onlineStore) {
+    return <AppLimitations heading="Upgrade your account to access your store" />;
+  }
   if (!store || !store.storeId) {
     return (
       <div className="container">

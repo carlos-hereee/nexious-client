@@ -3,16 +3,11 @@ import CreateApp from "@components/app/CreateApp";
 import { AuthContext } from "@context/auth/AuthContext";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { useContext } from "react";
-import { Button, Dialog } from "nexious-library";
-import ViewAccountTiers from "@components/app/ViewAccountTiers";
-import { useToggle } from "@hooks/useToggle";
-import { AppContext } from "@context/app/AppContext";
+import AppLimitations from "@components/app/AppLimitations";
 
 const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-  const { platformTiers } = useContext(AppContext);
   const { limitations } = useAccountLimitations();
-  const { toggle, updateToggle } = useToggle();
 
   return (
     <section className="container">
@@ -27,13 +22,12 @@ const AppPlayground = () => {
             <p>You dont own any apps</p>
           )}
         </div>
-        {ownedApps.length <= limitations.maxApps ? <CreateApp /> : <Button label="View plans" onClick={updateToggle} />}
+        <AppLimitations
+          heading={ownedApps.length < limitations.maxApps ? "Create more apps" : "Upgrade your account to create more apps"}
+        >
+          {ownedApps.length < limitations.maxApps && <CreateApp />}
+        </AppLimitations>
       </div>
-      {toggle && (
-        <Dialog onDialogClose={updateToggle}>
-          <ViewAccountTiers subscriptions={platformTiers} />
-        </Dialog>
-      )}
     </section>
   );
 };
