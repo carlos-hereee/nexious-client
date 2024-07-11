@@ -8,6 +8,7 @@ import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useNotifications } from "@hooks/useNotifications";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import AppLimitations from "../AppLimitations";
+import InitPhase from "../InitPhase";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
@@ -23,19 +24,10 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
     // rerender request per store id
   }, [store.storeId]);
 
-  if (!limitations.onlineStore) {
-    return <AppLimitations heading="Upgrade your account to access your store" />;
-  }
-  if (!store || !store.storeId) {
-    return (
-      <div className="container">
-        <h2 className="heading">Store:</h2>
-        <ItemDetail label="Store details:" labelLayout="bolden">
-          <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-        </ItemDetail>
-      </div>
-    );
-  }
+  // account limitations
+  if (!limitations.onlineStore) return <AppLimitations heading="Upgrade your account to access your store" />;
+  // create store
+  if (!store || !store.storeId) return <InitPhase name="Store" onClick={() => updatePhase("phase-one")} />;
 
   return (
     <div className="container">

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 
 interface AppLimitations {
   maxApps: number;
+  maxPagesPerApp: number;
   onlineStore: boolean;
   calendarEvents: boolean;
   calendarBookings: boolean;
@@ -12,6 +13,7 @@ export const useAccountLimitations = () => {
   const { accountTier } = useContext(AuthContext);
   const [limitations, setLimitations] = useState<AppLimitations>({
     maxApps: 0,
+    maxPagesPerApp: 0,
     onlineStore: false,
     calendarEvents: false,
     calendarBookings: false,
@@ -24,6 +26,7 @@ export const useAccountLimitations = () => {
         onlineStore: false,
         calendarEvents: false,
         calendarBookings: false,
+        maxPagesPerApp: 0,
       };
       accountTier.features.forEach((feature) => {
         const featureName = stringToCamalCase(feature.name);

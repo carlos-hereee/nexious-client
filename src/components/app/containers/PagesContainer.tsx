@@ -3,11 +3,14 @@ import PagesList from "@components/list/PagesList";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, Button } from "nexious-library";
+import { useAccountLimitations } from "@hooks/useAccountLimitations";
+import AppLimitations from "../AppLimitations";
 
 const PagesContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
-  const { appUrl, setActivePage } = useContext(AppContext);
+  const { appUrl, setActivePage, pages } = useContext(AppContext);
+  const { limitations } = useAccountLimitations();
 
   const onDeletePage = (data: PageProps) => {
     updatePhase("confirm-cancel");
@@ -22,9 +25,15 @@ const PagesContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Your pages:" labelLayout="bolden">
         <PagesList name={appUrl} onRemove={onDeletePage} updatePhase={updatePhase} />
       </ItemDetail>
-      <ItemDetail label="More options:" labelLayout="bolden">
-        <Button label="+ Add Page" onClick={() => updatePhase("phase-one")} />
-      </ItemDetail>
+      <AppLimitations
+        heading={pages.length < limitations.maxPagesPerApp ? "App pages:" : "Upgrade your account to add pages to your"}
+      >
+        {pages.length < limitations.maxPagesPerApp && (
+          <ItemDetail label="More options:" labelLayout="bolden">
+            <Button label="+ Add Page" onClick={() => updatePhase("phase-one")} />
+          </ItemDetail>
+        )}
+      </AppLimitations>
     </div>
   );
 };
