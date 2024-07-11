@@ -29,10 +29,10 @@ const AccountSettings = () => {
         <Button label="View tiers" onClick={() => handleClick("platform-tier")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Platform account:">
-        <Button label="View your account" onClick={() => handleClick("your-account")} />
+        <Button label="View account" onClick={() => handleClick("your-account")} />
       </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Subscriptions tiers:">
-        <Button label="View your subscriptions" onClick={() => handleClick("account-tier")} />
+      <ItemDetail labelLayout="bolden" label="App subscriptions:">
+        <Button label="View subscriptions" onClick={() => handleClick("account-tier")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />

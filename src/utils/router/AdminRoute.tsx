@@ -6,7 +6,7 @@ import { nexiousName, nexiousMedia, nexiousLogo, nexiousAuthMenu, nexiousAppId }
 
 const AdminRoute = () => {
   const { accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
-  const { isLoading: isAppLoading, getAppWithName, updateActiveAppData, appName } = useContext(AppContext);
+  const { isLoading: isAppLoading, getAppWithName, updateActiveAppData, appLink } = useContext(AppContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const AdminRoute = () => {
       media: nexiousMedia,
       menu: nexiousAuthMenu,
     });
-    if (routeAppName !== appName) getAppWithName(routeAppName);
+    if (routeAppName !== appLink) getAppWithName(routeAppName);
   }, [pathname]);
 
   if (isAppLoading) return <Outlet />;

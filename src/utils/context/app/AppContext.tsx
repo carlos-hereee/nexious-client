@@ -118,6 +118,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.activeAppId,
     accessToken,
     state.activeMenu,
+    state.appName,
+    state.appUrl,
     state.menu,
     state.appId,
     state.landing,
