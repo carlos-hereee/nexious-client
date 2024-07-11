@@ -336,6 +336,7 @@
       "description": "textarea",
       "storeName": "text",
       "title": "text",
+      "currency": "select",
       "pageName": "text",
       "email": "email",
       "isRegistered": "checkbox",

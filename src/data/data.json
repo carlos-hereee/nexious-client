@@ -50,6 +50,7 @@
   "currencySymbols": {
     "usd": "$"
   },
+  "currencyList": [{ "name": "usd", "label": "usd", "uid": "usd", "value": "usd" }],
   "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
   "calendarData": {
     "frequency": [

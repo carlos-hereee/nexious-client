@@ -22,7 +22,7 @@ const AppSettings = () => {
   const { dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("calendar");
+  const [nav, setNav] = useState<keyof AppDialogProps>("app");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
   const { ping } = useNotifications();
 

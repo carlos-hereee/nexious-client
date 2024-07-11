@@ -4,6 +4,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
 import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { currencyList } from "@data/data.json";
 
 const EditStore = () => {
   const { storeForm, editStore } = useContext(AdminContext);
@@ -20,6 +21,7 @@ const EditStore = () => {
           submitLabel={storeForm.submitLabel}
           types={storeForm.types}
           labels={storeForm.labels}
+          dataList={{ currency: currencyList }}
           placeholders={storeForm.placeholders}
           fieldHeading={storeForm.fieldHeading}
           schema={storeForm.schema}
