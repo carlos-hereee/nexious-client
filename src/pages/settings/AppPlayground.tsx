@@ -1,11 +1,14 @@
 import AppCard from "@components/app/AppCard";
 import CreateApp from "@components/app/CreateApp";
 import { AuthContext } from "@context/auth/AuthContext";
+import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { useContext } from "react";
+import { Button } from "nexious-library";
 
 const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
-
+  const { limitations } = useAccountLimitations();
+  console.log("limitations :>> ", limitations);
   return (
     <section className="container">
       <h2 className="heading">All your apps: </h2>
@@ -19,7 +22,7 @@ const AppPlayground = () => {
             <p>You dont own any apps</p>
           )}
         </div>
-        <CreateApp />
+        {ownedApps.length > limitations.maxApps ? <CreateApp /> : <Button label="Subscribe to a plan" />}
       </div>
     </section>
   );

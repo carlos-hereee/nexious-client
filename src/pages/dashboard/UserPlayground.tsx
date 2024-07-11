@@ -8,7 +8,7 @@ import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
 import ViewOrdersContainer from "@components/app/containers/ViewOrdersContainer";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
-import AccountSettings from "../settings/AccountSettings";
+import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
 
 type Menu = "apps" | "account" | "feed" | "notifications" | "orders" | "admin";
@@ -23,9 +23,8 @@ const UserPlayground = () => {
   useEffect(() => {
     // handle account update for new users
     if (tierUpdate) {
-      console.log("tierUpdate :>> ", tierUpdate);
-      updateTier({ ...user, accountTier: tierUpdate });
-      // setUpdateTier(undefined);
+      updateTier({ user, plan: tierUpdate });
+      setUpdateTier(undefined);
     }
   }, [tierUpdate]);
 
