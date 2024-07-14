@@ -12,11 +12,8 @@ interface ViewOrderContainerProps {
 
 const ViewOrdersContainer = ({ heading }: ViewOrderContainerProps) => {
   const [active, setNavigation] = useState<MenuOptions>("pending");
-  // const { store, order } = useContext(AppContext);
   const { store } = useContext(AppContext);
-  // const [orders, setOrders] = useState();
   const [activeOrder, setActiveOrder] = useState<OrderSchema | undefined>();
-
   const [activeOrders, setOrders] = useState<OrderSchema[]>();
 
   useEffect(() => {

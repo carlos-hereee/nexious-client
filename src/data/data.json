@@ -107,7 +107,12 @@
   "forms": {
     "userInformation": {
       "desiredOrder": ["name", "email", "phone"],
-      "labels": { "name": "Your name", "email": "Email", "phone": "Phone number" }
+      "labels": {
+        "name": "Your name",
+        "email": "Email",
+        "phone": "Phone number",
+        "address": "Address"
+      }
     }
   },
   "errors": {

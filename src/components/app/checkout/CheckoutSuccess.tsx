@@ -12,7 +12,7 @@ const CheckoutSuccess = () => {
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();
 
   useEffect(() => {
-    if (search) confirmIntent(search);
+    if (search) confirmIntent({ sessionId: search });
     if (order) {
       //  client will come to the store for pick up
       if (order.paymentMethod === "in-store") {
@@ -49,10 +49,23 @@ const CheckoutSuccess = () => {
           {orderData.store.email && <a href={`mailto:${orderData.store.email}`}>{orderData.store.email}</a>}
         </p>
         {orderData.store.location && (
-          <p className="text-max text-center">
-            We look forward to seeing you here! We are located at {orderData.store.location}
-          </p>
+          <p className="text-max text-center">We look forward to seeing you here! We are located at {orderData.store.location}</p>
         )}
+        <ContinueShopping />
+      </div>
+    );
+  }
+  // order checkout was successful
+  if (orderData?.paymentMethod === "stripe") {
+    // TODO: address click navigation
+    return (
+      <div className="primary-container">
+        <h1 className="heading">Thanks for your order! {orderData.client.name}</h1>
+        <p className="text-max text-center">
+          We appreciate your business! If you have any questions, please email{" "}
+          {orderData.store.email && <a href={`mailto:${orderData.store.email}`}>{orderData.store.email}</a>}
+        </p>
+        {orderData.store.location && <p className="text-max text-center">We are located at {orderData.store.location}</p>}
         <ContinueShopping />
       </div>
     );

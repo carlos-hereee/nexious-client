@@ -24,6 +24,9 @@ declare module "auth-context" {
     value: string;
     valueType: "Checkbox" | "Message";
   }
+  export interface AddressSchema {
+    address: string;
+  }
   export interface ISubscription {
     subscriptionId: string;
     // stripe generated id

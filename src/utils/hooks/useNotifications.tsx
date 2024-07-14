@@ -20,15 +20,7 @@ export const useNotifications = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
   useEffect(() => {
-    const notificationCount: NotificationCount = {
-      apps: 0,
-      app: 0,
-      account: 0,
-      feed: 0,
-      notifications: 0,
-      orders: 0,
-      store: 0,
-    };
+    const notificationCount: NotificationCount = { apps: 0, app: 0, account: 0, feed: 0, notifications: 0, orders: 0, store: 0 };
 
     if (userNotifications && userNotifications.length > 0) {
       userNotifications.forEach((notification) => {
@@ -40,6 +32,7 @@ export const useNotifications = () => {
     if (appNotifications && appNotifications.length > 0) {
       appNotifications.forEach((notification) => {
         if (notification.category === "store-merch") notificationCount.store += 1;
+        if (notification.category === "orders") notificationCount.orders += 1;
         notificationCount.app += 1;
       });
     }

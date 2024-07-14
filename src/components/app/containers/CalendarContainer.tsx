@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
+import { AuthContext } from "@context/auth/AuthContext";
 import AppLimitations from "../AppLimitations";
 import InitPhase from "../InitPhase";
 
@@ -11,9 +12,12 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   if (!onPhaseClick) throw Error("onPhaseClick is required");
   const { calendar, appUrl } = useContext(AppContext);
   const { limitations } = useAccountLimitations();
+  const { isPlatformOwner } = useContext(AuthContext);
 
   // // account limitations
-  if (!limitations.calendarEvents) return <AppLimitations heading="Upgrade your account to access calendar events" />;
+  if (!isPlatformOwner && !limitations.calendarEvents) {
+    return <AppLimitations heading="Upgrade your account to access calendar events" />;
+  }
   // if no calendar has been created
   if (!calendar || !calendar.calendarId) return <InitPhase name="Calendar" onClick={() => onPhaseClick("phase-one")} />;
   return (

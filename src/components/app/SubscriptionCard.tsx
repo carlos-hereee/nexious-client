@@ -49,8 +49,8 @@ const SubscriptionCard = ({ subscription, active, hideButtons, setActive, setAct
       >
         <CardDetails subscription={subscription} />
       </Button>
-      {subscription.subscriptionId === accountTier?.subscriptionId && <Button theme="btn-main btn-active" label="Subscribed" /> &&
-        subscription.subscriptionId === active &&
+      {subscription.subscriptionId === accountTier?.subscriptionId && <Button theme="btn-main btn-active" label="Subscribed" />}
+      {subscription.subscriptionId === active &&
         active !== accountTier?.subscriptionId &&
         (isPlatformOwner
           ? setActivePlan && <Button label="Update details" onClick={() => setActivePlan(subscription)} />

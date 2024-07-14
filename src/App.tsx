@@ -3,7 +3,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { Header, Footer, Loading } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProp } from "app-types";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
@@ -16,6 +16,7 @@ const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
   const { activeLogo, activeMenu, activeAppName, activeMedia, themeList, isLoading: loadingApp } = useContext(AppContext);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   if (authErrors && authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
@@ -23,8 +24,10 @@ const App = ({ children }: ChildProps) => {
   // if (isDev) return <AppSettings />;
 
   const handleLogoClick = () => {
-    if (activeAppName === nexiousName) navigate("/");
-    else navigate(`/app/${activeAppName.split(" ").join("+")}`);
+    if (activeAppName === nexiousName) {
+      if (pathname.includes("/dashboard")) navigate("/");
+      else navigate("/dashboard");
+    } else navigate(`/app/${activeAppName.split(" ").join("+")}`);
   };
 
   const logo = { url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` };

@@ -26,6 +26,7 @@ declare module "app-types" {
     message: string;
     link: string;
     category: string;
+    createdAt: string;
     name: string;
     notificationId: string;
     updatedAt: Date;

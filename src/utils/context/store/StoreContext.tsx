@@ -2,7 +2,16 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/ServiceActions";
-import { CartProps, MerchProps, OrderSchema, StoreSchema, StoreCheckout, PayoutAmmount } from "store-context";
+import {
+  CartProps,
+  MerchProps,
+  OrderSchema,
+  StoreSchema,
+  StoreCheckout,
+  PayoutAmmount,
+  CheckoutIntent,
+  TrackOrder,
+} from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
@@ -13,6 +22,7 @@ import { getStripeBalance } from "./request/getStripeBalance";
 import { managePayouts } from "./request/managePayouts";
 import { getStripeAccount } from "./request/getStripeAccount";
 import { billingPortal } from "./request/billingPortal";
+import { trackCheckoutOrder } from "./request/trackCheckoutOrder";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -42,7 +52,8 @@ export const StoreState = ({ children }: ChildProps) => {
   const onCheckOutSession = useCallback((data: StoreCheckout) => checkOutSession({ ...data, dispatch }), []);
   // store checkout
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
-  const confirmIntent = useCallback((sessionId: string) => confirmCheckoutIntent({ dispatch, sessionId }), []);
+  const confirmIntent = useCallback((data: CheckoutIntent) => confirmCheckoutIntent({ dispatch, ...data }), []);
+  const orderTracker = useCallback((data: TrackOrder) => trackCheckoutOrder({ dispatch, ...data }), []);
   const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
   const handlePayouts = useCallback((data: PayoutAmmount) => managePayouts({ dispatch, ...data }), []);
   const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, appId }), []);
@@ -55,6 +66,7 @@ export const StoreState = ({ children }: ChildProps) => {
       isLoading: state.isLoading,
       cart: state.cart,
       error: state.error,
+      trackOrder: state.trackOrder,
       order: state.order,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
@@ -72,6 +84,7 @@ export const StoreState = ({ children }: ChildProps) => {
       handlePayouts, // stripe account
       getAccount,
       manageBilling,
+      orderTracker,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

@@ -11,6 +11,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
       return { ...state, stripeSecret: action.payload };
     case STORE_ACTIONS.SET_ERROR:
       return { ...state, error: action.payload };
+    case STORE_ACTIONS.SET_TRACK_ORDER:
+      return { ...state, trackOrder: action.payload };
     case STORE_ACTIONS.SET_STRIPE_CONFIRMATION:
       return { ...state, stripeConfirmation: action.payload };
     case STORE_ACTIONS.SET_STRIPE_BALANCE:
