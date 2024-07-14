@@ -38,3 +38,6 @@
 .w-fit {
   width: 100%;
 }
+.nav-item {
+  white-space: nowrap;
+}

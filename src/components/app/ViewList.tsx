@@ -16,6 +16,7 @@ const ViewList = ({ list, heading, onClick, navigation }: Props<UserSchema>) => 
         <Button theme="order-row" key={l.userId} onClick={() => onClick(l)}>
           <span>{idx + 1}</span>
           <span>{new Date(l.createdAt || Date.now()).toISOString().slice(0, 10)}</span>
+          <span>{l.accountTier ? l.accountTier.name : "no subscription"}</span>
           <span>{l.username}</span>
           <span>{l.ownedApps?.length || 0}</span>
         </Button>

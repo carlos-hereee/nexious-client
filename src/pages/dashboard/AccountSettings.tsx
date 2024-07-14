@@ -55,7 +55,7 @@ const AccountSettings = () => {
           )}
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTier ? [accountTier] : []} />}
-          {nav === "your-account" && accountTier && (
+          {nav === "your-account" && accountTier ? (
             <>
               <SubscriptionCard subscription={accountTier} hideButtons />
               {user.customerId && (
@@ -64,6 +64,8 @@ const AccountSettings = () => {
                 </ItemDetail>
               )}
             </>
+          ) : (
+            <ViewAccountTiers subscriptions={platformTiers} />
           )}
           {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>

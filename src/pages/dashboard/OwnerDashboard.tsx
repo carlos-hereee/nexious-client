@@ -59,7 +59,7 @@ const OwnerDashboard = () => {
               list={appUsers}
               heading="View users"
               onClick={handleUserClick}
-              navigation={["#", "created at", "username", "number of apps"]}
+              navigation={["#", "created at", "subscription", "username", "number of apps"]}
             />
           )}
         </Dialog>
