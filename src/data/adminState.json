@@ -342,7 +342,9 @@
       "isRegistered": "checkbox",
       "termsOfService": "checkbox"
     },
-    "schema": { "required": ["name", "title", "pageName", "currency", "email"] },
+    "schema": {
+      "required": ["name", "storeName", "title", "pageName", "currency", "email", "isRegistered", "termsOfService"]
+    },
     "labels": {
       "storeName": "Store name",
       "title": "Store tagline/motto",

@@ -42,6 +42,7 @@ const AppSettings = () => {
         });
       }
       setFormStatus("IDLE");
+      setStatus("idle");
     }
   }, [formStatus]);
   useEffect(() => {
