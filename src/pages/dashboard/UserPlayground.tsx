@@ -29,13 +29,13 @@ const UserPlayground = () => {
   }, [tierUpdate]);
 
   return (
-    <div className="container">
-      <Banner message={`${welcomeMessage} ${user.nickname ? user.nickname : user.username}`} />;
+    <section className="container">
+      <Banner message={`${welcomeMessage} ${user.nickname ? user.nickname : user.username}`} />
       {/* <button type="button" onClick={() => listBucket(appId)}>
         List bucket
       </button> */}
       <div className="container">
-        <div className="navigation-container">
+        <nav className="navigation-container">
           {isPlatformOwner && (
             <IconButton
               icon={{ icon: "account", label: "Admin" }}
@@ -65,7 +65,7 @@ const UserPlayground = () => {
             theme={active === "account" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("account")}
           />
-        </div>
+        </nav>
 
         {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
@@ -74,7 +74,7 @@ const UserPlayground = () => {
         {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
         {active === "account" && <AccountSettings />}
       </div>
-    </div>
+    </section>
   );
 };
 export default UserPlayground;

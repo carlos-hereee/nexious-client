@@ -51,6 +51,7 @@ declare module "app-context" {
     appLink: string;
     activeAppId: string;
     owner: UserSchema;
+    appUsers: UserSchema[];
     adminIds: AdminIdProps[];
     notifications: Notification[];
     newsletter: NewsletterProps;
@@ -88,6 +89,7 @@ declare module "app-context" {
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
     setAppMessage: (appId: string) => void;
+    getAppUsers: (appId: string) => void;
     createSubscription: (appId: SubcriptionProp) => void;
     updateSubscription: (appId: SubcriptionProp) => void;
     deleteSubscription: (appId: SubcriptionProp) => void;
@@ -143,6 +145,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
+    | { type: APP_ACTIONS.SET_APP_USERS; payload: UserSchema[] }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }

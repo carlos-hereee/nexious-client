@@ -13,6 +13,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, platformTiers: action.payload };
     case APP_ACTIONS.SET_APP_MESSAGE:
       return { ...state, appMessage: action.payload };
+    case APP_ACTIONS.SET_APP_USERS:
+      return { ...state, appUsers: action.payload };
     case APP_ACTIONS.SET_APP_SUBSCRIPTIONS:
       return { ...state, subscriptionTiers: action.payload };
     case APP_ACTIONS.SET_ADMIN_IDS:

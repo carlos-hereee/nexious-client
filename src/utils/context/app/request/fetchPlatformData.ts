@@ -9,3 +9,9 @@ export const fetchPlatformData = async ({ dispatch }: AppDispatchProps) => {
   if (data.platformTiers) dispatch({ type: APP_ACTIONS.SET_PLATFORM_TIERS, payload: data.platformTiers });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };
+export const fetchAppUsers = async ({ dispatch, appId }: AppDispatchProps) => {
+  // dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
+  const { data } = await axiosAuth.get(`app/${appId}/user-data`);
+  if (data) dispatch({ type: APP_ACTIONS.SET_APP_USERS, payload: data });
+  // dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
+};

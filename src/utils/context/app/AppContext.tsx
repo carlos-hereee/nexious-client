@@ -18,7 +18,7 @@ import { removeNotification } from "./request/removeNotification";
 import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
-import { fetchPlatformData } from "./request/fetchPlatformData";
+import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -40,6 +40,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAppWithName = useCallback((a: string) => fetchAppWithName({ dispatch, appName: a, updateAppData }), []);
 
   const getPlatformData = useCallback(() => fetchPlatformData({ dispatch }), []);
+  const getAppUsers = useCallback((appId: string) => fetchAppUsers({ dispatch, appId }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
@@ -56,6 +57,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       isLoading: state.isLoading,
       loadingState: state.loadingState,
       appMessage: state.appMessage,
+      appUsers: state.appUsers,
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
@@ -108,6 +110,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       updateSubscription,
       upgradeToLatest,
       clearNotification,
+      getAppUsers,
       setAppMessage,
     };
   }, [
@@ -118,6 +121,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.activeAppId,
     accessToken,
     state.activeMenu,
+    state.appUsers,
     state.appName,
     state.appUrl,
     state.menu,

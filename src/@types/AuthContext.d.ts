@@ -44,6 +44,7 @@ declare module "auth-context" {
   export interface UserSchema {
     // uid: string;
     userId: string;
+    createdAt?: string;
     username: string;
     isPlatformOwner?: boolean;
     email?: string;
