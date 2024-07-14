@@ -19,7 +19,6 @@ const UserPlayground = () => {
     useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { ping } = useNotifications();
-
   useEffect(() => {
     // handle account update for new users
     if (tierUpdate) {

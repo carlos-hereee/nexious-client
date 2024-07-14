@@ -45,6 +45,7 @@ declare module "auth-context" {
     // uid: string;
     userId: string;
     createdAt?: string;
+    customerId?: string;
     username: string;
     isPlatformOwner?: boolean;
     email?: string;

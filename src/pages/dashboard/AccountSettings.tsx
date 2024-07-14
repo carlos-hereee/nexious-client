@@ -6,11 +6,13 @@ import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { AppContext } from "@context/app/AppContext";
 import SubscriptionCard from "@components/app/SubscriptionCard";
+import { StoreContext } from "@context/store/StoreContext";
 
 type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account";
 const AccountSettings = () => {
   const { user, userForm, editUser, theme, accountTier } = useContext(AuthContext);
   const { platformTiers } = useContext(AppContext);
+  const { manageBilling } = useContext(StoreContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
   const [nav, setNav] = useState<Menu>("user");
   const [show, setShow] = useState(false);
@@ -53,7 +55,16 @@ const AccountSettings = () => {
           )}
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTier ? [accountTier] : []} />}
-          {nav === "your-account" && accountTier && <SubscriptionCard subscription={accountTier} />}
+          {nav === "your-account" && accountTier && (
+            <>
+              <SubscriptionCard subscription={accountTier} hideButtons />
+              {user.customerId && (
+                <ItemDetail label="Billing" labelLayout="bolden">
+                  <Button label="Manage billing" onClick={() => manageBilling(user?.customerId || "")} />
+                </ItemDetail>
+              )}
+            </>
+          )}
           {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}
