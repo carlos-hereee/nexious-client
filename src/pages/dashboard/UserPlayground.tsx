@@ -6,8 +6,8 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
-import ViewOrdersContainer from "@components/app/containers/ViewOrdersContainer";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
+import TrackOrder from "@components/app/containers/TrackOrders";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
 
@@ -18,7 +18,9 @@ const UserPlayground = () => {
   const { user, notifications, clearNotification, isPlatformOwner, tierUpdate, setUpdateTier, updateTier } =
     useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
+
   const { ping } = useNotifications();
+
   useEffect(() => {
     // handle account update for new users
     if (tierUpdate) {
@@ -60,6 +62,11 @@ const UserPlayground = () => {
             ping={ping.notifications || undefined}
           />
           <IconButton
+            icon={{ icon: "checkout", label: "My orders" }}
+            theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
+            onClick={() => setActive("orders")}
+          />
+          <IconButton
             icon={{ icon: "account", label: "Account" }}
             theme={active === "account" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("account")}
@@ -69,7 +76,7 @@ const UserPlayground = () => {
         {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
-        {active === "orders" && <ViewOrdersContainer heading="Orders" />}
+        {active === "orders" && <TrackOrder heading="My Orders" />}
         {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
         {active === "account" && <AccountSettings />}
       </div>

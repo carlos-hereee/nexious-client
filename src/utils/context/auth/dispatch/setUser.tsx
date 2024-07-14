@@ -10,6 +10,7 @@ export const setUser = ({ user, dispatch }: AuthDispatchProps) => {
   dispatch({ type: A_ACTIONS.SET_USER_DATA, payload: formatUser });
   if (user.ownedApps) dispatch({ type: A_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
   if (user.subscriptions) dispatch({ type: A_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
+  if (user.orders) dispatch({ type: A_ACTIONS.SET_ORDERS, payload: user.orders });
   if (user.notifications) dispatch({ type: A_ACTIONS.SET_NOTIFICATIONS, payload: user.notifications });
   if (user.accountTier) dispatch({ type: A_ACTIONS.SET_ACCOUNT_TIER, payload: user.accountTier });
   if (user.accountTiers) dispatch({ type: A_ACTIONS.SET_ACCOUNT_TIERS, payload: user.accountTiers });

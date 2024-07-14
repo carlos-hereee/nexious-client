@@ -1,5 +1,5 @@
 declare module "auth-context" {
-  import { StripeConfirmationProps } from "store-context";
+  import { OrderSchema, StripeConfirmationProps } from "store-context";
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
   import { AppListProps, Notification } from "app-types";
@@ -60,6 +60,7 @@ declare module "auth-context" {
     notifications?: Notification[];
     ownedApps?: AppListProps[];
     accountTier?: ISubscription;
+    orders?: OrderSchema[];
     accountTiers?: ISubscription[];
   }
   export interface CustomerSub {
@@ -79,6 +80,7 @@ declare module "auth-context" {
     notifications: Notification[];
     authErrors: AuthErrorProps;
     user: UserSchema;
+    orders?: OrderSchema[];
     dummyUser: LoginValues;
     userForm: FormProps;
     loginForm: FormProps;
@@ -121,6 +123,7 @@ declare module "auth-context" {
     stripeConfirmation?: StripeConfirmationProps;
     plan?: ISubscription;
     accessToken?: string;
+    orders?: OrderSchema[];
     login?: LoginValues;
     appId?: string;
     updateUser?: (user: UserSchema) => void;
@@ -133,6 +136,7 @@ declare module "auth-context" {
     | { type: A_ACTIONS.SET_ACCESS_TOKEN | A_ACTIONS.SET_THEME; payload: string }
     | { type: A_ACTIONS.SET_OWNED_APPS | A_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
     | { type: A_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
+    | { type: A_ACTIONS.SET_ORDERS; payload: OrderSchema[] }
     | { type: A_ACTIONS.SET_ACCOUNT_TIER | A_ACTIONS.SET_UPDATE_TIER; payload: ISubscription | undefined }
     | { type: A_ACTIONS.SET_ACCOUNT_TIERS; payload: ISubscription[] }
     | { type: A_ACTIONS.SET_USER_DATA; payload: UserSchema }
