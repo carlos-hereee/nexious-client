@@ -1,27 +1,27 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { StoreContext } from "@context/store/StoreContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { OrderSchema } from "store-context";
+import { Dialog } from "nexious-library";
+import ViewOrdersContainer from "./ViewOrdersContainer";
+import OrderClientDetails from "../OrderClientDetails";
 
-// type MenuOptions = "pending" | "incomplete" | "complete" | "accepted";
-interface TrackOrders {
-  heading?: string;
-  // order?: OrderSchema;
-}
-
-const TrackOrder = ({ heading }: TrackOrders) => {
-  const { trackOrder } = useContext(StoreContext);
+const TrackOrder = () => {
   const { orders } = useContext(AuthContext);
-  // console.log("order :>> ", orders);
-  // console.log("trackOrder:>> ", trackOrder);
+  const [order, setOrder] = useState<OrderSchema | undefined>();
   if (!orders) return <h2 className="heading">No orders yet</h2>;
-  if (trackOrder)
-    return (
-      <div>
-        <h2 className="heading">Track order</h2>
-        <p>Status: {trackOrder.status}</p>
-      </div>
-    );
-  return <div>{heading && <h1 className="heading">{heading}</h1>}</div>;
+  // const handleOrderClick = (o: OrderSchema) => {
+  //   console.log("o :>> ", o);
+  // };
+  return (
+    <div className="container">
+      <ViewOrdersContainer orders={orders} heading="My orders" onOrderClick={setOrder} />{" "}
+      {order && (
+        <Dialog onDialogClose={() => setOrder(undefined)}>
+          <OrderClientDetails order={order} />
+        </Dialog>
+      )}
+    </div>
+  );
 };
 
 export default TrackOrder;

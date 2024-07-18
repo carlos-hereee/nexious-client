@@ -4,7 +4,7 @@ import { Navigation, Button, Loading } from "nexious-library";
 // import OrderDetails from "./OrderDetails";
 // import { StoreContext } from "@context/store/StoreContext";
 
-type MenuOptions = ["#", "status", "client", "payment type", "number of items", "location"] | string[];
+type MenuOptions = ["#", "order status", "client", "payment method", "number of items", "location"] | string[];
 interface ViewOrdersProps {
   orders: OrderSchema[];
   heading?: string;
@@ -26,7 +26,7 @@ const ViewOrders = ({ orders, heading, menus, onOrderClick }: ViewOrdersProps) =
       setActive(menus[0]);
       setMenu(menus);
       // default menu
-    } else setMenu(["#", "status", "client", "payment type", "number of items", "location"]);
+    } else setMenu(["#", "order status", "client", "payment method", "number of items", "location"]);
   }, [active]);
 
   if (!activeMenu) return <Loading />;
@@ -39,8 +39,8 @@ const ViewOrders = ({ orders, heading, menus, onOrderClick }: ViewOrdersProps) =
         <Button theme="order-row" key={order.orderId} onClick={() => onOrderClick && onOrderClick(order, "pending")}>
           <span>{idx + 1}</span>
           <span>{order.status}</span>
-          <span>{order.client.name || order.client.email}</span>
-          <span>{order.paymentMethod}</span>
+          <span>{order?.client?.name || order?.client?.email}</span>
+          <span>{order.paymentMethod === "in-store" ? "in-store" : "online"}</span>
           <span>{order.merch.length}</span>
           <span>{(order.store && order.store.location) || "no-location"}</span>
         </Button>

@@ -2,6 +2,8 @@
   "isLoading": true,
   "stripeSecret": "",
   "error": "",
+  "location": "",
+  "location2": "",
   "cart": [],
   "stripeConfirmation": {
     "status": "",

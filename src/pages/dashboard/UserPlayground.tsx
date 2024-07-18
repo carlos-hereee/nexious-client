@@ -76,7 +76,7 @@ const UserPlayground = () => {
         {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <AppInProgress />}
-        {active === "orders" && <TrackOrder heading="My Orders" />}
+        {active === "orders" && <TrackOrder />}
         {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
         {active === "account" && <AccountSettings />}
       </div>

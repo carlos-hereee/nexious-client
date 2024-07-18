@@ -36,7 +36,12 @@ declare module "store-context" {
   }
   export interface OrderMerchSchema {
     merchId: string;
+    name?: string;
+    cost?: number;
+    thumbnail?: string;
+    paymentStatus?: string;
     productId?: string;
+    quantity?: number;
     priceId?: string;
     paymentStatus?: "paid" | "unpaid" | "no_payment_required";
     quantity: number;
@@ -107,12 +112,16 @@ declare module "store-context" {
     trackOrder?: OrderSchema;
     stripeConfig?: StripeConfig;
     error: string;
+    location: string;
+    location2: string;
     stripeConfirmation: StripeConfirmationProps;
     stripeBalance?: StripeBalance;
     order?: OrderSchema;
     cart: CartProps[];
   }
   export interface CartProps extends StoreProps {
+    location: string;
+    location2: string;
     merch: MerchProps[];
   }
   export interface SubmitPaymentProps {

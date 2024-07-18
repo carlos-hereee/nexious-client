@@ -18,6 +18,12 @@ export const checkOutSession = async ({ dispatch, sessionCart, user }: StoreDisp
       accountId: sessionCart.accountId,
       client: user,
       cart,
+      store: {
+        storeId: sessionCart.storeId,
+        location: sessionCart.location,
+        email: sessionCart.email,
+        location2: sessionCart.location2,
+      },
     });
     // redirect
     document.location.href = data;

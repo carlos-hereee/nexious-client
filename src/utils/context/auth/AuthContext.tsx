@@ -76,6 +76,7 @@ export const AuthState = ({ children }: ChildProps) => {
       ownedApps: state.ownedApps,
       accountTier: state.accountTier,
       tierUpdate: state.tierUpdate,
+      orders: state.orders,
       accountTiers: state.accountTiers,
       subscriptions: state.subscriptions,
       register,

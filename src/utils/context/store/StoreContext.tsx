@@ -61,13 +61,15 @@ export const StoreState = ({ children }: ChildProps) => {
   // const updateAccount = useCallback((config: StripeConfig) => {
   //   updateStripeAccount({ dispatch, config });
   // }, []);
-  const servicesValues = useMemo(() => {
+  const storeValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       cart: state.cart,
       error: state.error,
       trackOrder: state.trackOrder,
       order: state.order,
+      location: state.location,
+      location2: state.location2,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
       stripeConfig: state.stripeConfig,
@@ -103,7 +105,7 @@ export const StoreState = ({ children }: ChildProps) => {
       // setTotal: (a) => setTotal(dispatch, a),
     };
   }, [state.isLoading, state.cart, state.stripeBalance, state.stripeConfig, state.error]);
-  return <StoreContext.Provider value={servicesValues}>{children}</StoreContext.Provider>;
+  return <StoreContext.Provider value={storeValues}>{children}</StoreContext.Provider>;
 };
 
 // return (

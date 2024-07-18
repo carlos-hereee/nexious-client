@@ -14,11 +14,6 @@ const ViewOrdersDialog = ({ onClose, status, order }: DialogProps) => {
 
   if (!order) return <Loading />;
 
-  // const statusKey: ViewOrderStatusKey = {
-  //   pending: "phase-one",
-  //   incomplete: "phase-two",
-  //   complete: "phase-three",
-  // };
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {/* TODO add preview store */}
