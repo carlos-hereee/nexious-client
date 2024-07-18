@@ -8,12 +8,12 @@ import OrderClientDetails from "../OrderClientDetails";
 
 const TrackOrder = () => {
   const { orders } = useContext(AuthContext);
-  const { trackOrder, setOrder } = useContext(StoreContext);
+  const { trackOrder, setTrackOrder } = useContext(StoreContext);
   const [order, setActiveOrder] = useState<OrderSchema | undefined>();
   useEffect(() => {
     if (trackOrder) {
       setActiveOrder(trackOrder);
-      setOrder(undefined);
+      setTrackOrder(undefined);
     }
   }, [trackOrder]);
 

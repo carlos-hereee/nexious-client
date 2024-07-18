@@ -46,6 +46,7 @@ export const StoreState = ({ children }: ChildProps) => {
   const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
   const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
+  const setTrackOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_TRACK_ORDER, payload: data }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
   // stripe checkout session
@@ -87,6 +88,7 @@ export const StoreState = ({ children }: ChildProps) => {
       getAccount,
       manageBilling,
       orderTracker,
+      setTrackOrder,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

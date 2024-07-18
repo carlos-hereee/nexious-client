@@ -164,6 +164,7 @@ declare module "store-context" {
     orderTracker: (orderId: TrackOrder) => void;
     setLoading: (state: boolean) => void;
     setOrder: (state?: OrderSchema) => void;
+    setTrackOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
     handlePayouts: (data: PayoutAmmount) => void;
     getAccount: (appId: string) => void;
@@ -193,7 +194,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.SET_STRIPE_SECRET | STORE_ACTIONS.SET_ERROR; payload: string }
     | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderSchema | undefined }
     | { type: STORE_ACTIONS.SET_STRIPE_BALANCE; payload: StripeBalance }
-    | { type: STORE_ACTIONS.SET_TRACK_ORDER; payload: OrderSchema }
+    | { type: STORE_ACTIONS.SET_TRACK_ORDER; payload: OrderSchema | undefined }
     | { type: STORE_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;
