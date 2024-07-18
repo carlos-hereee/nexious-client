@@ -8,6 +8,7 @@ import Notification from "@pages/dashboard/Notification";
 import { useNotifications } from "@hooks/useNotifications";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
 import TrackOrder from "@components/app/containers/TrackOrders";
+import { StoreContext } from "@context/store/StoreContext";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
 
@@ -18,6 +19,7 @@ const UserPlayground = () => {
   const { user, notifications, clearNotification, isPlatformOwner, tierUpdate, setUpdateTier, updateTier } =
     useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
+  const { trackOrder } = useContext(StoreContext);
 
   const { ping } = useNotifications();
 
@@ -28,6 +30,9 @@ const UserPlayground = () => {
       setUpdateTier(undefined);
     }
   }, [tierUpdate]);
+  useEffect(() => {
+    if (trackOrder) setActive("orders");
+  }, []);
 
   return (
     <section className="container">

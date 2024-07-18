@@ -8,12 +8,12 @@ interface Props {
 const OrderClientDetails = ({ order, hideButton }: Props) => {
   return (
     <div className="container">
-      <h3 className="heading">Client Details:</h3>
-      <UserCard user={{ ...order.client, name: order.client?.name || order.client.email }} />
       <ItemDetail label="Order status:" labelLayout="bolden">
         <span>{order.status}</span>
       </ItemDetail>
-      <h3 className="heading">Shipping Details:</h3>
+      <h4 className="heading">Client Details:</h4>
+      <UserCard user={{ ...order.client, name: order.client?.name || order.client.email }} />
+      <h4 className="heading">Shipping Details:</h4>
       {order.client.address ? (
         <div className="container">
           <ItemDetail label="City">{order.client.address.city}</ItemDetail>

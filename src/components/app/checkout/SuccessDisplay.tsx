@@ -15,10 +15,8 @@ const SuccessDisplay = () => {
 
   useEffect(() => {
     if (stripeConfirmation.mode === "subscription") updateTier({ user, stripeConfirmation });
-    // if (stripeConfirmation.mode === "payment"){
-
-    // }
   }, [stripeConfirmation]);
+
   useEffect(() => {
     if (trackOrder) navigate("/dashboard");
   }, [trackOrder]);
