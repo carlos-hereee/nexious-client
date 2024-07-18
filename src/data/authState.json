@@ -21,11 +21,12 @@
   "dummyUser": { "username": "", "password": "" },
   "userForm": {
     "formId": "user",
-    "initialValues": { "username": "", "email": "", "phone": "", "nickname": "" },
+    "initialValues": { "username": "", "email": "", "phone": "", "nickname": "", "address": "address" },
     "labels": {
       "username": "Username: ",
       "email": "Email: **Adding email is optional. The benefits of doing so, include account recovery, receiving updates, exclusive discounts, and much more.",
       "phone": "Phone number: **Adding your phone number is optional.",
+      "address": "Address: **Adding your address is optional.",
       "nickname": "Nickname: **Adding nickname is optional."
     },
     "placeholders": {
@@ -36,7 +37,7 @@
     },
     "types": { "username": "text", "email": "text" },
     "fieldHeading": {},
-    "desiredOrder": ["username", "email", "phone", "nickname"],
+    "desiredOrder": ["username", "email", "phone", "nickname", "address"],
     "heading": ""
   },
   "signUpForm": {

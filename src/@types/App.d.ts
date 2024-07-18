@@ -19,7 +19,7 @@ declare module "app-types" {
     name: string;
     label: string;
     value: string;
-    icon: string;
+    icon?: string;
     uid: string;
   };
   export interface Notification {

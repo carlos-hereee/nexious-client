@@ -1,6 +1,6 @@
 declare module "app-admin" {
   import { OrderSchema, StoreOrderUpdate } from "store-context";
-  import { PageProps, StoreProps, StringObjProp } from "app-types";
+  import { MenuItemProp, PageProps, StoreProps, StringObjProp } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { ISubscription, UserSchema } from "auth-context";
@@ -39,6 +39,19 @@ declare module "app-admin" {
     appId: string;
     pageId: string;
   }
+  export interface WebhookSchema {
+    id: string;
+    object: string;
+    api_version: null;
+    application: null;
+    created: number;
+    description: null;
+    enabled_events: string[];
+    livemode: false;
+    metadata: { [key: string]: string };
+    status: string;
+    url: string;
+  }
   export interface AdminStateProps {
     isLoading: boolean;
     formStatus: FORM_STATUS;
@@ -65,8 +78,8 @@ declare module "app-admin" {
     mediaList: MenuItemProp[];
     languageList: MenuItemProp[];
     sectionEntries: SectionEntryOganizer;
-    themeList: ThemeList[];
-    iconList: IconListItem[];
+    iconList: MenuItemProp[];
+    webhooks?: WebhookSchema[];
   }
 
   export interface AdminSchema extends AdminStateProps {
@@ -97,6 +110,7 @@ declare module "app-admin" {
     addMerch: (values: AppValues, appId: string) => void;
     // app data
     deleteMenuItem: (appId: string, menuId: string) => void;
+    getWebhooks: () => void;
     editMenuItem: (appId: string, menuId: string, values: StringObjProp) => void;
     handleOrderClick: (order: StoreOrderUpdate) => void;
   }
@@ -121,5 +135,6 @@ declare module "app-admin" {
   export type AdminActionProps =
     | { type: ADMIN_ACTIONS.IS_LOADING; payload: boolean }
     | { type: ADMIN_ACTIONS.SET_FORM_STATUS; payload: FORM_STATUS }
+    | { type: ADMIN_ACTIONS.SET_WEBHOOKS; payload: WebhookSchema[] }
     | { type: ADMIN_ACTIONS.SET_FORM_ERRORS; payload: AdminFormErrors };
 }

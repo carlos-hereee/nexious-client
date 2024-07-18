@@ -6,7 +6,7 @@ import { useContext } from "react";
 import AppLimitations from "@components/app/AppLimitations";
 
 const AppPlayground = () => {
-  const { ownedApps } = useContext(AuthContext);
+  const { ownedApps, isPlatformOwner } = useContext(AuthContext);
   const { limitations } = useAccountLimitations();
 
   return (
@@ -23,9 +23,13 @@ const AppPlayground = () => {
           )}
         </div>
         <AppLimitations
-          heading={ownedApps.length < limitations.maxApps ? "Create more apps" : "Upgrade your account to create more apps"}
+          heading={
+            isPlatformOwner || ownedApps.length < limitations.maxApps
+              ? "Create more apps"
+              : "Upgrade your account to create more apps"
+          }
         >
-          {ownedApps.length < limitations.maxApps && <CreateApp />}
+          {isPlatformOwner ? <CreateApp /> : ownedApps.length < limitations.maxApps && <CreateApp />}
         </AppLimitations>
       </div>
     </section>

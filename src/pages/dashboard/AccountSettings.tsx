@@ -33,9 +33,9 @@ const AccountSettings = () => {
       <ItemDetail labelLayout="bolden" label="Platform account:">
         <Button label="View account" onClick={() => handleClick("your-account")} />
       </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="App subscriptions:">
+      {/* <ItemDetail labelLayout="bolden" label="App subscriptions:">
         <Button label="View subscriptions" onClick={() => handleClick("account-tier")} />
-      </ItemDetail>
+      </ItemDetail> */}
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />
       </ItemDetail>
@@ -55,18 +55,19 @@ const AccountSettings = () => {
           )}
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTier ? [accountTier] : []} />}
-          {nav === "your-account" && accountTier ? (
-            <>
-              <SubscriptionCard subscription={accountTier} hideButtons />
-              {user.customerId && (
-                <ItemDetail label="Billing" labelLayout="bolden">
-                  <Button label="Manage billing" onClick={() => manageBilling(user?.customerId || "")} />
-                </ItemDetail>
-              )}
-            </>
-          ) : (
-            <ViewAccountTiers subscriptions={platformTiers} />
-          )}
+          {nav === "your-account" &&
+            (accountTier ? (
+              <>
+                <SubscriptionCard subscription={accountTier} hideButtons />
+                {user.customerId && (
+                  <ItemDetail label="Billing" labelLayout="bolden">
+                    <Button label="Manage billing" onClick={() => manageBilling(user?.customerId || "")} />
+                  </ItemDetail>
+                )}
+              </>
+            ) : (
+              <ViewAccountTiers subscriptions={platformTiers} />
+            ))}
           {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}

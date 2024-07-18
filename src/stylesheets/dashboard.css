@@ -21,3 +21,17 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+.list-container,
+.list-selection-value {
+  overflow-x: auto;
+}
+.list-container .btn-main {
+  min-width: fit-content;
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+}
+.list-selection-value .btn-main {
+  min-width: fit-content;
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+}
