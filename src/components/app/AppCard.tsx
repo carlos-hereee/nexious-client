@@ -9,8 +9,8 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSeeLive = () => navigate(`/app/${app.appUrl}`);
-  const handleSetting = () => navigate(`/settings/${app.appUrl}`);
+  const handleSeeLive = () => navigate(`/${app.appUrl}`);
+  const handleSetting = () => navigate(`/settings/${app.appLink || app.appUrl}`);
   // if user has permissions
   const isAdmin = app.adminIds.some((admin) => admin.userId === user.userId);
   // logo alt data

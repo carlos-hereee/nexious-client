@@ -84,6 +84,7 @@ declare module "app-types" {
   export interface AppListProps {
     appName: string;
     appId: string;
+    appLink: string;
     appUrl: string;
     adminIds: AdminIdProps[];
     notifications: string[];
