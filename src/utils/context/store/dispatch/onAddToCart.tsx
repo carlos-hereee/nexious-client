@@ -1,6 +1,6 @@
 import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { isDev } from "@config";
-import { StoreDispatchProps } from "store-context";
+import { CartProps, StoreDispatchProps } from "store-context";
 
 export const onAddToCart = ({ dispatch, merch, cart, store }: StoreDispatchProps) => {
   // require key variable
@@ -14,7 +14,7 @@ export const onAddToCart = ({ dispatch, merch, cart, store }: StoreDispatchProps
     // if merch is already in cart added to
     if (storeIdx >= 0) {
       // add merch to cart
-      const payload = cart.map((c) => {
+      const payload: CartProps[] = cart.map((c) => {
         if (c.storeId === store.storeId) return { ...store, merch: [...c.merch, merch] };
         return c;
       });

@@ -120,8 +120,8 @@ declare module "store-context" {
     cart: CartProps[];
   }
   export interface CartProps extends StoreProps {
-    location: string;
-    location2: string;
+    location?: string;
+    location2?: string;
     merch: MerchProps[];
   }
   export interface SubmitPaymentProps {
