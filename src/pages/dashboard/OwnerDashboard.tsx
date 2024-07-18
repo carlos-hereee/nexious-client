@@ -5,8 +5,9 @@ import { Button, Dialog, ItemDetail } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
 import ViewAccounts from "@components/app/ViewList";
 import { UserSchema } from "auth-context";
+import ViewWebhook from "@components/admin/ViewWebhook";
 
-type Menu = "create-sub" | "view-sub" | "" | "edit-sub" | "view-users";
+type Menu = "create-sub" | "view-sub" | "" | "edit-sub" | "view-users" | "view-webhook";
 const OwnerDashboard = () => {
   const { appMessage, setAppMessage, platformTiers, getAppUsers, appUsers } = useContext(AppContext);
   const [active, setActive] = useState<Menu>("");
@@ -49,6 +50,9 @@ const OwnerDashboard = () => {
         <ItemDetail label="Platform users:" labelLayout="bolden">
           <Button label="View users" onClick={() => handleClick("view-users")} />
         </ItemDetail>
+        <ItemDetail label="Platform webhook:" labelLayout="bolden">
+          <Button label="View webhook" onClick={() => handleClick("view-webhook")} />
+        </ItemDetail>
       </div>
       {show && (
         <Dialog onDialogClose={() => handleClick("")}>
@@ -62,6 +66,7 @@ const OwnerDashboard = () => {
               navigation={["#", "created at", "subscription", "username", "number of apps"]}
             />
           )}
+          {active === "view-webhook" && <ViewWebhook />}
         </Dialog>
       )}
     </div>

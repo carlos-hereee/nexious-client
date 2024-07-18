@@ -7,6 +7,8 @@ export const reducer = (state: AdminStateProps, action: AdminActionProps): Admin
       return { ...state, isLoading: action.payload };
     case ADMIN_ACTIONS.SET_FORM_STATUS:
       return { ...state, formStatus: action.payload };
+    case ADMIN_ACTIONS.SET_WEBHOOKS:
+      return { ...state, webhooks: action.payload };
     case ADMIN_ACTIONS.SET_FORM_ERRORS:
       return { ...state, formErrors: { ...state.formErrors, ...action.payload } };
     default:

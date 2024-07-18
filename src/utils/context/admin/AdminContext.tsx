@@ -34,6 +34,7 @@ import { addCalendar } from "./requests/calendar/addCalendar";
 import { removeMenuItem } from "./requests/app/removeMenuItem";
 import { updateMenuItem } from "./requests/app/updateMenuItem";
 import { updateOrder } from "./requests/store/updateOder";
+import { fetchWebhooks } from "./requests/fetchWebhooks";
 
 export const AdminContext = createContext<AdminSchema>({} as AdminSchema);
 export const AdminState = ({ children }: ChildProps) => {
@@ -128,6 +129,7 @@ export const AdminState = ({ children }: ChildProps) => {
   }, []);
 
   const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data, handleAppAssets }), []);
+  const getWebhooks = useCallback(() => fetchWebhooks({ dispatch }), []);
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
@@ -156,6 +158,7 @@ export const AdminState = ({ children }: ChildProps) => {
       merchForm: state.merchForm,
       languageList: state.languageList,
       iconList: state.iconList,
+      webhooks: state.webhooks,
       initApp,
       editAppName,
       editLandingPage,
@@ -181,7 +184,8 @@ export const AdminState = ({ children }: ChildProps) => {
       deleteMenuItem,
       editMenuItem,
       handleOrderClick,
+      getWebhooks,
     };
-  }, [state.isLoading, state.formStatus]);
+  }, [state.isLoading, state.formStatus, state.webhooks]);
   return <AdminContext.Provider value={adminValues}>{children}</AdminContext.Provider>;
 };
