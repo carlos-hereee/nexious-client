@@ -43,6 +43,7 @@ const UserInformation = ({ errorMessage, user, setShow, show }: UserInformationP
         onSubmit={handleSubmit}
         submitLabel="Save"
         schema={{ required: forms.userInformation.desiredOrder }}
+        labels={forms.userInformation.labels}
       />
     </div>
   );

@@ -8,6 +8,7 @@ export const userMinData = (user: UserSchema) => {
     email: user.email || "",
     nickname: user.nickname || "",
     languageId: user.languageId || "",
+    customerId: user.customerId || "",
     phone: user.phone || "",
   };
 };

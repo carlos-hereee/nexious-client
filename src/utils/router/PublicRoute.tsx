@@ -5,10 +5,11 @@ import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 
 const PublicRoute = () => {
-  const { updateActiveAppData } = useContext(AppContext);
+  const { updateActiveAppData, platformTiers, getPlatformData } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
 
   useEffect(() => {
+    if (platformTiers.length <= 0) getPlatformData();
     updateActiveAppData({
       appId: nexiousAppId,
       appName: nexiousName,

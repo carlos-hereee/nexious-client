@@ -2,12 +2,21 @@
   "isLoading": true,
   "stripeSecret": "",
   "error": "",
+  "location": "",
+  "location2": "",
   "cart": [],
   "stripeConfirmation": {
     "status": "",
     "paymentStatus": "",
-    "customer": null,
-    "intent": ""
+    "customer": "",
+    "mode": "",
+    "subscription": "",
+    "intent": "",
+    "customerDetails": {
+      "name": "",
+      "email": "",
+      "phone": ""
+    }
   },
   "paypal": {
     "uid": "payment-2",

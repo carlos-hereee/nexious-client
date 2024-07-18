@@ -2,7 +2,7 @@ import { APP_ACTIONS } from "@actions/AppActions";
 import { formatAppUrl, readableUrlString } from "@app/formatStringUrl";
 import { AppDispatchProps } from "app-context";
 
-export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchProps) => {
+export const setAppData = ({ dispatch, app, appList, store, page, platformTiers }: AppDispatchProps) => {
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
   if (app) {
     // assign values if they exists
@@ -35,5 +35,6 @@ export const setAppData = ({ dispatch, app, appList, store, page }: AppDispatchP
     dispatch({ type: APP_ACTIONS.SET_STORE_INVENTORY, payload: store.inventory });
   }
   if (page) dispatch({ type: APP_ACTIONS.SET_PAGE, payload: page });
+  if (platformTiers) dispatch({ type: APP_ACTIONS.SET_PLATFORM_TIERS, payload: platformTiers });
   dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
 };

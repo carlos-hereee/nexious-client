@@ -1,8 +1,9 @@
+import ConfirmRemovals from "@components/app/containers/ConfirmRemoval";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
 import { AppValues } from "app-forms";
-import { Button, ButtonCancel, Form } from "nexious-library";
+import { Form } from "nexious-library";
 import { useContext, useState } from "react";
 import { MerchProps } from "store-context";
 
@@ -11,24 +12,14 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const { appId } = useContext(AppContext);
   const { initValues } = props;
   const [show, setShow] = useState(false);
-  // console.log("initValues :>> ", initValues);
   const initialValues = formatInitialValues({ merch: initValues, desiredOrder: merchForm.desiredOrder });
-  // const initialValues = formatMerch({ merch: initValues, desiredOrder: merchForm.desiredOrder });
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
-  // console.log("entryValues :>> ", entryValues);
-  // if (status === "pending") return <Loading message="sending request.." />;
-  // if (status === "loading") return <Loading message="loading app assets.." />;
+
+  const handleRemove = () => deleteMerchItem(appId, initValues.merchId);
   return (
     <div className="primary-container">
       {show ? (
-        <div className="container">
-          <h2 className="heading">Are you sure you want to delete {initValues?.name}</h2>
-          <p className="text-center">This will delete all progress</p>
-          <div className="flex-center">
-            <ButtonCancel onClick={() => setShow(false)} theme="btn-main" />
-            <Button label="Confirm" onClick={() => deleteMerchItem(appId, initValues.merchId)} />
-          </div>
-        </div>
+        <ConfirmRemovals name={initValues.name} onConfirm={handleRemove} onReturn={() => setShow(false)} />
       ) : (
         <Form
           initialValues={initialValues}
@@ -36,7 +27,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
           placeholders={merchForm.placeholders}
           types={merchForm.types}
           addEntry={sectionEntries}
-          entires={entryValues}
+          entries={entryValues}
           fieldHeading={merchForm.fieldHeading}
           onCancel={() => setShow(true)}
           onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}

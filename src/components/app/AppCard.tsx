@@ -11,20 +11,21 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
 
   const handleSeeLive = () => navigate(`/app/${app.appUrl}`);
   const handleSetting = () => navigate(`/settings/${app.appUrl}`);
-
   // if user has permissions
   const isAdmin = app.adminIds.some((admin) => admin.userId === user.userId);
   // logo alt data
   const heroData = { url: app.logo, alt: `industry-brand-${app.appName}` };
   return (
     <div className={`app-card${theme ? ` ${theme}` : ""}`}>
+      <Hero hero={heroData} theme="logo" onClick={handleSeeLive} />
       <button type="button" className="btn-card" onClick={handleSeeLive}>
-        <Hero hero={heroData} theme="logo" onImageClick={handleSeeLive} />
         <h2 className="heading">{app?.appName || "No name"}</h2>
-        <div className="card-row-body">
-          {/* {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />} */}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-        </div>
+        {errorMessage && (
+          <div className="card-row-body">
+            {/* {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />} */}
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+          </div>
+        )}
       </button>
       {isAdmin && (
         <div className="navigation-container">

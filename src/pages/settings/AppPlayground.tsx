@@ -1,16 +1,19 @@
 import AppCard from "@components/app/AppCard";
 import CreateApp from "@components/app/CreateApp";
 import { AuthContext } from "@context/auth/AuthContext";
+import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { useContext } from "react";
+import AppLimitations from "@components/app/AppLimitations";
 
 const AppPlayground = () => {
   const { ownedApps } = useContext(AuthContext);
+  const { limitations } = useAccountLimitations();
 
   return (
     <section className="container">
       <h2 className="heading">All your apps: </h2>
       <div className="app-playground">
-        <div className="primary-container">
+        <div className="appcard-container">
           {ownedApps.length > 0 ? (
             ownedApps.map((app) => {
               return <AppCard app={app} key={app.appId} theme="highlight" />;
@@ -19,7 +22,11 @@ const AppPlayground = () => {
             <p>You dont own any apps</p>
           )}
         </div>
-        <CreateApp />
+        <AppLimitations
+          heading={ownedApps.length < limitations.maxApps ? "Create more apps" : "Upgrade your account to create more apps"}
+        >
+          {ownedApps.length < limitations.maxApps && <CreateApp />}
+        </AppLimitations>
       </div>
     </section>
   );

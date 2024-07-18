@@ -26,6 +26,7 @@ declare module "app-types" {
     message: string;
     link: string;
     category: string;
+    createdAt: string;
     name: string;
     notificationId: string;
     updatedAt: Date;
@@ -218,6 +219,17 @@ declare module "app-types" {
     details: string;
     email: string;
     hero: AssetProps;
+  }
+  export interface Subcription {
+    name: string;
+    description: string;
+    hero: string;
+    cost: string;
+  }
+  export interface SubcriptionProp {
+    appId: string;
+    subscription?: Subcription;
+    id?: string;
   }
   export type MediaItemProp = {
     media: string;

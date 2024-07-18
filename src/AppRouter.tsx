@@ -11,16 +11,17 @@ import SignUp from "@pages/auth/Register";
 import ForgotPassword from "@pages/auth/ForgotPassword";
 import BuildApp from "@components/app/forms/BuildApp";
 import Login from "@pages/auth/Login";
-import UserPlayground from "@pages/settings/UserPlayground";
+import UserPlayground from "@pages/dashboard/UserPlayground";
 import Homepage from "@pages/public/HomePage";
 import AppSettings from "@pages/settings/AppSettings";
 import AppPage from "@pages/app/AppPage";
 import AppStore from "@pages/app/AppStore";
 import Checkout from "@pages/public/Checkout";
 import ExploreApps from "@pages/public/ExploreApps";
-import CheckoutSuccess from "@pages/public/CheckoutSuccess";
+import CheckoutSuccess from "@components/app/checkout/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
 import Logout from "@pages/auth/Logout";
+import Pricing from "@pages/public/Pricing";
 
 const AppRouter: React.FC = () => {
   const { accessToken } = useContext(AuthContext);
@@ -38,6 +39,7 @@ const AppRouter: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
@@ -47,8 +49,6 @@ const AppRouter: React.FC = () => {
       <Route element={<AppRoute />}>
         <Route path="/app/:appName" element={<Landing />} />
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
-        {/* TODO: REMOVE PARAM STORENAME MAYBE ITS REDUNDANTS  */}
-        {/* <Route path="/store/:appName" element={<AppStore />} /> */}
         <Route path="/store/:appName" element={<AppStore />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
       </Route>

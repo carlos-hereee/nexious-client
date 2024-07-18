@@ -7,10 +7,14 @@
   min-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-items: center;
   justify-content: center;
+  align-items: center;
 }
 .navigation-bar .navigation .nav-btn {
+  justify-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .user-menu {
@@ -33,4 +37,7 @@
 }
 .w-fit {
   width: 100%;
+}
+.nav-item {
+  white-space: nowrap;
 }

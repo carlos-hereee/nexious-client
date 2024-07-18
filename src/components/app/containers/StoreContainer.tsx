@@ -5,31 +5,29 @@ import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
-import { useNotifications } from "@hooks/useNotifications";
+import { useAccountLimitations } from "@hooks/useAccountLimitations";
+import { AuthContext } from "@context/auth/AuthContext";
+import AppLimitations from "../AppLimitations";
+import InitPhase from "../InitPhase";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
 
   const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
-
-  const { ping } = useNotifications();
+  const { isPlatformOwner } = useContext(AuthContext);
+  const { limitations } = useAccountLimitations();
 
   useEffect(() => {
     // avoid redundant request if num of merch dont match get store inventory
     if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
     // rerender request per store id
   }, [store.storeId]);
-  if (!store || !store.storeId) {
-    return (
-      <div className="container">
-        <h2 className="heading">Store:</h2>
-        <ItemDetail label="Store details:" labelLayout="bolden">
-          <Button label="+ Create store" onClick={() => updatePhase("phase-one")} />
-        </ItemDetail>
-      </div>
-    );
-  }
+
+  // account limitations
+  if (!isPlatformOwner && !limitations.onlineStore) return <AppLimitations heading="Upgrade your account to access your store" />;
+  // create store
+  if (!store || !store.storeId) return <InitPhase name="Store" onClick={() => updatePhase("phase-one")} />;
 
   return (
     <div className="container">
@@ -38,7 +36,11 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         <CopyButton data={formatStoreUrl(appLink, store.name)} />
       </ItemDetail>
       <ItemDetail label="Orders:" labelLayout="bolden">
-        <Button label="View orders" onClick={() => updatePhase("phase-view-order")} ping={ping.orders || undefined} />
+        <Button
+          label="View orders"
+          onClick={() => updatePhase("phase-view-order")}
+          ping={store.orders?.filter((o) => o.status !== "completed").length || undefined}
+        />
       </ItemDetail>
       <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
         <Button label="View configuration" onClick={() => updatePhase("configuration")} />

@@ -15,6 +15,7 @@ const CreateCalendar = () => {
     <div className="primary-container">
       <Form
         initialValues={calendarForm.initialValues}
+        heading="Create calendar"
         labels={calendarForm.labels}
         placeholders={calendarForm.placeholders}
         types={calendarForm.types}

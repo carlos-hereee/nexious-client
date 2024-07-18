@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps } from "app-types";
+import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
 import { AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
@@ -8,7 +8,6 @@ import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
 import { fetchAppWithName } from "./request/fetchAppWithName";
-import { fetchAppList } from "./request/fetchAppList";
 import { setActiveData } from "./dispatch/setActiveData";
 import { setIsLoading } from "./dispatch/setIsLoading";
 import { getInventory } from "./request/getInventory";
@@ -16,12 +15,16 @@ import { fetchPage } from "./request/fetchPage";
 import { upgradeLatest } from "./request/upgradeLatest";
 import { stripeAccountLink } from "./request/stripeAccountLink";
 import { removeNotification } from "./request/removeNotification";
+import { addSubscription } from "./request/addSubscription";
+import { editSubscription } from "./request/editSubscription";
+import { removeSub } from "./request/removeSubscription";
+import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
   const [state, dispatch] = useReducer(reducer, appState);
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, updateUser } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
   // update app data
@@ -36,17 +39,25 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // fetch app with app name
   const getAppWithName = useCallback((a: string) => fetchAppWithName({ dispatch, appName: a, updateAppData }), []);
 
-  const getAppList = useCallback(() => fetchAppList({ dispatch }), []);
+  const getPlatformData = useCallback(() => fetchPlatformData({ dispatch }), []);
+  const getAppUsers = useCallback((appId: string) => fetchAppUsers({ dispatch, appId }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
+  const setAppMessage = useCallback((M: string) => dispatch({ payload: M, type: APP_ACTIONS.SET_APP_MESSAGE }), []);
   const clearNotification = useCallback((data: NProps) => removeNotification({ dispatch, updateAppData, ...data }), []);
   const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
+  // create and manage subscriptions
+  const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
+  const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
+  const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
 
   const appValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       loadingState: state.loadingState,
+      appMessage: state.appMessage,
+      appUsers: state.appUsers,
       appList: state.appList,
       iconList: state.iconList,
       appName: state.appName,
@@ -81,11 +92,12 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       pages: state.pages,
       page: state.page,
       activePage: state.activePage,
-
       socialMedia: state.socialMedia,
+      platformTiers: state.platformTiers,
+      subscriptionTiers: state.subscriptionTiers,
       updateAppData,
       getAppWithName,
-      getAppList,
+      getPlatformData,
       updateActiveAppData,
       setAppLoading,
       getStoreInventory,
@@ -93,9 +105,13 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setSocialMedia,
       getStripeAccountLink,
       getPageWithId,
-
+      createSubscription,
+      deleteSubscription,
+      updateSubscription,
       upgradeToLatest,
       clearNotification,
+      getAppUsers,
+      setAppMessage,
     };
   }, [
     state.isLoading,
@@ -105,16 +121,22 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.activeAppId,
     accessToken,
     state.activeMenu,
+    state.appUsers,
+    state.appName,
+    state.appUrl,
     state.menu,
     state.appId,
     state.landing,
     state.inventory,
     state.socialMedia,
     state.loadingState,
+    state.appMessage,
     state.redirectUrl,
     state.store,
     state.page,
     state.appList,
+    state.subscriptionTiers,
+    state.platformTiers,
   ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;

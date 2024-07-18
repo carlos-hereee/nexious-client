@@ -19,11 +19,10 @@ import Notification from "@pages/dashboard/Notification";
 import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
-  const { appName, dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } =
-    useContext(AppContext);
+  const { dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
-  const [nav, setNav] = useState<keyof AppDialogProps>("calendar");
+  const [nav, setNav] = useState<keyof AppDialogProps>("app");
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
   const { ping } = useNotifications();
 
@@ -43,6 +42,7 @@ const AppSettings = () => {
         });
       }
       setFormStatus("IDLE");
+      setStatus("idle");
     }
   }, [formStatus]);
   useEffect(() => {
@@ -70,9 +70,6 @@ const AppSettings = () => {
   if (formStatus === "LOADING") return <Loading message="Request sent" />;
   return (
     <div className="container">
-      <h1 className="heading">
-        Settings <i>{appName}</i>: {nav}
-      </h1>{" "}
       {/* {!dbVersion && (
         <div className="container flex-center">
           <h3>Notice!</h3>

@@ -2,8 +2,7 @@ import { STORE_ACTIONS } from "@actions/ServiceActions";
 import { axiosAuth } from "@axios/axiosAuth";
 import { StoreDispatchProps } from "store-context";
 
-export const confirmCheckoutIntent = async (props: StoreDispatchProps) => {
-  const { dispatch, sessionId } = props;
+export const confirmCheckoutIntent = async ({ dispatch, sessionId }: StoreDispatchProps) => {
   try {
     dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.get(`/store/confirm-intent/${sessionId}`);

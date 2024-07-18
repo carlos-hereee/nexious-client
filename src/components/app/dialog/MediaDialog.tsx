@@ -6,6 +6,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import EditMedia from "../forms/media/EditMedia";
 import AddMedia from "../forms/media/AddMedia";
+import CreatePost from "../forms/media/CreatePost";
 
 const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
   if (!onCancel) throw Error("onCancel is required");
@@ -23,16 +24,15 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
       : undefined;
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose} header={dialogMediaHeader}>
-      {status === "confirm-cancel" ? (
+      {status === "confirm-cancel" && (
         <div className="flex-center">
           <ButtonCancel onClick={() => onCancel("idle")} theme="btn-main" />
           <Button label="Confirm" onClick={() => deleteMedia({ appId, name: socialMedia.uid })} />
         </div>
-      ) : status === "phase-two" ? (
-        <AddMedia onCancelClick={onClose} />
-      ) : (
-        <EditMedia onCancelClick={() => onCancel("confirm-cancel")} onSubmit={onSubmit} />
       )}
+      {status === "phase-one" && <EditMedia onCancelClick={() => onCancel("confirm-cancel")} onSubmit={onSubmit} />}
+      {status === "phase-two" && <AddMedia onCancelClick={onClose} />}
+      {status === "phase-three" && <CreatePost />}
     </Dialog>
   );
 };

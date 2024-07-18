@@ -8,14 +8,18 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { uniqueApplist } from "@formatters/uniqeList";
 
 const BuildApp = () => {
-  const { initAppForm, initApp, themeList, languageList, formErrors, isLoading, formStatus } = useContext(AdminContext);
+  const { initAppForm, initApp, themeList, languageList, formErrors, isLoading, formStatus, setFormStatus } =
+    useContext(AdminContext);
   const { appList } = useContext(AppContext);
   const { theme, accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     // redirect to dashboard on successful build
-    if (formStatus === "SUCCESS") navigate("/dashboard");
+    if (formStatus === "SUCCESS") {
+      navigate("/dashboard");
+      setFormStatus("IDLE");
+    }
   }, [formStatus]);
 
   if (isLoading) return <Loading message="loading app assets.." />;
@@ -27,7 +31,7 @@ const BuildApp = () => {
           <Button label="Go to login" onClick={() => navigate("/login")} />
         </div>
       )}
-      <div className="form-hero">
+      <div className="form-hero w-full">
         <Form
           initialValues={initAppForm.initialValues}
           onSubmit={initApp}

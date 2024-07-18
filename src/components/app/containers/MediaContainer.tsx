@@ -20,8 +20,12 @@ const MediaContainer = ({ updatePhase }: SettingsContainer) => {
       <h2 className="heading">Social Media:</h2>
       <p className="text-max">**Linking your social media will only redirect users via hyperlink**</p>
       <MediaList onRemove={handleRemove} data={media.medias} onMediaClick={handleMediaClick} />
-      <ItemDetail label="More options:" labelLayout="bolden">
+      <ItemDetail label="Link social media:" labelLayout="bolden">
         <Button label="+ Add Social media" onClick={() => updatePhase("phase-two")} />
+      </ItemDetail>
+      <ItemDetail label="Create a post:" labelLayout="bolden">
+        {/* <Button label="+ Post" onClick={() => updatePhase("phase-three")} /> */}
+        <span>Coming soon!</span>
       </ItemDetail>
     </div>
   );

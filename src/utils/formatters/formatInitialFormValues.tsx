@@ -1,4 +1,4 @@
-import { FormatAppMenuValue, FormatFormValue, FormatPageProps } from "app-forms";
+import { FormatAppMenuValue, FormatFormValue, FormatEntryProps } from "app-forms";
 import { MenuProp, StringBooleanObjProp } from "app-types";
 
 interface AddArrayInObject<T = StringBooleanObjProp> {
@@ -14,9 +14,10 @@ const addArrayInObj = ({ obj, key, value }: AddArrayInObject) => {
 };
 
 export const formatInitialValues: FormatFormValue = (data) => {
-  const { values, desiredOrder, landing, menu, page, merch, user, store, media, calendar } = data;
+  const { values, desiredOrder, landing, menu, page, merch, user, store, media, calendar, subscription } = data;
   //  values
   if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] || "" })));
+  if (subscription) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: subscription[key] || "" })));
   if (media) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: media[key] || "" })));
   if (calendar) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: calendar[key] || "" })));
   if (merch) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: merch[key] || "" })));
@@ -30,9 +31,30 @@ export const formatInitialValues: FormatFormValue = (data) => {
   // default to assigning a field for each item in disired order
   return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: "" })));
 };
-export const formatInitialEntryValues = ({ addEntry, page, merch }: FormatPageProps) => {
+export const formatInitialEntryValues = ({ addEntry, page, merch, subscription }: FormatEntryProps) => {
   // find extra values for pages
   const entries = {};
+  if (subscription) {
+    //  iterate initial values
+    Object.keys(subscription).forEach((value) => {
+      // if value should have entries
+      if (subscription[value] && addEntry[value]) {
+        const { desiredOrder, groupName } = addEntry[value];
+        if (groupName) {
+          // add entries
+          if (subscription[groupName].length > 0) {
+            subscription[groupName].forEach((p) => {
+              const entry = formatInitialValues({ desiredOrder, subscription: p });
+              addArrayInObj({ obj: entries, key: groupName, value: entry });
+            });
+          } else {
+            const entry = formatInitialValues({ desiredOrder });
+            addArrayInObj({ obj: entries, key: groupName, value: entry });
+          }
+        }
+      }
+    });
+  }
   if (page) {
     //  iterate initial values
     Object.keys(page).forEach((value) => {

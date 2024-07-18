@@ -5,6 +5,7 @@ import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
 import { formatInitialValues } from "@formatters/formatInitialFormValues";
 import { StoreProps } from "app-types";
+import { currencyList } from "@data/data.json";
 
 const BuildStore = () => {
   const { storeForm, addStore, isLoading } = useContext(AdminContext);
@@ -22,11 +23,11 @@ const BuildStore = () => {
         <Form
           initialValues={initialValues}
           onSubmit={(values: AppValues) => addStore(values, appId)}
-          // onSubmit={(values: AppValues) => console.log("values", values, appId)}
           heading={storeForm.heading}
           submitLabel={storeForm.submitLabel}
           types={storeForm.types}
           labels={storeForm.labels}
+          dataList={{ currency: currencyList }}
           placeholders={storeForm.placeholders}
           populateLink={{
             isRegistered: [

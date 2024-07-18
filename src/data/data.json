@@ -50,6 +50,7 @@
   "currencySymbols": {
     "usd": "$"
   },
+  "currencyList": [{ "name": "usd", "label": "usd", "uid": "usd", "value": "usd" }],
   "resetUserData": { "username": "", "email": "", "phone": "", "userId": "", "ownedApps": [] },
   "calendarData": {
     "frequency": [
@@ -106,10 +107,23 @@
   "forms": {
     "userInformation": {
       "desiredOrder": ["name", "email", "phone"],
-      "labels": { "name": "Your name", "email": "Email", "phone": "Phone number" }
+      "labels": {
+        "name": "Your name",
+        "email": "Email",
+        "phone": "Phone number",
+        "address": "Address"
+      }
     }
   },
   "errors": {
     "clientInformationRequired": "client information is required to continue"
-  }
+  },
+  "recurring": [
+    { "name": "month", "label": "month", "uid": "month", "value": "month" },
+    { "name": "year", "label": "year", "uid": "year", "value": "year" }
+  ],
+  "featureType": [
+    { "name": "Message", "label": "Message", "uid": "Message", "value": "Message" },
+    { "name": "Checkbox", "label": "Checkbox", "uid": "Checkbox", "value": "Checkbox" }
+  ]
 }

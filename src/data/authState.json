@@ -1,9 +1,11 @@
 {
   "isLoading": true,
+  "isPlatformOwner": false,
   "accessToken": "",
   "theme": "light-mode",
   "locale": "",
   "notifications": [],
+  "accountTiers": [],
   "authErrors": {
     "login": "",
     "register": "",

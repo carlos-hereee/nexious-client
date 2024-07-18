@@ -1,5 +1,5 @@
 declare module "app-forms" {
-  import { UserSchema } from "auth-context";
+  import { ISubscription, UserSchema } from "auth-context";
   import { MerchProps } from "store-context";
   import { AppListProps } from "app-context";
   import {
@@ -103,9 +103,10 @@ declare module "app-forms" {
     desiredOrder: string[];
     hasEntry?: SectionEntryOganizer;
   }
-  export interface FormatPageProps {
+  export interface FormatEntryProps {
     page?: PageProps;
     merch?: MerchProps;
+    subscription?: ISubscription;
     addEntry: SectionEntryOganizer;
   }
   export interface FormatNewsletterProps {
@@ -137,6 +138,7 @@ declare module "app-forms" {
     values?: V;
     landing?: PageProps;
     merch?: MerchProps;
+    subscription?: ISubscription;
     page?: PageProps;
     calendar?: CalendarProps;
     store?: StoreProps;
