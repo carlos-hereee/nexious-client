@@ -18,29 +18,26 @@ const EditSubscription = ({ subscription }: { subscription: ISubscription }) => 
   const id = subscription.subscriptionId;
 
   const handleRemove = () => deleteSubscription({ appId, id });
+  if (show) return <ConfirmRemovals name={subscription.name} onConfirm={handleRemove} />;
   return (
     <div className="primary-container">
-      {show ? (
-        <ConfirmRemovals name={subscription.name} onConfirm={handleRemove} onReturn={() => setShow(false)} />
-      ) : (
-        <Form
-          initialValues={initialValues}
-          labels={subscriptionForm.labels}
-          placeholders={subscriptionForm.placeholders}
-          types={subscriptionForm.types}
-          fieldHeading={subscriptionForm.fieldHeading}
-          addEntry={sectionEntries}
-          entries={entryValues}
-          dataList={{ recurring, valueType: featureType }}
-          heading="Update subscription:"
-          onSubmit={(values: Subcription) => updateSubscription({ subscription: values, appId, id })}
-          onCancel={() => setShow(true)}
-          confirmRemovals
-          cancelLabel="Remove subscription"
-          submitLabel="Save and continue"
-          schema={{ required: ["name", "description", "cost", "recurring"] }}
-        />
-      )}
+      <Form
+        initialValues={initialValues}
+        labels={subscriptionForm.labels}
+        placeholders={subscriptionForm.placeholders}
+        types={subscriptionForm.types}
+        fieldHeading={subscriptionForm.fieldHeading}
+        addEntry={sectionEntries}
+        entries={entryValues}
+        dataList={{ recurring, valueType: featureType }}
+        heading="Update subscription:"
+        onSubmit={(values: Subcription) => updateSubscription({ subscription: values, appId, id })}
+        onCancel={() => setShow(true)}
+        confirmRemovals
+        cancelLabel="Remove subscription"
+        submitLabel="Save and continue"
+        schema={{ required: ["name", "description", "cost", "recurring"] }}
+      />
     </div>
   );
 };

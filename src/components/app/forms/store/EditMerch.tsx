@@ -16,27 +16,24 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
 
   const handleRemove = () => deleteMerchItem(appId, initValues.merchId);
+  if (show) return <ConfirmRemovals name={initValues.name} onConfirm={handleRemove} />;
   return (
     <div className="primary-container">
-      {show ? (
-        <ConfirmRemovals name={initValues.name} onConfirm={handleRemove} onReturn={() => setShow(false)} />
-      ) : (
-        <Form
-          initialValues={initialValues}
-          labels={merchForm.labels}
-          placeholders={merchForm.placeholders}
-          types={merchForm.types}
-          addEntry={sectionEntries}
-          entries={entryValues}
-          fieldHeading={merchForm.fieldHeading}
-          onCancel={() => setShow(true)}
-          onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}
-          submitLabel="Save and continue"
-          withFileUpload
-          cancelLabel="Delete merch"
-          schema={{ required: ["name", "description", "cost", "quantity"] }}
-        />
-      )}
+      <Form
+        initialValues={initialValues}
+        labels={merchForm.labels}
+        placeholders={merchForm.placeholders}
+        types={merchForm.types}
+        addEntry={sectionEntries}
+        entries={entryValues}
+        fieldHeading={merchForm.fieldHeading}
+        onCancel={() => setShow(true)}
+        onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}
+        submitLabel="Save and continue"
+        withFileUpload
+        cancelLabel="Delete merch"
+        schema={{ required: ["name", "description", "cost", "quantity"] }}
+      />
     </div>
   );
 };

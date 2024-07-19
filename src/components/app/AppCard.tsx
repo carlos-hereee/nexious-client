@@ -9,7 +9,7 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSeeLive = () => navigate(`/${app.appUrl}`);
+  const handleSeeLive = () => navigate(`${app.appUrl}`);
   const handleSetting = () => navigate(`/settings/${app.appLink || app.appUrl}`);
   // if user has permissions
   const isAdmin = app.adminIds.some((admin) => admin.userId === user.userId);
@@ -19,7 +19,7 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
     <div className={`app-card${theme ? ` ${theme}` : ""}`}>
       <Hero hero={heroData} theme="logo" onClick={handleSeeLive} />
       <button type="button" className="btn-card" onClick={handleSeeLive}>
-        <h2 className="heading">{app?.appName || "No name"}</h2>
+        <h3 className="heading">{app?.appName || "No name"}</h3>
         {errorMessage && (
           <div className="card-row-body">
             {/* {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />} */}

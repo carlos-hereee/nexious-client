@@ -31,15 +31,7 @@ const AppSettings = () => {
     if (formStatus === "SUCCESS") {
       // exception for store stripe configuration window
       if (nav !== "store" && status !== "configuration") {
-        setShow({
-          pages: false,
-          media: false,
-          store: false,
-          app: false,
-          calendar: false,
-          danger: false,
-          notifications: false,
-        });
+        setShow({ pages: false, media: false, store: false, app: false, calendar: false, danger: false, notifications: false });
       }
       setFormStatus("IDLE");
       setStatus("idle");
@@ -63,6 +55,7 @@ const AppSettings = () => {
     setShow({ ...show, [name]: true });
     setStatus(stat);
   };
+  const updateStatus = (stat: DialogStatusProps) => setStatus(stat);
   // console.log("store :>> ", store);
   // TODO: ADD CURRENCY TYPE TO STORE
   // TODO: ADD COUNTRY TO APP SETTINGS
@@ -103,11 +96,7 @@ const AppSettings = () => {
       {nav === "danger" && <DangerZone />}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (
-        <MediaDialog
-          status={status}
-          onClose={() => handleClose({ name: "media", stat: "idle" })}
-          onCancel={(stat: DialogStatusProps) => setStatus(stat)}
-        />
+        <MediaDialog status={status} onClose={() => handleClose({ name: "media", stat: "idle" })} onCancel={updateStatus} />
       )}
       {show.store && <StoreDialog onClose={() => handleClose({ name: "store", stat: "idle" })} status={status} />}
       {show.app && <AppDialog onClose={() => handleClose({ name: "app", stat: "idle" })} status={status} />}

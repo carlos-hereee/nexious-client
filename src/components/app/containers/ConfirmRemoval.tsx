@@ -3,26 +3,25 @@ import { Form } from "nexious-library";
 interface Props {
   name: string;
   onConfirm: () => void;
-  onReturn?: () => void;
 }
 
-const ConfirmRemovals = ({ name, onConfirm, onReturn }: Props) => {
+const ConfirmRemovals = ({ name, onConfirm }: Props) => {
   const handleConfirm = (data: { confirm: string }) => {
     // redundant delete
     if (data.confirm === "CONFIRM") onConfirm();
   };
   return (
-    <>
-      <h2 className="heading">Are you sure you want to delete {name}</h2>
+    <div className="primary-container">
+      <h2 className="heading text-center">Are you sure you want to delete {name}</h2>
       <p className="text-center">This will delete all progress</p>
       <Form
         initialValues={{ confirm: "" }}
         labels={{ confirm: "Type CONFIRM to delete" }}
         schema={{ required: ["confirm"], match: [{ name: "confirm", value: "CONFIRM" }] }}
+        submitLabel="Submit"
         onSubmit={(data: { confirm: string }) => handleConfirm(data)}
-        onCancel={() => onReturn && onReturn()}
       />
-    </>
+    </div>
   );
 };
 export default ConfirmRemovals;
