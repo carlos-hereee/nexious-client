@@ -4,7 +4,7 @@ import { MerchCard } from "nexious-library/@nxs-organism";
 import { Hero } from "nexious-library/@nxs-molecules";
 import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
-import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@formatters/formatPenniesToDollars";
 import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {

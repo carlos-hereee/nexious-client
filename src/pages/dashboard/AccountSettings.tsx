@@ -5,7 +5,7 @@ import { formatInitialValues } from "@formatters/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { AppContext } from "@context/app/AppContext";
-import SubscriptionCard from "@components/app/SubscriptionCard";
+import SubscriptionCard from "@components/card/SubscriptionCard";
 import { StoreContext } from "@context/store/StoreContext";
 
 type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account";

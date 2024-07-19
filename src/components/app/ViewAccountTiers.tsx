@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import EditSubscription from "@components/app/forms/store/EditSubscription";
 import { AppContext } from "@context/app/AppContext";
 import { useNavigationMenus } from "@hooks/useNavigationMenus";
-import SubscriptionCard from "./SubscriptionCard";
+import SubscriptionCard from "../card/SubscriptionCard";
 
 const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscription[]; heading?: string }) => {
   const { user, accessToken, addTier, setUpdateTier } = useContext(AuthContext);

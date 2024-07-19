@@ -3,8 +3,8 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import { formatAppDetails } from "@formatters/formatAppDetails";
 import { uniqueApplist } from "@formatters/uniqeList";
+import { formatInitialValues } from "@formatters/formatInitialFormValues";
 
 const EditAppDetails = () => {
   const { editAppDetails, appDetailsForm, themeList, iconList } = useContext(AdminContext);
@@ -14,7 +14,7 @@ const EditAppDetails = () => {
   useContext(AppContext);
 
   // const initialValues = formatAppDetails({ app: { logo, appName, locale }, desiredOrder: appDetailsForm.desiredOrder });
-  const initialValues = formatAppDetails({ app: { logo, appName }, desiredOrder: appDetailsForm.desiredOrder });
+  const initialValues = formatInitialValues({ values: { logo, appName }, desiredOrder: appDetailsForm.desiredOrder });
   // const formDataList = { language: languageList, locale: languageList, icon: iconList, theme: themeList };
   const formDataList = { icon: iconList, theme: themeList };
   if (isLoading) return <Loading message="Loading app data" />;

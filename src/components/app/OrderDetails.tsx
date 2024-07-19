@@ -2,7 +2,7 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
 import { OrderDetailsProps } from "store-context";
 import { Button, MerchCard } from "nexious-library";
-import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@formatters/formatPenniesToDollars";
 import OrderClientDetails from "./OrderClientDetails";
 
 const OrderDetails = ({ order, onClick, labels }: OrderDetailsProps) => {

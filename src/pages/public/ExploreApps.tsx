@@ -1,6 +1,6 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
-import AppCard from "../../components/app/AppCard";
+import AppCard from "../../components/card/AppCard";
 
 const ExploreApps = (props: { featuredOnly?: boolean; heading?: string }) => {
   const { featuredOnly, heading } = props;

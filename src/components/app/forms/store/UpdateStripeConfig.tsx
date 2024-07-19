@@ -4,7 +4,7 @@ import { Button, ItemDetail, Loading, uniqueId } from "nexious-library";
 import { hints } from "@data/nexious.json";
 import { StoreContext } from "@context/store/StoreContext";
 import { currencySymbols } from "@data/data.json";
-import { formatPenniesToDollars } from "@formatters/store/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@formatters/formatPenniesToDollars";
 
 const UpdateStripeConfig = () => {
   const { store, getStripeAccountLink, appId } = useContext(AppContext);

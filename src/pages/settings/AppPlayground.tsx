@@ -1,5 +1,5 @@
-import AppCard from "@components/app/AppCard";
-import CreateApp from "@components/app/CreateApp";
+import AppCard from "@components/card/AppCard";
+import CreateApp from "@components/card/CreateApp";
 import { AuthContext } from "@context/auth/AuthContext";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { useContext } from "react";

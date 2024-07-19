@@ -3,7 +3,7 @@ import { Button, Loading, PaymentMethods, Total } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { StoreContext } from "@context/store/StoreContext";
 import { CartProps, MerchProps, PaymentMethod } from "store-context";
-import { formatTotal } from "@formatters/store/formatPenniesToDollars";
+import { formatTotal } from "@formatters/formatPenniesToDollars";
 import { paymentMethods } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import UserInformation from "@components/form/UserInformation";

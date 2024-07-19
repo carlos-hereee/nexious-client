@@ -3,7 +3,7 @@ import { AppContext } from "@context/app/AppContext";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { Button, Dialog, ItemDetail } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
-import ViewAccounts from "@components/app/ViewList";
+import ViewAccounts from "@components/list/ViewList";
 import { UserSchema } from "auth-context";
 import ViewWebhook from "@components/admin/ViewWebhook";
 

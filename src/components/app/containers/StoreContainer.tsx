@@ -1,12 +1,12 @@
 import { AppContext } from "@context/app/AppContext";
 import { SettingsContainer } from "app-types";
 import { useContext, useEffect } from "react";
-import { formatStoreUrl } from "@app/formatStringUrl";
 import MerchList from "@components/list/MerchList";
 import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { AuthContext } from "@context/auth/AuthContext";
+import { formatStoreUrl } from "@formatters/formatStringUrl";
 import AppLimitations from "../AppLimitations";
 import InitPhase from "../InitPhase";
 
