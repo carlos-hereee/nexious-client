@@ -3,12 +3,10 @@ import { AppCardProps } from "app-context";
 import { Button, Hero } from "nexious-library";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-// import MediaContainer from "./containers/MediaContainer";
 
 const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handleSeeLive = () => navigate(`${app.appUrl}`);
   const handleSetting = () => navigate(`/settings/${app.appLink || app.appUrl}`);
   // if user has permissions
