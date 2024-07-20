@@ -33,7 +33,7 @@ const UserMenu = () => {
       {!activeMenu.user && (
         <IconButton
           icon={{ icon: "checkout", size: "3x" }}
-          onClick={() => (merchCount > 0 ? navigate("/checkout") : store.storeLink ? navigate(store.storeLink) : undefined)}
+          onClick={() => (merchCount > 0 ? navigate("/checkout") : store.storeLink ? navigate(`/${store.storeLink}`) : undefined)}
           ping={merchCount > 0 ? merchCount : undefined}
         />
       )}

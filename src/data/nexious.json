@@ -34,38 +34,6 @@
       "name": "login"
     }
   ],
-  "serviceTiers": [
-    {
-      "tier": "free",
-      "tierId": "free",
-      "calendarEvent": false,
-      "calendarBooking": false,
-      "storeCheckout": false,
-      "maxApps": 1,
-      "cost": 0,
-      "maxPagesPerApp": 5
-    },
-    {
-      "tier": "basic",
-      "tierId": "basic",
-      "calendarEvent": true,
-      "calendarBooking": true,
-      "storeCheckout": true,
-      "maxApps": 3,
-      "cost": 25,
-      "maxPagesPerApp": 10
-    },
-    {
-      "tier": "advanced",
-      "tierId": "advanced",
-      "calendarEvent": true,
-      "calendarBooking": true,
-      "storeCheckout": true,
-      "cost": 125,
-      "maxApps": 10,
-      "maxPagesPerApp": 20
-    }
-  ],
   "nexiousAuthMenu": [
     {
       "isPrivate": false,
@@ -254,22 +222,26 @@
       {
         "media": "x",
         "link": "https://twitter.com/carlos_heree",
+        "url": "https://twitter.com/carlos_heree",
         "uid": "6554c3a2bb0a21f3bb3e07b5"
       },
       {
         "uid": "instagram-uid",
         "media": "instagram",
-        "link": "https://www.instagram.com/carlos_hereee/"
+        "link": "https://www.instagram.com/carlos_hereee/",
+        "url": "https://www.instagram.com/carlos_hereee/"
       },
       {
         "uid": "linkedin-uid",
-        "media": "linkedin",
-        "link": "https://www.linkedin.com/in/carlos-hereee/"
+        "link": "https://www.linkedin.com/in/carlos-hereee/",
+        "url": "https://www.linkedin.com/in/carlos-hereee/",
+        "media": "linkedin"
       },
       {
         "uid": "github-uid",
         "media": "github",
-        "link": "https://github.com/carlos-hereee"
+        "link": "https://github.com/carlos-hereee",
+        "url": "https://github.com/carlos-hereee"
       }
     ]
   },

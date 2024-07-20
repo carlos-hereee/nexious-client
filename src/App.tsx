@@ -31,6 +31,7 @@ const App = ({ children }: ChildProps) => {
   };
 
   const logo = { url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` };
+  const medias = activeMedia.medias.map((m) => ({ ...m, link: m.url }));
   return (
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""}`}>
       <Header
@@ -44,7 +45,7 @@ const App = ({ children }: ChildProps) => {
       />
       {/* {isDev && <AppSettings />} */}
       {children}
-      <Footer data={{ title: activeAppName }} media={activeMedia} hero={activeMedia.hero} />
+      <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} hero={activeMedia.hero} />
     </div>
   );
 };

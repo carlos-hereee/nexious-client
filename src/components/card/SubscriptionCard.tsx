@@ -15,8 +15,8 @@ interface Props {
 const CardDetails = ({ subscription }: { subscription: ISubscription }) => {
   return (
     <>
-      <h2 className="heading text-center">{capFirstCharacter(subscription.name)}</h2>
       <div className="text-left w-max">
+        <h2 className="heading text-center">{capFirstCharacter(subscription.name)}</h2>
         <ItemDetail label="Subscription details" labelLayout="bolden">
           <span className="text-center">{subscription.description}</span>
         </ItemDetail>
@@ -28,11 +28,14 @@ const CardDetails = ({ subscription }: { subscription: ISubscription }) => {
             </span>
           </ItemDetail>
         ))}
+      </div>
+      <div className="w-max text-left">
         <ItemDetail label="Price" labelLayout="bolden">
           <span className="text-center">
             ${formatPenniesToDollars(subscription.cost)}/{subscription.recurring}
           </span>
         </ItemDetail>
+        <small>Unsubscribe at any time</small>
       </div>
     </>
   );
