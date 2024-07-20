@@ -1,10 +1,9 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useState } from "react";
 import { nexiousAuthMenu, nexiousMenu } from "@data/nexious.json";
-import { Navbar } from "nexious-library/@nxs-organism";
 import { useNavigate } from "react-router-dom";
 import { MenuProp } from "app-types";
-import { IconButton } from "nexious-library";
+import { IconButton, NavBar } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
 import { AppContext } from "@context/app/AppContext";
 
@@ -29,10 +28,7 @@ const UserMenu = () => {
   return (
     <nav className={`mobile-navigation user-menu ${active && activeMenu[active] ? `alt-${theme}` : ""}`}>
       {!activeMenu.checkout && (
-        <IconButton
-          icon={{ icon: !activeMenu.user ? "dashboard" : "close", size: "3x" }}
-          onClick={() => handleClick("user")}
-        />
+        <IconButton icon={{ icon: !activeMenu.user ? "dashboard" : "close", size: "3x" }} onClick={() => handleClick("user")} />
       )}
       {!activeMenu.user && (
         <IconButton
@@ -41,7 +37,7 @@ const UserMenu = () => {
           ping={merchCount > 0 ? merchCount : undefined}
         />
       )}
-      <Navbar
+      <NavBar
         show={{ isActive: active && activeMenu[active] }}
         menu={accessToken ? nexiousAuthMenu : nexiousMenu}
         includeHome

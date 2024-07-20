@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { IconButton } from "nexious-library";
+import { IconButton, Banner } from "nexious-library";
 import AppInProgress from "@pages/public/AppInProgress";
-import { Banner } from "nexious-library/@nxs-organism";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";

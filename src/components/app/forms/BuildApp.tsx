@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Form, Button } from "nexious-library";
-import { Hero, Loading } from "nexious-library/@nxs-molecules";
+import { Form, Button, Hero, Loading } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";

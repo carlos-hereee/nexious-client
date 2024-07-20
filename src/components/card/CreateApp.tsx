@@ -1,4 +1,4 @@
-import { Button } from "nexious-library/@nxs-atoms";
+import { Button } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 
 const CreateApp = () => {

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { CallToActionProps, SectionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
-import { HeroCard, Card } from "nexious-library/@nxs-organism";
+import { HeroCard, Card } from "nexious-library";
 import UserMenu from "@components/app/UserMenu";
 
 const Landing = () => {

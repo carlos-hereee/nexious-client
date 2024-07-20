@@ -1,7 +1,6 @@
 import MediaList from "@components/list/MediaList";
 import { MediaItemProp, SettingsContainer } from "app-types";
-import { Button } from "nexious-library/@nxs-atoms";
-import { ItemDetail } from "nexious-library";
+import { ItemDetail, Button } from "nexious-library";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 
