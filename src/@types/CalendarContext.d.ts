@@ -9,6 +9,10 @@ declare module "app-calendar" {
     email: string;
     phone: number;
   }
+  export interface PostEvent {
+    appId: string;
+    event: IEvent;
+  }
   export interface IEvent {
     uid: string;
     eventId: string;
@@ -51,6 +55,7 @@ declare module "app-calendar" {
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: IEvent) => void;
+    addCalendarEvent: (day: PostEvent) => void;
   }
   export interface CalendarContainerProps {
     // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
@@ -64,6 +69,8 @@ declare module "app-calendar" {
     dispatch: React.Dispatch<CalendarActionProps>;
     calendar?: CalendarProps;
     day?: IEvent;
+    event?: IEvent;
+    appId?: string;
   }
   export type CalendarActionProps =
     | { type: CAL_ACTIONS.IS_LOADING; payload: boolean }

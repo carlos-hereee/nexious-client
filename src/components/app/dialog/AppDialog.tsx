@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { Dialog } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { AdminContext } from "@context/admin/AdminContext";
-import EditAppDetails from "../forms/EditAppDetails";
+import EditAppDetails from "../forms/app/EditAppDetails";
 import EditAppMenu from "../forms/app/EditAppMenu";
 import ConfirmRemovals from "../containers/ConfirmRemoval";
 // import EditLanding from "../forms/EditLanding";

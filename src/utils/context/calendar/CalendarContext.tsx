@@ -1,11 +1,12 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import calendarState from "@data/calendarState.json";
-import { ICalendarSchema, IEvent } from "app-calendar";
+import { ICalendarSchema, IEvent, PostEvent } from "app-calendar";
 import { ChildProps } from "app-types";
 import { AppContext } from "@context/app/AppContext";
 import { reducer } from "./CalendarReducer";
 import { setCalendar } from "./dispatch/setCalendar";
 import { setSelectedDay } from "./dispatch/setSelectedDay";
+import { postCalEvent } from "./request/postCalEvent";
 // import { contactUs } from "./helpers/contactUs";
 // import { getCalendarDay } from "./helpers/getCalendarDay";
 // import { setDay } from "./helpers/setDay";
@@ -26,6 +27,7 @@ export const CalendarState = ({ children }: ChildProps) => {
   }, [calendar]);
 
   const updateSelectedDay = useCallback((day: IEvent) => setSelectedDay({ dispatch, day }), []);
+  const addCalendarEvent = useCallback((data: PostEvent) => postCalEvent({ dispatch, ...data }), []);
 
   const calendarValues = useMemo(() => {
     return {
@@ -42,6 +44,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       name: state.name,
       schedule: state.schedule,
       updateSelectedDay,
+      addCalendarEvent,
     };
   }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name]);
 

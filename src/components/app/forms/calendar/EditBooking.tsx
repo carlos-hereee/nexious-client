@@ -26,7 +26,7 @@ const EditBooking = () => {
   //         types={calendarBookingForm.types}
   //         fieldHeading={calendarBookingForm.fieldHeading}
   //         heading="Create a new booking rule"
-  //         dataList={{ frequency: cal.calendarData.frequency }}
+  //         dataList={{ frequancy: cal.calendarData.frequancy }}
   //         // onSubmit={(values: AppValues) => editCalendar({ values, appId })}
   //         // onSubmit={(values: AppValues) => setEvents((e: AppValues) => [...e, values])}
   //         submitLabel="Save and continue"
@@ -45,7 +45,7 @@ const EditBooking = () => {
         types={calendarBookingForm.types}
         fieldHeading={calendarBookingForm.fieldHeading}
         heading="Edit booking rule"
-        dataList={{ frequency: cal.calendarData.frequency }}
+        dataList={{ frequancy: cal.calendarData.frequancy }}
         // onSubmit={(values: AppValues) => editCalendar({ values, appId })}
         onSubmit={(values: AppValues) => console.log("values :>> ", values)}
         submitLabel="Save and continue"

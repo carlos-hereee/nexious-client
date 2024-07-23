@@ -221,17 +221,17 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "fieldHeading": { "workWeek": "Customize the days you take apointments" },
-    "initialValues": { "frequency": "", "workWeek": "", "startTime": "", "endTime": "" },
+    "initialValues": { "frequancy": "", "workWeek": "", "startTime": "", "endTime": "" },
     "labels": {
       "workWeek": "Days of the week",
-      "frequency": "Frequency of recurrence",
+      "frequancy": "frequancy of recurrence",
       "startTime": "Start time",
       "endTime": "End time"
     },
     "placeholders": {},
     "canMultiply": true,
     "types": {
-      "frequency": "select",
+      "frequancy": "select",
       "isRecurring": "checkbox",
       "workWeek": "date-week",
       "startTime": "date-time",
@@ -399,7 +399,7 @@
     "labels": {
       "name": "Subscription name",
       "hero": "Add thumbnail image",
-      "recurring": "Frequency",
+      "recurring": "frequancy",
       "description": "Description",
       "addFeatures": "Add features",
       "cost": "Cost",
@@ -488,6 +488,27 @@
       "max": 10,
       "groupName": "alternative-hours",
       "group": "altHours",
+      "desiredOrder": ["day", "startTime", "closeTime"]
+    },
+    "isRecurring": {
+      "formId": "alt-hours",
+      "heading": "",
+      "fieldHeading": {},
+      "initialValues": { "frequancy": "", "day": "", "startTime": "", "closeTime": "" },
+      "labels": {
+        "day": "Day of the week",
+        "frequancy": "Frequancy of recurrence",
+        "startTime": "Start time",
+        "closeTime": "Close time"
+      },
+      "placeholders": {},
+      "types": { "day": "date-day", "frequancy": "select", "startTime": "date-time", "closeTime": "date-time" },
+      "additionLabel": "Add another",
+      "removalLabel": "Remove",
+      "canMultiply": true,
+      "max": 10,
+      "groupName": "isRecurringTrue",
+      "group": "isRecurring",
       "desiredOrder": ["day", "startTime", "closeTime"]
     },
     "images": {

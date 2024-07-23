@@ -188,6 +188,7 @@ declare module "app-types" {
     | "phase-three"
     | "phase-four"
     | "phase-view-order"
+    | "phase-add-event"
     | "phase-view-balance"
     | "phase-edit";
   export interface AppDialogProps {
