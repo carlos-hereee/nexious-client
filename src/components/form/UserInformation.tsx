@@ -1,5 +1,5 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 import { useContext } from "react";
 import { forms } from "@data/data.json";
 import { Button, Form, UserCard } from "nexious-library";

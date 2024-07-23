@@ -1,5 +1,5 @@
 import { A_ACTIONS } from "@actions/AuthActions";
-import { userMinData } from "@formatters/userMinData";
+import { userMinData } from "@app/userMinData";
 import { AuthDispatchProps } from "auth-context";
 
 export const setUser = ({ user, dispatch }: AuthDispatchProps) => {

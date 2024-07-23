@@ -3,7 +3,7 @@ import { AppContext } from "@context/app/AppContext";
 import { Button, CopyButton, Form, ItemDetail, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { MenuProp, StringObjProp } from "app-types";
-import { formatAppMenuValues } from "@formatters/formatInitialFormValues";
+import { formatAppMenuValues } from "@app/formatInitialFormValues";
 import { hints } from "@data/nexious.json";
 import { homeUrl } from "@config";
 

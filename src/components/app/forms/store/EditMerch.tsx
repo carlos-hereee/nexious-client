@@ -1,7 +1,7 @@
 import ConfirmRemovals from "@components/app/containers/ConfirmRemoval";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialEntryValues, formatInitialValues } from "@app/formatInitialFormValues";
 import { AppValues } from "app-forms";
 import { Form } from "nexious-library";
 import { useContext, useState } from "react";

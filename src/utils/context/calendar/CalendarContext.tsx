@@ -43,7 +43,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       schedule: state.schedule,
       updateSelectedDay,
     };
-  }, [state.isLoading]);
+  }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name]);
 
   return <CalendarContext.Provider value={calendarValues}>{children}</CalendarContext.Provider>;
 };

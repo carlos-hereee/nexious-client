@@ -2,7 +2,7 @@ import { CartProps, MerchProps } from "store-context";
 import { Cart, Button } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
 import { useContext } from "react";
-import { formatTotal } from "@formatters/formatPenniesToDollars";
+import { formatTotal } from "@app/formatPenniesToDollars";
 
 type Menu = "All" | "Online" | "In store";
 interface CartListProps {

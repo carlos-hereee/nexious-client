@@ -3,7 +3,7 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 import cal from "@data/data.json";
 
 const EditCalendar = () => {

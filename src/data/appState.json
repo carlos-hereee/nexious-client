@@ -37,7 +37,7 @@
   },
   "socialMedia": { "media": "", "link": "", "uid": "" },
   "menu": [],
-  "calendar": { "name": "", "calendarId": "", "schedule": [{}] },
+  "calendar": { "name": "", "calendarId": "", "schedule": [] },
   "logo": "",
   "activeLogo": "/icons/logo.svg",
   "activeMedia": {

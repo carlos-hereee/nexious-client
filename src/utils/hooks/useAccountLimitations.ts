@@ -1,5 +1,5 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { stringToCamalCase } from "@formatters/stringToCamalCase";
+import { stringToCamalCase } from "@app/stringToCamalCase";
 import { useContext, useEffect, useState } from "react";
 
 interface AppLimitations {

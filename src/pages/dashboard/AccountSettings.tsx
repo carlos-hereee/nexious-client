@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Button, Dialog, Form, ItemDetail } from "nexious-library";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { AppContext } from "@context/app/AppContext";

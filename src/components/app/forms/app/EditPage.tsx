@@ -3,7 +3,7 @@ import { Form } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { PageProps } from "app-types";
-import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialEntryValues, formatInitialValues } from "@app/formatInitialFormValues";
 // import { formatPage } from "@formatters/formatPage";
 
 const EditPage = () => {

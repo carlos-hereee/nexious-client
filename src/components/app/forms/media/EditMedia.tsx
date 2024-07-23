@@ -1,6 +1,6 @@
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 import { MediaFormUpdateProps, AppValues } from "app-forms";
 import { Form } from "nexious-library";
 import { useContext } from "react";

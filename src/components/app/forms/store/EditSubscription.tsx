@@ -5,7 +5,7 @@ import { Form } from "nexious-library";
 import { useContext, useState } from "react";
 import { recurring, featureType } from "@data/data.json";
 import { ISubscription } from "auth-context";
-import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialEntryValues, formatInitialValues } from "@app/formatInitialFormValues";
 import ConfirmRemovals from "@components/app/containers/ConfirmRemoval";
 
 const EditSubscription = ({ subscription }: { subscription: ISubscription }) => {

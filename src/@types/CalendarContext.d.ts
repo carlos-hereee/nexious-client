@@ -14,6 +14,7 @@ declare module "app-calendar" {
     eventId: string;
     date: string;
     start: string;
+    createdAt?: string;
     end: string;
     isOpen: boolean;
     attendees: EventAttendees[];

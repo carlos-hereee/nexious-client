@@ -3,8 +3,8 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import { uniqueApplist } from "@formatters/uniqeList";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { uniqueApplist } from "@app/uniqeList";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 
 const EditAppDetails = () => {
   const { editAppDetails, appDetailsForm, themeList, iconList } = useContext(AdminContext);
