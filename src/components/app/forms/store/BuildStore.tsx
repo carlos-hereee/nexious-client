@@ -3,7 +3,7 @@ import { Form, Hero, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
-import { formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialValues } from "@app/formatInitialFormValues";
 import { StoreProps } from "app-types";
 import { currencyList } from "@data/data.json";
 

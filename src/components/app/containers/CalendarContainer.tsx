@@ -13,6 +13,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   const { calendar, appUrl } = useContext(AppContext);
   const { limitations } = useAccountLimitations();
   const { isPlatformOwner } = useContext(AuthContext);
+  // console.log("calendar :>> ", calendar);
 
   // // account limitations
   if (!isPlatformOwner && !limitations.calendarEvents) {
@@ -29,17 +30,17 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
       <ItemDetail label="Calendar theme:" labelLayout="bolden">
         Coming Soon!
       </ItemDetail>
-
-      <ItemDetail label="Schedule:" labelLayout="bolden">
-        {/* <Button label="View schedule" onClick={() => onPhaseClick("phase-four")} /> */}
-        Coming Soon!
-      </ItemDetail>
-      <ItemDetail label="Bookings:" labelLayout="bolden">
-        {/* <Button label="View booking" onClick={() => onPhaseClick("phase-three")} /> */}
-        Coming Soon!
+      {/* <ItemDetail label="Schedule:" labelLayout="bolden">
+        <Button label="View schedule" onClick={() => onPhaseClick("phase-four")} />
+      </ItemDetail> */}
+      {/* <ItemDetail label="Bookings:" labelLayout="bolden">
+        <Button label="View booking" onClick={() => onPhaseClick("phase-three")} />
+      </ItemDetail> */}
+      <ItemDetail label="Events:" labelLayout="bolden">
+        <Button label="View events" onClick={() => onPhaseClick("phase-view-event")} />
       </ItemDetail>
       <ItemDetail label="Add event:" labelLayout="bolden">
-        Coming Soon!
+        <Button label="Add event" onClick={() => onPhaseClick("phase-add-event")} />
       </ItemDetail>
       <ItemDetail label="Calendar settings: " labelLayout="bolden">
         <Button label="Edit calendar details" onClick={() => onPhaseClick("phase-two")} />

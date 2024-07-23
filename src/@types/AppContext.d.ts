@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { IEvent } from "app-calendar";
   import { MerchProps } from "store-context";
   import { ISubscription, UserSchema } from "auth-context";
   import { AppAssets } from "app-admin";
@@ -102,9 +103,11 @@ declare module "app-context" {
     app?: AppProps;
     page?: PageProps;
     store?: StoreProps;
+    calendar?: CalendarProps;
     appList?: AppListProps[];
     platformTiers?: ISubscription[];
     logo?: string;
+    event?: IEvent;
     id?: string;
     media?: MediaProps;
     appName?: string;

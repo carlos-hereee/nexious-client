@@ -1,7 +1,7 @@
 declare module "store-context" {
   import { StoreProps } from "app-types";
   import { UserSchema } from "auth-context";
-  import { STORE_ACTIONS } from "@actions/ServiceActions";
+  import { STORE_ACTIONS } from "@actions/StoreActions";
 
   export interface ViewOrderStatusKey {
     pending: DialogStatusProps;

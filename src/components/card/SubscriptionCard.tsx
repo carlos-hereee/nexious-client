@@ -1,5 +1,5 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { formatPenniesToDollars } from "@formatters/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import { ISubscription } from "auth-context";
 import { Button, capFirstCharacter, Icon, ItemDetail } from "nexious-library";
 import { useContext } from "react";

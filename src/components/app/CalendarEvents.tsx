@@ -1,85 +1,82 @@
 // import { MeetingDetails } from "@nxs-atoms";
 // import { CalendarEventList, IconButton } from "@nxs-molecules";
 // import { CardSection, CartRow, IconButton } from "nexious-library";
-// import { setActive } from "@context/services/helpers/setActive";
-// import { useContext } from "react";
 // import { StoreContext } from "@context/store/StoreContext";
 // import { CalendarContext } from "@context/calendar/CalendarContext";
-// import { findNextOpenApp } from "@utils/app/findNextOpenApp";
 // import { AuthContext } from "@context/auth/AuthContext";
 
+import { scrollToId } from "@app/scrollToElement";
+import { CalendarContext } from "@context/calendar/CalendarContext";
+import { useContext, useEffect } from "react";
+import { IconButton, UserCard } from "nexious-library";
+import { AuthContext } from "@context/auth/AuthContext";
+import { MeetingDetials } from "app-calendar";
+import MeetingDetails from "./calendar/MeetingDetails";
+
 const CalendarEvents = () => {
-  // const { handleCheckout, user } = useContext(AuthContext);
-  // const { active, services, setActive } = useContext(StoreContext);
-  // const { selectedDay, meeting, events, setMeeting, error, setError } = useContext(CalendarContext);
+  const { user } = useContext(AuthContext);
+  const { selectedDay, errorMessage, meeting, updateMeeting } = useContext(CalendarContext);
+
+  useEffect(() => {
+    if (selectedDay.date) scrollToId("calendar-events");
+  }, [selectedDay]);
 
   // const findNextOpen = (e) => {
   //   // const { error, event } = findNextOpenApp(events);
-  //   if (error) return setError(error);
+  //   // if (errorMessage) return setError(errorMessage);
+  //   console.log("findNextOpen :>> ", e);
   //   // setMeeting(event);
   // };
 
+  const handleMettingClick = (m: MeetingDetials) => updateMeeting(m);
+
   return (
-    <div className="calendar-events">
-      {/* <div className="calendar-package-details">
-        <h2 className="heading">Selected package</h2>
-        {active ? (
-          <CardSection data={active} />
-        ) : (
-          services.map((s) => <CartRow data={s} key={s.uid} click={() => setActive(s)} />)
-        )}
-      </div>
+    <div className="calendar-events" id="calendar-events">
       <div className="event-wrapper">
-        {selectedDay && <h2 className="heading">{`${selectedDay.date} ${meeting?.uid ? `@ ${meeting.response}` : ""}`}</h2>}
-        {selectedDay && selectedDay.list.length > 0 ? (
-          selectedDay.list.map((day) => (
-            <IconButton
-              icon={meeting.uid === day.uid ? "check" : "uncheck"}
-              key={day.uid}
-              label={`${day.startTime} - ${day.endTime}`}
-            />
-          ))
+        {selectedDay.date && <h1 className="heading">{new Date(selectedDay.date).toISOString().slice(0, 10)}</h1>}
+        {selectedDay.list.length > 0 ? (
+          selectedDay.list.map(
+            (event) =>
+              event.isOpen && (
+                <IconButton
+                  key={event.uid}
+                  icon={{ icon: meeting.uid === event.uid ? "check" : "uncheck", label: event.name || "No event name" }}
+                  onClick={() => handleMettingClick(event as unknown as MeetingDetials)}
+                />
+              )
+          )
         ) : (
-          <div className="container">
-            <strong>No open meetings this day, try a different day</strong>
-            {error ? (
-              <p className="error-message">{error}</p>
+          <div className="primary-container">
+            <h3 className="heading text-center">Nothing happening on this day, search a different day</h3>
+            {errorMessage ? (
+              <p className="error-message">{errorMessage}</p>
             ) : (
-              <button className="btn-main" type="button" onClick={findNextOpen}>
-                Find next availible
+              <button className="btn-main" type="button">
+                Find next event
               </button>
             )}
           </div>
         )}
-      </div> */}
-      {/* <div className="event-wrapper">
-
+      </div>
+      <div className="event-wrapper">
         {meeting.uid ? (
-          <div className="flex-d-column">
-            <IconButton
-              click={setMeeting}
-              icon={{
-                icon: "x",
-                label: `${meeting.time.startTime} ${meeting.time.endTime}`,
-              }}
-            />
-            {user && user.uid ? (
-              <div>
+          <div className="container">
+            <MeetingDetails meeting={meeting} />
+
+            {user.userId && (
+              <div className="container">
                 <h2 className="heading">User Information</h2>
                 <UserCard user={user} hideHero />
-                <MeetingDetails meeting={meeting} />
-                <button type="button" className="btn-cta" onClick={handleCheckout}>
+                {/* <button type="button" className="btn-cta" onClick={handleCheckout}>
                   Proceed to checkout
-                </button>
+                </button> */}
               </div>
-            ) : (
-              <div>Enter details</div>
             )}
           </div>
-        )
-
+        ) : (
+          <h2 className="text-center">No meetings </h2>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };

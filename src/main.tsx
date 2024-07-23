@@ -6,7 +6,7 @@ import { LogState } from "@context/log/LogContext";
 import { AdminState } from "@context/admin/AdminContext";
 import { isDev } from "@config";
 import ScrollToTop from "@router/ScrollToTop";
-// import { CalendarState } from "@context/calendar/CalendarContext";
+import { CalendarState } from "@context/calendar/CalendarContext";
 import { StoreState } from "@context/store/StoreContext";
 import App from "./App";
 import AppRouter from "./AppRouter";
@@ -26,13 +26,13 @@ if (elementRoot) {
         <LogState>
           <AppState>
             <StoreState>
-              {/* <CalendarState> */}
-              <AdminState>
-                <App>
-                  <AppRouter />
-                </App>
-              </AdminState>
-              {/* </CalendarState> */}
+              <CalendarState>
+                <AdminState>
+                  <App>
+                    <AppRouter />
+                  </App>
+                </AdminState>
+              </CalendarState>
             </StoreState>
           </AppState>
         </LogState>

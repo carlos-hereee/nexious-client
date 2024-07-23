@@ -1,4 +1,4 @@
-import { STORE_ACTIONS } from "@actions/ServiceActions";
+import { STORE_ACTIONS } from "@actions/StoreActions";
 import { axiosAuth } from "@axios/axiosAuth";
 import { isDev } from "@config";
 import { StoreDispatchProps } from "store-context";

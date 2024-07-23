@@ -1,47 +1,38 @@
-// import { useContext } from "react";
-// import { useContext, useEffect } from "react";
-// import { CalendarContext } from "@context/calendar/CalendarContext";
-// import { StoreContext } from "@context/store/StoreContext";
-// import { useNavigate } from "react-router-dom";
-import { Calendar } from "nexious-library";
-// import { AuthContext } from "@context/auth/AuthContext";
+import { Calendar, Loading } from "nexious-library";
 import CalendarEvents from "@components/app/CalendarEvents";
-import { AppContext } from "@context/app/AppContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserMenu from "@components/app/UserMenu";
-// import { AppContext } from "@context/app/AppContext";
+import { CalendarContext } from "@context/calendar/CalendarContext";
+import { AppContext } from "@context/app/AppContext";
+import { CalendarDayProp, CalEvent } from "app-calendar";
+// import { IEvent } from "app-calendar";
 
 const AppBooking = () => {
-  // const { selectedDay, meeting, setMeeting, setDay } = useContext(CalendarContext);
-  // const { bookable, removeFromCart, cart, active, setActive, addToCart } = useContext(StoreContext);
-  const { calendar } = useContext(AppContext);
-  // const { user } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const { name, events, getCalendar, updateSelectedDay } = useContext(CalendarContext);
+  const { appId } = useContext(AppContext);
+  const requireEvents = events.some((e) => typeof e === "string");
 
-  // useEffect(() => {
-  //   if (!active?.uid) {
-  //     navigate("/services");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (events) {
+      if (requireEvents) getCalendar({ appId });
+    }
+  }, [events]);
 
-  // const onCheckout = () => {
-  //   addToCart(cart, { service: active, meeting, user });
-  //   navigate("/checkout");
-  // };
-  // const handleDayClick = (e) => {
-  //   meeting?.uid !== e.uid && setMeeting({});
-  //   setDay(e);
-  // };
+  const handleDayClick = (e: CalEvent | CalendarDayProp) => {
+    if ((e as CalEvent).list) updateSelectedDay(e as CalEvent);
+    else updateSelectedDay({ date: e.date, list: [] });
+  };
+  if (requireEvents || !events) return <Loading />;
   return (
     <section className="primary-container">
       <UserMenu />
-      {calendar.name && <h1 className="heading">{calendar.name}</h1>}
+      {name && <h1 className="heading">{name}</h1>}
       <Calendar
         value={new Date()}
-        // onDayClick={handleDayClick}
+        onDayClick={handleDayClick}
         minDate={new Date()}
         // minDetail="month"
-        // events={calendar.events ? calendar.events : []}
+        events={events}
       />
       <CalendarEvents />
     </section>

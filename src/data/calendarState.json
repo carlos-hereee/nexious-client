@@ -1,3 +1,37 @@
 {
-  "isLoading": false
+  "isLoading": false,
+  "errorMessage": "",
+  "calendarId": "",
+  "calendarLink": "",
+  "closeTime": "",
+  "startTime": "",
+  "workWeek": "",
+  "name": "",
+  "theme": "",
+  "schedule": [],
+  "events": [],
+  "event": {
+    "uid": "",
+    "eventId": "",
+    "date": "",
+    "name": "",
+    "details": "",
+    "createdAt": "",
+    "endTime": "",
+    "startTime": "",
+    "isOpen": false,
+    "attendees": []
+  },
+  "selectedDay": {
+    "date": "",
+    "list": []
+  },
+  "meeting": {
+    "uid": "",
+    "name": "",
+    "details": "",
+    "date": "",
+    "startTime": "",
+    "endTime": ""
+  }
 }

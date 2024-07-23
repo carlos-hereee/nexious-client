@@ -6,7 +6,7 @@ import { hints } from "@data/nexious.json";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { AuthContext } from "@context/auth/AuthContext";
-import { formatStoreUrl } from "@formatters/formatStringUrl";
+import { formatStoreUrl } from "@app/formatStringUrl";
 import AppLimitations from "../AppLimitations";
 import InitPhase from "../InitPhase";
 

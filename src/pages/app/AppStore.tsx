@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
-import { formatPenniesToDollars } from "@formatters/formatPenniesToDollars";
+import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {

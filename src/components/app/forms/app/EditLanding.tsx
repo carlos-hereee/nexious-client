@@ -3,7 +3,7 @@ import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppValues } from "app-forms";
-import { formatInitialEntryValues, formatInitialValues } from "@formatters/formatInitialFormValues";
+import { formatInitialEntryValues, formatInitialValues } from "@app/formatInitialFormValues";
 // import data from "@data/data.json";
 
 const EditLanding = () => {

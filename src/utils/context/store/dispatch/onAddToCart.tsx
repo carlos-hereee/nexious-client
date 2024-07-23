@@ -1,4 +1,4 @@
-import { STORE_ACTIONS } from "@actions/ServiceActions";
+import { STORE_ACTIONS } from "@actions/StoreActions";
 import { isDev } from "@config";
 import { CartProps, StoreDispatchProps } from "store-context";
 

@@ -9,7 +9,7 @@ import PublicRoute from "@router/PublicRoute";
 import Landing from "@pages/app/Landing";
 import SignUp from "@pages/auth/Register";
 import ForgotPassword from "@pages/auth/ForgotPassword";
-import BuildApp from "@components/app/forms/BuildApp";
+import BuildApp from "@components/app/forms/app/BuildApp";
 import Login from "@pages/auth/Login";
 import UserPlayground from "@pages/dashboard/UserPlayground";
 import Homepage from "@pages/public/HomePage";
