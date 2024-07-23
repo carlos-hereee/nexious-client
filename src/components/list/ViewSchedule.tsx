@@ -10,7 +10,6 @@ interface Props<L> {
 const ViewSchedule = ({ list, heading, onClick, navigation }: Props<IEvent>) => {
   const requireEvents = list.some((e) => typeof e === "string");
   if (requireEvents) return <Loading />;
-  console.log("list :>> ", list);
   return (
     <div className="primary-container">
       {heading && <h2 className="heading">{heading}</h2>}

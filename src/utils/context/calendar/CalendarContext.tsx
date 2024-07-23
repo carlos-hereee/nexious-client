@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import calendarState from "@data/calendarState.json";
-import { ICalendarSchema, IEvent, PostEvent } from "app-calendar";
+import { CalEvent, ICalendarSchema, PostEvent } from "app-calendar";
 import { CalendarProps, ChildProps } from "app-types";
 import { AppContext } from "@context/app/AppContext";
 import { reducer } from "./CalendarReducer";
@@ -28,7 +28,7 @@ export const CalendarState = ({ children }: ChildProps) => {
   }, [calendar]);
 
   const updateCalendar = useCallback((cal: CalendarProps) => setCalendar({ dispatch, calendar: cal }), []);
-  const updateSelectedDay = useCallback((day: IEvent) => setSelectedDay({ dispatch, day }), []);
+  const updateSelectedDay = useCallback((day: CalEvent) => setSelectedDay({ dispatch, day }), []);
   const addCalendarEvent = useCallback((data: PostEvent) => postCalEvent({ dispatch, ...data, updateCalendar }), []);
   const getCalendar = useCallback((data: { appId: string }) => fetchCalendar({ dispatch, ...data, updateCalendar }), []);
 
@@ -50,7 +50,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       addCalendarEvent,
       getCalendar,
     };
-  }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name]);
+  }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name, state.selectedDay]);
 
   return <CalendarContext.Provider value={calendarValues}>{children}</CalendarContext.Provider>;
 };

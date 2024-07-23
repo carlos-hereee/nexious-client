@@ -11,12 +11,7 @@
   "schedule": [],
   "events": [],
   "selectedDay": {
-    "uid": "",
     "date": "",
-    "startTime": "",
-    "endTime": "",
-    "attendees": [],
-    "isOpen": false,
-    "eventId": ""
+    "list": []
   }
 }

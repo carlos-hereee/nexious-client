@@ -2,6 +2,22 @@ declare module "app-calendar" {
   import { CalendarProps } from "app-types";
   import { CAL_ACTIONS } from "@actions/CalendarAction";
 
+  export type CalEvent = {
+    date: string;
+    list: IEvent[];
+  };
+  export type CalendarDayProp = {
+    dayIdx: number;
+    month: number;
+    year: number;
+    date: string;
+    maxDays: number;
+    weeks: number;
+    start: number;
+    day: number;
+    yyyyddmm: string;
+    ping?: number;
+  };
   export interface EventAttendees {
     uid: string;
     userId: string;
@@ -51,10 +67,10 @@ declare module "app-calendar" {
     schedule: IEvent[];
     events: IEvent[];
     errorMessage: string;
-    selectedDay: IEvent;
+    selectedDay: CalEvent;
   }
   export interface ICalendarSchema extends CalendarStateProps {
-    updateSelectedDay: (day: IEvent) => void;
+    updateSelectedDay: (day: CalEvent) => void;
     addCalendarEvent: (day: PostEvent) => void;
     getCalendar: (appId: { appId: string }) => void;
   }
@@ -67,7 +83,7 @@ declare module "app-calendar" {
     dispatch: React.Dispatch<CalendarActionProps>;
     updateCalendar?: (d: CalendarProps) => void;
     calendar?: CalendarProps;
-    day?: IEvent;
+    day?: CalEvent;
     event?: IEvent;
     appId?: string;
   }
@@ -87,5 +103,5 @@ declare module "app-calendar" {
         payload: string;
       }
     | { type: CAL_ACTIONS.SET_CAL_SCHEDULE | CAL_ACTIONS.SET_CAL_EVENTS; payload: IEvent[] }
-    | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: IEvent };
+    | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: CalEvent };
 }
