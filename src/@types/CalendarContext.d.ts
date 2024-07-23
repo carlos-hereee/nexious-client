@@ -33,6 +33,8 @@ declare module "app-calendar" {
     uid: string;
     eventId: string;
     date: string;
+    name: string;
+    details: string;
     startTime: string;
     createdAt?: string;
     endTime: string;
@@ -55,6 +57,13 @@ declare module "app-calendar" {
     schedule: { eventId: string }[];
     adminIds: { userId: string; role: string }[];
   }
+  export interface MeetingDetials {
+    uid: string;
+    name: string;
+    details: string;
+    startTime: string;
+    endTime: string;
+  }
   export interface CalendarStateProps {
     isLoading: boolean;
     calendarId: string;
@@ -67,11 +76,13 @@ declare module "app-calendar" {
     schedule: IEvent[];
     events: IEvent[];
     errorMessage: string;
+    meeting: MeetingDetials;
     selectedDay: CalEvent;
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: CalEvent) => void;
     addCalendarEvent: (day: PostEvent) => void;
+    updateMeeting: (day: MeetingDetials) => void;
     getCalendar: (appId: { appId: string }) => void;
   }
   export interface CalendarContainerProps {
@@ -83,6 +94,7 @@ declare module "app-calendar" {
     dispatch: React.Dispatch<CalendarActionProps>;
     updateCalendar?: (d: CalendarProps) => void;
     calendar?: CalendarProps;
+    meeting?: MeetingDetials;
     day?: CalEvent;
     event?: IEvent;
     appId?: string;
@@ -103,5 +115,6 @@ declare module "app-calendar" {
         payload: string;
       }
     | { type: CAL_ACTIONS.SET_CAL_SCHEDULE | CAL_ACTIONS.SET_CAL_EVENTS; payload: IEvent[] }
-    | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: CalEvent };
+    | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: CalEvent }
+    | { type: CAL_ACTIONS.SET_CAL_MEETING; payload: MeetingDetials };
 }

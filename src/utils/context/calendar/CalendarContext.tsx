@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import calendarState from "@data/calendarState.json";
-import { CalEvent, ICalendarSchema, PostEvent } from "app-calendar";
+import { CalEvent, ICalendarSchema, MeetingDetials, PostEvent } from "app-calendar";
 import { CalendarProps, ChildProps } from "app-types";
 import { AppContext } from "@context/app/AppContext";
 import { reducer } from "./CalendarReducer";
@@ -8,6 +8,7 @@ import { setCalendar } from "./dispatch/setCalendar";
 import { setSelectedDay } from "./dispatch/setSelectedDay";
 import { postCalEvent } from "./request/postCalEvent";
 import { fetchCalendar } from "./request/fetchCalendar";
+import { setMeeting } from "./dispatch/setMeeting";
 // import { contactUs } from "./helpers/contactUs";
 // import { getCalendarDay } from "./helpers/getCalendarDay";
 // import { setDay } from "./helpers/setDay";
@@ -29,6 +30,7 @@ export const CalendarState = ({ children }: ChildProps) => {
 
   const updateCalendar = useCallback((cal: CalendarProps) => setCalendar({ dispatch, calendar: cal }), []);
   const updateSelectedDay = useCallback((day: CalEvent) => setSelectedDay({ dispatch, day }), []);
+  const updateMeeting = useCallback((meeting: MeetingDetials) => setMeeting({ dispatch, meeting }), []);
   const addCalendarEvent = useCallback((data: PostEvent) => postCalEvent({ dispatch, ...data, updateCalendar }), []);
   const getCalendar = useCallback((data: { appId: string }) => fetchCalendar({ dispatch, ...data, updateCalendar }), []);
 
@@ -42,6 +44,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       calendarLink: state.calendarLink,
       closeTime: state.closeTime,
       startTime: state.startTime,
+      meeting: state.meeting,
       workWeek: state.workWeek,
       events: state.events,
       name: state.name,
@@ -49,8 +52,9 @@ export const CalendarState = ({ children }: ChildProps) => {
       updateSelectedDay,
       addCalendarEvent,
       getCalendar,
+      updateMeeting,
     };
-  }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name, state.selectedDay]);
+  }, [state.isLoading, state.calendarId, state.events, state.workWeek, state.name, state.selectedDay, state.meeting]);
 
   return <CalendarContext.Provider value={calendarValues}>{children}</CalendarContext.Provider>;
 };

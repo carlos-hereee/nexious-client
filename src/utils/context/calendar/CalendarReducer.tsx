@@ -25,6 +25,8 @@ export const reducer = (state: CalendarStateProps, action: CalendarActionProps):
       return { ...state, events: action.payload };
     case CAL_ACTIONS.SET_CAL_SELECTED_DAY:
       return { ...state, selectedDay: action.payload };
+    case CAL_ACTIONS.SET_CAL_MEETING:
+      return { ...state, meeting: action.payload };
     default:
       return state;
   }

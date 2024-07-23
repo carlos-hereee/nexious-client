@@ -13,5 +13,12 @@
   "selectedDay": {
     "date": "",
     "list": []
+  },
+  "meeting": {
+    "uid": "",
+    "name": "",
+    "details": "",
+    "startTime": "",
+    "endTime": ""
   }
 }
