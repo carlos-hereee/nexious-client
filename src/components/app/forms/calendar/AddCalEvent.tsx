@@ -2,13 +2,11 @@ import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { Form, Loading } from "nexious-library";
 import { calendarData, forms } from "@data/data.json";
-import { CalendarContext } from "@context/calendar/CalendarContext";
 import { IEvent } from "app-calendar";
 
 const AddCalEvent = () => {
   // initial data if any
-  const { isLoading, appId } = useContext(AppContext);
-  const { addCalendarEvent } = useContext(CalendarContext);
+  const { isLoading, appId, addCalendarEvent } = useContext(AppContext);
   const { initialValues, labels, placeholders, types } = forms.calendarEventForm;
 
   if (isLoading) return <Loading message="Loading app data" />;

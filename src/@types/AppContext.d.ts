@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { IEvent } from "app-calendar";
   import { MerchProps } from "store-context";
   import { ISubscription, UserSchema } from "auth-context";
   import { AppAssets } from "app-admin";
@@ -95,6 +96,7 @@ declare module "app-context" {
     deleteSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
+    addCalendarEvent: (data: PostEvent) => void;
   }
 
   export interface AppDispatchProps {
@@ -105,6 +107,7 @@ declare module "app-context" {
     appList?: AppListProps[];
     platformTiers?: ISubscription[];
     logo?: string;
+    event?: IEvent;
     id?: string;
     media?: MediaProps;
     appName?: string;

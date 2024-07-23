@@ -55,15 +55,11 @@ declare module "app-calendar" {
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: IEvent) => void;
-    addCalendarEvent: (day: PostEvent) => void;
   }
   export interface CalendarContainerProps {
-    // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
     onRemove?: (key: string) => void;
     onClick?: () => void;
     onPhaseClick: (phase: DialogStatusProps) => void;
-    // onAddItem?: (phase: DialogStatusProps) => void;
-    // onEditDetails?: (phase: DialogStatusProps) => void;
   }
   export interface CalendarDispatchProps {
     dispatch: React.Dispatch<CalendarActionProps>;
