@@ -1,3 +1,13 @@
 {
-  "isLoading": false
+  "isLoading": false,
+  "selectedDay": {
+    "uid": "",
+    "date": "",
+    "start": "",
+    "end": "",
+    "attendees": [],
+    "isOpen": false,
+    "eventId": ""
+  },
+  "errorMessage": ""
 }

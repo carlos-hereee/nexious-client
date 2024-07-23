@@ -1,7 +1,7 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
 import { ChildProps, StoreProps } from "app-types";
-import { STORE_ACTIONS } from "@actions/ServiceActions";
+import { STORE_ACTIONS } from "@actions/StoreActions";
 import {
   CartProps,
   MerchProps,

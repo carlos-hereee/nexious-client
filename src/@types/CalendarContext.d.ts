@@ -1,4 +1,7 @@
 declare module "app-calendar" {
+  import { CalendarProps } from "app-types";
+  import { CAL_ACTIONS } from "@actions/CalendarAction";
+
   export interface EventAttendees {
     uid: string;
     userId: string;
@@ -9,7 +12,7 @@ declare module "app-calendar" {
   export interface IEvent {
     uid: string;
     eventId: string;
-    date: Date;
+    date: string;
     start: string;
     end: string;
     isOpen: boolean;
@@ -18,7 +21,7 @@ declare module "app-calendar" {
   export interface IEventSchema {
     eventId: string;
     calendarId: string;
-    date: Date;
+    date: string;
     hero: string;
     events: IEvent[];
   }
@@ -33,7 +36,7 @@ declare module "app-calendar" {
   }
   export interface ICalendarSchema {
     isLoading: boolean;
-    calendar: CalendarSchema;
+    errorMessage: string;
     selectedDay: IEvent;
   }
   export interface CalendarContainerProps {
@@ -44,4 +47,11 @@ declare module "app-calendar" {
     // onAddItem?: (phase: DialogStatusProps) => void;
     // onEditDetails?: (phase: DialogStatusProps) => void;
   }
+  export interface CalendarDispatchProps {
+    dispatch: React.Dispatch<CalendarActionProps>;
+    calendar: CalendarProps;
+  }
+  export type CalendarActionProps =
+    | { type: CAL_ACTIONS.IS_LOADING; payload: boolean }
+    | { type: CAL_ACTIONS.SET_ERROR; payload: string };
 }

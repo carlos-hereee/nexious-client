@@ -13,6 +13,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   const { calendar, appUrl } = useContext(AppContext);
   const { limitations } = useAccountLimitations();
   const { isPlatformOwner } = useContext(AuthContext);
+  // console.log("calendar :>> ", calendar);
 
   // // account limitations
   if (!isPlatformOwner && !limitations.calendarEvents) {
@@ -35,8 +36,7 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
         Coming Soon!
       </ItemDetail>
       <ItemDetail label="Bookings:" labelLayout="bolden">
-        {/* <Button label="View booking" onClick={() => onPhaseClick("phase-three")} /> */}
-        Coming Soon!
+        <Button label="View booking" onClick={() => onPhaseClick("phase-three")} />
       </ItemDetail>
       <ItemDetail label="Add event:" labelLayout="bolden">
         Coming Soon!

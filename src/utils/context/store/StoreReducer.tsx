@@ -1,4 +1,4 @@
-import { STORE_ACTIONS } from "@actions/ServiceActions";
+import { STORE_ACTIONS } from "@actions/StoreActions";
 import { ServiceActionProps as ActionProps, StoreStateProps as StateProps } from "store-context";
 
 export const reducer = (state: StateProps, action: ActionProps): StateProps => {
