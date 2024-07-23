@@ -37,6 +37,9 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
         <Button label="View booking" onClick={() => onPhaseClick("phase-three")} />
       </ItemDetail>
       <ItemDetail label="Events:" labelLayout="bolden">
+        <Button label="View events" onClick={() => onPhaseClick("phase-view-event")} />
+      </ItemDetail>
+      <ItemDetail label="Add event:" labelLayout="bolden">
         <Button label="Add event" onClick={() => onPhaseClick("phase-add-event")} />
       </ItemDetail>
       <ItemDetail label="Calendar settings: " labelLayout="bolden">

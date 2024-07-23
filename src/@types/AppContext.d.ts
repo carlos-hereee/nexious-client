@@ -96,7 +96,6 @@ declare module "app-context" {
     deleteSubscription: (appId: SubcriptionProp) => void;
 
     updateActiveAppData: (props: ActiveMenuProp) => void;
-    addCalendarEvent: (data: PostEvent) => void;
   }
 
   export interface AppDispatchProps {
@@ -104,6 +103,7 @@ declare module "app-context" {
     app?: AppProps;
     page?: PageProps;
     store?: StoreProps;
+    calendar?: CalendarProps;
     appList?: AppListProps[];
     platformTiers?: ISubscription[];
     logo?: string;

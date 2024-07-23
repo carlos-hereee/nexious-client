@@ -1,14 +1,14 @@
-import { APP_ACTIONS } from "@actions/AppActions";
+import { CAL_ACTIONS } from "@actions/CalendarAction";
 import { axiosAuth } from "@axios/axiosAuth";
-import { AppDispatchProps } from "app-context";
+import { CalendarDispatchProps } from "app-calendar";
 
-export const postCalEvent = async ({ dispatch, event, appId, updateAppData }: AppDispatchProps) => {
+export const postCalEvent = async ({ dispatch, event, appId, updateCalendar }: CalendarDispatchProps) => {
   // require key variable
   if (!event) throw Error("event param is required");
   try {
-    dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
+    dispatch({ type: CAL_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/calendar/${appId}/add-event`, event);
-    if (updateAppData) updateAppData(data);
+    if (updateCalendar) updateCalendar(data);
   } catch (error) {
     // const message = error.response.data;
     // dispatch({ type: "SET_ERROR", payload: message });

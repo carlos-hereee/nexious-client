@@ -4,7 +4,6 @@ import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps, Subcripti
 import { AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
-import { PostEvent } from "app-calendar";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
 import { reducer } from "./AppReducer";
@@ -20,7 +19,6 @@ import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
 import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
-import { postCalEvent } from "./request/postCalEvent";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -53,9 +51,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
   const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
   const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
-
-  // calendar requests
-  const addCalendarEvent = useCallback((data: PostEvent) => postCalEvent({ dispatch, ...data, updateAppData }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -117,8 +112,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       clearNotification,
       getAppUsers,
       setAppMessage,
-      // calendar request
-      addCalendarEvent,
     };
   }, [
     state.isLoading,

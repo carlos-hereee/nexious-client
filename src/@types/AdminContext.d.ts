@@ -1,6 +1,6 @@
 declare module "app-admin" {
   import { OrderSchema, StoreOrderUpdate } from "store-context";
-  import { MenuItemProp, PageProps, StoreProps, StringObjProp } from "app-types";
+  import { MenuItemProp, PageProps, StoreProps, StringObjProp, CalendarProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { ISubscription, UserSchema } from "auth-context";
@@ -19,6 +19,7 @@ declare module "app-admin" {
     user?: UserSchema;
     store?: StoreProps;
     app?: AppProps;
+    calendar?: CalendarProps;
     account?: StripeConfig;
     page?: PageProps;
     appList?: AppListProps[];

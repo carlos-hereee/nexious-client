@@ -13,8 +13,8 @@
   "selectedDay": {
     "uid": "",
     "date": "",
-    "start": "",
-    "end": "",
+    "startTime": "",
+    "endTime": "",
     "attendees": [],
     "isOpen": false,
     "eventId": ""

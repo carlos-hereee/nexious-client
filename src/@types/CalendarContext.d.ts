@@ -17,9 +17,9 @@ declare module "app-calendar" {
     uid: string;
     eventId: string;
     date: string;
-    start: string;
+    startTime: string;
     createdAt?: string;
-    end: string;
+    endTime: string;
     isOpen: boolean;
     attendees: EventAttendees[];
   }
@@ -55,6 +55,8 @@ declare module "app-calendar" {
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: IEvent) => void;
+    addCalendarEvent: (day: PostEvent) => void;
+    getCalendar: (appId: { appId: string }) => void;
   }
   export interface CalendarContainerProps {
     onRemove?: (key: string) => void;
@@ -63,6 +65,7 @@ declare module "app-calendar" {
   }
   export interface CalendarDispatchProps {
     dispatch: React.Dispatch<CalendarActionProps>;
+    updateCalendar?: (d: CalendarProps) => void;
     calendar?: CalendarProps;
     day?: IEvent;
     event?: IEvent;
