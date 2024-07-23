@@ -1,25 +1,22 @@
 // import { MeetingDetails } from "@nxs-atoms";
 // import { CalendarEventList, IconButton } from "@nxs-molecules";
 // import { CardSection, CartRow, IconButton } from "nexious-library";
-// import { setActive } from "@context/services/helpers/setActive";
-// import { useContext } from "react";
 // import { StoreContext } from "@context/store/StoreContext";
 // import { CalendarContext } from "@context/calendar/CalendarContext";
-// import { findNextOpenApp } from "@utils/app/findNextOpenApp";
 // import { AuthContext } from "@context/auth/AuthContext";
 
 import { scrollToId } from "@app/scrollToElement";
 import { CalendarContext } from "@context/calendar/CalendarContext";
 import { useContext, useEffect } from "react";
-import { IconButton, ItemDetail, UserCard } from "nexious-library";
+import { IconButton, UserCard } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { MeetingDetials } from "app-calendar";
+import MeetingDetails from "./calendar/MeetingDetails";
 
 const CalendarEvents = () => {
   const { user } = useContext(AuthContext);
   const { selectedDay, errorMessage, meeting, updateMeeting } = useContext(CalendarContext);
 
-  console.log("meeting :>> ", meeting);
   useEffect(() => {
     if (selectedDay.date) scrollToId("calendar-events");
   }, [selectedDay]);
@@ -30,9 +27,7 @@ const CalendarEvents = () => {
   //   console.log("findNextOpen :>> ", e);
   //   // setMeeting(event);
   // };
-  // const setMeeting = (e) => {
-  //   console.log("setMeeting :>> ", e);
-  // };
+
   const handleMettingClick = (m: MeetingDetials) => updateMeeting(m);
 
   return (
@@ -66,24 +61,8 @@ const CalendarEvents = () => {
       <div className="event-wrapper">
         {meeting.uid ? (
           <div className="container">
-            <h2 className="heading">Event details</h2>
-            <ItemDetail label="Event name:" labelLayout="bolden">
-              <span>{meeting.name || "No name"}</span>
-            </ItemDetail>
-            <ItemDetail label="Event details:" labelLayout="bolden">
-              <span>{meeting.details || "No details"}</span>
-            </ItemDetail>
-            <ItemDetail label="Start time:" labelLayout="bolden">
-              <span>{meeting.startTime}</span>
-            </ItemDetail>
-            <ItemDetail label="End time:" labelLayout="bolden">
-              <span>{meeting.endTime}</span>
-            </ItemDetail>
-            {/* <IconButton
-                // click={setMeeting}
-                theme="btn-main"
-                icon={{ icon: "cancel", label: "Remove meeting" }}
-              /> */}
+            <MeetingDetails meeting={meeting} />
+
             {user.userId && (
               <div className="container">
                 <h2 className="heading">User Information</h2>

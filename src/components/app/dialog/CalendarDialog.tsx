@@ -5,14 +5,16 @@ import { Dialog } from "nexious-library";
 import ViewSchedule from "@components/list/ViewSchedule";
 import { CalendarContext } from "@context/calendar/CalendarContext";
 import { AppContext } from "@context/app/AppContext";
+import { IEvent } from "app-calendar";
 import CreateCalendar from "../forms/calendar/CreateCalendar";
 import EditCalendar from "../forms/calendar/EditCalendar";
 import EditBooking from "../forms/calendar/EditBooking";
 import AddCalEvent from "../forms/calendar/AddCalEvent";
+import MeetingDetails from "../calendar/MeetingDetails";
 
 const CalendarDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
-  const { schedule, events, getCalendar } = useContext(CalendarContext);
+  const { schedule, events, event, getCalendar, updateActiveEvent } = useContext(CalendarContext);
   const { appId } = useContext(AppContext);
 
   useEffect(() => {
@@ -21,11 +23,19 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
       if (requireEvents) getCalendar({ appId });
     }
   }, [schedule, events]);
-
-  const handleClick = (e) => {
-    console.log("e :>> ", e);
+  const handleClick = (e: IEvent) => updateActiveEvent(e);
+  const handleClose = () => {
+    updateActiveEvent({ ...event, date: "" });
+    onClose();
   };
 
+  if (event.date) {
+    return (
+      <Dialog theme={`alt-${theme}`} onDialogClose={handleClose}>
+        <MeetingDetails meeting={event} />
+      </Dialog>
+    );
+  }
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {status === "phase-one" && <CreateCalendar />}

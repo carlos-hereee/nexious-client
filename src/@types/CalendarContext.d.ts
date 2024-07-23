@@ -61,6 +61,7 @@ declare module "app-calendar" {
     uid: string;
     name: string;
     details: string;
+    date: string;
     startTime: string;
     endTime: string;
   }
@@ -75,12 +76,14 @@ declare module "app-calendar" {
     theme: string;
     schedule: IEvent[];
     events: IEvent[];
+    event: IEvent;
     errorMessage: string;
     meeting: MeetingDetials;
     selectedDay: CalEvent;
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: CalEvent) => void;
+    updateActiveEvent: (day: IEvent) => void;
     addCalendarEvent: (day: PostEvent) => void;
     updateMeeting: (day: MeetingDetials) => void;
     getCalendar: (appId: { appId: string }) => void;
@@ -115,6 +118,7 @@ declare module "app-calendar" {
         payload: string;
       }
     | { type: CAL_ACTIONS.SET_CAL_SCHEDULE | CAL_ACTIONS.SET_CAL_EVENTS; payload: IEvent[] }
+    | { type: CAL_ACTIONS.SET_EVENT; payload: IEvent }
     | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: CalEvent }
     | { type: CAL_ACTIONS.SET_CAL_MEETING; payload: MeetingDetials };
 }

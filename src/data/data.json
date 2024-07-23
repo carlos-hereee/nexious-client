@@ -111,22 +111,20 @@
       "removalLabel": "Remove",
       "initialValues": {
         "name": "",
+        "details": "",
         "date": "",
         "startTime": "",
         "endTime": ""
       },
       "labels": {
-        "frequancy": "Frequancy of recurrence",
         "startTime": "Start time",
         "date": "Date",
         "name": "Event name",
-        "isRecurring": "Does this event repeat",
-        "isNotRecurring": "This event occurs one time",
+        "details": "Event details",
         "endTime": "End time"
       },
       "placeholders": { "name": "Event name" },
       "types": {
-        "frequancy": "select",
         "date": "date",
         "startTime": "date-time",
         "endTime": "date-time"

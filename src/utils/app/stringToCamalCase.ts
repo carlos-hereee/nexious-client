@@ -10,3 +10,6 @@ export const stringToCamalCase = (str: string) => {
     })
     .replace(regWhitSpace, "");
 };
+export const formatDate = (str: string) => {
+  return new Date(str || Date.now()).toISOString().slice(0, 10);
+};

@@ -13,4 +13,5 @@ export enum CAL_ACTIONS {
   SET_CAL_EVENTS,
   SET_THEME,
   SET_CAL_MEETING,
+  SET_EVENT,
 }
