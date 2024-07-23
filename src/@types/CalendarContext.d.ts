@@ -34,10 +34,22 @@ declare module "app-calendar" {
     schedule: { eventId: string }[];
     adminIds: { userId: string; role: string }[];
   }
-  export interface ICalendarSchema {
+  export interface CalendarStateProps {
     isLoading: boolean;
+    calendarId: string;
+    calendarLink: string;
+    closeTime: string;
+    startTime: string;
+    workWeek: string;
+    name: string;
+    theme: string;
+    schedule: IEvent[];
+    events: IEvent[];
     errorMessage: string;
     selectedDay: IEvent;
+  }
+  export interface ICalendarSchema extends CalendarStateProps {
+    updateSelectedDay: (day: IEvent) => void;
   }
   export interface CalendarContainerProps {
     // data: { heading?: string; medias?: MediaItemProp[]; hint?: string };
@@ -49,9 +61,24 @@ declare module "app-calendar" {
   }
   export interface CalendarDispatchProps {
     dispatch: React.Dispatch<CalendarActionProps>;
-    calendar: CalendarProps;
+    calendar?: CalendarProps;
+    day?: IEvent;
   }
   export type CalendarActionProps =
     | { type: CAL_ACTIONS.IS_LOADING; payload: boolean }
-    | { type: CAL_ACTIONS.SET_ERROR; payload: string };
+    | {
+        type:
+          | CAL_ACTIONS.SET_ERROR
+          | CAL_ACTIONS.SET_CAL_NAME
+          | CAL_ACTIONS.SET_CAL_ID
+          | CAL_ACTIONS.SET_CAL_LINK
+          | CAL_ACTIONS.SET_CAL_CLOSE_TIME
+          | CAL_ACTIONS.SET_CAL_START_TIME
+          | CAL_ACTIONS.SET_CAL_WORK_WEEK
+          | CAL_ACTIONS.SET_THEME;
+
+        payload: string;
+      }
+    | { type: CAL_ACTIONS.SET_CAL_SCHEDULE | CAL_ACTIONS.SET_CAL_EVENTS; payload: IEvent[] }
+    | { type: CAL_ACTIONS.SET_CAL_SELECTED_DAY; payload: IEvent };
 }

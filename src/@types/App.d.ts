@@ -1,4 +1,5 @@
 declare module "app-types" {
+  import { IEvent } from "app-calendar";
   import { OrderSchema, MerchProps } from "store-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
@@ -260,9 +261,14 @@ declare module "app-types" {
   export interface CalendarProps {
     name: string;
     theme?: string;
+    calendarLink?: string;
+    startTime?: string;
+    closeTime?: string;
+    workWeek?: string;
     calendarId: string;
     hero?: string;
-    schedule: StringObjProp[];
+    schedule: IEvent[];
+    events?: IEvent[];
   }
   export interface HeroProps {
     url: string;

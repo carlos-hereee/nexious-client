@@ -1,5 +1,15 @@
 {
   "isLoading": false,
+  "errorMessage": "",
+  "calendarId": "",
+  "calendarLink": "",
+  "closeTime": "",
+  "startTime": "",
+  "workWeek": "",
+  "name": "",
+  "theme": "",
+  "schedule": [],
+  "events": [],
   "selectedDay": {
     "uid": "",
     "date": "",
@@ -8,6 +18,5 @@
     "attendees": [],
     "isOpen": false,
     "eventId": ""
-  },
-  "errorMessage": ""
+  }
 }
