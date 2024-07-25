@@ -22,9 +22,11 @@ const MediaContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Link social media:" labelLayout="bolden">
         <Button label="+ Add Social media" onClick={() => updatePhase("phase-two")} />
       </ItemDetail>
+      <ItemDetail label="View posts:" labelLayout="bolden">
+        <Button label="View posts" onClick={() => updatePhase("phase-four")} />
+      </ItemDetail>
       <ItemDetail label="Create a post:" labelLayout="bolden">
-        {/* <Button label="+ Post" onClick={() => updatePhase("phase-three")} /> */}
-        <span>Coming soon!</span>
+        <Button label="+ Post" onClick={() => updatePhase("phase-three")} />
       </ItemDetail>
     </div>
   );
