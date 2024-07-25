@@ -1,3 +1,4 @@
+import MediaList from "@components/list/MediaList";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppCardProps } from "app-context";
 import { Button, Hero } from "nexious-library";
@@ -18,12 +19,8 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
       <button type="button" className="btn-card" onClick={handleSeeLive}>
         <Hero hero={heroData} theme="logo" />
         <h3 className="heading">{app?.appName || "No name"}</h3>
-        {errorMessage && (
-          <div className="card-row-body">
-            {/* {app.media?.hasMedias && <MediaContainer data={{ medias: app.media.medias }} />} */}
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
-          </div>
-        )}
+        {app.media && app.media.medias.length > 0 && <MediaList data={app.media.medias} displayRow />}
+        {errorMessage && <div className="card-row-body">{errorMessage && <p className="error-message">{errorMessage}</p>}</div>}
       </button>
       {isAdmin && (
         <Button

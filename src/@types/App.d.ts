@@ -176,6 +176,7 @@ declare module "app-types" {
   export interface CardContainerProps {
     data?: MediaItemProp[];
     hint?: string;
+    displayRow?: boolean;
     onRemove?: (key: string) => void;
     onMediaClick?: (key: MediaItemProp) => void;
   }
