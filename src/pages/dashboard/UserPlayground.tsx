@@ -20,9 +20,13 @@ const UserPlayground = () => {
     useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { trackOrder } = useContext(StoreContext);
-  const { posts } = useContext(MediaContext);
+  const { posts, getPosts } = useContext(MediaContext);
 
   const { ping } = useNotifications();
+
+  useEffect(() => {
+    getPosts("");
+  }, []);
 
   useEffect(() => {
     // handle account update for new users

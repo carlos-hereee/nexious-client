@@ -30,6 +30,7 @@ declare module "media-context" {
     setLoading: (loading: boolean) => void;
     updatePost: (post: Post) => void;
     setRequestStatus: (status: string) => void;
+    getPosts: (appId: string) => void;
     updatePosts: (post: Post[]) => void;
     addPost: (event: CreatePost) => void;
   }
