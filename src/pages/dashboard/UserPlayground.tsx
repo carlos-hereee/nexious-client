@@ -7,6 +7,7 @@ import { useNotifications } from "@hooks/useNotifications";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
 import TrackOrder from "@components/app/containers/TrackOrders";
 import { StoreContext } from "@context/store/StoreContext";
+import { MediaContext } from "@context/media/MediaContext";
 import ViewPosts from "@components/app/ViewPosts";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
@@ -19,6 +20,7 @@ const UserPlayground = () => {
     useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { trackOrder } = useContext(StoreContext);
+  const { posts } = useContext(MediaContext);
 
   const { ping } = useNotifications();
 
@@ -79,7 +81,7 @@ const UserPlayground = () => {
 
         {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
-        {active === "feed" && <ViewPosts />}
+        {active === "feed" && <ViewPosts posts={posts} />}
         {active === "orders" && <TrackOrder />}
         {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
         {active === "account" && <AccountSettings />}
