@@ -16,7 +16,7 @@ import { Button, Loading } from "nexious-library";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import { useNotifications } from "@hooks/useNotifications";
 import Notification from "@pages/dashboard/Notification";
-import DangerZone from "./DangerZone";
+// import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
   const { dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } = useContext(AppContext);
@@ -93,7 +93,7 @@ const AppSettings = () => {
         />
       )}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
-      {nav === "danger" && <DangerZone />}
+      {/* {nav === "danger" && <DangerZone />} */}
       {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
       {show.media && (
         <MediaDialog status={status} onClose={() => handleClose({ name: "media", stat: "idle" })} onCancel={updateStatus} />

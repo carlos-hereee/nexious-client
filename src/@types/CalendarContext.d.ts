@@ -78,11 +78,13 @@ declare module "app-calendar" {
     events: IEvent[];
     event: IEvent;
     errorMessage: string;
+    requestStatus: string;
     meeting: MeetingDetials;
     selectedDay: CalEvent;
   }
   export interface ICalendarSchema extends CalendarStateProps {
     updateSelectedDay: (day: CalEvent) => void;
+    setCalStatus: (day: string) => void;
     updateActiveEvent: (day: IEvent) => void;
     addCalendarEvent: (day: PostEvent) => void;
     updateMeeting: (day: MeetingDetials) => void;
@@ -96,6 +98,7 @@ declare module "app-calendar" {
   export interface CalendarDispatchProps {
     dispatch: React.Dispatch<CalendarActionProps>;
     updateCalendar?: (d: CalendarProps) => void;
+    setCalStatus?: (d: string) => void;
     calendar?: CalendarProps;
     meeting?: MeetingDetials;
     day?: CalEvent;
@@ -112,6 +115,7 @@ declare module "app-calendar" {
           | CAL_ACTIONS.SET_CAL_LINK
           | CAL_ACTIONS.SET_CAL_CLOSE_TIME
           | CAL_ACTIONS.SET_CAL_START_TIME
+          | CAL_ACTIONS.SET_REQUEST_STATUS
           | CAL_ACTIONS.SET_CAL_WORK_WEEK
           | CAL_ACTIONS.SET_THEME;
 

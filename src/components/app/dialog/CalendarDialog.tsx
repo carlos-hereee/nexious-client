@@ -1,6 +1,6 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Dialog } from "nexious-library";
 import ViewSchedule from "@components/list/ViewSchedule";
 import { CalendarContext } from "@context/calendar/CalendarContext";
@@ -14,20 +14,32 @@ import MeetingDetails from "../calendar/MeetingDetails";
 
 const CalendarDialog = ({ onClose, status }: DialogProps) => {
   const { theme } = useContext(AuthContext);
-  const { schedule, events, event, getCalendar, updateActiveEvent } = useContext(CalendarContext);
+  const { schedule, events, event, getCalendar, updateActiveEvent, requestStatus, setCalStatus } = useContext(CalendarContext);
   const { appId } = useContext(AppContext);
+  const [error, setError] = useState("");
 
+  const handleClose = () => {
+    updateActiveEvent({ ...event, date: "" });
+    onClose();
+  };
   useEffect(() => {
     if (events) {
       const requireEvents = events.some((e) => typeof e === "string");
       if (requireEvents) getCalendar({ appId });
     }
   }, [schedule, events]);
+  useEffect(() => {
+    if (requestStatus === "SUCCESS") {
+      handleClose();
+      setCalStatus("");
+      setError("");
+    }
+    if (requestStatus === "ERROR") {
+      handleClose();
+      setError("Unable to fullfill request");
+    }
+  }, [requestStatus]);
   const handleClick = (e: IEvent) => updateActiveEvent(e);
-  const handleClose = () => {
-    updateActiveEvent({ ...event, date: "" });
-    onClose();
-  };
 
   if (event.date) {
     return (
@@ -41,13 +53,13 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
       {status === "phase-one" && <CreateCalendar />}
       {status === "phase-two" && <EditCalendar />}
       {status === "phase-three" && <EditBooking />}
-      {status === "phase-add-event" && <AddCalEvent />}
+      {status === "phase-add-event" && <AddCalEvent errorMessage={error} />}
       {status === "phase-four" && <ViewSchedule list={schedule} onClick={handleClick} navigation={["#", "createdAt"]} />}
       {status === "phase-view-event" && (
         <ViewSchedule
           list={events}
           onClick={handleClick}
-          navigation={["#", "Created(yyyy/mm/dd)", "Date(yyyy/mm/dd)", "Start time", "End time", "Is active"]}
+          navigation={["#", "Created", "Date", "Name", "Event time", "Is active"]}
         />
       )}
     </Dialog>

@@ -19,6 +19,8 @@ export const reducer = (state: CalendarStateProps, action: CalendarActionProps):
       return { ...state, startTime: action.payload };
     case CAL_ACTIONS.SET_CAL_WORK_WEEK:
       return { ...state, workWeek: action.payload };
+    case CAL_ACTIONS.SET_REQUEST_STATUS:
+      return { ...state, requestStatus: action.payload };
     case CAL_ACTIONS.SET_CAL_SCHEDULE:
       return { ...state, schedule: action.payload };
     case CAL_ACTIONS.SET_CAL_EVENTS:

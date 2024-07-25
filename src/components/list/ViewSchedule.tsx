@@ -1,3 +1,4 @@
+import { formatDate } from "@app/stringToCamalCase";
 import { IEvent } from "app-calendar";
 import { Button, Loading, Navigation } from "nexious-library";
 
@@ -13,20 +14,22 @@ const ViewSchedule = ({ list, heading, onClick, navigation }: Props<IEvent>) => 
   return (
     <div className="primary-container">
       {heading && <h2 className="heading">{heading}</h2>}
-      {navigation && <Navigation menus={navigation} theme="navigation-bar" />}
+      {navigation && <Navigation menus={navigation} theme="navigation-bar hide-on-mobile" />}
       {list.length > 0 ? (
         list.map((l, idx) => (
-          <Button theme="order-row" key={l.eventId || l.uid} onClick={() => onClick(l)} isDisable={!l.isOpen}>
-            <span>{idx + 1}</span>
-            <span>{new Date(l.createdAt || Date.now()).toISOString().slice(0, 10)}</span>
-            <span>{new Date(l.date).toISOString().slice(0, 10)}</span>
-            <span>{l.startTime}</span>
-            <span>{l.endTime}</span>
-            <span>{l.isOpen ? "active" : "disabled"}</span>
+          <Button theme="order-row overflow-x" key={l.eventId || l.uid} onClick={() => onClick(l)} isDisable={!l.isOpen}>
+            <span className="hide-on-mobile">{idx + 1}</span>
+            <span className="hide-on-mobile">{formatDate(l.createdAt || "")}</span>
+            <span>{formatDate(l.date)}</span>
+            <span>{l.name}</span>
+            <span>
+              {l.startTime} - {l.endTime}
+            </span>
+            <span className="hide-on-mobile">{l.isOpen ? "active" : "disabled"}</span>
           </Button>
         ))
       ) : (
-        <p>No events</p>
+        <p> No events</p>
       )}
     </div>
   );

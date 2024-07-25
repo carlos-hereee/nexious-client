@@ -49,24 +49,24 @@ const UserPlayground = () => {
             />
           )}
           <IconButton
-            icon={{ icon: "app", label: "My apps" }}
+            icon={{ icon: "app", label: "Apps" }}
             theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("apps")}
           />
           {/* TODO: ADD FEED FOR APPS USER IS SUBSCRIBE TO  */}
           <IconButton
-            icon={{ icon: "app", label: "Feed" }}
+            icon={{ icon: "scroll", label: "Feed" }}
             theme={active === "feed" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("feed")}
           />
           <IconButton
-            icon={{ icon: "app", label: "Notifications" }}
+            icon={{ icon: "bell", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("notifications")}
             ping={ping.notifications || undefined}
           />
           <IconButton
-            icon={{ icon: "checkout", label: "My orders" }}
+            icon={{ icon: "shopping", label: "Orders" }}
             theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("orders")}
           />
