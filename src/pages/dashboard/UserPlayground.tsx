@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { IconButton, Banner } from "nexious-library";
-import AppInProgress from "@pages/public/AppInProgress";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import Notification from "@pages/dashboard/Notification";
@@ -8,6 +7,7 @@ import { useNotifications } from "@hooks/useNotifications";
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
 import TrackOrder from "@components/app/containers/TrackOrders";
 import { StoreContext } from "@context/store/StoreContext";
+import ViewPosts from "@components/app/ViewPosts";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
 
@@ -79,7 +79,7 @@ const UserPlayground = () => {
 
         {active === "admin" && <OwnerDashboard />}
         {active === "apps" && <AppPlayground />}
-        {active === "feed" && <AppInProgress />}
+        {active === "feed" && <ViewPosts />}
         {active === "orders" && <TrackOrder />}
         {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
         {active === "account" && <AccountSettings />}

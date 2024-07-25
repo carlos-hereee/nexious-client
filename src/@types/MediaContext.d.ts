@@ -3,6 +3,8 @@ declare module "media-context" {
 
   export interface Post {
     uid: string;
+    appId: string;
+    postId: string;
     name: string;
     body: string;
     reviews: string;
@@ -13,6 +15,10 @@ declare module "media-context" {
     requestStatus: string;
     post: Post;
     posts: Post[];
+  }
+  export interface MediaRequest {
+    appId: string;
+    name: string;
   }
   export interface CreatePost {
     post: Post;

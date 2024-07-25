@@ -1,4 +1,5 @@
 declare module "app-admin" {
+  import { Post } from "media-context";
   import { OrderSchema, StoreOrderUpdate } from "store-context";
   import { MenuItemProp, PageProps, StoreProps, StringObjProp, CalendarProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
@@ -22,6 +23,7 @@ declare module "app-admin" {
     calendar?: CalendarProps;
     account?: StripeConfig;
     page?: PageProps;
+    posts?: Post[];
     appList?: AppListProps[];
     platformTiers?: ISubscription[];
   }

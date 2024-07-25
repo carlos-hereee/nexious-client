@@ -30,6 +30,6 @@ export const MediaState = ({ children }: ChildProps) => {
       updatePosts,
       addPost,
     };
-  }, [state.isLoading, state.error]);
+  }, [state.isLoading, state.error, state.requestStatus, state.posts]);
   return <MediaContext.Provider value={mediaValues}> {children}</MediaContext.Provider>;
 };

@@ -9,6 +9,8 @@ export const reducer = (state: MediaState, action: MediaActionProps): MediaState
       return { ...state, error: action.payload };
     case MEDIA_ACTIONS.SET_POST:
       return { ...state, post: action.payload };
+    case MEDIA_ACTIONS.SET_REQUEST_STATUS:
+      return { ...state, requestStatus: action.payload };
     case MEDIA_ACTIONS.SET_POSTS:
       return { ...state, posts: action.payload };
 

@@ -5,6 +5,8 @@ import { ChildProps, StringObjProp } from "app-types";
 import { AppValues, FormValueData } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StoreOrderUpdate } from "store-context";
+import { MediaRequest } from "media-context";
+import { MediaContext } from "@context/media/MediaContext";
 import { reducer } from "./AdminReducer";
 import { AppContext } from "../app/AppContext";
 import { AuthContext } from "../auth/AuthContext";
@@ -42,11 +44,13 @@ export const AdminState = ({ children }: ChildProps) => {
 
   const { updateAppData, setAppLoading } = useContext(AppContext);
   const { updateUser, accessToken } = useContext(AuthContext);
+  const { updatePosts } = useContext(MediaContext);
 
   const setFormStatus = useCallback((data: FORM_STATUS) => updateFormStatus({ dispatch, status: data }), []);
   const handleAppAssets = (values: AppAssets) => {
     if (values.app || values.appList || values.platformTiers) updateAppData(values);
     if (values.user) updateUser(values.user);
+    if (values.posts) updatePosts(values.posts);
     // if (values.account) updateStripeConfig(values.account);
     if (values) setFormStatus("SUCCESS");
     dispatch({ type: ADMIN_ACTIONS.IS_LOADING, payload: false });
@@ -100,10 +104,7 @@ export const AdminState = ({ children }: ChildProps) => {
   const deletePage = useCallback((data: EditPageValues) => removePage({ dispatch, handleAppAssets, ...data }), []);
 
   const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId, handleAppAssets }), []);
-  const deleteMedia = useCallback(
-    (data: { appId: string; name: string }) => removeMedia({ dispatch, handleAppAssets, ...data }),
-    []
-  );
+  const deleteMedia = useCallback((data: MediaRequest) => removeMedia({ dispatch, handleAppAssets, ...data }), []);
   const deleteMerchItem = useCallback((appId: string, merchId: string) => {
     removeMerch({ dispatch, appId, merchId, handleAppAssets });
   }, []);
