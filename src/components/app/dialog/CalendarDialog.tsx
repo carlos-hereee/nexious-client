@@ -22,7 +22,6 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
     updateActiveEvent({ ...event, date: "" });
     onClose();
   };
-
   useEffect(() => {
     if (events) {
       const requireEvents = events.some((e) => typeof e === "string");
@@ -60,7 +59,7 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
         <ViewSchedule
           list={events}
           onClick={handleClick}
-          navigation={["#", "Created(yyyy/mm/dd)", "Date(yyyy/mm/dd)", "Start time", "End time", "Is active"]}
+          navigation={["#", "Created (yyyy/mm/dd)", "Date (yyyy/mm/dd)", "Name", "Start time", "End time", "Is active"]}
         />
       )}
     </Dialog>

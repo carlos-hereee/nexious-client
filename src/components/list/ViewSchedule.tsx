@@ -20,6 +20,7 @@ const ViewSchedule = ({ list, heading, onClick, navigation }: Props<IEvent>) => 
             <span>{idx + 1}</span>
             <span>{new Date(l.createdAt || Date.now()).toISOString().slice(0, 10)}</span>
             <span>{new Date(l.date).toISOString().slice(0, 10)}</span>
+            <span>{l.name}</span>
             <span>{l.startTime}</span>
             <span>{l.endTime}</span>
             <span>{l.isOpen ? "active" : "disabled"}</span>

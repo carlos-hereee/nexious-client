@@ -8,7 +8,7 @@ export const postCalEvent = async ({ dispatch, event, appId, updateCalendar, set
   try {
     dispatch({ type: CAL_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/calendar/${appId}/add-event`, event);
-    if (updateCalendar) updateCalendar(data);
+    if (updateCalendar) updateCalendar(data.calendar);
     if (setCalStatus) setCalStatus("SUCCESS");
   } catch (error) {
     // const message = error.response.data;
