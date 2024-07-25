@@ -8,6 +8,7 @@
     "start": "vite",
     "link": "npm link nexious-library",
     "dev": "npm i nexious-library@latest && vite",
+    "postinstall": "npm i nexious-library",
     "watch": "tsc -p tsconfig.json -w",
     "init-ts-project": "cd node_modules/nexious-library && npm run renameFile",
     "build": "tsc && vite build",
