@@ -14,6 +14,8 @@ import AppRouter from "./AppRouter";
 // import "../node_modules/nexious-library/dist/css/index.css";
 import "nexious-library/@index.css";
 import "./stylesheets/index.css";
+// eslint-disable-next-line import/order
+import { MediaState } from "@context/media/MediaContext";
 
 const elementRoot: Element | DocumentFragment | null = document.getElementById("root");
 
@@ -27,11 +29,13 @@ if (elementRoot) {
           <AppState>
             <StoreState>
               <CalendarState>
-                <AdminState>
-                  <App>
-                    <AppRouter />
-                  </App>
-                </AdminState>
+                <MediaState>
+                  <AdminState>
+                    <App>
+                      <AppRouter />
+                    </App>
+                  </AdminState>
+                </MediaState>
               </CalendarState>
             </StoreState>
           </AppState>

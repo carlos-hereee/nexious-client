@@ -1,4 +1,11 @@
 {
   "isLoading": false,
-  "error": ""
+  "error": "",
+  "post": {
+    "uid": "",
+    "name": "",
+    "body": "",
+    "reviews": ""
+  },
+  "posts": []
 }

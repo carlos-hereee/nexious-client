@@ -1414,5 +1414,25 @@
         }
       ]
     }
+  },
+  "postForm": {
+    "heading": "Configure your calendar booking here!",
+    "submitLabel": "Save and continue",
+    "formId": "calendarBooking123",
+    "previewLabel": "See changes",
+    "additionLabel": "Add another",
+    "removalLabel": "Remove",
+    "initialValues": {
+      "body": ""
+    },
+    "labels": {
+      "body": "Create post"
+    },
+    "placeholders": { "body": "" },
+    "types": {
+      "body": "textarea"
+    },
+    "groupName": "postForm",
+    "desiredOrder": []
   }
 }
