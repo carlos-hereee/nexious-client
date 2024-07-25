@@ -14,6 +14,7 @@ const CreatePost = () => {
         initialValues={postForm.initialValues}
         types={postForm.types}
         labels={postForm.labels}
+        withFileUpload
         onSubmit={(val: Post) => addPost({ post: val, appId })}
       />
     </div>

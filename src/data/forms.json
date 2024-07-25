@@ -1423,13 +1423,16 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "initialValues": {
+      "hero": "",
       "body": ""
     },
     "labels": {
-      "body": "Create post"
+      "hero": "Choose image",
+      "body": "Post details"
     },
     "placeholders": { "body": "" },
     "types": {
+      "hero": "file",
       "body": "textarea"
     },
     "groupName": "postForm",

@@ -5,6 +5,8 @@ declare module "media-context" {
     uid: string;
     appId: string;
     postId: string;
+    updatedAt: string;
+    thumbnail: string;
     name: string;
     body: string;
     reviews: string;

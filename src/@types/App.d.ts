@@ -30,7 +30,7 @@ declare module "app-types" {
     createdAt: string;
     name: string;
     notificationId: string;
-    updatedAt: Date;
+    updatedAt: string;
     ping: number;
   }
   export interface NProps {

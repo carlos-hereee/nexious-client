@@ -56,18 +56,24 @@
 .scroll-container {
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   gap: 1rem;
-  width: 100%;
+  /* width: 100%; */
   min-height: 60vh;
   max-height: 100vh;
+  /* min-width: 800px; */
   overflow-y: auto;
 }
-.btn-review {
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 20vh;
-  max-height: 50vh;
+.btn-post {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  /* min-width: 100%; */
+  max-width: 800px;
   width: 100%;
+}
+.post-thumbnail {
+  aspect-ratio: 16/9;
 }
 .select-field {
   display: flex;
