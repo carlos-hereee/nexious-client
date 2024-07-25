@@ -4,4 +4,5 @@ export enum MEDIA_ACTIONS {
   SET_ERROR,
   SET_POSTS,
   SET_POST,
+  SET_REQUEST_STATUS,
 }

@@ -1,9 +1,10 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Dialog } from "nexious-library";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
+import { MediaContext } from "@context/media/MediaContext";
 import EditMedia from "../forms/media/EditMedia";
 import AddMedia from "../forms/media/AddMedia";
 import CreatePost from "../forms/media/CreatePost";
@@ -14,8 +15,15 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
 
   const { theme } = useContext(AuthContext);
   const { appId, socialMedia } = useContext(AppContext);
+  const { requestStatus, setRequestStatus } = useContext(MediaContext);
   const { deleteMedia } = useContext(AdminContext);
 
+  useEffect(() => {
+    if (requestStatus === "SUCCESS") {
+      onClose();
+      setRequestStatus("");
+    }
+  }, [requestStatus]);
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {status === "confirm-cancel" && (

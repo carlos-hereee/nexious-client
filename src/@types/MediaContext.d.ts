@@ -10,6 +10,7 @@ declare module "media-context" {
   export interface MediaState {
     isLoading: boolean;
     error: string;
+    requestStatus: string;
     post: Post;
     posts: Post[];
   }
@@ -20,6 +21,7 @@ declare module "media-context" {
   export interface IMediaState extends MediaState {
     setLoading: (loading: boolean) => void;
     updatePost: (post: Post) => void;
+    setRequestStatus: (status: string) => void;
     updatePosts: (post: Post[]) => void;
     addPost: (event: CreatePost) => void;
   }
@@ -31,7 +33,7 @@ declare module "media-context" {
   }
   export type MediaActionProps =
     | { type: MEDIA_ACTIONS.IS_LOADING; payload: boolean }
-    | { type: MEDIA_ACTIONS.SET_ERROR; payload: string }
+    | { type: MEDIA_ACTIONS.SET_ERROR | MEDIA_ACTIONS.SET_REQUEST_STATUS; payload: string }
     | { type: MEDIA_ACTIONS.SET_POST; payload: Post }
     | { type: MEDIA_ACTIONS.SET_POSTS; payload: Post[] };
 }

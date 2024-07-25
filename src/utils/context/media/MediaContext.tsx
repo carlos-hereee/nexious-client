@@ -12,6 +12,7 @@ export const MediaState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, mediaState);
 
   const setLoading = useCallback((loading: boolean) => dispatch({ type: MEDIA_ACTIONS.IS_LOADING, payload: loading }), []);
+  const setRequestStatus = useCallback((s: string) => dispatch({ type: MEDIA_ACTIONS.SET_REQUEST_STATUS, payload: s }), []);
   const updatePost = useCallback((post: Post) => dispatch({ type: MEDIA_ACTIONS.SET_POST, payload: post }), []);
   const updatePosts = useCallback((posts: Post[]) => dispatch({ type: MEDIA_ACTIONS.SET_POSTS, payload: posts }), []);
   const addPost = useCallback((post: CreatePost) => createPost({ dispatch, ...post }), []);
@@ -22,7 +23,9 @@ export const MediaState = ({ children }: ChildProps) => {
       error: state.error,
       post: state.post,
       posts: state.posts,
+      requestStatus: state.requestStatus,
       setLoading,
+      setRequestStatus,
       updatePost,
       updatePosts,
       addPost,

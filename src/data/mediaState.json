@@ -1,6 +1,7 @@
 {
   "isLoading": false,
   "error": "",
+  "requestStatus": "",
   "post": {
     "uid": "",
     "name": "",
