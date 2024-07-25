@@ -2,6 +2,7 @@
   "isLoading": false,
   "errorMessage": "",
   "calendarId": "",
+  "requestStatus": "",
   "calendarLink": "",
   "closeTime": "",
   "startTime": "",

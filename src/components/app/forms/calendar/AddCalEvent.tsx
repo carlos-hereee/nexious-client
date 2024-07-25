@@ -5,7 +5,7 @@ import { calendarData, forms } from "@data/data.json";
 import { IEvent } from "app-calendar";
 import { CalendarContext } from "@context/calendar/CalendarContext";
 
-const AddCalEvent = () => {
+const AddCalEvent = ({ errorMessage }: { errorMessage: string }) => {
   // initial data if any
   const { isLoading, appId } = useContext(AppContext);
   const { addCalendarEvent } = useContext(CalendarContext);
@@ -20,10 +20,11 @@ const AddCalEvent = () => {
         labels={labels}
         placeholders={placeholders}
         types={types}
+        formMessage={errorMessage}
         dataList={{ startTime: calendarData.hours, closeTime: calendarData.hours }}
         onSubmit={(event: IEvent) => addCalendarEvent({ event, appId })}
         submitLabel="Save and continue"
-        // schema={{ required: ["name"] }}
+        schema={{ required: ["name", "date"] }}
       />
     </div>
   );

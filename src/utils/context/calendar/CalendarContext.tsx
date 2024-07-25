@@ -29,11 +29,12 @@ export const CalendarState = ({ children }: ChildProps) => {
     if (calendar) setCalendar({ dispatch, calendar });
   }, [calendar]);
 
+  const setCalStatus = useCallback((status: string) => dispatch({ type: CAL_ACTIONS.SET_REQUEST_STATUS, payload: status }), []);
   const updateCalendar = useCallback((cal: CalendarProps) => setCalendar({ dispatch, calendar: cal }), []);
   const updateSelectedDay = useCallback((day: CalEvent) => setSelectedDay({ dispatch, day }), []);
   const updateMeeting = useCallback((meeting: MeetingDetials) => setMeeting({ dispatch, meeting }), []);
   const updateActiveEvent = useCallback((event: IEvent) => dispatch({ type: CAL_ACTIONS.SET_EVENT, payload: event }), []);
-  const addCalendarEvent = useCallback((data: PostEvent) => postCalEvent({ dispatch, ...data, updateCalendar }), []);
+  const addCalendarEvent = useCallback((d: PostEvent) => postCalEvent({ dispatch, ...d, updateCalendar, setCalStatus }), []);
   const getCalendar = useCallback((data: { appId: string }) => fetchCalendar({ dispatch, ...data, updateCalendar }), []);
 
   const calendarValues = useMemo(() => {
@@ -43,6 +44,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       selectedDay: state.selectedDay,
       theme: state.theme,
       calendarId: state.calendarId,
+      requestStatus: state.requestStatus,
       calendarLink: state.calendarLink,
       closeTime: state.closeTime,
       startTime: state.startTime,
@@ -57,6 +59,7 @@ export const CalendarState = ({ children }: ChildProps) => {
       getCalendar,
       updateMeeting,
       updateActiveEvent,
+      setCalStatus,
     };
   }, [
     state.isLoading,
@@ -67,6 +70,7 @@ export const CalendarState = ({ children }: ChildProps) => {
     state.selectedDay,
     state.meeting,
     state.event,
+    state.requestStatus,
   ]);
 
   return <CalendarContext.Provider value={calendarValues}>{children}</CalendarContext.Provider>;
