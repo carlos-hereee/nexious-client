@@ -18,10 +18,10 @@ const Notification = ({ notifications, clearNotification }: Props) => {
         {notifications.length > 0 ? (
           notifications.map((notification) => (
             <div key={notification.notificationId} className="notification-row highlight">
-              <p className="text-fit text-center">
+              <p className="text-fit text-center hide-on-mobile">
                 <strong>{new Date(notification.createdAt || Date.now()).toISOString().slice(0, 10)}</strong>
               </p>
-              <p className="text-fit text-center">
+              <p className="text-fit text-center hide-on-mobile">
                 <strong>{notification.category}</strong>
               </p>
               <p className="text-fit text-center">
@@ -31,7 +31,7 @@ const Notification = ({ notifications, clearNotification }: Props) => {
               {notification.link ? (
                 <CopyButton data={homeUrl + notification.link} />
               ) : (
-                <p className="text-fit text-center"> no-link</p>
+                <p className="text-fit text-center hide-on-mobile"> no-link</p>
               )}
               <Button
                 label="X"
