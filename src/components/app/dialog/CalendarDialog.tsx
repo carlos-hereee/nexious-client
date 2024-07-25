@@ -59,7 +59,7 @@ const CalendarDialog = ({ onClose, status }: DialogProps) => {
         <ViewSchedule
           list={events}
           onClick={handleClick}
-          navigation={["#", "Created (yyyy/mm/dd)", "Date (yyyy/mm/dd)", "Name", "Start time", "End time", "Is active"]}
+          navigation={["#", "Created", "Date", "Name", "Event time", "Is active"]}
         />
       )}
     </Dialog>
