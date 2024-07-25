@@ -15,8 +15,8 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
   const heroData = { url: app.logo, alt: `industry-brand-${app.appName}` };
   return (
     <div className={`app-card${theme ? ` ${theme}` : ""}`}>
-      <Hero hero={heroData} theme="logo" onClick={handleSeeLive} />
       <button type="button" className="btn-card" onClick={handleSeeLive}>
+        <Hero hero={heroData} theme="logo" />
         <h3 className="heading">{app?.appName || "No name"}</h3>
         {errorMessage && (
           <div className="card-row-body">
@@ -26,13 +26,12 @@ const AppCard = ({ app, theme, errorMessage }: AppCardProps) => {
         )}
       </button>
       {isAdmin && (
-        <div className="navigation-container">
-          <Button
-            label="Settings"
-            onClick={handleSetting}
-            ping={app.notifications ? app.notifications.length || undefined : undefined}
-          />
-        </div>
+        <Button
+          label="Settings"
+          theme="btn-main"
+          onClick={handleSetting}
+          ping={app.notifications ? app.notifications.length || undefined : undefined}
+        />
       )}
     </div>
   );
