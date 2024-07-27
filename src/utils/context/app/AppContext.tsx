@@ -19,6 +19,7 @@ import { addSubscription } from "./request/addSubscription";
 import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
 import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
+import { createStripeAccount } from "./request/createStripeAccount";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -33,6 +34,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateActiveAppData = useCallback((data: ActiveMenuProp) => setActiveData({ dispatch, ...data }), []);
   // view store inventory
   const getStoreInventory = useCallback((storeId: string) => getInventory({ dispatch, storeId, updateAppData }), []);
+  // create stripe account
+  const signUpWithStripe = useCallback((appId: string) => createStripeAccount({ dispatch, appId }), []);
 
   const getPageWithId = useCallback((pageId: string) => fetchPage({ dispatch, pageId, updateAppData }), []);
   const getStripeAccountLink = useCallback((appId: string) => stripeAccountLink({ dispatch, appId }), []);
@@ -112,6 +115,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       clearNotification,
       getAppUsers,
       setAppMessage,
+      signUpWithStripe,
     };
   }, [
     state.isLoading,

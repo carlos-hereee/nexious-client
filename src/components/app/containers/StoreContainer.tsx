@@ -14,7 +14,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
 
-  const { store, appLink, inventory, getStoreInventory } = useContext(AppContext);
+  const { store, appLink, inventory, getStoreInventory, signUpWithStripe, appId } = useContext(AppContext);
   const { isPlatformOwner } = useContext(AuthContext);
   const { limitations } = useAccountLimitations();
 
@@ -42,9 +42,15 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
           ping={store.orders?.filter((o) => o.status !== "completed").length || undefined}
         />
       </ItemDetail>
-      <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
-        <Button label="View configuration" onClick={() => updatePhase("configuration")} />
-      </ItemDetail>
+      {store.accountId ? (
+        <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
+          <Button label="View configuration" onClick={() => updatePhase("configuration")} />
+        </ItemDetail>
+      ) : (
+        <ItemDetail label="Link stripe account:" labelLayout="bolden" hint={hints.stripeConfiguration}>
+          <Button label="Sign up with stripe" onClick={() => signUpWithStripe(appId)} />
+        </ItemDetail>
+      )}
       <MerchList updateStatus={() => updatePhase("configuration")} />
       <ItemDetail label="Add merchendise:" labelLayout="bolden">
         <Button label="+ Add merch" onClick={() => updatePhase("phase-three")} />

@@ -86,6 +86,7 @@ declare module "app-context" {
     setSocialMedia: (media: MediaItemProp) => void;
     getStoreInventory: (storeId: string) => void;
     getStripeAccountLink: (appId: string) => void;
+    signUpWithStripe: (appId: string) => void;
     clearNotification: ({ appId: string, id: string }) => void;
     getPageWithId: (appName: string) => void;
     upgradeToLatest: (appId: string) => void;
