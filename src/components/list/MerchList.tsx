@@ -43,13 +43,10 @@ const MerchList = ({ updateStatus }: { updateStatus?: (key: DialogStatusProps) =
           />
           <div className="inventory-container">
             {inventory.map((item) => (
-              <button
-                type="button"
-                key={item.uid}
-                className="iventory-item-card highlight"
-                onClick={() => handleClick(item)}
-              >
-                {item.hero && <Hero theme="thumbnail" hero={{ url: item.hero, alt: `product ${item.name}` }} />}
+              <button type="button" key={item.uid} className="iventory-item-card highlight" onClick={() => handleClick(item)}>
+                {(item.thumbnail || item.hero) && (
+                  <Hero theme="thumbnail" hero={{ url: item.thumbnail || item.hero, alt: `product ${item.name}` }} />
+                )}
                 <p>{item.name} </p>
                 {item.inStock > 0 ? <p>{item.inStock} Remaining</p> : <p>OUT OF STOCK</p>}
               </button>

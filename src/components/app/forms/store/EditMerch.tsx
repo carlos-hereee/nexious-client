@@ -12,7 +12,10 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const { appId } = useContext(AppContext);
   const { initValues } = props;
   const [show, setShow] = useState(false);
-  const initialValues = formatInitialValues({ merch: initValues, desiredOrder: merchForm.desiredOrder });
+  const initialValues = formatInitialValues({
+    merch: { ...initValues, hero: initValues.thumbnail || initValues.hero || "" },
+    desiredOrder: merchForm.desiredOrder,
+  });
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
 
   const handleRemove = () => deleteMerchItem(appId, initValues.merchId);
