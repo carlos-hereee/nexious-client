@@ -1,0 +1,1402 @@
+{
+  "events": [
+    {
+      "name": "*",
+      "value": "*",
+      "label": "all",
+      "uid": "*"
+    },
+    {
+      "name": "account.application.authorized",
+      "value": "account.application.authorized",
+      "label": "account.application.authorized",
+      "uid": "account.application.authorized"
+    },
+    {
+      "name": "account.application.deauthorized",
+      "value": "account.application.deauthorized",
+      "label": "account.application.deauthorized",
+      "uid": "account.application.deauthorized"
+    },
+    {
+      "name": "account.external_account.created",
+      "value": "account.external_account.created",
+      "label": "account.external_account.created",
+      "uid": "account.external_account.created"
+    },
+    {
+      "name": "account.external_account.deleted",
+      "value": "account.external_account.deleted",
+      "label": "account.external_account.deleted",
+      "uid": "account.external_account.deleted"
+    },
+    {
+      "name": "account.external_account.updated",
+      "value": "account.external_account.updated",
+      "label": "account.external_account.updated",
+      "uid": "account.external_account.updated"
+    },
+    {
+      "name": "account.updated",
+      "value": "account.updated",
+      "label": "account.updated",
+      "uid": "account.updated"
+    },
+    {
+      "name": "application_fee.created",
+      "value": "application_fee.created",
+      "label": "application_fee.created",
+      "uid": "application_fee.created"
+    },
+    {
+      "name": "application_fee.refund.updated",
+      "value": "application_fee.refund.updated",
+      "label": "application_fee.refund.updated",
+      "uid": "application_fee.refund.updated"
+    },
+    {
+      "name": "application_fee.refunded",
+      "value": "application_fee.refunded",
+      "label": "application_fee.refunded",
+      "uid": "application_fee.refunded"
+    },
+    {
+      "name": "balance.available",
+      "value": "balance.available",
+      "label": "balance.available",
+      "uid": "balance.available"
+    },
+    {
+      "name": "billing_portal.configuration.created",
+      "value": "billing_portal.configuration.created",
+      "label": "billing_portal.configuration.created",
+      "uid": "billing_portal.configuration.created"
+    },
+    {
+      "name": "billing_portal.configuration.updated",
+      "value": "billing_portal.configuration.updated",
+      "label": "billing_portal.configuration.updated",
+      "uid": "billing_portal.configuration.updated"
+    },
+    {
+      "name": "billing_portal.session.created",
+      "value": "billing_portal.session.created",
+      "label": "billing_portal.session.created",
+      "uid": "billing_portal.session.created"
+    },
+    {
+      "name": "capability.updated",
+      "value": "capability.updated",
+      "label": "capability.updated",
+      "uid": "capability.updated"
+    },
+    {
+      "name": "cash_balance.funds_available",
+      "value": "cash_balance.funds_available",
+      "label": "cash_balance.funds_available",
+      "uid": "cash_balance.funds_available"
+    },
+    {
+      "name": "charge.captured",
+      "value": "charge.captured",
+      "label": "charge.captured",
+      "uid": "charge.captured"
+    },
+    {
+      "name": "charge.dispute.closed",
+      "value": "charge.dispute.closed",
+      "label": "charge.dispute.closed",
+      "uid": "charge.dispute.closed"
+    },
+    {
+      "name": "charge.dispute.created",
+      "value": "charge.dispute.created",
+      "label": "charge.dispute.created",
+      "uid": "charge.dispute.created"
+    },
+    {
+      "name": "charge.dispute.funds_reinstated",
+      "value": "charge.dispute.funds_reinstated",
+      "label": "charge.dispute.funds_reinstated",
+      "uid": "charge.dispute.funds_reinstated"
+    },
+    {
+      "name": "charge.dispute.funds_withdrawn",
+      "value": "charge.dispute.funds_withdrawn",
+      "label": "charge.dispute.funds_withdrawn",
+      "uid": "charge.dispute.funds_withdrawn"
+    },
+    {
+      "name": "charge.dispute.updated",
+      "value": "charge.dispute.updated",
+      "label": "charge.dispute.updated",
+      "uid": "charge.dispute.updated"
+    },
+    {
+      "name": "charge.expired",
+      "value": "charge.expired",
+      "label": "charge.expired",
+      "uid": "charge.expired"
+    },
+    {
+      "name": "charge.failed",
+      "value": "charge.failed",
+      "label": "charge.failed",
+      "uid": "charge.failed"
+    },
+    {
+      "name": "charge.pending",
+      "value": "charge.pending",
+      "label": "charge.pending",
+      "uid": "charge.pending"
+    },
+    {
+      "name": "charge.refund.updated",
+      "value": "charge.refund.updated",
+      "label": "charge.refund.updated",
+      "uid": "charge.refund.updated"
+    },
+    {
+      "name": "charge.refunded",
+      "value": "charge.refunded",
+      "label": "charge.refunded",
+      "uid": "charge.refunded"
+    },
+    {
+      "name": "charge.succeeded",
+      "value": "charge.succeeded",
+      "label": "charge.succeeded",
+      "uid": "charge.succeeded"
+    },
+    {
+      "name": "charge.updated",
+      "value": "charge.updated",
+      "label": "charge.updated",
+      "uid": "charge.updated"
+    },
+    {
+      "name": "checkout.session.async_payment_failed",
+      "value": "checkout.session.async_payment_failed",
+      "label": "checkout.session.async_payment_failed",
+      "uid": "checkout.session.async_payment_failed"
+    },
+    {
+      "name": "checkout.session.async_payment_succeeded",
+      "value": "checkout.session.async_payment_succeeded",
+      "label": "checkout.session.async_payment_succeeded",
+      "uid": "checkout.session.async_payment_succeeded"
+    },
+    {
+      "name": "checkout.session.completed",
+      "value": "checkout.session.completed",
+      "label": "checkout.session.completed",
+      "uid": "checkout.session.completed"
+    },
+    {
+      "name": "checkout.session.expired",
+      "value": "checkout.session.expired",
+      "label": "checkout.session.expired",
+      "uid": "checkout.session.expired"
+    },
+    {
+      "name": "climate.order.canceled",
+      "value": "climate.order.canceled",
+      "label": "climate.order.canceled",
+      "uid": "climate.order.canceled"
+    },
+    {
+      "name": "climate.order.created",
+      "value": "climate.order.created",
+      "label": "climate.order.created",
+      "uid": "climate.order.created"
+    },
+    {
+      "name": "climate.order.delayed",
+      "value": "climate.order.delayed",
+      "label": "climate.order.delayed",
+      "uid": "climate.order.delayed"
+    },
+    {
+      "name": "climate.order.delivered",
+      "value": "climate.order.delivered",
+      "label": "climate.order.delivered",
+      "uid": "climate.order.delivered"
+    },
+    {
+      "name": "climate.order.product_substituted",
+      "value": "climate.order.product_substituted",
+      "label": "climate.order.product_substituted",
+      "uid": "climate.order.product_substituted"
+    },
+    {
+      "name": "climate.product.created",
+      "value": "climate.product.created",
+      "label": "climate.product.created",
+      "uid": "climate.product.created"
+    },
+    {
+      "name": "climate.product.pricing_updated",
+      "value": "climate.product.pricing_updated",
+      "label": "climate.product.pricing_updated",
+      "uid": "climate.product.pricing_updated"
+    },
+    {
+      "name": "coupon.created",
+      "value": "coupon.created",
+      "label": "coupon.created",
+      "uid": "coupon.created"
+    },
+    {
+      "name": "coupon.deleted",
+      "value": "coupon.deleted",
+      "label": "coupon.deleted",
+      "uid": "coupon.deleted"
+    },
+    {
+      "name": "coupon.updated",
+      "value": "coupon.updated",
+      "label": "coupon.updated",
+      "uid": "coupon.updated"
+    },
+    {
+      "name": "credit_note.created",
+      "value": "credit_note.created",
+      "label": "credit_note.created",
+      "uid": "credit_note.created"
+    },
+    {
+      "name": "credit_note.updated",
+      "value": "credit_note.updated",
+      "label": "credit_note.updated",
+      "uid": "credit_note.updated"
+    },
+    {
+      "name": "credit_note.voided",
+      "value": "credit_note.voided",
+      "label": "credit_note.voided",
+      "uid": "credit_note.voided"
+    },
+    {
+      "name": "customer.created",
+      "value": "customer.created",
+      "label": "customer.created",
+      "uid": "customer.created"
+    },
+    {
+      "name": "customer.deleted",
+      "value": "customer.deleted",
+      "label": "customer.deleted",
+      "uid": "customer.deleted"
+    },
+    {
+      "name": "customer.discount.created",
+      "value": "customer.discount.created",
+      "label": "customer.discount.created",
+      "uid": "customer.discount.created"
+    },
+    {
+      "name": "customer.discount.deleted",
+      "value": "customer.discount.deleted",
+      "label": "customer.discount.deleted",
+      "uid": "customer.discount.deleted"
+    },
+    {
+      "name": "customer.discount.updated",
+      "value": "customer.discount.updated",
+      "label": "customer.discount.updated",
+      "uid": "customer.discount.updated"
+    },
+    {
+      "name": "customer.source.created",
+      "value": "customer.source.created",
+      "label": "customer.source.created",
+      "uid": "customer.source.created"
+    },
+    {
+      "name": "customer.source.deleted",
+      "value": "customer.source.deleted",
+      "label": "customer.source.deleted",
+      "uid": "customer.source.deleted"
+    },
+    {
+      "name": "customer.source.expiring",
+      "value": "customer.source.expiring",
+      "label": "customer.source.expiring",
+      "uid": "customer.source.expiring"
+    },
+    {
+      "name": "customer.source.updated",
+      "value": "customer.source.updated",
+      "label": "customer.source.updated",
+      "uid": "customer.source.updated"
+    },
+    {
+      "name": "customer.subscription.created",
+      "value": "customer.subscription.created",
+      "label": "customer.subscription.created",
+      "uid": "customer.subscription.created"
+    },
+    {
+      "name": "customer.subscription.deleted",
+      "value": "customer.subscription.deleted",
+      "label": "customer.subscription.deleted",
+      "uid": "customer.subscription.deleted"
+    },
+    {
+      "name": "customer.subscription.paused",
+      "value": "customer.subscription.paused",
+      "label": "customer.subscription.paused",
+      "uid": "customer.subscription.paused"
+    },
+    {
+      "name": "customer.subscription.pending_update_applied",
+      "value": "customer.subscription.pending_update_applied",
+      "label": "customer.subscription.pending_update_applied",
+      "uid": "customer.subscription.pending_update_applied"
+    },
+    {
+      "name": "customer.subscription.pending_update_expired",
+      "value": "customer.subscription.pending_update_expired",
+      "label": "customer.subscription.pending_update_expired",
+      "uid": "customer.subscription.pending_update_expired"
+    },
+    {
+      "name": "customer.subscription.resumed",
+      "value": "customer.subscription.resumed",
+      "label": "customer.subscription.resumed",
+      "uid": "customer.subscription.resumed"
+    },
+    {
+      "name": "customer.subscription.trial_will_end",
+      "value": "customer.subscription.trial_will_end",
+      "label": "customer.subscription.trial_will_end",
+      "uid": "customer.subscription.trial_will_end"
+    },
+    {
+      "name": "customer.subscription.updated",
+      "value": "customer.subscription.updated",
+      "label": "customer.subscription.updated",
+      "uid": "customer.subscription.updated"
+    },
+    {
+      "name": "customer.tax_id.created",
+      "value": "customer.tax_id.created",
+      "label": "customer.tax_id.created",
+      "uid": "customer.tax_id.created"
+    },
+    {
+      "name": "customer.tax_id.deleted",
+      "value": "customer.tax_id.deleted",
+      "label": "customer.tax_id.deleted",
+      "uid": "customer.tax_id.deleted"
+    },
+    {
+      "name": "customer.tax_id.updated",
+      "value": "customer.tax_id.updated",
+      "label": "customer.tax_id.updated",
+      "uid": "customer.tax_id.updated"
+    },
+    {
+      "name": "customer.updated",
+      "value": "customer.updated",
+      "label": "customer.updated",
+      "uid": "customer.updated"
+    },
+    {
+      "name": "customer_cash_balance_transaction.created",
+      "value": "customer_cash_balance_transaction.created",
+      "label": "customer_cash_balance_transaction.created",
+      "uid": "customer_cash_balance_transaction.created"
+    },
+    {
+      "name": "file.created",
+      "value": "file.created",
+      "label": "file.created",
+      "uid": "file.created"
+    },
+    {
+      "name": "financial_connections.account.created",
+      "value": "financial_connections.account.created",
+      "label": "financial_connections.account.created",
+      "uid": "financial_connections.account.created"
+    },
+    {
+      "name": "financial_connections.account.deactivated",
+      "value": "financial_connections.account.deactivated",
+      "label": "financial_connections.account.deactivated",
+      "uid": "financial_connections.account.deactivated"
+    },
+    {
+      "name": "financial_connections.account.disconnected",
+      "value": "financial_connections.account.disconnected",
+      "label": "financial_connections.account.disconnected",
+      "uid": "financial_connections.account.disconnected"
+    },
+    {
+      "name": "financial_connections.account.reactivated",
+      "value": "financial_connections.account.reactivated",
+      "label": "financial_connections.account.reactivated",
+      "uid": "financial_connections.account.reactivated"
+    },
+    {
+      "name": "financial_connections.account.refreshed_balance",
+      "value": "financial_connections.account.refreshed_balance",
+      "label": "financial_connections.account.refreshed_balance",
+      "uid": "financial_connections.account.refreshed_balance"
+    },
+    {
+      "name": "identity.verification_session.canceled",
+      "value": "identity.verification_session.canceled",
+      "label": "identity.verification_session.canceled",
+      "uid": "identity.verification_session.canceled"
+    },
+    {
+      "name": "identity.verification_session.created",
+      "value": "identity.verification_session.created",
+      "label": "identity.verification_session.created",
+      "uid": "identity.verification_session.created"
+    },
+    {
+      "name": "identity.verification_session.processing",
+      "value": "identity.verification_session.processing",
+      "label": "identity.verification_session.processing",
+      "uid": "identity.verification_session.processing"
+    },
+    {
+      "name": "identity.verification_session.redacted",
+      "value": "identity.verification_session.redacted",
+      "label": "identity.verification_session.redacted",
+      "uid": "identity.verification_session.redacted"
+    },
+    {
+      "name": "identity.verification_session.requires_input",
+      "value": "identity.verification_session.requires_input",
+      "label": "identity.verification_session.requires_input",
+      "uid": "identity.verification_session.requires_input"
+    },
+    {
+      "name": "identity.verification_session.verified",
+      "value": "identity.verification_session.verified",
+      "label": "identity.verification_session.verified",
+      "uid": "identity.verification_session.verified"
+    },
+    {
+      "name": "invoice.created",
+      "value": "invoice.created",
+      "label": "invoice.created",
+      "uid": "invoice.created"
+    },
+    {
+      "name": "invoice.deleted",
+      "value": "invoice.deleted",
+      "label": "invoice.deleted",
+      "uid": "invoice.deleted"
+    },
+    {
+      "name": "invoice.finalization_failed",
+      "value": "invoice.finalization_failed",
+      "label": "invoice.finalization_failed",
+      "uid": "invoice.finalization_failed"
+    },
+    {
+      "name": "invoice.finalized",
+      "value": "invoice.finalized",
+      "label": "invoice.finalized",
+      "uid": "invoice.finalized"
+    },
+    {
+      "name": "invoice.marked_uncollectible",
+      "value": "invoice.marked_uncollectible",
+      "label": "invoice.marked_uncollectible",
+      "uid": "invoice.marked_uncollectible"
+    },
+    {
+      "name": "invoice.paid",
+      "value": "invoice.paid",
+      "label": "invoice.paid",
+      "uid": "invoice.paid"
+    },
+    {
+      "name": "invoice.payment_action_required",
+      "value": "invoice.payment_action_required",
+      "label": "invoice.payment_action_required",
+      "uid": "invoice.payment_action_required"
+    },
+    {
+      "name": "invoice.payment_failed",
+      "value": "invoice.payment_failed",
+      "label": "invoice.payment_failed",
+      "uid": "invoice.payment_failed"
+    },
+    {
+      "name": "invoice.payment_succeeded",
+      "value": "invoice.payment_succeeded",
+      "label": "invoice.payment_succeeded",
+      "uid": "invoice.payment_succeeded"
+    },
+    {
+      "name": "invoice.sent",
+      "value": "invoice.sent",
+      "label": "invoice.sent",
+      "uid": "invoice.sent"
+    },
+    {
+      "name": "invoice.upcoming",
+      "value": "invoice.upcoming",
+      "label": "invoice.upcoming",
+      "uid": "invoice.upcoming"
+    },
+    {
+      "name": "invoice.updated",
+      "value": "invoice.updated",
+      "label": "invoice.updated",
+      "uid": "invoice.updated"
+    },
+    {
+      "name": "invoice.voided",
+      "value": "invoice.voided",
+      "label": "invoice.voided",
+      "uid": "invoice.voided"
+    },
+    {
+      "name": "invoiceitem.created",
+      "value": "invoiceitem.created",
+      "label": "invoiceitem.created",
+      "uid": "invoiceitem.created"
+    },
+    {
+      "name": "invoiceitem.deleted",
+      "value": "invoiceitem.deleted",
+      "label": "invoiceitem.deleted",
+      "uid": "invoiceitem.deleted"
+    },
+    {
+      "name": "issuing_authorization.created",
+      "value": "issuing_authorization.created",
+      "label": "issuing_authorization.created",
+      "uid": "issuing_authorization.created"
+    },
+    {
+      "name": "issuing_authorization.request",
+      "value": "issuing_authorization.request",
+      "label": "issuing_authorization.request",
+      "uid": "issuing_authorization.request"
+    },
+    {
+      "name": "issuing_authorization.updated",
+      "value": "issuing_authorization.updated",
+      "label": "issuing_authorization.updated",
+      "uid": "issuing_authorization.updated"
+    },
+    {
+      "name": "issuing_card.created",
+      "value": "issuing_card.created",
+      "label": "issuing_card.created",
+      "uid": "issuing_card.created"
+    },
+    {
+      "name": "issuing_card.updated",
+      "value": "issuing_card.updated",
+      "label": "issuing_card.updated",
+      "uid": "issuing_card.updated"
+    },
+    {
+      "name": "issuing_cardholder.created",
+      "value": "issuing_cardholder.created",
+      "label": "issuing_cardholder.created",
+      "uid": "issuing_cardholder.created"
+    },
+    {
+      "name": "issuing_cardholder.updated",
+      "value": "issuing_cardholder.updated",
+      "label": "issuing_cardholder.updated",
+      "uid": "issuing_cardholder.updated"
+    },
+    {
+      "name": "issuing_dispute.closed",
+      "value": "issuing_dispute.closed",
+      "label": "issuing_dispute.closed",
+      "uid": "issuing_dispute.closed"
+    },
+    {
+      "name": "issuing_dispute.created",
+      "value": "issuing_dispute.created",
+      "label": "issuing_dispute.created",
+      "uid": "issuing_dispute.created"
+    },
+    {
+      "name": "issuing_dispute.funds_reinstated",
+      "value": "issuing_dispute.funds_reinstated",
+      "label": "issuing_dispute.funds_reinstated",
+      "uid": "issuing_dispute.funds_reinstated"
+    },
+    {
+      "name": "issuing_dispute.submitted",
+      "value": "issuing_dispute.submitted",
+      "label": "issuing_dispute.submitted",
+      "uid": "issuing_dispute.submitted"
+    },
+    {
+      "name": "issuing_dispute.updated",
+      "value": "issuing_dispute.updated",
+      "label": "issuing_dispute.updated",
+      "uid": "issuing_dispute.updated"
+    },
+    {
+      "name": "issuing_token.created",
+      "value": "issuing_token.created",
+      "label": "issuing_token.created",
+      "uid": "issuing_token.created"
+    },
+    {
+      "name": "issuing_token.updated",
+      "value": "issuing_token.updated",
+      "label": "issuing_token.updated",
+      "uid": "issuing_token.updated"
+    },
+    {
+      "name": "issuing_transaction.created",
+      "value": "issuing_transaction.created",
+      "label": "issuing_transaction.created",
+      "uid": "issuing_transaction.created"
+    },
+    {
+      "name": "issuing_transaction.updated",
+      "value": "issuing_transaction.updated",
+      "label": "issuing_transaction.updated",
+      "uid": "issuing_transaction.updated"
+    },
+    {
+      "name": "mandate.updated",
+      "value": "mandate.updated",
+      "label": "mandate.updated",
+      "uid": "mandate.updated"
+    },
+    {
+      "name": "payment_intent.amount_capturable_updated",
+      "value": "payment_intent.amount_capturable_updated",
+      "label": "payment_intent.amount_capturable_updated",
+      "uid": "payment_intent.amount_capturable_updated"
+    },
+    {
+      "name": "payment_intent.canceled",
+      "value": "payment_intent.canceled",
+      "label": "payment_intent.canceled",
+      "uid": "payment_intent.canceled"
+    },
+    {
+      "name": "payment_intent.created",
+      "value": "payment_intent.created",
+      "label": "payment_intent.created",
+      "uid": "payment_intent.created"
+    },
+    {
+      "name": "payment_intent.partially_funded",
+      "value": "payment_intent.partially_funded",
+      "label": "payment_intent.partially_funded",
+      "uid": "payment_intent.partially_funded"
+    },
+    {
+      "name": "payment_intent.payment_failed",
+      "value": "payment_intent.payment_failed",
+      "label": "payment_intent.payment_failed",
+      "uid": "payment_intent.payment_failed"
+    },
+    {
+      "name": "payment_intent.processing",
+      "value": "payment_intent.processing",
+      "label": "payment_intent.processing",
+      "uid": "payment_intent.processing"
+    },
+    {
+      "name": "payment_intent.requires_action",
+      "value": "payment_intent.requires_action",
+      "label": "payment_intent.requires_action",
+      "uid": "payment_intent.requires_action"
+    },
+    {
+      "name": "payment_intent.succeeded",
+      "value": "payment_intent.succeeded",
+      "label": "payment_intent.succeeded",
+      "uid": "payment_intent.succeeded"
+    },
+    {
+      "name": "payment_link.created",
+      "value": "payment_link.created",
+      "label": "payment_link.created",
+      "uid": "payment_link.created"
+    },
+    {
+      "name": "payment_link.updated",
+      "value": "payment_link.updated",
+      "label": "payment_link.updated",
+      "uid": "payment_link.updated"
+    },
+    {
+      "name": "payment_method.attached",
+      "value": "payment_method.attached",
+      "label": "payment_method.attached",
+      "uid": "payment_method.attached"
+    },
+    {
+      "name": "payment_method.automatically_updated",
+      "value": "payment_method.automatically_updated",
+      "label": "payment_method.automatically_updated",
+      "uid": "payment_method.automatically_updated"
+    },
+    {
+      "name": "payment_method.detached",
+      "value": "payment_method.detached",
+      "label": "payment_method.detached",
+      "uid": "payment_method.detached"
+    },
+    {
+      "name": "payment_method.updated",
+      "value": "payment_method.updated",
+      "label": "payment_method.updated",
+      "uid": "payment_method.updated"
+    },
+    {
+      "name": "payout.canceled",
+      "value": "payout.canceled",
+      "label": "payout.canceled",
+      "uid": "payout.canceled"
+    },
+    {
+      "name": "payout.created",
+      "value": "payout.created",
+      "label": "payout.created",
+      "uid": "payout.created"
+    },
+    {
+      "name": "payout.failed",
+      "value": "payout.failed",
+      "label": "payout.failed",
+      "uid": "payout.failed"
+    },
+    {
+      "name": "payout.paid",
+      "value": "payout.paid",
+      "label": "payout.paid",
+      "uid": "payout.paid"
+    },
+    {
+      "name": "payout.reconciliation_completed",
+      "value": "payout.reconciliation_completed",
+      "label": "payout.reconciliation_completed",
+      "uid": "payout.reconciliation_completed"
+    },
+    {
+      "name": "payout.updated",
+      "value": "payout.updated",
+      "label": "payout.updated",
+      "uid": "payout.updated"
+    },
+    {
+      "name": "person.created",
+      "value": "person.created",
+      "label": "person.created",
+      "uid": "person.created"
+    },
+    {
+      "name": "person.deleted",
+      "value": "person.deleted",
+      "label": "person.deleted",
+      "uid": "person.deleted"
+    },
+    {
+      "name": "person.updated",
+      "value": "person.updated",
+      "label": "person.updated",
+      "uid": "person.updated"
+    },
+    {
+      "name": "plan.created",
+      "value": "plan.created",
+      "label": "plan.created",
+      "uid": "plan.created"
+    },
+    {
+      "name": "plan.deleted",
+      "value": "plan.deleted",
+      "label": "plan.deleted",
+      "uid": "plan.deleted"
+    },
+    {
+      "name": "plan.updated",
+      "value": "plan.updated",
+      "label": "plan.updated",
+      "uid": "plan.updated"
+    },
+    {
+      "name": "price.created",
+      "value": "price.created",
+      "label": "price.created",
+      "uid": "price.created"
+    },
+    {
+      "name": "price.deleted",
+      "value": "price.deleted",
+      "label": "price.deleted",
+      "uid": "price.deleted"
+    },
+    {
+      "name": "price.updated",
+      "value": "price.updated",
+      "label": "price.updated",
+      "uid": "price.updated"
+    },
+    {
+      "name": "product.created",
+      "value": "product.created",
+      "label": "product.created",
+      "uid": "product.created"
+    },
+    {
+      "name": "product.deleted",
+      "value": "product.deleted",
+      "label": "product.deleted",
+      "uid": "product.deleted"
+    },
+    {
+      "name": "product.updated",
+      "value": "product.updated",
+      "label": "product.updated",
+      "uid": "product.updated"
+    },
+    {
+      "name": "promotion_code.created",
+      "value": "promotion_code.created",
+      "label": "promotion_code.created",
+      "uid": "promotion_code.created"
+    },
+    {
+      "name": "promotion_code.updated",
+      "value": "promotion_code.updated",
+      "label": "promotion_code.updated",
+      "uid": "promotion_code.updated"
+    },
+    {
+      "name": "quote.accepted",
+      "value": "quote.accepted",
+      "label": "quote.accepted",
+      "uid": "quote.accepted"
+    },
+    {
+      "name": "quote.canceled",
+      "value": "quote.canceled",
+      "label": "quote.canceled",
+      "uid": "quote.canceled"
+    },
+    {
+      "name": "quote.created",
+      "value": "quote.created",
+      "label": "quote.created",
+      "uid": "quote.created"
+    },
+    {
+      "name": "quote.finalized",
+      "value": "quote.finalized",
+      "label": "quote.finalized",
+      "uid": "quote.finalized"
+    },
+    {
+      "name": "radar.early_fraud_warning.created",
+      "value": "radar.early_fraud_warning.created",
+      "label": "radar.early_fraud_warning.created",
+      "uid": "radar.early_fraud_warning.created"
+    },
+    {
+      "name": "radar.early_fraud_warning.updated",
+      "value": "radar.early_fraud_warning.updated",
+      "label": "radar.early_fraud_warning.updated",
+      "uid": "radar.early_fraud_warning.updated"
+    },
+    {
+      "name": "refund.created",
+      "value": "refund.created",
+      "label": "refund.created",
+      "uid": "refund.created"
+    },
+    {
+      "name": "refund.updated",
+      "value": "refund.updated",
+      "label": "refund.updated",
+      "uid": "refund.updated"
+    },
+    {
+      "name": "reporting.report_run.failed",
+      "value": "reporting.report_run.failed",
+      "label": "reporting.report_run.failed",
+      "uid": "reporting.report_run.failed"
+    },
+    {
+      "name": "reporting.report_run.succeeded",
+      "value": "reporting.report_run.succeeded",
+      "label": "reporting.report_run.succeeded",
+      "uid": "reporting.report_run.succeeded"
+    },
+    {
+      "name": "reporting.report_type.updated",
+      "value": "reporting.report_type.updated",
+      "label": "reporting.report_type.updated",
+      "uid": "reporting.report_type.updated"
+    },
+    {
+      "name": "review.closed",
+      "value": "review.closed",
+      "label": "review.closed",
+      "uid": "review.closed"
+    },
+    {
+      "name": "review.opened",
+      "value": "review.opened",
+      "label": "review.opened",
+      "uid": "review.opened"
+    },
+    {
+      "name": "setup_intent.canceled",
+      "value": "setup_intent.canceled",
+      "label": "setup_intent.canceled",
+      "uid": "setup_intent.canceled"
+    },
+    {
+      "name": "setup_intent.created",
+      "value": "setup_intent.created",
+      "label": "setup_intent.created",
+      "uid": "setup_intent.created"
+    },
+    {
+      "name": "setup_intent.requires_action",
+      "value": "setup_intent.requires_action",
+      "label": "setup_intent.requires_action",
+      "uid": "setup_intent.requires_action"
+    },
+    {
+      "name": "setup_intent.setup_failed",
+      "value": "setup_intent.setup_failed",
+      "label": "setup_intent.setup_failed",
+      "uid": "setup_intent.setup_failed"
+    },
+    {
+      "name": "setup_intent.succeeded",
+      "value": "setup_intent.succeeded",
+      "label": "setup_intent.succeeded",
+      "uid": "setup_intent.succeeded"
+    },
+    {
+      "name": "sigma.scheduled_query_run.created",
+      "value": "sigma.scheduled_query_run.created",
+      "label": "sigma.scheduled_query_run.created",
+      "uid": "sigma.scheduled_query_run.created"
+    },
+    {
+      "name": "source.canceled",
+      "value": "source.canceled",
+      "label": "source.canceled",
+      "uid": "source.canceled"
+    },
+    {
+      "name": "source.chargeable",
+      "value": "source.chargeable",
+      "label": "source.chargeable",
+      "uid": "source.chargeable"
+    },
+    {
+      "name": "source.failed",
+      "value": "source.failed",
+      "label": "source.failed",
+      "uid": "source.failed"
+    },
+    {
+      "name": "source.mandate_notification",
+      "value": "source.mandate_notification",
+      "label": "source.mandate_notification",
+      "uid": "source.mandate_notification"
+    },
+    {
+      "name": "source.refund_attributes_required",
+      "value": "source.refund_attributes_required",
+      "label": "source.refund_attributes_required",
+      "uid": "source.refund_attributes_required"
+    },
+    {
+      "name": "source.transaction.created",
+      "value": "source.transaction.created",
+      "label": "source.transaction.created",
+      "uid": "source.transaction.created"
+    },
+    {
+      "name": "source.transaction.updated",
+      "value": "source.transaction.updated",
+      "label": "source.transaction.updated",
+      "uid": "source.transaction.updated"
+    },
+    {
+      "name": "subscription_schedule.aborted",
+      "value": "subscription_schedule.aborted",
+      "label": "subscription_schedule.aborted",
+      "uid": "subscription_schedule.aborted"
+    },
+    {
+      "name": "subscription_schedule.canceled",
+      "value": "subscription_schedule.canceled",
+      "label": "subscription_schedule.canceled",
+      "uid": "subscription_schedule.canceled"
+    },
+    {
+      "name": "subscription_schedule.completed",
+      "value": "subscription_schedule.completed",
+      "label": "subscription_schedule.completed",
+      "uid": "subscription_schedule.completed"
+    },
+    {
+      "name": "subscription_schedule.created",
+      "value": "subscription_schedule.created",
+      "label": "subscription_schedule.created",
+      "uid": "subscription_schedule.created"
+    },
+    {
+      "name": "subscription_schedule.expiring",
+      "value": "subscription_schedule.expiring",
+      "label": "subscription_schedule.expiring",
+      "uid": "subscription_schedule.expiring"
+    },
+    {
+      "name": "subscription_schedule.released",
+      "value": "subscription_schedule.released",
+      "label": "subscription_schedule.released",
+      "uid": "subscription_schedule.released"
+    },
+    {
+      "name": "subscription_schedule.updated",
+      "value": "subscription_schedule.updated",
+      "label": "subscription_schedule.updated",
+      "uid": "subscription_schedule.updated"
+    },
+    {
+      "name": "tax.settings.updated",
+      "value": "tax.settings.updated",
+      "label": "tax.settings.updated",
+      "uid": "tax.settings.updated"
+    },
+    {
+      "name": "tax_rate.created",
+      "value": "tax_rate.created",
+      "label": "tax_rate.created",
+      "uid": "tax_rate.created"
+    },
+    {
+      "name": "tax_rate.updated",
+      "value": "tax_rate.updated",
+      "label": "tax_rate.updated",
+      "uid": "tax_rate.updated"
+    },
+    {
+      "name": "terminal.reader.action_failed",
+      "value": "terminal.reader.action_failed",
+      "label": "terminal.reader.action_failed",
+      "uid": "terminal.reader.action_failed"
+    },
+    {
+      "name": "terminal.reader.action_succeeded",
+      "value": "terminal.reader.action_succeeded",
+      "label": "terminal.reader.action_succeeded",
+      "uid": "terminal.reader.action_succeeded"
+    },
+    {
+      "name": "test_helpers.test_clock.advancing",
+      "value": "test_helpers.test_clock.advancing",
+      "label": "test_helpers.test_clock.advancing",
+      "uid": "test_helpers.test_clock.advancing"
+    },
+    {
+      "name": "test_helpers.test_clock.created",
+      "value": "test_helpers.test_clock.created",
+      "label": "test_helpers.test_clock.created",
+      "uid": "test_helpers.test_clock.created"
+    },
+    {
+      "name": "test_helpers.test_clock.deleted",
+      "value": "test_helpers.test_clock.deleted",
+      "label": "test_helpers.test_clock.deleted",
+      "uid": "test_helpers.test_clock.deleted"
+    },
+    {
+      "name": "test_helpers.test_clock.internal_failure",
+      "value": "test_helpers.test_clock.internal_failure",
+      "label": "test_helpers.test_clock.internal_failure",
+      "uid": "test_helpers.test_clock.internal_failure"
+    },
+    {
+      "name": "test_helpers.test_clock.ready",
+      "value": "test_helpers.test_clock.ready",
+      "label": "test_helpers.test_clock.ready",
+      "uid": "test_helpers.test_clock.ready"
+    },
+    {
+      "name": "topup.canceled",
+      "value": "topup.canceled",
+      "label": "topup.canceled",
+      "uid": "topup.canceled"
+    },
+    {
+      "name": "topup.created",
+      "value": "topup.created",
+      "label": "topup.created",
+      "uid": "topup.created"
+    },
+    {
+      "name": "topup.failed",
+      "value": "topup.failed",
+      "label": "topup.failed",
+      "uid": "topup.failed"
+    },
+    {
+      "name": "topup.reversed",
+      "value": "topup.reversed",
+      "label": "topup.reversed",
+      "uid": "topup.reversed"
+    },
+    {
+      "name": "topup.succeeded",
+      "value": "topup.succeeded",
+      "label": "topup.succeeded",
+      "uid": "topup.succeeded"
+    },
+    {
+      "name": "transfer.created",
+      "value": "transfer.created",
+      "label": "transfer.created",
+      "uid": "transfer.created"
+    },
+    {
+      "name": "transfer.reversed",
+      "value": "transfer.reversed",
+      "label": "transfer.reversed",
+      "uid": "transfer.reversed"
+    },
+    {
+      "name": "transfer.updated",
+      "value": "transfer.updated",
+      "label": "transfer.updated",
+      "uid": "transfer.updated"
+    },
+    {
+      "name": "treasury.credit_reversal.created",
+      "value": "treasury.credit_reversal.created",
+      "label": "treasury.credit_reversal.created",
+      "uid": "treasury.credit_reversal.created"
+    },
+    {
+      "name": "treasury.credit_reversal.posted",
+      "value": "treasury.credit_reversal.posted",
+      "label": "treasury.credit_reversal.posted",
+      "uid": "treasury.credit_reversal.posted"
+    },
+    {
+      "name": "treasury.debit_reversal.completed",
+      "value": "treasury.debit_reversal.completed",
+      "label": "treasury.debit_reversal.completed",
+      "uid": "treasury.debit_reversal.completed"
+    },
+    {
+      "name": "treasury.debit_reversal.created",
+      "value": "treasury.debit_reversal.created",
+      "label": "treasury.debit_reversal.created",
+      "uid": "treasury.debit_reversal.created"
+    },
+    {
+      "name": "treasury.debit_reversal.initial_credit_granted",
+      "value": "treasury.debit_reversal.initial_credit_granted",
+      "label": "treasury.debit_reversal.initial_credit_granted",
+      "uid": "treasury.debit_reversal.initial_credit_granted"
+    },
+    {
+      "name": "treasury.financial_account.closed",
+      "value": "treasury.financial_account.closed",
+      "label": "treasury.financial_account.closed",
+      "uid": "treasury.financial_account.closed"
+    },
+    {
+      "name": "treasury.financial_account.created",
+      "value": "treasury.financial_account.created",
+      "label": "treasury.financial_account.created",
+      "uid": "treasury.financial_account.created"
+    },
+    {
+      "name": "treasury.financial_account.features_status_updated",
+      "value": "treasury.financial_account.features_status_updated",
+      "label": "treasury.financial_account.features_status_updated",
+      "uid": "treasury.financial_account.features_status_updated"
+    },
+    {
+      "name": "treasury.inbound_transfer.canceled",
+      "value": "treasury.inbound_transfer.canceled",
+      "label": "treasury.inbound_transfer.canceled",
+      "uid": "treasury.inbound_transfer.canceled"
+    },
+    {
+      "name": "treasury.inbound_transfer.created",
+      "value": "treasury.inbound_transfer.created",
+      "label": "treasury.inbound_transfer.created",
+      "uid": "treasury.inbound_transfer.created"
+    },
+    {
+      "name": "treasury.inbound_transfer.failed",
+      "value": "treasury.inbound_transfer.failed",
+      "label": "treasury.inbound_transfer.failed",
+      "uid": "treasury.inbound_transfer.failed"
+    },
+    {
+      "name": "treasury.inbound_transfer.succeeded",
+      "value": "treasury.inbound_transfer.succeeded",
+      "label": "treasury.inbound_transfer.succeeded",
+      "uid": "treasury.inbound_transfer.succeeded"
+    },
+    {
+      "name": "treasury.outbound_payment.canceled",
+      "value": "treasury.outbound_payment.canceled",
+      "label": "treasury.outbound_payment.canceled",
+      "uid": "treasury.outbound_payment.canceled"
+    },
+    {
+      "name": "treasury.outbound_payment.created",
+      "value": "treasury.outbound_payment.created",
+      "label": "treasury.outbound_payment.created",
+      "uid": "treasury.outbound_payment.created"
+    },
+    {
+      "name": "treasury.outbound_payment.expected_arrival_date_updated",
+      "value": "treasury.outbound_payment.expected_arrival_date_updated",
+      "label": "treasury.outbound_payment.expected_arrival_date_updated",
+      "uid": "treasury.outbound_payment.expected_arrival_date_updated"
+    },
+    {
+      "name": "treasury.outbound_payment.failed",
+      "value": "treasury.outbound_payment.failed",
+      "label": "treasury.outbound_payment.failed",
+      "uid": "treasury.outbound_payment.failed"
+    },
+    {
+      "name": "treasury.outbound_payment.posted",
+      "value": "treasury.outbound_payment.posted",
+      "label": "treasury.outbound_payment.posted",
+      "uid": "treasury.outbound_payment.posted"
+    },
+    {
+      "name": "treasury.outbound_payment.returned",
+      "value": "treasury.outbound_payment.returned",
+      "label": "treasury.outbound_payment.returned",
+      "uid": "treasury.outbound_payment.returned"
+    },
+    {
+      "name": "treasury.outbound_transfer.canceled",
+      "value": "treasury.outbound_transfer.canceled",
+      "label": "treasury.outbound_transfer.canceled",
+      "uid": "treasury.outbound_transfer.canceled"
+    },
+    {
+      "name": "treasury.outbound_transfer.created",
+      "value": "treasury.outbound_transfer.created",
+      "label": "treasury.outbound_transfer.created",
+      "uid": "treasury.outbound_transfer.created"
+    },
+    {
+      "name": "treasury.outbound_transfer.expected_arrival_date_updated",
+      "value": "treasury.outbound_transfer.expected_arrival_date_updated",
+      "label": "treasury.outbound_transfer.expected_arrival_date_updated",
+      "uid": "treasury.outbound_transfer.expected_arrival_date_updated"
+    },
+    {
+      "name": "treasury.outbound_transfer.failed",
+      "value": "treasury.outbound_transfer.failed",
+      "label": "treasury.outbound_transfer.failed",
+      "uid": "treasury.outbound_transfer.failed"
+    },
+    {
+      "name": "treasury.outbound_transfer.posted",
+      "value": "treasury.outbound_transfer.posted",
+      "label": "treasury.outbound_transfer.posted",
+      "uid": "treasury.outbound_transfer.posted"
+    },
+    {
+      "name": "treasury.outbound_transfer.returned",
+      "value": "treasury.outbound_transfer.returned",
+      "label": "treasury.outbound_transfer.returned",
+      "uid": "treasury.outbound_transfer.returned"
+    },
+    {
+      "name": "treasury.received_credit.created",
+      "value": "treasury.received_credit.created",
+      "label": "treasury.received_credit.created",
+      "uid": "treasury.received_credit.created"
+    },
+    {
+      "name": "treasury.received_credit.failed",
+      "value": "treasury.received_credit.failed",
+      "label": "treasury.received_credit.failed",
+      "uid": "treasury.received_credit.failed"
+    },
+    {
+      "name": "treasury.received_credit.succeeded",
+      "value": "treasury.received_credit.succeeded",
+      "label": "treasury.received_credit.succeeded",
+      "uid": "treasury.received_credit.succeeded"
+    },
+    {
+      "name": "treasury.received_debit.created",
+      "value": "treasury.received_debit.created",
+      "label": "treasury.received_debit.created",
+      "uid": "treasury.received_debit.created"
+    },
+    {
+      "name": "invoiceitem.updated",
+      "value": "invoiceitem.updated",
+      "label": "invoiceitem.updated",
+      "uid": "invoiceitem.updated"
+    },
+    {
+      "name": "order.created",
+      "value": "order.created",
+      "label": "order.created",
+      "uid": "order.created"
+    },
+    {
+      "name": "recipient.created",
+      "value": "recipient.created",
+      "label": "recipient.created",
+      "uid": "recipient.created"
+    },
+    {
+      "name": "recipient.deleted",
+      "value": "recipient.deleted",
+      "label": "recipient.deleted",
+      "uid": "recipient.deleted"
+    },
+    {
+      "name": "recipient.updated",
+      "value": "recipient.updated",
+      "label": "recipient.updated",
+      "uid": "recipient.updated"
+    },
+    {
+      "name": "sku.created",
+      "value": "sku.created",
+      "label": "sku.created",
+      "uid": "sku.created"
+    },
+    {
+      "name": "sku.deleted",
+      "value": "sku.deleted",
+      "label": "sku.deleted",
+      "uid": "sku.deleted"
+    },
+    {
+      "name": "sku.updated",
+      "value": "sku.updated",
+      "label": "sku.updated",
+      "uid": "sku.updated"
+    }
+  ]
+}

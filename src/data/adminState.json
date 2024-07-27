@@ -318,46 +318,6 @@
     "placeholders": { "name": "", "hero": "", "link": "", "label": "" },
     "types": { "name": "", "hero": "", "link": "", "label": "" }
   },
-  "storeForm": {
-    "heading": "Create store",
-    "formId": "storeForm",
-    "previewLabel": "See changes",
-    "fieldHeading": { "isRegistered": "Register your account with stripe" },
-    "initialValues": {
-      "storeName": "",
-      "email": "",
-      "title": "",
-      "description": "",
-      "currency": "",
-      "isRegistered": false,
-      "termsOfService": false
-    },
-    "types": {
-      "description": "textarea",
-      "storeName": "text",
-      "title": "text",
-      "currency": "select",
-      "pageName": "text",
-      "email": "email",
-      "isRegistered": "checkbox",
-      "termsOfService": "checkbox"
-    },
-    "schema": {
-      "required": ["name", "storeName", "title", "pageName", "currency", "email", "isRegistered", "termsOfService"]
-    },
-    "labels": {
-      "storeName": "Store name",
-      "title": "Store tagline/motto",
-      "email": "Forwarding email",
-      "description": "About",
-      "currency": "Currency",
-      "hero": "Add image",
-      "isRegistered": "By registering your account, you agree to our Services Agreement and the Stripe Connected Account Agreement.",
-      "termsOfService": "Payment processing services for account holders on Nexious.tech are provided by Stripe and are subject to the Stripe Connected Account Agreement, which includes the Stripe Terms of Service (collectively, the “Stripe Services Agreement”). By agreeing to [this agreement / these terms / and so on] or continuing to operate as a an account holders on Nexious.tech, you agree to be bound by the Stripe Services Agreement, as the same may be modified by Stripe from time to time. As a condition of Nexious.tech enabling payment processing services through Stripe, you agree to provide Nexious.tech accurate and complete information about you and your business, and you authorize Nexious.tech to share it and transaction information related to your use of the payment processing services provided by Stripe."
-    },
-    "placeholders": { "hero": "", "description": "", "storeName": "", "pageName": "Store/Shop" },
-    "desiredOrder": ["email", "storeName", "title", "description", "currency", "isRegistered", "termsOfService"]
-  },
   "merchForm": {
     "heading": "Add merch",
     "formId": "merchForm",

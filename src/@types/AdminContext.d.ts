@@ -72,7 +72,6 @@ declare module "app-admin" {
     socialMediaForm: FormProps;
     merchForm: FormProps;
     ctaForm: FormProps;
-    storeForm: FormProps;
     mediaEntryForm: FormProps;
     calendarBookingForm: FormProps;
     formErrors: AdminFormErrors;
