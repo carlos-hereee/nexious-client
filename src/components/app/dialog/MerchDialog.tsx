@@ -36,7 +36,7 @@ const MerchDialog = ({ onClose, merch, updateStatus }: DialogProps) => {
               <strong>**This merchandise is not registered for online payments**</strong>
             </p>
             {store.accountId && store.isStripeActive ? (
-              <Button onClick={() => editMerch(merch, appId, merch.merchId)}>Configure now</Button>
+              <Button onClick={() => editMerch({ values: merch, appId, merchId: merch.merchId })}>Configure now</Button>
             ) : (
               <Button onClick={() => updateStatus && updateStatus("configuration")}>
                 Complete stripe configuration to receive online payments

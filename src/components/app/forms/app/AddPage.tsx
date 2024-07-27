@@ -47,7 +47,7 @@ const AddPage = (props: OnclickProps) => {
         clearSelection={{ icon: true }}
         heading="Add page content"
         onCancel={onCancelClick}
-        onSubmit={(values: AppValues) => addPage(values, appId)}
+        onSubmit={(values: AppValues) => addPage({ values, appId })}
         submitLabel="Save and continue"
         withFileUpload
         noScroll

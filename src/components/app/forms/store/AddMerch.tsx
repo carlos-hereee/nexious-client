@@ -18,7 +18,7 @@ const AddMerch = () => {
         fieldHeading={merchForm.fieldHeading}
         addEntry={sectionEntries}
         heading={`Add merchendise: ${appName}`}
-        onSubmit={(values: AppValues) => addMerch(values, appId)}
+        onSubmit={(values: AppValues) => addMerch({ values, appId })}
         submitLabel="Save and continue"
         withFileUpload
         schema={{ required: ["name", "description", "cost", "quantity"] }}

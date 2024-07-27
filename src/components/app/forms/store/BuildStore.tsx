@@ -18,7 +18,7 @@ const BuildStore = () => {
     <div className="primary-container">
       <Form
         initialValues={initialValues}
-        onSubmit={(values: AppValues) => addStore(values, appId)}
+        onSubmit={(values: AppValues) => addStore({ values, appId })}
         heading={storeForm.heading}
         submitLabel="Save and continue"
         types={storeForm.types}

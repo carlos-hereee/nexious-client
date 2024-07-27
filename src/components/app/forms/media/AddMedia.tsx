@@ -17,7 +17,7 @@ const AddMedia = ({ onCancelClick }: OnclickProps) => {
 
   const handleMedia = (values: AppValues) => {
     if (onCancelClick) onCancelClick();
-    addMedia(values, appId);
+    addMedia({ values, appId });
   };
   if (status === "pending") return <Loading message="sending request.." />;
   if (status === "loading") return <Loading message="loading app assets.." />;

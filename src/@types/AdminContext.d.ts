@@ -1,11 +1,11 @@
 declare module "app-admin" {
   import { Post } from "media-context";
   import { OrderSchema, StoreOrderUpdate } from "store-context";
-  import { MenuItemProp, PageProps, StoreProps, StringObjProp, CalendarProps } from "app-types";
+  import { MenuItemProp, PageProps, StoreProps, CalendarProps } from "app-types";
   import { ADMIN_ACTIONS } from "@actions/AdminActions";
   import { AppListProps, AppProps, StripeConfig } from "app-context";
   import { ISubscription, UserSchema } from "auth-context";
-  import { FormProps, AppValues, SectionEntryOganizer, FormValueData } from "app-forms";
+  import { FormProps, AppValues, SectionEntryOganizer, FormValueData, StoreReq } from "app-forms";
 
   export type AdminFormErrors = {
     initAppFormError?: string;
@@ -89,13 +89,13 @@ declare module "app-admin" {
     initApp: (values: AppValues) => void;
 
     // updateAccount: (config: StripeConfig) => void;
-    editAppDetails: (values: AppValues, appId: string) => void;
-    editAppName: (values: AppValues, appId: string) => void;
-    addPage: (values: AppValues, appId: string) => void;
-    addMedia: (values: AppValues, appId: string) => void;
-    editLandingPage: (values: AppValues, appId: string) => void;
-    editNewsletter: (values: AppValues, appId: string) => void;
-    editSocialMedia: (values: AppValues, appId: string) => void;
+    editAppDetails: (data: StoreReq) => void;
+    editAppName: (data: StoreReq) => void;
+    addPage: (data: StoreReq) => void;
+    addMedia: (data: StoreReq) => void;
+    editLandingPage: (data: StoreReq) => void;
+    editNewsletter: (data: StoreReq) => void;
+    editSocialMedia: (data: StoreReq) => void;
     editPage: ({ values, pageId, appId }: EditPageValues) => void;
     deleteApp: (appId: string) => void;
     deleteStore: (appId: string) => void;
@@ -103,17 +103,17 @@ declare module "app-admin" {
     deletePage: ({ appId, pageId }: EditPageValues) => void;
     deleteMedia: ({ appId, name }: { appId: string; name: string }) => void;
     // listBucket: (appId: string) => void;
-    addStore: (values: AppValues, appId: string) => void;
+    addStore: (data: StoreReq) => void;
     // calendar
     editCalendar: (data: FormValueData) => void;
     createCalendar: (data: FormValueData) => void;
-    editStore: (values: AppValues, appId: string) => void;
-    editMerch: (values: AppValues, appId: string, merhId: string) => void;
-    addMerch: (values: AppValues, appId: string) => void;
+    editStore: (data: StoreReq) => void;
+    editMerch: (data: StoreReq) => void;
+    addMerch: (data: StoreReq) => void;
     // app data
     deleteMenuItem: (appId: string, menuId: string) => void;
     getWebhooks: () => void;
-    editMenuItem: (appId: string, menuId: string, values: StringObjProp) => void;
+    editMenuItem: (data: StoreReq) => void;
     handleOrderClick: (order: StoreOrderUpdate) => void;
   }
   export interface AdminDisptachProps {

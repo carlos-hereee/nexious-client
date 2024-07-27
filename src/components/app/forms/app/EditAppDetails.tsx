@@ -29,7 +29,7 @@ const EditAppDetails = () => {
         dataList={formDataList}
         clearSelection={{ icon: true }}
         heading={`Editing app details: ${appName}`}
-        onSubmit={(values: AppValues) => editAppDetails(values, appId)}
+        onSubmit={(values: AppValues) => editAppDetails({ values, appId })}
         submitLabel="Save and continue"
         withFileUpload
         schema={{

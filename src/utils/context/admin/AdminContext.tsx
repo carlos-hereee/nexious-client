@@ -1,8 +1,8 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
 import adminState from "@data/adminState.json";
-import { ChildProps, StringObjProp } from "app-types";
-import { AppValues, FormValueData } from "app-forms";
+import { ChildProps } from "app-types";
+import { AppValues, FormValueData, StoreReq } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";
 import { StoreOrderUpdate } from "store-context";
 import { MediaRequest } from "media-context";
@@ -66,71 +66,45 @@ export const AdminState = ({ children }: ChildProps) => {
   const initApp = useCallback((values: AppValues) => buildApp({ dispatch, values, handleAppAssets }), []);
 
   // app data
-  const editAppName = useCallback((values: AppValues, appId: string) => {
-    updateAppName({ dispatch, values, handleAppAssets, appId });
-  }, []);
+  const editAppName = useCallback((data: StoreReq) => updateAppName({ dispatch, ...data, handleAppAssets }), []);
 
   // TODO: HANDLE REQEUST
   // app data menu item request
   const deleteMenuItem = useCallback((appId: string, uid: string) => {
     removeMenuItem({ dispatch, appId, uid, handleAppAssets });
   }, []);
-  const editMenuItem = useCallback((appId: string, uid: string, values: StringObjProp) => {
-    updateMenuItem({ dispatch, appId, uid, handleAppAssets, values });
-  }, []);
+  const editMenuItem = useCallback((data: StoreReq) => updateMenuItem({ dispatch, handleAppAssets, ...data }), []);
 
-  const editLandingPage = useCallback((values: AppValues, appId: string) => {
-    updateLandingPage({ dispatch, values, handleAppAssets, appId });
-  }, []);
-  const editAppDetails = useCallback((values: AppValues, appId: string) => {
-    updateAppDetails({ dispatch, values, handleAppAssets, appId });
-  }, []);
-
-  const editNewsletter = useCallback((values: AppValues, appId: string) => {
-    updateNewsletter({ dispatch, values, handleAppAssets, appId });
-  }, []);
-
-  const editSocialMedia = useCallback((values: AppValues, appId: string) => {
-    updateSocialMedia({ dispatch, values, handleAppAssets, appId });
-  }, []);
+  const editLandingPage = useCallback((data: StoreReq) => updateLandingPage({ dispatch, ...data, handleAppAssets }), []);
+  const editAppDetails = useCallback((data: StoreReq) => updateAppDetails({ dispatch, ...data, handleAppAssets }), []);
+  const editNewsletter = useCallback((data: StoreReq) => updateNewsletter({ dispatch, ...data, handleAppAssets }), []);
+  const editSocialMedia = useCallback((data: StoreReq) => updateSocialMedia({ dispatch, ...data, handleAppAssets }), []);
 
   // calendar requests
   const editCalendar = useCallback((data: FormValueData) => updateCalendar({ dispatch, ...data, handleAppAssets }), []);
   const createCalendar = useCallback((data: FormValueData) => addCalendar({ dispatch, ...data, handleAppAssets }), []);
 
   const editPage = useCallback((data: EditPageValues) => updatePage({ dispatch, ...data, handleAppAssets }), []);
-
   const deleteApp = useCallback((appId: string) => removeApp({ dispatch, appId, handleAppAssets }), []);
   const deletePage = useCallback((data: EditPageValues) => removePage({ dispatch, handleAppAssets, ...data }), []);
-
   const deleteStore = useCallback((appId: string) => removeStore({ dispatch, appId, handleAppAssets }), []);
   const deleteMedia = useCallback((data: MediaRequest) => removeMedia({ dispatch, handleAppAssets, ...data }), []);
   const deleteMerchItem = useCallback((appId: string, merchId: string) => {
     removeMerch({ dispatch, appId, merchId, handleAppAssets });
   }, []);
 
-  const addPage = useCallback((values: AppValues, appId: string) => {
-    createPage({ dispatch, appId, handleAppAssets, values });
-  }, []);
+  const addPage = useCallback((data: StoreReq) => createPage({ dispatch, ...data, handleAppAssets }), []);
 
-  const addMedia = useCallback((values: AppValues, appId: string) => {
-    createMedia({ dispatch, appId, handleAppAssets, values });
-  }, []);
-  const addStore = useCallback((values: AppValues, appId: string) => {
-    buildStore({ dispatch, appId, handleAppAssets, values });
-  }, []);
-  const editStore = useCallback((values: AppValues, appId: string) => {
-    updateStore({ dispatch, appId, handleAppAssets, values });
-  }, []);
-  const addMerch = useCallback((values: AppValues, appId: string) => {
-    addMerchendise({ dispatch, appId, handleAppAssets, values });
-  }, []);
-  const editMerch = useCallback((values: AppValues, appId: string, merchId: string) => {
-    updateMerch({ dispatch, appId, handleAppAssets, values, merchId });
-  }, []);
+  const addMedia = useCallback((data: StoreReq) => createMedia({ dispatch, handleAppAssets, ...data }), []);
+  const addStore = useCallback((data: StoreReq) => buildStore({ dispatch, ...data, handleAppAssets }), []);
+
+  const editStore = useCallback((data: StoreReq) => updateStore({ dispatch, ...data, handleAppAssets }), []);
+  const addMerch = useCallback((data: StoreReq) => addMerchendise({ dispatch, handleAppAssets, ...data }), []);
+  const editMerch = useCallback((data: StoreReq) => updateMerch({ dispatch, handleAppAssets, ...data }), []);
 
   const handleOrderClick = useCallback((data: StoreOrderUpdate) => updateOrder({ dispatch, ...data, handleAppAssets }), []);
   const getWebhooks = useCallback(() => fetchWebhooks({ dispatch }), []);
+
   const adminValues = useMemo(() => {
     return {
       isLoading: state.isLoading,

@@ -29,7 +29,7 @@ const EditLanding = () => {
         dataList={{ icon: iconList }}
         clearSelection={{ icon: true }}
         heading={`Editing landing page: ${appName}`}
-        onSubmit={(values: AppValues) => editLandingPage(values, appId)}
+        onSubmit={(values: AppValues) => editLandingPage({ values, appId })}
         submitLabel="Save and continue"
         withFileUpload
         schema={{ required: ["appName", "logo"] }}

@@ -134,6 +134,12 @@ declare module "app-forms" {
     | StringObjProp
     | StringBooleanObjProp;
 
+  export interface StoreReq {
+    values: AppValues;
+    appId: string;
+    merchId?: string;
+    uid?: string;
+  }
   export interface FormatInitialFormValues<V> {
     values?: V;
     landing?: PageProps;

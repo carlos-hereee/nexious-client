@@ -59,7 +59,7 @@ const EditAppMenu = () => {
                   fieldHeading={appMenuForm.fieldHeading}
                   dataList={{ icon: iconList }}
                   onCancel={() => deleteMenuItem(appId, activeMenu.uid)}
-                  onSubmit={(values: StringObjProp) => editMenuItem(appId, activeMenu.uid, values)}
+                  onSubmit={(values: StringObjProp) => editMenuItem({ appId, uid: activeMenu.uid, values })}
                   submitLabel="Save and continue"
                   cancelLabel="Remove"
                 />

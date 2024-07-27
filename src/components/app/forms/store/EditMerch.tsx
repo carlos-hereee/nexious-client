@@ -28,7 +28,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
         entries={entryValues}
         fieldHeading={merchForm.fieldHeading}
         onCancel={() => setShow(true)}
-        onSubmit={(values: AppValues) => editMerch(values, appId, initValues.merchId)}
+        onSubmit={(values: AppValues) => editMerch({ values, appId, merchId: initValues.merchId })}
         submitLabel="Save and continue"
         withFileUpload
         cancelLabel="Delete merch"
