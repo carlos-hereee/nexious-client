@@ -238,6 +238,12 @@
         "media": "linkedin"
       },
       {
+        "uid": "discord-uid",
+        "link": "https://www.discord.gg/arDfjnxanX",
+        "url": "https://www.discord.gg/arDfjnxanX",
+        "media": "discord"
+      },
+      {
         "uid": "github-uid",
         "media": "github",
         "link": "https://github.com/carlos-hereee",
