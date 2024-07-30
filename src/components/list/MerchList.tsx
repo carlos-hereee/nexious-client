@@ -11,9 +11,7 @@ const MerchList = ({ updateStatus }: { updateStatus?: (key: DialogStatusProps) =
   const [show, setShow] = useState({ inventory: false, item: false });
   const [editValues, setEdit] = useState<MerchProps>();
 
-  const onClose = () => {
-    setShow({ ...show, item: false });
-  };
+  const onClose = () => setShow({ ...show, item: false });
   const handleClick = (item: MerchProps) => {
     setEdit(item);
     setShow({ ...show, item: true });

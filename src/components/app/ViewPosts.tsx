@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Hero } from "nexious-library";
+import { CardTextBubble } from "nexious-library";
 import { Post } from "media-context";
 import { sortList } from "@app/sortList";
 
@@ -15,20 +15,10 @@ const ViewPosts = ({ posts }: Props) => {
       setPosts(sorted as Post[]);
     }
   }, [posts]);
-
   if (!posts) return <h2 className="heading">No posts</h2>;
   return (
     <div className="primary-container overflow-y">
-      {sortedPosts.length > 0 ? (
-        sortedPosts.map((post) => (
-          <Button key={post.uid} theme="btn-post highlight">
-            {post.thumbnail && <Hero hero={{ url: post.thumbnail }} theme="post-thumbnail" />}
-            {post.body}
-          </Button>
-        ))
-      ) : (
-        <p>No posts</p>
-      )}
+      {sortedPosts.length > 0 ? sortedPosts.map((post) => <CardTextBubble key={post.uid} data={post} />) : <p>No posts</p>}
     </div>
   );
 };
