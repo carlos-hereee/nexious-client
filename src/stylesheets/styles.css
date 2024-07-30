@@ -44,6 +44,12 @@
   border-radius: 4px;
   background-color: #fafafa;
 }
+.user-menu-icons {
+  position: fixed;
+  z-index: 4;
+  right: 2%;
+  bottom: 10%;
+}
 .contact-icons {
   margin: auto;
   object-fit: contain;

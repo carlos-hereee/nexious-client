@@ -1,5 +1,5 @@
 import { AuthContext } from "@context/auth/AuthContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { nexiousAuthMenu, nexiousMenu } from "@data/nexious.json";
 import { useNavigate } from "react-router-dom";
 import { MenuProp } from "app-types";
@@ -10,43 +10,69 @@ import { AppContext } from "@context/app/AppContext";
 interface ActiveUserMenu {
   user: boolean;
   checkout: boolean;
+  calendar: boolean;
+  home?: boolean;
+}
+interface IUserMenu {
+  name: keyof ActiveUserMenu;
+  icon: string;
+  link: string;
 }
 const UserMenu = () => {
   const { accessToken, theme } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
-  const { store } = useContext(AppContext);
+  const { store, calendar, appId } = useContext(AppContext);
   const navigate = useNavigate();
-  const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false });
+  const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
   const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);
-
   const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
+  const [menus, setMenus] = useState<IUserMenu[]>([]);
 
-  const handleClick = (item: keyof ActiveUserMenu | null) => {
-    setActive(item);
-    if (item) setActiveMenu({ user: false, checkout: false, [item]: !activeMenu[item] });
+  const handleClick = (m: IUserMenu) => {
+    setActiveMenu({ ...activeMenu, [m.name]: !activeMenu[m.name] });
+    setActive(m.name);
+    if (m.name === "checkout") {
+      if (merchCount > 0) navigate("/checkout");
+      else navigate(m.link);
+    }
+    if (m.name === "calendar") navigate(m.link);
+    if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
   };
+  useEffect(() => {
+    if (appId) {
+      // reset menus to remove prevoius app data from memory
+      setMenus([]);
+      const data: IUserMenu[] = [{ name: "home", link: "", icon: "home" }];
+      if (calendar && calendar.calendarId) data.push({ name: "calendar", link: calendar.calendarLink || "", icon: "booking" });
+      if (store && store.storeId) data.push({ name: "checkout", link: `/store/${store.storeLink}` || "", icon: "checkout" });
+      if (accessToken) data.push({ name: "user", link: "", icon: "user" });
+      setMenus(data);
+    }
+  }, [appId]);
   return (
-    <nav className={`mobile-navigation user-menu ${active && activeMenu[active] ? `alt-${theme}` : ""}`}>
-      {!activeMenu.checkout && (
-        <IconButton icon={{ icon: !activeMenu.user ? "dashboard" : "close", size: "3x" }} onClick={() => handleClick("user")} />
-      )}
-      {!activeMenu.user && (
-        <IconButton
-          icon={{ icon: "checkout", size: "3x" }}
-          onClick={() =>
-            merchCount > 0 ? navigate("/checkout") : store.storeLink ? navigate(`/store/${store.storeLink}`) : undefined
-          }
-          ping={merchCount > 0 ? merchCount : undefined}
-        />
-      )}
-      <NavBar
-        show={{ isActive: active && activeMenu[active] }}
-        menu={accessToken ? nexiousAuthMenu : nexiousMenu}
-        includeHome
-        click={(e: MenuProp) => navigate(`/${e.link}`)}
-        onHomeClick={() => navigate("/")}
-      />
-    </nav>
+    <>
+      <div className="user-menu-icons container">
+        {menus.map((menu) => (
+          <IconButton
+            key={menu.name}
+            icon={{ size: "3x", icon: menu.icon }}
+            onClick={() => handleClick(menu)}
+            ping={menu.name === "checkout" ? (merchCount > 0 ? merchCount : undefined) : undefined}
+          />
+        ))}
+      </div>
+      <nav className={`mobile-navigation user-menu ${active && activeMenu[active] ? `alt-${theme}` : ""}`}>
+        {active === "user" && (
+          <NavBar
+            show={{ isActive: active && activeMenu[active] }}
+            menu={accessToken ? nexiousAuthMenu : nexiousMenu}
+            includeHome
+            click={(e: MenuProp) => navigate(`/${e.link}`)}
+            onHomeClick={() => navigate("/")}
+          />
+        )}
+      </nav>
+    </>
   );
 };
 export default UserMenu;
