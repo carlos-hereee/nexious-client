@@ -16,6 +16,9 @@
   aspect-ratio: 16/9;
   border-radius: 10px;
 }
+header {
+  z-index: 2;
+}
 .overflow-x {
   overflow-x: auto;
 }

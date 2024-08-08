@@ -12,7 +12,7 @@ import AppDialog from "@components/app/dialog/AppDialog";
 import CalendarContainer from "@components/app/containers/CalendarContainer";
 import { nexiousDashboardMenu, dashboardMenus as menus } from "@data/nexious.json";
 import CalendarDialog from "@components/app/dialog/CalendarDialog";
-import { Button, Loading } from "nexious-library";
+import { Button, IconButton, Loading } from "nexious-library";
 import StoreContainer from "@components/app/containers/StoreContainer";
 import { useNotifications } from "@hooks/useNotifications";
 import Notification from "@pages/dashboard/Notification";
@@ -23,6 +23,7 @@ const AppSettings = () => {
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("app");
+  const [activeNav, setActiveNav] = useState<keyof AppDialogProps | undefined>();
   const [status, setStatus] = useState<DialogStatusProps>("phase-one");
   const { ping } = useNotifications();
 
@@ -37,11 +38,13 @@ const AppSettings = () => {
       setStatus("idle");
     }
   }, [formStatus]);
+
   useEffect(() => {
     if (dbVersion) {
       if (dbVersion === "1.0.0") upgradeToLatest(appId);
     }
   }, [dbVersion]);
+
   useEffect(() => {
     if (redirectUrl) window.location.href = redirectUrl;
   }, [redirectUrl]);
@@ -61,8 +64,13 @@ const AppSettings = () => {
   // TODO: ADD COUNTRY TO APP SETTINGS
   // TODO: UPDATE APP SETTING  NAVIGATION
   if (formStatus === "LOADING") return <Loading message="Request sent" />;
+
+  const handleActiveNav = (n: keyof AppDialogProps) => {
+    setActiveNav(undefined);
+    setNav(n);
+  };
   return (
-    <div className="container">
+    <div>
       {/* {!dbVersion && (
         <div className="container flex-center">
           <h3>Notice!</h3>
@@ -71,17 +79,22 @@ const AppSettings = () => {
           <Button label="Upgrade app" onClick={() => upgradeToLatest(appId)} />
         </div>
       )} */}
-      <div className="navigation-container">
-        {menus.map(({ label, value, theme, activeTheme }) => (
-          <Button
-            key={value}
-            label={label}
-            theme={nav === value ? activeTheme : theme}
-            ping={value === "store" ? ping.orders || undefined : value === "notifications" ? ping.app : undefined}
-            onClick={() => setNav(value as keyof AppDialogProps)}
-          />
-        ))}
-      </div>
+      {!activeNav ? (
+        <IconButton icon={{ icon: "burger", size: "2x" }} theme="btn-small highlight" onClick={() => setActiveNav("app")} />
+      ) : (
+        <div className="side-menu">
+          <IconButton icon={{ icon: "close", size: "2x" }} theme="btn-small highlight" onClick={() => setActiveNav(undefined)} />
+          {menus.map(({ label, value, theme, activeTheme }) => (
+            <Button
+              key={value}
+              label={label}
+              theme={nav === value ? activeTheme : theme}
+              ping={value === "store" ? ping.orders || undefined : value === "notifications" ? ping.app : undefined}
+              onClick={() => handleActiveNav(value as keyof AppDialogProps)}
+            />
+          ))}
+        </div>
+      )}
       {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}
       {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
