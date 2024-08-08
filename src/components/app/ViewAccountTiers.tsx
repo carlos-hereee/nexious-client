@@ -38,7 +38,9 @@ const ViewAccountTiers = ({ subscriptions, heading }: { subscriptions: ISubscrip
   return (
     <div className="primary-container">
       {heading ? <h1 className="heading">{heading}</h1> : <h1 className="heading">View service tiers</h1>}
-      <Navigation menus={menus} theme="navigation-bar" active={activeMenu} onClick={updateActiveMenu} />
+      {menus && menus.length > 1 && (
+        <Navigation menus={menus} theme="navigation-bar" active={activeMenu} onClick={updateActiveMenu} />
+      )}
       <div className="btn-card-container">
         {filteredItems.length > 0 ? (
           filteredItems.map((service: ISubscription) => (

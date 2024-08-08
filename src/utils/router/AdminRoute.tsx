@@ -4,14 +4,17 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
 import { nexiousName, nexiousMedia, nexiousLogo, nexiousAuthMenu, nexiousAppId } from "@data/nexious.json";
 import { MediaContext } from "@context/media/MediaContext";
+import { LogContext } from "@context/log/LogContext";
 
 const AdminRoute = () => {
   const { accessToken, isLoading: isAuthLoading } = useContext(AuthContext);
   const { isLoading: isAppLoading, getAppWithName, updateActiveAppData, appLink, appId } = useContext(AppContext);
   const { pathname } = useLocation();
   const { getPosts } = useContext(MediaContext);
+  const { setPage } = useContext(LogContext);
 
   useEffect(() => {
+    setPage("private");
     const query = pathname.split("/");
     const routeAppName = query[query.length - 1];
     updateActiveAppData({

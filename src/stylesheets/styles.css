@@ -50,11 +50,17 @@
   right: 2%;
   bottom: 10%;
 }
+.form-submit-btn {
+  background-color: #fafafa;
+}
 .contact-icons {
   margin: auto;
   object-fit: contain;
   max-width: 100px;
   min-height: 150px;
+}
+.container {
+  z-index: 1;
 }
 .logout-btn {
   margin: 5rem auto;

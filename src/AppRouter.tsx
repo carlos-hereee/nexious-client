@@ -1,6 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { PageNotFound } from "nexious-library";
+import { Bubbly, PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import PrivateRoute from "@router/PrivateRoute";
 import AppRoute from "@router/AppRoute";
@@ -44,6 +44,7 @@ const AppRouter: React.FC = () => {
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
         <Route path="/" element={<Homepage />} />
+        <Route path="/*" element={<Bubbly bubbles={20} />} />
       </Route>
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>

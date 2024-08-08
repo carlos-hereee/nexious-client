@@ -4,9 +4,9 @@ import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { Loading } from "nexious-library";
 
 const Pricing = () => {
-  const { platformTiers } = useContext(AppContext);
+  const { platformTiers, isLoading } = useContext(AppContext);
 
-  if (platformTiers.length === 0) return <Loading />;
+  if (platformTiers.length === 0 && isLoading) return <Loading />;
   return <ViewAccountTiers subscriptions={platformTiers} />;
 };
 

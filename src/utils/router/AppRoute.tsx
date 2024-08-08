@@ -3,16 +3,19 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { nexiousMedia, nexiousMenu, nexiousLogo, nexiousAuthMenu, nexiousName, nexiousAppId } from "@data/nexious.json";
+import { LogContext } from "@context/log/LogContext";
 // import { MenuProp } from "app-types";
 
 const AppRoute = () => {
   const { isOnline, appError, appId } = useContext(AppContext);
   const { accessToken } = useContext(AuthContext);
   const { menu, logo, appName, media, updateActiveAppData, getAppWithName } = useContext(AppContext);
+  const { setPage } = useContext(LogContext);
   const { pathname } = useLocation();
 
   useEffect(() => {
     // fetch app data
+    setPage("private");
     const routeAppName = pathname.split("/")[2];
     if (appName !== routeAppName) getAppWithName(routeAppName);
   }, [pathname]);

@@ -1,4 +1,4 @@
-import { Bubbly, HeroCard, SectionList } from "nexious-library";
+import { HeroCard, SectionList } from "nexious-library";
 import { CallToActionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousHomepage } from "@data/nexious.json";
@@ -10,7 +10,6 @@ const Homepage = () => {
 
   return (
     <div className="container">
-      <Bubbly />
       <HeroCard data={nexiousHomepage} onClick={handleClick} />
       {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
       <ExploreApps featuredOnly heading="Check out our featured apps" />

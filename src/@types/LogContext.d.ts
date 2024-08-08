@@ -8,11 +8,16 @@ declare module "log-context" {
     status: number;
     hint?: string;
   }
-  export interface LogSchema {
+  export interface LogState {
     isLoading: boolean;
     status: APP_STATUS;
+    page: PageType;
     log: LogMessage[] | [];
   }
+  export interface LogSchema extends LogState {
+    setPage: (pageType: PageType) => void;
+  }
+  export type PageType = "public" | "private";
   export interface LogDispatchProps {
     dispatch: React.Dispatch<LogActionProps>;
     setAccessToken?: (accessToken: string) => void;
@@ -25,5 +30,6 @@ declare module "log-context" {
     | { type: LOG_ACTIONS.IS_LOADING; payload: boolean }
     | { type: LOG_ACTIONS.SET_LOG_STATUS; payload: APP_STATUS }
     | { type: LOG_ACTIONS.ADD_MESSAGE_TO_LOG; payload: LogMessage }
+    | { type: LOG_ACTIONS.SET_PAGE; payload: PageType }
     | { type: LOG_ACTIONS.REMOVE_MESSAGE_FROM_LOG; payload: LogMessage[] };
 }
