@@ -59,7 +59,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         <Button label="Edit store details" onClick={() => updatePhase("phase-two")} />
       </ItemDetail>
       <ItemDetail label="Remove store:" labelLayout="bolden">
-        <Button label="Delete store" theme="btn-main btn-danger" onClick={() => updatePhase("confirm-cancel")} />
+        <Button label="Delete store" theme="btn-main btn-required" onClick={() => updatePhase("confirm-cancel")} />
       </ItemDetail>
     </div>
   );

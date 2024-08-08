@@ -36,7 +36,7 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
         <Button label="Edit app menu" onClick={() => updatePhase("phase-two")} />
       </ItemDetail>
       <ItemDetail label="Remove app:" labelLayout="bolden">
-        <Button label="Delete app" theme="btn-main btn-danger" onClick={() => updatePhase("confirm-cancel")} />
+        <Button label="Delete app" theme="btn-main btn-required" onClick={() => updatePhase("confirm-cancel")} />
       </ItemDetail>
     </div>
   );

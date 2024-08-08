@@ -258,7 +258,9 @@ header {
   display: grid;
   text-align: center;
 }
-.btn-required {
+.btn-required,
+.btn-cancel {
+  background-color: #fafafa;
   color: crimson;
 }
 .form-center {
