@@ -5,6 +5,9 @@
   align-items: start;
   justify-content: flex-start;
 }
+.card-container {
+  z-index: 1;
+}
 
 .overflow-x {
   overflow-x: auto;
@@ -93,10 +96,13 @@
   display: flex;
   align-items: center;
 }
-
+.app-card-container {
+  justify-content: center;
+}
 .app-card {
   flex: 1;
   font: inherit;
+  align-items: end;
   font-family: inherit;
 }
 .app-card .card-row-body {
@@ -299,8 +305,12 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #e7e7e7;
 }
-.service-card-active {
+.service-card-active,
+.app-card,
+.nav-btn,
+.btn-main {
   background-color: #fafafa;
 }
 .btn-card-container {
@@ -316,3 +326,6 @@ header {
 .text-left {
   text-align: left;
 }
+/* {
+  background-color: #e7e7e7;
+} */

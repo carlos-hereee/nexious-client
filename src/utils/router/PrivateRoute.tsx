@@ -15,16 +15,14 @@ const PrivateRoute = () => {
 
   useEffect(() => {
     setPage("private");
-    if (pathname === "/dashboard") {
-      getPosts("");
-      updateActiveAppData({
-        appId: nexiousAppId,
-        appName: nexiousName,
-        logo: nexiousLogo,
-        media: nexiousMedia,
-        menu: nexiousAuthMenu,
-      });
-    }
+    getPosts("");
+    updateActiveAppData({
+      appId: nexiousAppId,
+      appName: nexiousName,
+      logo: nexiousLogo,
+      media: nexiousMedia,
+      menu: nexiousAuthMenu,
+    });
   }, [pathname]);
 
   return accessToken ? <Outlet /> : <Navigate to="/" />;

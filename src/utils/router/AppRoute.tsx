@@ -14,8 +14,8 @@ const AppRoute = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    setPage("app");
     // fetch app data
-    setPage("private");
     const routeAppName = pathname.split("/")[2];
     if (appName !== routeAppName) getAppWithName(routeAppName);
   }, [pathname]);

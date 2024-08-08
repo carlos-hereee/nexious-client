@@ -2,8 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { IconButton, Banner } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
-import Notification from "@pages/dashboard/Notification";
-import { useNotifications } from "@hooks/useNotifications";
+
 import OwnerDashboard from "@pages/dashboard/OwnerDashboard";
 import TrackOrder from "@components/app/containers/TrackOrders";
 import { StoreContext } from "@context/store/StoreContext";
@@ -16,13 +15,10 @@ type Menu = "apps" | "account" | "feed" | "notifications" | "orders" | "admin";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<Menu>("apps");
-  const { user, notifications, clearNotification, isPlatformOwner, tierUpdate, setUpdateTier, updateTier } =
-    useContext(AuthContext);
+  const { user, isPlatformOwner, tierUpdate, setUpdateTier, updateTier } = useContext(AuthContext);
   const { welcomeMessage } = useContext(AppContext);
   const { trackOrder } = useContext(StoreContext);
   const { posts, getPosts } = useContext(MediaContext);
-
-  const { ping } = useNotifications();
 
   useEffect(() => {
     getPosts("");
@@ -65,12 +61,12 @@ const UserPlayground = () => {
             theme={active === "feed" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("feed")}
           />
-          <IconButton
+          {/* <IconButton
             icon={{ icon: "bell", label: "Notifications" }}
             theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("notifications")}
             ping={ping.notifications || undefined}
-          />
+          /> */}
           <IconButton
             icon={{ icon: "shopping", label: "Orders" }}
             theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
@@ -87,7 +83,7 @@ const UserPlayground = () => {
         {active === "apps" && <AppPlayground />}
         {active === "feed" && <ViewPosts posts={posts} />}
         {active === "orders" && <TrackOrder />}
-        {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />}
+        {/* {active === "notifications" && <Notification notifications={notifications} clearNotification={clearNotification} />} */}
         {active === "account" && <AccountSettings />}
       </div>
     </section>

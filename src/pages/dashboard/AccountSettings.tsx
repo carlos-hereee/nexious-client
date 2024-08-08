@@ -39,6 +39,9 @@ const AccountSettings = () => {
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />
       </ItemDetail>
+      <ItemDetail labelLayout="bolden" label="Logout:">
+        <Button label="Logout" theme="btn-main" onClick={() => handleClick("password-change")} />
+      </ItemDetail>
       {show && (
         <Dialog theme={`alt-${theme}`} onDialogClose={() => setShow(false)}>
           {nav === "user" && (

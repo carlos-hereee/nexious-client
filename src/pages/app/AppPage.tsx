@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Card, HeroCard, Loading } from "nexious-library";
 import { CallToActionProps } from "app-types";
 import AppInProgress from "@pages/public/AppInProgress";
-import UserMenu from "@components/app/UserMenu";
 
 const AppPage = () => {
   const { page, pages, updateAppData } = useContext(AppContext);
@@ -27,7 +26,6 @@ const AppPage = () => {
 
   return (
     <div className="container">
-      <UserMenu />
       {page.hero ? (
         <>
           <HeroCard data={page} hero={heroData} onClick={handleClick} theme="reverse" />

@@ -45,6 +45,7 @@
       "link": "explore",
       "name": "explore"
     },
+
     {
       "isPrivate": false,
       "uid": "pricing-1",
@@ -65,16 +66,6 @@
       "value": "dashboard",
       "link": "dashboard",
       "name": "dashboard"
-    },
-    {
-      "isPrivate": true,
-      "uid": "auth-1",
-      "category": "auth",
-      "menuId": "auth-1",
-      "label": "logout",
-      "value": "logout",
-      "link": "logout",
-      "name": "logout"
     }
   ],
   "nexiousAppMenu": [

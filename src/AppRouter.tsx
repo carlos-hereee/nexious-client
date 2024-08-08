@@ -1,6 +1,6 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { Bubbly, PageNotFound } from "nexious-library";
+import { PageNotFound } from "nexious-library";
 import { AuthContext } from "@context/auth/AuthContext";
 import PrivateRoute from "@router/PrivateRoute";
 import AppRoute from "@router/AppRoute";
@@ -22,9 +22,10 @@ import CheckoutSuccess from "@components/app/checkout/CheckoutSuccess";
 import AppBooking from "@pages/app/AppBooking";
 import Logout from "@pages/auth/Logout";
 import Pricing from "@pages/public/Pricing";
+import Notification from "@pages/dashboard/Notification";
 
 const AppRouter: React.FC = () => {
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, notifications, clearNotification } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const navigateClick = () => navigate(accessToken ? "/dashboard" : "/");
@@ -44,7 +45,6 @@ const AppRouter: React.FC = () => {
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
         <Route path="/" element={<Homepage />} />
-        <Route path="/*" element={<Bubbly bubbles={20} />} />
       </Route>
       {/* App routes that requires internet or app data to work */}
       <Route element={<AppRoute />}>
@@ -55,7 +55,10 @@ const AppRouter: React.FC = () => {
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
-        {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
+        <Route
+          path="/dashboard/notifications"
+          element={<Notification notifications={notifications} clearNotification={clearNotification} />}
+        />
         <Route path="/dashboard" element={<UserPlayground />} />
       </Route>
       {/* Admin routes for editing pages */}

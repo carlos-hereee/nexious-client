@@ -1,7 +1,6 @@
 import { Calendar, Loading } from "nexious-library";
 import CalendarEvents from "@components/app/CalendarEvents";
 import { useContext, useEffect } from "react";
-import UserMenu from "@components/app/UserMenu";
 import { CalendarContext } from "@context/calendar/CalendarContext";
 import { AppContext } from "@context/app/AppContext";
 import { CalendarDayProp, CalEvent } from "app-calendar";
@@ -25,7 +24,6 @@ const AppBooking = () => {
   if (requireEvents || !events) return <Loading />;
   return (
     <section className="primary-container">
-      <UserMenu />
       {name && <h1 className="heading">{name}</h1>}
       <Calendar
         value={new Date()}

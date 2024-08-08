@@ -8,6 +8,7 @@ import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
 import { LogContext } from "@context/log/LogContext";
+import UserMenu from "@components/app/UserMenu";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
@@ -41,6 +42,7 @@ const App = ({ children }: ChildProps) => {
         theme={theme}
       />{" "}
       {children}
+      <UserMenu />
       {page === "public" && <Bubbly bubbles={20} />}
       <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} />
     </div>

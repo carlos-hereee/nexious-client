@@ -4,7 +4,6 @@ import { Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
-import UserMenu from "@components/app/UserMenu";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
@@ -35,7 +34,6 @@ const AppStore = () => {
   };
   return (
     <div className="container">
-      <UserMenu />
       <div className="container">
         {store.storeName && <h1 className="heading">Welcome to {store.storeName}</h1>}
         {store.hero && <Hero hero={{ url: store.hero }} />}

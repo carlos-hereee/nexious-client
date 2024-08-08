@@ -2,6 +2,8 @@ declare module "log-context" {
   import { LOG_ACTIONS } from "@actions/LogActions";
 
   export type APP_STATUS = "PRE-LAUNCH" | "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
+  export type PageType = "public" | "private" | "app";
+
   export interface LogMessage {
     uid: string;
     message: string;
@@ -17,7 +19,6 @@ declare module "log-context" {
   export interface LogSchema extends LogState {
     setPage: (pageType: PageType) => void;
   }
-  export type PageType = "public" | "private";
   export interface LogDispatchProps {
     dispatch: React.Dispatch<LogActionProps>;
     setAccessToken?: (accessToken: string) => void;

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import { ChildProps } from "app-types";
-import { LogMessage, LogSchema } from "log-context";
+import { LogMessage, LogSchema, PageType } from "log-context";
 import logState from "@data/logState.json";
 import { LOG_ACTIONS } from "@actions/LogActions";
 import { reducer } from "./LogReducer";
@@ -16,7 +16,7 @@ export const LogState = ({ children }: ChildProps) => {
   const addMessageToLog = useCallback((a: LogMessage) => addToLog({ dispatch, data: a }), []);
   // remove message
   const removeMessageFromLog = useCallback((a: LogMessage) => removeFromLog({ dispatch, data: a, log: state.log }), []);
-  const setPage = useCallback((a: "public" | "private") => dispatch({ type: LOG_ACTIONS.SET_PAGE, payload: a }), []);
+  const setPage = useCallback((a: PageType) => dispatch({ type: LOG_ACTIONS.SET_PAGE, payload: a }), []);
 
   const logValues = useMemo(() => {
     return {

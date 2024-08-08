@@ -3,7 +3,6 @@ import { AppContext } from "@context/app/AppContext";
 import { CallToActionProps, SectionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { HeroCard, Card } from "nexious-library";
-import UserMenu from "@components/app/UserMenu";
 
 const Landing = () => {
   const { landing, appLink } = useContext(AppContext);
@@ -15,7 +14,6 @@ const Landing = () => {
   const heroData = { url: landing.hero || "", alt: "page hero" };
   return (
     <div>
-      <UserMenu />
       <div className="container">
         {landing.hero ? (
           <>
