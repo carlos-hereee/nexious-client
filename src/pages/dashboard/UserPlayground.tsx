@@ -11,7 +11,7 @@ import ViewPosts from "@components/app/ViewPosts";
 import AccountSettings from "./AccountSettings";
 import AppPlayground from "../settings/AppPlayground";
 
-type Menu = "apps" | "account" | "feed" | "notifications" | "orders" | "admin";
+type Menu = "apps" | "account" | "feed" | "orders" | "admin";
 
 const UserPlayground = () => {
   const [active, setActive] = useState<Menu>("apps");
@@ -61,12 +61,7 @@ const UserPlayground = () => {
             theme={active === "feed" ? "btn-main btn-active" : "btn-main"}
             onClick={() => setActive("feed")}
           />
-          {/* <IconButton
-            icon={{ icon: "bell", label: "Notifications" }}
-            theme={active === "notifications" ? "btn-main btn-active" : "btn-main"}
-            onClick={() => setActive("notifications")}
-            ping={ping.notifications || undefined}
-          /> */}
+
           <IconButton
             icon={{ icon: "shopping", label: "Orders" }}
             theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
