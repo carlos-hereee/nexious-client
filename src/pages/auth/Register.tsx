@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Form, Hero } from "nexious-library";
+import { Form } from "nexious-library";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -12,16 +12,16 @@ const Register = () => {
   }, [accessToken]);
 
   return (
-    <div className="container">
+    <div className="primary-container">
       {authErrors.register && <p className="error-message">{authErrors.register}</p>}
-      <div className="form-hero">
-        {dummyUser.username ? (
-          <Form initialValues={{ ...signUpForm.initialValues, ...dummyUser }} heading="Sign up" onSubmit={register} />
-        ) : (
-          <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
-        )}
-        {signUpForm.hero && <Hero hero={signUpForm.hero} />}
-      </div>
+      {/* <div className="form-hero"> */}
+      {dummyUser.username ? (
+        <Form initialValues={{ ...signUpForm.initialValues, ...dummyUser }} heading="Sign up" onSubmit={register} />
+      ) : (
+        <Form initialValues={signUpForm.initialValues} heading="Sign up" onSubmit={register} />
+      )}
+      {/* {signUpForm.hero && <Hero hero={signUpForm.hero} />} */}
+      {/* </div> */}
       <div className="flex-center text-center">
         <Link to="/login">
           Already have an account?

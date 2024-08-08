@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Form, Button, Hero, Loading } from "nexious-library";
+import { Form, Button, Loading } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "@context/admin/AdminContext";
 import { AppContext } from "@context/app/AppContext";
@@ -10,7 +10,7 @@ const BuildApp = () => {
   const { initAppForm, initApp, themeList, languageList, formErrors, isLoading, formStatus, setFormStatus } =
     useContext(AdminContext);
   const { appList } = useContext(AppContext);
-  const { theme, accessToken } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,28 +30,27 @@ const BuildApp = () => {
           <Button label="Go to login" onClick={() => navigate("/login")} />
         </div>
       )}
-      <div className="form-hero w-full">
-        <Form
-          initialValues={initAppForm.initialValues}
-          onSubmit={initApp}
-          heading={initAppForm.heading}
-          submitLabel={initAppForm.submitLabel}
-          types={initAppForm.types}
-          labels={initAppForm.labels}
-          theme={theme}
-          disableForm={!accessToken}
-          responseError={formErrors.initAppFormError}
-          placeholders={initAppForm.placeholders}
-          dataList={{ theme: themeList, locale: languageList, language: languageList }}
-          fieldHeading={initAppForm.fieldHeading}
-          schema={{
-            required: ["appName", "logo"],
-            unique: [{ name: "appName", list: uniqueApplist(appList) }],
-          }}
-        />
-        {initAppForm.hero && <Hero hero={initAppForm.hero} layout="hide-on-tablet" />}
-      </div>
+      {/* <div className="form-hero w-full"> */}
+      <Form
+        initialValues={initAppForm.initialValues}
+        onSubmit={initApp}
+        heading={initAppForm.heading}
+        submitLabel={initAppForm.submitLabel}
+        types={initAppForm.types}
+        labels={initAppForm.labels}
+        // theme={theme}
+        disableForm={!accessToken}
+        responseError={formErrors.initAppFormError}
+        placeholders={initAppForm.placeholders}
+        dataList={{ theme: themeList, locale: languageList, language: languageList }}
+        fieldHeading={initAppForm.fieldHeading}
+        schema={{
+          required: ["appName", "logo"],
+          unique: [{ name: "appName", list: uniqueApplist(appList) }],
+        }}
+      />
     </div>
+    // </div>
   );
 };
 export default BuildApp;

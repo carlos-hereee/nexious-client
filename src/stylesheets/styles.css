@@ -52,6 +52,7 @@
 }
 .form-submit-btn {
   background-color: #fafafa;
+  color: black;
 }
 .contact-icons {
   margin: auto;
@@ -59,7 +60,8 @@
   max-width: 100px;
   min-height: 150px;
 }
-.container {
+.container,
+.primary-container {
   z-index: 1;
 }
 .logout-btn {
