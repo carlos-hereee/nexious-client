@@ -7,10 +7,11 @@ import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { AppContext } from "@context/app/AppContext";
 import SubscriptionCard from "@components/card/SubscriptionCard";
 import { StoreContext } from "@context/store/StoreContext";
+import OwnerDashboard from "./OwnerDashboard";
 
 type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account";
 const AccountSettings = () => {
-  const { user, userForm, editUser, theme, accountTier } = useContext(AuthContext);
+  const { user, userForm, editUser, theme, accountTier, isPlatformOwner } = useContext(AuthContext);
   const { platformTiers } = useContext(AppContext);
   const { manageBilling } = useContext(StoreContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
@@ -23,6 +24,7 @@ const AccountSettings = () => {
   };
   return (
     <div className="container">
+      {isPlatformOwner && <OwnerDashboard />}
       <h1 className="heading">Account settings</h1>
       <ItemDetail labelLayout="bolden" label="Account:">
         <Button label="Update account" onClick={() => handleClick("user")} />

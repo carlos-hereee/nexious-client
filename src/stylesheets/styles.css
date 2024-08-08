@@ -8,7 +8,14 @@
 .card-container {
   z-index: 1;
 }
-
+.m-auto {
+  margin: auto;
+}
+.post-thumbnail {
+  max-height: 30vh;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+}
 .overflow-x {
   overflow-x: auto;
 }

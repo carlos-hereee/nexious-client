@@ -14,6 +14,7 @@ interface ActiveUserMenu {
   checkout: boolean;
   calendar: boolean;
   home?: boolean;
+  feed?: boolean;
   bell?: boolean;
 }
 interface IUserMenu {
@@ -41,6 +42,7 @@ const UserMenu = () => {
       else navigate(m.link);
     }
     if (m.name === "calendar") navigate(m.link);
+    if (m.name === "feed") navigate(m.link);
     if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
     if (m.name === "bell") navigate(accessToken ? "/dashboard/notifications" : "/");
   };
@@ -49,7 +51,10 @@ const UserMenu = () => {
     // reset menus to remove prevoius app data from memory
     setMenus([]);
     // init menu
-    const data: IUserMenu[] = [{ name: "home", link: "", icon: "home" }];
+    const data: IUserMenu[] = [
+      { name: "home", link: "", icon: "home" },
+      { name: "feed", link: "feed", icon: "scroll" },
+    ];
     // if user is login
     if (accessToken) {
       data.push({ name: "bell", link: "", icon: "bell" });

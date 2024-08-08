@@ -36,11 +36,9 @@ const OwnerDashboard = () => {
   };
 
   return (
-    <div className="app-container">
-      <div className="header-menu">
-        <h2 className="heading">ADMIN DASHBOARD</h2>
-      </div>
+    <>
       <div>
+        <h2 className="heading">ADMIN SETTINGS</h2>
         <ItemDetail label="Platform subscriptions:" labelLayout="bolden">
           <Button label="View subscriptions" onClick={() => handleClick("view-sub")} />
         </ItemDetail>
@@ -69,7 +67,7 @@ const OwnerDashboard = () => {
           {active === "view-webhook" && <ViewWebhook />}
         </Dialog>
       )}
-    </div>
+    </>
   );
 };
 export default OwnerDashboard;

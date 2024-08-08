@@ -10,6 +10,7 @@ declare module "media-context" {
     name: string;
     body: string;
     reviews: string;
+    comments: string[];
   }
   export interface MediaState {
     isLoading: boolean;
