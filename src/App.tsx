@@ -7,10 +7,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-// // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// import { isDev } from "@config";
-// // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// import AppSettings from "@pages/settings/AppSettings";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
@@ -21,7 +17,6 @@ const App = ({ children }: ChildProps) => {
   if (authErrors && authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
-  // if (isDev) return <AppSettings />;
 
   const handleLogoClick = () => {
     if (activeAppName === nexiousName) {
@@ -43,9 +38,8 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
       />
-      {/* {isDev && <AppSettings />} */}
       {children}
-      <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} hero={activeMedia.hero} />
+      <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} />
     </div>
   );
 };

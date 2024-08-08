@@ -12,6 +12,7 @@ interface ActiveUserMenu {
   checkout: boolean;
   calendar: boolean;
   home?: boolean;
+  bell?: boolean;
 }
 interface IUserMenu {
   name: keyof ActiveUserMenu;
@@ -43,19 +44,23 @@ const UserMenu = () => {
       // reset menus to remove prevoius app data from memory
       setMenus([]);
       const data: IUserMenu[] = [{ name: "home", link: "", icon: "home" }];
+      if (accessToken) {
+        data.push({ name: "bell", link: "", icon: "bell" });
+        data.push({ name: "user", link: "", icon: "user" });
+      }
       if (calendar && calendar.calendarId) data.push({ name: "calendar", link: calendar.calendarLink || "", icon: "booking" });
       if (store && store.storeId) data.push({ name: "checkout", link: `/store/${store.storeLink}` || "", icon: "checkout" });
-      if (accessToken) data.push({ name: "user", link: "", icon: "user" });
       setMenus(data);
     }
   }, [appId]);
+
   return (
     <>
       <div className="user-menu-icons container">
         {menus.map((menu) => (
           <IconButton
             key={menu.name}
-            icon={{ size: "3x", icon: menu.icon }}
+            icon={{ size: "2x", icon: menu.icon }}
             onClick={() => handleClick(menu)}
             ping={menu.name === "checkout" ? (merchCount > 0 ? merchCount : undefined) : undefined}
           />

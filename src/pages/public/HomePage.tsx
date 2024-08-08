@@ -1,29 +1,20 @@
-import { HeroCard } from "nexious-library";
-import { CallToActionProps, SectionProps } from "app-types";
+import { Bubbly, HeroCard, SectionList } from "nexious-library";
+import { CallToActionProps } from "app-types";
 import { useNavigate } from "react-router-dom";
 import { nexiousHomepage } from "@data/nexious.json";
 import ExploreApps from "@pages/public/ExploreApps";
 
 const Homepage = () => {
   const navigate = useNavigate();
-
   const handleClick = (data: CallToActionProps) => navigate(`/${data.link}`);
 
   return (
     <div className="container">
-      <div className="flex-d-column mtb-2">
-        <HeroCard data={nexiousHomepage} hero={nexiousHomepage.hero} onClick={handleClick} />
-        {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
-      </div>
+      <Bubbly />
+      <HeroCard data={nexiousHomepage} onClick={handleClick} />
+      {nexiousHomepage.body && <p className="text-max text-center">{nexiousHomepage.body}</p>}
       <ExploreApps featuredOnly heading="Check out our featured apps" />
-      <div className={nexiousHomepage.sections.length > 3 ? "sections-container" : "sections-grid"}>
-        {nexiousHomepage.sections.map((section: SectionProps) => (
-          <div className="section-card" key={section.uid}>
-            <HeroCard data={section} hero={section.sectionHero} />
-            {section.body && <p className="text-max">{section.body}</p>}
-          </div>
-        ))}
-      </div>
+      <SectionList sections={nexiousHomepage.sections} />
       <div className="flex-center">
         <h3 className="heading text-center"> More comming soon!</h3>
       </div>
