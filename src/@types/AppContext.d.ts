@@ -18,6 +18,7 @@ declare module "app-context" {
     StoreProps,
     Subcription,
     SubcriptionProp,
+    ThemeList,
   } from "app-types";
 
   export interface AppCardProps {
@@ -115,6 +116,7 @@ declare module "app-context" {
     pageId?: string;
     config?: StripeUpdateConfigProps;
     subscription?: Subcription;
+    themeList?: ThemeList[];
     storeId?: string;
     isLoading?: boolean;
     setAsActive?: boolean;

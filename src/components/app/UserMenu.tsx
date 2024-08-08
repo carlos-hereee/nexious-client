@@ -52,7 +52,7 @@ const UserMenu = () => {
     setMenus([]);
     // init menu
     const data: IUserMenu[] = [
-      { name: "home", link: "", icon: "home" },
+      { name: "home", link: "", icon: "user" },
       { name: "feed", link: "feed", icon: "scroll" },
     ];
     // if user is login

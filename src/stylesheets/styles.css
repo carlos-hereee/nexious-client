@@ -17,7 +17,7 @@
   border-radius: 10px;
 }
 header {
-  z-index: 2;
+  z-index: 1;
 }
 .overflow-x {
   overflow-x: auto;
@@ -317,13 +317,23 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   background-color: #e7e7e7;
 }
 .service-card-active,
 .app-card,
 .nav-btn,
 .btn-main {
+  border-radius: 10px;
   background-color: #fafafa;
+}
+.dark-mode .service-card-active,
+.service-card,
+.app-card,
+.nav-btn,
+.btn-main {
+  color: black;
+  background-color: #dedede;
 }
 .btn-card-container {
   width: 100%;

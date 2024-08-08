@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "@context/auth/AuthContext";
 import { AppContext } from "@context/app/AppContext";
-import { nexiousName, nexiousMedia, nexiousLogo, nexiousAuthMenu, nexiousAppId } from "@data/nexious.json";
+import { nexiousName, nexiousMedia, nexiousLogo, nexiousAuthMenu, nexiousAppId, nexiousThemeList } from "@data/nexious.json";
 import { MediaContext } from "@context/media/MediaContext";
 import { LogContext } from "@context/log/LogContext";
 
@@ -22,6 +22,7 @@ const PrivateRoute = () => {
       logo: nexiousLogo,
       media: nexiousMedia,
       menu: nexiousAuthMenu,
+      themeList: nexiousThemeList,
     });
   }, [pathname]);
 

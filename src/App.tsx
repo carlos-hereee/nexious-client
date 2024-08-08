@@ -30,6 +30,7 @@ const App = ({ children }: ChildProps) => {
 
   const logo = { url: activeLogo, title: activeAppName, alt: `${activeAppName} industry brand` };
   const medias = activeMedia.medias.map((m) => ({ ...m, link: m.url }));
+  // TODO: FIX TOGGLE THEMELIST
   return (
     <div className={`app-container elbow-space${theme ? ` ${theme}` : ""} hide-overflow pos-rel`}>
       <Header
