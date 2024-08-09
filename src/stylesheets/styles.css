@@ -112,7 +112,10 @@ header {
 .app-card {
   flex: 1;
   font: inherit;
+  display: flex;
+  flex-direction: column;
   align-items: end;
+  justify-content: space-between;
   font-family: inherit;
 }
 .app-card .card-row-body {
@@ -317,7 +320,6 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   background-color: #e7e7e7;
 }
 .service-card-active,
@@ -325,7 +327,7 @@ header {
 .nav-btn,
 .btn-main {
   border-radius: 10px;
-  background-color: #fafafa;
+  background-color: #f4f4f4;
 }
 .dark-mode .service-card-active,
 .service-card,
@@ -333,7 +335,14 @@ header {
 .nav-btn,
 .btn-main {
   color: black;
-  background-color: #dedede;
+  background-color: #f4f4f4;
+}
+.btn-active {
+  color: black;
+}
+.btn-card {
+  justify-content: flex-start;
+  height: 100%;
 }
 .btn-card-container {
   width: 100%;
