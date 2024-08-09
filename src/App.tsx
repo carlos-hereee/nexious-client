@@ -41,7 +41,7 @@ const App = ({ children }: ChildProps) => {
         handleTheme={setTheme}
         themeList={themeList}
         theme={theme}
-      />{" "}
+      />
       {children}
       <UserMenu />
       {page === "public" && <Bubbly bubbles={20} />}
