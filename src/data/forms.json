@@ -18,7 +18,7 @@
     "submitLabel": "Save and continue",
     "formId": "webhookForm",
     "initialValues": { "data": "" },
-    "labels": { "to": "To", "data": "Let us know what's on your mind" },
+    "labels": { "to": "To", "data": " " },
     "placeholders": {},
     "dataList": {},
     "types": { "data": "textarea" }

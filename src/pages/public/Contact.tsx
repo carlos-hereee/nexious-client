@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Button, Form, Hero, ItemDetail, ReadMore } from "nexious-library";
+import { Button, CardTextBubble, Form, Hero, ReadMore } from "nexious-library";
 import { contactForm } from "@data/forms.json";
-import { userMenuContacts } from "@data/nexious.json";
+// import { userMenuContacts } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Message } from "app-types";
 
@@ -12,7 +12,7 @@ interface Menu {
 }
 const Contact = () => {
   const { appId, contactApp } = useContext(AppContext);
-  const { messages: userContacts } = useContext(AuthContext);
+  const { messages: userContacts, user } = useContext(AuthContext);
   const [show, setShow] = useState<Menu>({ dev: false, friends: false });
   const [contacts, setContacts] = useState<Message[]>([]);
   const [thread, setThread] = useState<Message>();
@@ -33,15 +33,12 @@ const Contact = () => {
     if (c.recipientRole === "dev-team") {
       setShow({ dev: true, friends: false });
     }
-    console.log("c :>> ", c);
+    setThread(c);
   };
   return (
     <div className="split-container">
-      <div className="container">
-        <div className="flex-g">
-          <Button label="Contacts" />
-          <Button label="+ Compose" />
-        </div>
+      <div className="container y-overflow">
+        <h2 className="heading">Messages</h2>
         <div>
           {contacts.length > 0 ? (
             contacts.map((contact) => (
@@ -60,33 +57,28 @@ const Contact = () => {
         </div>
       </div>
 
-      <div>
-        {/*
-        <div className="form-header">
-           <ItemDetail label="Contact:" labelLayout="bolden">
-            <div className="flex-g">
-              {userMenuContacts.map((c) => (
-                <Button
-                  label={c.label}
-                  key={c.id}
-                  theme={show[c.id] ? c.activeTheme : c.theme}
-                  onClick={() => handleClick(c.id as keyof Menu)}
-                />
-              ))}
-            </div>
-          </ItemDetail>
-        </div>
-           */}
-        {show.dev && (
-          <div className="container">
-            <Form
-              initialValues={contactForm.initialValues}
-              labels={contactForm.labels}
-              types={contactForm.types}
-              // schema={{ required: ["data"] }}
-              onSubmit={handleSubmit}
+      <div className="container flex-between y-overflow ">
+        {thread && (
+          <>
+            <CardTextBubble
+              data={thread}
+              hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar` }}
+              sender={user.userId === thread.user.userId}
             />
-          </div>
+            {thread.replies.length > 0 &&
+              thread.replies.map((reply) => (
+                <CardTextBubble key={reply.uid} data={reply} sender={user.userId === thread.user.userId} />
+              ))}
+          </>
+        )}
+        {show.dev && (
+          <Form
+            initialValues={contactForm.initialValues}
+            labels={contactForm.labels}
+            types={contactForm.types}
+            // schema={{ required: ["data"] }}
+            onSubmit={handleSubmit}
+          />
         )}
         {show.friends && (
           <h2>Comming soon!</h2>
