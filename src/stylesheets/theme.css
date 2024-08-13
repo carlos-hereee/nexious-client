@@ -1,6 +1,7 @@
 .post {
   width: 100%;
   background-color: #fafafa;
+  border-radius: 10px;
 }
 .side-menu {
   position: absolute;

@@ -16,9 +16,6 @@
   aspect-ratio: 16/9;
   border-radius: 10px;
 }
-header {
-  z-index: 1;
-}
 .overflow-x {
   overflow-x: auto;
 }
@@ -76,6 +73,9 @@ header {
 .container,
 .primary-container {
   z-index: 1;
+}
+footer {
+  z-index: 0;
 }
 .logout-btn {
   margin: 5rem auto;

@@ -49,6 +49,7 @@ declare module "auth-context" {
     userId: string;
     createdAt?: string;
     customerId?: string;
+    avatar?: string;
     username: string;
     isPlatformOwner?: boolean;
     email?: string;
@@ -113,13 +114,14 @@ declare module "auth-context" {
     setTheme: (key: string) => void;
     clearNotification: (key: string) => void;
     subscribe: (appId: string) => void;
+    updateAvatar: (user: { [x: string]: string }) => void;
   }
 
   export interface AuthDispatchProps {
     dispatch: React.Dispatch<AuthActionProps>;
     credentials?: AuthFormValueProps;
     user?: UserSchema;
-    data?: string;
+    data?: string | { [x: string]: string };
     stripeConfirmation?: StripeConfirmationProps;
     plan?: ISubscription;
     accessToken?: string;

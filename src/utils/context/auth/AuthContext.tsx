@@ -22,6 +22,7 @@ import { getUser } from "./request/getUser";
 import { setChangePassword } from "./request/changePassword";
 import { upgradeTier } from "./request/upgradeTier";
 import { customerSubscription } from "./request/customerSubsctiption";
+import { editAvatar } from "./request/editAvatar";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -42,6 +43,7 @@ export const AuthState = ({ children }: ChildProps) => {
   const editUser = useCallback((user: UserSchema) => editUserRequest({ dispatch, user, updateUser }), []);
   const updateTier = useCallback((data: CustomerSub) => upgradeTier({ dispatch, ...data, updateUser }), []);
   const addTier = useCallback((data: CustomerSub) => customerSubscription({ dispatch, ...data, updateUser }), []);
+  const updateAvatar = useCallback((data: { [x: string]: string }) => editAvatar({ dispatch, data, updateUser }), []);
   // auth
   const register = useCallback((e: RegisterFormProps) => singUp({ dispatch, credentials: e }), []);
   const login = useCallback((e: LoginValues) => singIn({ dispatch, login: e, setDummyUser }), []);
@@ -97,6 +99,7 @@ export const AuthState = ({ children }: ChildProps) => {
       updateTier,
       setUpdateTier,
       addTier,
+      updateAvatar,
     };
   }, [
     state.accessToken,

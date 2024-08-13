@@ -7,11 +7,12 @@ import ViewAccountTiers from "@components/app/ViewAccountTiers";
 import { AppContext } from "@context/app/AppContext";
 import SubscriptionCard from "@components/card/SubscriptionCard";
 import { StoreContext } from "@context/store/StoreContext";
+import UpdateHero from "@components/app/forms/UpdateHero";
 import OwnerDashboard from "./OwnerDashboard";
 
-type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account";
+type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account" | "avatar";
 const AccountSettings = () => {
-  const { user, userForm, editUser, theme, accountTier, isPlatformOwner } = useContext(AuthContext);
+  const { user, userForm, editUser, theme, accountTier, isPlatformOwner, updateAvatar } = useContext(AuthContext);
   const { platformTiers } = useContext(AppContext);
   const { manageBilling } = useContext(StoreContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
@@ -22,12 +23,19 @@ const AccountSettings = () => {
     setShow(true);
     setNav(data);
   };
+  const handleUpdateAvatar = (d: { [x: string]: string }) => {
+    updateAvatar(d);
+    setShow(false);
+  };
   return (
     <div className="container">
       {isPlatformOwner && <OwnerDashboard />}
       <h1 className="heading">Account settings</h1>
       <ItemDetail labelLayout="bolden" label="Account:">
         <Button label="Update account" onClick={() => handleClick("user")} />
+      </ItemDetail>
+      <ItemDetail labelLayout="bolden" label="Avatar:">
+        <Button label="Update avatar" onClick={() => handleClick("avatar")} />
       </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Platform account tiers:">
         <Button label="View tiers" onClick={() => handleClick("platform-tier")} />
@@ -60,6 +68,7 @@ const AccountSettings = () => {
           )}
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTier ? [accountTier] : []} />}
+          {nav === "avatar" && <UpdateHero initialValues={{ hero: user.avatar || "" }} onSubmit={handleUpdateAvatar} />}
           {nav === "your-account" &&
             (accountTier ? (
               <>
