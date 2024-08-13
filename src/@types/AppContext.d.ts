@@ -9,6 +9,7 @@ declare module "app-context" {
     AppListProps,
     AppProps,
     CalendarProps,
+    ContactApp,
     MediaItemProp,
     MediaProps,
     MenuProp,
@@ -97,6 +98,7 @@ declare module "app-context" {
     updateSubscription: (appId: SubcriptionProp) => void;
     deleteSubscription: (appId: SubcriptionProp) => void;
 
+    contactApp: (props: ContactApp) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
 
@@ -112,6 +114,7 @@ declare module "app-context" {
     event?: IEvent;
     id?: string;
     media?: MediaProps;
+    message?: { [x: string]: string };
     appName?: string;
     pageId?: string;
     config?: StripeUpdateConfigProps;

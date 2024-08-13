@@ -37,6 +37,10 @@ declare module "app-types" {
     appId: string;
     id: string;
   }
+  export interface ContactApp {
+    appId: string;
+    message: { [x: string]: string };
+  }
 
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {

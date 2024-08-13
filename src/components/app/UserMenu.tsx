@@ -1,9 +1,7 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useEffect, useState } from "react";
-import { nexiousAuthMenu, nexiousMenu } from "@data/nexious.json";
 import { useNavigate } from "react-router-dom";
-import { MenuProp } from "app-types";
-import { IconButton, NavBar } from "nexious-library";
+import { IconButton } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
 import { AppContext } from "@context/app/AppContext";
 import { useNotifications } from "@hooks/useNotifications";
@@ -14,6 +12,7 @@ interface ActiveUserMenu {
   checkout: boolean;
   calendar: boolean;
   home?: boolean;
+  message?: boolean;
   feed?: boolean;
   bell?: boolean;
 }
@@ -23,12 +22,12 @@ interface IUserMenu {
   link: string;
 }
 const UserMenu = () => {
-  const { accessToken, theme } = useContext(AuthContext);
+  const { accessToken } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
   const { store, calendar, appId } = useContext(AppContext);
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
-  const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);
+  // const [active, setActive] = useState<keyof ActiveUserMenu | null>(null);
   const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
   const [menus, setMenus] = useState<IUserMenu[]>([]);
   const { ping } = useNotifications();
@@ -36,13 +35,13 @@ const UserMenu = () => {
 
   const handleClick = (m: IUserMenu) => {
     setActiveMenu({ ...activeMenu, [m.name]: !activeMenu[m.name] });
-    setActive(m.name);
     if (m.name === "checkout") {
       if (merchCount > 0) navigate("/checkout");
       else navigate(m.link);
     }
     if (m.name === "calendar") navigate(m.link);
     if (m.name === "feed") navigate(m.link);
+    if (m.name === "message") navigate(m.link);
     if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
     if (m.name === "bell") navigate(accessToken ? "/dashboard/notifications" : "/");
   };
@@ -53,6 +52,7 @@ const UserMenu = () => {
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: "", icon: "user" },
+      { name: "message", link: "contact", icon: "contact" },
       { name: "feed", link: "feed", icon: "scroll" },
     ];
     // if user is login
@@ -68,37 +68,24 @@ const UserMenu = () => {
   }, [appId, page]);
 
   return (
-    <>
-      <div className="user-menu-icons">
-        {menus.map((menu) => (
-          <IconButton
-            key={menu.name}
-            icon={{ size: "2x", icon: menu.icon }}
-            onClick={() => handleClick(menu)}
-            ping={
-              menu.name === "bell"
-                ? ping.notifications
-                : menu.name === "checkout"
-                  ? merchCount > 0
-                    ? merchCount
-                    : undefined
+    <div className="user-menu-icons">
+      {menus.map((menu) => (
+        <IconButton
+          key={menu.name}
+          icon={{ size: "2x", icon: menu.icon }}
+          onClick={() => handleClick(menu)}
+          ping={
+            menu.name === "bell"
+              ? ping.notifications
+              : menu.name === "checkout"
+                ? merchCount > 0
+                  ? merchCount
                   : undefined
-            }
-          />
-        ))}
-      </div>
-      <nav className={`mobile-navigation user-menu ${active && activeMenu[active] ? `alt-${theme}` : ""}`}>
-        {active === "user" && (
-          <NavBar
-            show={{ isActive: active && activeMenu[active] }}
-            menu={accessToken ? nexiousAuthMenu : nexiousMenu}
-            includeHome
-            click={(e: MenuProp) => navigate(`/${e.link}`)}
-            onHomeClick={() => navigate("/")}
-          />
-        )}
-      </nav>
-    </>
+                : undefined
+          }
+        />
+      ))}
+    </div>
   );
 };
 export default UserMenu;

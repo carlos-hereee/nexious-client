@@ -14,6 +14,15 @@
     "desiredOrder": ["events"],
     "dataList": {}
   },
+  "contactForm": {
+    "submitLabel": "Save and continue",
+    "formId": "webhookForm",
+    "initialValues": { "data": "" },
+    "labels": { "to": "To", "data": "Let us know what's on your mind" },
+    "placeholders": {},
+    "dataList": {},
+    "types": { "data": "textarea" }
+  },
   "postForm": {
     "heading": "Configure your calendar booking here!",
     "submitLabel": "Save and continue",

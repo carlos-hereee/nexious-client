@@ -167,9 +167,6 @@ footer {
 .btn-rect {
   aspect-ratio: 1/1;
 }
-.btn-main {
-  max-height: 60px;
-}
 .page-header {
   display: flex;
   gap: 1rem;
@@ -322,24 +319,7 @@ header {
   justify-content: space-between;
   background-color: #e7e7e7;
 }
-.service-card-active,
-.app-card,
-.nav-btn,
-.btn-main {
-  border-radius: 10px;
-  background-color: #f4f4f4;
-}
-.dark-mode .service-card-active,
-.service-card,
-.app-card,
-.nav-btn,
-.btn-main {
-  color: black;
-  background-color: #f4f4f4;
-}
-.btn-active {
-  color: black;
-}
+
 .btn-card {
   justify-content: flex-start;
   height: 100%;
@@ -357,6 +337,8 @@ header {
 .text-left {
   text-align: left;
 }
-/* {
-  background-color: #e7e7e7;
-} */
+
+.form-header {
+  width: 100%;
+  max-width: 950px;
+}

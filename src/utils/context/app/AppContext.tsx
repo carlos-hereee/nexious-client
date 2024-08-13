@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, ChildProps, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
+import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
 import { AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
@@ -20,6 +20,7 @@ import { editSubscription } from "./request/editSubscription";
 import { removeSub } from "./request/removeSubscription";
 import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
 import { createStripeAccount } from "./request/createStripeAccount";
+import { sendMessage } from "./request/sendMessage";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -49,6 +50,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
   const setAppMessage = useCallback((M: string) => dispatch({ payload: M, type: APP_ACTIONS.SET_APP_MESSAGE }), []);
   const clearNotification = useCallback((data: NProps) => removeNotification({ dispatch, updateAppData, ...data }), []);
+  const contactApp = useCallback((data: ContactApp) => sendMessage({ dispatch, updateAppData, ...data }), []);
   const setSocialMedia = useCallback((d: MediaItemProp) => dispatch({ payload: d, type: APP_ACTIONS.SET_MEDIA_ITEM }), []);
   // create and manage subscriptions
   const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
@@ -116,6 +118,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAppUsers,
       setAppMessage,
       signUpWithStripe,
+      contactApp,
     };
   }, [
     state.isLoading,

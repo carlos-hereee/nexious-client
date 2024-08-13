@@ -25,6 +25,7 @@ import Pricing from "@pages/public/Pricing";
 import Notification from "@pages/dashboard/Notification";
 import ViewPosts from "@components/app/ViewPosts";
 import { MediaContext } from "@context/media/MediaContext";
+import Contact from "@pages/public/Contact";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -44,6 +45,7 @@ const AppRouter: React.FC = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />

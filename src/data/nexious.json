@@ -315,6 +315,10 @@
     "calendar": false,
     "danger": false
   },
+  "userMenuContacts": [
+    { "label": "Dev team", "value": "dev", "id": "dev", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
+    { "label": "Friends", "value": "friends", "id": "friends", "activeTheme": "btn-main btn-active", "theme": "btn-main" }
+  ],
   "dashboardMenus": [
     { "label": "Notifications", "value": "notifications", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
     { "label": "App", "value": "app", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
