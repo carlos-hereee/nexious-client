@@ -5,6 +5,7 @@
   "theme": "light-mode",
   "locale": "",
   "notifications": [],
+  "messages": [],
   "accountTiers": [],
   "authErrors": {
     "login": "",

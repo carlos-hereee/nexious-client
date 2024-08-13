@@ -13,6 +13,7 @@ declare module "app-context" {
     MediaItemProp,
     MediaProps,
     MenuProp,
+    Message,
     NewsletterProps,
     Notification,
     PageProps,
@@ -76,6 +77,7 @@ declare module "app-context" {
     platformTiers: ISubscription[];
     inventory: MerchProps[];
     subscriptionTiers: ISubscription[];
+    messages: Message[];
   }
   // app context schema
   export interface AppSchema extends AppStateProps {
@@ -159,6 +161,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }
     | { type: APP_ACTIONS.SET_PAGES; payload: PageProps[] }
+    | { type: APP_ACTIONS.SET_APP_MESSAGES; payload: Message[] }
     | { type: APP_ACTIONS.SET_STORE; payload: StoreProps }
     | { type: APP_ACTIONS.SET_CALENDAR; payload: CalendarProps }
     | { type: APP_ACTIONS.SET_APP_LIST; payload: AppListProps[] }

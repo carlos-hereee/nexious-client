@@ -9,6 +9,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, authErrors: { ...state.authErrors, ...action.payload } };
     case A_ACTIONS.SET_SUBSCRIPTIONS:
       return { ...state, subscriptions: action.payload };
+    case A_ACTIONS.SET_USER_MESSAGES:
+      return { ...state, messages: action.payload };
     case A_ACTIONS.SET_UPDATE_TIER:
       return { ...state, tierUpdate: action.payload };
     case A_ACTIONS.SET_ORDERS:

@@ -41,7 +41,16 @@ declare module "app-types" {
     appId: string;
     message: { [x: string]: string };
   }
-
+  export interface Message {
+    uid: string;
+    data: string;
+    title: string;
+    status: string;
+    user: { avatar: string; name: string; userId: string };
+    recipient: string;
+    recipientRole: UserRole;
+    replies: { user: string; data: string; uid: string }[];
+  }
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {
     primary: string;
@@ -149,6 +158,7 @@ declare module "app-types" {
     themeList: ThemeList[];
     notifications: Notification[];
     iconList: MenuProp[];
+    messages: Message[];
     calendar: CalendarProps;
     dbVersion?: string;
   }

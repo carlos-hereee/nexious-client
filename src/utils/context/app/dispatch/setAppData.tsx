@@ -22,6 +22,7 @@ export const setAppData = ({ dispatch, app, appList, store, page, platformTiers 
     if (app.languageList) dispatch({ type: APP_ACTIONS.SET_LANGUAGES, payload: app.languageList });
     if (app.store) dispatch({ type: APP_ACTIONS.SET_STORE, payload: app.store });
     if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
+    if (app.messages) dispatch({ type: APP_ACTIONS.SET_APP_MESSAGES, payload: app.messages });
     if (app.appName) {
       const appLink = readableUrlString(app.appName);
       dispatch({ type: APP_ACTIONS.SET_APP_LINK, payload: appLink });

@@ -17,3 +17,21 @@
   z-index: 3;
   left: 0;
 }
+.light-mode .btn-main,
+.btn-row {
+  background-color: #fafafa;
+  color: black;
+}
+.dark-mode .btn-main,
+.btn-row {
+  background-color: #fafafa;
+  color: black;
+}
+.btn-row {
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}

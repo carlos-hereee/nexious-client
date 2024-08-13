@@ -87,6 +87,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       appError: state.appError,
       logo: state.logo,
       email: state.email,
+      messages: state.messages,
       redirectUrl: state.redirectUrl,
       activeLogo: state.activeLogo,
       store: state.store,

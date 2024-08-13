@@ -2,7 +2,7 @@ declare module "auth-context" {
   import { OrderSchema, StripeConfirmationProps } from "store-context";
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
-  import { AppListProps, Notification } from "app-types";
+  import { AppListProps, Message, Notification } from "app-types";
   import { AuthFormValueProps, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
 
   export interface AuthErrorProps {
@@ -62,6 +62,7 @@ declare module "auth-context" {
     ownedApps?: AppListProps[];
     accountTier?: ISubscription;
     orders?: OrderSchema[];
+    messages?: Message[];
     accountTiers?: ISubscription[];
   }
   export interface CustomerSub {
@@ -91,6 +92,7 @@ declare module "auth-context" {
     forgotPasswordForm: FormProps;
     accountTier?: ISubscription;
     accountTiers: ISubscription[];
+    messages: Message[];
     theme: string;
     locale: string;
   }
@@ -142,6 +144,7 @@ declare module "auth-context" {
     | { type: A_ACTIONS.SET_ACCOUNT_TIER | A_ACTIONS.SET_UPDATE_TIER; payload: ISubscription | undefined }
     | { type: A_ACTIONS.SET_ACCOUNT_TIERS; payload: ISubscription[] }
     | { type: A_ACTIONS.SET_USER_DATA; payload: UserSchema }
+    | { type: A_ACTIONS.SET_USER_MESSAGES; payload: Message[] }
     | { type: A_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: A_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }
