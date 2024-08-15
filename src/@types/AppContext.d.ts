@@ -37,6 +37,10 @@ declare module "app-context" {
     // readPrivacyPolicy?: boolean;
     // currency?: string;
   }
+  export interface AppMap {
+    // readPrivacyPolicy?: boolean;
+    // currency?: string;
+  }
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
@@ -106,6 +110,7 @@ declare module "app-context" {
     deleteSubscription: (appId: SubcriptionProp) => void;
 
     contactApp: (props: ContactApp) => void;
+    createMap: (props: AppMap) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
 

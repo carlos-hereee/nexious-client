@@ -1,0 +1,14 @@
+.map {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  border: 1px solid gray;
+}
+.map-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.map-cell {
+  width: 100%;
+  height: 100%;
+}

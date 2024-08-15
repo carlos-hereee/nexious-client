@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
-import { AppSchema } from "app-context";
+import { AppMap, AppSchema } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
@@ -21,6 +21,7 @@ import { removeSub } from "./request/removeSubscription";
 import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
 import { createStripeAccount } from "./request/createStripeAccount";
 import { sendMessage } from "./request/sendMessage";
+import { buildMap } from "./request/buildMap";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -56,6 +57,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const createSubscription = useCallback((data: SubcriptionProp) => addSubscription({ dispatch, ...data, updateUser }), []);
   const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
   const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
+  // app extra features
+  const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -121,6 +124,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setAppMessage,
       signUpWithStripe,
       contactApp,
+      createMap,
     };
   }, [
     state.isLoading,

@@ -33,7 +33,7 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
         <Button label="View maps" onClick={() => updatePhase("phase-view-event")} />
       </ItemDetail>
       <ItemDetail label="Create map:" labelLayout="bolden">
-        <Button label="Create map" onClick={() => updatePhase("phase-view-event")} />
+        <Button label="Create map" onClick={() => updatePhase("phase-three")} />
       </ItemDetail>
       <ItemDetail label="App details:" labelLayout="bolden">
         <Button label="Edit app details" onClick={() => updatePhase("phase-one")} />

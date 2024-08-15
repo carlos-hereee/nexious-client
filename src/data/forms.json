@@ -23,6 +23,34 @@
     "dataList": {},
     "types": { "data": "textarea" }
   },
+  "mapForm": {
+    "formId": "mapForm",
+    "labels": { "unit": "Unit type", "length": "Length", "width": "Width" },
+    "types": { "unit": "select", "length": "number", "width": "number" },
+    "placeholders": {},
+    "dataList": {
+      "unit": [
+        {
+          "name": "cm",
+          "label": "centimeter",
+          "value": "cm",
+          "uid": "icon-1"
+        },
+        {
+          "name": "m",
+          "label": "meter",
+          "value": "m",
+          "uid": "icon-2"
+        },
+        {
+          "name": "km",
+          "label": "kilometer",
+          "value": "km",
+          "uid": "icon-3"
+        }
+      ]
+    }
+  },
   "postForm": {
     "heading": "Configure your calendar booking here!",
     "submitLabel": "Save and continue",

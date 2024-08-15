@@ -8,6 +8,7 @@ import EditAppDetails from "../forms/app/EditAppDetails";
 import EditAppMenu from "../forms/app/EditAppMenu";
 import ConfirmRemovals from "../containers/ConfirmRemoval";
 import ViewMaps from "../ViewMaps";
+import CreateMap from "../CreateMap";
 // import EditLanding from "../forms/EditLanding";
 
 const AppDialog = ({ onClose, status }: DialogProps) => {
@@ -19,8 +20,9 @@ const AppDialog = ({ onClose, status }: DialogProps) => {
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && <EditAppDetails />}
-      {status === "phase-view-event" && <ViewMaps />}
       {status === "phase-two" && <EditAppMenu />}
+      {status === "phase-view-event" && <ViewMaps />}
+      {status === "phase-three" && <CreateMap />}
       {status === "confirm-cancel" && <ConfirmRemovals name={appName} onConfirm={() => deleteApp(appId)} />}
     </Dialog>
   );
