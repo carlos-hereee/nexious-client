@@ -37,9 +37,17 @@ declare module "app-context" {
     // readPrivacyPolicy?: boolean;
     // currency?: string;
   }
+  export interface GridData {
+    id: string;
+    data: string;
+    orientation: string;
+    x: number;
+    y: number;
+  }
   export interface AppMap {
+    map: GridData[][];
     // readPrivacyPolicy?: boolean;
-    // currency?: string;
+    appId?: string;
   }
   export interface AppStateProps {
     // auth schema
@@ -119,6 +127,7 @@ declare module "app-context" {
     app?: AppProps;
     page?: PageProps;
     store?: StoreProps;
+    map?: GridData[][];
     calendar?: CalendarProps;
     appList?: AppListProps[];
     platformTiers?: ISubscription[];
