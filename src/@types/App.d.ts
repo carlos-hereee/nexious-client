@@ -1,4 +1,5 @@
 declare module "app-types" {
+  import { IMaps } from "app-context";
   import { IEvent } from "app-calendar";
   import { OrderSchema, MerchProps } from "store-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
@@ -160,6 +161,7 @@ declare module "app-types" {
     notifications: Notification[];
     iconList: MenuProp[];
     messages: Message[];
+    maps: IMaps[];
     calendar: CalendarProps;
     dbVersion?: string;
   }

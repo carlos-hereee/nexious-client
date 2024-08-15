@@ -29,6 +29,12 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="Online store:" labelLayout="bolden">
         <span>{limitations.onlineStore ? "Active" : "Disabled"}</span>
       </ItemDetail>
+      <ItemDetail label="Maps:" labelLayout="bolden">
+        <Button label="View maps" onClick={() => updatePhase("phase-view-event")} />
+      </ItemDetail>
+      <ItemDetail label="Create map:" labelLayout="bolden">
+        <Button label="Create map" onClick={() => updatePhase("phase-view-event")} />
+      </ItemDetail>
       <ItemDetail label="App details:" labelLayout="bolden">
         <Button label="Edit app details" onClick={() => updatePhase("phase-one")} />
       </ItemDetail>

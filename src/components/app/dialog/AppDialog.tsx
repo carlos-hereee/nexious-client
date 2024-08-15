@@ -7,6 +7,7 @@ import { AdminContext } from "@context/admin/AdminContext";
 import EditAppDetails from "../forms/app/EditAppDetails";
 import EditAppMenu from "../forms/app/EditAppMenu";
 import ConfirmRemovals from "../containers/ConfirmRemoval";
+import ViewMaps from "../ViewMaps";
 // import EditLanding from "../forms/EditLanding";
 
 const AppDialog = ({ onClose, status }: DialogProps) => {
@@ -18,6 +19,7 @@ const AppDialog = ({ onClose, status }: DialogProps) => {
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
       {/* TODO add preview store */}
       {status === "phase-one" && <EditAppDetails />}
+      {status === "phase-view-event" && <ViewMaps />}
       {status === "phase-two" && <EditAppMenu />}
       {status === "confirm-cancel" && <ConfirmRemovals name={appName} onConfirm={() => deleteApp(appId)} />}
     </Dialog>

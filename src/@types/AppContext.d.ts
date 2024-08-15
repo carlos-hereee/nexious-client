@@ -33,6 +33,10 @@ declare module "app-context" {
     readPrivacyPolicy?: boolean;
     currency?: string;
   }
+  export interface IMaps {
+    // readPrivacyPolicy?: boolean;
+    // currency?: string;
+  }
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
@@ -75,6 +79,7 @@ declare module "app-context" {
     calendar: CalendarProps;
     store: StoreProps;
     platformTiers: ISubscription[];
+    maps: IMaps[];
     inventory: MerchProps[];
     subscriptionTiers: ISubscription[];
     messages: Message[];
@@ -154,6 +159,7 @@ declare module "app-context" {
         payload: string;
       }
     | { type: APP_ACTIONS.SET_THEME_LIST; payload: ThemeList[] }
+    | { type: APP_ACTIONS.SET_APP_MAPS; payload: IMaps[] }
     | { type: APP_ACTIONS.SET_LANGUAGES; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }

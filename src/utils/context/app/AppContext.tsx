@@ -82,6 +82,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       media: state.media,
       activeMedia: state.activeMedia,
       menu: state.menu,
+      maps: state.maps,
       activeMenu: state.activeMenu,
       owner: state.owner,
       appError: state.appError,
