@@ -58,7 +58,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateSubscription = useCallback((data: SubcriptionProp) => editSubscription({ dispatch, ...data, updateUser }), []);
   const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
   // app extra features
-  const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data }), []);
+  const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
 
   const appValues = useMemo(() => {
     return {

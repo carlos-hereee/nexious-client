@@ -52,7 +52,7 @@ const CreateMap = () => {
         )}
 
         <div className="flex-center">
-          <Button label="Save and continue" onClick={() => createMap({ map: grid, appId })} />
+          <Button label="Save and continue" onClick={() => createMap({ map: grid, appId, dimensions: map.dimensions })} />
         </div>
       </div>
       <Map dimensions={map.dimensions} viewRoomData={handleRoomData} grid={grid} setGrid={(g) => setGrid(g)} />

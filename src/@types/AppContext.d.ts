@@ -44,10 +44,15 @@ declare module "app-context" {
     x: number;
     y: number;
   }
+  export interface MapDimensions {
+    width: number;
+    length: number;
+    unit: "cm" | "m" | "km";
+  }
   export interface AppMap {
     map: GridData[][];
-    // readPrivacyPolicy?: boolean;
     appId?: string;
+    dimensions?: MapDimensions;
   }
   export interface AppStateProps {
     // auth schema
@@ -127,6 +132,7 @@ declare module "app-context" {
     app?: AppProps;
     page?: PageProps;
     store?: StoreProps;
+    dimensions?: MapDimensions;
     map?: GridData[][];
     calendar?: CalendarProps;
     appList?: AppListProps[];
