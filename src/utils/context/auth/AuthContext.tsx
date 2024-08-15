@@ -79,6 +79,7 @@ export const AuthState = ({ children }: ChildProps) => {
       accountTier: state.accountTier,
       messages: state.messages,
       tierUpdate: state.tierUpdate,
+      contacts: state.contacts,
       orders: state.orders,
       accountTiers: state.accountTiers,
       subscriptions: state.subscriptions,

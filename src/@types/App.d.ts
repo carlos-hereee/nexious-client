@@ -39,6 +39,7 @@ declare module "app-types" {
   }
   export interface ContactApp {
     appId: string;
+    userId?: string;
     message: { [x: string]: string };
   }
   export interface Message {

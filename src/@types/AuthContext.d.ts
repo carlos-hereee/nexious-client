@@ -63,6 +63,7 @@ declare module "auth-context" {
     accountTier?: ISubscription;
     orders?: OrderSchema[];
     messages?: Message[];
+    contacts?: UserContact[];
     accountTiers?: ISubscription[];
   }
   export interface CustomerSub {
@@ -70,7 +71,11 @@ declare module "auth-context" {
     stripeConfirmation?: StripeConfirmationProps;
     plan?: ISubscription;
   }
-
+  export interface UserContact {
+    name: string;
+    avatar: string;
+    userId: string;
+  }
   export interface AuthStateProps {
     // auth schema
     isLoading: boolean;
@@ -95,6 +100,7 @@ declare module "auth-context" {
     messages: Message[];
     theme: string;
     locale: string;
+    contacts: UserContact[];
   }
   // export interface
   export interface AuthSchema extends AuthStateProps {
@@ -145,6 +151,7 @@ declare module "auth-context" {
     | { type: A_ACTIONS.SET_ACCOUNT_TIERS; payload: ISubscription[] }
     | { type: A_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: A_ACTIONS.SET_USER_MESSAGES; payload: Message[] }
+    | { type: A_ACTIONS.SET_USER_CONTACTS; payload: UserContact[] }
     | { type: A_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: A_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }

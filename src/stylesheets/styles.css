@@ -5,6 +5,10 @@
   align-items: start;
   justify-content: flex-start;
 }
+.btn-active {
+  width: 100%;
+  max-width: 450px;
+}
 .card-container {
   z-index: 1;
 }

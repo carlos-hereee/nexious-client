@@ -16,5 +16,6 @@ export const setUser = ({ user, dispatch }: AuthDispatchProps) => {
   if (user.accountTier) dispatch({ type: A_ACTIONS.SET_ACCOUNT_TIER, payload: user.accountTier });
   if (user.accountTiers) dispatch({ type: A_ACTIONS.SET_ACCOUNT_TIERS, payload: user.accountTiers });
   if (user.isPlatformOwner) dispatch({ type: A_ACTIONS.SET_PLATFORM_OWNER, payload: user.isPlatformOwner });
+  if (user.contacts) dispatch({ type: A_ACTIONS.SET_USER_CONTACTS, payload: user.contacts });
   dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
 };

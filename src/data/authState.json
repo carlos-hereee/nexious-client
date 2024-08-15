@@ -7,6 +7,7 @@
   "notifications": [],
   "messages": [],
   "accountTiers": [],
+  "contacts": [],
   "authErrors": {
     "login": "",
     "register": "",

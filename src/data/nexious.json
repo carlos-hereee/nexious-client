@@ -315,9 +315,14 @@
     "calendar": false,
     "danger": false
   },
+  "nexiousContact": {
+    "avatar": "/icons/logo.svg",
+    "name": "nexious",
+    "userId": "nexiuos-admin"
+  },
   "userMenuContacts": [
-    { "label": "Dev team", "value": "dev", "id": "dev", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
-    { "label": "Friends", "value": "friends", "id": "friends", "activeTheme": "btn-main btn-active", "theme": "btn-main" }
+    { "label": "Messages", "value": "messages", "id": "messages", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
+    { "label": "+ Compose", "value": "compose", "id": "compose", "activeTheme": "btn-main btn-active", "theme": "btn-main" }
   ],
   "dashboardMenus": [
     { "label": "Notifications", "value": "notifications", "activeTheme": "btn-main btn-active", "theme": "btn-main" },
