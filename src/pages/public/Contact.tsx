@@ -55,7 +55,7 @@ const Contact = () => {
           ))}
         </div>
         {activeMenu === "messages" && (
-          <div>
+          <div className="container">
             {messageList.length > 0 ? (
               messageList.map((contact) => (
                 <Button
@@ -64,7 +64,7 @@ const Contact = () => {
                   onClick={() => setThread(contact)}
                 >
                   {contact.user.avatar ? (
-                    <Hero hero={{ url: contact.user.avatar, alt: `${contact.user.name} avatar` }} />
+                    <Hero hero={{ url: contact.user.avatar, alt: `${contact.user.name} avatar` }} theme="hero-contact" />
                   ) : (
                     <strong>{contact.user.name || "No name"}</strong>
                   )}
@@ -77,7 +77,7 @@ const Contact = () => {
           </div>
         )}
         {activeMenu === "compose" && (
-          <div>
+          <div className="container">
             <h2 className="heading">Contacts: </h2>
             {contactList.map((c) => (
               <Button
@@ -85,7 +85,7 @@ const Contact = () => {
                 onClick={() => setMessageRecipient(c)}
                 theme={c.userId === messageRecipient?.userId ? "btn-active" : "btn-main"}
               >
-                <Hero hero={{ url: c.avatar, alt: c.name }} />
+                <Hero hero={{ url: c.avatar, alt: c.name }} theme="hero-contact" />
                 {c.name}
               </Button>
             ))}
@@ -99,12 +99,17 @@ const Contact = () => {
             <div className="y-overflow">
               <CardTextBubble
                 data={thread}
-                hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar` }}
+                hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar`, theme: "hero-contact" }}
                 sender={user.userId === thread.user.userId}
               />
               {thread.replies.length > 0 &&
                 thread.replies.map((reply) => (
-                  <CardTextBubble key={reply.uid} data={reply} sender={user.userId === thread.user.userId} />
+                  <CardTextBubble
+                    key={reply.uid}
+                    data={reply}
+                    hero={{ url: reply.user, alt: `${thread.user.name} avatar`, theme: "hero-contact" }}
+                    sender={user.userId === thread.user.userId}
+                  />
                 ))}
             </div>
             <Form

@@ -195,7 +195,11 @@ footer {
   max-width: 450px;
   flex: 1;
 }
-
+.hero-contact {
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  max-width: 150px;
+}
 .inventory-container {
   display: flex;
   flex-wrap: wrap;
