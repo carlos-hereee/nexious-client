@@ -26,6 +26,10 @@ const Contact = () => {
     setMessageList(userMessages);
   }, [userMessages]);
   useEffect(() => {
+    setMessageRecipient(undefined);
+    setThread(undefined);
+  }, [activeMenu]);
+  useEffect(() => {
     if (user) {
       const sortedByABC = sortByABC<UserContact>({ arr: [...contacts, nexiousContact], key: "name" });
       setContactList(sortedByABC);
@@ -33,7 +37,6 @@ const Contact = () => {
   }, [user]);
 
   const handleSubmit = (e: { [x: string]: string }) => {
-    setMessageRecipient(undefined);
     setMenuContacts("messages");
     contactApp({ appId: appId || "platform", message: e, userId: messageRecipient?.userId || "" });
   };
@@ -55,7 +58,11 @@ const Contact = () => {
           <div>
             {messageList.length > 0 ? (
               messageList.map((contact) => (
-                <Button key={contact.uid} theme="btn-row highlight" onClick={() => setThread(contact)}>
+                <Button
+                  key={contact.uid}
+                  theme={contact.uid === thread?.uid ? "btn-row highlight btn-active" : "btn-main btn-row highlight"}
+                  onClick={() => setThread(contact)}
+                >
                   {contact.user.avatar ? (
                     <Hero hero={{ url: contact.user.avatar, alt: `${contact.user.name} avatar` }} />
                   ) : (
@@ -86,18 +93,27 @@ const Contact = () => {
         )}
       </div>
 
-      <div className="container flex-between y-overflow ">
+      <div className="container flex-between">
         {thread && (
           <>
-            <CardTextBubble
-              data={thread}
-              hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar` }}
-              sender={user.userId === thread.user.userId}
+            <div className="y-overflow">
+              <CardTextBubble
+                data={thread}
+                hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar` }}
+                sender={user.userId === thread.user.userId}
+              />
+              {thread.replies.length > 0 &&
+                thread.replies.map((reply) => (
+                  <CardTextBubble key={reply.uid} data={reply} sender={user.userId === thread.user.userId} />
+                ))}
+            </div>
+            <Form
+              initialValues={contactForm.initialValues}
+              labels={contactForm.labels}
+              types={contactForm.types}
+              schema={{ required: ["data"] }}
+              onSubmit={handleSubmit}
             />
-            {thread.replies.length > 0 &&
-              thread.replies.map((reply) => (
-                <CardTextBubble key={reply.uid} data={reply} sender={user.userId === thread.user.userId} />
-              ))}
           </>
         )}
         {messageRecipient?.userId && (

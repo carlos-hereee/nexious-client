@@ -318,7 +318,7 @@
   "nexiousContact": {
     "avatar": "/icons/logo.svg",
     "name": "nexious",
-    "userId": "nexiuos-admin"
+    "userId": "nexious-admin"
   },
   "userMenuContacts": [
     { "label": "Messages", "value": "messages", "id": "messages", "activeTheme": "btn-main btn-active", "theme": "btn-main" },

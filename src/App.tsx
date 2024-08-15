@@ -44,7 +44,7 @@ const App = ({ children }: ChildProps) => {
       />
       {children}
       <UserMenu />
-      {page === "public" && <Bubbly bubbles={20} />}
+      {page === "public" && <Bubbly bubbles={15} />}
       <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} />
     </div>
   );

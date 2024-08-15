@@ -115,6 +115,7 @@ declare module "app-context" {
     logo?: string;
     event?: IEvent;
     id?: string;
+    userId?: string;
     media?: MediaProps;
     message?: { [x: string]: string };
     appName?: string;

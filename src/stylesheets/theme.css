@@ -17,7 +17,7 @@
   z-index: 3;
   left: 0;
 }
-.light-mode .btn-main,
+/* .light-mode .btn-main,
 .btn-row {
   background-color: #fafafa;
   color: black;
@@ -26,7 +26,10 @@
 .btn-row {
   background-color: #fafafa;
   color: black;
-}
+} */
+/* .btn-main {
+ */
+/* } */
 .btn-row {
   width: 100%;
   max-width: 100%;
