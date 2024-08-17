@@ -25,9 +25,9 @@
   },
   "mapForm": {
     "formId": "mapForm",
-    "labels": { "unit": "Unit type", "length": "Length", "width": "Width" },
+    "labels": { "unit": "Unit type", "length": "Length", "width": "Width", "name": "Map name" },
     "types": { "unit": "select", "length": "number", "width": "number" },
-    "placeholders": {},
+    "placeholders": { "name": "Map name" },
     "dataList": {
       "unit": [
         {
@@ -50,6 +50,12 @@
         }
       ]
     }
+  },
+  "mapRoomForm": {
+    "formId": "mapFormRoom",
+    "labels": { "name": "", "orientation": "Orientation" },
+    "types": {},
+    "placeholders": { "name": "Room name" }
   },
   "postForm": {
     "heading": "Configure your calendar booking here!",

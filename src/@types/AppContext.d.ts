@@ -33,6 +33,11 @@ declare module "app-context" {
     readPrivacyPolicy?: boolean;
     currency?: string;
   }
+  export interface MapState {
+    dimensions: MapDimensions;
+    name: string;
+    grid: GridData[][];
+  }
   export interface IMaps {
     // readPrivacyPolicy?: boolean;
     // currency?: string;
@@ -40,6 +45,7 @@ declare module "app-context" {
   export interface GridData {
     id: string;
     data: string;
+    name?: string;
     orientation: string;
     x: number;
     y: number;
@@ -47,11 +53,13 @@ declare module "app-context" {
   export interface MapDimensions {
     width: number;
     length: number;
+    name?: string;
     unit: "cm" | "m" | "km";
   }
   export interface AppMap {
     map: GridData[][];
     appId?: string;
+    name?: string;
     dimensions?: MapDimensions;
   }
   export interface AppStateProps {
@@ -140,6 +148,7 @@ declare module "app-context" {
     logo?: string;
     event?: IEvent;
     id?: string;
+    name?: string;
     userId?: string;
     media?: MediaProps;
     message?: { [x: string]: string };
