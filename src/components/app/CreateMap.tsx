@@ -47,6 +47,7 @@ const CreateMap = () => {
               types={mapRoomForm.types}
               submitLabel="Update room data"
               placeholders={mapRoomForm.placeholders}
+              dataList={mapRoomForm.dataList}
               onSubmit={(val: { [x: string]: string }) => console.log("val :>> ", val)}
             />
           </div>
@@ -54,12 +55,14 @@ const CreateMap = () => {
           <p className="text-center w-max">No room selected</p>
         )}
 
-        <div className="flex-center">
-          <Button
-            label="Save and continue"
-            onClick={() => createMap({ appId, name: map.name, dimensions: map.dimensions, map: map.grid })}
-          />
-        </div>
+        {map.dimensions.length > 0 && map.dimensions.width > 0 && map.grid.length > 0 && map.name && (
+          <div className="flex-center">
+            <Button
+              label="Save and continue"
+              onClick={() => createMap({ appId, name: map.name, dimensions: map.dimensions, map: map.grid })}
+            />
+          </div>
+        )}
       </div>
       <Map map={map} viewRoomData={handleRoomData} handleGrid={(g) => handleGrid(g)} />
     </div>

@@ -54,7 +54,35 @@
   "mapRoomForm": {
     "formId": "mapFormRoom",
     "labels": { "name": "", "orientation": "Orientation" },
-    "types": {},
+    "types": { "orientation": "select" },
+    "dataList": {
+      "orientation": [
+        {
+          "name": "0 deg",
+          "label": "0 deg",
+          "value": "0 deg",
+          "uid": "icon-1"
+        },
+        {
+          "name": "90 deg",
+          "label": "90 deg",
+          "value": "90 deg",
+          "uid": "icon-2"
+        },
+        {
+          "name": "180 deg",
+          "label": "180 deg",
+          "value": "180 deg",
+          "uid": "icon-3"
+        },
+        {
+          "name": "270 deg",
+          "label": "270 deg",
+          "value": "270 deg",
+          "uid": "icon-4"
+        }
+      ]
+    },
     "placeholders": { "name": "Room name" }
   },
   "postForm": {
