@@ -18,8 +18,8 @@ interface Igrid {
 }
 const Grid = ({ grid, active, setActiveCell }: Igrid) => (
   <div className="map">
-    {grid.map((g) => (
-      <div key={uniqueId()} className="map-column">
+    {grid.map((g, idx) => (
+      <div key={uniqueId(g.length + idx)} className="map-column">
         {g.map((d) => (
           <>
             <span className="text-center" key={d.id}>

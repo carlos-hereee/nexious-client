@@ -8,7 +8,7 @@ import { createGrid } from "@app/createGrid";
 import Map from "./Map";
 
 const ViewMaps = () => {
-  const { maps, appId } = useContext(AppContext);
+  const { maps, appId, updateMap } = useContext(AppContext);
   const { ownedApps } = useContext(AuthContext);
   const [activeMap, setActiveMap] = useState<IMaps>();
   const [showUpdateDimensions, setShow] = useState<boolean>(false);
@@ -25,10 +25,13 @@ const ViewMaps = () => {
     if (activeMap) setActiveMap({ ...activeMap, map: val });
   };
   const handleDimensions = (d: MapDimensions) => {
-    setShow(false);
     const dimensions = { length: d.length, width: d.width, unit: d.unit };
-    const g = createGrid(d);
-    if (activeMap) setActiveMap({ ...activeMap, dimensions, map: g, name: d.name || "" });
+    if (activeMap) {
+      if (dimensions !== activeMap.dimensions) {
+        const g = createGrid(d);
+        setActiveMap({ ...activeMap, dimensions, name: d.name || "", map: g });
+      } else setActiveMap({ ...activeMap, dimensions, name: d.name || "" });
+    }
   };
   return (
     <div className="primary-container">
@@ -70,6 +73,9 @@ const ViewMaps = () => {
             </div>
           )}
           <Map dimensions={activeMap.dimensions} grid={activeMap.map} readonly={!canEdit} handleGrid={handleEdit} />
+          <div className="flex-center">
+            <Button label="Save and continue" onClick={() => updateMap({ appId, iMap: activeMap })} />
+          </div>
         </div>
       )}
     </div>

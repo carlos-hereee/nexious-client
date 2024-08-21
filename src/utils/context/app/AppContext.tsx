@@ -22,6 +22,7 @@ import { fetchAppUsers, fetchPlatformData } from "./request/fetchPlatformData";
 import { createStripeAccount } from "./request/createStripeAccount";
 import { sendMessage } from "./request/sendMessage";
 import { buildMap } from "./request/buildMap";
+import { editMap } from "./request/editMap";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -59,6 +60,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const deleteSubscription = useCallback((data: SubcriptionProp) => removeSub({ dispatch, ...data, updateUser }), []);
   // app extra features
   const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
+  const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -105,6 +107,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       socialMedia: state.socialMedia,
       platformTiers: state.platformTiers,
       subscriptionTiers: state.subscriptionTiers,
+      updateMap,
       updateAppData,
       getAppWithName,
       getPlatformData,

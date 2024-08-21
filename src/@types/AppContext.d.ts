@@ -60,10 +60,11 @@ declare module "app-context" {
     unit: "cm" | "m" | "km";
   }
   export interface AppMap {
-    map: GridData[][];
+    map?: GridData[][];
     appId?: string;
     name?: string;
     dimensions?: MapDimensions;
+    iMap?: IMaps;
   }
   export interface AppStateProps {
     // auth schema
@@ -135,12 +136,14 @@ declare module "app-context" {
 
     contactApp: (props: ContactApp) => void;
     createMap: (props: AppMap) => void;
+    updateMap: (props: AppMap) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
   }
 
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     app?: AppProps;
+    iMap?: IMaps;
     page?: PageProps;
     store?: StoreProps;
     dimensions?: MapDimensions;
