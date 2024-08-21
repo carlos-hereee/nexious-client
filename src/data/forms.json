@@ -63,6 +63,20 @@
           "value": "room-with-door",
           "thumbnail": "/assets/room-with-door.png",
           "uid": "icon-1"
+        },
+        {
+          "name": "ofice-room",
+          "label": "ofice-room",
+          "value": "ofice-room",
+          "thumbnail": "/assets/ofice-room.png",
+          "uid": "icon-1"
+        },
+        {
+          "name": "conference-room",
+          "label": "conference-room",
+          "value": "conference-room",
+          "thumbnail": "/assets/conference-room.png",
+          "uid": "icon-2"
         }
       ],
       "orientation": [

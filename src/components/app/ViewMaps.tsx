@@ -47,7 +47,7 @@ const ViewMaps = () => {
             <div>
               <h2 className="heading">Map data</h2>
               <Form
-                initialValues={{ name: "", ...activeMap.dimensions } as unknown as { [x: string]: string }}
+                initialValues={{ name: activeMap.name, ...activeMap.dimensions } as unknown as { [x: string]: string }}
                 labels={mapForm.labels}
                 types={mapForm.types}
                 schema={{ required: ["name"] }}

@@ -4,7 +4,6 @@ import { useContext, useEffect } from "react";
 import { CalendarContext } from "@context/calendar/CalendarContext";
 import { AppContext } from "@context/app/AppContext";
 import { CalendarDayProp, CalEvent } from "app-calendar";
-// import { IEvent } from "app-calendar";
 
 const AppBooking = () => {
   const { name, events, getCalendar, updateSelectedDay } = useContext(CalendarContext);

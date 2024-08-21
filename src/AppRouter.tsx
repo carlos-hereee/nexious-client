@@ -26,6 +26,7 @@ import Notification from "@pages/dashboard/Notification";
 import ViewPosts from "@components/app/ViewPosts";
 import { MediaContext } from "@context/media/MediaContext";
 import Contact from "@pages/public/Contact";
+import AppMaps from "@pages/app/AppMaps";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -58,6 +59,8 @@ const AppRouter: React.FC = () => {
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
         <Route path="/store/:appName" element={<AppStore />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
+        <Route path="/maps/:appName" element={<AppMaps />} />
+        {/* <Route path="/maps/:appName/:mapId" element={<AppMaps />} /> */}
       </Route>
       {/* Private routes for account holders and authorized user */}
       <Route element={<PrivateRoute />}>
