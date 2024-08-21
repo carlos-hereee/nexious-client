@@ -23,6 +23,9 @@
 .overflow-x {
   overflow-x: auto;
 }
+.overflow {
+  overflow: auto;
+}
 .btn-logo {
   width: auto;
 }

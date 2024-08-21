@@ -17,22 +17,19 @@ interface Igrid {
   setActiveCell: (d: GridData) => void;
 }
 const Grid = ({ grid, active, setActiveCell }: Igrid) => (
-  <div className="map">
+  <div className="map overflow-x">
     {grid.map((g, idx) => (
       <div key={uniqueId(g.length + idx)} className="map-column">
         {g.map((d) => (
-          <>
-            <span className="text-center" key={d.id}>
-              {d.name || ""}
-            </span>
+          <div className="map-cell flex-center" key={d.id}>
+            {d.name && <span>{d.name}</span>}
             <Button
-              key={d.id}
-              theme={`map-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
+              theme={`btn-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
               onClick={() => setActiveCell(d)}
             >
-              {d.data && <Hero hero={{ url: `/assets/${d.data}.png`, alt: d.data }} />}
+              {d.data && <Hero hero={{ url: `/assets/${d.data}.png`, alt: d.data }} theme="btn-cell-img" />}
             </Button>
-          </>
+          </div>
         ))}
       </div>
     ))}

@@ -9,21 +9,22 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  min-width: 100%;
 }
 .map-cell {
+  flex-direction: column;
+  min-width: 100%;
   border: 1px dotted;
   aspect-ratio: 1/1;
 }
-.room-with-door {
-  background: url("/assets/room-with-door.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  /* border: 1px solid gray; */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.btn-cell {
+  padding: 0.25rem;
+  width: 100%;
+  height: 100%;
+  min-width: auto;
+}
+.btn-cell-img {
+  min-width: auto;
 }
 .map-container {
   width: 100%;
