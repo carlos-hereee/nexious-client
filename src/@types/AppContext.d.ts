@@ -39,8 +39,10 @@ declare module "app-context" {
     grid?: GridData[][];
   }
   export interface IMaps {
-    // readPrivacyPolicy?: boolean;
-    // currency?: string;
+    name?: string;
+    uid: string;
+    dimensions: MapDimensions;
+    map: GridData[][];
   }
   export interface GridData {
     id: string;

@@ -25,3 +25,9 @@
   -o-background-size: cover;
   background-size: cover;
 }
+.map-container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

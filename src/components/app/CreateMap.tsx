@@ -1,10 +1,9 @@
 import { AppContext } from "@context/app/AppContext";
 import { useContext, useState } from "react";
 import { mapForm } from "@data/forms.json";
-import { Button, ItemDetail } from "nexious-library";
+import { Button, Form, ItemDetail } from "nexious-library";
 import { createGrid } from "@app/createGrid";
 import { GridData, MapDimensions, MapState } from "app-context";
-import UpdateForm from "./forms/UpdateForm";
 import Map from "./Map";
 
 const CreateMap = () => {
@@ -25,10 +24,11 @@ const CreateMap = () => {
     <div className="container">
       <h2 className="heading">Dimensions</h2>
       {showUpdateDimensions ? (
-        <UpdateForm
+        <Form
           initialValues={{ name: "", ...map.dimensions } as unknown as { [x: string]: string }}
           labels={mapForm.labels}
           types={mapForm.types}
+          schema={{ required: ["name"] }}
           placeholders={mapForm.placeholders}
           dataList={mapForm.dataList}
           submitLabel="Generate map"

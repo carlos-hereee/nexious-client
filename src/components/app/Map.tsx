@@ -22,7 +22,9 @@ const Grid = ({ grid, active, setActiveCell }: Igrid) => (
       <div key={uniqueId()} className="map-column">
         {g.map((d) => (
           <>
-            <span className="text-center"> {d.name || ""}</span>
+            <span className="text-center" key={d.id}>
+              {d.name || ""}
+            </span>
             <Button
               key={d.id}
               theme={`map-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
