@@ -1,13 +1,14 @@
-import { GridData, MapState } from "app-context";
-import { Button, Hero, uniqueId } from "nexious-library";
+import { GridData, MapDimensions } from "app-context";
+import { Button, Hero, uniqueId, Select, ItemDetail } from "nexious-library";
 import { useState } from "react";
+import { mapRoomForm } from "@data/forms.json";
+import UpdateForm from "./forms/UpdateForm";
 
 interface IMap {
-  map: MapState;
   readonly?: boolean;
-  grid?: GridData[][];
+  grid: GridData[][];
+  dimensions: MapDimensions;
   handleGrid?: (g: GridData[][]) => void;
-  viewRoomData?: (room: GridData) => void;
 }
 
 interface Igrid {
@@ -20,46 +21,102 @@ const Grid = ({ grid, active, setActiveCell }: Igrid) => (
     {grid.map((g) => (
       <div key={uniqueId()} className="map-column">
         {g.map((d) => (
-          <Button key={d.id} theme={`map-cell${active?.id === d.id ? " highlight" : ""}`} onClick={() => setActiveCell(d)}>
-            {d.data && <Hero hero={{ url: `/assets/${d.data}.png`, alt: d.data }} />}
-          </Button>
+          <>
+            <span className="text-center"> {d.name || ""}</span>
+            <Button
+              key={d.id}
+              theme={`map-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
+              onClick={() => setActiveCell(d)}
+            >
+              {d.data && <Hero hero={{ url: `/assets/${d.data}.png`, alt: d.data }} />}
+            </Button>
+          </>
         ))}
       </div>
     ))}
   </div>
 );
-const Map = ({ map, readonly, viewRoomData, handleGrid }: IMap) => {
+const Map = ({ grid, dimensions, readonly, handleGrid }: IMap) => {
   const [activeCell, setActiveCell] = useState<GridData>();
-  const [cellItem, setCellItem] = useState<string>("");
+  const [activeRoom, setActiveRoom] = useState<GridData>();
 
-  if (map.dimensions.length === 0) return <p className="text-center w-max">Map length is 0 {map.dimensions.unit}</p>;
-  if (map.dimensions.width === 0) return <p className="text-center w-max">Map width is 0 {map.dimensions.unit}</p>;
-  if (!map.grid || map.grid.length === 0) return <p className="text-center w-max">Generating grid</p>;
+  if (dimensions.length === 0) return <p className="text-center w-max">Map length is 0 {dimensions.unit}</p>;
+  if (dimensions.width === 0) return <p className="text-center w-max">Map width is 0 {dimensions.unit}</p>;
+  if (!grid || grid.length === 0) return <p className="text-center w-max">Generating grid</p>;
 
-  if (readonly) return <Grid grid={map.grid} active={activeCell} setActiveCell={setActiveCell} />;
+  if (readonly) return <Grid grid={grid} active={activeCell} setActiveCell={setActiveCell} />;
 
-  const handleRoomClick = (room: GridData) => {
-    if (cellItem) {
-      const updatedGrid = map.grid.map((g) => {
+  const handleRoomTypeChange = (e: string) => {
+    if (activeRoom) {
+      setActiveRoom({ ...activeRoom, data: e, roomType: e });
+      const updatedGrid = grid.map((g) => {
         return g.map((d) => {
-          if (room === d) return { ...d, data: d.data && d.data === cellItem ? "" : cellItem };
+          if (activeRoom.id === d.id) return { ...d, data: e, roomType: e };
           return d;
         });
       });
       if (handleGrid) handleGrid(updatedGrid);
-    } else if (viewRoomData) viewRoomData(room);
+    }
+  };
+  const handleOrientationChange = (e: string) => {
+    if (activeRoom) {
+      setActiveRoom({ ...activeRoom, orientation: e });
+      const updatedGrid = grid.map((g) => {
+        return g.map((d) => {
+          if (activeRoom.id === d.id) return { ...d, orientation: e };
+          return d;
+        });
+      });
+      if (handleGrid) handleGrid(updatedGrid);
+    }
+  };
+  const handleRoomName = (e: { [x: string]: string }) => {
+    if (activeRoom) {
+      setActiveRoom({ ...activeRoom, name: e.name });
+      const updatedGrid = grid.map((g) => {
+        return g.map((d) => {
+          if (activeRoom.id === d.id) return { ...d, name: e.name };
+          return d;
+        });
+      });
+      if (handleGrid) handleGrid(updatedGrid);
+    }
   };
   return (
-    <div className="container">
+    <div className="split-container">
       <div>
-        <h3 className="heading">Update room types</h3>
-        <Button
-          label="room-with-door"
-          theme={cellItem === "room-with-door" ? "btn-active" : "btn-main"}
-          onClick={() => setCellItem(cellItem === "room-with-door" ? "" : "room-with-door")}
-        />
+        <h2 className="heading">Room data</h2>
+        {activeRoom ? (
+          <div>
+            <ItemDetail label="Room Location:">
+              X: {activeRoom.x} Y: {activeRoom.y}
+            </ItemDetail>
+
+            <ItemDetail label="Room Type:">
+              <Select list={mapRoomForm.dataList.roomType} active={activeRoom.roomType} onChange={handleRoomTypeChange} />
+            </ItemDetail>
+            <ItemDetail label="Room orientation:">
+              <Select
+                list={mapRoomForm.dataList.orientation}
+                active={activeRoom.orientation}
+                onChange={handleOrientationChange}
+              />
+            </ItemDetail>
+            <UpdateForm
+              initialValues={{ name: activeRoom.name } as unknown as { [x: string]: string }}
+              labels={mapRoomForm.labels}
+              types={mapRoomForm.types}
+              submitLabel="Update room data"
+              placeholders={mapRoomForm.placeholders}
+              dataList={mapRoomForm.dataList}
+              onSubmit={handleRoomName}
+            />
+          </div>
+        ) : (
+          <p className="text-center w-max">No room selected</p>
+        )}
       </div>
-      <Grid grid={map.grid} active={activeCell} setActiveCell={handleRoomClick} />
+      <Grid grid={grid} active={activeCell} setActiveCell={setActiveRoom} />;
     </div>
   );
 };

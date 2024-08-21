@@ -23,6 +23,15 @@
 .overflow-x {
   overflow-x: auto;
 }
+.btn-logo {
+  width: auto;
+}
+.btn-main {
+  color: black;
+}
+.service-card {
+  color: black;
+}
 .testimonial-form {
   display: flex;
   flex-direction: row;

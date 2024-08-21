@@ -53,32 +53,41 @@
   },
   "mapRoomForm": {
     "formId": "mapFormRoom",
-    "labels": { "name": "", "orientation": "Orientation" },
-    "types": { "orientation": "select" },
+    "labels": { "name": "", "orientation": "Orientation", "roomType": "Room type" },
+    "types": { "orientation": "select", "roomType": "select" },
     "dataList": {
+      "roomType": [
+        {
+          "name": "room-with-door",
+          "label": "room-with-door",
+          "value": "room-with-door",
+          "thumbnail": "/assets/room-with-door.png",
+          "uid": "icon-1"
+        }
+      ],
       "orientation": [
         {
-          "name": "0 deg",
+          "name": "0-deg",
           "label": "0 deg",
-          "value": "0 deg",
+          "value": "zero-deg",
           "uid": "icon-1"
         },
         {
-          "name": "90 deg",
+          "name": "90-deg",
           "label": "90 deg",
-          "value": "90 deg",
+          "value": "ninety-deg",
           "uid": "icon-2"
         },
         {
-          "name": "180 deg",
+          "name": "180-deg",
           "label": "180 deg",
-          "value": "180 deg",
+          "value": "one-hundred-eighty-deg",
           "uid": "icon-3"
         },
         {
-          "name": "270 deg",
+          "name": "270-deg",
           "label": "270 deg",
-          "value": "270 deg",
+          "value": "two-hundred-seventy-deg",
           "uid": "icon-4"
         }
       ]
@@ -92,14 +101,8 @@
     "previewLabel": "See changes",
     "additionLabel": "Add another",
     "removalLabel": "Remove",
-    "initialValues": {
-      "hero": "",
-      "body": ""
-    },
-    "labels": {
-      "hero": "Choose image",
-      "body": "Post details"
-    },
+    "initialValues": { "hero": "", "body": "" },
+    "labels": { "hero": "Choose image", "body": "Post details" },
     "placeholders": { "body": "" },
     "types": {
       "hero": "file",

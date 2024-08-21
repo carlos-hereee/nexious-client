@@ -36,7 +36,7 @@ declare module "app-context" {
   export interface MapState {
     dimensions: MapDimensions;
     name: string;
-    grid: GridData[][];
+    grid?: GridData[][];
   }
   export interface IMaps {
     // readPrivacyPolicy?: boolean;
@@ -45,6 +45,7 @@ declare module "app-context" {
   export interface GridData {
     id: string;
     data: string;
+    roomType: string;
     name?: string;
     orientation: string;
     x: number;
