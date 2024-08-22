@@ -210,7 +210,7 @@ footer {
 .hero-contact {
   border-radius: 100%;
   aspect-ratio: 1/1;
-  max-width: 150px;
+  max-width: 100px;
 }
 .inventory-container {
   display: flex;

@@ -62,21 +62,21 @@
           "label": "room-with-door",
           "value": "room-with-door",
           "thumbnail": "/assets/room-with-door.png",
-          "uid": "icon-1"
+          "uid": "room-with-door"
         },
         {
-          "name": "ofice-room",
-          "label": "ofice-room",
-          "value": "ofice-room",
+          "name": "office-room",
+          "label": "office-room",
+          "value": "office-room",
           "thumbnail": "/assets/ofice-room.png",
-          "uid": "icon-1"
+          "uid": "office-room-1"
         },
         {
           "name": "conference-room",
           "label": "conference-room",
           "value": "conference-room",
           "thumbnail": "/assets/conference-room.png",
-          "uid": "icon-2"
+          "uid": "conference-room"
         }
       ],
       "orientation": [

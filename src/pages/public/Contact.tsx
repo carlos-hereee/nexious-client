@@ -6,7 +6,7 @@ import { userMenuContacts, nexiousContact } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Message } from "app-types";
 import { UserContact } from "auth-context";
-import { sortByABC } from "@app/sortByABC";
+import { removeArrayDups, sortByABCRemoveDups } from "@app/sortByABC";
 
 interface MenuContact {
   messages: string;
@@ -23,7 +23,8 @@ const Contact = () => {
 
   useEffect(() => {
     setMessageList([]);
-    setMessageList(userMessages);
+    const messages = removeArrayDups<Message>({ arr: userMessages, key: "uid" });
+    setMessageList(messages);
   }, [userMessages]);
   useEffect(() => {
     setMessageRecipient(undefined);
@@ -31,7 +32,7 @@ const Contact = () => {
   }, [activeMenu]);
   useEffect(() => {
     if (user) {
-      const sortedByABC = sortByABC<UserContact>({ arr: [...contacts, nexiousContact], key: "name" });
+      const sortedByABC = sortByABCRemoveDups<UserContact>({ arr: [...contacts, nexiousContact], key: "name" });
       setContactList(sortedByABC);
     } else setContactList([nexiousContact]);
   }, [user]);
@@ -83,7 +84,7 @@ const Contact = () => {
               <Button
                 key={c.userId}
                 onClick={() => setMessageRecipient(c)}
-                theme={c.userId === messageRecipient?.userId ? "btn-active" : "btn-main"}
+                theme={c.userId === messageRecipient?.userId ? "contact-button btn-active" : "contact-button btn-main"}
               >
                 <Hero hero={{ url: c.avatar, alt: c.name }} theme="hero-contact" />
                 {c.name}
