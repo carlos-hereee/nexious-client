@@ -6,3 +6,9 @@
 .btn-like-icon {
   color: red;
 }
+.hero-contact-sm {
+  min-width: 50px;
+  max-width: 75px;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+}

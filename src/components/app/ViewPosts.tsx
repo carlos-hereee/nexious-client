@@ -30,25 +30,23 @@ const ViewPosts = ({ posts }: Props) => {
         {sortedPosts.length > 0 ? (
           sortedPosts.map((post) => (
             <div key={post.uid} className="post">
-              {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail m-auto p-1" />}
+              {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
               <CardTextBubble data={post} />
-              <div className="container p-1">
-                <div className="flex-g">
-                  <IconButton
-                    icon={{ icon: "heart" }}
-                    theme={`btn-small highlight ${likePosts.includes(post.postId) ? ` btn-like-icon` : ""}`}
-                    onClick={() => updateLikePost(post.postId)}
-                  />
-                  <IconButton
-                    icon={{ icon: "comment" }}
-                    theme={`highlight btn-small${post.postId === activePost?.postId ? " btn-selected highlight" : ""}`}
-                    onClick={() => setActivePost(post)}
-                  />
-                </div>
-                {post.postId === activePost?.postId && (
-                  <ViewComments comments={post.comments} reply={(val) => postReply({ reply: val, postId: post.postId })} />
-                )}
+              <div className="flex-g">
+                <IconButton
+                  icon={{ icon: "heart" }}
+                  theme={`btn-small highlight ${likePosts.includes(post.postId) ? ` btn-like-icon` : ""}`}
+                  onClick={() => updateLikePost(post.postId)}
+                />
+                <IconButton
+                  icon={{ icon: "comment" }}
+                  theme={`highlight btn-small${post.postId === activePost?.postId ? " btn-selected highlight" : ""}`}
+                  onClick={() => setActivePost(post)}
+                />
               </div>
+              {post.postId === activePost?.postId && (
+                <ViewComments comments={post.comments} reply={(val) => postReply({ reply: val, postId: post.postId })} />
+              )}
             </div>
           ))
         ) : (

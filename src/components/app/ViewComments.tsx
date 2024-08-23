@@ -1,13 +1,16 @@
+import MessageBubble from "@components/card/MessageBubble";
 import { AuthContext } from "@context/auth/AuthContext";
+import { Message } from "app-types";
 import { Button, Form } from "nexious-library";
 import { useContext } from "react";
 
 interface Comments {
-  comments: string[];
+  comments: Message[];
   reply: (val: { data: string }) => void;
 }
 const ViewComments = ({ comments, reply }: Comments) => {
   const { accessToken } = useContext(AuthContext);
+  console.log("comments :>> ", comments);
   if (!comments || comments.length === 0) {
     return (
       <>
@@ -27,6 +30,14 @@ const ViewComments = ({ comments, reply }: Comments) => {
       </>
     );
   }
-  return <div>VIEW COMMENTS</div>;
+  return (
+    <div className="y-overflow">
+      {comments.map((comment) => (
+        <MessageBubble key={comment.uid} message={comment}>
+          {" "}
+        </MessageBubble>
+      ))}
+    </div>
+  );
 };
 export default ViewComments;

@@ -1,4 +1,5 @@
 declare module "media-context" {
+  import { Message } from "app-types";
   import { MEDIA_ACTIONS } from "@actions/MediaActions";
 
   export interface PostReply {
@@ -14,7 +15,7 @@ declare module "media-context" {
     name: string;
     body: string;
     reviews: string;
-    comments: string[];
+    comments: Message[];
   }
   export interface MediaState {
     isLoading: boolean;
@@ -33,7 +34,7 @@ declare module "media-context" {
   }
   export interface IMediaState extends MediaState {
     setLoading: (loading: boolean) => void;
-    updatePost: (post: Post) => void;
+    // updatePost: (post: Post) => void;
     setRequestStatus: (status: string) => void;
     getPosts: (appId: string) => void;
     updatePosts: (post: Post[]) => void;
@@ -44,6 +45,7 @@ declare module "media-context" {
   export interface MediaDispatchProps {
     dispatch: React.Dispatch<MediaActionProps>;
     updateUser?: (user: UserSchema) => void;
+    updatePost?: (user: Post) => void;
     appId?: string;
     post?: Post;
     reply?: { data: string };

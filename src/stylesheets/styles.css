@@ -9,17 +9,14 @@
   width: 100%;
   max-width: 450px;
 }
+.y-overflow {
+  overflow-y: auto;
+  max-height: 80vh;
+}
 .card-container {
   z-index: 1;
 }
-.m-auto {
-  margin: auto;
-}
-.post-thumbnail {
-  max-height: 30vh;
-  aspect-ratio: 16/9;
-  border-radius: 10px;
-}
+
 .overflow-x {
   overflow-x: auto;
 }
@@ -106,17 +103,6 @@ footer {
   max-height: 100vh;
   /* min-width: 800px; */
   overflow-y: auto;
-}
-.btn-post {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  min-width: 300px;
-  max-width: 800px;
-  width: 100%;
-}
-.post-thumbnail {
-  aspect-ratio: 16/9;
 }
 .select-field {
   display: flex;

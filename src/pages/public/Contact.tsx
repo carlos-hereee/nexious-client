@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Button, CardTextBubble, Form, Hero, ReadMore } from "nexious-library";
+import { Button, Form, Hero, ReadMore } from "nexious-library";
 import { contactForm } from "@data/forms.json";
 import { userMenuContacts, nexiousContact } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Message } from "app-types";
 import { UserContact } from "auth-context";
 import { removeArrayDups, sortByABCRemoveDups } from "@app/sortByABC";
+import MessageBubble from "@components/card/MessageBubble";
 
 interface MenuContact {
   messages: string;
@@ -98,20 +99,7 @@ const Contact = () => {
         {thread && (
           <>
             <div className="y-overflow">
-              <CardTextBubble
-                data={thread}
-                hero={{ url: thread.user.avatar, alt: `${thread.user.name} avatar`, theme: "hero-contact" }}
-                sender={user.userId === thread.user.userId}
-              />
-              {thread.replies.length > 0 &&
-                thread.replies.map((reply) => (
-                  <CardTextBubble
-                    key={reply.uid}
-                    data={reply}
-                    hero={{ url: reply.user, alt: `${thread.user.name} avatar`, theme: "hero-contact" }}
-                    sender={user.userId === thread.user.userId}
-                  />
-                ))}
+              <MessageBubble message={thread} />
             </div>
             <Form
               initialValues={contactForm.initialValues}
