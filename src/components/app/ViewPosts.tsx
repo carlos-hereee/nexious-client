@@ -4,6 +4,8 @@ import { Post } from "media-context";
 import { sortList } from "@app/sortList";
 import { AuthContext } from "@context/auth/AuthContext";
 import { MediaContext } from "@context/media/MediaContext";
+import { Link } from "react-router-dom";
+import CreateApp from "@components/card/CreateApp";
 import ViewComments from "./ViewComments";
 import MessageReactions from "./MessageReactions";
 
@@ -13,7 +15,7 @@ interface Props {
 const ViewPosts = ({ posts }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
-  const { likePosts } = useContext(AuthContext);
+  const { likePosts, accessToken } = useContext(AuthContext);
   const { postReply, updateLikePost } = useContext(MediaContext);
 
   useEffect(() => {
@@ -50,8 +52,10 @@ const ViewPosts = ({ posts }: Props) => {
               )}
             </div>
           ))
+        ) : accessToken ? (
+          <Link to="/dashboard">No posts be the first to post!</Link>
         ) : (
-          <p>No posts</p>
+          <CreateApp />
         )}
       </div>
       <div className="container" />
