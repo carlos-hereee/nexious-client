@@ -32,9 +32,33 @@
 .reply-reactions .btn-icon:not(.btn-selected) {
   background-color: #fafafa;
 }
-.nested-reply {
+.nested-reply-1 {
   padding-left: 2rem;
 }
-.nested-reply + .reply-reactions {
+.nested-reply-1 + .reply-reactions {
   left: 2rem;
+}
+.nested-reply-2 {
+  padding-left: 3rem;
+}
+.nested-reply-2 + .reply-reactions {
+  left: 3rem;
+}
+.nested-reply-3 {
+  padding-left: 4rem;
+}
+.nested-reply-3 + .reply-reactions {
+  left: 4rem;
+}
+.nested-reply-4 {
+  padding-left: 5rem;
+}
+.nested-reply-4 + .reply-reactions {
+  left: 5rem;
+}
+.nested-reply-5 {
+  padding-left: 6rem;
+}
+.nested-reply-5 + .reply-reactions {
+  left: 6rem;
 }

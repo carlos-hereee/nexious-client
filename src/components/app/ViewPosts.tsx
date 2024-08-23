@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { CardTextBubble, Hero } from "nexious-library";
 import { Post } from "media-context";
-import { sortDecendingList } from "@app/sortList";
+import { sortList } from "@app/sortList";
 import { AuthContext } from "@context/auth/AuthContext";
 import { MediaContext } from "@context/media/MediaContext";
 import ViewComments from "./ViewComments";
@@ -18,8 +18,7 @@ const ViewPosts = ({ posts }: Props) => {
 
   useEffect(() => {
     if (posts) {
-      // const sorted = sortDecendingList({ list: posts });
-      const sorted = sortDecendingList({ list: posts });
+      const sorted = sortList({ list: posts });
 
       setPosts(sorted as Post[]);
     }

@@ -13,7 +13,7 @@ interface Props {
 }
 const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClick }: Props) => {
   const { postMessageReply, posts } = useContext(MediaContext);
-  console.log("comment :>> ", comment.replies);
+
   return (
     <div className={`thread${theme ? ` ${theme}` : ""}`}>
       <MessageBubble
@@ -22,35 +22,24 @@ const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClic
         onReplyClick={() => onReplyClick(comment)}
         onLikeClick={() => onLikeClick(comment)}
       />
-
-      {/* {comment.replies.length > 0 &&
-        comment.replies.map((r) => (
-          <CommentThread
-            comment={r}
-            key={r.replyId}
-            activeMessageId={activeMessageId}
-            theme="nested-reply"
-            onReplyClick={() => onReplyClick(r)}
-            onLikeClick={() => onLikeClick(r)}
-          >
-            <MessageReactions
-                  theme="reply-reactions"
-                  // likeList={r.status.messageLikes || []}
-                  likeList={[]}
-                  messageId={r.replyId || ""}
-                  activeReply={r.replyId === activeMessage?.messageId}
-                  onLikeClick={() => console.log("click")}
-                  onReplyClick={() => toggleReplyClick(r)}
-                  replyIcon
-                />
-          </CommentThread>
-        ))} */}
       {activeMessage?.messageId === comment.messageId && (
         <div className="container">
-          <p>To: {activeMessage.user.name || "no-name"}</p>
+          <p>To: {activeMessage?.user?.name || "no-name"}</p>
           <MessageBox onSubmit={(val) => postMessageReply({ reply: val, messageId: activeMessage.messageId, posts })} />
         </div>
       )}
+      {comment.replies &&
+        comment.replies.length > 0 &&
+        comment.replies.map((r) => (
+          <CommentThread
+            comment={r}
+            key={r.messageId}
+            activeMessage={activeMessage}
+            theme={`nested-reply-${r.status?.nestLevel}`}
+            onReplyClick={onReplyClick}
+            onLikeClick={onLikeClick}
+          />
+        ))}
     </div>
   );
 };

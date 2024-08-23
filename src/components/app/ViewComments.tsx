@@ -4,7 +4,6 @@ import { Button } from "nexious-library";
 import { useContext, useState } from "react";
 import CommentThread from "@components/list/CommentThread";
 import MessageBox from "./forms/MessageBox";
-// import MessageReactions from "./MessageReactions";
 
 interface Comments {
   comments: Message[];
@@ -26,7 +25,7 @@ const ViewComments = ({ comments, reply }: Comments) => {
 
   const toggleReplyClick = (m: Message) => {
     if (!activeMessage || activeMessage.messageId !== m.messageId) setActiveMessage(m);
-    if (m.messageId === activeMessage?.messageId) setActiveMessage(undefined);
+    else setActiveMessage(undefined);
   };
   return (
     <div className="y-overflow">
@@ -38,38 +37,6 @@ const ViewComments = ({ comments, reply }: Comments) => {
           onLikeClick={(c) => console.log("c :>> ", c)}
           onReplyClick={toggleReplyClick}
         />
-        // <div key={comment.uid} className="thread">
-        //   <MessageBubble
-        //     message={comment}
-        //     activeMessageId={activeMessage?.messageId}
-        //     onReplyClick={() => toggleReplyClick(comment)}
-        //     onLikeClick={() => console.log("click")}
-        //   />
-
-        //   {comment.replies.length > 0 &&
-        //     comment.replies.map((r) => (
-        //       <MessageBubble
-        //         message={r}
-        //         key={r.replyId}
-        //         activeMessageId={activeMessage?.messageId}
-        //         theme="nested-reply"
-        //         onReplyClick={() => toggleReplyClick(r)}
-        //         onLikeClick={() => console.log("object :>> ", r)}
-        //       >
-        //         {/* <MessageReactions
-        //           theme="reply-reactions"
-        //           // likeList={r.status.messageLikes || []}
-        //           likeList={[]}
-        //           messageId={r.replyId || ""}
-        //           activeReply={r.replyId === activeMessage?.messageId}
-        //           onLikeClick={() => console.log("click")}
-        //           onReplyClick={() => toggleReplyClick(r)}
-        //           replyIcon
-        //         /> */}
-        //       </MessageBubble>
-        //     ))}
-
-        // </div>
       ))}
       {!activeMessage && <MessageBox onSubmit={reply} />}
     </div>

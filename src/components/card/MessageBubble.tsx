@@ -19,8 +19,8 @@ const MessageBubble = ({ message, children, theme, activeMessageId, onLikeClick,
       <CardTextBubble
         data={message}
         theme={theme}
-        hero={{ url: message.user.avatar, alt: `${message.user.name} avatar`, theme: "hero-contact-sm" }}
-        sender={user.userId === message.user.userId}
+        hero={{ url: message.user?.avatar || "", alt: `${message.user?.name || "no-name"} avatar`, theme: "hero-contact-sm" }}
+        sender={user.userId === message.user?.userId}
       />
       <MessageReactions
         theme="reply-reactions"
