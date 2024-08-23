@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CardTextBubble, Hero, IconButton } from "nexious-library";
 import { Post } from "media-context";
 import { sortList } from "@app/sortList";
+import { AuthContext } from "@context/auth/AuthContext";
 import ViewComments from "./ViewComments";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 const ViewPosts = ({ posts }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
+  const { likePosts, updateLikePost } = useContext(AuthContext);
 
   useEffect(() => {
     if (posts) {
@@ -17,11 +19,9 @@ const ViewPosts = ({ posts }: Props) => {
       setPosts(sorted as Post[]);
     }
   }, [posts]);
+
   if (!posts) return <h2 className="heading">No posts</h2>;
-  // TODO: POST FUNCTIONALITY
-  const handlePostCommentClick = (p: Post) => {
-    setActivePost(p);
-  };
+
   return (
     <div className="split-container">
       <div className="primary-container overflow-y">
@@ -32,11 +32,15 @@ const ViewPosts = ({ posts }: Props) => {
               <CardTextBubble data={post} />
               <div className="container p-1">
                 <div className="flex-g">
-                  <IconButton icon={{ icon: "heart" }} theme="highlight" />
+                  <IconButton
+                    icon={{ icon: "heart" }}
+                    theme={`btn-small highlight ${likePosts.includes(post.postId) ? ` btn-like-icon` : ""}`}
+                    onClick={() => updateLikePost(post.uid)}
+                  />
                   <IconButton
                     icon={{ icon: "comment" }}
-                    theme={`highlight${post.postId === activePost?.postId ? " btn-active" : ""}`}
-                    onClick={() => handlePostCommentClick(post)}
+                    theme={`highlight btn-small${post.postId === activePost?.postId ? " btn-selected highlight" : ""}`}
+                    onClick={() => setActivePost(post)}
                   />
                 </div>
                 {post.postId === activePost?.postId && <ViewComments comments={post.comments} />}

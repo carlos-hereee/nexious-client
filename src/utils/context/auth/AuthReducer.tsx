@@ -25,6 +25,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, notifications: action.payload };
     case A_ACTIONS.SET_DUMMY_DATA:
       return { ...state, dummyUser: action.payload };
+    case A_ACTIONS.SET_LIKED_POSTS:
+      return { ...state, likePosts: action.payload };
     case A_ACTIONS.SET_OWNED_APPS:
       return { ...state, ownedApps: action.payload };
     case A_ACTIONS.SET_ACCESS_TOKEN:

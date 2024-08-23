@@ -1,7 +1,8 @@
 import { axiosAuth } from "@axios/axiosAuth";
-import { A_ACTIONS } from "@actions/AuthActions";
+
 import { AuthDispatchProps } from "auth-context";
 import { axiosError } from "@axios/axiosError";
+import { A_ACTIONS } from "@actions/AuthActions";
 
 export const singUp = async ({ dispatch, credentials }: AuthDispatchProps) => {
   try {
