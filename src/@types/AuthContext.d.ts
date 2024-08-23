@@ -125,7 +125,6 @@ declare module "auth-context" {
     clearNotification: (key: string) => void;
     subscribe: (appId: string) => void;
     updateAvatar: (user: { [x: string]: string }) => void;
-    updateLikePost: (postId: string) => void;
   }
 
   export interface AuthDispatchProps {

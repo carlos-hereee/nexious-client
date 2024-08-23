@@ -3,6 +3,7 @@ import { CardTextBubble, Hero, IconButton } from "nexious-library";
 import { Post } from "media-context";
 import { sortList } from "@app/sortList";
 import { AuthContext } from "@context/auth/AuthContext";
+import { MediaContext } from "@context/media/MediaContext";
 import ViewComments from "./ViewComments";
 
 interface Props {
@@ -11,7 +12,8 @@ interface Props {
 const ViewPosts = ({ posts }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
-  const { likePosts, updateLikePost } = useContext(AuthContext);
+  const { likePosts } = useContext(AuthContext);
+  const { postReply, updateLikePost } = useContext(MediaContext);
 
   useEffect(() => {
     if (posts) {
@@ -35,7 +37,7 @@ const ViewPosts = ({ posts }: Props) => {
                   <IconButton
                     icon={{ icon: "heart" }}
                     theme={`btn-small highlight ${likePosts.includes(post.postId) ? ` btn-like-icon` : ""}`}
-                    onClick={() => updateLikePost(post.uid)}
+                    onClick={() => updateLikePost(post.postId)}
                   />
                   <IconButton
                     icon={{ icon: "comment" }}
@@ -43,7 +45,9 @@ const ViewPosts = ({ posts }: Props) => {
                     onClick={() => setActivePost(post)}
                   />
                 </div>
-                {post.postId === activePost?.postId && <ViewComments comments={post.comments} />}
+                {post.postId === activePost?.postId && (
+                  <ViewComments comments={post.comments} reply={(val) => postReply({ reply: val, postId: post.postId })} />
+                )}
               </div>
             </div>
           ))

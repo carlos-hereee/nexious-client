@@ -23,7 +23,6 @@ import { setChangePassword } from "./request/changePassword";
 import { upgradeTier } from "./request/upgradeTier";
 import { customerSubscription } from "./request/customerSubsctiption";
 import { editAvatar } from "./request/editAvatar";
-import { toggleLikePost } from "./request/toggleLikePost";
 
 export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
@@ -59,7 +58,6 @@ export const AuthState = ({ children }: ChildProps) => {
   const setUpdateTier = useCallback((a?: ISubscription) => dispatch({ type: A_ACTIONS.SET_UPDATE_TIER, payload: a }), []);
   const subscribe = useCallback((appId: string) => setSubscribe({ dispatch, appId, updateUser }), []);
   const clearNotification = useCallback((data: string) => removeNotification({ dispatch, data, updateUser }), []);
-  const updateLikePost = useCallback((postId: string) => toggleLikePost({ dispatch, postId, updateUser }), []);
 
   const authValues = useMemo(() => {
     return {
@@ -105,7 +103,6 @@ export const AuthState = ({ children }: ChildProps) => {
       setUpdateTier,
       addTier,
       updateAvatar,
-      updateLikePost,
     };
   }, [
     state.accessToken,

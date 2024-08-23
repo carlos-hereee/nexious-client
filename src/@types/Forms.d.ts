@@ -38,6 +38,7 @@ declare module "app-forms" {
     newPassword?: string;
     confirmNewPassword?: string;
   }
+
   export interface ForgotPasswordValues {
     username: string;
     newPassword: string;
