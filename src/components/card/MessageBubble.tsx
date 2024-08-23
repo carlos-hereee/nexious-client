@@ -13,7 +13,7 @@ interface Props {
   onReplyClick?: () => void;
 }
 const MessageBubble = ({ message, children, theme, activeMessageId, onLikeClick, onReplyClick }: Props) => {
-  const { user } = useContext(AuthContext);
+  const { user, likeMessages } = useContext(AuthContext);
   return (
     <div className="pos-rel">
       <CardTextBubble
@@ -24,12 +24,9 @@ const MessageBubble = ({ message, children, theme, activeMessageId, onLikeClick,
       />
       <MessageReactions
         theme="reply-reactions"
-        // likeList={message.status.messageLikes || []}
-        likeList={[]}
+        likeList={likeMessages}
         messageId={message.messageId}
         activeReply={message.messageId === activeMessageId}
-        // onLikeClick={() => console.log("click")}
-        // onReplyClick={() => toggleReplyClick(message)}
         onLikeClick={onLikeClick}
         onReplyClick={onReplyClick}
         replyIcon

@@ -57,6 +57,7 @@ declare module "auth-context" {
     name?: string;
     languageId?: string;
     likePosts?: string[];
+    likeMessages?: string[];
     phone?: string;
     subscriptions?: AppListProps[];
     notifications?: Notification[];
@@ -86,6 +87,7 @@ declare module "auth-context" {
     accessToken: string;
     ownedApps: AppListProps[];
     notifications: Notification[];
+    likeMessages: string[];
     authErrors: AuthErrorProps;
     user: UserSchema;
     orders?: OrderSchema[];
@@ -154,7 +156,7 @@ declare module "auth-context" {
     | { type: A_ACTIONS.SET_ACCOUNT_TIERS; payload: ISubscription[] }
     | { type: A_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: A_ACTIONS.SET_USER_MESSAGES; payload: Message[] }
-    | { type: A_ACTIONS.SET_LIKED_POSTS; payload: string[] }
+    | { type: A_ACTIONS.SET_LIKED_POSTS | A_ACTIONS.SET_LIKE_MESSAGES; payload: string[] }
     | { type: A_ACTIONS.SET_USER_CONTACTS; payload: UserContact[] }
     | { type: A_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: A_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };

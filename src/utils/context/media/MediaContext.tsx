@@ -8,7 +8,7 @@ import { reducer } from "./MediaReducer";
 import { createPost } from "./requests/createPost";
 import { fetchPosts } from "./requests/fetchPosts";
 import { addMessageReply, addReplyToPost } from "./requests/addReplyToPost";
-import { toggleLikePost } from "./requests/toggleLikePost";
+import { toggleLikePost, toggleLikeMsg } from "./requests/toggleLikePost";
 import { editPost } from "./dispatch/editPost";
 
 export const MediaContext = createContext<IMediaState>({} as IMediaState);
@@ -28,6 +28,7 @@ export const MediaState = ({ children }: ChildProps) => {
   const postReply = useCallback((data: PostReply) => addReplyToPost({ dispatch, ...data, updateUser, updatePost }), []);
   const postMessageReply = useCallback((data: PostReply) => addMessageReply({ dispatch, ...data, updateUser, updatePost }), []);
   const updateLikePost = useCallback((postId: string) => toggleLikePost({ dispatch, postId, updateUser }), []);
+  const updateLikeMessage = useCallback((data: PostReply) => toggleLikeMsg({ dispatch, ...data, updateUser, updatePost }), []);
 
   const mediaValues = useMemo(() => {
     return {
@@ -38,13 +39,13 @@ export const MediaState = ({ children }: ChildProps) => {
       requestStatus: state.requestStatus,
       setLoading,
       setRequestStatus,
-      // updatePost,
       updatePosts,
       addPost,
       getPosts,
       postReply,
       updateLikePost,
       postMessageReply,
+      updateLikeMessage,
     };
   }, [state.isLoading, state.error, state.requestStatus, state.posts]);
   return <MediaContext.Provider value={mediaValues}> {children}</MediaContext.Provider>;

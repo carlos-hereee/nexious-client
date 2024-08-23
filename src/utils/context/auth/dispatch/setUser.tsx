@@ -18,5 +18,6 @@ export const setUser = ({ user, dispatch }: AuthDispatchProps) => {
   if (user.isPlatformOwner) dispatch({ type: A_ACTIONS.SET_PLATFORM_OWNER, payload: user.isPlatformOwner });
   if (user.contacts) dispatch({ type: A_ACTIONS.SET_USER_CONTACTS, payload: user.contacts });
   if (user.likePosts) dispatch({ type: A_ACTIONS.SET_LIKED_POSTS, payload: user.likePosts });
+  if (user.likeMessages) dispatch({ type: A_ACTIONS.SET_LIKE_MESSAGES, payload: user.likeMessages });
   dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
 };

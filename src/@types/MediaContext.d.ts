@@ -44,6 +44,7 @@ declare module "media-context" {
     addPost: (event: CreatePost) => void;
     postReply: (event: PostReply) => void;
     updateLikePost: (postId: string) => void;
+    updateLikeMessage: (data: PostReply) => void;
     postMessageReply: (event: PostReply) => void;
   }
   export interface MediaDispatchProps {

@@ -15,6 +15,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, tierUpdate: action.payload };
     case A_ACTIONS.SET_ORDERS:
       return { ...state, orders: action.payload };
+    case A_ACTIONS.SET_LIKE_MESSAGES:
+      return { ...state, likeMessages: action.payload };
     case A_ACTIONS.SET_ACCOUNT_TIERS:
       return { ...state, accountTiers: action.payload };
     case A_ACTIONS.SET_ACCOUNT_TIER:

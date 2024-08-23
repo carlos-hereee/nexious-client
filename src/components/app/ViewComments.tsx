@@ -3,6 +3,7 @@ import { Message } from "app-types";
 import { Button } from "nexious-library";
 import { useContext, useState } from "react";
 import CommentThread from "@components/list/CommentThread";
+import { MediaContext } from "@context/media/MediaContext";
 import MessageBox from "./forms/MessageBox";
 
 interface Comments {
@@ -12,6 +13,7 @@ interface Comments {
 
 const ViewComments = ({ comments, reply }: Comments) => {
   const { accessToken } = useContext(AuthContext);
+  const { updateLikeMessage, posts } = useContext(MediaContext);
   const [activeMessage, setActiveMessage] = useState<Message>();
 
   if (!comments || comments.length === 0) {
@@ -27,6 +29,7 @@ const ViewComments = ({ comments, reply }: Comments) => {
     if (!activeMessage || activeMessage.messageId !== m.messageId) setActiveMessage(m);
     else setActiveMessage(undefined);
   };
+
   return (
     <div className="y-overflow">
       {comments.map((comment) => (
@@ -34,7 +37,7 @@ const ViewComments = ({ comments, reply }: Comments) => {
           key={comment.uid}
           comment={comment}
           activeMessage={activeMessage}
-          onLikeClick={(c) => console.log("c :>> ", c)}
+          onLikeClick={(m) => updateLikeMessage({ messageId: m.messageId, posts })}
           onReplyClick={toggleReplyClick}
         />
       ))}
