@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import { CardTextBubble, Hero, IconButton } from "nexious-library";
+import { CardTextBubble, Hero } from "nexious-library";
 import { Post } from "media-context";
 import { sortList } from "@app/sortList";
 import { AuthContext } from "@context/auth/AuthContext";
 import { MediaContext } from "@context/media/MediaContext";
 import ViewComments from "./ViewComments";
+import MessageReactions from "./MessageReactions";
 
 interface Props {
   posts: Post[];
@@ -24,6 +25,10 @@ const ViewPosts = ({ posts }: Props) => {
 
   if (!posts) return <h2 className="heading">No posts</h2>;
 
+  const toggleActivePost = (p: Post) => {
+    if (!activePost || activePost.postId !== p.postId) setActivePost(p);
+    if (p.postId === activePost?.postId) setActivePost(undefined);
+  };
   return (
     <div className="split-container">
       <div className="primary-container overflow-y">
@@ -32,18 +37,13 @@ const ViewPosts = ({ posts }: Props) => {
             <div key={post.uid} className="post">
               {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
               <CardTextBubble data={post} />
-              <div className="flex-g">
-                <IconButton
-                  icon={{ icon: "heart" }}
-                  theme={`btn-small highlight ${likePosts.includes(post.postId) ? ` btn-like-icon` : ""}`}
-                  onClick={() => updateLikePost(post.postId)}
-                />
-                <IconButton
-                  icon={{ icon: "comment" }}
-                  theme={`highlight btn-small${post.postId === activePost?.postId ? " btn-selected highlight" : ""}`}
-                  onClick={() => setActivePost(post)}
-                />
-              </div>
+              <MessageReactions
+                likeList={likePosts}
+                onLikeClick={() => updateLikePost(post.postId)}
+                messageId={post.postId}
+                onReplyClick={() => toggleActivePost(post)}
+                activeReply={activePost?.postId === post?.postId}
+              />
               {post.postId === activePost?.postId && (
                 <ViewComments comments={post.comments} reply={(val) => postReply({ reply: val, postId: post.postId })} />
               )}

@@ -46,21 +46,18 @@ declare module "app-types" {
   export interface Message {
     uid: string;
     messageId: string;
+    replyId?: string;
     data: string;
     title: string;
     status: {
       reaction: string;
       messageStatus: string;
       linkCount: number;
+      messageLikes: string[];
     };
     user: { avatar: string; name: string; userId: string };
     recipient: { avatar: string; name: string; userId: string; role: UserRole };
-    replies: {
-      user: { avatar: string; name: string; userId: string };
-      data: string;
-      uid: string;
-      replyId: string;
-    }[];
+    replies: Message[];
   }
   export type ContainerDataProps = { heading?: string; medias?: MediaItemProp[]; hint?: string };
   export type ThemeColorProps = {

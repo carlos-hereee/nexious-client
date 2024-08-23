@@ -7,7 +7,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import { reducer } from "./MediaReducer";
 import { createPost } from "./requests/createPost";
 import { fetchPosts } from "./requests/fetchPosts";
-import { addReplyToPost } from "./requests/addReplyToPost";
+import { addMessageReply, addReplyToPost } from "./requests/addReplyToPost";
 import { toggleLikePost } from "./requests/toggleLikePost";
 import { editPost } from "./dispatch/editPost";
 
@@ -26,6 +26,7 @@ export const MediaState = ({ children }: ChildProps) => {
 
   // user actions
   const postReply = useCallback((data: PostReply) => addReplyToPost({ dispatch, ...data, updateUser, updatePost }), []);
+  const postMessageReply = useCallback((data: PostReply) => addMessageReply({ dispatch, ...data, updateUser, updatePost }), []);
   const updateLikePost = useCallback((postId: string) => toggleLikePost({ dispatch, postId, updateUser }), []);
 
   const mediaValues = useMemo(() => {
@@ -43,6 +44,7 @@ export const MediaState = ({ children }: ChildProps) => {
       getPosts,
       postReply,
       updateLikePost,
+      postMessageReply,
     };
   }, [state.isLoading, state.error, state.requestStatus, state.posts]);
   return <MediaContext.Provider value={mediaValues}> {children}</MediaContext.Provider>;

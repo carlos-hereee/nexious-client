@@ -4,6 +4,7 @@ declare module "media-context" {
 
   export interface PostReply {
     postId?: string;
+    messageId?: string;
     reply?: { data: string };
   }
   export interface Post {
@@ -41,12 +42,14 @@ declare module "media-context" {
     addPost: (event: CreatePost) => void;
     postReply: (event: PostReply) => void;
     updateLikePost: (postId: string) => void;
+    postMessageReply: (event: PostReply) => void;
   }
   export interface MediaDispatchProps {
     dispatch: React.Dispatch<MediaActionProps>;
     updateUser?: (user: UserSchema) => void;
     updatePost?: (user: Post) => void;
     appId?: string;
+    messageId?: string;
     post?: Post;
     reply?: { data: string };
     postId?: string;

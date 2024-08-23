@@ -1,5 +1,14 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 1rem;
+}
 .post-thumbnail {
-  max-height: 30vh;
+  max-height: 25vh;
   aspect-ratio: 16/9;
   border-radius: 10px;
   margin: auto;
@@ -12,11 +21,20 @@
   max-width: 800px;
   width: 100%;
 }
-.post {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 100%;
+.reply-reactions {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+}
+.reply-reactions .btn-icon {
+  padding: 0.125rem;
+}
+.reply-reactions .btn-icon:not(.btn-selected) {
   background-color: #fafafa;
-  border-radius: 10px;
+}
+.nested-reply {
+  padding-left: 2rem;
+}
+.nested-reply + .reply-reactions {
+  left: 2rem;
 }
