@@ -8,9 +8,10 @@ export const editPost = async ({ post, posts, dispatch }: MediaDispatchProps) =>
     if (!post) throw Error("post param is required");
     if (!posts) throw Error("posts param is required");
     const updatedPosts = posts.map((p) => {
-      if (p.postId === post?.postId) return post;
+      if (p.postId === post.postId) return post;
       return p;
     });
+    console.log("updatedPosts :>> ", updatedPosts);
     dispatch({ type: MEDIA_ACTIONS.SET_POSTS, payload: updatedPosts });
   } catch (error) {
     if (isDev) console.log("error", error);

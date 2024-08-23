@@ -49,11 +49,13 @@ declare module "app-types" {
     replyId?: string;
     data: string;
     title: string;
+    updatedAt: string;
     status: {
+      messageLikes: string[];
       reaction: string;
       messageStatus: string;
-      linkCount: number;
-      messageLikes: string[];
+      likeCount: number;
+      nestLevel: number;
     };
     user: { avatar: string; name: string; userId: string };
     recipient: { avatar: string; name: string; userId: string; role: UserRole };

@@ -17,7 +17,7 @@ export const MediaState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, mediaState);
   const { updateUser } = useContext(AuthContext);
 
-  const updatePost = (post: Post) => editPost({ dispatch, post, posts: state.posts });
+  const updatePost = useCallback((data: PostReply) => editPost({ dispatch, ...data }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: MEDIA_ACTIONS.IS_LOADING, payload: loading }), []);
   const setRequestStatus = useCallback((s: string) => dispatch({ type: MEDIA_ACTIONS.SET_REQUEST_STATUS, payload: s }), []);
   const getPosts = useCallback((appId: string) => fetchPosts({ dispatch, appId }), []);

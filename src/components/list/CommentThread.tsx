@@ -12,9 +12,10 @@ interface Props {
   onReplyClick: (comment: Message) => void;
 }
 const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClick }: Props) => {
-  const { postMessageReply } = useContext(MediaContext);
+  const { postMessageReply, posts } = useContext(MediaContext);
+  console.log("comment :>> ", comment.replies);
   return (
-    <div className={`thread ${theme ? ` ${theme}` : ""} `}>
+    <div className={`thread${theme ? ` ${theme}` : ""}`}>
       <MessageBubble
         message={comment}
         activeMessageId={activeMessage?.messageId}
@@ -47,7 +48,7 @@ const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClic
       {activeMessage?.messageId === comment.messageId && (
         <div className="container">
           <p>To: {activeMessage.user.name || "no-name"}</p>
-          <MessageBox onSubmit={(val) => postMessageReply({ reply: val, messageId: activeMessage.messageId })} />
+          <MessageBox onSubmit={(val) => postMessageReply({ reply: val, messageId: activeMessage.messageId, posts })} />
         </div>
       )}
     </div>

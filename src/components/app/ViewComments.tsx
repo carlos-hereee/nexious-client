@@ -28,7 +28,6 @@ const ViewComments = ({ comments, reply }: Comments) => {
     if (!activeMessage || activeMessage.messageId !== m.messageId) setActiveMessage(m);
     if (m.messageId === activeMessage?.messageId) setActiveMessage(undefined);
   };
-  console.log("activeMessage :>> ", activeMessage);
   return (
     <div className="y-overflow">
       {comments.map((comment) => (
