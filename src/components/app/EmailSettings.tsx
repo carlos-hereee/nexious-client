@@ -38,7 +38,7 @@ const EmailSettings = ({ updatePhase }: Props) => {
   return (
     <div className="primary-container">
       <h2 className="heading">{notificationMenu[active]}</h2>
-      <Navigation menus={["notifications", "email", "phone"]} theme="navigation-bar" active={active} onClick={handleNavClick} />
+      <Navigation menus={["notifications", "email"]} theme="navigation-bar" active={active} onClick={handleNavClick} />
       {active === "notifications" && (
         <NotificationForm initialValues={initialValues} onSubmit={(settings) => emailSettings({ settings, active })} />
       )}
