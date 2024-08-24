@@ -15,10 +15,10 @@ const addArrayInObj = ({ obj, key, value }: AddArrayInObject) => {
 
 export const formatInitialValues: FormatFormValue = (data) => {
   const { values, desiredOrder, landing, menu, page, merch, user, store, media, calendar, subscription } = data;
-  const { notificationSettings: settings } = data;
+  const { settings } = data;
   //  values
+  if (settings) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: settings[key] })));
   if (values) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: values[key] || "" })));
-  if (settings) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: settings[key] || false })));
   if (subscription) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: subscription[key] || "" })));
   if (media) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: media[key] || "" })));
   if (calendar) return Object.assign({}, ...desiredOrder.map((key) => ({ [key]: calendar[key] || "" })));

@@ -152,7 +152,7 @@ declare module "app-forms" {
     media?: MediaItemProp;
     user?: UserSchema;
     menu?: MenuProp;
-    notificationSettings?: NSettings;
+    settings?: NSettings;
     desiredOrder: string[];
   }
   export type FormatAppMenuValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;

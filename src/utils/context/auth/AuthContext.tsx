@@ -87,6 +87,7 @@ export const AuthState = ({ children }: ChildProps) => {
       subscriptions: state.subscriptions,
       likePosts: state.likePosts,
       likeMessages: state.likeMessages,
+      notificationSettings: state.notificationSettings,
       register,
       updateUser,
       login,
@@ -119,6 +120,7 @@ export const AuthState = ({ children }: ChildProps) => {
     state.authErrors,
     state.accountTiers,
     state.notifications,
+    state.notificationSettings,
   ]);
 
   return <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>;

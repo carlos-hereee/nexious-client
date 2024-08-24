@@ -122,6 +122,7 @@ declare module "auth-context" {
     notifications: Notification[];
     likeMessages: string[];
     authErrors: AuthErrorProps;
+    notificationSettings?: NotificationSettings;
     user: UserSchema;
     orders?: OrderSchema[];
     dummyUser: LoginValues;
@@ -195,5 +196,6 @@ declare module "auth-context" {
     | { type: A_ACTIONS.SET_LIKED_POSTS | A_ACTIONS.SET_LIKE_MESSAGES; payload: string[] }
     | { type: A_ACTIONS.SET_USER_CONTACTS; payload: UserContact[] }
     | { type: A_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
+    | { type: A_ACTIONS.SET_NOTIFICATION_SETTINGS; payload: NotificationSettings }
     | { type: A_ACTIONS.SET_ERROR; payload: { [x: AuthErrorTarget]: string } };
 }

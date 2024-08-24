@@ -17,45 +17,42 @@ interface MenuNav {
 }
 
 const EmailSettings = ({ updatePhase }: Props) => {
-  const { user, emailSettings } = useContext(AuthContext);
+  const { notificationSettings, emailSettings, user } = useContext(AuthContext);
   const [active, setNavigation] = useState<keyof MenuNav>("notifications");
   const [initialValues, setInitialValues] = useState<NSettings>();
+  const { desiredOrder } = notificationSettingsForm;
 
   useEffect(() => {
-    setInitialValues(undefined);
-    const { desiredOrder } = notificationSettingsForm;
-    if (user.notificationSettings) {
-      const val = formatInitialValues({ notificationSettings: user.notificationSettings[active], desiredOrder });
-      setInitialValues(val as unknown as NSettings);
-    } else {
-      const val = formatInitialValues({ notificationSettings: notificationSettingsForm.initialValues, desiredOrder });
+    if (notificationSettings && notificationSettings[active]) {
+      const val = formatInitialValues({ settings: notificationSettings[active], desiredOrder });
       setInitialValues(val as unknown as NSettings);
     }
   }, [active]);
-  if (!initialValues) return <Loading />;
+
+  if (!initialValues || !notificationSettings) return <Loading />;
+  const handleNavClick = (m: keyof MenuNav) => {
+    // reset initial values
+    setInitialValues(undefined);
+    setNavigation(m);
+  };
   return (
     <div className="primary-container">
       <h2 className="heading">{notificationMenu[active]}</h2>
-      <Navigation
-        menus={["notifications", "email", "phone"]}
-        theme="navigation-bar"
-        active={active}
-        onClick={(m: keyof MenuNav) => setNavigation(m)}
-      />
+      <Navigation menus={["notifications", "email", "phone"]} theme="navigation-bar" active={active} onClick={handleNavClick} />
       {active === "notifications" && (
         <NotificationForm initialValues={initialValues} onSubmit={(settings) => emailSettings({ settings, active })} />
       )}
       {active === "email" &&
-        (!user.email ? (
+        (user.email ? (
           <NotificationForm initialValues={initialValues} onSubmit={(settings) => emailSettings({ settings, active })} />
         ) : (
           <Button label="Add email" onClick={updatePhase} />
         ))}
       {active === "phone" &&
-        (!user.phone ? (
+        (user.phone ? (
           <NotificationForm initialValues={initialValues} onSubmit={(settings) => emailSettings({ settings, active })} />
         ) : (
-          <Button label="Add phone" onClick={updatePhase} />
+          <Button label="Add phone number" onClick={updatePhase} />
         ))}
     </div>
   );

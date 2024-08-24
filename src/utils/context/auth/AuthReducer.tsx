@@ -37,6 +37,8 @@ export const reducer = (state: AuthStateProps, action: AuthActionProps): AuthSta
       return { ...state, user: action.payload };
     case A_ACTIONS.SET_THEME:
       return { ...state, theme: action.payload };
+    case A_ACTIONS.SET_NOTIFICATION_SETTINGS:
+      return { ...state, notificationSettings: action.payload };
     // case A_ACTIONS.UPDATE_SHIPPING_DETAILS:
     //   return { ...state, shippingDetails: action.payload };
     // case A_ACTIONS.SET_CHANGE_PASSWORD:
