@@ -3,7 +3,7 @@ declare module "auth-context" {
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
   import { AppListProps, Message, Notification } from "app-types";
-  import { AuthFormValueProps, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
+  import { AuthFormValueProps, EmailParam, ForgotPasswordValues, FormProps, LoginValues, RegisterFormProps } from "app-forms";
 
   export interface AuthErrorProps {
     logout: string;
@@ -44,6 +44,32 @@ declare module "auth-context" {
     link: string;
     features: SubsciptionFeatures[];
   }
+  export interface NSettings {
+    // account notifications
+    newFeatures: boolean;
+    promotionalNotifications: boolean;
+    milestones: boolean;
+    subscriptionRenewal: boolean;
+    // auth notifications
+    loginAlerts: boolean;
+    accountChanges: boolean;
+    suspiciousActivity: boolean;
+    // checkout notifications
+    orderConfirmations: boolean;
+    paymentReceipts: boolean;
+    // calendar
+    eventReminders: boolean;
+    taskReminders: boolean;
+    // social notifications
+    messages: boolean;
+    mentionsTags: boolean;
+    activityAlerts: boolean;
+  }
+  export interface NotificationSettings {
+    notifications: NSettings;
+    email: NSettings;
+    phone: NSettings;
+  }
   export interface UserSchema {
     // uid: string;
     userId: string;
@@ -62,6 +88,7 @@ declare module "auth-context" {
     subscriptions?: AppListProps[];
     notifications?: Notification[];
     ownedApps?: AppListProps[];
+    notificationSettings?: NotificationSettings;
     accountTier?: ISubscription;
     orders?: OrderSchema[];
     messages?: Message[];
@@ -127,6 +154,7 @@ declare module "auth-context" {
     clearNotification: (key: string) => void;
     subscribe: (appId: string) => void;
     updateAvatar: (user: { [x: string]: string }) => void;
+    emailSettings: (settings: EmailParam) => void;
   }
 
   export interface AuthDispatchProps {
@@ -140,6 +168,8 @@ declare module "auth-context" {
     orders?: OrderSchema[];
     login?: LoginValues;
     appId?: string;
+    settings?: { [x: string]: boolean };
+    active?: string;
     postId?: string;
     updateUser?: (user: UserSchema) => void;
     setDummyUser?: (user: LoginValues) => void;

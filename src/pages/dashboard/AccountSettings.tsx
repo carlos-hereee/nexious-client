@@ -8,9 +8,10 @@ import { AppContext } from "@context/app/AppContext";
 import SubscriptionCard from "@components/card/SubscriptionCard";
 import { StoreContext } from "@context/store/StoreContext";
 import UpdateHero from "@components/app/forms/UpdateHero";
+import EmailSettings from "@components/app/EmailSettings";
 import OwnerDashboard from "./OwnerDashboard";
 
-type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account" | "avatar";
+type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account" | "avatar" | "email";
 const AccountSettings = () => {
   const { user, userForm, editUser, theme, accountTier, isPlatformOwner, updateAvatar } = useContext(AuthContext);
   const { platformTiers } = useContext(AppContext);
@@ -28,8 +29,7 @@ const AccountSettings = () => {
     setShow(false);
   };
   return (
-    <div className="container">
-      {isPlatformOwner && <OwnerDashboard />}
+    <>
       <h1 className="heading">Account settings</h1>
       <ItemDetail labelLayout="bolden" label="Account:">
         <Button label="Update account" onClick={() => handleClick("user")} />
@@ -43,9 +43,9 @@ const AccountSettings = () => {
       <ItemDetail labelLayout="bolden" label="Platform account:">
         <Button label="View account" onClick={() => handleClick("your-account")} />
       </ItemDetail>
-      {/* <ItemDetail labelLayout="bolden" label="App subscriptions:">
-        <Button label="View subscriptions" onClick={() => handleClick("account-tier")} />
-      </ItemDetail> */}
+      <ItemDetail labelLayout="bolden" label="Configure email notifications">
+        <Button label="Email settings" onClick={() => handleClick("email")} />
+      </ItemDetail>
       <ItemDetail labelLayout="bolden" label="Password:">
         <Button label="Change password" onClick={() => handleClick("password-change")} />
       </ItemDetail>
@@ -69,6 +69,7 @@ const AccountSettings = () => {
           {nav === "password-change" && <ChangePassword />}
           {nav === "account-tier" && <ViewAccountTiers subscriptions={accountTier ? [accountTier] : []} />}
           {nav === "avatar" && <UpdateHero initialValues={{ hero: user.avatar || "" }} onSubmit={handleUpdateAvatar} />}
+          {nav === "email" && <EmailSettings updatePhase={() => handleClick("user")} />}
           {nav === "your-account" &&
             (accountTier ? (
               <>
@@ -85,7 +86,8 @@ const AccountSettings = () => {
           {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}
-    </div>
+      {isPlatformOwner && <OwnerDashboard />}
+    </>
   );
 };
 export default AccountSettings;

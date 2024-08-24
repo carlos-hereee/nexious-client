@@ -1,5 +1,5 @@
 declare module "app-forms" {
-  import { ISubscription, UserSchema } from "auth-context";
+  import { ISubscription, NSettings, UserSchema } from "auth-context";
   import { MerchProps } from "store-context";
   import { AppListProps } from "app-context";
   import {
@@ -38,7 +38,7 @@ declare module "app-forms" {
     newPassword?: string;
     confirmNewPassword?: string;
   }
-
+  export type EmailParam = { settings: { [x: key]: boolean }; active: string };
   export interface ForgotPasswordValues {
     username: string;
     newPassword: string;
@@ -152,6 +152,7 @@ declare module "app-forms" {
     media?: MediaItemProp;
     user?: UserSchema;
     menu?: MenuProp;
+    notificationSettings?: NSettings;
     desiredOrder: string[];
   }
   export type FormatAppMenuValue<I = MenuProp> = (data: FormatInitialFormValues<I>) => StringObjProp;

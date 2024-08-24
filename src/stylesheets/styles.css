@@ -26,6 +26,9 @@
 .btn-logo {
   width: auto;
 }
+.dialog-navigation {
+  position: relative;
+}
 .btn-main {
   color: black;
 }

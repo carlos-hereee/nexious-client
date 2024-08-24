@@ -38,29 +38,27 @@ const UserPlayground = () => {
       {/* <button type="button" onClick={() => listBucket(appId)}>
         List bucket
       </button> */}
-      <div className="container">
-        <nav className="navigation-container">
-          <IconButton
-            icon={{ icon: "app", label: "Apps" }}
-            theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
-            onClick={() => setActive("apps")}
-          />
-          <IconButton
-            icon={{ icon: "shopping", label: "Orders" }}
-            theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
-            onClick={() => setActive("orders")}
-          />
-          <IconButton
-            icon={{ icon: "account", label: "Account" }}
-            theme={active === "account" ? "btn-main btn-active" : "btn-main"}
-            onClick={() => setActive("account")}
-          />
-        </nav>
+      <nav className="navigation-container">
+        <IconButton
+          icon={{ icon: "app", label: "Apps" }}
+          theme={active === "apps" ? "btn-main btn-active" : "btn-main"}
+          onClick={() => setActive("apps")}
+        />
+        <IconButton
+          icon={{ icon: "shopping", label: "Orders" }}
+          theme={active === "orders" ? "btn-main btn-active" : "btn-main"}
+          onClick={() => setActive("orders")}
+        />
+        <IconButton
+          icon={{ icon: "account", label: "Account" }}
+          theme={active === "account" ? "btn-main btn-active" : "btn-main"}
+          onClick={() => setActive("account")}
+        />
+      </nav>
 
-        {active === "apps" && <AppPlayground />}
-        {active === "orders" && <TrackOrder />}
-        {active === "account" && <AccountSettings />}
-      </div>
+      {active === "apps" && <AppPlayground />}
+      {active === "orders" && <TrackOrder />}
+      {active === "account" && <AccountSettings />}
     </section>
   );
 };

@@ -162,21 +162,6 @@
         "body": "Crafted with a focus on simplicity and user-friendly functionality, the design aims to provide an intuitive and accessible user experience."
       },
       {
-        "title": "Trusted Professionals",
-        "subtitle": "",
-        "uid": "section-1",
-        "details": "",
-        "sectionHero": {
-          "url": "/icons/secure-icon.svg",
-          "alt": "Trusted professionals",
-          "uid": "hero-uid-1",
-          "heroId": "section-heroId",
-          "hero": "/icons/secure-icon.svg",
-          "theme": "hero-thumbnail"
-        },
-        "body": "Our staff consists of experienced and trained professionals who are dedicated to providing exceptional service and attention to detail."
-      },
-      {
         "title": "Customazible Plans",
         "subtitle": "",
         "uid": "section-2",
@@ -260,6 +245,11 @@
       "backgroundColors": { "primary": "", "secondary": "", "altPrimary": "", "altSecondary": "" }
     }
   ],
+  "notificationMenu": {
+    "notifications": "App notifications",
+    "email": "Email notifications",
+    "phone": "Phone notification"
+  },
   "hints": {
     "appMenuButton": {
       "title": "View and edit menu data",
