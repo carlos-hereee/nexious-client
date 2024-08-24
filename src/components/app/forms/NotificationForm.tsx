@@ -14,6 +14,13 @@ const NotificationForm = ({ initialValues, onSubmit }: Props) => {
       labels={notificationSettingsForm.labels}
       fieldHeading={notificationSettingsForm.fieldHeading}
       onSubmit={onSubmit}
+      schema={{
+        strictCheckbox: [
+          { main: "muteAllAccount", inverse: ["newFeatures", "promotionalNotifications", "subscriptionRenewal", "milestones"] },
+          { main: "muteAllSocial", inverse: ["messages", "mentionsTags", "activityAlerts"] },
+          { main: "muteAllCalendar", inverse: ["eventReminders", "taskReminders"] },
+        ],
+      }}
     />
   );
 };

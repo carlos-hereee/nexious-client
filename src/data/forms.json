@@ -27,6 +27,10 @@
     "submitLabel": "Save and continue",
     "formId": "notificationSettingsForm",
     "initialValues": {
+      "muteAllAccount": false,
+      "muteAllCalendar": false,
+      "muteAllSocial": false,
+      "muteAllCheckout": false,
       "loginAlerts": true,
       "accountChanges": true,
       "subscriptionRenewal": true,
@@ -43,6 +47,10 @@
       "paymentReceipts": true
     },
     "labels": {
+      "muteAllAccount": "Disable all account notifications",
+      "muteAllCalendar": "Disable all calendar notifications",
+      "muteAllSocial": "Disable all social notifications",
+      "muteAllCheckout": "Disable all checkout notifications",
       "accountChanges": "Notify me when there are changes to my account (e.g., password change, profile update).",
       "subscriptionRenewal": "Remind me of upcoming subscription renewals.",
       "taskReminders": "Notify me to complete tasks or actions within the app (e.g., filling out a form, completing a profile).",
@@ -61,27 +69,31 @@
     "placeholders": {},
     "dataList": {},
     "desiredOrder": [
+      "muteAllAccount",
       "newFeatures",
       "promotionalNotifications",
       "subscriptionRenewal",
       "milestones",
-      "loginAlerts",
-      "accountChanges",
-      "suspiciousActivity",
+      "muteAllSocial",
       "messages",
       "mentionsTags",
       "activityAlerts",
+      "muteAllCalendar",
       "eventReminders",
       "taskReminders"
     ],
     "fieldHeading": {
       "loginAlerts": "Security Notifications",
-      "eventReminders": "Calendar Notifications",
-      "messages": "Social Notifications",
-      "orderConfirmations": "Checkout notifications",
-      "newFeatures": "Account Notifications"
+      "muteAllCalendar": "Calendar Notifications",
+      "muteAllSocial": "Social Notifications",
+      "muteAllCheckout": "Checkout notifications",
+      "muteAllAccount": "Account Notifications"
     },
     "types": {
+      "muteAllAccount": "checkbox",
+      "muteAllCalendar": "checkbox",
+      "muteAllSocial": "checkbox",
+      "muteAllCheckout": "checkbox",
       "loginAlerts": "checkbox",
       "accountChanges": "checkbox",
       "eventReminders": "checkbox",

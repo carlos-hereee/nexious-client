@@ -46,21 +46,27 @@ declare module "auth-context" {
   }
   export interface NSettings {
     // account notifications
+    muteAllAccount: boolean;
     newFeatures: boolean;
     promotionalNotifications: boolean;
     milestones: boolean;
     subscriptionRenewal: boolean;
-    // auth notifications
-    loginAlerts: boolean;
-    accountChanges: boolean;
-    suspiciousActivity: boolean;
+    //
+    // // auth notifications  RESEARCH IF SHOULD INCLUDE
+    // loginAlerts: boolean;
+    // accountChanges: boolean;
+    // suspiciousActivity: boolean;
+    //
     // checkout notifications
+    muteAllCheckout: boolean;
     orderConfirmations: boolean;
     paymentReceipts: boolean;
     // calendar
+    muteAllCalendar: boolean;
     eventReminders: boolean;
     taskReminders: boolean;
     // social notifications
+    muteAllSocial: boolean;
     messages: boolean;
     mentionsTags: boolean;
     activityAlerts: boolean;
