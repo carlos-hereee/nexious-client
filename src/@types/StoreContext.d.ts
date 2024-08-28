@@ -137,8 +137,12 @@ declare module "store-context" {
     amount: string;
   }
   export interface PostReview {
-    merchId: string;
-    data: { [d: string]: string };
+    merchId?: string;
+    messageId?: string;
+    posts?: Message[];
+    messages?: Message[];
+    merch?: MerchProps;
+    data: { [d: string]: string | number };
   }
   export interface StoreCheckout {
     sessionCart: CartProps;
@@ -177,6 +181,7 @@ declare module "store-context" {
     getAccount: (appId: string) => void;
     postReview: (data: PostReview) => void;
     setMerch: (data?: MerchProps) => void;
+    replyReviewMessage: (data: PostReview) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -187,8 +192,11 @@ declare module "store-context" {
     orderId?: string;
     accountId?: string;
     storeId?: string;
+    messageId?: string;
+    posts?: Message[];
+    messages?: Message[];
     merchId?: string;
-    data?: { [x: string]: string } | string;
+    data?: { [x: string]: string | number } | string;
     appId?: string;
     // data?: string;
     amount?: string;

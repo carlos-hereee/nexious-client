@@ -5,7 +5,7 @@ declare module "media-context" {
   export interface PostReply {
     postId?: string;
     post?: Post;
-    posts: Post[];
+    posts?: Post[];
     messageId?: string;
     reply?: { data: string };
   }

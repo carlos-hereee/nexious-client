@@ -26,6 +26,7 @@ import { billingPortal } from "./request/billingPortal";
 import { trackCheckoutOrder } from "./request/trackCheckoutOrder";
 import { addReview } from "./request/addReview";
 import { getMerchWithId } from "./request/getMerchWithId";
+import { addReviewMessage } from "./request/addReviewMessage";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -66,6 +67,7 @@ export const StoreState = ({ children }: ChildProps) => {
   const manageBilling = useCallback((sessionId: string) => billingPortal({ dispatch, sessionId }), []);
   // user actions
   const postReview = useCallback((data: PostReview) => addReview({ dispatch, ...data }), []);
+  const replyReviewMessage = useCallback((data: PostReview) => addReviewMessage({ dispatch, ...data }), []);
   // const updateAccount = useCallback((config: StripeConfig) => {
   //   updateStripeAccount({ dispatch, config });
   // }, []);
@@ -100,6 +102,7 @@ export const StoreState = ({ children }: ChildProps) => {
       postReview,
       setMerch,
       getMerch,
+      replyReviewMessage,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

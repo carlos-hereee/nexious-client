@@ -3,19 +3,20 @@ import { Message } from "app-types";
 import { useContext, useState } from "react";
 import CommentThread from "@components/list/CommentThread";
 import { Link } from "react-router-dom";
+import { MediaContext } from "@context/media/MediaContext";
 import MessageBox from "./forms/MessageBox";
 
 interface Comments {
   comments: Message[];
   allowRating?: boolean;
   reply: (val: { data: string }) => void;
-  onLikeMessage: (val: Message) => void;
   onMessageReply: (messageId: string, val: { data: string; star?: number }) => void;
 }
 
-const ViewComments = ({ comments, reply, onLikeMessage, allowRating, onMessageReply }: Comments) => {
+const ViewComments = ({ comments, reply, allowRating, onMessageReply }: Comments) => {
   const { accessToken } = useContext(AuthContext);
   const [activeMessage, setActiveMessage] = useState<Message>();
+  const { updateLikeMessage } = useContext(MediaContext);
 
   if (!comments || comments.length === 0) {
     return (
@@ -42,7 +43,7 @@ const ViewComments = ({ comments, reply, onLikeMessage, allowRating, onMessageRe
           key={comment.uid}
           comment={allowRating ? { ...comment, rating: comment.status.star || undefined } : comment}
           activeMessage={activeMessage}
-          onLikeClick={(m) => onLikeMessage(m)}
+          onLikeClick={(m) => updateLikeMessage(m)}
           onReplyClick={toggleReplyClick}
           onMessageReply={(val) => onMessageReply(comment.messageId, val)}
         />

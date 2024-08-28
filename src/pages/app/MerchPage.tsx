@@ -9,7 +9,7 @@ import ViewComments from "@components/app/ViewComments";
 
 const MerchPage = () => {
   const { inventory, store } = useContext(AppContext);
-  const { cart, addToCart, updateCart, postReview, setMerch, merch, getMerch } = useContext(StoreContext);
+  const { cart, addToCart, updateCart, postReview, setMerch, merch, getMerch, replyReviewMessage } = useContext(StoreContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
@@ -57,8 +57,7 @@ const MerchPage = () => {
       <ViewComments
         comments={merch.reviews}
         allowRating
-        onLikeMessage={(m) => console.log("m :>> ", m)}
-        onMessageReply={(messageId, val) => console.log("m :>> ", messageId, val)}
+        onMessageReply={(messageId, val) => replyReviewMessage({ messageId, data: val, messages: merch.reviews, merch })}
         reply={(val) => postReview({ merchId: merch.merchId, data: val })}
       />
     </div>
