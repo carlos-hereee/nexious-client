@@ -17,11 +17,16 @@ const MerchPage = () => {
   useEffect(() => {
     // fetch app data
     const merchId = pathname.split("/")[3];
-    if (merchId) {
+    if (!merchId) navigate(`/store/${store.storeLink || ""}`);
+    else {
       const merchIdx = inventory.findIndex((i) => i.merchId === merchId);
-      if (merchIdx >= 0) setMerch(inventory[merchIdx]);
-      else getMerch(merchId);
-    } else navigate(`/store/${store.storeLink || ""}`);
+      if (merchIdx < 0) getMerch(merchId);
+      else {
+        const hasReviews = inventory[merchIdx].reviews.some((r) => typeof r === "string");
+        if (!hasReviews) getMerch(merchId);
+        else setMerch(inventory[merchIdx]);
+      }
+    }
   }, [pathname]);
 
   if (!merch) return <Loading />;
