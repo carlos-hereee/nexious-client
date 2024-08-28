@@ -44,7 +44,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="split-container">
+    <div className="split-container z-1">
       <div className="container y-overflow">
         <div className="flex-g">
           {userMenuContacts.map((c) => (

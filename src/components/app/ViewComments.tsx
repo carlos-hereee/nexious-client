@@ -35,17 +35,21 @@ const ViewComments = ({ comments, reply, allowRating, onMessageReply }: Comments
     if (!activeMessage || activeMessage.messageId !== m.messageId) setActiveMessage(m);
     else setActiveMessage(undefined);
   };
+  const handleReply = (id: string, val: { data: string; star?: number }) => {
+    setActiveMessage(undefined);
+    onMessageReply(id, val);
+  };
 
   return (
     <div className="y-overflow w-full">
-      {comments.map((comment) => (
+      {comments.map((c) => (
         <CommentThread
-          key={comment.uid}
-          comment={allowRating ? { ...comment, rating: comment.status.star || undefined } : comment}
+          key={c.uid || c.messageId}
+          comment={allowRating && c.status?.star && c.status.star >= 0 ? { ...c, rating: c.status.star } : c}
           activeMessage={activeMessage}
           onLikeClick={(m) => updateLikeMessage(m)}
           onReplyClick={toggleReplyClick}
-          onMessageReply={(val) => onMessageReply(comment.messageId, val)}
+          onMessageReply={(val) => handleReply(c.messageId, val)}
         />
       ))}
       {accessToken ? (

@@ -16,7 +16,6 @@ export const addMessageReply = async ({ messageId, reply, updateUser, updatePost
     const { data } = await axiosAuth.post(`post/post-message-reply/${messageId}`, reply);
     if (updateUser) updateUser(data.user);
     if (updatePost && posts) updatePost({ post: data.message, posts });
-    console.log("data :>> ", data);
   } catch (error) {
     if (isDev) console.log("error", error);
   }

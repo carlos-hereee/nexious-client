@@ -16,7 +16,7 @@ const ViewPosts = ({ posts }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
   const { likePosts, accessToken } = useContext(AuthContext);
-  const { postReply, updateLikePost } = useContext(MediaContext);
+  const { postReply, updateLikePost, postMessageReply } = useContext(MediaContext);
 
   useEffect(() => {
     if (posts) {
@@ -33,7 +33,7 @@ const ViewPosts = ({ posts }: Props) => {
     if (p.postId === activePost?.postId) setActivePost(undefined);
   };
   return (
-    <div className="split-container">
+    <div className="split-container z-1">
       <div className="primary-container overflow-y">
         {sortedPosts.length > 0 ? (
           sortedPosts.map((post) => (
@@ -48,7 +48,11 @@ const ViewPosts = ({ posts }: Props) => {
                 activeReply={activePost?.postId === post?.postId}
               />
               {post.postId === activePost?.postId && (
-                <ViewComments comments={post.comments} reply={(val) => postReply({ reply: val, postId: post.postId, posts })} />
+                <ViewComments
+                  comments={post.comments}
+                  reply={(val) => postReply({ reply: val, postId: post.postId, posts })}
+                  onMessageReply={(id, val) => postMessageReply({ messageId: id, reply: val, posts })}
+                />
               )}
             </div>
           ))
