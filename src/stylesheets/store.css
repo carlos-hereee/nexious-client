@@ -3,6 +3,16 @@
   gap: 1rem;
   padding: 0.5rem;
 }
+.merch-page {
+  width: 100%;
+}
+.merch-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .merch-row:hover {
   border: 1px solid #888888;
   border-radius: 1rem;

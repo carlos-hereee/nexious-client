@@ -80,6 +80,19 @@
   background-color: #fafafa;
   color: black;
 }
+.btn-burger,
+.btn-x {
+  z-index: 1;
+  background-color: inherit;
+}
+.nav-btn {
+  z-index: 1;
+  background-color: inherit;
+  border-radius: 7px;
+}
+.z-1 {
+  z-index: 1;
+}
 .contact-icons {
   margin: auto;
   object-fit: contain;

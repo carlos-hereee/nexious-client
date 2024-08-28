@@ -11,6 +11,7 @@ import {
   PayoutAmmount,
   CheckoutIntent,
   TrackOrder,
+  PostReview,
 } from "store-context";
 import { reducer } from "./StoreReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
@@ -23,6 +24,7 @@ import { managePayouts } from "./request/managePayouts";
 import { getStripeAccount } from "./request/getStripeAccount";
 import { billingPortal } from "./request/billingPortal";
 import { trackCheckoutOrder } from "./request/trackCheckoutOrder";
+import { addReview } from "./request/addReview";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -59,6 +61,8 @@ export const StoreState = ({ children }: ChildProps) => {
   const handlePayouts = useCallback((data: PayoutAmmount) => managePayouts({ dispatch, ...data }), []);
   const getAccount = useCallback((appId: string) => getStripeAccount({ dispatch, appId }), []);
   const manageBilling = useCallback((sessionId: string) => billingPortal({ dispatch, sessionId }), []);
+  // user actions
+  const postReview = useCallback((data: PostReview) => addReview({ dispatch, ...data }), []);
   // const updateAccount = useCallback((config: StripeConfig) => {
   //   updateStripeAccount({ dispatch, config });
   // }, []);
@@ -89,6 +93,7 @@ export const StoreState = ({ children }: ChildProps) => {
       manageBilling,
       orderTracker,
       setTrackOrder,
+      postReview,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,

@@ -1,5 +1,5 @@
 declare module "store-context" {
-  import { StoreProps } from "app-types";
+  import { Message, StoreProps } from "app-types";
   import { UserSchema } from "auth-context";
   import { STORE_ACTIONS } from "@actions/StoreActions";
 
@@ -25,6 +25,7 @@ declare module "store-context" {
     body: string;
     hero: string;
     catalog: string[];
+    reviews: Message[];
     uid: string;
     thumbnail?: string;
   }
@@ -134,6 +135,10 @@ declare module "store-context" {
     appId: string;
     amount: string;
   }
+  export interface PostReview {
+    merchId: string;
+    data: { [d: string]: string };
+  }
   export interface StoreCheckout {
     sessionCart: CartProps;
     user: UserSchema;
@@ -168,6 +173,7 @@ declare module "store-context" {
     getBalance: (appId: string) => void;
     handlePayouts: (data: PayoutAmmount) => void;
     getAccount: (appId: string) => void;
+    postReview: (data: PostReview) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -178,8 +184,10 @@ declare module "store-context" {
     orderId?: string;
     accountId?: string;
     storeId?: string;
+    merchId?: string;
+    data?: { [x: string]: string } | string;
     appId?: string;
-    data?: string;
+    // data?: string;
     amount?: string;
     option?: OrderOptions;
     order?: OrderSchema;

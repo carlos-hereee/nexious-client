@@ -1,6 +1,11 @@
 import { Form } from "nexious-library";
 
-const MessageBox = ({ onSubmit }: { onSubmit: (val: { data: string }) => void }) => {
+interface Props {
+  allowRating?: boolean;
+  onSubmit: (val: { data: string }) => void;
+}
+const MessageBox = ({ onSubmit, allowRating }: Props) => {
+  console.log("allowRating :>> ", allowRating);
   return (
     <Form
       initialValues={{ data: "" }}

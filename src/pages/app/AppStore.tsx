@@ -4,10 +4,12 @@ import { Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
+import { useNavigate } from "react-router-dom";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
   const { cart, addToCart, updateCart } = useContext(StoreContext);
+  const navigate = useNavigate();
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
 
@@ -49,7 +51,7 @@ const AppStore = () => {
               onAddToCart={(data: MerchProps) => addToCart(cart, store, { ...data, quantity: 1 })}
               onRemoveFromCart={(data: MerchProps) => handleRemove(data)}
               // TODO: on body click navigate to merch item details
-              // onClick={(data: MerchProps) => console.log("data :>> ", data)}
+              onClick={() => navigate(`/store/${store.storeLink}/${merch.merchId}`)}
               canRemove={storeIdx >= 0 && cart[storeIdx].merch.some((c: MerchProps) => c.uid === merch.uid)}
             />
           ))

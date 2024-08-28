@@ -28,6 +28,7 @@ import { MediaContext } from "@context/media/MediaContext";
 import Contact from "@pages/public/Contact";
 import AppMaps from "@pages/app/AppMaps";
 import ResetPassword from "@pages/auth/ResetPassword";
+import MerchPage from "@pages/app/MerchPage";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -60,6 +61,7 @@ const AppRouter: React.FC = () => {
         <Route path="/app/:appName" element={<Landing />} />
         <Route path="/app/:appName/:pageName" element={<AppPage />} />
         <Route path="/store/:appName" element={<AppStore />} />
+        <Route path="/store/:appName/:merchName" element={<MerchPage />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
         <Route path="/maps/:appName" element={<AppMaps />} />
         {/* <Route path="/maps/:appName/:mapId" element={<AppMaps />} /> */}
