@@ -99,10 +99,7 @@
   max-width: 100px;
   min-height: 150px;
 }
-.container,
-.primary-container {
-  z-index: 1;
-}
+
 footer {
   z-index: 0;
 }

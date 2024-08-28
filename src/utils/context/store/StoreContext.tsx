@@ -25,6 +25,7 @@ import { getStripeAccount } from "./request/getStripeAccount";
 import { billingPortal } from "./request/billingPortal";
 import { trackCheckoutOrder } from "./request/trackCheckoutOrder";
 import { addReview } from "./request/addReview";
+import { getMerchWithId } from "./request/getMerchWithId";
 // import { updateOrder } from "../admin/requests/store/updateOder";
 // import { AppContext } from "../app/AppContext";
 // import { bookEvent } from "./helpers/bookEvent";
@@ -48,6 +49,7 @@ export const StoreState = ({ children }: ChildProps) => {
   const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
   const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
+  const setMerch = useCallback((data?: MerchProps) => dispatch({ type: STORE_ACTIONS.SET_MERCH, payload: data }), []);
   const setTrackOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_TRACK_ORDER, payload: data }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
@@ -56,6 +58,7 @@ export const StoreState = ({ children }: ChildProps) => {
   // store checkout
   const onStoreCheckout = useCallback((data: StoreCheckout) => checkoutStoreSession({ ...data, dispatch }), []);
   const confirmIntent = useCallback((data: CheckoutIntent) => confirmCheckoutIntent({ dispatch, ...data }), []);
+  const getMerch = useCallback((merchId: string) => getMerchWithId({ dispatch, merchId }), []);
   const orderTracker = useCallback((data: TrackOrder) => trackCheckoutOrder({ dispatch, ...data }), []);
   const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
   const handlePayouts = useCallback((data: PayoutAmmount) => managePayouts({ dispatch, ...data }), []);
@@ -75,6 +78,7 @@ export const StoreState = ({ children }: ChildProps) => {
       order: state.order,
       location: state.location,
       location2: state.location2,
+      merch: state.merch,
       stripeSecret: state.stripeSecret,
       stripeConfirmation: state.stripeConfirmation,
       stripeConfig: state.stripeConfig,
@@ -94,6 +98,8 @@ export const StoreState = ({ children }: ChildProps) => {
       orderTracker,
       setTrackOrder,
       postReview,
+      setMerch,
+      getMerch,
       // isFiltered: state.isFiltered,
       // filtered: state.filtered,
       // active: state.active,
@@ -111,7 +117,7 @@ export const StoreState = ({ children }: ChildProps) => {
       // setIsUserReq: (a) => setIsUserReq(dispatch, a),
       // setTotal: (a) => setTotal(dispatch, a),
     };
-  }, [state.isLoading, state.cart, state.stripeBalance, state.stripeConfig, state.error]);
+  }, [state.isLoading, state.cart, state.stripeBalance, state.stripeConfig, state.error, state.merch]);
   return <StoreContext.Provider value={storeValues}>{children}</StoreContext.Provider>;
 };
 

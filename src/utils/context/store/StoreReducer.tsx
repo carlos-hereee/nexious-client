@@ -7,6 +7,8 @@ export const reducer = (state: StateProps, action: ActionProps): StateProps => {
       return { ...state, isLoading: action.payload };
     case STORE_ACTIONS.UPDATE_CART:
       return { ...state, cart: action.payload };
+    case STORE_ACTIONS.SET_MERCH:
+      return { ...state, merch: action.payload };
     case STORE_ACTIONS.SET_STRIPE_SECRET:
       return { ...state, stripeSecret: action.payload };
     case STORE_ACTIONS.SET_ERROR:

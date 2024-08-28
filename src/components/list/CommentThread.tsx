@@ -1,8 +1,6 @@
 import MessageBox from "@components/app/forms/MessageBox";
 import MessageBubble from "@components/card/MessageBubble";
-import { MediaContext } from "@context/media/MediaContext";
 import { Message } from "app-types";
-import { useContext } from "react";
 
 interface Props {
   comment: Message;
@@ -10,10 +8,9 @@ interface Props {
   theme?: string;
   onLikeClick: (comment: Message) => void;
   onReplyClick: (comment: Message) => void;
+  onMessageReply: (val: { data: string; star?: number }) => void;
 }
-const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClick }: Props) => {
-  const { postMessageReply, posts } = useContext(MediaContext);
-
+const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClick, onMessageReply }: Props) => {
   return (
     <div className={`thread${theme ? ` ${theme}` : ""}`}>
       <MessageBubble
@@ -25,7 +22,7 @@ const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClic
       {activeMessage?.messageId === comment.messageId && (
         <div className="container">
           <p>To: {activeMessage?.user?.name || "no-name"}</p>
-          <MessageBox onSubmit={(val) => postMessageReply({ reply: val, messageId: activeMessage.messageId, posts })} />
+          <MessageBox onSubmit={onMessageReply} />
         </div>
       )}
       {comment.replies &&
@@ -38,6 +35,7 @@ const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClic
             theme={`nested-reply-${r.status?.nestLevel}`}
             onReplyClick={onReplyClick}
             onLikeClick={onLikeClick}
+            onMessageReply={onMessageReply}
           />
         ))}
     </div>

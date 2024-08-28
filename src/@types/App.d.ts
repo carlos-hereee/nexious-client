@@ -50,11 +50,13 @@ declare module "app-types" {
     data: string;
     title: string;
     updatedAt: string;
+    rating?: number;
     status: {
       messageLikes: string[];
       reaction: string;
       messageStatus: string;
       likeCount: number;
+      star?: number;
       nestLevel: number;
     };
     user: { avatar: string; name: string; userId: string };

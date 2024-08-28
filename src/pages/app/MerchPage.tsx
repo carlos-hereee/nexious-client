@@ -1,20 +1,17 @@
 import { AppContext } from "@context/app/AppContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MerchProps } from "store-context";
 import { Button, Hero, Loading, MerchCard } from "nexious-library";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import { StoreContext } from "@context/store/StoreContext";
-import { AuthContext } from "@context/auth/AuthContext";
 import ViewComments from "@components/app/ViewComments";
 
 const MerchPage = () => {
-  const { accessToken } = useContext(AuthContext);
   const { inventory, store } = useContext(AppContext);
-  const { cart, addToCart, updateCart, postReview } = useContext(StoreContext);
+  const { cart, addToCart, updateCart, postReview, setMerch, merch, getMerch } = useContext(StoreContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [merch, setMerch] = useState<MerchProps>();
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
 
   useEffect(() => {
@@ -23,8 +20,8 @@ const MerchPage = () => {
     if (merchId) {
       const merchIdx = inventory.findIndex((i) => i.merchId === merchId);
       if (merchIdx >= 0) setMerch(inventory[merchIdx]);
-      else navigate(`/store/${store.storeLink}`);
-    } else navigate(`/store/${store.storeLink}`);
+      else getMerch(merchId);
+    } else navigate(`/store/${store.storeLink || ""}`);
   }, [pathname]);
 
   if (!merch) return <Loading />;
@@ -44,7 +41,6 @@ const MerchPage = () => {
       updateCart(oldValues);
     }
   };
-  console.log("merch :>> ", merch);
   return (
     <div className="primary-container">
       {merch.name && <h2 className="heading">{merch.name}</h2>}
@@ -59,12 +55,11 @@ const MerchPage = () => {
       </div>
       <h2 className="heading">Reviews:</h2>
       <ViewComments
-        key={merch.uid}
         comments={merch.reviews}
         allowRating
-        // activeMessage={activeMessage}
         onLikeMessage={(m) => console.log("m :>> ", m)}
-        reply={(val) => console.log("val :>> ", val)}
+        onMessageReply={(messageId, val) => console.log("m :>> ", messageId, val)}
+        reply={(val) => postReview({ merchId: merch.merchId, data: val })}
       />
     </div>
   );

@@ -118,6 +118,7 @@ declare module "store-context" {
     stripeConfirmation: StripeConfirmationProps;
     stripeBalance?: StripeBalance;
     order?: OrderSchema;
+    merch?: MerchProps;
     cart: CartProps[];
   }
   export interface CartProps extends StoreProps {
@@ -172,8 +173,10 @@ declare module "store-context" {
     setTrackOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
     handlePayouts: (data: PayoutAmmount) => void;
+    getMerch: (merchId: string) => void;
     getAccount: (appId: string) => void;
     postReview: (data: PostReview) => void;
+    setMerch: (data?: MerchProps) => void;
   }
   export interface StoreDispatchProps {
     dispatch: React.Dispatch<ServiceActionProps>;
@@ -203,6 +206,7 @@ declare module "store-context" {
     | { type: STORE_ACTIONS.SET_STORE_ORDER; payload: OrderSchema | undefined }
     | { type: STORE_ACTIONS.SET_STRIPE_BALANCE; payload: StripeBalance }
     | { type: STORE_ACTIONS.SET_TRACK_ORDER; payload: OrderSchema | undefined }
+    | { type: STORE_ACTIONS.SET_MERCH; payload: MerchProps | undefined }
     | { type: STORE_ACTIONS.SET_STRIPE_CONFIG; payload: StripeConfig }
     | {
         type: STORE_ACTIONS.ADD_TO_CART | STORE_ACTIONS.REMOVE_FROM_CART | STORE_ACTIONS.UPDATE_CART;

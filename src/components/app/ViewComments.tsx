@@ -10,9 +10,10 @@ interface Comments {
   allowRating?: boolean;
   reply: (val: { data: string }) => void;
   onLikeMessage: (val: Message) => void;
+  onMessageReply: (messageId: string, val: { data: string; star?: number }) => void;
 }
 
-const ViewComments = ({ comments, reply, onLikeMessage, allowRating }: Comments) => {
+const ViewComments = ({ comments, reply, onLikeMessage, allowRating, onMessageReply }: Comments) => {
   const { accessToken } = useContext(AuthContext);
   const [activeMessage, setActiveMessage] = useState<Message>();
 
@@ -35,17 +36,22 @@ const ViewComments = ({ comments, reply, onLikeMessage, allowRating }: Comments)
   };
 
   return (
-    <div className="y-overflow">
+    <div className="y-overflow w-full">
       {comments.map((comment) => (
         <CommentThread
           key={comment.uid}
-          comment={comment}
+          comment={allowRating ? { ...comment, rating: comment.status.star || undefined } : comment}
           activeMessage={activeMessage}
           onLikeClick={(m) => onLikeMessage(m)}
           onReplyClick={toggleReplyClick}
+          onMessageReply={(val) => onMessageReply(comment.messageId, val)}
         />
       ))}
-      {!activeMessage && <MessageBox onSubmit={reply} allowRating={allowRating} />}
+      {accessToken ? (
+        !activeMessage && <MessageBox onSubmit={reply} allowRating={allowRating} />
+      ) : (
+        <Link to="/login">Login to leave a comment</Link>
+      )}
     </div>
   );
 };
