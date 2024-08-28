@@ -21,7 +21,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   useEffect(() => {
     // avoid redundant request if num of merch dont match get store inventory
     if (store.inventory.length !== inventory.length) getStoreInventory(store.storeId);
-    // rerender request per store id
+    // rerender request per store id097235
   }, [store.storeId]);
 
   // account limitations
