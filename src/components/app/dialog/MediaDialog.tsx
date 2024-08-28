@@ -14,8 +14,8 @@ import ViewPosts from "../ViewPosts";
 const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
   if (!onCancel) throw Error("onCancel is required");
   const { theme } = useContext(AuthContext);
-  const { appId, socialMedia } = useContext(AppContext);
-  const { requestStatus, setRequestStatus, posts } = useContext(MediaContext);
+  const { appId, socialMedia, posts } = useContext(AppContext);
+  const { requestStatus, setRequestStatus, deletePost } = useContext(MediaContext);
   const { deleteMedia } = useContext(AdminContext);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
       {status === "phase-one" && <EditMedia onCancelClick={() => onCancel("confirm-cancel")} onSubmit={onSubmit} />}
       {status === "phase-two" && <AddMedia onCancelClick={onClose} />}
       {status === "phase-three" && <CreatePost />}
-      {status === "phase-four" && <ViewPosts posts={posts} />}
+      {status === "phase-four" && <ViewPosts posts={posts} onRemovalClick={(postId) => deletePost(appId, postId)} />}
     </Dialog>
   );
 };

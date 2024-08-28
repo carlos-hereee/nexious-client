@@ -11,6 +11,7 @@ export const setAppData = ({ dispatch, app, appList, store, page, platformTiers 
     if (app.appId) dispatch({ type: APP_ACTIONS.SET_APP_ID, payload: app.appId });
     if (app.dbVersion) dispatch({ type: APP_ACTIONS.SET_DB_VERSION, payload: app.dbVersion });
     if (app.maps) dispatch({ type: APP_ACTIONS.SET_APP_MAPS, payload: app.maps });
+    if (app.posts) dispatch({ type: APP_ACTIONS.SET_APP_POSTS, payload: app.posts });
     if (app.locale) dispatch({ type: APP_ACTIONS.SET_LOCALE, payload: app.locale });
     if (app.calendar) dispatch({ type: APP_ACTIONS.SET_CALENDAR, payload: app.calendar });
     if (app.landing) dispatch({ type: APP_ACTIONS.SET_LANDING, payload: app.landing });

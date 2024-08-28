@@ -10,6 +10,7 @@ import { fetchPosts } from "./requests/fetchPosts";
 import { addMessageReply, addReplyToPost } from "./requests/addReplyToPost";
 import { toggleLikePost, toggleLikeMsg } from "./requests/toggleLikePost";
 import { editPost } from "./dispatch/editPost";
+import { removePost } from "./requests/removePost";
 
 export const MediaContext = createContext<IMediaState>({} as IMediaState);
 
@@ -23,6 +24,7 @@ export const MediaState = ({ children }: ChildProps) => {
   const getPosts = useCallback((appId: string) => fetchPosts({ dispatch, appId }), []);
   const updatePosts = useCallback((posts: Post[]) => dispatch({ type: MEDIA_ACTIONS.SET_POSTS, payload: posts }), []);
   const addPost = useCallback((post: CreatePost) => createPost({ dispatch, ...post }), []);
+  const deletePost = useCallback((appId: string, postId: string) => removePost({ dispatch, postId, appId }), []);
 
   // user actions
   const postReply = useCallback((data: PostReply) => addReplyToPost({ dispatch, ...data, updateUser, updatePost }), []);
@@ -45,6 +47,7 @@ export const MediaState = ({ children }: ChildProps) => {
       postReply,
       updateLikePost,
       postMessageReply,
+      deletePost,
       updateLikeMessage,
     };
   }, [state.isLoading, state.error, state.requestStatus, state.posts]);

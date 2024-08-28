@@ -156,6 +156,7 @@ declare module "app-types" {
     locale: string;
     languageList: MenuProp[];
     pages: PageProps[];
+    posts: Posts[];
     isLoading: boolean;
     isOnline: boolean;
     appList: AppListProps[];

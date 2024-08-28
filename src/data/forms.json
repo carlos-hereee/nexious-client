@@ -203,12 +203,13 @@
     "additionLabel": "Add another",
     "removalLabel": "Remove",
     "initialValues": { "hero": "", "body": "" },
-    "labels": { "hero": "Choose image", "body": "Post details" },
-    "placeholders": { "body": "" },
-    "types": {
-      "hero": "file",
-      "body": "textarea"
+    "labels": {
+      "hero": "Choose image",
+      "body": "Post details",
+      "linkMerch": "Attach merchandise to this post(**Leave blank if no entry)"
     },
+    "placeholders": { "body": "" },
+    "types": { "hero": "file", "linkMerch": "select", "body": "textarea" },
     "groupName": "postForm",
     "desiredOrder": []
   },

@@ -11,8 +11,10 @@ import MessageReactions from "./MessageReactions";
 
 interface Props {
   posts: Post[];
+  // allowRemoval?: boolean;
+  onRemovalClick: (a: string) => void;
 }
-const ViewPosts = ({ posts }: Props) => {
+const ViewPosts = ({ posts, onRemovalClick }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
   const { likePosts, accessToken } = useContext(AuthContext);
@@ -43,6 +45,7 @@ const ViewPosts = ({ posts }: Props) => {
               <MessageReactions
                 likeList={likePosts}
                 onLikeClick={() => updateLikePost(post.postId)}
+                onRemovalClick={() => onRemovalClick(post.postId)}
                 messageId={post.postId}
                 onReplyClick={() => toggleActivePost(post)}
                 activeReply={activePost?.postId === post?.postId}
