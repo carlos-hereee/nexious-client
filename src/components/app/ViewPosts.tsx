@@ -1,20 +1,20 @@
 import { useContext, useEffect, useState } from "react";
-import { CardTextBubble, Hero } from "nexious-library";
+import { Button, CardTextBubble, Hero } from "nexious-library";
 import { Post } from "media-context";
 import { sortList } from "@app/sortList";
 import { AuthContext } from "@context/auth/AuthContext";
 import { MediaContext } from "@context/media/MediaContext";
 import { Link } from "react-router-dom";
-import CreateApp from "@components/card/CreateApp";
 import ViewComments from "./ViewComments";
 import MessageReactions from "./MessageReactions";
 
 interface Props {
   posts: Post[];
-  // allowRemoval?: boolean;
-  onRemovalClick: (a: string) => void;
+  onRemovalClick?: (a: string) => void;
+  allowRemoval?: boolean;
+  onCreatePostClick?: () => void;
 }
-const ViewPosts = ({ posts, onRemovalClick }: Props) => {
+const ViewPosts = ({ posts, onRemovalClick, onCreatePostClick, allowRemoval }: Props) => {
   const [sortedPosts, setPosts] = useState<Post[]>([]);
   const [activePost, setActivePost] = useState<Post>();
   const { likePosts, accessToken } = useContext(AuthContext);
@@ -45,7 +45,8 @@ const ViewPosts = ({ posts, onRemovalClick }: Props) => {
               <MessageReactions
                 likeList={likePosts}
                 onLikeClick={() => updateLikePost(post.postId)}
-                onRemovalClick={() => onRemovalClick(post.postId)}
+                onRemovalClick={() => onRemovalClick && onRemovalClick(post.postId)}
+                allowRemoval={allowRemoval}
                 messageId={post.postId}
                 onReplyClick={() => toggleActivePost(post)}
                 activeReply={activePost?.postId === post?.postId}
@@ -59,10 +60,10 @@ const ViewPosts = ({ posts, onRemovalClick }: Props) => {
               )}
             </div>
           ))
-        ) : accessToken ? (
-          <Link to="/dashboard">No posts be the first to post!</Link>
+        ) : !accessToken ? (
+          <Link to="/login">Login to post comment!</Link>
         ) : (
-          <CreateApp />
+          onCreatePostClick && <Button label="Create a post" onClick={onCreatePostClick} />
         )}
       </div>
       <div className="container" />

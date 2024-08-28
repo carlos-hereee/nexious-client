@@ -6,12 +6,13 @@ interface Props {
   theme?: string;
   activeReply?: boolean;
   replyIcon?: boolean;
+  allowRemoval?: boolean;
   onLikeClick?: () => void;
   onReplyClick?: () => void;
   onRemovalClick?: () => void;
 }
 const MessageReactions = (props: Props) => {
-  const { onReplyClick, onLikeClick, likeList, messageId, activeReply, replyIcon, theme, onRemovalClick } = props;
+  const { onReplyClick, onLikeClick, likeList, messageId, activeReply, replyIcon, theme, onRemovalClick, allowRemoval } = props;
   return (
     <div className={`flex-g${theme ? ` ${theme}` : ""}`}>
       {onLikeClick && (
@@ -28,7 +29,7 @@ const MessageReactions = (props: Props) => {
           onClick={onReplyClick}
         />
       )}
-      {onRemovalClick && (
+      {allowRemoval && (
         <IconButton
           icon={{ icon: "cancel" }}
           theme={`highlight btn-small${activeReply ? " btn-selected" : ""}`}
