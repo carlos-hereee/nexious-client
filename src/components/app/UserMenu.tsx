@@ -1,7 +1,7 @@
 import { AuthContext } from "@context/auth/AuthContext";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { IconButton } from "nexious-library";
+import { Hero, IconButton, Button } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
 import { AppContext } from "@context/app/AppContext";
 import { useNotifications } from "@hooks/useNotifications";
@@ -22,7 +22,7 @@ interface IUserMenu {
   link: string;
 }
 const UserMenu = () => {
-  const { accessToken } = useContext(AuthContext);
+  const { accessToken, user } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
   const { store, calendar, appId } = useContext(AppContext);
@@ -66,26 +66,31 @@ const UserMenu = () => {
     }
     setMenus(data);
   }, [appId, page]);
-
   return (
-    <div className="user-menu-icons">
-      {menus.map((menu) => (
-        <IconButton
-          key={menu.name}
-          icon={{ size: "2x", icon: menu.icon }}
-          onClick={() => handleClick(menu)}
-          ping={
-            menu.name === "bell"
-              ? ping.notifications
-              : menu.name === "checkout"
-                ? merchCount > 0
-                  ? merchCount
+    <section className="user-menu">
+      {menus.map((menu) =>
+        menu.name === "home" && accessToken && user.avatar ? (
+          <Button key={menu.name} theme="btn-icon btn-small" onClick={() => handleClick(menu)}>
+            <Hero hero={{ url: user.avatar, alt: `${user.nickname || "user"} avatar` }} theme="user-avatar" />
+          </Button>
+        ) : (
+          <IconButton
+            key={menu.name}
+            icon={{ size: "2x", icon: menu.icon }}
+            onClick={() => handleClick(menu)}
+            ping={
+              menu.name === "bell"
+                ? ping.notifications
+                : menu.name === "checkout"
+                  ? merchCount > 0
+                    ? merchCount
+                    : undefined
                   : undefined
-                : undefined
-          }
-        />
-      ))}
-    </div>
+            }
+          />
+        )
+      )}
+    </section>
   );
 };
 export default UserMenu;

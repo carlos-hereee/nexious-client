@@ -32,6 +32,14 @@
 .btn-main {
   color: black;
 }
+.btn-icon {
+  max-width: 80px;
+}
+.user-avatar {
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  min-width: auto;
+}
 .service-card {
   color: black;
 }
@@ -70,12 +78,12 @@
   border-radius: 4px;
   background-color: #fafafa;
 }
-.user-menu-icons {
+/* .user-menu-icons {
   position: fixed;
   z-index: 4;
   right: 2%;
   bottom: 10%;
-}
+} */
 .form-submit-btn {
   background-color: #fafafa;
   color: black;

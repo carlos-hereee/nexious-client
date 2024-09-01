@@ -9,7 +9,7 @@ import ScrollToTop from "@router/ScrollToTop";
 import { CalendarState } from "@context/calendar/CalendarContext";
 import { StoreState } from "@context/store/StoreContext";
 import App from "./App";
-import AppRouter from "./AppRouter";
+import AppRouter from "./utils/router/AppRouter";
 // eslint-disable-next-line import/no-relative-packages
 // import "../node_modules/nexious-library/dist/css/index.css";
 import "nexious-library/@index.css";

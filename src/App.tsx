@@ -32,7 +32,7 @@ const App = ({ children }: ChildProps) => {
   const medias = activeMedia ? activeMedia.medias.map((m) => ({ ...m, link: m.url })) : [];
   // TODO: FIX TOGGLE THEMELIST
   return (
-    <div className={`app-container elbow-space${theme ? ` ${theme}` : ""} hide-overflow pos-rel`}>
+    <div className={`app-container elbow-space${theme ? ` ${theme}` : ""} pos-rel`}>
       <Header
         menu={activeMenu}
         logo={logo}
@@ -42,9 +42,11 @@ const App = ({ children }: ChildProps) => {
         themeList={themeList}
         theme={theme}
       />
-      {children}
-      <UserMenu />
-      {page === "public" && <Bubbly bubbles={15} />}
+      <div className="app-body">
+        {children}
+        <UserMenu />
+        {page === "public" && <Bubbly bubbles={15} />}
+      </div>
       <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} />
     </div>
   );
