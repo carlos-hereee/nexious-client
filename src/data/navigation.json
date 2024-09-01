@@ -1,0 +1,22 @@
+{
+  "dashboardNav": [
+    {
+      "uid": "menu-item-1",
+      "menuId": "menu-item-1",
+      "label": "apps",
+      "value": "apps",
+      "link": "apps",
+      "icon": "app",
+      "name": "apps"
+    },
+    {
+      "uid": "menu-item-2",
+      "menuId": "menu-item-2",
+      "label": "account",
+      "value": "account",
+      "link": "account",
+      "icon": "account",
+      "name": "account"
+    }
+  ]
+}
