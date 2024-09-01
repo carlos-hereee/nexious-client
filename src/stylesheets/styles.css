@@ -32,9 +32,10 @@
 .btn-main {
   color: black;
 }
-.btn-icon {
+.btn-avatar {
   max-width: 80px;
 }
+
 .user-avatar {
   border-radius: 100%;
   aspect-ratio: 1/1;

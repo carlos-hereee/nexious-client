@@ -70,7 +70,7 @@ const UserMenu = () => {
     <section className="user-menu">
       {menus.map((menu) =>
         menu.name === "home" && accessToken && user.avatar ? (
-          <Button key={menu.name} theme="btn-icon btn-small" onClick={() => handleClick(menu)}>
+          <Button key={menu.name} theme="btn-avatar btn-small" onClick={() => handleClick(menu)}>
             <Hero hero={{ url: user.avatar, alt: `${user.nickname || "user"} avatar` }} theme="user-avatar" />
           </Button>
         ) : (
