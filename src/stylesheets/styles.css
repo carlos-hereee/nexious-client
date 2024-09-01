@@ -35,7 +35,9 @@
 .btn-avatar {
   max-width: 80px;
 }
-
+.btn-cta {
+  z-index: 1;
+}
 .user-avatar {
   border-radius: 100%;
   aspect-ratio: 1/1;

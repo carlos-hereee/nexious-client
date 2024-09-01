@@ -28,6 +28,7 @@
 .user-menu {
   position: sticky;
   position: -webkit-sticky;
+  z-index: 1;
   top: 30%;
   height: fit-content;
 }

@@ -4,6 +4,7 @@ interface Props {
   likeList: string[];
   messageId: string;
   theme?: string;
+  commentPing?: number;
   activeReply?: boolean;
   replyIcon?: boolean;
   allowRemoval?: boolean;
@@ -12,7 +13,8 @@ interface Props {
   onRemovalClick?: () => void;
 }
 const MessageReactions = (props: Props) => {
-  const { onReplyClick, onLikeClick, likeList, messageId, activeReply, replyIcon, theme, onRemovalClick, allowRemoval } = props;
+  const { likeList, messageId, activeReply, replyIcon, theme, allowRemoval, commentPing } = props;
+  const { onReplyClick, onLikeClick, onRemovalClick } = props;
   return (
     <div className={`flex-g${theme ? ` ${theme}` : ""}`}>
       {onLikeClick && (
@@ -27,6 +29,7 @@ const MessageReactions = (props: Props) => {
           icon={{ icon: replyIcon ? "reply" : "comment" }}
           theme={`highlight btn-small${activeReply ? " btn-selected" : ""}`}
           onClick={onReplyClick}
+          ping={commentPing || undefined}
         />
       )}
       {allowRemoval && (

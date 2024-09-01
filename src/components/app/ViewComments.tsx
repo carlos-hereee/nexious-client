@@ -41,7 +41,7 @@ const ViewComments = ({ comments, reply, allowRating, onMessageReply }: Comments
   };
 
   return (
-    <div className="y-overflow w-full">
+    <div className="primary-container y-overflow w-full">
       {comments.map((c) => (
         <CommentThread
           key={c.uid || c.messageId}

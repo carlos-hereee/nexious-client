@@ -35,38 +35,36 @@ const ViewPosts = ({ posts, onRemovalClick, onCreatePostClick, allowRemoval }: P
     if (p.postId === activePost?.postId) setActivePost(undefined);
   };
   return (
-    <div className="split-container z-1">
-      <div className="primary-container overflow-y">
-        {sortedPosts.length > 0 ? (
-          sortedPosts.map((post) => (
-            <div key={post.uid} className="post">
-              {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
-              <CardTextBubble data={post} />
-              <MessageReactions
-                likeList={likePosts}
-                onLikeClick={() => updateLikePost(post.postId)}
-                onRemovalClick={() => onRemovalClick && onRemovalClick(post.postId)}
-                allowRemoval={allowRemoval}
-                messageId={post.postId}
-                onReplyClick={() => toggleActivePost(post)}
-                activeReply={activePost?.postId === post?.postId}
+    <div className="primary-container overflow-y z-1">
+      {sortedPosts.length > 0 ? (
+        sortedPosts.map((post) => (
+          <div key={post.uid} className="post">
+            {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
+            <CardTextBubble data={post} />
+            <MessageReactions
+              likeList={likePosts}
+              onLikeClick={() => updateLikePost(post.postId)}
+              onRemovalClick={() => onRemovalClick && onRemovalClick(post.postId)}
+              allowRemoval={allowRemoval}
+              messageId={post.postId}
+              onReplyClick={() => toggleActivePost(post)}
+              commentPing={post.comments?.length}
+              activeReply={activePost?.postId === post?.postId}
+            />
+            {post.postId === activePost?.postId && (
+              <ViewComments
+                comments={post.comments}
+                reply={(val) => postReply({ reply: val, postId: post.postId, posts })}
+                onMessageReply={(id, val) => postMessageReply({ messageId: id, reply: val, posts })}
               />
-              {post.postId === activePost?.postId && (
-                <ViewComments
-                  comments={post.comments}
-                  reply={(val) => postReply({ reply: val, postId: post.postId, posts })}
-                  onMessageReply={(id, val) => postMessageReply({ messageId: id, reply: val, posts })}
-                />
-              )}
-            </div>
-          ))
-        ) : !accessToken ? (
-          <Link to="/login">Login to post comment!</Link>
-        ) : (
-          onCreatePostClick && <Button label="Create a post" onClick={onCreatePostClick} />
-        )}
-      </div>
-      <div className="container" />
+            )}
+          </div>
+        ))
+      ) : !accessToken ? (
+        <Link to="/login">Login to post comment!</Link>
+      ) : (
+        onCreatePostClick && <Button label="Create a post" onClick={onCreatePostClick} />
+      )}
     </div>
   );
 };

@@ -7,11 +7,26 @@
   border-radius: 10px;
   padding: 1rem;
 }
+.dark-mode .post {
+  background-color: var(--dark-mode);
+  color: white;
+}
+.dark-mode .card-text-bubble {
+  background-color: var(--dark-mode);
+  color: white;
+}
+.dark-mode .text-bubble {
+  background-color: var(--dark-mode2);
+}
+.thread {
+  width: 100%;
+}
 .post-thumbnail {
   max-height: 25vh;
   aspect-ratio: 16/9;
   border-radius: 10px;
   margin: auto;
+  object-fit: contain;
 }
 .btn-post {
   display: flex;
