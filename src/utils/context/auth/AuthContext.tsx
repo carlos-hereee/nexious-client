@@ -120,6 +120,7 @@ export const AuthState = ({ children }: ChildProps) => {
     state.authErrors,
     state.accountTiers,
     state.notifications,
+    state.subscriptions,
     state.notificationSettings,
   ]);
 

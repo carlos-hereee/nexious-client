@@ -130,7 +130,7 @@ declare module "auth-context" {
     loginForm: FormProps;
     signUpForm: FormProps;
     passwordChangeForm: FormProps;
-    subscriptions: AppListProps[];
+    subscriptions: string[];
     forgotPasswordForm: FormProps;
     accountTier?: ISubscription;
     accountTiers: ISubscription[];
