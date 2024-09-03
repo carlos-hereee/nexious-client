@@ -36,12 +36,9 @@ const UserMenu = () => {
     if (m.name === "checkout") {
       if (merchCount > 0) navigate("/checkout");
       else navigate(m.link);
-    }
-    if (m.name === "calendar") navigate(m.link);
-    if (m.name === "feed") navigate(m.link);
-    if (m.name === "message") navigate(m.link);
-    if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
-    if (m.name === "sub") subscribe(appId);
+    } else if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
+    else if (m.name === "sub") subscribe(appId);
+    else navigate(m.link);
   };
 
   useEffect(() => {
@@ -50,7 +47,7 @@ const UserMenu = () => {
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: "", icon: "user" },
-      { name: "bell", link: "", icon: "bell" },
+      { name: "bell", link: "/dashboard/notifications", icon: "bell" },
       { name: "message", link: "contact", icon: "contact" },
       { name: "feed", link: "feed", icon: "scroll" },
     ];
