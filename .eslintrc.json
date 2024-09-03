@@ -37,8 +37,9 @@
     "jsx-a11y/label-has-associated-control": 0,
     "react/jsx-no-constructed-context-values": 0,
     "react/require-default-props": 0,
-    "import/no-extraneous-dependencies": 1,
+    "import/no-extraneous-dependencies": 0,
     "react/prop-types": 0,
+    "eslint-plugin-import/no-extraneous-dependencies": 0,
     "@typescript-eslint/naming-convention": [
       "error",
       {

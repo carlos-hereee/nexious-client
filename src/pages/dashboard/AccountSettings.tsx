@@ -31,27 +31,29 @@ const AccountSettings = () => {
   return (
     <>
       <h1 className="heading">Account settings</h1>
-      <ItemDetail labelLayout="bolden" label="Account:">
-        <Button label="Update account" onClick={() => handleClick("user")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Avatar:">
-        <Button label="Update avatar" onClick={() => handleClick("avatar")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Platform account tiers:">
-        <Button label="View tiers" onClick={() => handleClick("platform-tier")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Platform account:">
-        <Button label="View account" onClick={() => handleClick("your-account")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Configure email notifications">
-        <Button label="Email settings" onClick={() => handleClick("email")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Password:">
-        <Button label="Change password" onClick={() => handleClick("password-change")} />
-      </ItemDetail>
-      <ItemDetail labelLayout="bolden" label="Logout:">
-        <Button label="Logout" theme="btn-main btn-required" onClick={() => handleClick("password-change")} />
-      </ItemDetail>
+      <div className="settings-container">
+        <ItemDetail labelLayout="bolden" label="Account:">
+          <Button label="Update account" onClick={() => handleClick("user")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Avatar:">
+          <Button label="Update avatar" onClick={() => handleClick("avatar")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Platform account tiers:">
+          <Button label="View tiers" onClick={() => handleClick("platform-tier")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Platform account:">
+          <Button label="View account" onClick={() => handleClick("your-account")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Configure email notifications">
+          <Button label="Email settings" onClick={() => handleClick("email")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Password:">
+          <Button label="Change password" onClick={() => handleClick("password-change")} />
+        </ItemDetail>
+        <ItemDetail labelLayout="bolden" label="Logout:">
+          <Button label="Logout" theme="btn-main btn-required" onClick={() => handleClick("password-change")} />
+        </ItemDetail>
+      </div>
       {show && (
         <Dialog theme={`alt-${theme}`} onDialogClose={() => setShow(false)}>
           {nav === "user" && (

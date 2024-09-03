@@ -19,10 +19,10 @@ interface Igrid {
 const Grid = ({ grid, active, setActiveCell }: Igrid) => (
   <div className="map overflow-x">
     {grid.map((g, idx) => (
-      <div key={uniqueId(g.length + idx)} className="map-column">
+      <div key={uniqueId(g.length + idx)}>
         {g.map((d) => (
-          <div className="map-cell flex-center" key={d.id}>
-            {d.name && <span>{d.name}</span>}
+          <div className="map-cell" key={d.id}>
+            {d.name && <span className="map-cell-name">{d.name}</span>}
             <Button
               theme={`btn-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
               onClick={() => setActiveCell(d)}
@@ -82,7 +82,7 @@ const Map = ({ grid, dimensions, readonly, handleGrid }: IMap) => {
     }
   };
   return (
-    <div className="split-container">
+    <div className="split-container overflow-y height-75">
       <div>
         <h2 className="heading">Room data</h2>
         {activeRoom ? (
@@ -115,7 +115,7 @@ const Map = ({ grid, dimensions, readonly, handleGrid }: IMap) => {
           <p className="text-center w-max">No room selected</p>
         )}
       </div>
-      <Grid grid={grid} active={activeCell} setActiveCell={setActiveRoom} />;
+      <Grid grid={grid} active={activeCell} setActiveCell={setActiveRoom} />
     </div>
   );
 };
