@@ -28,6 +28,12 @@
     "labels": { "description": "Board description", "name": "Name" },
     "placeholders": { "description": "", "name": " " }
   },
+  "createBoardTaskListForm": {
+    "initialValues": { "name": "", "description": "", "dueDate": "" },
+    "labels": { "description": "task description", "name": "Name", "dueDate": "Due date" },
+    "placeholders": { "description": "", "name": " " },
+    "tyeps": { "dueDate": "" }
+  },
   "notificationSettingsForm": {
     "submitLabel": "Save and continue",
     "formId": "notificationSettingsForm",

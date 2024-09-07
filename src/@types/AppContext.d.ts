@@ -72,6 +72,7 @@ declare module "app-context" {
     appId?: string;
     values?: { [key: string]: string };
     id?: string;
+    listId?: string;
   }
 
   export interface AppStateProps {
@@ -156,6 +157,7 @@ declare module "app-context" {
     getTaskBoard: (props: TaskBoardValues) => void;
     getBoardWithBoardId: (props: TaskBoardValues) => void;
     getAllTaskBoard: (props: TaskBoardValues) => void;
+    addBoardListTask: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {
@@ -172,6 +174,7 @@ declare module "app-context" {
     logo?: string;
     event?: IEvent;
     id?: string;
+    listId?: string;
     name?: string;
     userId?: string;
     media?: MediaProps;
