@@ -24,7 +24,7 @@ import { sendMessage } from "./request/sendMessage";
 import { buildMap } from "./request/buildMap";
 import { editMap } from "./request/editMap";
 import { buildTaskBoard } from "./request/buildTaskBoard";
-import { getAllAppTaskBoards, getTaskBoardWithId } from "./request/getTaskBoardWithId";
+import { getAllAppTaskBoards, getTaskBoardWithId, getTaskBoardWithBoardId } from "./request/getTaskBoardWithId";
 import { updateTaskBoard } from "./request/updateTaskBoard";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
@@ -68,6 +68,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
   const editTaskBoard = useCallback((data: TaskBoardValues) => updateTaskBoard({ dispatch, ...data }), []);
   const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
+  const getBoardWithBoardId = useCallback((data: TaskBoardValues) => getTaskBoardWithBoardId({ dispatch, ...data }), []);
   const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
@@ -145,6 +146,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       getAllTaskBoard,
       editTaskBoard,
       setRequestStatus,
+      getBoardWithBoardId,
     };
   }, [
     state.isLoading,

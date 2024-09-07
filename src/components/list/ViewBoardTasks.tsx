@@ -1,5 +1,6 @@
 import LoadData from "@components/app/LoadData";
 import { Boards } from "app-types";
+import { Button } from "nexious-library";
 
 interface IViewTasks {
   taskBoard: Boards | string;
@@ -8,23 +9,26 @@ interface IViewTasks {
 const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
   if (typeof taskBoard === "string") return <LoadData id={taskBoard} loadFunction={loadFunction} />;
   if (!taskBoard.boardId) return <h2 className="heading text-center">No task board selected</h2>;
+  console.log("taskBoard :>> ", taskBoard);
   return (
-    <div className="primary-container">
+    <section className="primary-container hide-overflow">
       {taskBoard.name && <h2 className="heading">{taskBoard.name}</h2>}
       {taskBoard.description && <p className="w-full">{taskBoard.description}</p>}
-      {taskBoard.boardLink && <p className="w-full">{taskBoard.boardLink}</p>}
-      {taskBoard.lists.map((list) => (
-        <div key={list.uid}>
-          {list.name && <h3 className="heading">{list.name}</h3>}
-          {list.tasks.map((task) => (
-            <div key={task.uid} className="card">
-              {task.name && <h4 className="heading"> {task.name}</h4>}
-              {task.description && <p className="w-full"> {task.description}</p>}{" "}
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
+      <div className="board-list-container">
+        {taskBoard.lists.map((list) => (
+          <div key={list.uid} className={`board-list highlight ${list.order >= 0 ? ` order-${list.order}` : ""}`}>
+            {list.name && <h3 className="heading">{list.name}</h3>}
+            <Button theme="btn-create-task highlight" label="Add task" />
+            {list.tasks.map((task) => (
+              <Button key={task.uid} theme="card">
+                {task.name && <h4 className="heading"> {task.name}</h4>}
+                {task.description && <p className="w-full"> {task.description}</p>}{" "}
+              </Button>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 export default ViewBoardTasks;

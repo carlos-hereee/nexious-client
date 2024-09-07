@@ -154,6 +154,7 @@ declare module "app-context" {
     createTaskBoard: (props: TaskBoardValues) => void;
     editTaskBoard: (props: TaskBoardValues) => void;
     getTaskBoard: (props: TaskBoardValues) => void;
+    getBoardWithBoardId: (props: TaskBoardValues) => void;
     getAllTaskBoard: (props: TaskBoardValues) => void;
   }
 
