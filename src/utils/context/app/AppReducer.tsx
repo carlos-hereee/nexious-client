@@ -11,6 +11,8 @@ export const reducer = (state: AppStateProps, action: AppActionProps): AppStateP
       return { ...state, themeList: action.payload };
     case APP_ACTIONS.SET_APP_POSTS:
       return { ...state, posts: action.payload };
+    case APP_ACTIONS.SET_APP_TASKS:
+      return { ...state, taskBoard: action.payload };
     case APP_ACTIONS.SET_PLATFORM_TIERS:
       return { ...state, platformTiers: action.payload };
     case APP_ACTIONS.SET_APP_MESSAGES:

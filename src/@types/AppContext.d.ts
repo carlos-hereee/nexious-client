@@ -9,6 +9,7 @@ declare module "app-context" {
     AdminIdProps,
     AppListProps,
     AppProps,
+    Boards,
     CalendarProps,
     ContactApp,
     MediaItemProp,
@@ -67,9 +68,12 @@ declare module "app-context" {
     dimensions?: MapDimensions;
     iMap?: IMaps;
   }
-  export interface TaskProps {
-    taskId: string;
+  export interface TaskBoardValues {
+    appId?: string;
+    values?: { [key: string]: string };
+    id?: string;
   }
+
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
@@ -98,8 +102,7 @@ declare module "app-context" {
     newsletter: NewsletterProps;
     pages: PageProps[] | [];
     page: PageProps;
-    tasks: TaskProps[];
-    task: TaskProps;
+    taskBoard: Boards;
     activePage: PageProps;
     media: MediaProps;
     socialMedia: MediaItemProp;
@@ -144,7 +147,9 @@ declare module "app-context" {
     contactApp: (props: ContactApp) => void;
     createMap: (props: AppMap) => void;
     updateMap: (props: AppMap) => void;
+    createTaskBoard: (props: TaskBoardValues) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
+    getTaskBoard: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {
@@ -165,6 +170,7 @@ declare module "app-context" {
     userId?: string;
     media?: MediaProps;
     message?: { [x: string]: string };
+    values?: { [x: string]: string };
     appName?: string;
     pageId?: string;
     config?: StripeUpdateConfigProps;
@@ -207,6 +213,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_OWNER; payload: UserSchema }
     | { type: APP_ACTIONS.SET_APP_USERS; payload: UserSchema[] }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
+    | { type: APP_ACTIONS.SET_APP_TASKS; payload: Boards }
     | { type: APP_ACTIONS.SET_APP_POSTS; payload: Posts[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }

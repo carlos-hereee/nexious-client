@@ -147,6 +147,35 @@ declare module "app-types" {
     icon: string;
     label: string;
   };
+
+  export interface Task {
+    uid: string;
+    taskId: string;
+    name: string;
+    description: string;
+    dueDate: Date;
+    assignedTo: string;
+    comments: ObjectId[];
+    pinnedComment: ObjectId[];
+  }
+  export interface TaskList {
+    listId: string;
+    uid: string;
+    name: string;
+    description: string;
+    order: number;
+    tasks: Task[];
+  }
+  export interface Boards {
+    boardId: string;
+    uid: string;
+    ownerId: string;
+    name: string;
+    description: string;
+    link: string;
+    lists: TaskList[];
+  }
+
   export interface AppProps {
     appName: string;
     store: StoreProps;
@@ -157,6 +186,7 @@ declare module "app-types" {
     languageList: MenuProp[];
     pages: PageProps[];
     posts: Posts[];
+    taskBoard: Boards;
     isLoading: boolean;
     isOnline: boolean;
     appList: AppListProps[];

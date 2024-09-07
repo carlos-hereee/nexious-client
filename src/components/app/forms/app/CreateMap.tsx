@@ -4,7 +4,7 @@ import { mapForm } from "@data/forms.json";
 import { Button, Form, ItemDetail } from "nexious-library";
 import { createGrid } from "@app/createGrid";
 import { GridData, MapDimensions, MapState } from "app-context";
-import Map from "./Map";
+import Map from "../../Map";
 
 const CreateMap = () => {
   const { createMap, appId } = useContext(AppContext);

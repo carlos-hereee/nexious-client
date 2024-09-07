@@ -23,6 +23,11 @@
     "dataList": {},
     "types": { "data": "textarea" }
   },
+  "createTaskBoardForm": {
+    "initialValues": { "name": "", "description": "" },
+    "labels": { "description": "Board description", "name": "Name" },
+    "placeholders": { "description": "", "name": " " }
+  },
   "notificationSettingsForm": {
     "submitLabel": "Save and continue",
     "formId": "notificationSettingsForm",

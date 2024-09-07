@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
 import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
-import { AppMap, AppSchema } from "app-context";
+import { AppMap, AppSchema, TaskBoardValues } from "app-context";
 import { AppAssets } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
@@ -23,6 +23,8 @@ import { createStripeAccount } from "./request/createStripeAccount";
 import { sendMessage } from "./request/sendMessage";
 import { buildMap } from "./request/buildMap";
 import { editMap } from "./request/editMap";
+import { buildTaskBoard } from "./request/buildTaskBoard";
+import { getTaskBoardWithId } from "./request/getTaskBoardWithId";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -61,6 +63,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // app extra features
   const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
   const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
+  const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
+  const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -79,8 +83,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       landing: state.landing,
       themeList: state.themeList,
       languageList: state.languageList,
-      tasks: state.tasks,
-      task: state.task,
+      taskBoard: state.taskBoard,
       adminIds: state.adminIds,
       calendar: state.calendar,
       isOnline: state.isOnline,
@@ -131,12 +134,15 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       signUpWithStripe,
       contactApp,
       createMap,
+      createTaskBoard,
+      getTaskBoard,
     };
   }, [
     state.isLoading,
     state.activeAppName,
     state.activePage,
     state.activeLogo,
+    state.taskBoard,
     state.activeAppId,
     accessToken,
     state.activeMenu,
