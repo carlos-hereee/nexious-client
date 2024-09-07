@@ -148,15 +148,21 @@ declare module "app-types" {
     label: string;
   };
 
+  export interface UserData {
+    name: string;
+    avatar: string;
+    userId: string;
+  }
   export interface Task {
     uid: string;
     taskId: string;
     name: string;
     description: string;
     dueDate: Date;
-    assignedTo: string;
     comments: ObjectId[];
     pinnedComment: ObjectId[];
+    createdBy: UserData;
+    assignedTo?: UserData;
   }
   export interface TaskList {
     listId: string;

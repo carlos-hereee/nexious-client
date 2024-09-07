@@ -7,3 +7,13 @@
   display: flex;
   gap: 1rem;
 }
+.user-avatar-container {
+  display: flex;
+  align-items: flex-start;
+}
+.avatar-sm {
+  max-width: 75px;
+  min-width: 75px;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+}
