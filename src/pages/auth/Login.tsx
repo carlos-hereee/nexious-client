@@ -20,7 +20,7 @@ const Login = () => {
 
   if (isLoading) return <Loading message="..loading user data" />;
   return (
-    <div className="primary-container">
+    <div className="primary-container z-1">
       {authErrors.login && (
         <div className="flex-center">
           <p className="error-message"> {authErrors.login} </p>

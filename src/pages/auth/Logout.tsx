@@ -13,7 +13,7 @@ const Logout = () => {
   }, [accessToken]);
 
   return (
-    <section className="primary-container">
+    <section className="primary-container z-1">
       <Loading message="..loading user data" />
       <p className="text-max text-center">Loging out</p>
     </section>

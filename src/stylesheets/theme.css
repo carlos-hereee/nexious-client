@@ -21,10 +21,10 @@
   align-items: center;
   gap: 1rem;
 }
-.app-card {
-  background-color: #fafafa;
-  color: black;
-}
+
 .flex-between {
   justify-content: space-between;
 }
+/* header {
+  border-bottom: 1px solid #fefefe;
+} */

@@ -43,9 +43,7 @@
   aspect-ratio: 1/1;
   min-width: auto;
 }
-.service-card {
-  color: black;
-}
+
 .testimonial-form {
   display: flex;
   flex-direction: row;
@@ -143,10 +141,14 @@ footer {
   align-items: end;
   justify-content: space-between;
   font-family: inherit;
+  background-color: #fafafa;
+  color: black;
+  max-width: 150px;
 }
 .app-card .card-row-body {
   display: flex;
 }
+
 .explore-apps {
   display: grid;
   gap: 1rem;
@@ -324,7 +326,6 @@ header {
 }
 .flex-between {
   display: flex;
-  /* align-items: space-between; */
   justify-content: space-between;
 }
 .overflow-y {
@@ -348,6 +349,8 @@ header {
   flex-direction: column;
   justify-content: space-between;
   background-color: #e7e7e7;
+  color: black;
+  z-index: 1;
 }
 
 .btn-card {

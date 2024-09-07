@@ -28,6 +28,7 @@ const AccountSettings = () => {
     updateAvatar(d);
     setShow(false);
   };
+
   return (
     <>
       <h1 className="heading">Account settings</h1>

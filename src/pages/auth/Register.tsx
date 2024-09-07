@@ -12,7 +12,7 @@ const Register = () => {
   }, [accessToken]);
 
   return (
-    <div className="primary-container">
+    <div className="primary-container z-1">
       {authErrors.register && <p className="error-message">{authErrors.register}</p>}
       {/* <div className="form-hero"> */}
       {dummyUser.username ? (

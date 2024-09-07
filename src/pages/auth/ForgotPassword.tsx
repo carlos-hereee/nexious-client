@@ -15,7 +15,7 @@ const ForgotPassword: React.FC = () => {
 
   // TODO: ADD ADDITIONAL VERFICATION
   return (
-    <section className="primary-container">
+    <section className="primary-container z-1">
       <h1 className="heading text-center">Forgot password</h1>
       {authErrors && <p className="error-message">{authErrors.forgotPassword}</p>}
       {user.username ? (
