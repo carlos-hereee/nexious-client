@@ -250,6 +250,7 @@ declare module "app-types" {
     | "phase-view-event"
     | "phase-view-task-event"
     | "phase-add-task-event"
+    | "phase-edit-task-event"
     | "phase-view-order"
     | "phase-add-event"
     | "phase-view-balance"

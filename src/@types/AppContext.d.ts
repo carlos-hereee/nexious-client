@@ -3,7 +3,7 @@ declare module "app-context" {
   import { IEvent } from "app-calendar";
   import { MerchProps } from "store-context";
   import { ISubscription, UserSchema } from "auth-context";
-  import { AppAssets } from "app-admin";
+  import { AppAssets, FORM_STATUS } from "app-admin";
   import { APP_ACTIONS } from "@actions/AppActions";
   import {
     AdminIdProps,
@@ -79,6 +79,7 @@ declare module "app-context" {
     isLoading: boolean;
     loadingState: { isLoadingInventory: boolean };
     isOnline: boolean;
+    requestStatus: FORM_STATUS;
 
     appList: AppListProps[];
     themeList: ThemeList[];
@@ -141,6 +142,7 @@ declare module "app-context" {
     upgradeToLatest: (appId: string) => void;
     setAppMessage: (appId: string) => void;
     getAppUsers: (appId: string) => void;
+    setRequestStatus: (status: FORM_STATUS) => void;
     createSubscription: (appId: SubcriptionProp) => void;
     updateSubscription: (appId: SubcriptionProp) => void;
     deleteSubscription: (appId: SubcriptionProp) => void;
@@ -148,8 +150,9 @@ declare module "app-context" {
     contactApp: (props: ContactApp) => void;
     createMap: (props: AppMap) => void;
     updateMap: (props: AppMap) => void;
-    createTaskBoard: (props: TaskBoardValues) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
+    createTaskBoard: (props: TaskBoardValues) => void;
+    editTaskBoard: (props: TaskBoardValues) => void;
     getTaskBoard: (props: TaskBoardValues) => void;
     getAllTaskBoard: (props: TaskBoardValues) => void;
   }
@@ -191,6 +194,7 @@ declare module "app-context" {
   export type AppActionProps =
     | { type: APP_ACTIONS.IS_LOADING | APP_ACTIONS.COOMING_SOON; payload: boolean }
     | { type: APP_ACTIONS.SET_LOADING_STATE; payload: { [key: string]: boolean } }
+    | { type: APP_ACTIONS.SET_REQUEST_STATUS; payload: FORM_STATUS }
     | {
         type:
           | APP_ACTIONS.SET_APP_ID

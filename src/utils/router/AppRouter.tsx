@@ -29,6 +29,7 @@ import Contact from "@pages/public/Contact";
 import AppMaps from "@pages/app/AppMaps";
 import ResetPassword from "@pages/auth/ResetPassword";
 import MerchPage from "@pages/app/MerchPage";
+import TaskBoard from "@pages/app/TaskBoard";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -64,6 +65,7 @@ const AppRouter: React.FC = () => {
         <Route path="/store/:appName/:merchName" element={<MerchPage />} />
         <Route path="/booking/:appName" element={<AppBooking />} />
         <Route path="/maps/:appName" element={<AppMaps />} />
+        <Route path="/task-board/:appName/:boardId" element={<TaskBoard />} />
         {/* <Route path="/maps/:appName/:mapId" element={<AppMaps />} /> */}
       </Route>
       {/* Private routes for account holders and authorized user */}

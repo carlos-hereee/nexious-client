@@ -6,10 +6,10 @@ import LoadData from "./LoadData";
 interface BoardsParam {
   taskBoards: Boards[];
   onAddClick?: () => void;
+  onEditClick?: (b: Boards) => void;
   loadFunction?: () => void;
 }
-const ViewBoards = ({ taskBoards, onAddClick, loadFunction }: BoardsParam) => {
-  console.log("taskBoards  :>> ", taskBoards);
+const ViewBoards = ({ taskBoards, onAddClick, loadFunction, onEditClick }: BoardsParam) => {
   if (taskBoards.length === 0) {
     return (
       <div className="primary-container">
@@ -25,8 +25,9 @@ const ViewBoards = ({ taskBoards, onAddClick, loadFunction }: BoardsParam) => {
       {taskBoards.map((board) => (
         <div key={board.uid} className="btn-board-task highlight">
           <h4 className="heading">{board.name || "no name"}</h4>
-          {board.description && <p className="w-full">{board.description}</p>}
+          {board.description && <p>{board.description}</p>}
           <CopyButton data={`${homeUrl}${board.boardLink}`} />
+          <Button label="Edit board" onClick={() => onEditClick && onEditClick(board)} />
         </div>
       ))}
     </div>

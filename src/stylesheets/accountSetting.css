@@ -7,6 +7,11 @@
   display: flex;
   gap: 1rem;
 }
+.btn-board-body {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
 .btn-board-task {
   display: flex;
   flex-direction: column;

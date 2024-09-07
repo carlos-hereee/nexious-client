@@ -2,7 +2,7 @@ import { ReactElement, createContext, useCallback, useContext, useMemo, useReduc
 import appState from "@data/appState.json";
 import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
 import { AppMap, AppSchema, TaskBoardValues } from "app-context";
-import { AppAssets } from "app-admin";
+import { AppAssets, FORM_STATUS } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
 import { AuthContext } from "../auth/AuthContext";
@@ -25,11 +25,12 @@ import { buildMap } from "./request/buildMap";
 import { editMap } from "./request/editMap";
 import { buildTaskBoard } from "./request/buildTaskBoard";
 import { getAllAppTaskBoards, getTaskBoardWithId } from "./request/getTaskBoardWithId";
+import { updateTaskBoard } from "./request/updateTaskBoard";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
 export const AppState = ({ children }: ChildProps): ReactElement => {
-  const [state, dispatch] = useReducer(reducer, appState);
+  const [state, dispatch] = useReducer(reducer, { ...appState, requestStatus: "IDLE" });
   const { accessToken, updateUser } = useContext(AuthContext);
 
   const setAppLoading = useCallback((isLoading: boolean) => setIsLoading({ dispatch, isLoading }), []);
@@ -50,6 +51,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getPlatformData = useCallback(() => fetchPlatformData({ dispatch }), []);
   const getAppUsers = useCallback((appId: string) => fetchAppUsers({ dispatch, appId }), []);
   const setActivePage = useCallback((data: PageProps) => dispatch({ payload: data, type: APP_ACTIONS.SET_ACTIVE_PAGE }), []);
+  const setRequestStatus = useCallback((d: FORM_STATUS) => dispatch({ payload: d, type: APP_ACTIONS.SET_REQUEST_STATUS }), []);
   // ask user to upgrade app if they havent been online in a while
   const upgradeToLatest = useCallback((appId: string) => upgradeLatest({ dispatch, updateAppData, appId }), []);
   const setAppMessage = useCallback((M: string) => dispatch({ payload: M, type: APP_ACTIONS.SET_APP_MESSAGE }), []);
@@ -64,6 +66,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
   const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
   const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
+  const editTaskBoard = useCallback((data: TaskBoardValues) => updateTaskBoard({ dispatch, ...data }), []);
   const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
   const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
 
@@ -72,6 +75,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       isLoading: state.isLoading,
       loadingState: state.loadingState,
       appMessage: state.appMessage,
+      requestStatus: state.requestStatus,
       appUsers: state.appUsers,
       appList: state.appList,
       iconList: state.iconList,
@@ -139,6 +143,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       createTaskBoard,
       getTaskBoard,
       getAllTaskBoard,
+      editTaskBoard,
+      setRequestStatus,
     };
   }, [
     state.isLoading,
@@ -152,6 +158,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.appUsers,
     state.appName,
     state.appUrl,
+    state.requestStatus,
     state.menu,
     state.appId,
     state.landing,
