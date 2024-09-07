@@ -91,7 +91,7 @@ declare module "auth-context" {
     likePosts?: string[];
     likeMessages?: string[];
     phone?: string;
-    subscriptions?: AppListProps[];
+    subscriptions?: string[];
     notifications?: Notification[];
     ownedApps?: AppListProps[];
     notificationSettings?: NotificationSettings;
@@ -186,14 +186,14 @@ declare module "auth-context" {
   export type AuthActionProps =
     | { type: A_ACTIONS.IS_LOADING | A_ACTIONS.SET_PLATFORM_OWNER; payload: boolean }
     | { type: A_ACTIONS.SET_ACCESS_TOKEN | A_ACTIONS.SET_THEME; payload: string }
-    | { type: A_ACTIONS.SET_OWNED_APPS | A_ACTIONS.SET_SUBSCRIPTIONS; payload: AppListProps[] }
+    | { type: A_ACTIONS.SET_OWNED_APPS; payload: AppListProps[] }
     | { type: A_ACTIONS.SET_DUMMY_DATA; payload: LoginValues }
     | { type: A_ACTIONS.SET_ORDERS; payload: OrderSchema[] }
     | { type: A_ACTIONS.SET_ACCOUNT_TIER | A_ACTIONS.SET_UPDATE_TIER; payload: ISubscription | undefined }
     | { type: A_ACTIONS.SET_ACCOUNT_TIERS; payload: ISubscription[] }
     | { type: A_ACTIONS.SET_USER_DATA; payload: UserSchema }
     | { type: A_ACTIONS.SET_USER_MESSAGES; payload: Message[] }
-    | { type: A_ACTIONS.SET_LIKED_POSTS | A_ACTIONS.SET_LIKE_MESSAGES; payload: string[] }
+    | { type: A_ACTIONS.SET_LIKED_POSTS | A_ACTIONS.SET_LIKE_MESSAGES | A_ACTIONS.SET_SUBSCRIPTIONS; payload: string[] }
     | { type: A_ACTIONS.SET_USER_CONTACTS; payload: UserContact[] }
     | { type: A_ACTIONS.SET_NOTIFICATIONS; payload: Notification[] }
     | { type: A_ACTIONS.SET_NOTIFICATION_SETTINGS; payload: NotificationSettings }
