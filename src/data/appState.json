@@ -17,9 +17,10 @@
     "ownerId": "",
     "name": "",
     "description": "",
-    "link": "",
+    "boardLink": "",
     "lists": []
   },
+  "taskBoards": [],
   "platformTiers": [],
   "appUsers": [],
   "messages": [],

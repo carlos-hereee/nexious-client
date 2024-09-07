@@ -172,7 +172,7 @@ declare module "app-types" {
     ownerId: string;
     name: string;
     description: string;
-    link: string;
+    boardLink: string;
     lists: TaskList[];
   }
 
@@ -187,6 +187,7 @@ declare module "app-types" {
     pages: PageProps[];
     posts: Posts[];
     taskBoard: Boards;
+    taskBoards: Boards[];
     isLoading: boolean;
     isOnline: boolean;
     appList: AppListProps[];

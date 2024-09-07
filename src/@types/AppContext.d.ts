@@ -103,6 +103,7 @@ declare module "app-context" {
     pages: PageProps[] | [];
     page: PageProps;
     taskBoard: Boards;
+    taskBoards: Boards[];
     activePage: PageProps;
     media: MediaProps;
     socialMedia: MediaItemProp;
@@ -214,6 +215,7 @@ declare module "app-context" {
     | { type: APP_ACTIONS.SET_APP_USERS; payload: UserSchema[] }
     | { type: APP_ACTIONS.SET_STORE_INVENTORY; payload: MerchProps[] }
     | { type: APP_ACTIONS.SET_APP_TASKS; payload: Boards }
+    | { type: APP_ACTIONS.SET_APP_BOARD_TASKS; payload: Boards[] }
     | { type: APP_ACTIONS.SET_APP_POSTS; payload: Posts[] }
     | { type: APP_ACTIONS.SET_ACTIVE_MENU | APP_ACTIONS.SET_MENU; payload: MenuProp[] }
     | { type: APP_ACTIONS.SET_LANDING | APP_ACTIONS.SET_ACTIVE_PAGE | APP_ACTIONS.SET_PAGE; payload: PageProps }

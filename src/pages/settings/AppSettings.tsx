@@ -112,7 +112,9 @@ const AppSettings = () => {
         <MediaDialog status={status} onClose={() => handleClose({ name: "media", stat: "idle" })} onCancel={updateStatus} />
       )}
       {show.store && <StoreDialog onClose={() => handleClose({ name: "store", stat: "idle" })} status={status} />}
-      {show.app && <AppDialog onClose={() => handleClose({ name: "app", stat: "idle" })} status={status} />}
+      {show.app && (
+        <AppDialog onClose={() => handleClose({ name: "app", stat: "idle" })} status={status} updateStatus={updateStatus} />
+      )}
       {show.calendar && <CalendarDialog onClose={() => handleClose({ name: "calendar", stat: "idle" })} status={status} />}
     </div>
   );
