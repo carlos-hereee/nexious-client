@@ -67,6 +67,9 @@ declare module "app-context" {
     dimensions?: MapDimensions;
     iMap?: IMaps;
   }
+  export interface TaskProps {
+    taskId: string;
+  }
   export interface AppStateProps {
     // auth schema
     isLoading: boolean;
@@ -95,6 +98,8 @@ declare module "app-context" {
     newsletter: NewsletterProps;
     pages: PageProps[] | [];
     page: PageProps;
+    tasks: TaskProps[];
+    task: TaskProps;
     activePage: PageProps;
     media: MediaProps;
     socialMedia: MediaItemProp;

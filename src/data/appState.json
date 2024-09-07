@@ -11,6 +11,8 @@
   "notifications": [],
   "posts": [],
   "maps": [],
+  "tasks": [],
+  "task": { "taskId": "" },
   "platformTiers": [],
   "appUsers": [],
   "messages": [],

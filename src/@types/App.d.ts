@@ -217,6 +217,8 @@ declare module "app-types" {
     | "phase-three"
     | "phase-four"
     | "phase-view-event"
+    | "phase-view-task-event"
+    | "phase-add-task-event"
     | "phase-view-order"
     | "phase-add-event"
     | "phase-view-balance"

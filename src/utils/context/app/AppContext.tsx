@@ -79,6 +79,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       landing: state.landing,
       themeList: state.themeList,
       languageList: state.languageList,
+      tasks: state.tasks,
+      task: state.task,
       adminIds: state.adminIds,
       calendar: state.calendar,
       isOnline: state.isOnline,
