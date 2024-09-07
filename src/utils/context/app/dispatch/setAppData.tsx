@@ -26,6 +26,7 @@ export const setAppData = ({ dispatch, app, appList, store, page, platformTiers 
     if (app.newsletter) dispatch({ type: APP_ACTIONS.SET_NEWSLETTER, payload: app.newsletter });
     if (app.messages) dispatch({ type: APP_ACTIONS.SET_APP_MESSAGES, payload: app.messages });
     if (app.taskBoard) dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: app.taskBoard });
+    if (app.taskBoards) dispatch({ type: APP_ACTIONS.SET_APP_BOARD_TASKS, payload: app.taskBoards });
     if (app.appName) {
       const appLink = readableUrlString(app.appName);
       dispatch({ type: APP_ACTIONS.SET_APP_LINK, payload: appLink });

@@ -16,7 +16,7 @@ import ViewBoards from "../ViewBoards";
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deleteApp } = useContext(AdminContext);
-  const { appId, appName, taskBoards } = useContext(AppContext);
+  const { appId, appName, taskBoards, getAllTaskBoard } = useContext(AppContext);
 
   return (
     <Dialog theme={`alt-${theme}`} onDialogClose={onClose}>
@@ -24,7 +24,11 @@ const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
       {status === "phase-one" && <EditAppDetails />}
       {status === "phase-two" && <EditAppMenu />}
       {status === "phase-view-task-event" && (
-        <ViewBoards taskBoards={taskBoards} onAddClick={() => updateStatus && updateStatus("phase-add-task-event")} />
+        <ViewBoards
+          taskBoards={taskBoards}
+          onAddClick={() => updateStatus && updateStatus("phase-add-task-event")}
+          loadFunction={() => getAllTaskBoard({ appId })}
+        />
       )}
       {status === "phase-add-task-event" && <CreateTaskBoard />}
       {status === "phase-view-event" && <ViewMaps />}

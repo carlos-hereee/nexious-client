@@ -24,7 +24,7 @@ import { sendMessage } from "./request/sendMessage";
 import { buildMap } from "./request/buildMap";
 import { editMap } from "./request/editMap";
 import { buildTaskBoard } from "./request/buildTaskBoard";
-import { getTaskBoardWithId } from "./request/getTaskBoardWithId";
+import { getAllAppTaskBoards, getTaskBoardWithId } from "./request/getTaskBoardWithId";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -65,6 +65,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
   const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
   const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
+  const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -137,6 +138,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       createMap,
       createTaskBoard,
       getTaskBoard,
+      getAllTaskBoard,
     };
   }, [
     state.isLoading,
@@ -164,6 +166,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.appList,
     state.subscriptionTiers,
     state.platformTiers,
+    state.taskBoards,
   ]);
 
   return <AppContext.Provider value={appValues}>{children}</AppContext.Provider>;

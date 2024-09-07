@@ -151,6 +151,7 @@ declare module "app-context" {
     createTaskBoard: (props: TaskBoardValues) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
     getTaskBoard: (props: TaskBoardValues) => void;
+    getAllTaskBoard: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {

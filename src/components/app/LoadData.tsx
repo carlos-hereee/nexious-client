@@ -7,7 +7,7 @@ interface Data {
 }
 const LoadData = ({ id, loadFunction }: Data) => {
   useEffect(() => {
-    if (loadFunction && id) loadFunction(id);
+    if (loadFunction) loadFunction(id || "");
   }, [id]);
 
   return <Loading />;
