@@ -19,7 +19,19 @@
   background-color: var(--dark-mode2);
 }
 .thread {
+  background-color: var(--light-mode);
   width: 100%;
+  border-radius: 1rem;
+}
+.message-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.message-box .form-submit-btn {
+  max-width: 100px;
+  margin: 0.5rem 1rem 0 0;
 }
 .post-thumbnail {
   max-height: 25vh;

@@ -18,7 +18,8 @@
   z-index: 1;
 }
 .height-75 {
-  min-height: 75vh;
+  min-height: 55vh;
+  max-height: 75vh;
 }
 .order-0 {
   order: 0;

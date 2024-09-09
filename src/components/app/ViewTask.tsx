@@ -10,7 +10,7 @@ interface VTask {
   boardId: string;
 }
 const ViewTask = ({ task, boardId }: VTask) => {
-  const { addCommentTask, appId } = useContext(AppContext);
+  const { addCommentTask, appId, replyToComment } = useContext(AppContext);
   console.log("task :>> ", task);
   return (
     <div className="split-container">
@@ -19,7 +19,7 @@ const ViewTask = ({ task, boardId }: VTask) => {
         <ViewComments
           comments={task.comments}
           reply={(values) => addCommentTask({ values, appId, id: boardId, taskId: task.taskId })}
-          onMessageReply={(val) => console.log("val :>> ", val)}
+          onMessageReply={(messageId, reply) => replyToComment({ messageId, reply, appId, taskId: task.taskId, id: boardId })}
         />
       </div>
       <div className="container">

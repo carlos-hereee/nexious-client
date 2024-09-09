@@ -20,8 +20,8 @@ const CommentThread = ({ comment, activeMessage, theme, onLikeClick, onReplyClic
         onLikeClick={() => onLikeClick(comment)}
       />
       {activeMessage?.messageId === comment.messageId && (
-        <div className="primary-container">
-          <p>To: {activeMessage?.user?.name || "no-name"}</p>
+        <div className="p-1">
+          <p className="text-left w-full">To: {activeMessage?.user?.name || "no-name"}</p>
           <MessageBox onSubmit={onMessageReply} />
         </div>
       )}

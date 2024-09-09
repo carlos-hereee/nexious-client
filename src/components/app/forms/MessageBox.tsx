@@ -14,6 +14,7 @@ const MessageBox = ({ onSubmit, allowRating }: Props) => {
         <Form
           initialValues={{ data: "" }}
           types={{ data: "textarea" }}
+          theme="message-box"
           hideLabels
           submitLabel=" "
           submitIcon="reply"
@@ -27,6 +28,7 @@ const MessageBox = ({ onSubmit, allowRating }: Props) => {
       initialValues={{ data: "" }}
       types={{ data: "textarea" }}
       hideLabels
+      theme="message-box"
       submitLabel=" "
       submitIcon="reply"
       onSubmit={(val: { data: string }) => onSubmit(val)}

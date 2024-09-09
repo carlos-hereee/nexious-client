@@ -41,23 +41,25 @@ const ViewComments = ({ comments, reply, allowRating, onMessageReply }: Comments
   };
 
   return (
-    <div className="primary-container y-overflow w-full">
-      {comments.map((c) => (
-        <CommentThread
-          key={c.uid || c.messageId}
-          comment={allowRating && c.status?.star && c.status.star >= 0 ? { ...c, rating: c.status.star } : c}
-          activeMessage={activeMessage}
-          onLikeClick={(m) => updateLikeMessage(m)}
-          onReplyClick={toggleReplyClick}
-          onMessageReply={(val) => handleReply(c.messageId, val)}
-        />
-      ))}
+    <>
       {accessToken ? (
         !activeMessage && <MessageBox onSubmit={reply} allowRating={allowRating} />
       ) : (
         <Link to="/login">Login to leave a comment</Link>
       )}
-    </div>
+      <div className="height-75 overflow-y w-full">
+        {comments.map((c) => (
+          <CommentThread
+            key={c.uid || c.messageId}
+            comment={allowRating && c.status?.star && c.status.star >= 0 ? { ...c, rating: c.status.star } : c}
+            activeMessage={activeMessage}
+            onLikeClick={(m) => updateLikeMessage(m)}
+            onReplyClick={toggleReplyClick}
+            onMessageReply={(val) => handleReply(c.messageId, val)}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 export default ViewComments;
