@@ -1,11 +1,16 @@
 import { Task } from "app-types";
 import { Hero } from "nexious-library";
+import { useContext } from "react";
+import { AppContext } from "@context/app/AppContext";
 import ViewComments from "./ViewComments";
 
 interface VTask {
   task: Task;
+  boardId: string;
 }
-const ViewTask = ({ task }: VTask) => {
+const ViewTask = ({ task, boardId }: VTask) => {
+  const { addCommentTask, appId } = useContext(AppContext);
+  console.log("task :>> ", task);
   return (
     <div className="split-container">
       <div className="container">
@@ -15,13 +20,13 @@ const ViewTask = ({ task }: VTask) => {
         </div>
         <ViewComments
           comments={task.comments}
-          reply={(val) => console.log("val :>> ", val)}
+          reply={(values) => addCommentTask({ values, appId, id: boardId, taskId: task.taskId })}
           onMessageReply={(val) => console.log("val :>> ", val)}
         />
       </div>
       <div className="container">
         <div>
-          <h3 className="heading">Assigned to:</h3>
+          <h4 className="heading">Assigned to:</h4>
           {task.assignedTo ? (
             <div className="user-avatar-container">
               <Hero hero={{ url: task.createdBy.avatar, alt: "user-avatar" }} theme="avatar-sm" />
@@ -32,7 +37,7 @@ const ViewTask = ({ task }: VTask) => {
           )}
         </div>
         <div>
-          <h3 className="heading">Created by:</h3>
+          <h4 className="heading">Created by:</h4>
           <div className="user-avatar-container">
             <Hero hero={{ url: task.createdBy.avatar, alt: "user-avatar" }} theme="avatar-sm" />
             <strong> {task.createdBy.name}</strong>

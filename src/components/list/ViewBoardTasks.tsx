@@ -1,6 +1,7 @@
 import AddBoardListTask from "@components/app/forms/boardTask/AddBoardListTask";
 import LoadData from "@components/app/LoadData";
 import ViewTask from "@components/app/ViewTask";
+import TaskCard from "@components/card/TaskCard";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Boards, Task, TaskList } from "app-types";
@@ -14,7 +15,7 @@ interface IViewTasks {
 }
 const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
   const { theme } = useContext(AuthContext);
-  const { addBoardListTask, appId, requestStatus, setRequestStatus } = useContext(AppContext);
+  const { addBoardListTask, appId, requestStatus, setRequestStatus, removeTaskFromList } = useContext(AppContext);
   const [activeList, setList] = useState<TaskList>();
   const [activeTask, setTask] = useState<Task>();
   const [phase, setPhase] = useState<Phases>("idle");
@@ -44,7 +45,7 @@ const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
     setTask(task);
     setPhase("view-task");
   };
-
+  console.log("taskBoard.lists :>> ", taskBoard.lists[0].tasks);
   return (
     <section className="primary-container hide-overflow">
       {taskBoard.name && <h2 className="heading">{taskBoard.name}</h2>}
@@ -55,10 +56,19 @@ const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
             {list.name && <h3 className="heading">{list.name}</h3>}
             <Button theme="btn-create-task highlight" label="Add task" onClick={() => handleAddTaskClick(list)} />
             {list.tasks.map((task) => (
-              <Button key={task.uid} theme="btn-task-card highlight" onClick={() => handleViewTaskClick({ task, list })}>
-                {task.name && <h4 className="heading"> {task.name}</h4>}
-                {task.description && <p> {task.description}</p>}
-              </Button>
+              <TaskCard
+                key={task.taskId || (task as unknown as string)}
+                task={task}
+                onTaskClick={() => handleViewTaskClick({ task, list })}
+                onTaskRemovalClick={() =>
+                  removeTaskFromList({
+                    appId,
+                    listId: list.listId,
+                    taskId: task.taskId || (task as unknown as string),
+                    id: taskBoard.boardId,
+                  })
+                }
+              />
             ))}
           </div>
         ))}
@@ -72,9 +82,9 @@ const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
           )}
         </Dialog>
       )}
-      {activeTask && (
+      {activeList && activeTask && (
         <Dialog theme={`alt-${theme}`} onDialogClose={resetDialog}>
-          {phase === "view-task" && <ViewTask task={activeTask} />}
+          {phase === "view-task" && <ViewTask task={activeTask} boardId={taskBoard.boardId} />}
         </Dialog>
       )}
     </section>

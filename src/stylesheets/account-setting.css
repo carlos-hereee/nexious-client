@@ -9,7 +9,8 @@
 }
 .user-avatar-container {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  gap: 1rem;
 }
 .avatar-sm {
   max-width: 75px;

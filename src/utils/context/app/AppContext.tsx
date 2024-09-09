@@ -27,6 +27,8 @@ import { buildTaskBoard } from "./request/buildTaskBoard";
 import { getAllAppTaskBoards, getTaskBoardWithId, getTaskBoardWithBoardId } from "./request/getTaskBoardWithId";
 import { updateTaskBoard } from "./request/updateTaskBoard";
 import { buildBoardListTask } from "./request/buildBoardListTask";
+import { postCommentToTask } from "./request/postCommentToTask";
+import { deleteTaskFromList } from "./request/deleteTaskFromList";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -66,12 +68,15 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // app extra features
   const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
   const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
+  // app task board
   const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
   const addBoardListTask = useCallback((data: TaskBoardValues) => buildBoardListTask({ dispatch, ...data, updateAppData }), []);
   const editTaskBoard = useCallback((data: TaskBoardValues) => updateTaskBoard({ dispatch, ...data }), []);
   const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
+  const removeTaskFromList = useCallback((data: TaskBoardValues) => deleteTaskFromList({ dispatch, ...data }), []);
   const getBoardWithBoardId = useCallback((data: TaskBoardValues) => getTaskBoardWithBoardId({ dispatch, ...data }), []);
   const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
+  const addCommentTask = useCallback((data: TaskBoardValues) => postCommentToTask({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -150,6 +155,8 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setRequestStatus,
       getBoardWithBoardId,
       addBoardListTask,
+      addCommentTask,
+      removeTaskFromList,
     };
   }, [
     state.isLoading,

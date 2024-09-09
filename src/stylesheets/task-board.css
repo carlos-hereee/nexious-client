@@ -8,6 +8,7 @@
   flex-direction: column;
   gap: 1rem;
   min-width: 250px;
+
   padding: 1rem;
   border-radius: 10px;
 }
@@ -28,11 +29,25 @@
   max-width: 450px;
   min-width: 300px;
 }
+.task-card-container {
+  display: flex;
+  position: relative;
+}
 .btn-create-task {
   position: sticky;
   width: 100%;
   top: 10%;
   margin: 0 auto;
+}
+.btn-task-card-remove {
+  position: absolute;
+  top: 5%;
+  border-radius: 100%;
+  width: min-content;
+  aspect-ratio: 1/1;
+  max-width: 75px;
+  min-width: auto;
+  right: 5%;
 }
 .task-body {
   padding: 1rem;
@@ -44,6 +59,11 @@
   gap: 0;
   width: 100%;
   max-width: 100%;
+  min-height: 70px;
+}
+.task-card-container:has(.loading) .loading {
+  height: 100%;
+  width: 100%;
 }
 @media only screen and (max-width: 600px) {
   .board-list-container {

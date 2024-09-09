@@ -73,6 +73,7 @@ declare module "app-context" {
     values?: { [key: string]: string };
     id?: string;
     listId?: string;
+    taskId?: string;
   }
 
   export interface AppStateProps {
@@ -157,7 +158,9 @@ declare module "app-context" {
     getTaskBoard: (props: TaskBoardValues) => void;
     getBoardWithBoardId: (props: TaskBoardValues) => void;
     getAllTaskBoard: (props: TaskBoardValues) => void;
+    removeTaskFromList: (props: TaskBoardValues) => void;
     addBoardListTask: (props: TaskBoardValues) => void;
+    addCommentTask: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {
@@ -175,6 +178,7 @@ declare module "app-context" {
     event?: IEvent;
     id?: string;
     listId?: string;
+    taskId?: string;
     name?: string;
     userId?: string;
     media?: MediaProps;
