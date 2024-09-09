@@ -1,7 +1,8 @@
 import { Task } from "app-types";
-import { Hero } from "nexious-library";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
+import TaskCard from "@components/card/TaskCard";
+import AvatarCard from "@components/card/AvatarCard";
 import ViewComments from "./ViewComments";
 
 interface VTask {
@@ -14,10 +15,7 @@ const ViewTask = ({ task, boardId }: VTask) => {
   return (
     <div className="split-container">
       <div className="container">
-        <div className="highlight task-body">
-          {task.name && <h4 className="heading"> {task.name}</h4>}
-          {task.description && <p className="w-full"> {task.description}</p>}
-        </div>
+        <TaskCard task={task} />
         <ViewComments
           comments={task.comments}
           reply={(values) => addCommentTask({ values, appId, id: boardId, taskId: task.taskId })}
@@ -27,21 +25,11 @@ const ViewTask = ({ task, boardId }: VTask) => {
       <div className="container">
         <div>
           <h4 className="heading">Assigned to:</h4>
-          {task.assignedTo ? (
-            <div className="user-avatar-container">
-              <Hero hero={{ url: task.createdBy.avatar, alt: "user-avatar" }} theme="avatar-sm" />
-              <p>Created by: {task.createdBy.name}</p>
-            </div>
-          ) : (
-            <p>No assignees</p>
-          )}
+          {task.assignedTo ? <AvatarCard user={task.createdBy} /> : <p>No assignees</p>}
         </div>
         <div>
           <h4 className="heading">Created by:</h4>
-          <div className="user-avatar-container">
-            <Hero hero={{ url: task.createdBy.avatar, alt: "user-avatar" }} theme="avatar-sm" />
-            <strong> {task.createdBy.name}</strong>
-          </div>
+          <AvatarCard user={task.createdBy} />
         </div>
       </div>
     </div>

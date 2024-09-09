@@ -10,6 +10,7 @@ const AddBoardListTask = ({ onSubmit }: BoardList) => {
     <UpdateForm
       initialValues={createBoardTaskListForm.initialValues}
       labels={createBoardTaskListForm.labels}
+      types={createBoardTaskListForm.types}
       placeholders={createBoardTaskListForm.placeholders}
       onSubmit={onSubmit}
     />

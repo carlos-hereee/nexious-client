@@ -29,10 +29,10 @@
     "placeholders": { "description": "", "name": " " }
   },
   "createBoardTaskListForm": {
-    "initialValues": { "name": "", "description": "", "dueDate": "" },
-    "labels": { "description": "task description", "name": "Name", "dueDate": "Due date" },
+    "initialValues": { "name": "", "description": "", "dueDate": "", "dueTime": "" },
+    "labels": { "description": "task description", "name": "Name", "dueDate": "Due date", "dueTime": "Due Time" },
     "placeholders": { "description": "", "name": " " },
-    "tyeps": { "dueDate": "" }
+    "types": { "dueDate": "date", "dueTime": "date-time" }
   },
   "notificationSettingsForm": {
     "submitLabel": "Save and continue",

@@ -56,6 +56,8 @@
 .btn-task-card {
   display: flex;
   flex-direction: column;
+  text-align: left;
+  align-items: flex-start;
   gap: 0;
   width: 100%;
   max-width: 100%;

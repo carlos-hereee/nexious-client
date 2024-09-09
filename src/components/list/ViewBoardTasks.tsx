@@ -45,7 +45,6 @@ const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
     setTask(task);
     setPhase("view-task");
   };
-  console.log("taskBoard.lists :>> ", taskBoard.lists[0].tasks);
   return (
     <section className="primary-container hide-overflow">
       {taskBoard.name && <h2 className="heading">{taskBoard.name}</h2>}
