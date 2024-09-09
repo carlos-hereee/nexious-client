@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
+import { ActiveMenuProp, Boards, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
 import { AppMap, AppSchema, TaskBoardValues } from "app-context";
 import { AppAssets, FORM_STATUS } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
@@ -79,6 +79,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
   const addCommentTask = useCallback((data: TaskBoardValues) => postCommentToTask({ dispatch, ...data }), []);
   const replyToComment = useCallback((data: TaskBoardValues) => replyToTaskComment({ dispatch, ...data }), []);
+  const setTaskBoard = useCallback((data: Boards) => dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -160,6 +161,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       addCommentTask,
       removeTaskFromList,
       replyToComment,
+      setTaskBoard,
     };
   }, [
     state.isLoading,

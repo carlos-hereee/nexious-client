@@ -30,6 +30,7 @@
   min-width: 300px;
 }
 .task-card-container {
+  padding-left: 2rem;
   display: flex;
   position: relative;
 }
@@ -62,6 +63,7 @@
   width: 100%;
   max-width: 100%;
   min-height: 70px;
+  cursor: grab;
 }
 .task-card-container:has(.loading) .loading {
   height: 100%;

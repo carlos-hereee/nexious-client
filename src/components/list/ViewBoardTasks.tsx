@@ -13,12 +13,20 @@ interface IViewTasks {
   taskBoard: Boards | string;
   loadFunction?: (id: string) => void;
 }
-const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
+interface IDrag {
+  event: React.DragEvent<HTMLDivElement>;
+  listId: string;
+}
+const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
   const { theme } = useContext(AuthContext);
-  const { addBoardListTask, appId, requestStatus, setRequestStatus, removeTaskFromList } = useContext(AppContext);
+  const { addBoardListTask, appId, requestStatus, setRequestStatus, removeTaskFromList, setTaskBoard } = useContext(AppContext);
   const [activeList, setList] = useState<TaskList>();
   const [activeTask, setTask] = useState<Task>();
   const [phase, setPhase] = useState<Phases>("idle");
+
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [draggedCard, setDraggedCard] = useState<Task | null>(null);
+  const [draggedListId, setDraggedListId] = useState<string | null>(null);
 
   const resetDialog = () => {
     setList(undefined);
@@ -45,28 +53,68 @@ const ViewBoardTasks = ({ taskBoard, loadFunction }: IViewTasks) => {
     setTask(task);
     setPhase("view-task");
   };
+  const handleTaskRemove = ({ listId, taskId }: { listId: string; taskId: string }) => {
+    removeTaskFromList({ appId, listId, taskId, id: taskBoard.boardId });
+  };
+
+  const handleDragStart = ({ task, listId }: { task: Task; listId: string }) => {
+    setDraggedCard(task);
+    setDraggedListId(listId);
+    setTimeout(() => setIsDragging(true), 0);
+  };
+
+  const handleDragEnd = () => {
+    setTimeout(() => setIsDragging(false), 0);
+    setDraggedCard(null);
+    setDraggedListId(null);
+  };
+  // Handle drop
+  const handleDrop = ({ event, listId }: IDrag) => {
+    event.preventDefault();
+
+    // If the dragged card exists and the source list is valid
+    if (draggedCard && draggedListId !== null) {
+      // Remove the card from the current list
+      const currentList = taskBoard.lists.filter((list) => list.listId === draggedListId);
+      const updatedCurrentList = currentList[0].tasks.filter((task) => task !== draggedCard);
+
+      // // Add the card to the destination list
+      const targetlist = taskBoard.lists.filter((list) => list.listId === listId);
+      const updatedTargetList = [...targetlist[0].tasks, draggedCard];
+      // // Update the lists
+      const updatedList = taskBoard.lists.map((list) => {
+        if (list.listId === draggedListId) return { ...list, tasks: updatedCurrentList };
+        if (list.listId === listId) return { ...list, tasks: updatedTargetList };
+        return list;
+      });
+      setTaskBoard({ ...taskBoard, lists: updatedList });
+    }
+  };
+
   return (
     <section className="primary-container hide-overflow">
       {taskBoard.name && <h2 className="heading">{taskBoard.name}</h2>}
       {taskBoard.description && <p className="w-full">{taskBoard.description}</p>}
       <div className="board-list-container">
         {taskBoard.lists.map((list) => (
-          <div key={list.uid} className={`board-list highlight ${list.order >= 0 ? ` order-${list.order}` : ""}`}>
+          <div
+            key={list.uid}
+            className={`board-list min-height-65 highlight${list.order >= 0 ? ` order-${list.order}` : ""}`}
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={(event) => handleDrop({ event, listId: list.listId })}
+          >
             {list.name && <h3 className="heading">{list.name}</h3>}
             <Button theme="btn-create-task highlight" label="Add task" onClick={() => handleAddTaskClick(list)} />
             {list.tasks.map((task) => (
               <TaskCard
-                key={task.taskId || (task as unknown as string)}
+                key={task.taskId}
                 task={task}
+                isDraggable
+                theme={isDragging && draggedCard && draggedCard.taskId === task.taskId ? "hidden" : undefined}
                 onTaskClick={() => handleViewTaskClick({ task, list })}
-                onTaskRemovalClick={() =>
-                  removeTaskFromList({
-                    appId,
-                    listId: list.listId,
-                    taskId: task.taskId || (task as unknown as string),
-                    id: taskBoard.boardId,
-                  })
-                }
+                onTaskRemovalClick={() => handleTaskRemove({ listId: list.listId, taskId: task.taskId })}
+                onDragStart={() => handleDragStart({ task, listId: list.listId })}
+                onDragEnd={() => handleDragEnd()}
               />
             ))}
           </div>

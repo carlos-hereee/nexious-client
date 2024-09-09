@@ -6,7 +6,7 @@ import ViewBoardTasks from "@components/list/ViewBoardTasks";
 const TaskBoard = () => {
   const { pathname } = useLocation();
   // const navigate = useNavigate();
-  const { taskBoard, appId, getBoardWithBoardId } = useContext(AppContext);
+  const { appId, getBoardWithBoardId, taskBoard } = useContext(AppContext);
   const boardId = pathname.split("/")[3];
 
   // useEffect(() => {

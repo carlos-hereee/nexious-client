@@ -21,6 +21,9 @@
   min-height: 55vh;
   max-height: 75vh;
 }
+.min-height-65 {
+  min-height: 65vh;
+}
 .order-0 {
   order: 0;
 }
@@ -60,6 +63,12 @@
 }
 .btn-main {
   color: black;
+}
+.hidden {
+  display: none;
+}
+.block {
+  display: block;
 }
 .btn-avatar {
   max-width: 80px;
@@ -108,12 +117,7 @@
   border-radius: 4px;
   background-color: #fafafa;
 }
-/* .user-menu-icons {
-  position: fixed;
-  z-index: 4;
-  right: 2%;
-  bottom: 10%;
-} */
+
 .form-submit-btn {
   background-color: #fafafa;
   color: black;

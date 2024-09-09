@@ -164,6 +164,7 @@ declare module "app-context" {
     addBoardListTask: (props: TaskBoardValues) => void;
     addCommentTask: (props: TaskBoardValues) => void;
     replyToComment: (props: TaskBoardValues) => void;
+    setTaskBoard: (props: Boards) => void;
   }
 
   export interface AppDispatchProps {
