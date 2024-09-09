@@ -19,7 +19,7 @@ interface Igrid {
 const Grid = ({ grid, active, setActiveCell }: Igrid) => (
   <div className="map overflow-x">
     {grid.map((g, idx) => (
-      <div key={uniqueId(g.length + idx)}>
+      <div className="map-column" key={uniqueId(g.length + idx)}>
         {g.map((d) => (
           <div className="map-cell" key={d.id}>
             {d.name && <span className="map-cell-name">{d.name}</span>}

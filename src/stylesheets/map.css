@@ -4,14 +4,10 @@
   grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
   border: 1px solid gray;
 }
-.height-75 {
-  min-height: 75vh;
-}
+
 .map-column {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 .map-cell {
   width: 100%;
@@ -20,6 +16,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  aspect-ratio: 1/1;
 }
 .map-cell-name {
   position: absolute;
@@ -29,6 +26,7 @@
 .btn-cell {
   width: 100%;
   height: 100%;
+  padding: 0;
   min-width: auto;
 }
 .btn-cell-img {

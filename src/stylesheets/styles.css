@@ -16,6 +16,9 @@
 .card-container {
   z-index: 1;
 }
+.height-75 {
+  min-height: 75vh;
+}
 .order-0 {
   order: 0;
 }
