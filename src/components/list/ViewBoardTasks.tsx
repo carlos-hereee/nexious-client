@@ -88,6 +88,7 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
         return list;
       });
       setTaskBoard({ ...taskBoard, lists: updatedList });
+      handleDragEnd();
     }
   };
 
