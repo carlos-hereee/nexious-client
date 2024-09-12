@@ -161,7 +161,8 @@ declare module "app-types" {
     taskId: string;
     name: string;
     description: string;
-    dueDate: Date;
+    dueDate: string;
+    dueTime: string;
     comments: ObjectId[];
     pinnedComment: ObjectId[];
     createdBy: UserData;

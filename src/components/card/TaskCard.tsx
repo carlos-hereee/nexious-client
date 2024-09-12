@@ -20,6 +20,12 @@ const TaskCard = (props: P) => {
         <Button theme="btn-task-card highlight" onClick={onTaskClick} draggable={isDraggable}>
           {task.name && <h4 className="heading"> {task.name}</h4>}
           {task.description && <p> {task.description}</p>}
+          {task.dueDate && (
+            <p className="w-full text-right">
+              Due:
+              {task.dueDate} {task.dueTime || ""}
+            </p>
+          )}
         </Button>
       )}
       {onTaskRemovalClick && (
