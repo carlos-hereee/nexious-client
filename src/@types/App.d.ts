@@ -126,6 +126,7 @@ declare module "app-types" {
     hasCta?: boolean;
     hasSections?: boolean;
     hero?: string;
+    pageLink?: string;
     cta?: CallToActionProps[];
     sections?: SectionProps[];
     tagline?: string;
@@ -248,11 +249,13 @@ declare module "app-types" {
   export type DialogStatusProps =
     | "idle"
     | "confirm-cancel"
+    | "confirm-event-cancel"
     | "configuration"
     | "phase-one"
     | "phase-two"
     | "phase-three"
     | "phase-four"
+    | "phase-add-page-event"
     | "phase-view-event"
     | "phase-view-task-event"
     | "phase-add-task-event"

@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { AdminContext } from "@context/admin/AdminContext";
 import MediaContainer from "@components/app/containers/MediaContainer";
-import PagesContainer from "@components/app/containers/PagesContainer";
-import PageDialog from "@components/app/dialog/PageDialog";
+// import PagesContainer from "@components/app/containers/PagesContainer";
+// import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
 import { AppDialogProps, DialogShowProps, DialogStatusProps } from "app-types";
 import StoreDialog from "@components/app/dialog/StoreDialog";
@@ -19,7 +19,7 @@ import Notification from "@pages/dashboard/Notification";
 import DangerZone from "./DangerZone";
 
 const AppSettings = () => {
-  const { dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification } = useContext(AppContext);
+  const { dbVersion, upgradeToLatest, appId, redirectUrl, notifications, clearNotification, appName } = useContext(AppContext);
   const { formStatus, setFormStatus } = useContext(AdminContext);
   const [show, setShow] = useState<AppDialogProps>(nexiousDashboardMenu);
   const [nav, setNav] = useState<keyof AppDialogProps>("app");
@@ -95,8 +95,9 @@ const AppSettings = () => {
           ))}
         </div>
       )}
+      <h2 className="heading">App: {appName}</h2>
       {nav === "app" && <AppContainer updatePhase={(phase) => handleShow({ name: "app", stat: phase })} />}
-      {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />}
+      {/* {nav === "pages" && <PagesContainer updatePhase={(phase) => handleShow({ name: "pages", stat: phase })} />} */}
       {nav === "media" && <MediaContainer updatePhase={(phase) => handleShow({ name: "media", stat: phase })} />}
       {nav === "calendar" && <CalendarContainer onPhaseClick={(phase) => handleShow({ name: "calendar", stat: phase })} />}
       {nav === "notifications" && (
@@ -107,7 +108,7 @@ const AppSettings = () => {
       )}
       {nav === "store" && <StoreContainer updatePhase={(phase) => handleShow({ name: "store", stat: phase })} />}
       {nav === "danger" && <DangerZone />}
-      {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />}
+      {/* {show.pages && <PageDialog onClose={() => handleClose({ name: "pages", stat: "idle" })} status={status} />} */}
       {show.media && (
         <MediaDialog status={status} onClose={() => handleClose({ name: "media", stat: "idle" })} onCancel={updateStatus} />
       )}

@@ -10,12 +10,15 @@ import ConfirmRemovals from "../containers/ConfirmRemoval";
 import CreateMap from "../forms/app/CreateMap";
 import CreateTaskBoard from "../forms/app/CreateTaskBoard";
 import EditTaskBoard from "../forms/app/EditTaskBoard";
+import AddPage from "../forms/app/AddPage";
+import EditLanding from "../forms/app/EditLanding";
+import EditPage from "../forms/app/EditPage";
 // import EditLanding from "../forms/EditLanding";
 
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
-  const { deleteApp } = useContext(AdminContext);
-  const { appId, appName, requestStatus, setRequestStatus } = useContext(AppContext);
+  const { deleteApp, deletePage } = useContext(AdminContext);
+  const { appId, requestStatus, setRequestStatus, activePage } = useContext(AppContext);
 
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
@@ -28,10 +31,19 @@ const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
       {/* TODO add preview store */}
       {status === "phase-one" && <EditAppDetails />}
       {status === "phase-two" && <EditAppMenu />}
+      {/* pages */}
+      {status === "phase-three" && <EditLanding />}
+      {status === "phase-edit" && <EditPage />}
+      {status === "phase-add-page-event" && <AddPage />}
+      {status === "confirm-event-cancel" && (
+        <ConfirmRemovals onConfirm={() => deletePage({ appId, pageId: activePage.pageId })} />
+      )}
+      {/* task board */}
       {status === "phase-edit-task-event" && <EditTaskBoard />}
       {status === "phase-add-task-event" && <CreateTaskBoard />}
+      {/* map */}
       {status === "phase-add-event" && <CreateMap />}
-      {status === "confirm-cancel" && <ConfirmRemovals name={appName} onConfirm={() => deleteApp(appId)} />}
+      {status === "confirm-cancel" && <ConfirmRemovals onConfirm={() => deleteApp(appId)} />}
     </Dialog>
   );
 };

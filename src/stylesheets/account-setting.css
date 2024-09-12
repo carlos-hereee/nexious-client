@@ -6,6 +6,7 @@
 .settings-card-header {
   display: flex;
   width: 100%;
+  max-width: 100%;
 }
 .btn-settings-card {
   width: 100%;

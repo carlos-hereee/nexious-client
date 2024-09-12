@@ -40,7 +40,7 @@ declare module "app-admin" {
   export interface EditPageValues {
     values?: PageProps;
     appId: string;
-    pageId: string;
+    pageId?: string;
   }
   export interface WebhookSchema {
     id: string;

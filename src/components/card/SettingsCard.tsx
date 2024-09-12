@@ -41,7 +41,7 @@ const SettingsCard = (props: SettingCard) => {
       {hasButtons && (
         <div className="btn-container">
           {onViewClick && <Button label={labels ? labels.onViewClick : `View ${title}`} onClick={onViewClick} />}
-          {onAddClick && <Button label={labels ? labels.onAddClick : `Create${title}`} onClick={onAddClick} />}
+          {onAddClick && <Button label={labels ? labels.onAddClick : `Create ${title}`} onClick={onAddClick} />}
           {onEditClick && <Button label={labels ? labels.onEditClick : `Edit ${title}`} onClick={onEditClick} />}
           {onEditClick2 && <Button label={labels ? labels.onEditClick2 : `Edit ${title}`} onClick={onEditClick2} />}
           {onRemoveClick && <Button label={labels ? labels.onRemoveClick : `Remove ${title}`} onClick={onRemoveClick} />}

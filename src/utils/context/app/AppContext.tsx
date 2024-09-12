@@ -187,6 +187,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
     state.store,
     state.posts,
     state.page,
+    state.pages,
     state.appList,
     state.subscriptionTiers,
     state.platformTiers,

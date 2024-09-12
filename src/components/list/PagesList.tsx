@@ -1,10 +1,10 @@
 import { PageProps, SettingsContainer } from "app-types";
-import PreviewPage from "@components/app/containers/preview/PreviewPage";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
+import { Button, CopyButton } from "nexious-library";
 
 const PagesList = ({ onRemove, updatePhase }: SettingsContainer) => {
-  const { pages, setActivePage } = useContext(AppContext);
+  const { pages, setActivePage, landing, appUrl } = useContext(AppContext);
   // require key variable
   if (!onRemove) throw Error("onRemove is required");
   if (!updatePhase) throw Error("updatePhase is required");
@@ -16,15 +16,18 @@ const PagesList = ({ onRemove, updatePhase }: SettingsContainer) => {
   };
   return (
     <div className="pages-container">
+      {landing && (
+        <div className="btn-card highlight">
+          <h4 className="heading">Landing page</h4>
+          <CopyButton data={appUrl} />
+          <Button label="Edit landing page" onClick={() => updatePhase("phase-three")} />
+        </div>
+      )}
       {pages.map((page: PageProps) => (
-        <div key={page.pageId} className="preview-card highlight">
-          <PreviewPage
-            preview={page}
-            hero={page.hero}
-            heading={page.name}
-            onClick={() => handleEditPage(page)}
-            layout="preview-thumbnail"
-          />
+        <div key={page.pageId} className="btn-card pos-rel highlight">
+          <h4 className="heading">{page.name || "no name"}</h4>
+          <CopyButton data={page.pageLink} />
+          <Button label="Edit page" onClick={() => handleEditPage(page)} />
           <button className="btn-remove" type="button" onClick={() => onRemove(page)}>
             X
           </button>
