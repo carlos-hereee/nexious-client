@@ -10,7 +10,7 @@ import Map from "./Map";
 const ViewMaps = () => {
   const { maps, appId, updateMap } = useContext(AppContext);
   const { ownedApps } = useContext(AuthContext);
-  const [activeMap, setActiveMap] = useState<IMaps>();
+  const [activeMap, setActiveMap] = useState<IMaps>(maps[0] || undefined);
   const [showUpdateDimensions, setShow] = useState<boolean>(false);
   const [canEdit, setCanEdit] = useState<boolean>(false);
 
@@ -35,8 +35,8 @@ const ViewMaps = () => {
   };
   return (
     <div className="primary-container">
-      <h2 className="heading">Maps</h2>
       <div className="map-container">
+        {/* <h2 className="heading">Maps</h2> */}
         {maps.map((map) => (
           <Button label={map.name || map.uid || "No name"} key={map.uid} onClick={() => setActiveMap(map)} />
         ))}

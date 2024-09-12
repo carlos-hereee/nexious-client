@@ -5,17 +5,22 @@ import SettingCardHeader from "./SettingsCardHeader";
 interface SettingCard {
   title: string;
   list?: { name: string; data: string | number }[];
+  children?: React.ReactNode;
+  labels?: { [key: string]: string };
   onViewClick?: () => void;
   onAddClick?: () => void;
+  onEditClick?: () => void;
+  onEditClick2?: () => void;
   onRemoveClick?: () => void;
 }
 
-const SettingsCard = ({ title, onAddClick, onViewClick, onRemoveClick, list }: SettingCard) => {
+const SettingsCard = (props: SettingCard) => {
+  const { title, onAddClick, onViewClick, onRemoveClick, onEditClick, onEditClick2, list, children, labels } = props;
   const [active, setActive] = useState<string>("");
 
   if (!active) return <SettingCardHeader title={title} onClick={setActive} active={active} />;
 
-  const hasButtons: boolean = !!onViewClick || !!onRemoveClick || !!onAddClick;
+  const hasButtons: boolean = !!onViewClick || !!onRemoveClick || !!onAddClick || !!onEditClick || !!onEditClick2;
 
   return (
     <div className="settings-card">
@@ -32,11 +37,14 @@ const SettingsCard = ({ title, onAddClick, onViewClick, onRemoveClick, list }: S
           ))}
         </div>
       )}
+      {children}
       {hasButtons && (
         <div className="btn-container">
-          {onViewClick && <Button label={`View ${title}`} onClick={onViewClick} />}
-          {onRemoveClick && <Button label={`Remove ${title}`} onClick={onRemoveClick} />}
-          {onAddClick && <Button label={`Create ${title}`} onClick={onAddClick} />}
+          {onViewClick && <Button label={labels ? labels.onViewClick : `View ${title}`} onClick={onViewClick} />}
+          {onAddClick && <Button label={labels ? labels.onAddClick : `Create${title}`} onClick={onAddClick} />}
+          {onEditClick && <Button label={labels ? labels.onEditClick : `Edit ${title}`} onClick={onEditClick} />}
+          {onEditClick2 && <Button label={labels ? labels.onEditClick2 : `Edit ${title}`} onClick={onEditClick2} />}
+          {onRemoveClick && <Button label={labels ? labels.onRemoveClick : `Remove ${title}`} onClick={onRemoveClick} />}
         </div>
       )}
     </div>
