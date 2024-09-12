@@ -19,7 +19,7 @@ const EditMerch = (props: { initValues: MerchProps }) => {
   const entryValues = formatInitialEntryValues({ merch: initValues, addEntry: sectionEntries });
 
   const handleRemove = () => deleteMerchItem(appId, initValues.merchId);
-  if (show) return <ConfirmRemovals name={initValues.name} onConfirm={handleRemove} />;
+  if (show) return <ConfirmRemovals onConfirm={handleRemove} />;
   return (
     <div className="primary-container">
       <Form

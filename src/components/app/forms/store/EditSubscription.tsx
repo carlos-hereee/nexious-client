@@ -18,7 +18,7 @@ const EditSubscription = ({ subscription }: { subscription: ISubscription }) => 
   const id = subscription.subscriptionId;
 
   const handleRemove = () => deleteSubscription({ appId, id });
-  if (show) return <ConfirmRemovals name={subscription.name} onConfirm={handleRemove} />;
+  if (show) return <ConfirmRemovals onConfirm={handleRemove} />;
   return (
     <div className="primary-container">
       <Form
