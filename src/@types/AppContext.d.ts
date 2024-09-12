@@ -76,6 +76,7 @@ declare module "app-context" {
     listId?: string;
     taskId?: string;
     messageId?: string;
+    board?: Boards;
   }
 
   export interface AppStateProps {
@@ -164,13 +165,14 @@ declare module "app-context" {
     addBoardListTask: (props: TaskBoardValues) => void;
     addCommentTask: (props: TaskBoardValues) => void;
     replyToComment: (props: TaskBoardValues) => void;
-    setTaskBoard: (props: Boards) => void;
+    setTaskBoard: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     app?: AppProps;
     iMap?: IMaps;
+    board?: Boards;
     page?: PageProps;
     store?: StoreProps;
     dimensions?: MapDimensions;

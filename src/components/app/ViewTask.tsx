@@ -11,7 +11,6 @@ interface VTask {
 }
 const ViewTask = ({ task, boardId }: VTask) => {
   const { addCommentTask, appId, replyToComment } = useContext(AppContext);
-  console.log("task :>> ", task);
   return (
     <div className="split-container">
       <div className="container">

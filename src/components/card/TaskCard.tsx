@@ -5,7 +5,6 @@ interface P {
   task: Task;
   isDraggable?: boolean;
   theme?: string;
-  // ref?: React.RefObject<HTMLButtonElement>;
   onTaskClick?: () => void;
   onTaskRemovalClick?: () => void;
   onDragStart?: (e: React.DragEvent<HTMLDivElement>) => void;
@@ -18,14 +17,7 @@ const TaskCard = (props: P) => {
       {typeof task === "string" ? (
         <Loading />
       ) : (
-        <Button
-          theme="btn-task-card highlight"
-          onClick={onTaskClick}
-          draggable={isDraggable}
-          // ref={ref}
-          // onDragStart={onDragStart}
-          // onDragEnd={onDragEnd}
-        >
+        <Button theme="btn-task-card highlight" onClick={onTaskClick} draggable={isDraggable}>
           {task.name && <h4 className="heading"> {task.name}</h4>}
           {task.description && <p> {task.description}</p>}
         </Button>

@@ -5,7 +5,7 @@ import TaskCard from "@components/card/TaskCard";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Boards, Task, TaskList } from "app-types";
-import { Button, Dialog } from "nexious-library";
+import { Button, Dialog, Loading } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
 
 type Phases = "idle" | "add-task" | "view-task";
@@ -33,11 +33,18 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
     setTask(undefined);
   };
 
+  const handleDragEnd = () => {
+    setTimeout(() => setIsDragging(false), 0);
+    setDraggedCard(null);
+    setDraggedListId(null);
+  };
+
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
       resetDialog();
       setRequestStatus("IDLE");
       setPhase("idle");
+      handleDragEnd();
     }
   }, [requestStatus]);
 
@@ -63,11 +70,6 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
     setTimeout(() => setIsDragging(true), 0);
   };
 
-  const handleDragEnd = () => {
-    setTimeout(() => setIsDragging(false), 0);
-    setDraggedCard(null);
-    setDraggedListId(null);
-  };
   // Handle drop
   const handleDrop = ({ event, listId }: IDrag) => {
     event.preventDefault();
@@ -87,8 +89,7 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
         if (list.listId === listId) return { ...list, tasks: updatedTargetList };
         return list;
       });
-      setTaskBoard({ ...taskBoard, lists: updatedList });
-      handleDragEnd();
+      setTaskBoard({ board: { ...taskBoard, lists: updatedList }, appId });
     }
   };
 
@@ -106,18 +107,22 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
           >
             {list.name && <h3 className="heading">{list.name}</h3>}
             <Button theme="btn-create-task highlight" label="Add task" onClick={() => handleAddTaskClick(list)} />
-            {list.tasks.map((task) => (
-              <TaskCard
-                key={task.taskId}
-                task={task}
-                isDraggable
-                theme={isDragging && draggedCard && draggedCard.taskId === task.taskId ? "hidden" : undefined}
-                onTaskClick={() => handleViewTaskClick({ task, list })}
-                onTaskRemovalClick={() => handleTaskRemove({ listId: list.listId, taskId: task.taskId })}
-                onDragStart={() => handleDragStart({ task, listId: list.listId })}
-                onDragEnd={() => handleDragEnd()}
-              />
-            ))}
+            {list.tasks.map((task) =>
+              requestStatus === "SUCCESS" && draggedCard && draggedCard.taskId === task.taskId ? (
+                <Loading key={task.taskId} />
+              ) : (
+                <TaskCard
+                  key={task.taskId}
+                  task={task}
+                  isDraggable
+                  theme={isDragging && draggedCard && draggedCard.taskId === task.taskId ? "hidden" : undefined}
+                  onTaskClick={() => handleViewTaskClick({ task, list })}
+                  onTaskRemovalClick={() => handleTaskRemove({ listId: list.listId, taskId: task.taskId })}
+                  onDragStart={() => handleDragStart({ task, listId: list.listId })}
+                  onDragEnd={() => handleDragEnd()}
+                />
+              )
+            )}
           </div>
         ))}
       </div>

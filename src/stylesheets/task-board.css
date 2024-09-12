@@ -30,7 +30,6 @@
   min-width: 300px;
 }
 .task-card-container {
-  padding-left: 2rem;
   display: flex;
   position: relative;
 }
