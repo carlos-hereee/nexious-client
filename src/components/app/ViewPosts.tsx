@@ -28,7 +28,7 @@ const ViewPosts = ({ posts, onRemovalClick, onCreatePostClick, allowRemoval }: P
     }
   }, [posts]);
 
-  if (!posts) return <h2 className="heading">No posts</h2>;
+  if (!posts || posts.length === 0) return <p>No posts</p>;
 
   const toggleActivePost = (p: Post) => {
     if (!activePost || activePost.postId !== p.postId) setActivePost(p);

@@ -36,12 +36,13 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         title="Store"
         active="Store"
         onAddClick={() => updatePhase("phase-three")}
+        onEditClick={() => updatePhase("phase-two")}
         onRemoveClick={() => updatePhase("confirm-cancel")}
-        labels={{ onAddClick: "Add merchandise", onRemoveClick: "Delete Store" }}
+        labels={{ onAddClick: "Add merchandise", onRemoveClick: "Delete Store", onEditClick: "Edit store details" }}
       >
         <ItemDetail label="Store url:" labelLayout="bolden">
           <CopyButton data={formatStoreUrl(appLink, store.name)} />
-        </ItemDetail>{" "}
+        </ItemDetail>
         {store.accountId ? (
           <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
             <Button label="View configuration" onClick={() => updatePhase("configuration")} />
@@ -51,10 +52,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
             <Button label="Sign up with stripe" onClick={() => signUpWithStripe(appId)} />
           </ItemDetail>
         )}
-        <MerchList updateStatus={() => updatePhase("configuration")} />{" "}
-        <ItemDetail label="Store details:" labelLayout="bolden">
-          <Button label="Edit store details" onClick={() => updatePhase("phase-two")} />
-        </ItemDetail>
+        <MerchList updateStatus={() => updatePhase("configuration")} />
       </SettingsCard>
       <SettingsCard title="Orders">
         <ViewOrdersContainer orders={store.orders ? store.orders : []} />

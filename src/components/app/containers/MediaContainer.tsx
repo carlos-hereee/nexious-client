@@ -1,13 +1,16 @@
 import MediaList from "@components/list/MediaList";
 import { MediaItemProp, SettingsContainer } from "app-types";
-import { ItemDetail, Button } from "nexious-library";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
+import SettingsCard from "@components/card/SettingsCard";
+import { MediaContext } from "@context/media/MediaContext";
+import ViewPosts from "../ViewPosts";
 
 const MediaContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
   if (!updatePhase) throw Error("onAdd is required");
-  const { media, setSocialMedia } = useContext(AppContext);
+  const { media, setSocialMedia, posts, appId } = useContext(AppContext);
+  const { deletePost } = useContext(MediaContext);
 
   const handleRemove = () => updatePhase("confirm-cancel");
   const handleMediaClick = (m: MediaItemProp) => {
@@ -16,18 +19,18 @@ const MediaContainer = ({ updatePhase }: SettingsContainer) => {
   };
   return (
     <div className="container">
-      <h2 className="heading">Social Media:</h2>
-      <p className="text-max">**Linking your social media will only redirect users via hyperlink**</p>
-      <ItemDetail label="View posts:" labelLayout="bolden">
-        <Button label="View posts" onClick={() => updatePhase("phase-four")} />
-      </ItemDetail>
-      <ItemDetail label="Create a post:" labelLayout="bolden">
-        <Button label="+ Post" onClick={() => updatePhase("phase-three")} />
-      </ItemDetail>
-      <MediaList onRemove={handleRemove} data={media.medias} onMediaClick={handleMediaClick} />
-      <ItemDetail label="Link social media:" labelLayout="bolden">
-        <Button label="+ Add Social media" onClick={() => updatePhase("phase-two")} />
-      </ItemDetail>
+      <SettingsCard
+        title="Post"
+        active="Post"
+        onAddClick={() => updatePhase("phase-three")}
+        labels={{ onAddClick: "Create post" }}
+      >
+        <ViewPosts posts={posts} allowRemoval onRemovalClick={(postId) => deletePost(appId, postId)} />
+      </SettingsCard>
+      <SettingsCard title="Social Media" onAddClick={() => updatePhase("phase-two")} labels={{ onAddClick: "Link social media" }}>
+        <p className="text-max">**Linking your social media will only redirect users via hyperlink**</p>
+        <MediaList onRemove={handleRemove} data={media.medias} onMediaClick={handleMediaClick} />
+      </SettingsCard>
     </div>
   );
 };
