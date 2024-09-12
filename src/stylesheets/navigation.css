@@ -2,6 +2,12 @@
   width: 100%;
   padding: 0.5rem 1rem;
 }
+.navigation-list {
+  display: flex;
+  width: 100%;
+  padding: 0 1rem;
+  justify-content: flex-start;
+}
 .navigation-bar .navigation {
   width: 100%;
   min-width: 100%;

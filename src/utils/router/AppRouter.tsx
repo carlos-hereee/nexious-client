@@ -30,6 +30,7 @@ import AppMaps from "@pages/app/AppMaps";
 import ResetPassword from "@pages/auth/ResetPassword";
 import MerchPage from "@pages/app/MerchPage";
 import TaskBoard from "@pages/app/TaskBoard";
+import InvitationSuccess from "@pages/public/InvitationSuccess";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -52,6 +53,7 @@ const AppRouter: React.FC = () => {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/invite/success" element={<InvitationSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
         <Route path="/feed" element={<ViewPosts posts={posts} />} />

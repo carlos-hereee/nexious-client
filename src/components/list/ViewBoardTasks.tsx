@@ -92,11 +92,13 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
       setTaskBoard({ board: { ...taskBoard, lists: updatedList }, appId });
     }
   };
+  console.log("taskBoard members:>> ", taskBoard.memberInvitations);
 
   return (
     <section className="primary-container hide-overflow">
       {taskBoard.name && <h2 className="heading">{taskBoard.name}</h2>}
       {taskBoard.description && <p className="w-full">{taskBoard.description}</p>}
+
       <div className="board-list-container">
         {taskBoard.lists.map((list) => (
           <div

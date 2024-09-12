@@ -13,6 +13,7 @@ import EditTaskBoard from "../forms/app/EditTaskBoard";
 import AddPage from "../forms/app/AddPage";
 import EditLanding from "../forms/app/EditLanding";
 import EditPage from "../forms/app/EditPage";
+import ViewTaskBoardRequests from "../ViewTaskBoardRequests";
 // import EditLanding from "../forms/EditLanding";
 
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
@@ -39,6 +40,7 @@ const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
         <ConfirmRemovals onConfirm={() => deletePage({ appId, pageId: activePage.pageId })} />
       )}
       {/* task board */}
+      {status === "phase-view-event" && <ViewTaskBoardRequests />}
       {status === "phase-edit-task-event" && <EditTaskBoard />}
       {status === "phase-add-task-event" && <CreateTaskBoard />}
       {/* map */}

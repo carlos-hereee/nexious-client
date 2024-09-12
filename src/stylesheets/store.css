@@ -38,16 +38,19 @@
   width: 100%;
 }
 /* orders */
-.order-row {
+.order-row,
+.btn-row {
   width: 100%;
   min-width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   justify-content: center;
 }
-.order-row:hover {
+.order-row:hover,
+.btn-row:hover {
   border: 1px solid #727272;
 }
+.btn-row:focus,
 .order-row:focus {
   border: 1px solid #fafafa;
 }

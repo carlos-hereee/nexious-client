@@ -58,6 +58,24 @@
 .btn-logo {
   width: auto;
 }
+.c-green {
+  color: green;
+}
+.btn-row {
+  width: 100%;
+  min-width: 100%;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-content: center;
+}
+.btn-row:hover {
+  border: 1px solid #727272;
+}
+.btn-row:focus {
+  border: 1px solid #fafafa;
+}
+
 .dialog-navigation {
   position: relative;
 }
@@ -390,7 +408,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 250px;
+  /* min-width: 250px; */
   max-width: var(--max-card-width);
   padding: 1rem;
   border-radius: 10px;

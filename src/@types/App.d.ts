@@ -152,6 +152,8 @@ declare module "app-types" {
   export interface UserData {
     name: string;
     avatar: string;
+    role: string;
+    invitationStatus: string;
     userId: string;
   }
   export interface Task {
@@ -181,6 +183,8 @@ declare module "app-types" {
     description: string;
     boardLink: string;
     lists: TaskList[];
+    members: UserData[];
+    memberInvitations: UserData[];
   }
 
   export interface AppProps {

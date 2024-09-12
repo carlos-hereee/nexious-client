@@ -23,6 +23,7 @@ declare module "app-context" {
     Subcription,
     SubcriptionProp,
     ThemeList,
+    UserData,
   } from "app-types";
 
   export interface AppCardProps {
@@ -76,6 +77,8 @@ declare module "app-context" {
     listId?: string;
     taskId?: string;
     messageId?: string;
+    status?: string;
+    user?: UserData;
     board?: Boards;
   }
 
@@ -165,13 +168,16 @@ declare module "app-context" {
     addBoardListTask: (props: TaskBoardValues) => void;
     addCommentTask: (props: TaskBoardValues) => void;
     replyToComment: (props: TaskBoardValues) => void;
+    setActiveBoard: (props: Boards) => void;
     setTaskBoard: (props: TaskBoardValues) => void;
+    taskBoardInvitation: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {
     dispatch: React.Dispatch<AppActionProps>;
     app?: AppProps;
     iMap?: IMaps;
+    status?: string;
     board?: Boards;
     page?: PageProps;
     store?: StoreProps;
@@ -192,6 +198,7 @@ declare module "app-context" {
     media?: MediaProps;
     message?: { [x: string]: string };
     values?: { [x: string]: string };
+    user?: UserData | UserSchema;
     appName?: string;
     pageId?: string;
     config?: StripeUpdateConfigProps;

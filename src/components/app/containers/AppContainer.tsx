@@ -11,7 +11,7 @@ import ViewMaps from "../ViewMaps";
 import AppLimitations from "../AppLimitations";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
-  const { appUrl, locale, getAllTaskBoard, setTaskBoard, setActivePage, appId, pages } = useContext(AppContext);
+  const { appUrl, locale, getAllTaskBoard, setActiveBoard, setActivePage, appId, pages } = useContext(AppContext);
   const { isPlatformOwner } = useContext(AuthContext);
   const { limitList, limitations } = useAccountLimitations();
   // require key variable
@@ -19,7 +19,11 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
 
   const handleBoardEditClick = (value: Boards) => {
     updatePhase("phase-edit-task-event");
-    setTaskBoard(value);
+    setActiveBoard(value);
+  };
+  const handleBoardViewClick = (value: Boards) => {
+    updatePhase("phase-view-event");
+    setActiveBoard(value);
   };
   const onDeletePage = (data: PageProps) => {
     updatePhase("confirm-event-cancel");
@@ -62,6 +66,7 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
           onAddClick={() => updatePhase("phase-add-task-event")}
           loadFunction={() => getAllTaskBoard({ appId })}
           onEditClick={handleBoardEditClick}
+          onViewClick={handleBoardViewClick}
         />
       </SettingsCard>
     </div>
