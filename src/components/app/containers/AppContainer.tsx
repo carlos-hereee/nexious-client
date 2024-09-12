@@ -7,7 +7,7 @@ import SettingsCard from "@components/card/SettingsCard";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
   const { appUrl, locale } = useContext(AppContext);
-  const { limitations } = useAccountLimitations();
+  const { limitList } = useAccountLimitations();
 
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
@@ -21,7 +21,8 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       <ItemDetail label="App language:" labelLayout="bolden">
         {locale || "Coming Soon!"}
       </ItemDetail>
-      <ItemDetail label="Max app pages:" labelLayout="bolden">
+      <SettingsCard title="App limitations" list={limitList} />
+      {/* <ItemDetail label="Max app pages:" labelLayout="bolden">
         <span>{limitations.maxPagesPerApp || 0}</span>
       </ItemDetail>
       <ItemDetail label="Calendar events:" labelLayout="bolden">
@@ -29,7 +30,7 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       </ItemDetail>
       <ItemDetail label="Online store:" labelLayout="bolden">
         <span>{limitations.onlineStore ? "Active" : "Disabled"}</span>
-      </ItemDetail>
+      </ItemDetail> */}
       <SettingsCard
         title="Task"
         onViewClick={() => updatePhase("phase-view-task-event")}

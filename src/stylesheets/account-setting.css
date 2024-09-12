@@ -3,6 +3,18 @@
   flex-direction: column;
   gap: 1rem;
 }
+.settings-card-header {
+  display: flex;
+  width: 100%;
+}
+.btn-settings-card {
+  width: 100%;
+  display: flex;
+  text-align: left;
+}
+.settings-card-list {
+  width: 100%;
+}
 .btn-container {
   display: flex;
   gap: 1rem;

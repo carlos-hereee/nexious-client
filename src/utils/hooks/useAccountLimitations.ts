@@ -11,6 +11,7 @@ interface AppLimitations {
 }
 export const useAccountLimitations = () => {
   const { accountTier } = useContext(AuthContext);
+  const [limitList, setList] = useState<{ data: string | number; name: string }[]>([]);
   const [limitations, setLimitations] = useState<AppLimitations>({
     maxApps: 0,
     maxPagesPerApp: 0,
@@ -20,14 +21,14 @@ export const useAccountLimitations = () => {
   });
 
   useEffect(() => {
+    const data: AppLimitations = {
+      maxApps: 0,
+      onlineStore: false,
+      calendarEvents: false,
+      calendarBookings: false,
+      maxPagesPerApp: 0,
+    };
     if (accountTier) {
-      const data: AppLimitations = {
-        maxApps: 0,
-        onlineStore: false,
-        calendarEvents: false,
-        calendarBookings: false,
-        maxPagesPerApp: 0,
-      };
       accountTier.features.forEach((feature) => {
         const featureName = stringToCamalCase(feature.name);
         if (feature.valueType === "Checkbox") data[featureName] = !!feature.value;
@@ -36,7 +37,21 @@ export const useAccountLimitations = () => {
       });
       setLimitations(data);
     }
+    setList([
+      {
+        name: "Max pages",
+        data: data.maxPagesPerApp,
+      },
+      {
+        name: "Calendar events",
+        data: data.calendarEvents ? "Active" : "Disabled",
+      },
+      {
+        name: "Online store",
+        data: data.onlineStore ? "Active" : "Disabled",
+      },
+    ]);
   }, [accountTier]);
 
-  return { limitations, accountTier };
+  return { limitations, accountTier, limitList };
 };
