@@ -29,6 +29,7 @@ const ViewOrdersContainer = ({ heading, orders, onOrderClick }: ViewOrderContain
     accepted: "phase-two",
   };
   if (!activeOrders) return <Loading />;
+  if (!orders || orders.length === 0) return <p>No orders</p>;
   const handleOrderClick = (o: OrderSchema) => {
     if (onOrderClick) onOrderClick(o);
     else setActiveOrder(o);

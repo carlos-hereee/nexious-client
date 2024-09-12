@@ -4,8 +4,8 @@ import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { AuthContext } from "@context/auth/AuthContext";
+import SettingsCard from "@components/card/SettingsCard";
 import AppLimitations from "../AppLimitations";
-import InitPhase from "../InitPhase";
 
 const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
   // require key variable
@@ -20,7 +20,10 @@ const CalendarContainer = ({ onPhaseClick }: CalendarContainerProps) => {
     return <AppLimitations heading="Upgrade your account to access calendar events" />;
   }
   // if no calendar has been created
-  if (!calendar || !calendar.calendarId) return <InitPhase name="Calendar" onClick={() => onPhaseClick("phase-one")} />;
+  // if (!calendar || !calendar.calendarId) return <InitPhase name="Calendar" onClick={() => onPhaseClick("phase-one")} />;
+  if (!calendar || !calendar.calendarId) {
+    return <SettingsCard title="Calendar" onAddClick={() => onPhaseClick("phase-one")} active="Calendar" />;
+  }
   return (
     <div className="container">
       <h2 className="heading">Calendar</h2>

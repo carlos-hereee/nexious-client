@@ -8,6 +8,10 @@
   width: 100%;
   max-width: 100%;
 }
+.btn-full {
+  max-width: var(--max-card-width);
+  width: 100%;
+}
 .btn-settings-card {
   width: 100%;
   display: flex;

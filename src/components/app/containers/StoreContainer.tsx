@@ -7,8 +7,9 @@ import { ItemDetail, CopyButton, Button } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import { AuthContext } from "@context/auth/AuthContext";
 import { formatStoreUrl } from "@app/formatStringUrl";
+import SettingsCard from "@components/card/SettingsCard";
 import AppLimitations from "../AppLimitations";
-import InitPhase from "../InitPhase";
+import ViewOrdersContainer from "./ViewOrdersContainer";
 
 const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // require key variable
@@ -27,40 +28,37 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
   // account limitations
   if (!isPlatformOwner && !limitations.onlineStore) return <AppLimitations heading="Upgrade your account to access your store" />;
   // create store
-  if (!store || !store.storeId) return <InitPhase name="Store" onClick={() => updatePhase("phase-one")} />;
+  if (!store || !store.storeId) return <SettingsCard title="Store" onAddClick={() => updatePhase("phase-one")} active="Store" />;
 
   return (
     <div className="container">
-      <h2 className="heading">Store:</h2>
-      <ItemDetail label="Store url:" labelLayout="bolden">
-        <CopyButton data={formatStoreUrl(appLink, store.name)} />
-      </ItemDetail>
-      <ItemDetail label="Orders:" labelLayout="bolden">
-        <Button
-          label="View orders"
-          onClick={() => updatePhase("phase-view-order")}
-          ping={store.orders?.filter((o) => o.status !== "completed").length || undefined}
-        />
-      </ItemDetail>
-      {store.accountId ? (
-        <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
-          <Button label="View configuration" onClick={() => updatePhase("configuration")} />
+      <SettingsCard
+        title="Store"
+        active="Store"
+        onAddClick={() => updatePhase("phase-three")}
+        onRemoveClick={() => updatePhase("confirm-cancel")}
+        labels={{ onAddClick: "Add merchandise", onRemoveClick: "Delete Store" }}
+      >
+        <ItemDetail label="Store url:" labelLayout="bolden">
+          <CopyButton data={formatStoreUrl(appLink, store.name)} />
+        </ItemDetail>{" "}
+        {store.accountId ? (
+          <ItemDetail label="Stripe Settings:" labelLayout="bolden" hint={hints.stripeConfiguration}>
+            <Button label="View configuration" onClick={() => updatePhase("configuration")} />
+          </ItemDetail>
+        ) : (
+          <ItemDetail label="Link stripe account:" labelLayout="bolden" hint={hints.stripeConfiguration}>
+            <Button label="Sign up with stripe" onClick={() => signUpWithStripe(appId)} />
+          </ItemDetail>
+        )}
+        <MerchList updateStatus={() => updatePhase("configuration")} />{" "}
+        <ItemDetail label="Store details:" labelLayout="bolden">
+          <Button label="Edit store details" onClick={() => updatePhase("phase-two")} />
         </ItemDetail>
-      ) : (
-        <ItemDetail label="Link stripe account:" labelLayout="bolden" hint={hints.stripeConfiguration}>
-          <Button label="Sign up with stripe" onClick={() => signUpWithStripe(appId)} />
-        </ItemDetail>
-      )}
-      <MerchList updateStatus={() => updatePhase("configuration")} />
-      <ItemDetail label="Add merchendise:" labelLayout="bolden">
-        <Button label="+ Add merch" onClick={() => updatePhase("phase-three")} />
-      </ItemDetail>
-      <ItemDetail label="Store details:" labelLayout="bolden">
-        <Button label="Edit store details" onClick={() => updatePhase("phase-two")} />
-      </ItemDetail>
-      <ItemDetail label="Remove store:" labelLayout="bolden">
-        <Button label="Delete store" theme="btn-main btn-required" onClick={() => updatePhase("confirm-cancel")} />
-      </ItemDetail>
+      </SettingsCard>
+      <SettingsCard title="Orders">
+        <ViewOrdersContainer orders={store.orders ? store.orders : []} />
+      </SettingsCard>
     </div>
   );
 };
