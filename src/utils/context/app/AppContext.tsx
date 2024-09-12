@@ -32,6 +32,7 @@ import { deleteTaskFromList } from "./request/deleteTaskFromList";
 import { replyToTaskComment } from "./request/replyToTaskComment";
 import { updateBoardListTask } from "./request/updateBoardListTask";
 import { updateTaskBoardInivite } from "./request/updateTaskBoardInivite";
+import { assignToTask } from "./request/assignToTask";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -84,6 +85,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   const setTaskBoard = useCallback((data: TaskBoardValues) => updateBoardListTask({ dispatch, ...data }), []);
   const setActiveBoard = useCallback((data: Boards) => dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: data }), []);
   const taskBoardInvitation = useCallback((data: TaskBoardValues) => updateTaskBoardInivite({ dispatch, ...data }), []);
+  const assignMemberToTask = useCallback((data: TaskBoardValues) => assignToTask({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -168,6 +170,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       setTaskBoard,
       setActiveBoard,
       taskBoardInvitation,
+      assignMemberToTask,
     };
   }, [
     state.isLoading,

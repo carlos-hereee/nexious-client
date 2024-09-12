@@ -79,6 +79,7 @@ declare module "app-context" {
     messageId?: string;
     status?: string;
     user?: UserData;
+    userId?: string;
     board?: Boards;
   }
 
@@ -171,6 +172,7 @@ declare module "app-context" {
     setActiveBoard: (props: Boards) => void;
     setTaskBoard: (props: TaskBoardValues) => void;
     taskBoardInvitation: (props: TaskBoardValues) => void;
+    assignMemberToTask: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {

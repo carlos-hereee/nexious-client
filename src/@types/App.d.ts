@@ -165,7 +165,7 @@ declare module "app-types" {
     comments: ObjectId[];
     pinnedComment: ObjectId[];
     createdBy: UserData;
-    assignedTo?: UserData;
+    assignedTo: UserData[];
   }
   export interface TaskList {
     listId: string;

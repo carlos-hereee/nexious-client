@@ -61,6 +61,11 @@
 .c-green {
   color: green;
 }
+.btn-min {
+  min-width: 50px;
+  max-width: 50px;
+  aspect-ratio: 1/1;
+}
 .btn-row {
   width: 100%;
   min-width: 100%;

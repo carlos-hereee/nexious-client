@@ -8,7 +8,6 @@ const ViewTaskBoardRequests = () => {
   const { taskBoard, taskBoardInvitation, appId } = useContext(AppContext);
   const [active, setActive] = useState("pending");
   const [filteredData, setData] = useState<UserData[]>([]);
-  console.log("taskBoard :>> ", taskBoard.memberInvitations);
 
   useEffect(() => {
     const filtered = taskBoard.memberInvitations.filter((m) => m.invitationStatus === active);

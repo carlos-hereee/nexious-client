@@ -14,7 +14,7 @@ declare module "app-admin" {
     updateStoreFormError?: string;
     updateAppDetailsFormError?: string;
   };
-  export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS";
+  export type FORM_STATUS = "IDLE" | "LOADING" | "ERROR" | "SUCCESS" | "CONFIRM";
 
   export interface AppAssets {
     user?: UserSchema;

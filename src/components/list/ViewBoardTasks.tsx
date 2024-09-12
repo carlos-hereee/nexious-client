@@ -46,6 +46,16 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
       setPhase("idle");
       handleDragEnd();
     }
+    if (requestStatus === "CONFIRM") {
+      if (activeList && activeTask) {
+        const target = (taskBoard as Boards).lists.filter((list) => list.listId === activeList?.listId);
+        if (target[0]) {
+          const targetTask = target[0].tasks.filter((t) => t.taskId === activeTask.taskId);
+          setTask(targetTask[0]);
+        }
+      }
+      setRequestStatus("IDLE");
+    }
   }, [requestStatus]);
 
   if (typeof taskBoard === "string") return <LoadData id={taskBoard} loadFunction={loadFunction} />;
@@ -92,7 +102,6 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
       setTaskBoard({ board: { ...taskBoard, lists: updatedList }, appId });
     }
   };
-  console.log("taskBoard members:>> ", taskBoard.memberInvitations);
 
   return (
     <section className="primary-container hide-overflow">
