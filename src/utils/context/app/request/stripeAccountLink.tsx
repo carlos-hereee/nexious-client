@@ -6,7 +6,7 @@ import { AxiosError } from "axios";
 export const stripeAccountLink = async ({ dispatch, appId }: AppDispatchProps) => {
   try {
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/store/stripe-account-link/${appId}`);
+    const { data } = await axiosAuth.post(`/stripe/account-link/${appId}`);
     dispatch({ type: APP_ACTIONS.SET_REDIRECT_URL, payload: data });
     dispatch({ type: APP_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {

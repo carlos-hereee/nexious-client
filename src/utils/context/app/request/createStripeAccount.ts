@@ -7,7 +7,7 @@ import { AppDispatchProps } from "app-context";
 export const createStripeAccount = async ({ dispatch, appId }: AppDispatchProps) => {
   try {
     // dispatch({ type: APP_ACTIONS.IS_LOADING, payload: true });
-    const { data } = await axiosAuth.post(`/store/build-stripe-store/${appId}`);
+    const { data } = await axiosAuth.post(`/stripe/build-store/${appId}`);
     dispatch({ type: APP_ACTIONS.SET_REDIRECT_URL, payload: data });
   } catch (error) {
     if (isDev) console.log("error :>> ", error);
