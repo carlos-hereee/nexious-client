@@ -38,7 +38,7 @@ const ViewPosts = ({ posts, onRemovalClick, onCreatePostClick, allowRemoval }: P
     <div className="primary-container overflow-y z-1">
       {sortedPosts.length > 0 ? (
         sortedPosts.map((post) => (
-          <div key={post.uid} className="post">
+          <div key={post.uid} className="post highlight">
             {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
             <CardTextBubble data={post} />
             <MessageReactions

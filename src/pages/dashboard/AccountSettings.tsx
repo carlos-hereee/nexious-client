@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Button, Dialog, Form, ItemDetail, UserCard } from "nexious-library";
+import { Button, Calendar, Dialog, Form, ItemDetail, UserCard } from "nexious-library";
 import { formatInitialValues } from "@app/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
@@ -34,32 +34,39 @@ const AccountSettings = () => {
 
   return (
     <>
-      <div className="container">
-        <SettingsCard
-          title="Account"
-          active="Account"
-          onEditClick={() => handleClick("user")}
-          onEditClick2={() => handleClick("avatar")}
-          onRemoveClick={logout}
-          labels={{ onEditClick: "Edit account", onEditClick2: "Edit avatar", onRemoveClick: "Logout" }}
-        >
-          <UserCard user={user} />
-          {accountTier ? (
-            <SubscriptionCardDetails subscription={accountTier} />
-          ) : (
-            <ItemDetail labelLayout="bolden" label="Platform account:">
-              <Link to="/pricing">View to prices</Link>
+      <div className="split-container">
+        <div className="container">
+          <SettingsCard
+            title="Account"
+            active="Account"
+            onEditClick={() => handleClick("user")}
+            onEditClick2={() => handleClick("avatar")}
+            onRemoveClick={logout}
+            labels={{ onEditClick: "Edit account", onEditClick2: "Edit avatar", onRemoveClick: "Logout" }}
+          >
+            <UserCard user={user} />
+            {accountTier ? (
+              <SubscriptionCardDetails subscription={accountTier} />
+            ) : (
+              <ItemDetail labelLayout="bolden" label="Platform account:">
+                <Link to="/pricing">View to prices</Link>
+              </ItemDetail>
+            )}
+          </SettingsCard>
+          <SettingsCard title="Advanced settings">
+            <ItemDetail labelLayout="bolden" label="Notifications">
+              <Button label="Notification settings" onClick={() => handleClick("email")} />
             </ItemDetail>
-          )}
-        </SettingsCard>
-        <SettingsCard title="Advanced settings">
-          <ItemDetail labelLayout="bolden" label="Configure email notifications">
-            <Button label="Email settings" onClick={() => handleClick("email")} />
-          </ItemDetail>
-          <ItemDetail labelLayout="bolden" label="Password:">
-            <Button label="Change password" onClick={() => handleClick("password-change")} />
-          </ItemDetail>
-        </SettingsCard>
+            <ItemDetail labelLayout="bolden" label="Password:">
+              <Button label="Change password" onClick={() => handleClick("password-change")} />
+            </ItemDetail>
+          </SettingsCard>
+        </div>
+        <div className="container">
+          <SettingsCard title="User calendar">
+            <Calendar value={new Date()} />
+          </SettingsCard>
+        </div>
       </div>
       {show && (
         <Dialog theme={`alt-${theme}`} onDialogClose={() => setShow(false)}>

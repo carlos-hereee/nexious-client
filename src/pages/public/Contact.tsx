@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Button, Form, Hero, ReadMore } from "nexious-library";
-import { contactForm } from "@data/forms.json";
+import { Button, Hero, ReadMore } from "nexious-library";
 import { userMenuContacts, nexiousContact } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Message } from "app-types";
 import { UserContact } from "auth-context";
 import { removeArrayDups, sortByABCRemoveDups } from "@app/sortByABC";
 import MessageBubble from "@components/card/MessageBubble";
+import MessageBox from "@components/app/forms/MessageBox";
 
 interface MenuContact {
   messages: string;
@@ -27,10 +27,12 @@ const Contact = () => {
     const messages = removeArrayDups<Message>({ arr: userMessages, key: "uid" });
     setMessageList(messages);
   }, [userMessages]);
+
   useEffect(() => {
     setMessageRecipient(undefined);
     setThread(undefined);
   }, [activeMenu]);
+
   useEffect(() => {
     if (user) {
       const sortedByABC = sortByABCRemoveDups<UserContact>({ arr: [...contacts, nexiousContact], key: "name" });
@@ -52,7 +54,7 @@ const Contact = () => {
               key={c.id}
               label={c.label}
               onClick={() => setMenuContacts(c.value as keyof MenuContact)}
-              theme={activeMenu === c.value ? "btn-active" : "btn-main"}
+              theme={activeMenu === c.value ? "btn-main btn-active" : "btn-main"}
             />
           ))}
         </div>
@@ -101,27 +103,10 @@ const Contact = () => {
             <div className="y-overflow">
               <MessageBubble message={thread} />
             </div>
-            <Form
-              initialValues={contactForm.initialValues}
-              labels={contactForm.labels}
-              types={contactForm.types}
-              schema={{ required: ["data"] }}
-              onSubmit={handleSubmit}
-            />
+            <MessageBox onSubmit={(val) => handleSubmit(val as unknown as { [x: string]: string })} />
           </>
         )}
-        {messageRecipient?.userId && (
-          <>
-            <p>To: {messageRecipient.name}</p>
-            <Form
-              initialValues={contactForm.initialValues}
-              labels={contactForm.labels}
-              types={contactForm.types}
-              schema={{ required: ["data"] }}
-              onSubmit={handleSubmit}
-            />
-          </>
-        )}
+        {messageRecipient?.userId && <MessageBox onSubmit={(val) => handleSubmit(val as unknown as { [x: string]: string })} />}
       </div>
     </div>
   );

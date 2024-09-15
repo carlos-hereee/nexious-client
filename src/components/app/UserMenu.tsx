@@ -48,8 +48,8 @@ const UserMenu = () => {
     const data: IUserMenu[] = [
       { name: "home", link: "", icon: "user" },
       { name: "bell", link: "/dashboard/notifications", icon: "bell" },
-      { name: "message", link: "contact", icon: "contact" },
-      { name: "feed", link: "feed", icon: "scroll" },
+      { name: "message", link: "contact", icon: "comment" },
+      { name: "feed", link: "feed", icon: "app" },
     ];
     // if app
     if (appId && page === "app") {
