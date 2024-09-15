@@ -23,19 +23,18 @@ import AppBooking from "@pages/app/AppBooking";
 import Logout from "@pages/auth/Logout";
 import Pricing from "@pages/public/Pricing";
 import Notification from "@pages/dashboard/Notification";
-import ViewPosts from "@components/app/ViewPosts";
-import { MediaContext } from "@context/media/MediaContext";
 import Contact from "@pages/public/Contact";
 import AppMaps from "@pages/app/AppMaps";
 import ResetPassword from "@pages/auth/ResetPassword";
 import MerchPage from "@pages/app/MerchPage";
 import TaskBoard from "@pages/app/TaskBoard";
 import InvitationSuccess from "@pages/public/InvitationSuccess";
+import CreatePostFeed from "@pages/public/CreatePostFeed";
+import ViewPostFeed from "@pages/public/ViewPostFeed";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { posts } = useContext(MediaContext);
 
   const navigateClick = () => navigate(accessToken ? "/dashboard" : "/");
   return (
@@ -56,7 +55,8 @@ const AppRouter: React.FC = () => {
         <Route path="/invite/success" element={<InvitationSuccess />} />
         {/* <Route path="/checkout/error" element={<CheckoutSuccess />} /> */}
         <Route path="/explore" element={<ExploreApps />} />
-        <Route path="/feed" element={<ViewPosts posts={posts} />} />
+        <Route path="/feed" element={<ViewPostFeed />} />
+        <Route path="/feed/post" element={<CreatePostFeed />} />
         <Route path="/" element={<Homepage />} />
       </Route>
       {/* App routes that requires internet or app data to work */}

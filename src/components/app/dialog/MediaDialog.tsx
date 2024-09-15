@@ -14,7 +14,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
   if (!onCancel) throw Error("onCancel is required");
   const { theme } = useContext(AuthContext);
   const { appId, socialMedia } = useContext(AppContext);
-  const { requestStatus, setRequestStatus } = useContext(MediaContext);
+  const { requestStatus, setRequestStatus, addPost } = useContext(MediaContext);
   const { deleteMedia } = useContext(AdminContext);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const MediaDialog = ({ onClose, onSubmit, onCancel, status }: DialogProps) => {
       {status === "confirm-cancel" && <ConfirmRemovals onConfirm={() => deleteMedia({ appId, name: socialMedia.media })} />}
       {status === "phase-one" && <EditMedia onCancelClick={() => onCancel("confirm-cancel")} onSubmit={onSubmit} />}
       {status === "phase-two" && <AddMedia onCancelClick={onClose} />}
-      {status === "phase-three" && <CreatePost />}
+      {status === "phase-three" && <CreatePost onSubmit={(post) => addPost({ post, appId })} />}
     </Dialog>
   );
 };

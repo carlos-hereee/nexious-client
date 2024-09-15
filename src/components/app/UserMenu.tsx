@@ -12,6 +12,7 @@ interface ActiveUserMenu {
   calendar: boolean;
   home?: boolean;
   message?: boolean;
+  addPost?: boolean;
   feed?: boolean;
   sub?: boolean;
   bell?: boolean;
@@ -19,6 +20,7 @@ interface ActiveUserMenu {
 interface IUserMenu {
   name: keyof ActiveUserMenu;
   icon: string;
+  iconName?: string;
   link: string;
 }
 const UserMenu = () => {
@@ -47,18 +49,19 @@ const UserMenu = () => {
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: "", icon: "user" },
-      { name: "bell", link: "/dashboard/notifications", icon: "bell" },
-      { name: "message", link: "contact", icon: "comment" },
-      { name: "feed", link: "feed", icon: "app" },
+      { name: "bell", link: "/dashboard/notifications", icon: "bell", iconName: "notifications" },
+      { name: "message", link: "contact", icon: "comment", iconName: "messages" },
+      { name: "feed", link: "feed", icon: "app", iconName: "view-posts" },
     ];
-    // if app
-    if (appId && page === "app") {
-      // if user is login
-      if (accessToken) {
-        data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });
-      }
+    // if user is login
+    if (accessToken) {
+      data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
       if (calendar && calendar.calendarId) data.push({ name: "calendar", link: calendar.calendarLink || "", icon: "booking" });
       if (store && store.storeId) data.push({ name: "checkout", link: `/store/${store.storeLink}` || "", icon: "checkout" });
+      // if app
+      if (appId && page === "app") {
+        data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });
+      }
     }
     setMenus(data);
   }, [appId, page, subscriptions]);
@@ -67,13 +70,14 @@ const UserMenu = () => {
     <section className="user-menu">
       {menus.map((menu) =>
         menu.name === "home" && accessToken && user.avatar ? (
-          <Button key={menu.name} theme="btn-avatar btn-small" onClick={() => handleClick(menu)}>
+          <Button key={menu.name} theme="btn-menu-icon" onClick={() => handleClick(menu)}>
             <Hero hero={{ url: user.avatar, alt: `${user.nickname || "user"} avatar` }} theme="user-avatar" />
           </Button>
         ) : (
           <IconButton
             key={menu.name}
-            icon={{ size: "2x", icon: menu.icon }}
+            icon={{ size: "2x", icon: menu.icon, name: menu.iconName || menu.icon }}
+            theme="btn-menu-icon"
             onClick={() => handleClick(menu)}
             ping={menu.name === "checkout" ? (merchCount > 0 ? merchCount : undefined) : undefined}
           />

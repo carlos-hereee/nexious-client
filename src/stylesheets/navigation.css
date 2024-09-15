@@ -31,6 +31,16 @@
   display: grid;
   grid-template-columns: 1fr auto;
 }
+.hover-nav {
+  padding: 1rem;
+}
+.btn-nav {
+  background-color: antiquewhite;
+}
+.btn-menu-icon {
+  min-width: 50px;
+  max-width: 80px;
+}
 .user-menu {
   position: sticky;
   position: -webkit-sticky;
