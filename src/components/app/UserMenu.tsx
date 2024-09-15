@@ -21,10 +21,11 @@ interface IUserMenu {
   name: keyof ActiveUserMenu;
   icon: string;
   iconName?: string;
+  ping?: number;
   link: string;
 }
 const UserMenu = () => {
-  const { accessToken, user, subscribe, subscriptions } = useContext(AuthContext);
+  const { accessToken, user, subscribe, subscriptions, notifications, messages } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
   const { store, calendar, appId } = useContext(AppContext);
@@ -49,22 +50,34 @@ const UserMenu = () => {
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: "", icon: "user" },
-      { name: "bell", link: "/dashboard/notifications", icon: "bell", iconName: "notifications" },
-      { name: "message", link: "contact", icon: "comment", iconName: "messages" },
+      {
+        name: "bell",
+        link: "/dashboard/notifications",
+        icon: "bell",
+        iconName: "notifications",
+        ping: notifications.length || undefined,
+      },
+      { name: "message", link: "contact", icon: "comment", iconName: "messages", ping: messages.length || undefined },
       { name: "feed", link: "feed", icon: "app", iconName: "view-posts" },
     ];
     // if user is login
     if (accessToken) {
       data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
       if (calendar && calendar.calendarId) data.push({ name: "calendar", link: calendar.calendarLink || "", icon: "booking" });
-      if (store && store.storeId) data.push({ name: "checkout", link: `/store/${store.storeLink}` || "", icon: "checkout" });
+      if (store && store.storeId)
+        data.push({
+          name: "checkout",
+          link: `/store/${store.storeLink}` || "",
+          icon: "checkout",
+          ping: merchCount > 0 ? merchCount : undefined,
+        });
       // if app
       if (appId && page === "app") {
         data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });
       }
     }
     setMenus(data);
-  }, [appId, page, subscriptions]);
+  }, [appId, page, subscriptions, notifications, messages]);
 
   return (
     <section className="user-menu">
@@ -79,7 +92,7 @@ const UserMenu = () => {
             icon={{ size: "2x", icon: menu.icon, name: menu.iconName || menu.icon }}
             theme="btn-menu-icon"
             onClick={() => handleClick(menu)}
-            ping={menu.name === "checkout" ? (merchCount > 0 ? merchCount : undefined) : undefined}
+            ping={menu.ping}
           />
         )
       )}

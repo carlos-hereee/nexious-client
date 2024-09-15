@@ -5,6 +5,8 @@ export const reducer = (state: UserStateProps, action: UserActionProps): UserSta
   switch (action.type) {
     case USER_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
+    case USER_ACTIONS.SET_STATUS:
+      return { ...state, userRequestStatus: action.payload };
 
     default:
       return state;

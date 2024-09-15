@@ -2,6 +2,12 @@ declare module "media-context" {
   import { Message } from "app-types";
   import { MEDIA_ACTIONS } from "@actions/MediaActions";
 
+  export interface UserPostData {
+    avatar: string;
+    name: string;
+    userId: string;
+    role: UserRole;
+  }
   export interface PostReply {
     postId?: string;
     post?: Post;
@@ -15,6 +21,7 @@ declare module "media-context" {
     postId: string;
     updatedAt: string;
     thumbnail: string;
+    createdBy?: UserPostData;
     name: string;
     body: string;
     reviews: string;

@@ -1,3 +1,4 @@
 {
-  "isLoading": false
+  "isLoading": false,
+  "userRequestStatus": "IDLE"
 }

@@ -40,7 +40,10 @@ const ViewPosts = ({ posts, onRemovalClick, onCreatePostClick, allowRemoval }: P
         sortedPosts.map((post) => (
           <div key={post.uid} className="post highlight">
             {post.thumbnail && <Hero hero={{ url: post.thumbnail, alt: post.name }} theme="post-thumbnail" />}
-            <CardTextBubble data={post} />
+            <CardTextBubble
+              data={post}
+              hero={post.createdBy ? { ...post.createdBy, url: post.createdBy.avatar, theme: "hero-contact-sm" } : undefined}
+            />
             <MessageReactions
               likeList={likePosts}
               onLikeClick={() => updateLikePost(post.postId)}
