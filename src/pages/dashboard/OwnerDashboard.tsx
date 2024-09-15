@@ -38,7 +38,6 @@ const OwnerDashboard = () => {
   return (
     <>
       <div>
-        <h2 className="heading">ADMIN SETTINGS</h2>
         <ItemDetail label="Platform subscriptions:" labelLayout="bolden">
           <Button label="View subscriptions" onClick={() => handleClick("view-sub")} />
         </ItemDetail>

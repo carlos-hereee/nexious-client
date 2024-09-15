@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Button, Dialog, Form, ItemDetail } from "nexious-library";
+import { Button, Dialog, Form, ItemDetail, UserCard } from "nexious-library";
 import { formatInitialValues } from "@app/formatInitialFormValues";
 import ChangePassword from "@components/form/ChangePassword";
 import ViewAccountTiers from "@components/app/ViewAccountTiers";
@@ -9,11 +9,14 @@ import SubscriptionCard from "@components/card/SubscriptionCard";
 import { StoreContext } from "@context/store/StoreContext";
 import UpdateHero from "@components/app/forms/UpdateHero";
 import EmailSettings from "@components/app/EmailSettings";
+import SettingsCard from "@components/card/SettingsCard";
+import { Link } from "react-router-dom";
+import SubscriptionCardDetails from "@components/card/SubscriptionCardDetails";
 import OwnerDashboard from "./OwnerDashboard";
 
 type Menu = "user" | "password-change" | "account-tier" | "platform-tier" | "your-account" | "avatar" | "email";
 const AccountSettings = () => {
-  const { user, userForm, editUser, theme, accountTier, isPlatformOwner, updateAvatar } = useContext(AuthContext);
+  const { user, userForm, editUser, theme, accountTier, isPlatformOwner, updateAvatar, logout } = useContext(AuthContext);
   const { platformTiers } = useContext(AppContext);
   const { manageBilling } = useContext(StoreContext);
   const initialValues = formatInitialValues({ user, desiredOrder: userForm.desiredOrder });
@@ -31,29 +34,32 @@ const AccountSettings = () => {
 
   return (
     <>
-      <h1 className="heading">Account settings</h1>
-      <div className="settings-container">
-        <ItemDetail labelLayout="bolden" label="Account:">
-          <Button label="Update account" onClick={() => handleClick("user")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Avatar:">
-          <Button label="Update avatar" onClick={() => handleClick("avatar")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Platform account tiers:">
-          <Button label="View tiers" onClick={() => handleClick("platform-tier")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Platform account:">
-          <Button label="View account" onClick={() => handleClick("your-account")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Configure email notifications">
-          <Button label="Email settings" onClick={() => handleClick("email")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Password:">
-          <Button label="Change password" onClick={() => handleClick("password-change")} />
-        </ItemDetail>
-        <ItemDetail labelLayout="bolden" label="Logout:">
-          <Button label="Logout" theme="btn-main btn-required" onClick={() => handleClick("password-change")} />
-        </ItemDetail>
+      <div className="container">
+        <SettingsCard
+          title="Account"
+          active="Account"
+          onEditClick={() => handleClick("user")}
+          onEditClick2={() => handleClick("avatar")}
+          onRemoveClick={logout}
+          labels={{ onEditClick: "Edit account", onEditClick2: "Edit avatar", onRemoveClick: "Logout" }}
+        >
+          <UserCard user={user} />
+          {accountTier ? (
+            <SubscriptionCardDetails subscription={accountTier} />
+          ) : (
+            <ItemDetail labelLayout="bolden" label="Platform account:">
+              <Link to="/pricing">View to prices</Link>
+            </ItemDetail>
+          )}
+        </SettingsCard>
+        <SettingsCard title="Advanced settings">
+          <ItemDetail labelLayout="bolden" label="Configure email notifications">
+            <Button label="Email settings" onClick={() => handleClick("email")} />
+          </ItemDetail>
+          <ItemDetail labelLayout="bolden" label="Password:">
+            <Button label="Change password" onClick={() => handleClick("password-change")} />
+          </ItemDetail>
+        </SettingsCard>
       </div>
       {show && (
         <Dialog theme={`alt-${theme}`} onDialogClose={() => setShow(false)}>
@@ -89,7 +95,11 @@ const AccountSettings = () => {
           {nav === "platform-tier" && <ViewAccountTiers subscriptions={platformTiers} />}
         </Dialog>
       )}
-      {isPlatformOwner && <OwnerDashboard />}
+      {isPlatformOwner && (
+        <SettingsCard title="Admin settings">
+          <OwnerDashboard />
+        </SettingsCard>
+      )}
     </>
   );
 };
