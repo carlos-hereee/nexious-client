@@ -1,7 +1,8 @@
-import { Task } from "app-types";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import TaskCard from "@components/card/TaskCard";
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
+import { Task } from "task-board-context";
 import AvatarCard from "@components/card/AvatarCard";
 import { IconButton, Select } from "nexious-library";
 import ViewComments from "./ViewComments";
@@ -11,7 +12,8 @@ interface VTask {
   boardId: string;
 }
 const ViewTask = ({ task, boardId }: VTask) => {
-  const { addCommentTask, appId, replyToComment, taskBoard, assignMemberToTask } = useContext(AppContext);
+  const { appId, taskBoard } = useContext(AppContext);
+  const { addCommentTask, replyToComment, assignMemberToTask } = useContext(TaskBoardContext);
 
   return (
     <div className="split-container">

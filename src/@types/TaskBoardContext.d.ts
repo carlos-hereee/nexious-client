@@ -1,4 +1,5 @@
 declare module "task-board-context" {
+  import { Message } from "app-types";
   import { TASK_ACTIONS } from "@actions/TaskBoardAction";
 
   export interface UserData {
@@ -15,8 +16,8 @@ declare module "task-board-context" {
     description: string;
     dueDate: string;
     dueTime: string;
-    comments: string[];
-    pinnedComment: string[];
+    comments: Message[];
+    pinnedComment: Message[];
     createdBy: UserData;
     assignedTo: UserData[];
   }

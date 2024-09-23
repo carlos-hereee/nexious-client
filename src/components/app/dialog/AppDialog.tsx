@@ -1,3 +1,4 @@
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { DialogProps } from "app-types";
 import { useContext, useEffect } from "react";
@@ -19,9 +20,8 @@ import ViewTaskBoardRequests from "../ViewTaskBoardRequests";
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deleteApp, deletePage } = useContext(AdminContext);
-  const { appId, requestStatus, setRequestStatus, activePage, createTaskBoard, taskBoard, taskBoardInvitation, editTaskBoard } =
-    useContext(AppContext);
-
+  const { appId, requestStatus, setRequestStatus, activePage, taskBoard } = useContext(AppContext);
+  const { createTaskBoard, taskBoardInvitation, editTaskBoard } = useContext(TaskBoardContext);
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
       setRequestStatus("IDLE");

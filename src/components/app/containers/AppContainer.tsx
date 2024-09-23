@@ -1,17 +1,20 @@
-import { Boards, PageProps, SettingsContainer } from "app-types";
+import { PageProps, SettingsContainer } from "app-types";
 import { useContext } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, CopyButton } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
 import SettingsCard from "@components/card/SettingsCard";
 import PagesList from "@components/list/PagesList";
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 import { AuthContext } from "@context/auth/AuthContext";
+import { Boards } from "task-board-context";
 import ViewBoards from "../ViewBoards";
 import ViewMaps from "../ViewMaps";
 import AppLimitations from "../AppLimitations";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
-  const { appUrl, locale, getAllTaskBoard, setActiveBoard, setActivePage, appId, pages, taskBoards } = useContext(AppContext);
+  const { appUrl, locale, setActivePage, appId, pages, taskBoards } = useContext(AppContext);
+  const { getAllTaskBoard, setActiveBoard } = useContext(TaskBoardContext);
   const { isPlatformOwner } = useContext(AuthContext);
   const { limitList, limitations } = useAccountLimitations();
   // require key variable

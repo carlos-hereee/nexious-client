@@ -1,5 +1,5 @@
-import { Task } from "app-types";
 import { Button, ButtonCancel, Loading } from "nexious-library";
+import { Task } from "task-board-context";
 
 interface P {
   task: Task;

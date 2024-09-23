@@ -4,9 +4,10 @@ import ViewTask from "@components/app/ViewTask";
 import TaskCard from "@components/card/TaskCard";
 import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Boards, Task, TaskList } from "app-types";
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 import { Button, Dialog, Loading } from "nexious-library";
 import { useContext, useEffect, useState } from "react";
+import { Boards, Task, TaskList } from "task-board-context";
 
 type Phases = "idle" | "add-task" | "view-task";
 interface IViewTasks {
@@ -19,7 +20,8 @@ interface IDrag {
 }
 const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
   const { theme } = useContext(AuthContext);
-  const { addBoardListTask, appId, requestStatus, setRequestStatus, removeTaskFromList, setTaskBoard } = useContext(AppContext);
+  const { appId, requestStatus, setRequestStatus } = useContext(AppContext);
+  const { addBoardListTask, removeTaskFromList, setTaskBoard } = useContext(TaskBoardContext);
   const [activeList, setList] = useState<TaskList>();
   const [activeTask, setTask] = useState<Task>();
   const [phase, setPhase] = useState<Phases>("idle");

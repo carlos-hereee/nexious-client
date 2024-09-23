@@ -5,7 +5,9 @@ import { TaskBoardDispatch } from "task-board-context";
 // export const buildTaskBoard = async ({ appId, values, updateAppData }: TaskBoardDispatch) => {
 export const buildTaskBoard = async ({ appId, values }: TaskBoardDispatch) => {
   try {
-    const { data } = await axiosAuth.post(`/app/${appId}/task-board/build`, values);
+    const route = appId ? `/task-board/${appId}/build` : "/task-board/build";
+
+    const { data } = await axiosAuth.post(route, values);
     console.log("data :>> ", data);
     // if (updateAppData) updateAppData(data);
   } catch (error) {
