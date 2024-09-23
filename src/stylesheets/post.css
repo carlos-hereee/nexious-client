@@ -49,6 +49,17 @@
   max-width: 800px;
   width: 100%;
 }
+.btn-add-post {
+  position: sticky;
+  position: -webkit-sticky;
+  background-color: #fafafa;
+  z-index: 2;
+  top: 5%;
+  left: 85%;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  max-width: 100px;
+}
 .reply-reactions {
   position: absolute;
   bottom: 0;

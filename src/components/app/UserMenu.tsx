@@ -65,7 +65,7 @@ const UserMenu = () => {
     // if user is login
     if (accessToken) {
       data.push({ name: "calendar", link: "/dashboard/calendar", icon: "booking" });
-      data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
+      // data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
       // if app
       if (appId && page === "app") {
         data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });

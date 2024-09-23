@@ -11,6 +11,7 @@ const CreatePost = ({ onSubmit }: P) => {
       initialValues={postForm.initialValues}
       types={postForm.types}
       labels={postForm.labels}
+      submitLabel="Create post"
       withFileUpload
       onSubmit={onSubmit}
     />
