@@ -8,6 +8,7 @@ export const updateUserData = ({ user, dispatch }: UserDispatchProps) => {
   dispatch({ type: USER_ACTIONS.IS_LOADING, payload: true });
   dispatch({ type: USER_ACTIONS.SET_USER_DATA, payload: formatUser });
   if (user.calendarEvents) dispatch({ type: USER_ACTIONS.SET_USER_CALENDAR, payload: user.calendarEvents });
+  if (user.boards) dispatch({ type: USER_ACTIONS.SET_USER_TASK_BOARD, payload: user.boards });
   // if (user.subscriptions) dispatch({ type: USER_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
   // if (user.messages) dispatch({ type: USER_ACTIONS.SET_USER_MESSAGES, payload: user.messages });
   // if (user.orders) dispatch({ type: USER_ACTIONS.SET_ORDERS, payload: user.orders });

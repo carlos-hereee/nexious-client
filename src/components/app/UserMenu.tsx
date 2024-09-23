@@ -16,6 +16,7 @@ interface ActiveUserMenu {
   feed?: boolean;
   sub?: boolean;
   bell?: boolean;
+  listCheck?: boolean;
 }
 interface IUserMenu {
   name: keyof ActiveUserMenu;
@@ -32,7 +33,6 @@ const UserMenu = () => {
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
   const [menus, setMenus] = useState<IUserMenu[]>([]);
   const navigate = useNavigate();
-  const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
 
   const handleClick = (m: IUserMenu) => {
     setActiveMenu({ ...activeMenu, [m.name]: !activeMenu[m.name] });
@@ -41,6 +41,7 @@ const UserMenu = () => {
   };
 
   useEffect(() => {
+    const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
     // reset menus to remove prevoius app data from memory
     setMenus([]);
     // init menu
@@ -65,7 +66,7 @@ const UserMenu = () => {
     // if user is login
     if (accessToken) {
       data.push({ name: "calendar", link: "/dashboard/calendar", icon: "booking" });
-      // data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
+      data.push({ name: "listCheck", link: "/dashboard/task-board", icon: "listCheck", iconName: "create-post" });
       // if app
       if (appId && page === "app") {
         data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });

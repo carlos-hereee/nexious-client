@@ -1,5 +1,6 @@
 declare module "auth-context" {
   import { OrderSchema, StripeConfirmationProps } from "store-context";
+  import { UserBoards } from "user-context";
   import { IEvent } from "app-calendar";
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
@@ -77,6 +78,7 @@ declare module "auth-context" {
     email: NSettings;
     phone: NSettings;
   }
+
   export interface UserSchema {
     // uid: string;
     userId: string;
@@ -99,6 +101,7 @@ declare module "auth-context" {
     accountTier?: ISubscription;
     orders?: OrderSchema[];
     calendarEvents?: IEvent[];
+    boards?: UserBoards[];
     messages?: Message[];
     contacts?: UserContact[];
     accountTiers?: ISubscription[];

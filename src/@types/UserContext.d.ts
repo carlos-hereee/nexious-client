@@ -10,12 +10,18 @@ declare module "user-context" {
   export interface UserCalendar {
     calendarId: string;
   }
+  export interface UserBoards {
+    boardUid: string;
+    boardId: string;
+    role: string;
+  }
   export interface UserStateProps {
     // user: UserSchema;
     isLoading: boolean;
     userRequestStatus: string;
     calendarEvents: IEvent[];
     user: UserSchema;
+    boards: UserBoards[];
   }
 
   export interface IUserSchema extends UserStateProps {
@@ -35,5 +41,6 @@ declare module "user-context" {
     | { type: USER_ACTIONS.IS_LOADING; payload: boolean }
     | { type: USER_ACTIONS.SET_STATUS; payload: string }
     | { type: USER_ACTIONS.SET_USER_CALENDAR; payload: IEvent[] }
+    | { type: USER_ACTIONS.SET_USER_TASK_BOARD; payload: UserBoards[] }
     | { type: USER_ACTIONS.SET_USER_DATA; payload: UserSchema };
 }

@@ -24,6 +24,7 @@ export const UserState = ({ children }: ChildProps) => {
       userRequestStatus: state.userRequestStatus,
       calendarEvents: state.calendarEvents,
       user: state.user,
+      boards: state.boards,
       addPost,
       setUserRequestStatus,
       setUserData,

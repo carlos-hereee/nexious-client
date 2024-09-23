@@ -11,6 +11,8 @@ export const reducer = (state: UserStateProps, action: UserActionProps): UserSta
       return { ...state, user: action.payload };
     case USER_ACTIONS.SET_USER_CALENDAR:
       return { ...state, calendarEvents: action.payload };
+    case USER_ACTIONS.SET_USER_TASK_BOARD:
+      return { ...state, boards: action.payload };
 
     default:
       return state;
