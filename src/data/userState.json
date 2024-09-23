@@ -1,4 +1,11 @@
 {
   "isLoading": false,
-  "userRequestStatus": "IDLE"
+  "userRequestStatus": "IDLE",
+  "user": {
+    "username": "",
+    "email": "",
+    "phone": "",
+    "userId": ""
+  },
+  "calendarEvents": []
 }

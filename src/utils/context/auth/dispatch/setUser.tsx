@@ -2,11 +2,12 @@ import { A_ACTIONS } from "@actions/AuthActions";
 import { userMinData } from "@app/userMinData";
 import { AuthDispatchProps } from "auth-context";
 
-export const setUser = ({ user, dispatch }: AuthDispatchProps) => {
+export const setUser = ({ user, dispatch, setUserData }: AuthDispatchProps) => {
   if (!user) throw Error("user is required");
   const formatUser = userMinData(user);
   dispatch({ type: A_ACTIONS.IS_LOADING, payload: true });
   dispatch({ type: A_ACTIONS.SET_USER_DATA, payload: formatUser });
+  if (setUserData) setUserData(user);
   if (user.ownedApps) dispatch({ type: A_ACTIONS.SET_OWNED_APPS, payload: user.ownedApps });
   if (user.subscriptions) dispatch({ type: A_ACTIONS.SET_SUBSCRIPTIONS, payload: user.subscriptions });
   if (user.messages) dispatch({ type: A_ACTIONS.SET_USER_MESSAGES, payload: user.messages });

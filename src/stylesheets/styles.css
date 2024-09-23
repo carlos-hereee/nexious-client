@@ -316,7 +316,6 @@ footer {
   flex-wrap: wrap;
 }
 .btn-checkout-container {
-  background-color: #fafafa;
   position: sticky;
   z-index: 3;
   top: 0;

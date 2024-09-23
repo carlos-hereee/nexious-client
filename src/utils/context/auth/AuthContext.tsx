@@ -1,9 +1,10 @@
-import { createContext, useReducer, useMemo, useCallback, useEffect } from "react";
+import { createContext, useReducer, useMemo, useCallback, useEffect, useContext } from "react";
 import { ChildProps } from "app-types";
 import authState from "@data/authState.json";
 import { AuthSchema, CustomerSub, ISubscription, UserSchema } from "auth-context";
 import { EmailParam, ForgotPasswordValues, LoginValues, RegisterFormProps } from "app-forms";
 import { A_ACTIONS } from "@actions/AuthActions";
+import { UserContext } from "@context/user/UserContext";
 import { reducer } from "./AuthReducer";
 import { singIn } from "./request/singIn";
 import { singUp } from "./request/singUp";
@@ -29,6 +30,7 @@ export const AuthContext = createContext<AuthSchema>({} as AuthSchema);
 
 export const AuthState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, authState);
+  const { setUserData } = useContext(UserContext);
 
   // udpate accesstoken
   const setAccessToken = useCallback((accessToken: string) => updateAccessToken({ dispatch, accessToken }), []);
@@ -40,7 +42,7 @@ export const AuthState = ({ children }: ChildProps) => {
   // user data
   const setDummyUser = useCallback((user: LoginValues) => updateDumnyData({ dispatch, login: user }), []);
   const fetchUser = useCallback((user: LoginValues) => getUser({ dispatch, login: user }), []);
-  const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user }), []);
+  const updateUser = useCallback((user: UserSchema) => setUser({ dispatch, user, setUserData }), []);
   const editUser = useCallback((user: UserSchema) => editUserRequest({ dispatch, user, updateUser }), []);
   const updateTier = useCallback((data: CustomerSub) => upgradeTier({ dispatch, ...data, updateUser }), []);
   const addTier = useCallback((data: CustomerSub) => customerSubscription({ dispatch, ...data, updateUser }), []);

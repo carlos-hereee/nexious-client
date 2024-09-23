@@ -1,5 +1,6 @@
 declare module "auth-context" {
   import { OrderSchema, StripeConfirmationProps } from "store-context";
+  import { IEvent } from "app-calendar";
   import { A_ACTIONS } from "@actions/AuthActions";
   import { AuthErrorTarget } from "app-errors";
   import { AppListProps, Message, Notification } from "app-types";
@@ -97,6 +98,7 @@ declare module "auth-context" {
     notificationSettings?: NotificationSettings;
     accountTier?: ISubscription;
     orders?: OrderSchema[];
+    calendarEvents?: IEvent[];
     messages?: Message[];
     contacts?: UserContact[];
     accountTiers?: ISubscription[];
@@ -180,6 +182,7 @@ declare module "auth-context" {
     postId?: string;
     updateUser?: (user: UserSchema) => void;
     setDummyUser?: (user: LoginValues) => void;
+    setUserData?: (user: UserSchema) => void;
     setAccessToken?: (token: string) => void;
   }
 

@@ -28,7 +28,7 @@ const UserMenu = () => {
   const { accessToken, user, subscribe, subscriptions, notifications, messages } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
-  const { store, calendar, appId } = useContext(AppContext);
+  const { appId, store } = useContext(AppContext);
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
   const [menus, setMenus] = useState<IUserMenu[]>([]);
   const navigate = useNavigate();
@@ -36,11 +36,7 @@ const UserMenu = () => {
 
   const handleClick = (m: IUserMenu) => {
     setActiveMenu({ ...activeMenu, [m.name]: !activeMenu[m.name] });
-    if (m.name === "checkout") {
-      if (merchCount > 0) navigate("/checkout");
-      else navigate(m.link);
-    } else if (m.name === "home") navigate(accessToken ? "/dashboard" : "/");
-    else if (m.name === "sub") subscribe(appId);
+    if (m.name === "sub") subscribe(appId);
     else navigate(m.link);
   };
 
@@ -49,7 +45,7 @@ const UserMenu = () => {
     setMenus([]);
     // init menu
     const data: IUserMenu[] = [
-      { name: "home", link: "", icon: "user" },
+      { name: "home", link: accessToken ? "/dashboard" : "/", icon: "user" },
       {
         name: "bell",
         link: "/dashboard/notifications",
@@ -59,18 +55,17 @@ const UserMenu = () => {
       },
       { name: "message", link: "contact", icon: "comment", iconName: "messages", ping: messages.length || undefined },
       { name: "feed", link: "feed", icon: "app", iconName: "view-posts" },
+      {
+        name: "checkout",
+        link: store && store.storeId ? `/store/${store.storeLink}` : "/checkout",
+        icon: "checkout",
+        ping: merchCount > 0 ? merchCount : undefined,
+      },
     ];
     // if user is login
     if (accessToken) {
+      data.push({ name: "calendar", link: "/dashboard/calendar", icon: "booking" });
       data.push({ name: "addPost", link: "feed/post", icon: "squarePlus", iconName: "create-post" });
-      if (calendar && calendar.calendarId) data.push({ name: "calendar", link: calendar.calendarLink || "", icon: "booking" });
-      if (store && store.storeId)
-        data.push({
-          name: "checkout",
-          link: `/store/${store.storeLink}` || "",
-          icon: "checkout",
-          ping: merchCount > 0 ? merchCount : undefined,
-        });
       // if app
       if (appId && page === "app") {
         data.push({ name: "sub", link: "", icon: subscriptions.includes(appId) ? "minus" : "plus" });

@@ -7,6 +7,10 @@ export const reducer = (state: UserStateProps, action: UserActionProps): UserSta
       return { ...state, isLoading: action.payload };
     case USER_ACTIONS.SET_STATUS:
       return { ...state, userRequestStatus: action.payload };
+    case USER_ACTIONS.SET_USER_DATA:
+      return { ...state, user: action.payload };
+    case USER_ACTIONS.SET_USER_CALENDAR:
+      return { ...state, calendarEvents: action.payload };
 
     default:
       return state;

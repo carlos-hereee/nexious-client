@@ -24,8 +24,8 @@ if (elementRoot) {
     // <React.StrictMode>
     <BrowserRouter>
       <ScrollToTop />
-      <AuthState>
-        <UserState>
+      <UserState>
+        <AuthState>
           <LogState>
             <AppState>
               <StoreState>
@@ -41,8 +41,8 @@ if (elementRoot) {
               </StoreState>
             </AppState>
           </LogState>
-        </UserState>
-      </AuthState>
+        </AuthState>
+      </UserState>
     </BrowserRouter>
     // </React.StrictMode>
   );
