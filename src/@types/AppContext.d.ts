@@ -69,19 +69,6 @@ declare module "app-context" {
     dimensions?: MapDimensions;
     iMap?: IMaps;
   }
-  export interface TaskBoardValues {
-    appId?: string;
-    values?: { [key: string]: string };
-    reply?: { star?: number; data: string };
-    id?: string;
-    listId?: string;
-    taskId?: string;
-    messageId?: string;
-    status?: string;
-    user?: UserData;
-    userId?: string;
-    board?: Boards;
-  }
 
   export interface AppStateProps {
     // auth schema
@@ -160,19 +147,19 @@ declare module "app-context" {
     createMap: (props: AppMap) => void;
     updateMap: (props: AppMap) => void;
     updateActiveAppData: (props: ActiveMenuProp) => void;
-    createTaskBoard: (props: TaskBoardValues) => void;
-    editTaskBoard: (props: TaskBoardValues) => void;
-    getTaskBoard: (props: TaskBoardValues) => void;
-    getBoardWithBoardId: (props: TaskBoardValues) => void;
-    getAllTaskBoard: (props: TaskBoardValues) => void;
-    removeTaskFromList: (props: TaskBoardValues) => void;
-    addBoardListTask: (props: TaskBoardValues) => void;
-    addCommentTask: (props: TaskBoardValues) => void;
-    replyToComment: (props: TaskBoardValues) => void;
-    setActiveBoard: (props: Boards) => void;
-    setTaskBoard: (props: TaskBoardValues) => void;
-    taskBoardInvitation: (props: TaskBoardValues) => void;
-    assignMemberToTask: (props: TaskBoardValues) => void;
+    // createTaskBoard: (props: TaskBoardValues) => void;
+    // editTaskBoard: (props: TaskBoardValues) => void;
+    // getTaskBoard: (props: TaskBoardValues) => void;
+    // getBoardWithBoardId: (props: TaskBoardValues) => void;
+    // getAllTaskBoard: (props: TaskBoardValues) => void;
+    // removeTaskFromList: (props: TaskBoardValues) => void;
+    // addBoardListTask: (props: TaskBoardValues) => void;
+    // addCommentTask: (props: TaskBoardValues) => void;
+    // replyToComment: (props: TaskBoardValues) => void;
+    // setActiveBoard: (props: Boards) => void;
+    // setTaskBoard: (props: TaskBoardValues) => void;
+    // taskBoardInvitation: (props: TaskBoardValues) => void;
+    // assignMemberToTask: (props: TaskBoardValues) => void;
   }
 
   export interface AppDispatchProps {

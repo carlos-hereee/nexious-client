@@ -19,7 +19,8 @@ import ViewTaskBoardRequests from "../ViewTaskBoardRequests";
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deleteApp, deletePage } = useContext(AdminContext);
-  const { appId, requestStatus, setRequestStatus, activePage, createTaskBoard } = useContext(AppContext);
+  const { appId, requestStatus, setRequestStatus, activePage, createTaskBoard, taskBoard, taskBoardInvitation, editTaskBoard } =
+    useContext(AppContext);
 
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
@@ -40,8 +41,15 @@ const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
         <ConfirmRemovals onConfirm={() => deletePage({ appId, pageId: activePage.pageId })} />
       )}
       {/* task board */}
-      {status === "phase-view-event" && <ViewTaskBoardRequests />}
-      {status === "phase-edit-task-event" && <EditTaskBoard />}
+      {status === "phase-view-event" && (
+        <ViewTaskBoardRequests
+          taskBoard={taskBoard}
+          onClick={(data) => taskBoardInvitation({ appId, id: taskBoard.boardId, ...data })}
+        />
+      )}
+      {status === "phase-edit-task-event" && (
+        <EditTaskBoard taskBoard={taskBoard} onSubmit={(values) => editTaskBoard({ appId, values, id: taskBoard.boardId })} />
+      )}
       {status === "phase-add-task-event" && <CreateTaskBoard onSubmit={(values) => createTaskBoard({ values, appId })} />}
       {/* map */}
       {status === "phase-add-event" && <CreateMap />}

@@ -149,45 +149,6 @@ declare module "app-types" {
     label: string;
   };
 
-  export interface UserData {
-    name: string;
-    avatar: string;
-    role: string;
-    invitationStatus: string;
-    userId: string;
-  }
-  export interface Task {
-    uid: string;
-    taskId: string;
-    name: string;
-    description: string;
-    dueDate: string;
-    dueTime: string;
-    comments: ObjectId[];
-    pinnedComment: ObjectId[];
-    createdBy: UserData;
-    assignedTo: UserData[];
-  }
-  export interface TaskList {
-    listId: string;
-    uid: string;
-    name: string;
-    description: string;
-    order: number;
-    tasks: Task[];
-  }
-  export interface Boards {
-    boardId: string;
-    uid: string;
-    ownerId: string;
-    name: string;
-    description: string;
-    boardLink: string;
-    lists: TaskList[];
-    members: UserData[];
-    memberInvitations: UserData[];
-  }
-
   export interface AppProps {
     appName: string;
     store: StoreProps;

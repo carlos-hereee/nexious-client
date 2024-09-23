@@ -1,11 +1,11 @@
-import { Boards } from "app-types";
 import { Button, CopyButton } from "nexious-library";
 import { homeUrl, serverUrl } from "@config";
+import { Boards } from "task-board-context";
 import LoadData from "./LoadData";
 
 interface BoardsParam {
   taskBoards: Boards[];
-  inviteLink: string;
+  inviteLink?: string;
   onAddClick?: () => void;
   onViewClick?: (b: Boards) => void;
   onEditClick?: (b: Boards) => void;
@@ -31,19 +31,23 @@ const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick, taskBo
             <p>Task board url</p>
             <CopyButton data={`${homeUrl}${board.boardLink}`} label="" />
           </div>
-          <div className="flex">
-            <p>Invite link</p>
-            <CopyButton data={`${serverUrl}${inviteLink}/${board.boardId}/invite`} />
-          </div>
-          <Button
-            label="Inviation requests"
-            ping={
-              (board.memberInvitations && board.memberInvitations.filter((m) => m.invitationStatus === "pending").length) ||
-              undefined
-            }
-            onClick={() => onViewClick && onViewClick(board)}
-          />
-          <Button label="Edit board" onClick={() => onEditClick && onEditClick(board)} />
+          {inviteLink && (
+            <div className="flex">
+              <p>Invite link</p>
+              <CopyButton data={`${serverUrl}${inviteLink}/${board.boardId}/invite`} />
+            </div>
+          )}
+          {onViewClick && (
+            <Button
+              label="Inviation requests"
+              ping={
+                (board.memberInvitations && board.memberInvitations.filter((m) => m.invitationStatus === "pending").length) ||
+                undefined
+              }
+              onClick={() => onViewClick(board)}
+            />
+          )}
+          {onEditClick && <Button label="Edit board" onClick={() => onEditClick(board)} />}
         </div>
       ))}
     </div>

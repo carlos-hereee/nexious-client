@@ -9,6 +9,7 @@ import ScrollToTop from "@router/ScrollToTop";
 import { CalendarState } from "@context/calendar/CalendarContext";
 import { StoreState } from "@context/store/StoreContext";
 import { MediaState } from "@context/media/MediaContext";
+import { TaskBoardState } from "@context/taskBoard/TaskBoardContext";
 import { UserState } from "@context/user/UserContext";
 import App from "./App";
 import AppRouter from "./utils/router/AppRouter";
@@ -27,19 +28,21 @@ if (elementRoot) {
       <UserState>
         <AuthState>
           <LogState>
-            <AppState>
-              <StoreState>
-                <CalendarState>
-                  <MediaState>
-                    <AdminState>
-                      <App>
-                        <AppRouter />
-                      </App>
-                    </AdminState>
-                  </MediaState>
-                </CalendarState>
-              </StoreState>
-            </AppState>
+            <TaskBoardState>
+              <AppState>
+                <StoreState>
+                  <CalendarState>
+                    <MediaState>
+                      <AdminState>
+                        <App>
+                          <AppRouter />
+                        </App>
+                      </AdminState>
+                    </MediaState>
+                  </CalendarState>
+                </StoreState>
+              </AppState>
+            </TaskBoardState>
           </LogState>
         </AuthState>
       </UserState>

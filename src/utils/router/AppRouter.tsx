@@ -33,6 +33,7 @@ import CreatePostFeed from "@pages/public/CreatePostFeed";
 import ViewPostFeed from "@pages/public/ViewPostFeed";
 import UserCalendar from "@pages/dashboard/UserCalendar";
 import UserTaskBoard from "@pages/dashboard/UserTaskBoard";
+import ViewUserTaskBoard from "@pages/dashboard/ViewUserTaskBoard";
 
 const AppRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
@@ -80,6 +81,7 @@ const AppRouter: React.FC = () => {
         />
         <Route path="/dashboard" element={<UserPlayground />} />
         <Route path="/dashboard/task-board" element={<UserTaskBoard />} />
+        <Route path="/dashboard/task-board/:boardId" element={<ViewUserTaskBoard />} />
         <Route path="/dashboard/calendar" element={<UserCalendar />} />
       </Route>
       <Route element={<AdminRoute />}>

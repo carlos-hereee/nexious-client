@@ -1,7 +1,7 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import appState from "@data/appState.json";
-import { ActiveMenuProp, Boards, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
-import { AppMap, AppSchema, TaskBoardValues } from "app-context";
+import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
+import { AppMap, AppSchema } from "app-context";
 import { AppAssets, FORM_STATUS } from "app-admin";
 import { APP_ACTIONS } from "@actions/AppActions";
 import { setAppData } from "./dispatch/setAppData";
@@ -23,16 +23,6 @@ import { createStripeAccount } from "./request/createStripeAccount";
 import { sendMessage } from "./request/sendMessage";
 import { buildMap } from "./request/buildMap";
 import { editMap } from "./request/editMap";
-import { buildTaskBoard } from "./request/buildTaskBoard";
-import { getAllAppTaskBoards, getTaskBoardWithId, getTaskBoardWithBoardId } from "./request/getTaskBoardWithId";
-import { updateTaskBoard } from "./request/updateTaskBoard";
-import { buildBoardListTask } from "./request/buildBoardListTask";
-import { postCommentToTask } from "./request/postCommentToTask";
-import { deleteTaskFromList } from "./request/deleteTaskFromList";
-import { replyToTaskComment } from "./request/replyToTaskComment";
-import { updateBoardListTask } from "./request/updateBoardListTask";
-import { updateTaskBoardInivite } from "./request/updateTaskBoardInivite";
-import { assignToTask } from "./request/assignToTask";
 
 export const AppContext = createContext<AppSchema>({} as AppSchema);
 
@@ -72,20 +62,6 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
   // app extra features
   const createMap = useCallback((data: AppMap) => buildMap({ dispatch, ...data, updateAppData }), []);
   const updateMap = useCallback((data: AppMap) => editMap({ dispatch, ...data, updateAppData }), []);
-  // app task board
-  const createTaskBoard = useCallback((data: TaskBoardValues) => buildTaskBoard({ dispatch, ...data, updateAppData }), []);
-  const addBoardListTask = useCallback((data: TaskBoardValues) => buildBoardListTask({ dispatch, ...data, updateAppData }), []);
-  const editTaskBoard = useCallback((data: TaskBoardValues) => updateTaskBoard({ dispatch, ...data }), []);
-  const getTaskBoard = useCallback((data: TaskBoardValues) => getTaskBoardWithId({ dispatch, ...data }), []);
-  const removeTaskFromList = useCallback((data: TaskBoardValues) => deleteTaskFromList({ dispatch, ...data }), []);
-  const getBoardWithBoardId = useCallback((data: TaskBoardValues) => getTaskBoardWithBoardId({ dispatch, ...data }), []);
-  const getAllTaskBoard = useCallback((data: TaskBoardValues) => getAllAppTaskBoards({ dispatch, ...data }), []);
-  const addCommentTask = useCallback((data: TaskBoardValues) => postCommentToTask({ dispatch, ...data }), []);
-  const replyToComment = useCallback((data: TaskBoardValues) => replyToTaskComment({ dispatch, ...data }), []);
-  const setTaskBoard = useCallback((data: TaskBoardValues) => updateBoardListTask({ dispatch, ...data }), []);
-  const setActiveBoard = useCallback((data: Boards) => dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: data }), []);
-  const taskBoardInvitation = useCallback((data: TaskBoardValues) => updateTaskBoardInivite({ dispatch, ...data }), []);
-  const assignMemberToTask = useCallback((data: TaskBoardValues) => assignToTask({ dispatch, ...data }), []);
 
   const appValues = useMemo(() => {
     return {
@@ -157,20 +133,7 @@ export const AppState = ({ children }: ChildProps): ReactElement => {
       signUpWithStripe,
       contactApp,
       createMap,
-      createTaskBoard,
-      getTaskBoard,
-      getAllTaskBoard,
-      editTaskBoard,
       setRequestStatus,
-      getBoardWithBoardId,
-      addBoardListTask,
-      addCommentTask,
-      removeTaskFromList,
-      replyToComment,
-      setTaskBoard,
-      setActiveBoard,
-      taskBoardInvitation,
-      assignMemberToTask,
     };
   }, [
     state.isLoading,

@@ -1,11 +1,13 @@
-import { AppContext } from "@context/app/AppContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IconButton, Navigation } from "nexious-library";
-import { UserData } from "app-types";
 import AvatarCard from "@components/card/AvatarCard";
+import { Boards, UserData } from "task-board-context";
 
-const ViewTaskBoardRequests = () => {
-  const { taskBoard, taskBoardInvitation, appId } = useContext(AppContext);
+interface B {
+  taskBoard: Boards;
+  onClick: ({ status, user }: { status: string; user: UserData }) => void;
+}
+const ViewTaskBoardRequests = ({ taskBoard, onClick }: B) => {
   const [active, setActive] = useState("pending");
   const [filteredData, setData] = useState<UserData[]>([]);
 
@@ -26,12 +28,12 @@ const ViewTaskBoardRequests = () => {
               <IconButton
                 icon={{ icon: "close" }}
                 theme="required highlight"
-                onClick={() => taskBoardInvitation({ appId, status: "declined", id: taskBoard.boardId, user })}
+                onClick={() => onClick({ status: "declined", user })}
               />
               <IconButton
                 icon={{ icon: "check" }}
                 theme="c-green highlight"
-                onClick={() => taskBoardInvitation({ appId, status: "accepted", id: taskBoard.boardId, user })}
+                onClick={() => onClick({ status: "accepted", user })}
               />
             </div>
           )}

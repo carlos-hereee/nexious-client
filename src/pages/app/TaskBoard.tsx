@@ -2,11 +2,13 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import ViewBoardTasks from "@components/list/ViewBoardTasks";
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 
 const TaskBoard = () => {
   const { pathname } = useLocation();
   // const navigate = useNavigate();
-  const { appId, getBoardWithBoardId, taskBoard } = useContext(AppContext);
+  const { appId, taskBoard } = useContext(AppContext);
+  const { getBoardWithBoardId } = useContext(TaskBoardContext);
   const boardId = pathname.split("/")[3];
 
   // useEffect(() => {
