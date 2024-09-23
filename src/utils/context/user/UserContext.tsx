@@ -8,6 +8,7 @@ import { UserSchema } from "auth-context";
 import { reducer } from "./UserReducer";
 import { addUserPost } from "./request/addUserPost";
 import { updateUserData } from "./dispatch/updateUserData";
+import { addTaskBoard } from "./request/addTaskBoard";
 
 export const UserContext = createContext<IUserSchema>({} as IUserSchema);
 export const UserState = ({ children }: ChildProps) => {
@@ -17,6 +18,7 @@ export const UserState = ({ children }: ChildProps) => {
   const addPost = useCallback((data: DUser) => addUserPost({ dispatch, ...data, updateUser }), []);
   const setUserRequestStatus = useCallback((data: string) => dispatch({ type: USER_ACTIONS.SET_STATUS, payload: data }), []);
   const setUserData = useCallback((user: UserSchema) => updateUserData({ dispatch, user }), []);
+  const createTaskBoard = useCallback((values: { [x: string]: string }) => addTaskBoard({ dispatch, values }), []);
 
   const storeValues = useMemo(() => {
     return {
@@ -28,7 +30,8 @@ export const UserState = ({ children }: ChildProps) => {
       addPost,
       setUserRequestStatus,
       setUserData,
+      createTaskBoard,
     };
-  }, [state.isLoading, state.userRequestStatus, state.calendarEvents]);
+  }, [state.isLoading, state.userRequestStatus, state.calendarEvents, state.boards]);
   return <UserContext.Provider value={storeValues}>{children}</UserContext.Provider>;
 };

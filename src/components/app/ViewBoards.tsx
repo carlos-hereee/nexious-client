@@ -1,29 +1,28 @@
 import { Boards } from "app-types";
 import { Button, CopyButton } from "nexious-library";
 import { homeUrl, serverUrl } from "@config";
-import { useContext } from "react";
-import { AppContext } from "@context/app/AppContext";
 import LoadData from "./LoadData";
 
 interface BoardsParam {
+  taskBoards: Boards[];
+  inviteLink: string;
   onAddClick?: () => void;
   onViewClick?: (b: Boards) => void;
   onEditClick?: (b: Boards) => void;
   loadFunction?: () => void;
 }
-const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick }: BoardsParam) => {
-  const { taskBoards, appId } = useContext(AppContext);
+const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick, taskBoards, inviteLink }: BoardsParam) => {
   if (taskBoards.length === 0) {
     return (
       <div className="container">
-        <h2 className="heading text-center">Create your first task board</h2>
+        <h2 className="heading">Create your first task board</h2>
         <Button label="Create new board" onClick={onAddClick} />
       </div>
     );
   }
   if (typeof taskBoards[0] === "string") return <LoadData loadFunction={loadFunction} />;
   return (
-    <div className="container">
+    <div className="flex-wrap">
       {taskBoards.map((board) => (
         <div key={board.uid} className="btn-board-task highlight">
           <h4 className="heading">{board.name || "no name"}</h4>
@@ -33,8 +32,8 @@ const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick }: Boar
             <CopyButton data={`${homeUrl}${board.boardLink}`} label="" />
           </div>
           <div className="flex">
-            <p>Inviation link</p>
-            <CopyButton data={`${serverUrl}/app/${appId}/task-board/${board.boardId}/invite`} />
+            <p>Invite link</p>
+            <CopyButton data={`${serverUrl}${inviteLink}/${board.boardId}/invite`} />
           </div>
           <Button
             label="Inviation requests"

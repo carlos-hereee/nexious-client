@@ -1,16 +1,19 @@
-import { useContext } from "react";
-import { AppContext } from "@context/app/AppContext";
+// import { useContext } from "react";
+// import { AppContext } from "@context/app/AppContext";
 import { createTaskBoardForm } from "@data/forms.json";
 import UpdateForm from "../UpdateForm";
 
-const CreateTaskBoard = () => {
-  const { createTaskBoard, appId } = useContext(AppContext);
+interface P {
+  onSubmit: (values: { [key: string]: string }) => void;
+}
+const CreateTaskBoard = ({ onSubmit }: P) => {
+  // const { createTaskBoard, appId } = useContext(AppContext);
   return (
     <UpdateForm
       initialValues={createTaskBoardForm.initialValues}
       labels={createTaskBoardForm.labels}
       placeholders={createTaskBoardForm.labels}
-      onSubmit={(values) => createTaskBoard({ values, appId })}
+      onSubmit={onSubmit}
     />
   );
 };

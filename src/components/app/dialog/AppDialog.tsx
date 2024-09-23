@@ -19,7 +19,7 @@ import ViewTaskBoardRequests from "../ViewTaskBoardRequests";
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deleteApp, deletePage } = useContext(AdminContext);
-  const { appId, requestStatus, setRequestStatus, activePage } = useContext(AppContext);
+  const { appId, requestStatus, setRequestStatus, activePage, createTaskBoard } = useContext(AppContext);
 
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
@@ -42,7 +42,7 @@ const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
       {/* task board */}
       {status === "phase-view-event" && <ViewTaskBoardRequests />}
       {status === "phase-edit-task-event" && <EditTaskBoard />}
-      {status === "phase-add-task-event" && <CreateTaskBoard />}
+      {status === "phase-add-task-event" && <CreateTaskBoard onSubmit={(values) => createTaskBoard({ values, appId })} />}
       {/* map */}
       {status === "phase-add-event" && <CreateMap />}
       {status === "confirm-cancel" && <ConfirmRemovals onConfirm={() => deleteApp(appId)} />}

@@ -11,7 +11,7 @@ import ViewMaps from "../ViewMaps";
 import AppLimitations from "../AppLimitations";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
-  const { appUrl, locale, getAllTaskBoard, setActiveBoard, setActivePage, appId, pages } = useContext(AppContext);
+  const { appUrl, locale, getAllTaskBoard, setActiveBoard, setActivePage, appId, pages, taskBoards } = useContext(AppContext);
   const { isPlatformOwner } = useContext(AuthContext);
   const { limitList, limitations } = useAccountLimitations();
   // require key variable
@@ -64,6 +64,8 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
       <SettingsCard title="Taskboard" onAddClick={() => updatePhase("phase-add-task-event")}>
         <ViewBoards
           onAddClick={() => updatePhase("phase-add-task-event")}
+          taskBoards={taskBoards}
+          inviteLink={`/app/${appId}/task-board`}
           loadFunction={() => getAllTaskBoard({ appId })}
           onEditClick={handleBoardEditClick}
           onViewClick={handleBoardViewClick}

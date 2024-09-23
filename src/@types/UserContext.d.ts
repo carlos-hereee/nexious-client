@@ -1,4 +1,5 @@
 declare module "user-context" {
+  import { Boards } from "app-types";
   import { IEvent } from "app-calendar";
   import { Post } from "media-context";
   import { USER_ACTIONS } from "@actions/UserActions";
@@ -12,7 +13,7 @@ declare module "user-context" {
   }
   export interface UserBoards {
     boardUid: string;
-    boardId: string;
+    boardId: Boards;
     role: string;
   }
   export interface UserStateProps {
@@ -28,6 +29,7 @@ declare module "user-context" {
     addPost: (data: DUser) => void;
     setUserRequestStatus: (data: string) => void;
     setUserData: (user: UserSchema) => void;
+    createTaskBoard: (user: { [x: string]: string }) => void;
   }
 
   export interface UserDispatchProps {
@@ -35,6 +37,7 @@ declare module "user-context" {
     updateUser?: (user: UserSchema) => void;
     post?: Post;
     user?: UserSchema;
+    values?: { [x: string]: string };
   }
 
   export type UserActionProps =
