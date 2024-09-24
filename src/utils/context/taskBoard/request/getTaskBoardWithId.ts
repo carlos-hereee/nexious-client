@@ -1,12 +1,13 @@
-import { APP_ACTIONS } from "@actions/AppActions";
+import { TASK_ACTIONS } from "@actions/TaskBoardAction";
 import { axiosAuth } from "@axios/axiosAuth";
 import { isDev } from "@config";
 import { TaskBoardDispatch } from "task-board-context";
 
 export const getTaskBoardWithId = async ({ appId, dispatch }: TaskBoardDispatch) => {
   try {
-    const { data } = await axiosAuth.get(`/app/${appId}/task-board`);
-    dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: data });
+    const route = appId ? `/task-board/app/${appId}` : "/task-board";
+    const { data } = await axiosAuth.get(route);
+    dispatch({ type: TASK_ACTIONS.SET_TASK_BOARD, payload: data });
   } catch (error) {
     if (isDev) console.log("error", error);
   }
@@ -14,16 +15,18 @@ export const getTaskBoardWithId = async ({ appId, dispatch }: TaskBoardDispatch)
 
 export const getTaskBoardWithBoardId = async ({ appId, dispatch, id }: TaskBoardDispatch) => {
   try {
-    const { data } = await axiosAuth.get(`/app/${appId}/task-board/${id}`);
-    dispatch({ type: APP_ACTIONS.SET_APP_TASKS, payload: data });
+    const route = appId ? `/task-board/app/${appId}` : `/task-board/${id}`;
+    const { data } = await axiosAuth.get(route);
+    dispatch({ type: TASK_ACTIONS.SET_TASK_BOARD, payload: data });
   } catch (error) {
     if (isDev) console.log("error", error);
   }
 };
 export const getAllAppTaskBoards = async ({ appId, dispatch }: TaskBoardDispatch) => {
   try {
-    const { data } = await axiosAuth.get(`/app/${appId}/task-board/all`);
-    dispatch({ type: APP_ACTIONS.SET_APP_BOARD_TASKS, payload: data });
+    const route = appId ? `/task-board/all/app/${appId}` : "/task-board/all";
+    const { data } = await axiosAuth.get(route);
+    dispatch({ type: TASK_ACTIONS.SET_TASK_BOARD, payload: data });
   } catch (error) {
     if (isDev) console.log("error", error);
   }

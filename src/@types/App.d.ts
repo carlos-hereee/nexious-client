@@ -7,7 +7,7 @@ declare module "app-types" {
   export interface ChildProps {
     children: React.ReactNode;
   }
-
+  export type RequestStatus = "IDLE" | "SUCCESS" | "ERROR";
   export interface AppDetailsProps {
     locale?: string;
     appName: string;

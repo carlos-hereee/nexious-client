@@ -1,15 +1,21 @@
 import { UserContext } from "@context/user/UserContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Dialog } from "nexious-library";
 import CreateTaskBoard from "@components/app/forms/app/CreateTaskBoard";
 import ViewBoards from "@components/app/ViewBoards";
-// import { Boards, UserData } from "app-types";
-// import ViewTaskBoardRequests from "@components/app/ViewTaskBoardRequests";
-// import EditTaskBoard from "@components/app/forms/app/EditTaskBoard";
+import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 
 const UserTaskBoard = () => {
-  const { boards, createTaskBoard } = useContext(UserContext);
+  const { boards } = useContext(UserContext);
+  const { createTaskBoard, requestStatus, setRequestStatus } = useContext(TaskBoardContext);
   const [active, setActive] = useState("");
+
+  useEffect(() => {
+    if (requestStatus === "SUCCESS") {
+      setActive("");
+      setRequestStatus("IDLE");
+    }
+  }, [requestStatus]);
   // TODO: User taskboard
   // const [activeBoard, setBoard] = useState<Boards | undefined>();
 

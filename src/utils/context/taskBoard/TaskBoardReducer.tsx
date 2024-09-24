@@ -5,6 +5,10 @@ export const reducer = (state: TaskBoardStateProps, action: AppActionProps): Tas
   switch (action.type) {
     case TASK_ACTIONS.IS_LOADING:
       return { ...state, isLoading: action.payload };
+    case TASK_ACTIONS.SET_REQUEST_STATUS:
+      return { ...state, requestStatus: action.payload };
+    case TASK_ACTIONS.SET_TASK_BOARD:
+      return { ...state, taskBoard: action.payload };
 
     default:
       return state;

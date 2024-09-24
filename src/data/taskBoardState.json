@@ -1,0 +1,14 @@
+{
+  "isLoading": false,
+  "taskBoard": {
+    "memberInvitations": [],
+    "members": [],
+    "lists": [],
+    "boardLink": "",
+    "description": "",
+    "name": "",
+    "ownerId": "",
+    "uid": "",
+    "boardId": ""
+  }
+}

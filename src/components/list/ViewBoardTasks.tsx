@@ -2,7 +2,6 @@ import AddBoardListTask from "@components/app/forms/boardTask/AddBoardListTask";
 import LoadData from "@components/app/LoadData";
 import ViewTask from "@components/app/ViewTask";
 import TaskCard from "@components/card/TaskCard";
-import { AppContext } from "@context/app/AppContext";
 import { AuthContext } from "@context/auth/AuthContext";
 import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 import { Button, Dialog, Loading } from "nexious-library";
@@ -11,17 +10,17 @@ import { Boards, Task, TaskList } from "task-board-context";
 
 type Phases = "idle" | "add-task" | "view-task";
 interface IViewTasks {
-  taskBoard: Boards | string;
+  appId?: string;
   loadFunction?: (id: string) => void;
 }
 interface IDrag {
   event: React.DragEvent<HTMLDivElement>;
   listId: string;
 }
-const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
+const ViewBoardTasks = ({ loadFunction, appId }: IViewTasks) => {
   const { theme } = useContext(AuthContext);
-  const { appId, requestStatus, setRequestStatus } = useContext(AppContext);
-  const { addBoardListTask, removeTaskFromList, setTaskBoard } = useContext(TaskBoardContext);
+  const { taskBoard, addBoardListTask, removeTaskFromList, setTaskBoard, requestStatus, setRequestStatus } =
+    useContext(TaskBoardContext);
   const [activeList, setList] = useState<TaskList>();
   const [activeTask, setTask] = useState<Task>();
   const [phase, setPhase] = useState<Phases>("idle");
@@ -88,20 +87,23 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
 
     // If the dragged card exists and the source list is valid
     if (draggedCard && draggedListId !== null) {
-      // Remove the card from the current list
+      // find target list
       const currentList = taskBoard.lists.filter((list) => list.listId === draggedListId);
-      const updatedCurrentList = currentList[0].tasks.filter((task) => task !== draggedCard);
+      if (currentList[0].listId !== listId) {
+        // Remove the card from the current list
+        const updatedCurrentList = currentList[0].tasks.filter((task) => task !== draggedCard);
 
-      // // Add the card to the destination list
-      const targetlist = taskBoard.lists.filter((list) => list.listId === listId);
-      const updatedTargetList = [...targetlist[0].tasks, draggedCard];
-      // // Update the lists
-      const updatedList = taskBoard.lists.map((list) => {
-        if (list.listId === draggedListId) return { ...list, tasks: updatedCurrentList };
-        if (list.listId === listId) return { ...list, tasks: updatedTargetList };
-        return list;
-      });
-      setTaskBoard({ board: { ...taskBoard, lists: updatedList }, appId });
+        // // Add the card to the destination list
+        const targetlist = taskBoard.lists.filter((list) => list.listId === listId);
+        const updatedTargetList = [...targetlist[0].tasks, draggedCard];
+        // // Update the lists
+        const updatedList = taskBoard.lists.map((list) => {
+          if (list.listId === draggedListId) return { ...list, tasks: updatedCurrentList };
+          if (list.listId === listId) return { ...list, tasks: updatedTargetList };
+          return list;
+        });
+        setTaskBoard({ board: { ...taskBoard, lists: updatedList } });
+      }
     }
   };
 
@@ -114,7 +116,7 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
         {taskBoard.lists.map((list) => (
           <div
             key={list.uid}
-            className={`board-list min-height-65 highlight${list.order >= 0 ? ` order-${list.order}` : ""}`}
+            className={`board-list highlight${list.order >= 0 ? ` order-${list.order}` : ""}`}
             onDragOver={(event) => event.preventDefault()}
             onDrop={(event) => handleDrop({ event, listId: list.listId })}
           >
@@ -143,7 +145,7 @@ const ViewBoardTasks = ({ loadFunction, taskBoard }: IViewTasks) => {
         <Dialog theme={`alt-${theme}`} onDialogClose={resetDialog}>
           {phase === "add-task" && (
             <AddBoardListTask
-              onSubmit={(values) => addBoardListTask({ values, appId, id: taskBoard.boardId, listId: activeList.listId })}
+              onSubmit={(values) => addBoardListTask({ values, id: taskBoard.boardId, listId: activeList.listId })}
             />
           )}
         </Dialog>

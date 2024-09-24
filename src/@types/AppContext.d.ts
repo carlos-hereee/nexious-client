@@ -1,4 +1,5 @@
 declare module "app-context" {
+  import { Boards } from "task-board-context";
   import { Post } from "media-context";
   import { IEvent } from "app-calendar";
   import { MerchProps } from "store-context";
@@ -9,7 +10,6 @@ declare module "app-context" {
     AdminIdProps,
     AppListProps,
     AppProps,
-    Boards,
     CalendarProps,
     ContactApp,
     MediaItemProp,
