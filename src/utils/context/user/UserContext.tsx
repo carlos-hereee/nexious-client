@@ -20,7 +20,7 @@ export const UserState = ({ children }: ChildProps) => {
   const setUserData = useCallback((user: UserSchema) => updateUserData({ dispatch, user }), []);
   const createTaskBoard = useCallback((values: { [x: string]: string }) => addTaskBoard({ dispatch, values }), []);
 
-  const storeValues = useMemo(() => {
+  const userValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       userRequestStatus: state.userRequestStatus,
@@ -33,5 +33,5 @@ export const UserState = ({ children }: ChildProps) => {
       createTaskBoard,
     };
   }, [state.isLoading, state.userRequestStatus, state.calendarEvents, state.boards]);
-  return <UserContext.Provider value={storeValues}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={userValues}>{children}</UserContext.Provider>;
 };

@@ -5,6 +5,7 @@ import { Hero, IconButton, Button } from "nexious-library";
 import { StoreContext } from "@context/store/StoreContext";
 import { AppContext } from "@context/app/AppContext";
 import { LogContext } from "@context/log/LogContext";
+import { UserContext } from "@context/user/UserContext";
 
 interface ActiveUserMenu {
   user: boolean;
@@ -30,6 +31,7 @@ const UserMenu = () => {
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
   const { appId, store } = useContext(AppContext);
+  const { calendarEvents } = useContext(UserContext);
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
   const [menus, setMenus] = useState<IUserMenu[]>([]);
   const navigate = useNavigate();
@@ -65,7 +67,12 @@ const UserMenu = () => {
     ];
     // if user is login
     if (accessToken) {
-      data.push({ name: "calendar", link: "/dashboard/calendar", icon: "booking" });
+      data.push({
+        name: "calendar",
+        link: "/dashboard/calendar",
+        icon: "booking",
+        ping: calendarEvents.filter((event) => event.isOpen).length,
+      });
       data.push({ name: "listCheck", link: "/dashboard/task-board", icon: "listCheck", iconName: "create-post" });
       // if app
       if (appId && page === "app") {

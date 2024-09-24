@@ -8,7 +8,6 @@ const UserCalendar = () => {
   const [value, setValue] = useState("");
   const [selectedDay, setSelectedDay] = useState<IEvent | undefined>();
 
-  console.log("calendarEvents :>> ", calendarEvents);
   useEffect(() => {
     // find event day
     const target = calendarEvents.filter((e) => e.date === value)[0];
