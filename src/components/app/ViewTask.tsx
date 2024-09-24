@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { AppContext } from "@context/app/AppContext";
 import TaskCard from "@components/card/TaskCard";
 import { TaskBoardContext } from "@context/taskBoard/TaskBoardContext";
 import { Task } from "task-board-context";
@@ -12,8 +11,7 @@ interface VTask {
   boardId: string;
 }
 const ViewTask = ({ task, boardId }: VTask) => {
-  const { appId, taskBoard } = useContext(AppContext);
-  const { addCommentTask, replyToComment, assignMemberToTask } = useContext(TaskBoardContext);
+  const { addCommentTask, replyToComment, assignMemberToTask, taskBoard } = useContext(TaskBoardContext);
 
   return (
     <div className="split-container">
@@ -21,8 +19,8 @@ const ViewTask = ({ task, boardId }: VTask) => {
         <TaskCard task={task} />
         <ViewComments
           comments={task.comments}
-          reply={(values) => addCommentTask({ values, appId, id: boardId, taskId: task.taskId })}
-          onMessageReply={(messageId, reply) => replyToComment({ messageId, reply, appId, taskId: task.taskId, id: boardId })}
+          reply={(values) => addCommentTask({ values, id: boardId, taskId: task.taskId })}
+          onMessageReply={(messageId, reply) => replyToComment({ messageId, reply, taskId: task.taskId, id: boardId })}
         />
       </div>
       <div className="container">
@@ -34,9 +32,7 @@ const ViewTask = ({ task, boardId }: VTask) => {
                 <IconButton
                   theme="btn-min required highlight"
                   icon={{ icon: "close" }}
-                  onClick={() =>
-                    assignMemberToTask({ id: taskBoard.boardId, appId, taskId: task.taskId, userId: u.userId, status: "remove" })
-                  }
+                  onClick={() => assignMemberToTask({ id: boardId, taskId: task.taskId, userId: u.userId, status: "remove" })}
                 />
                 <AvatarCard user={u} />
               </div>
@@ -51,7 +47,7 @@ const ViewTask = ({ task, boardId }: VTask) => {
                 .filter((m) => !task.assignedTo.some((u) => u.userId === m.userId))
                 .map((m) => ({ uid: m.userId, value: m.userId, label: m.name }))}
               onChange={(userId: string) =>
-                assignMemberToTask({ id: taskBoard.boardId, appId, taskId: task.taskId, userId, status: "assign" })
+                assignMemberToTask({ id: taskBoard.boardId, taskId: task.taskId, userId, status: "assign" })
               }
             />
           ) : (
