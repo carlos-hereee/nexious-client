@@ -71,6 +71,7 @@ const UserMenu = () => {
         name: "calendar",
         link: "/dashboard/calendar",
         icon: "booking",
+        iconName: "your calendar",
         ping: calendarEvents.filter((event) => event.isOpen).length,
       });
       data.push({ name: "listCheck", link: "/dashboard/task-board", icon: "listCheck", iconName: "create-post" });
