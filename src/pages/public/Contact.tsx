@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
-import { Button, Hero, ReadMore } from "nexious-library";
+import { Navigation, ReadMore } from "nexious-library";
 import { userMenuContacts, nexiousContact } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { Message } from "app-types";
@@ -8,6 +8,7 @@ import { UserContact } from "auth-context";
 import { removeArrayDups, sortByABCRemoveDups } from "@app/sortByABC";
 import MessageBubble from "@components/card/MessageBubble";
 import MessageBox from "@components/app/forms/MessageBox";
+import AvatarCardButton from "@components/card/AvatarCardButton";
 
 interface MenuContact {
   messages: string;
@@ -48,32 +49,25 @@ const Contact = () => {
   return (
     <div className="split-container z-1">
       <div className="container y-overflow">
-        <div className="flex-g">
-          {userMenuContacts.map((c) => (
-            <Button
-              key={c.id}
-              label={c.label}
-              onClick={() => setMenuContacts(c.value as keyof MenuContact)}
-              theme={activeMenu === c.value ? "btn-main btn-active" : "btn-main"}
-            />
-          ))}
-        </div>
+        <Navigation
+          menus={userMenuContacts}
+          theme="navigation-bar"
+          onClick={setMenuContacts}
+          active={activeMenu}
+          activeTheme="btn-main btn-active"
+        />
         {activeMenu === "messages" && (
           <div className="container">
             {messageList.length > 0 ? (
               messageList.map((contact) => (
-                <Button
+                <AvatarCardButton
                   key={contact.uid}
-                  theme={contact.uid === thread?.uid ? "btn-row highlight btn-active" : "btn-main btn-row highlight"}
+                  user={contact.user}
                   onClick={() => setThread(contact)}
+                  theme={contact.uid === thread?.uid ? "btn-messages highlight btn-active" : "btn-main btn-messages highlight"}
                 >
-                  {contact.user.avatar ? (
-                    <Hero hero={{ url: contact.user.avatar, alt: `${contact.user.name} avatar` }} theme="hero-contact" />
-                  ) : (
-                    <strong>{contact.user.name || "No name"}</strong>
-                  )}
                   <ReadMore data={contact.data} />
-                </Button>
+                </AvatarCardButton>
               ))
             ) : (
               <p>All caught up</p>
@@ -84,14 +78,16 @@ const Contact = () => {
           <div className="container">
             <h2 className="heading">Contacts: </h2>
             {contactList.map((c) => (
-              <Button
+              <AvatarCardButton
                 key={c.userId}
+                user={c}
                 onClick={() => setMessageRecipient(c)}
-                theme={c.userId === messageRecipient?.userId ? "contact-button btn-active" : "contact-button btn-main"}
+                theme={
+                  c.userId === messageRecipient?.userId ? "btn-messages highlight btn-active" : "btn-main btn-messages highlight"
+                }
               >
-                <Hero hero={{ url: c.avatar, alt: c.name }} theme="hero-contact" />
-                {c.name}
-              </Button>
+                {c.name || "No-name"}
+              </AvatarCardButton>
             ))}
           </div>
         )}
