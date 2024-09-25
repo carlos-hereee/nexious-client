@@ -5,7 +5,7 @@ import { AppContext } from "@context/app/AppContext";
 import { AppValues } from "app-forms";
 import { formatInitialValues } from "@app/formatInitialFormValues";
 import { currencyList } from "@data/data.json";
-import { storeForm } from "@data/forms.json";
+import { storeForm } from "@data/forms/store.json";
 
 const BuildStore = () => {
   const { addStore, isLoading } = useContext(AdminContext);

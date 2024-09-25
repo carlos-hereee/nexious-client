@@ -70,7 +70,6 @@ declare module "app-admin" {
     heroForm: FormProps;
     newsletterForm: FormProps;
     socialMediaForm: FormProps;
-    merchForm: FormProps;
     ctaForm: FormProps;
     mediaEntryForm: FormProps;
     calendarBookingForm: FormProps;

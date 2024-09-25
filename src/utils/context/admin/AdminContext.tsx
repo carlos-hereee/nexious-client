@@ -129,7 +129,6 @@ export const AdminState = ({ children }: ChildProps) => {
       mediaEntryForm: state.mediaEntryForm,
       themeList: state.themeList,
       stripeForm: state.stripeForm,
-      merchForm: state.merchForm,
       languageList: state.languageList,
       iconList: state.iconList,
       webhooks: state.webhooks,

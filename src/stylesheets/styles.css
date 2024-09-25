@@ -279,6 +279,12 @@ footer {
   max-width: 450px;
   flex: 1;
 }
+.btn-payment {
+  z-index: 1;
+}
+.btn-main {
+  z-index: 1;
+}
 .hero-contact {
   border-radius: 100%;
   aspect-ratio: 1/1;
@@ -288,7 +294,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  max-height: 40vh;
+  max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1rem 0;

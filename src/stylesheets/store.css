@@ -42,6 +42,7 @@
 .btn-row {
   width: 100%;
   min-width: 100%;
+  text-align: left;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   justify-content: center;

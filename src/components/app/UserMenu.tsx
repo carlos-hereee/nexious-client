@@ -30,11 +30,12 @@ const UserMenu = () => {
   const { accessToken, user, subscribe, subscriptions, notifications, messages } = useContext(AuthContext);
   const { cart } = useContext(StoreContext);
   const { page } = useContext(LogContext);
-  const { appId, store } = useContext(AppContext);
+  const { appId } = useContext(AppContext);
   const { calendarEvents } = useContext(UserContext);
   const [activeMenu, setActiveMenu] = useState<ActiveUserMenu>({ user: false, checkout: false, calendar: false });
   const [menus, setMenus] = useState<IUserMenu[]>([]);
   const navigate = useNavigate();
+  const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
 
   const handleClick = (m: IUserMenu) => {
     setActiveMenu({ ...activeMenu, [m.name]: !activeMenu[m.name] });
@@ -43,19 +44,13 @@ const UserMenu = () => {
   };
 
   useEffect(() => {
-    const merchCount = cart.reduce((currentTotal, currentValue) => currentTotal + currentValue.merch.length, 0);
     // reset menus to remove prevoius app data from memory
     setMenus([]);
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: accessToken ? "/dashboard" : "/", icon: "user" },
       { name: "feed", link: "feed", icon: "app", iconName: "view-posts" },
-      {
-        name: "checkout",
-        link: store && store.storeId ? `/store/${store.storeLink}` : "/checkout",
-        icon: "checkout",
-        ping: merchCount > 0 ? merchCount : undefined,
-      },
+      { name: "checkout", link: "/checkout", icon: "checkout", ping: merchCount > 0 ? merchCount : undefined },
     ];
     // if user is login
     if (accessToken) {
@@ -82,7 +77,7 @@ const UserMenu = () => {
       }
     }
     setMenus(data);
-  }, [appId, page, subscriptions, notifications, messages]);
+  }, [appId, page, subscriptions, notifications, messages, merchCount]);
 
   return (
     <section className="user-menu">

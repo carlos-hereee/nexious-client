@@ -37,7 +37,7 @@ const StoreContainer = ({ updatePhase }: SettingsContainer) => {
         active="Store"
         onAddClick={() => updatePhase("phase-three")}
         onEditClick={() => updatePhase("phase-two")}
-        onRemoveClick={() => updatePhase("confirm-cancel")}
+        // onRemoveClick={() => updatePhase("confirm-cancel")}
         labels={{ onAddClick: "Add merchandise", onRemoveClick: "Delete Store", onEditClick: "Edit store details" }}
       >
         <ItemDetail label="Store url:" labelLayout="bolden">

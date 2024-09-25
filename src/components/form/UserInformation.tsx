@@ -35,7 +35,7 @@ const UserInformation = ({ errorMessage, user, setShow, show }: UserInformationP
     setShow(false);
   };
   return (
-    <div className="container" id="client-information">
+    <div className="container z-1" id="client-information">
       <h3 className="heading">User information</h3>
       {errorMessage && <strong className="error-message text-center">{errorMessage}</strong>}
       <Form
