@@ -6,9 +6,10 @@ import { AppValues } from "app-forms";
 import { Form } from "nexious-library";
 import { useContext, useState } from "react";
 import { MerchProps } from "store-context";
+import { merchForm } from "@data/forms/store.json";
 
 const EditMerch = (props: { initValues: MerchProps }) => {
-  const { merchForm, editMerch, deleteMerchItem, sectionEntries } = useContext(AdminContext);
+  const { editMerch, deleteMerchItem, sectionEntries } = useContext(AdminContext);
   const { appId } = useContext(AppContext);
   const { initValues } = props;
   const [show, setShow] = useState(false);
