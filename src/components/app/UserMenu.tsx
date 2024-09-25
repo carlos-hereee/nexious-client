@@ -49,14 +49,6 @@ const UserMenu = () => {
     // init menu
     const data: IUserMenu[] = [
       { name: "home", link: accessToken ? "/dashboard" : "/", icon: "user" },
-      {
-        name: "bell",
-        link: "/dashboard/notifications",
-        icon: "bell",
-        iconName: "notifications",
-        ping: notifications.length || undefined,
-      },
-      { name: "message", link: "contact", icon: "comment", iconName: "messages", ping: messages.length || undefined },
       { name: "feed", link: "feed", icon: "app", iconName: "view-posts" },
       {
         name: "checkout",
@@ -67,6 +59,15 @@ const UserMenu = () => {
     ];
     // if user is login
     if (accessToken) {
+      data.push({
+        name: "bell",
+        link: "/dashboard/notifications",
+        icon: "bell",
+        iconName: "notifications",
+        ping: notifications.length || undefined,
+      });
+      data.push({ name: "message", link: "contact", icon: "comment", iconName: "messages", ping: messages.length || undefined });
+
       data.push({
         name: "calendar",
         link: "/dashboard/calendar",

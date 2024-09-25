@@ -13,7 +13,7 @@ const ViewPostFeed = () => {
   return (
     <div className="container">
       {accessToken && <Button theme="btn-add-post highlight" label="Create post" onClick={() => navigate("/feed/post")} />}
-      <ViewPosts posts={posts} />
+      <ViewPosts posts={posts} onCreatePostClick={() => navigate("/feed/post")} />
     </div>
   );
 };
