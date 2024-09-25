@@ -42,7 +42,7 @@ const UserTaskBoard = () => {
         onAddClick={() => setActive("add-board")}
         // inviteLink="/user/task-board"
         // onEditClick={handleBoardEditClick}
-        // onViewClick={handleBoardViewClick}
+        // onViewClick={()=> va}
         taskBoards={boards.map((b) => b.boardId)}
       />
       {active && (

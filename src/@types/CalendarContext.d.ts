@@ -22,6 +22,8 @@ declare module "app-calendar" {
     uid: string;
     userId: string;
     username: string;
+    name: string;
+    avatar: string;
     email: string;
     phone: number;
   }

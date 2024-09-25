@@ -60,7 +60,7 @@ const ViewBoardTasks = ({ loadFunction, appId }: IViewTasks) => {
   }, [requestStatus]);
 
   if (typeof taskBoard === "string") return <LoadData id={taskBoard} loadFunction={loadFunction} />;
-  if (!taskBoard.boardId) return <h2 className="heading text-center">No task board selected</h2>;
+  if (!taskBoard.boardId) return <Loading />;
 
   const handleAddTaskClick = (l: TaskList) => {
     setList(l);
