@@ -42,6 +42,7 @@ export const TaskBoardState = ({ children }: ChildProps) => {
       isLoading: state.isLoading,
       requestStatus: state.requestStatus,
       taskBoard: state.taskBoard,
+      taskBoards: state.taskBoards,
       createTaskBoard,
       getTaskBoard,
       getAllTaskBoard,
@@ -57,6 +58,6 @@ export const TaskBoardState = ({ children }: ChildProps) => {
       assignMemberToTask,
       setRequestStatus,
     };
-  }, [state.isLoading, state.taskBoard, state.requestStatus]);
+  }, [state.isLoading, state.taskBoard, state.taskBoards, state.requestStatus]);
   return <TaskBoardContext.Provider value={taskBoardValues}>{children}</TaskBoardContext.Provider>;
 };

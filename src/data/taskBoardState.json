@@ -1,5 +1,6 @@
 {
   "isLoading": false,
+  "taskBoards": [],
   "taskBoard": {
     "memberInvitations": [],
     "members": [],

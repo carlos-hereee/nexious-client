@@ -41,6 +41,7 @@ const UserTaskBoard = () => {
       <ViewBoards
         onAddClick={() => setActive("add-board")}
         // inviteLink="/user/task-board"
+        // TODO: if user has permission allow edit click
         // onEditClick={handleBoardEditClick}
         // onViewClick={()=> va}
         taskBoards={boards.map((b) => b.boardId)}

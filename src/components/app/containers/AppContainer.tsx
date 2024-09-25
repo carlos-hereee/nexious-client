@@ -1,5 +1,5 @@
 import { PageProps, SettingsContainer } from "app-types";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { ItemDetail, CopyButton } from "nexious-library";
 import { useAccountLimitations } from "@hooks/useAccountLimitations";
@@ -13,13 +13,16 @@ import ViewMaps from "../ViewMaps";
 import AppLimitations from "../AppLimitations";
 
 const AppContainer = ({ updatePhase }: SettingsContainer) => {
-  const { appUrl, locale, setActivePage, appId, pages, taskBoards } = useContext(AppContext);
-  const { getAllTaskBoard, setActiveBoard } = useContext(TaskBoardContext);
+  const { appUrl, locale, setActivePage, appId, pages } = useContext(AppContext);
+  const { getAllTaskBoard, setActiveBoard, taskBoards } = useContext(TaskBoardContext);
   const { isPlatformOwner } = useContext(AuthContext);
   const { limitList, limitations } = useAccountLimitations();
   // require key variable
   if (!updatePhase) throw Error("updatePhase is required");
 
+  useEffect(() => {
+    if (taskBoards.length === 0) getAllTaskBoard({ appId });
+  }, []);
   const handleBoardEditClick = (value: Boards) => {
     updatePhase("phase-edit-task-event");
     setActiveBoard(value);
@@ -69,7 +72,6 @@ const AppContainer = ({ updatePhase }: SettingsContainer) => {
           onAddClick={() => updatePhase("phase-add-task-event")}
           taskBoards={taskBoards}
           inviteLink={`/app/${appId}/task-board`}
-          loadFunction={() => getAllTaskBoard({ appId })}
           onEditClick={handleBoardEditClick}
           onViewClick={handleBoardViewClick}
         />

@@ -20,8 +20,8 @@ import ViewTaskBoardRequests from "../ViewTaskBoardRequests";
 const AppDialog = ({ onClose, status, updateStatus }: DialogProps) => {
   const { theme } = useContext(AuthContext);
   const { deleteApp, deletePage } = useContext(AdminContext);
-  const { appId, requestStatus, setRequestStatus, activePage, taskBoard } = useContext(AppContext);
-  const { createTaskBoard, taskBoardInvitation, editTaskBoard } = useContext(TaskBoardContext);
+  const { appId, requestStatus, setRequestStatus, activePage } = useContext(AppContext);
+  const { createTaskBoard, taskBoardInvitation, editTaskBoard, taskBoard } = useContext(TaskBoardContext);
   useEffect(() => {
     if (requestStatus === "SUCCESS") {
       setRequestStatus("IDLE");

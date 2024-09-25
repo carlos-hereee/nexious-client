@@ -9,6 +9,8 @@ export const reducer = (state: TaskBoardStateProps, action: AppActionProps): Tas
       return { ...state, requestStatus: action.payload };
     case TASK_ACTIONS.SET_TASK_BOARD:
       return { ...state, taskBoard: action.payload };
+    case TASK_ACTIONS.SET_TASK_BOARDS:
+      return { ...state, taskBoards: action.payload };
 
     default:
       return state;

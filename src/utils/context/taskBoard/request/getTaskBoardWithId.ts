@@ -24,9 +24,9 @@ export const getTaskBoardWithBoardId = async ({ appId, dispatch, id }: TaskBoard
 };
 export const getAllAppTaskBoards = async ({ appId, dispatch }: TaskBoardDispatch) => {
   try {
-    const route = appId ? `/task-board/all/app/${appId}` : "/task-board/all";
+    const route = appId ? `/task-board/all/${appId}` : "/task-board/all";
     const { data } = await axiosAuth.get(route);
-    dispatch({ type: TASK_ACTIONS.SET_TASK_BOARD, payload: data });
+    dispatch({ type: TASK_ACTIONS.SET_TASK_BOARDS, payload: data });
   } catch (error) {
     if (isDev) console.log("error", error);
   }

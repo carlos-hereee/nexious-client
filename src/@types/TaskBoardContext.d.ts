@@ -57,6 +57,7 @@ declare module "task-board-context" {
     isLoading: boolean;
     requestStatus: RequestStatus;
     taskBoard: Boards;
+    taskBoards: Boards[];
   }
   // task board context schema
   export interface TaskBoardSchema extends TaskBoardStateProps {
@@ -92,5 +93,6 @@ declare module "task-board-context" {
   export type AppActionProps =
     | { type: TASK_ACTIONS.IS_LOADING; payload: boolean }
     | { type: TASK_ACTIONS.SET_REQUEST_STATUS; payload: RequestStatus }
-    | { type: TASK_ACTIONS.SET_TASK_BOARD; payload: Boards };
+    | { type: TASK_ACTIONS.SET_TASK_BOARD; payload: Boards }
+    | { type: TASK_ACTIONS.SET_TASK_BOARDS; payload: Boards[] };
 }
