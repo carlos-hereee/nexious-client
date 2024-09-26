@@ -164,7 +164,6 @@ declare module "store-context" {
     from?: OrderOptions;
   }
   export interface StoreSchema extends StoreStateProps {
-    updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
     onCheckOutSession: (cart: StoreCheckout) => void;
     onStoreCheckout: (data: StoreCheckout) => void;
@@ -172,14 +171,12 @@ declare module "store-context" {
     manageBilling: (sessionId: string) => void;
     orderTracker: (orderId: TrackOrder) => void;
     setLoading: (state: boolean) => void;
-    setOrder: (state?: OrderSchema) => void;
     setTrackOrder: (state?: OrderSchema) => void;
     getBalance: (appId: string) => void;
     handlePayouts: (data: PayoutAmmount) => void;
     getMerch: (merchId: string) => void;
     getAccount: (appId: string) => void;
     postReview: (data: PostReview) => void;
-    setMerch: (data?: MerchProps) => void;
     replyReviewMessage: (data: PostReview) => void;
   }
   export interface StoreDispatchProps {

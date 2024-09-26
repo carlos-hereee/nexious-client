@@ -10,8 +10,8 @@ import { CheckoutContext } from "@context/checkout/CheckoutContext";
 
 const MerchPage = () => {
   const { inventory, store } = useContext(AppContext);
-  const { updateCart, postReview, setMerch, merch, getMerch, replyReviewMessage } = useContext(StoreContext);
-  const { cart, addToCart } = useContext(CheckoutContext);
+  const { postReview, merch, getMerch, replyReviewMessage } = useContext(StoreContext);
+  const { cart, addToCart, setMerch, updateCart } = useContext(CheckoutContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);

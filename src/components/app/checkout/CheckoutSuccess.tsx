@@ -2,11 +2,13 @@ import { StoreContext } from "@context/store/StoreContext";
 import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { OrderSchema } from "store-context";
+import { CheckoutContext } from "@context/checkout/CheckoutContext";
 import SuccessDisplay from "./SuccessDisplay";
 import ContinueShopping from "./ContinueShopping";
 
 const CheckoutSuccess = () => {
-  const { confirmIntent, stripeConfirmation, order, cart, updateCart, setOrder } = useContext(StoreContext);
+  const { confirmIntent, stripeConfirmation, order, cart } = useContext(StoreContext);
+  const { updateCart, setOrder } = useContext(CheckoutContext);
   const { search } = useLocation();
 
   const [orderData, setOrderData] = useState<OrderSchema | undefined>();

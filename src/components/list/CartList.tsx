@@ -1,8 +1,8 @@
 import { CartProps, MerchProps } from "store-context";
 import { Cart, Button } from "nexious-library";
-import { StoreContext } from "@context/store/StoreContext";
 import { useContext } from "react";
 import { formatTotal } from "@app/formatPenniesToDollars";
+import { CheckoutContext } from "@context/checkout/CheckoutContext";
 
 type Menu = "All" | "Online" | "In store";
 interface CartListProps {
@@ -16,7 +16,7 @@ interface CartListProps {
 }
 
 const CartList = ({ active, storeIdx, setTotal, setActiveNav, activeNav, navigation, merch }: CartListProps) => {
-  const { updateCart, cart } = useContext(StoreContext);
+  const { updateCart, cart } = useContext(CheckoutContext);
 
   const handleRemove = (merchandise: MerchProps) => {
     // avoid mutating values

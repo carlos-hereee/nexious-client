@@ -2,10 +2,11 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import checkoutState from "@data/checkoutState.json";
 import { ChildProps } from "app-types";
 import { CheckoutSchema, CheckoutValues } from "checkout-context";
+import { CartProps, MerchProps, OrderSchema } from "store-context";
+import { CHECKOUT_ACTIONS } from "@actions/CheckoutActions";
 
 import { reducer } from "./CheckoutReducer";
 import { onAddToCart } from "./dispatch/onAddToCart";
-// import { onAddToCart } from "./dispatch/onAddToCart";
 // import { requestSecret } from "./request/requestSecret";
 // import { checkOutSession } from "./request/checkOutSession";
 // import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
@@ -25,11 +26,11 @@ export const CheckoutState = ({ children }: ChildProps) => {
 
   const addToCart = useCallback((data: CheckoutValues) => onAddToCart({ dispatch, ...data }), []);
 
-  // const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
-  // const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
-  // const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
-  // const setMerch = useCallback((data?: MerchProps) => dispatch({ type: STORE_ACTIONS.SET_MERCH, payload: data }), []);
-  // const setTrackOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_TRACK_ORDER, payload: data }), []);
+  const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: CHECKOUT_ACTIONS.UPDATE_CART, payload: cart }), []);
+  const setLoading = useCallback((loading: boolean) => dispatch({ type: CHECKOUT_ACTIONS.IS_LOADING, payload: loading }), []);
+  const setMerch = useCallback((data: MerchProps) => dispatch({ type: CHECKOUT_ACTIONS.SET_MERCH, payload: data }), []);
+  const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: CHECKOUT_ACTIONS.SET_ORDER, payload: data }), []);
+  // const setTrackOrder = useCallback((data?: OrderSchema) => dispatch({ type: CHECKOUT_ACTIONS.SET_TRACK_ORDER, payload: data }), []);
 
   // const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
   // // stripe checkout session
@@ -42,31 +43,23 @@ export const CheckoutState = ({ children }: ChildProps) => {
   // const getBalance = useCallback((appId: string) => getStripeBalance({ dispatch, appId }), []);
   // const handlePayouts = useCallback((data: PayoutAmmount) => managePayouts({ dispatch, ...data }), []);
 
-  // const updateAccount = useCallback((config: StripeConfig) => {
-  //   updateStripeAccount({ dispatch, config });
-  // }, []);
-  const storeValues = useMemo(() => {
+  const checkoutValues = useMemo(() => {
     return {
       isLoading: state.isLoading,
       cart: state.cart,
       error: state.error,
-      // trackOrder: state.trackOrder,
-      // order: state.order,
-      // location: state.location,
-      // location2: state.location2,
+      order: state.order,
       merch: state.merch,
-      stripeSecret: state.stripeSecret,
-      // stripeConfirmation: state.stripeConfirmation,
-      // stripeConfig: state.stripeConfig,
-      // stripeBalance: state.stripeBalance,
       addToCart,
-      // updateCart,
+      updateCart,
+      setLoading,
+      setMerch,
+      setOrder,
       // submitOrder,
       // onCheckOutSession,
       // confirmIntent,
       // onStoreCheckout,
       // setLoading,
-      // setOrder,
       // getBalance,
       // handlePayouts, // stripe account
       // getAccount,
@@ -95,7 +88,7 @@ export const CheckoutState = ({ children }: ChildProps) => {
       // setTotal: (a) => setTotal(dispatch, a),
     };
   }, [state.isLoading, state.cart]);
-  return <CheckoutContext.Provider value={storeValues}>{children}</CheckoutContext.Provider>;
+  return <CheckoutContext.Provider value={checkoutValues}>{children}</CheckoutContext.Provider>;
 };
 
 // return (

@@ -4,7 +4,6 @@ import { ChildProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/StoreActions";
 import {
   CartProps,
-  MerchProps,
   OrderSchema,
   StoreSchema,
   StoreCheckout,
@@ -27,30 +26,12 @@ import { trackCheckoutOrder } from "./request/trackCheckoutOrder";
 import { addReview } from "./request/addReview";
 import { getMerchWithId } from "./request/getMerchWithId";
 import { addReviewMessage } from "./request/addReviewMessage";
-// import { updateOrder } from "../admin/requests/store/updateOder";
-// import { AppContext } from "../app/AppContext";
-// import { bookEvent } from "./helpers/bookEvent";
-// import { filter } from "./helpers/filter";
-// import { addToBooked } from "./helpers/addToBooked";
-// import { addToCart } from "./helpers/addToCart";
-// import { setTotal } from "./helpers/setTotal";
-// import { bookingRequired } from "./helpers/BookingRequired";
-// import { setIsUserReq } from "./helpers/setIsUserReq";
-// import { setActive } from "./helpers/setActive";
-// import { updateServices } from "./helpers/updateServices";
 
 export const StoreContext = createContext<StoreSchema>({} as StoreSchema);
 export const StoreState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, storeState);
 
-  // const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
-  //   onAddToCart({ dispatch, cart, merch, store });
-  // }, []);
-
-  const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
-  const setOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_STORE_ORDER, payload: data }), []);
-  const setMerch = useCallback((data?: MerchProps) => dispatch({ type: STORE_ACTIONS.SET_MERCH, payload: data }), []);
   const setTrackOrder = useCallback((data?: OrderSchema) => dispatch({ type: STORE_ACTIONS.SET_TRACK_ORDER, payload: data }), []);
 
   const submitOrder = useCallback((cart: CartProps[]) => requestSecret({ cart, dispatch }), []);
@@ -86,13 +67,11 @@ export const StoreState = ({ children }: ChildProps) => {
       stripeConfig: state.stripeConfig,
       stripeBalance: state.stripeBalance,
       // addToCart,
-      updateCart,
       submitOrder,
       onCheckOutSession,
       confirmIntent,
       onStoreCheckout,
       setLoading,
-      setOrder,
       getBalance,
       handlePayouts, // stripe account
       getAccount,
@@ -100,7 +79,6 @@ export const StoreState = ({ children }: ChildProps) => {
       orderTracker,
       setTrackOrder,
       postReview,
-      setMerch,
       getMerch,
       replyReviewMessage,
       // isFiltered: state.isFiltered,

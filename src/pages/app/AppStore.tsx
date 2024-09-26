@@ -2,15 +2,13 @@ import { AppContext } from "@context/app/AppContext";
 import { useContext, useEffect } from "react";
 import { Hero, MerchCard } from "nexious-library";
 import { MerchProps } from "store-context";
-import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import { useNavigate } from "react-router-dom";
 import { CheckoutContext } from "@context/checkout/CheckoutContext";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
-  const { updateCart } = useContext(StoreContext);
-  const { cart, addToCart } = useContext(CheckoutContext);
+  const { cart, addToCart, updateCart } = useContext(CheckoutContext);
   const navigate = useNavigate();
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
