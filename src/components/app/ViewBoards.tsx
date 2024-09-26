@@ -1,17 +1,21 @@
 import { Button, CopyButton } from "nexious-library";
 import { homeUrl, serverUrl } from "@config";
 import { Boards } from "task-board-context";
+import { useContext } from "react";
+import { UserContext } from "@context/user/UserContext";
 import LoadData from "./LoadData";
 
-interface BoardsParam {
+interface P {
   taskBoards: Boards[];
   inviteLink?: string;
   onAddClick?: () => void;
   onViewClick?: (b: Boards) => void;
+  onBoardClick?: (b: Boards) => void;
   onEditClick?: (b: Boards) => void;
   loadFunction?: () => void;
 }
-const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick, taskBoards, inviteLink }: BoardsParam) => {
+const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onBoardClick, onViewClick, taskBoards, inviteLink }: P) => {
+  const { user } = useContext(UserContext);
   if (taskBoards.length === 0) {
     return (
       <div className="container">
@@ -47,7 +51,10 @@ const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onViewClick, taskBo
               onClick={() => onViewClick(board)}
             />
           )}
-          {onEditClick && <Button label="Edit board" onClick={() => onEditClick(board)} />}
+          {onBoardClick && <Button label="To task board" onClick={() => onBoardClick(board)} />}
+          {onEditClick && board.members.some((member) => member.userId === user.userId && member.role === "owner") && (
+            <Button label="Edit board" onClick={() => onEditClick(board)} />
+          )}
         </div>
       ))}
     </div>
