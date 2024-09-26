@@ -164,7 +164,6 @@ declare module "store-context" {
     from?: OrderOptions;
   }
   export interface StoreSchema extends StoreStateProps {
-    addToCart: (cart: CartProps[], store: StoreProps, key: MerchProps) => void;
     updateCart: (cart: CartProps[]) => void;
     submitOrder: (cart: CartProps[]) => void;
     onCheckOutSession: (cart: StoreCheckout) => void;

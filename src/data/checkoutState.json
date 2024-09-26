@@ -1,0 +1,21 @@
+{
+  "isLoading": true,
+  "error": "",
+  "stripeSecret": "",
+  "merch": {
+    "cost": 0,
+    "inStock": 0,
+    "quantity": 0,
+    "storeId": "string",
+    "merchId": "string",
+    "priceId": "string",
+    "productId": "string,",
+    "name": "string",
+    "body": "string",
+    "hero": "string",
+    "catalog": [],
+    "reviews": [],
+    "uid": "string"
+  },
+  "cart": []
+}

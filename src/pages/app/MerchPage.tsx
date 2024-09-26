@@ -6,10 +6,12 @@ import { Button, Hero, Loading, MerchCard } from "nexious-library";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import { StoreContext } from "@context/store/StoreContext";
 import ViewComments from "@components/app/ViewComments";
+import { CheckoutContext } from "@context/checkout/CheckoutContext";
 
 const MerchPage = () => {
   const { inventory, store } = useContext(AppContext);
-  const { cart, addToCart, updateCart, postReview, setMerch, merch, getMerch, replyReviewMessage } = useContext(StoreContext);
+  const { updateCart, postReview, setMerch, merch, getMerch, replyReviewMessage } = useContext(StoreContext);
+  const { cart, addToCart } = useContext(CheckoutContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
@@ -55,7 +57,7 @@ const MerchPage = () => {
         {canRemove ? (
           <Button label="- Remove from to cart" onClick={() => handleRemove(merch)} />
         ) : (
-          <Button label="+ Add to cart" onClick={() => addToCart(cart, store, { ...merch, quantity: 1 })} />
+          <Button label="+ Add to cart" onClick={() => addToCart({ cart, store, merch: { ...merch, quantity: 1 } })} />
         )}
       </div>
       <h2 className="heading">Reviews:</h2>

@@ -7,9 +7,7 @@ const SubscriptionCardDetails = ({ subscription }: { subscription: ISubscription
     <>
       <div className="text-left w-max">
         <h2 className="heading text-center">{capFirstCharacter(subscription.name)}</h2>
-        <ItemDetail label="Subscription details" labelLayout="bolden">
-          <span className="text-center">{subscription.description}</span>
-        </ItemDetail>
+        <p>{subscription.description}</p>
         {subscription.features.map((feature) => (
           <ItemDetail key={feature.featureId} label={feature.name} labelLayout="bolden">
             <span className="text-center">

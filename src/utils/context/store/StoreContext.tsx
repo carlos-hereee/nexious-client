@@ -1,6 +1,6 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import storeState from "@data/storeState.json";
-import { ChildProps, StoreProps } from "app-types";
+import { ChildProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/StoreActions";
 import {
   CartProps,
@@ -14,7 +14,7 @@ import {
   PostReview,
 } from "store-context";
 import { reducer } from "./StoreReducer";
-import { onAddToCart } from "./dispatch/onAddToCart";
+// import { onAddToCart } from "./dispatch/onAddToCart";
 import { requestSecret } from "./request/requestSecret";
 import { checkOutSession } from "./request/checkOutSession";
 import { confirmCheckoutIntent } from "./request/confirmCheckoutIntent";
@@ -43,9 +43,9 @@ export const StoreContext = createContext<StoreSchema>({} as StoreSchema);
 export const StoreState = ({ children }: ChildProps) => {
   const [state, dispatch] = useReducer(reducer, storeState);
 
-  const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
-    onAddToCart({ dispatch, cart, merch, store });
-  }, []);
+  // const addToCart = useCallback((cart: CartProps[], store: StoreProps, merch: MerchProps) => {
+  //   onAddToCart({ dispatch, cart, merch, store });
+  // }, []);
 
   const updateCart = useCallback((cart: CartProps[]) => dispatch({ type: STORE_ACTIONS.UPDATE_CART, payload: cart }), []);
   const setLoading = useCallback((loading: boolean) => dispatch({ type: STORE_ACTIONS.IS_LOADING, payload: loading }), []);
@@ -85,7 +85,7 @@ export const StoreState = ({ children }: ChildProps) => {
       stripeConfirmation: state.stripeConfirmation,
       stripeConfig: state.stripeConfig,
       stripeBalance: state.stripeBalance,
-      addToCart,
+      // addToCart,
       updateCart,
       submitOrder,
       onCheckOutSession,

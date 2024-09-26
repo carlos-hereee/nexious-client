@@ -9,6 +9,7 @@ import { AuthContext } from "@context/auth/AuthContext";
 import UserInformation from "@components/form/UserInformation";
 import CartList from "@components/list/CartList";
 import { scrollToId } from "@app/scrollToElement";
+import EmptyContainer from "@components/containers/EmptyContainer";
 
 type Menu = "All" | "Online" | "In store";
 
@@ -90,15 +91,7 @@ const Checkout = () => {
 
   // no items in cart
   if (!cart || cart.length === 0) {
-    return (
-      <section className="btn-checkout-container">
-        <Button
-          label={`You have ${cart.length} items in your cart. Explore apps`}
-          theme="btn btn-main btn-checkout"
-          onClick={() => navigate("/explore")}
-        />
-      </section>
-    );
+    return <EmptyContainer heading="Your cart its empty" to={{ label: "Explore apps", location: "/explore" }} />;
   }
   // set loading screen if no store is active
   if (!active) return <Loading />;
@@ -135,25 +128,26 @@ const Checkout = () => {
       <div className="container">
         <UserInformation errorMessage={error} user={user} setShow={(s) => setShow(s)} show={show} />
         {activeNav === "All" && <Total total={total} heading="Total:" />}
-        {!show &&
-          (activeNav !== "All" ? (
-            <>
-              {navigation.length > 1 && (
-                <CartList
-                  active={active}
-                  navigation={navigation}
-                  storeIdx={storeIdx}
-                  merch={merch}
-                  setActiveNav={(nav) => setActiveNav(nav)}
-                  activeNav={activeNav}
-                />
-              )}
-              <Total total={total} heading="Total:" />
-              <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
-            </>
-          ) : (
+        {!show && (
+          <>
+            {activeNav !== "All" && (
+              <>
+                {navigation.length > 1 && (
+                  <CartList
+                    active={active}
+                    navigation={navigation}
+                    storeIdx={storeIdx}
+                    merch={merch}
+                    setActiveNav={(nav) => setActiveNav(nav)}
+                    activeNav={activeNav}
+                  />
+                )}
+                <Total total={total} heading="Total:" />
+              </>
+            )}
             <PaymentMethods data={paymentTypes} onClick={handlePaymentClick} />
-          ))}
+          </>
+        )}
       </div>
     </section>
   );

@@ -5,10 +5,12 @@ import { MerchProps } from "store-context";
 import { StoreContext } from "@context/store/StoreContext";
 import { formatPenniesToDollars } from "@app/formatPenniesToDollars";
 import { useNavigate } from "react-router-dom";
+import { CheckoutContext } from "@context/checkout/CheckoutContext";
 
 const AppStore = () => {
   const { store, getStoreInventory, inventory } = useContext(AppContext);
-  const { cart, addToCart, updateCart } = useContext(StoreContext);
+  const { updateCart } = useContext(StoreContext);
+  const { cart, addToCart } = useContext(CheckoutContext);
   const navigate = useNavigate();
 
   const storeIdx = cart.findIndex((c) => c.storeId === store.storeId);
@@ -48,7 +50,7 @@ const AppStore = () => {
               key={merch.uid}
               data={{ ...merch, cost: formatPenniesToDollars(merch.cost) }}
               hero={{ url: merch.thumbnail || merch.hero, alt: merch.name }}
-              onAddToCart={(data: MerchProps) => addToCart(cart, store, { ...data, quantity: 1 })}
+              onAddToCart={(data: MerchProps) => addToCart({ cart, store, merch: { ...data, quantity: 1 } })}
               onRemoveFromCart={(data: MerchProps) => handleRemove(data)}
               // TODO: on body click navigate to merch item details
               onClick={() => navigate(`/store/${store.storeLink}/${merch.merchId}`)}
