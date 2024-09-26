@@ -1,22 +1,17 @@
 import { axiosAuth } from "@axios/axiosAuth";
 import { AuthDispatchProps } from "auth-context";
 import { A_ACTIONS } from "@actions/AuthActions";
-import { isDev } from "@config";
+import { axiosError } from "@axios/axiosError";
 
 export const setChangePassword = async ({ credentials, dispatch }: AuthDispatchProps) => {
   if (!credentials) throw Error("credentials param is required");
   try {
     // require key variable
-    dispatch({ type: A_ACTIONS.IS_LOADING, payload: true });
     const { data } = await axiosAuth.post(`/auth/change-password/${credentials?.username}`, credentials);
+    dispatch({ type: A_ACTIONS.IS_LOADING, payload: true });
     dispatch({ type: A_ACTIONS.SET_ACCESS_TOKEN, payload: data });
     dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
   } catch (error) {
-    if (isDev) console.log("error", error);
-    // const { status, data } = error.response;
-    // if (status === 403) {
-    //   dispatch({ type: "CHANGE_PASSWORD_ERROR", payload: data });
-    // }
-    // dispatch({ type: "IS_LOADING", payload: false });
+    axiosError({ error, type: "auth", dispatch, target: "forgotPassword" });
   }
 };

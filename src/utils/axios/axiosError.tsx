@@ -16,15 +16,13 @@ export const axiosError = ({ error, type, target, dispatch }: AxiosResponseError
   const message = `${err.response?.data}`;
   // auth response errors
   if (type === "auth") {
+    console.log("err :>> ", err);
     // if service disconnect
     if (err.code === "ERR_NETWORK") dispatch({ type: A_ACTIONS.SET_ERROR, payload: stranded });
     else dispatch({ type: A_ACTIONS.SET_ERROR, payload: { [target]: message } });
-    // // if refresh token attempt failed
-    // if (target === "refresh-token") {
-    //   // console.log("error :>> ", error, target);
-    // }
+
     // update loading state
-    dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
+    // dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
   }
   // app response errors
   if (type === "app") {

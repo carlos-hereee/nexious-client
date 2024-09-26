@@ -17,6 +17,7 @@ declare module "app-errors" {
     | "subscribe"
     | "offline"
     | "forgotPassword"
+    | "changePassword"
     | "refresh-token";
   export type AppErrorTarget = "";
   export type FormErrorTarget =
