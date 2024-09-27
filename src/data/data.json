@@ -12,7 +12,7 @@
     "logout": "",
     "forgotPassword": ""
   },
-  "games": ["tictactoe"],
+  "games": [{ "name": "tictactoe", "isMultiplayer": false }],
   "dashboardMenu": {
     "apps": 0,
     "app": 0,

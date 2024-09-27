@@ -34,7 +34,9 @@ import ViewPostFeed from "@pages/public/ViewPostFeed";
 import UserCalendar from "@pages/dashboard/UserCalendar";
 import UserTaskBoard from "@pages/dashboard/UserTaskBoard";
 import ViewUserTaskBoard from "@pages/dashboard/ViewUserTaskBoard";
+import GameLobby from "@pages/games/GameLobby";
 import Games from "@pages/games/Games";
+import GamePlay from "@pages/games/GamePlay";
 import GameRoute from "./GameRoute";
 
 const RoutesRouter: React.FC = () => {
@@ -88,6 +90,8 @@ const RoutesRouter: React.FC = () => {
       </Route>
       <Route element={<GameRoute />}>
         <Route path="/games" element={<Games />} />
+        <Route path="/games/:gameName/lobby" element={<GameLobby />} />
+        <Route path="/games/:gameName/play" element={<GamePlay />} />
       </Route>
       <Route element={<AdminRoute />}>
         <Route path="/settings/:appName" element={<AppSettings />} />

@@ -1,5 +1,7 @@
 {
   "isLoading": false,
   "games": [],
-  "game": { "name": "", "uid": "" }
+  "oponents": [],
+  "oponent": { "name": "", "level": "", "avatar": "", "uid": "" },
+  "game": { "name": "", "uid": "", "isMultiplayer": false }
 }

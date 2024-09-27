@@ -3,6 +3,6 @@ import { games } from "@data/data.json";
 
 export const initGames = () => {
   return games.map((game) => {
-    return { name: game.toUpperCase(), uid: uniqueId() };
+    return { ...game, name: game.name.toUpperCase(), uid: uniqueId() };
   });
 };

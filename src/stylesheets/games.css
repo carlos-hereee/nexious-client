@@ -2,6 +2,18 @@
   background-color: aliceblue;
   min-width: 200px;
   max-width: 350px;
+  max-height: 250px;
   border-radius: 0.5rem;
+  aspect-ratio: 1/2;
   padding: 1rem;
+}
+.game-avatar-card {
+  max-width: 100%;
+  background-color: aliceblue;
+  justify-content: flex-start;
+}
+.game-avatar-card-active {
+  max-width: 450px;
+  background-color: var(--active-color);
+  justify-content: flex-start;
 }
