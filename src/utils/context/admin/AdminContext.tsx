@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
 import { AdminSchema, AppAssets, EditPageValues, FORM_STATUS } from "app-admin";
-import adminState from "@data/adminState.json";
+import adminState from "@data/state/adminState.json";
 import { ChildProps } from "app-types";
 import { AppValues, FormValueData, StoreReq } from "app-forms";
 import { ADMIN_ACTIONS } from "@actions/AdminActions";

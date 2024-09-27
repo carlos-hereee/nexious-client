@@ -1,5 +1,5 @@
 import { ReactElement, createContext, useCallback, useContext, useMemo, useReducer } from "react";
-import appState from "@data/appState.json";
+import appState from "@data/state/appState.json";
 import { ActiveMenuProp, ChildProps, ContactApp, MediaItemProp, NProps, PageProps, SubcriptionProp } from "app-types";
 import { AppMap, AppSchema } from "app-context";
 import { AppAssets, FORM_STATUS } from "app-admin";

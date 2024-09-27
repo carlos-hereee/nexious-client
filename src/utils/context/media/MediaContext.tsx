@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useMemo, useReducer } from "react";
-import mediaState from "@data/mediaState.json";
+import mediaState from "@data/state/mediaState.json";
 import { ChildProps } from "app-types";
 import { CreatePost, IMediaState, Post, PostReply } from "media-context";
 import { MEDIA_ACTIONS } from "@actions/MediaActions";

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
-import storeState from "@data/storeState.json";
+import storeState from "@data/state/storeState.json";
 import { ChildProps } from "app-types";
 import { STORE_ACTIONS } from "@actions/StoreActions";
 import {
