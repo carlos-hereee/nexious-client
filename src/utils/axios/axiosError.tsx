@@ -1,6 +1,7 @@
 import { APP_ACTIONS } from "@actions/AppActions";
 import { A_ACTIONS } from "@actions/AuthActions";
 import { LOG_ACTIONS } from "@actions/LogActions";
+import { isDev } from "@config";
 import { AxiosResponseError } from "app-errors";
 import { AxiosError } from "axios";
 import { LogMessage } from "log-context";
@@ -14,15 +15,15 @@ export const axiosError = ({ error, type, target, dispatch }: AxiosResponseError
   const err = error as AxiosError;
   // response message
   const message = `${err.response?.data}`;
+  if (isDev) console.log("err :>> ", err);
   // auth response errors
   if (type === "auth") {
-    console.log("err :>> ", err);
     // if service disconnect
     if (err.code === "ERR_NETWORK") dispatch({ type: A_ACTIONS.SET_ERROR, payload: stranded });
     else dispatch({ type: A_ACTIONS.SET_ERROR, payload: { [target]: message } });
 
     // update loading state
-    // dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
+    dispatch({ type: A_ACTIONS.IS_LOADING, payload: false });
   }
   // app response errors
   if (type === "app") {

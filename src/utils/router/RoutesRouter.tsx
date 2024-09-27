@@ -34,8 +34,10 @@ import ViewPostFeed from "@pages/public/ViewPostFeed";
 import UserCalendar from "@pages/dashboard/UserCalendar";
 import UserTaskBoard from "@pages/dashboard/UserTaskBoard";
 import ViewUserTaskBoard from "@pages/dashboard/ViewUserTaskBoard";
+import Games from "@pages/games/Games";
+import GameRoute from "./GameRoute";
 
-const AppRouter: React.FC = () => {
+const RoutesRouter: React.FC = () => {
   const { accessToken, notifications, clearNotification } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -84,6 +86,9 @@ const AppRouter: React.FC = () => {
         <Route path="/dashboard/task-board/:boardId" element={<ViewUserTaskBoard />} />
         <Route path="/dashboard/calendar" element={<UserCalendar />} />
       </Route>
+      <Route element={<GameRoute />}>
+        <Route path="/games" element={<Games />} />
+      </Route>
       <Route element={<AdminRoute />}>
         <Route path="/settings/:appName" element={<AppSettings />} />
       </Route>
@@ -92,4 +97,4 @@ const AppRouter: React.FC = () => {
     </Routes>
   );
 };
-export default AppRouter;
+export default RoutesRouter;

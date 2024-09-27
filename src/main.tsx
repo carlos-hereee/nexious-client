@@ -12,7 +12,7 @@ import { MediaState } from "@context/media/MediaContext";
 import { TaskBoardState } from "@context/taskBoard/TaskBoardContext";
 import { UserState } from "@context/user/UserContext";
 import App from "./App";
-import AppRouter from "./utils/router/AppRouter";
+import RoutesRouter from "./utils/router/RoutesRouter";
 // eslint-disable-next-line import/no-relative-packages
 // import "../node_modules/nexious-library/dist/css/index.css";
 import "nexious-library/@index.css";
@@ -35,7 +35,7 @@ if (elementRoot) {
                     <MediaState>
                       <AdminState>
                         <App>
-                          <AppRouter />
+                          <RoutesRouter />
                         </App>
                       </AdminState>
                     </MediaState>
