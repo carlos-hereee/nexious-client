@@ -32,6 +32,14 @@
       "value": "login",
       "link": "login",
       "name": "login"
+    },
+    {
+      "uid": "games-1",
+      "menuId": "games-1",
+      "label": "games",
+      "value": "games",
+      "link": "games",
+      "name": "games"
     }
   ],
   "nexiousAuthMenu": [

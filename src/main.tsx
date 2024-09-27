@@ -10,6 +10,7 @@ import { CalendarState } from "@context/calendar/CalendarContext";
 import { StoreState } from "@context/store/StoreContext";
 import { MediaState } from "@context/media/MediaContext";
 import { TaskBoardState } from "@context/taskBoard/TaskBoardContext";
+import { GameState } from "@context/games/GameContext";
 import { UserState } from "@context/user/UserContext";
 import App from "./App";
 import RoutesRouter from "./utils/router/RoutesRouter";
@@ -28,21 +29,23 @@ if (elementRoot) {
       <UserState>
         <AuthState>
           <LogState>
-            <TaskBoardState>
-              <AppState>
-                <StoreState>
-                  <CalendarState>
-                    <MediaState>
-                      <AdminState>
-                        <App>
-                          <RoutesRouter />
-                        </App>
-                      </AdminState>
-                    </MediaState>
-                  </CalendarState>
-                </StoreState>
-              </AppState>
-            </TaskBoardState>
+            <GameState>
+              <TaskBoardState>
+                <AppState>
+                  <StoreState>
+                    <CalendarState>
+                      <MediaState>
+                        <AdminState>
+                          <App>
+                            <RoutesRouter />
+                          </App>
+                        </AdminState>
+                      </MediaState>
+                    </CalendarState>
+                  </StoreState>
+                </AppState>
+              </TaskBoardState>
+            </GameState>
           </LogState>
         </AuthState>
       </UserState>

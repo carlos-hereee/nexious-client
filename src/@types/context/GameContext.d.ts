@@ -3,6 +3,7 @@ declare module "game-context" {
 
   export interface GameData {
     name: string;
+    uid: string;
   }
   export interface GameState {
     isLoading: boolean;
@@ -11,6 +12,8 @@ declare module "game-context" {
   }
   export interface GameSchema extends GameState {
     setLoading: (data: boolean) => void;
+    setGame: (data: GameData) => void;
+    setGames: (data: GameData[]) => void;
   }
   export interface GameDispatchProps {
     dispatch: React.Dispatch<GameActionProps>;
