@@ -24,7 +24,8 @@ const GameRoute = () => {
     if (games.length === 0) {
       const init = initGames();
       setGames(init);
-    } else {
+    } else if (!gameName) navigate("/games");
+    else {
       const match = games.filter((g) => g.name === gameName.toUpperCase())[0];
       if (match) setGame(match);
       else navigate("/games");
