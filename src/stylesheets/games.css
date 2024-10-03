@@ -1,4 +1,10 @@
 @import "./tictactoe.css";
+.game-players {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
 .game-card {
   background-color: aliceblue;
   min-width: 200px;
@@ -10,9 +16,14 @@
 }
 .game-avatar-card {
   max-width: 450px;
-  /* max-width: 100%; */
+  width: 100%;
+  padding: 1rem;
   background-color: aliceblue;
+  display: flex;
   justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
 }
 .game-avatar-card-active {
   background-color: var(--active-color);

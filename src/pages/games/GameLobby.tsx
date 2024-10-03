@@ -4,9 +4,12 @@ import { useContext } from "react";
 import { Button, HeaderContent } from "nexious-library";
 import { useNavigate } from "react-router-dom";
 import { Oponent } from "game-context";
+import { UserContext } from "@context/user/UserContext";
+import { generateUserDummyData } from "@app/generateName";
 
 const GameLobby = () => {
-  const { game, oponents, setOponent, oponent, setGameMap } = useContext(GameContext);
+  const { game, oponents, setOponent, oponent, setGameMap, setPlayers, setGameStatus, setPlayer } = useContext(GameContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const toggleOponent = (op: Oponent) => {
@@ -15,8 +18,17 @@ const GameLobby = () => {
     return setOponent(op);
   };
   const handlePlayClick = () => {
-    setGameMap(game.map);
-    navigate(`/games/${game.name.toLocaleLowerCase()}/play`);
+    if (oponent) {
+      let player: Oponent = { avatar: "", level: "", name: "", uid: "" };
+      if (!user.userId) player = generateUserDummyData();
+      else player = { avatar: user.avatar || "", level: "1", uid: user.userId, name: user.name || "" };
+      setPlayers([player, oponent]);
+      setGameMap(game.map);
+      setPlayer(player);
+      // TODO: PLAY ROCK PLAYER SIZORS TO DETERMINE WHO GOES FIRST
+      setGameStatus({ turn: player.uid });
+      navigate(`/games/${game.name}/play`);
+    }
   };
   return (
     <div className="split-container z-1">

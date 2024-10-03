@@ -16,12 +16,28 @@ declare module "game-context" {
     uid: string;
     level: string;
   }
+  export interface GameResult {
+    title: string;
+    message: string;
+    rematch: boolean;
+    leftGame: string[];
+  }
+  export interface GameStatus {
+    turn: string;
+    // message: string;
+    // rematch: boolean;
+    // leftGame: string[];
+  }
   export interface GameState {
     isLoading: boolean;
     game: GameData;
     games: GameData[];
+    gameStatus: GameStatus;
+    players: Oponent[];
+    player: Oponent;
     oponents: Oponent[];
     oponent?: Oponent;
+    result: GameResult;
     map: GridData[][];
   }
   export interface GameSchema extends GameState {
@@ -30,7 +46,11 @@ declare module "game-context" {
     setGames: (data: GameData[]) => void;
     setGameMap: (map: GridData[][]) => void;
     setOponents: (data: Oponent[]) => void;
+    setPlayers: (data: Oponent[]) => void;
+    setPlayer: (data: Oponent) => void;
     setOponent: (data?: Oponent) => void;
+    setGameResult: (data: GameResult) => void;
+    setGameStatus: (data: GameStatus) => void;
   }
   export interface GameDispatchProps {
     dispatch: React.Dispatch<GameActionProps>;
@@ -38,9 +58,12 @@ declare module "game-context" {
 
   export type GameActionProps =
     | { type: GAME_ACTIONS.IS_LOADING; payload: boolean }
-    | { type: GAME_ACTIONS.SET_OPONENTS; payload: Oponent[] }
+    | { type: GAME_ACTIONS.SET_OPONENTS | GAME_ACTIONS.SET_PLAYERS; payload: Oponent[] }
     | { type: GAME_ACTIONS.SET_OPONENT; payload: Oponent | undefined }
+    | { type: GAME_ACTIONS.SET_PLAYER; payload: Oponent }
     | { type: GAME_ACTIONS.SET_GAMES; payload: GameData[] }
     | { type: GAME_ACTIONS.SET_GAME_MAP; payload: GridData[][] }
+    | { type: GAME_ACTIONS.SET_GAME_RESULT; payload: GameResult }
+    | { type: GAME_ACTIONS.SET_GAME_STATUS; payload: GameStatus }
     | { type: GAME_ACTIONS.SET_GAME; payload: GameData };
 }

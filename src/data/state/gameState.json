@@ -3,7 +3,11 @@
   "games": [],
   "oponents": [],
   "map": [],
+  "players": [],
+  "result": { "title": "", "message": "", "rematch": false, "leftGame": [] },
+  "gameStatus": { "turn": "" },
   "oponent": { "name": "", "level": "", "avatar": "", "uid": "" },
+  "player": { "name": "", "level": "", "avatar": "", "uid": "" },
   "game": {
     "name": "",
     "label": "",

@@ -5,13 +5,14 @@ import { useContext } from "react";
 
 const TicTacToe = () => {
   const { map, setGameMap } = useContext(GameContext);
+
   const handleGameClick = (data: GridData) => {
     const updatedMap = map.map((column) => {
       // find cell column
       if (column[data.x] && column[data.x].x === data.x) {
         return column.map((cell) => {
           // find cell target and update
-          if (cell.y === data.y) return { ...cell, data: "circle" };
+          if (cell.y === data.y) return { ...cell, data: "circle player1" };
           return cell;
         });
       }
