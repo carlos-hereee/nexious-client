@@ -2,6 +2,7 @@
   "isLoading": false,
   "games": [],
   "oponents": [],
+  "map": [],
   "oponent": { "name": "", "level": "", "avatar": "", "uid": "" },
   "game": {
     "name": "",

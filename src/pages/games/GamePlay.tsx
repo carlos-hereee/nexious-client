@@ -5,10 +5,10 @@ import { HeaderContent } from "nexious-library";
 import TicTacToe from "./TicTacToe";
 
 const GamePlay = () => {
-  const { game, oponent } = useContext(GameContext);
+  const { game, oponent, map } = useContext(GameContext);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!oponent || !oponent.uid) navigate(`/games/${game.name}/lobby`);
+    if (!oponent || !oponent.uid || map.length === 0) navigate(`/games/${game.name}/lobby`);
     if (!game.name) navigate("/games");
   }, [oponent, game]);
 

@@ -22,11 +22,13 @@ declare module "game-context" {
     games: GameData[];
     oponents: Oponent[];
     oponent?: Oponent;
+    map: GridData[][];
   }
   export interface GameSchema extends GameState {
     setLoading: (data: boolean) => void;
     setGame: (data: GameData) => void;
     setGames: (data: GameData[]) => void;
+    setGameMap: (map: GridData[][]) => void;
     setOponents: (data: Oponent[]) => void;
     setOponent: (data?: Oponent) => void;
   }
@@ -39,5 +41,6 @@ declare module "game-context" {
     | { type: GAME_ACTIONS.SET_OPONENTS; payload: Oponent[] }
     | { type: GAME_ACTIONS.SET_OPONENT; payload: Oponent | undefined }
     | { type: GAME_ACTIONS.SET_GAMES; payload: GameData[] }
+    | { type: GAME_ACTIONS.SET_GAME_MAP; payload: GridData[][] }
     | { type: GAME_ACTIONS.SET_GAME; payload: GameData };
 }

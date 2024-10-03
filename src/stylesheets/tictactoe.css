@@ -14,3 +14,11 @@
   border: 2px solid #7d4141;
   position: relative;
 }
+.tictactoe-exes {
+  background: var(--exes) no-repeat center;
+  background-size: contain;
+}
+.tictactoe-circle {
+  background: var(--circle) no-repeat center;
+  background-size: contain;
+}

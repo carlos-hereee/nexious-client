@@ -4,4 +4,5 @@ export enum GAME_ACTIONS {
   SET_GAMES,
   SET_OPONENT,
   SET_OPONENTS,
+  SET_GAME_MAP,
 }

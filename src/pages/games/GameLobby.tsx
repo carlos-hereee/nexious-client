@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Oponent } from "game-context";
 
 const GameLobby = () => {
-  const { game, oponents, setOponent, oponent } = useContext(GameContext);
+  const { game, oponents, setOponent, oponent, setGameMap } = useContext(GameContext);
   const navigate = useNavigate();
 
   const toggleOponent = (op: Oponent) => {
@@ -14,11 +14,14 @@ const GameLobby = () => {
     if (op.uid === oponent.uid) return setOponent();
     return setOponent(op);
   };
+  const handlePlayClick = () => {
+    setGameMap(game.map);
+    navigate(`/games/${game.name.toLocaleLowerCase()}/play`);
+  };
   return (
     <div className="split-container z-1">
-      <HeaderContent data={{ title: game.label }}>
-        <h2 className="heading">Rules:</h2>
-      </HeaderContent>
+      <HeaderContent data={{ title: game.label, subtitle: "Rules" }} />
+      {/* </HeaderContent> */}
       <div className="container">
         <h2 className="heading">Play against</h2>
         {oponents.map((op) => (
@@ -34,9 +37,7 @@ const GameLobby = () => {
             </div>
           </AvatarCardButton>
         ))}
-        {oponent && oponent.uid && (
-          <Button label="Play" onClick={() => navigate(`/games/${game.name.toLocaleLowerCase()}/play`)} />
-        )}
+        {oponent && oponent.uid && <Button label="Play" onClick={handlePlayClick} />}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ const Grid = ({ grid, active, setActiveCell, theme, onCellClick }: Igrid) => (
               key={d.id}
               theme={`x-${d.x} y-${d.y}${theme ? ` ${theme}-map-cell` : " map-cell"}${active?.id === d.id ? " highlight" : ""}${
                 d?.orientation ? ` ${d.orientation}` : ""
-              }${d?.data ? ` ${d.data}` : ""}`}
+              }${d?.data ? ` ${theme}-${d.data}` : ""}`}
               onClick={() => onCellClick(d)}
             />
           ) : (
