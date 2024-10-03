@@ -29,3 +29,20 @@
   background-color: var(--active-color);
   justify-content: flex-start;
 }
+.avatar-thinking {
+  /* position: absolute; */
+  /* display: flex; */
+  /* gap: 0.25rem; */
+  /* top: 60%;
+  left: 29%; */
+}
+/* .icon-avatar-thinking-dot2 {
+  position: absolute;
+  top: 60%;
+  left: 30%;
+}
+.icon-avatar-thinking-dot3 {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+} */

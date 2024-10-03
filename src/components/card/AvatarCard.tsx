@@ -6,7 +6,7 @@ interface P {
     name: string;
   };
   theme?: string;
-  children?: string;
+  children?: React.ReactNode;
 }
 const AvatarCard = ({ user, theme, children }: P) => {
   return (

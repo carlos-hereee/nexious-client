@@ -1,7 +1,7 @@
 import { GameContext } from "@context/games/GameContext";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { HeaderContent } from "nexious-library";
+import { HeaderContent, Icon } from "nexious-library";
 import AvatarCard from "@components/card/AvatarCard";
 import TicTacToe from "./TicTacToe";
 
@@ -24,8 +24,16 @@ const GamePlay = () => {
             <AvatarCard
               user={player}
               key={player.uid}
-              theme={`game-avatar-card${gameStatus.turn === player.uid ? " game-avatar-card-active" : ""}`}
-            />
+              theme={`pos-rel game-avatar-card${gameStatus.turn === player.uid ? " game-avatar-card-active" : ""}`}
+            >
+              {gameStatus.turn !== player.uid && (
+                <div className="avatar-thinking">
+                  <Icon icon="dot" theme=" fa-beat --fa-animation-duration: 0.5s" />
+                  <Icon icon="dot" theme=" fa-beat --fa-animation-duration: 0.5s" />
+                  <Icon icon="dot" theme=" fa-beat --fa-animation-duration: 0.5s" />
+                </div>
+              )}
+            </AvatarCard>
           ))}
         </div>
       </div>
