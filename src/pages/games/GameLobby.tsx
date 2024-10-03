@@ -1,32 +1,32 @@
 import AvatarCardButton from "@components/card/AvatarCardButton";
 import { GameContext } from "@context/games/GameContext";
-// import { UserContext } from "@context/user/UserContext";
 import { useContext } from "react";
-import { Button } from "nexious-library";
+import { Button, HeaderContent } from "nexious-library";
 import { useNavigate } from "react-router-dom";
+import { Oponent } from "game-context";
 
 const GameLobby = () => {
   const { game, oponents, setOponent, oponent } = useContext(GameContext);
-  // const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // console.log("game :>> ", game);
-  // console.log("user :>> ", user);
-  // console.log("oponents :>> ", oponents);
+  const toggleOponent = (op: Oponent) => {
+    if (!oponent) return setOponent(op);
+    if (op.uid === oponent.uid) return setOponent();
+    return setOponent(op);
+  };
   return (
     <div className="split-container z-1">
-      <div>
-        <h2 className="heading">{game.name}</h2>
-        <h2 className="heading">Rules</h2>
-      </div>
+      <HeaderContent data={{ title: game.label }}>
+        <h2 className="heading">Rules:</h2>
+      </HeaderContent>
       <div className="container">
         <h2 className="heading">Play against</h2>
         {oponents.map((op) => (
           <AvatarCardButton
             user={op}
-            theme={`highlight${oponent.uid === op.uid ? " game-avatar-card-active" : " game-avatar-card"}`}
+            theme={`highlight game-avatar-card${oponent && oponent.uid === op.uid ? " game-avatar-card-active" : ""}`}
             key={op.uid}
-            onClick={() => setOponent(op)}
+            onClick={() => toggleOponent(op)}
           >
             <div>
               <p className="text-left">{op.name}</p>
@@ -34,7 +34,9 @@ const GameLobby = () => {
             </div>
           </AvatarCardButton>
         ))}
-        {oponent.uid && <Button label="Play" onClick={() => navigate(`/games/${game.name.toLocaleLowerCase()}/play`)} />}
+        {oponent && oponent.uid && (
+          <Button label="Play" onClick={() => navigate(`/games/${game.name.toLocaleLowerCase()}/play`)} />
+        )}
       </div>
     </div>
   );

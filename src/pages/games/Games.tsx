@@ -11,6 +11,7 @@ const Games = () => {
   const navigate = useNavigate();
 
   if (!games || games.length === 0) return <Loading />;
+
   const handleGameClick = (g: CardData) => {
     navigate(`/games/${g.name.toLowerCase()}/lobby`);
     setGame(g as unknown as GameData);

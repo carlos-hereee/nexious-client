@@ -52,7 +52,7 @@ declare module "app-context" {
     data: string;
     roomType: string;
     name?: string;
-    orientation: string;
+    orientation?: string;
     x: number;
     y: number;
   }
@@ -60,7 +60,7 @@ declare module "app-context" {
     width: number;
     length: number;
     name?: string;
-    unit: "cm" | "m" | "km";
+    unit?: "cm" | "m" | "km";
   }
   export interface AppMap {
     map?: GridData[][];

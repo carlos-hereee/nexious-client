@@ -4,8 +4,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { nexiousMedia, nexiousMenu, nexiousLogo, nexiousAuthMenu, nexiousName, nexiousAppId } from "@data/nexious.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { GameContext } from "@context/games/GameContext";
-import { initGames } from "../games/initGames";
-import { initOponents } from "../games/initOponents";
+import { initGames, initOponents } from "../games/initGames";
 
 const GameRoute = () => {
   const { accessToken } = useContext(AuthContext);
@@ -20,13 +19,10 @@ const GameRoute = () => {
     updateActiveAppData({ appName: nexiousName, logo: nexiousLogo, media: nexiousMedia, menu, appId: nexiousAppId });
     const oponents = initOponents();
     setOponents(oponents);
-
-    if (games.length === 0) {
-      const init = initGames();
-      setGames(init);
-    } else if (!gameName) navigate("/games");
+    if (games.length === 0) setGames(initGames());
+    else if (!gameName) navigate("/games");
     else {
-      const match = games.filter((g) => g.name === gameName.toUpperCase())[0];
+      const match = games.filter((g) => g.name === gameName)[0];
       if (match) setGame(match);
       else navigate("/games");
     }

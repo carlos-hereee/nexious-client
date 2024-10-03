@@ -13,7 +13,7 @@ export const GameState = ({ children }: ChildProps) => {
   const setLoading = useCallback((data: boolean) => dispatch({ type: GAME_ACTIONS.IS_LOADING, payload: data }), []);
   const setGame = useCallback((data: GameData) => dispatch({ type: GAME_ACTIONS.SET_GAME, payload: data }), []);
   const setGames = useCallback((data: GameData[]) => dispatch({ type: GAME_ACTIONS.SET_GAMES, payload: data }), []);
-  const setOponent = useCallback((data: Oponent) => dispatch({ type: GAME_ACTIONS.SET_OPONENT, payload: data }), []);
+  const setOponent = useCallback((data?: Oponent) => dispatch({ type: GAME_ACTIONS.SET_OPONENT, payload: data }), []);
   const setOponents = useCallback((data: Oponent[]) => dispatch({ type: GAME_ACTIONS.SET_OPONENTS, payload: data }), []);
 
   const gameValues = useMemo(() => {

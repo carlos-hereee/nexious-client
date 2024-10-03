@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { AuthContext } from "@context/auth/AuthContext";
-import { Header, Footer, Loading, Bubbly } from "nexious-library";
+import { Header, Footer, Loading } from "nexious-library";
 import { AppContext } from "@context/app/AppContext";
 import { ChildProps, MenuProp } from "app-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-import { LogContext } from "@context/log/LogContext";
+// import { LogContext } from "@context/log/LogContext";
 import UserMenu from "@components/app/UserMenu";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
   const { activeLogo, activeMenu, activeAppName, activeMedia, themeList, isLoading: loadingApp } = useContext(AppContext);
-  const { page } = useContext(LogContext);
+  // const { page } = useContext(LogContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -45,7 +45,7 @@ const App = ({ children }: ChildProps) => {
       <div className="app-body">
         {children}
         <UserMenu />
-        {page === "public" && <Bubbly bubbles={15} />}
+        {/* {page === "public" && <Bubbly bubbles={15} />} */}
       </div>
       <Footer data={{ title: activeAppName }} media={{ ...activeMedia, medias }} />
     </div>

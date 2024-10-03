@@ -1,0 +1,16 @@
+.tictactoe {
+  width: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.tictactoe-map-column {
+  display: flex;
+}
+.tictactoe-map-cell {
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  max-height: 25vh;
+  border: 2px solid #7d4141;
+  position: relative;
+}

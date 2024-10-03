@@ -3,5 +3,12 @@
   "games": [],
   "oponents": [],
   "oponent": { "name": "", "level": "", "avatar": "", "uid": "" },
-  "game": { "name": "", "uid": "", "isMultiplayer": false }
+  "game": {
+    "name": "",
+    "label": "",
+    "uid": "",
+    "isMultiplayer": false,
+    "map": [],
+    "dimensions": { "width": 3, "length": 3 }
+  }
 }

@@ -5,7 +5,9 @@
   align-items: start;
   justify-content: flex-start;
 }
-
+.app-body {
+  min-height: 60vh;
+}
 .btn-active {
   width: 100%;
   max-width: 450px;
