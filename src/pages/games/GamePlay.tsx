@@ -24,7 +24,7 @@ const GamePlay = () => {
             <AvatarCard
               user={player}
               key={player.uid}
-              theme={`pos-rel game-avatar-card${gameStatus.turn === player.uid ? " game-avatar-card-active" : ""}`}
+              theme={`game-avatar-card${gameStatus.turn === player.uid ? " game-avatar-card-active" : ""}`}
             >
               {gameStatus.turn !== player.uid && (
                 <div className="avatar-thinking">

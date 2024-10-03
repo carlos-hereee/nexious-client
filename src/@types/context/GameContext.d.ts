@@ -14,6 +14,7 @@ declare module "game-context" {
     name: string;
     avatar: string;
     uid: string;
+    isBot: boolean;
     level: string;
   }
   export interface GameResult {

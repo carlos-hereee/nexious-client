@@ -16,6 +16,9 @@
       "@app/*": [
         "utils/app/*"
       ],
+      "@utils/*": [
+        "utils/*"
+      ],
       "@context/*": [
         "utils/context/*"
       ],

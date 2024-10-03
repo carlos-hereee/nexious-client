@@ -1,37 +1,35 @@
 import Grid from "@components/card/Grid";
 import { GameContext } from "@context/games/GameContext";
 import { GridData } from "app-context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { generateBotMove, updateGameMove } from "@utils/games/gameMove";
 
 const TicTacToe = () => {
-  const { map, setGameMap, player, gameStatus, players, setGameStatus } = useContext(GameContext);
+  const { map, setGameMap, player, gameStatus, players, setGameStatus, oponent } = useContext(GameContext);
 
   const isPlayer1 = players[0].uid === player.uid;
+
+  // update turns
+  const toggleTurns = () => {
+    const target = players.filter((p) => p.uid !== gameStatus.turn)[0];
+    if (target.uid) setGameStatus({ turn: target.uid });
+  };
+  useEffect(() => {
+    if (gameStatus.turn !== player.uid && oponent?.isBot) {
+      const botMove = generateBotMove({ map, isPlayer1: !isPlayer1, bot: oponent });
+      setGameMap(botMove);
+      toggleTurns();
+    }
+  }, [gameStatus]);
 
   const handleGameClick = (data: GridData) => {
     // verify player turn
     if (gameStatus.turn !== player.uid) return;
-    const updatedMap = map.map((column) => {
-      // find cell column
-      if (column[data.x] && column[data.x].x === data.x) {
-        return column.map((cell) => {
-          // find cell target
-          if (cell.y === data.y) {
-            // check legal move and update
-            if ((isPlayer1 && cell.data === "exes") || (!isPlayer1 && cell.data === "circle") || !cell.data) {
-              return { ...cell, data: isPlayer1 ? "exes" : "circle" };
-            }
-          }
-          return cell;
-        });
-      }
-      return column;
-    });
     // update map
+    const updatedMap = updateGameMove({ map, data, isPlayer1 });
     setGameMap(updatedMap);
     // update turns
-    const target = players.filter((p) => p.uid !== gameStatus.turn)[0];
-    if (target.uid) setGameStatus({ turn: target.uid });
+    toggleTurns();
   };
   return (
     <div className="primary-container">

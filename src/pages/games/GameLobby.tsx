@@ -19,9 +19,9 @@ const GameLobby = () => {
   };
   const handlePlayClick = () => {
     if (oponent) {
-      let player: Oponent = { avatar: "", level: "", name: "", uid: "" };
+      let player: Oponent = { avatar: "", level: "", name: "", uid: "", isBot: false };
       if (!user.userId) player = generateUserDummyData();
-      else player = { avatar: user.avatar || "", level: "1", uid: user.userId, name: user.name || "" };
+      else player = { avatar: user.avatar || "", level: "1", uid: user.userId, name: user.name || "", isBot: false };
       setPlayers([player, oponent]);
       setGameMap(game.map);
       setPlayer(player);

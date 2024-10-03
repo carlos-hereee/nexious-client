@@ -6,8 +6,8 @@
   "players": [],
   "result": { "title": "", "message": "", "rematch": false, "leftGame": [] },
   "gameStatus": { "turn": "" },
-  "oponent": { "name": "", "level": "", "avatar": "", "uid": "" },
-  "player": { "name": "", "level": "", "avatar": "", "uid": "" },
+  "oponent": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
+  "player": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
   "game": {
     "name": "",
     "label": "",
