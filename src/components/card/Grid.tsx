@@ -5,10 +5,11 @@ interface Igrid {
   grid: GridData[][];
   active?: GridData;
   theme?: string;
+  cellTheme?: string;
   setActiveCell?: (d: GridData) => void;
   onCellClick?: (d: GridData) => void;
 }
-const Grid = ({ grid, active, setActiveCell, theme, onCellClick }: Igrid) => (
+const Grid = ({ grid, active, setActiveCell, theme, cellTheme, onCellClick }: Igrid) => (
   <div className={theme || "map overflow-x"}>
     {grid.map((g, idx) => (
       <div className={`${theme ? `${theme}-map-column` : "map-column"}`} key={uniqueId(g.length + idx)}>
@@ -16,9 +17,9 @@ const Grid = ({ grid, active, setActiveCell, theme, onCellClick }: Igrid) => (
           onCellClick ? (
             <Button
               key={d.id}
-              theme={`x-${d.x} y-${d.y}${theme ? ` ${theme}-map-cell` : " map-cell"}${active?.id === d.id ? " highlight" : ""}${
-                d?.orientation ? ` ${d.orientation}` : ""
-              }${d?.data ? ` ${theme}-${d.data}` : ""}`}
+              theme={`x-${d.x} y-${d.y}${theme ? ` ${theme}-map-cell` : " map-cell"}${d?.data ? ` ${theme}-${d.data}` : ""}${`${
+                cellTheme ? ` ${cellTheme}` : ""
+              }`}`}
               onClick={() => onCellClick(d)}
             />
           ) : (

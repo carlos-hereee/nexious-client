@@ -14,7 +14,6 @@ const GamePlay = () => {
     if (!game.name) navigate("/games");
   }, [oponent, game]);
 
-  console.log("players :>> ", players);
   return (
     <div className="container">
       <HeaderContent data={{ title: game.label }} />
