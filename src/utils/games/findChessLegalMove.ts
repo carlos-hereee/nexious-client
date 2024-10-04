@@ -19,17 +19,16 @@ export const isCellMatch = (cell1: ICell, cell2: ICell) => {
 };
 const addPawnMoves = ({ current, legalMoves, length, direction }: IAddMove) => {
   const target = current.y + length;
-  console.log("duration :>> ", target);
   if (direction === "down") {
     for (let i = target; i < current.y; i += 1) {
       legalMoves.push({ x: current.x, y: i });
     }
   }
-  // if (direction === "up") {
-  //   for (let i = target; i < current.y; i += 1) {
-  //     legalMoves.push({ x: current.x, y: i });
-  //   }
-  // }
+  if (direction === "up") {
+    for (let i = current.y; i < target + 1; i += 1) {
+      legalMoves.push({ x: current.x, y: i });
+    }
+  }
 };
 
 export const findChessLegalMove = ({ current, map }: ILegalMove) => {
