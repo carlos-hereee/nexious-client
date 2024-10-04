@@ -64,7 +64,14 @@
       "link": "pricing",
       "name": "pricing"
     },
-
+    {
+      "uid": "games-1",
+      "menuId": "games-1",
+      "label": "games",
+      "value": "games",
+      "link": "games",
+      "name": "games"
+    },
     {
       "isPrivate": true,
       "uid": "auth-2",
