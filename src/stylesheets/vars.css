@@ -23,4 +23,5 @@
   --chessQueenWhite: url("../assets/chess/queen-white.svg");
   --chessKingBlack: url("../assets/chess/king-black.svg");
   --chessKingWhite: url("../assets/chess/king-white.svg");
+  --chessDot: url("../assets/chess/circle-dot.svg");
 }

@@ -7,6 +7,12 @@
 .chess-map-column {
   display: flex;
 }
+.chess-map-column:nth-child(odd) .chess-map-cell:nth-child(odd) {
+  background-color: #7d4141;
+}
+.chess-map-column:nth-child(even) .chess-map-cell:nth-child(even) {
+  background-color: #7d4141;
+}
 .chess-map-cell {
   aspect-ratio: 1/1;
   border: 2px solid #7d4141;
@@ -60,4 +66,9 @@
 .chess-black-king {
   background: var(--chessKingBlack) no-repeat center;
   background-size: 45%;
+}
+
+.chess-dot {
+  background: var(--chessDot) no-repeat center;
+  background-size: 20%;
 }
