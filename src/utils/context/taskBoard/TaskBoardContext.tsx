@@ -2,7 +2,7 @@ import { ChildProps } from "app-types";
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import { Boards, TaskBoardSchema, TaskBoardValues } from "task-board-context";
 import { TASK_ACTIONS } from "@actions/TaskBoardAction";
-import taskBoard from "@data/taskBoardState.json";
+import taskBoard from "@data/state/taskBoardState.json";
 import { reducer } from "./TaskBoardReducer";
 import { buildTaskBoard } from "./request/buildTaskBoard";
 import { buildBoardListTask } from "./request/buildBoardListTask";

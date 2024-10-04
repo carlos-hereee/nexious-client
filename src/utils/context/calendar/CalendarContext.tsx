@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer } from "react";
-import calendarState from "@data/calendarState.json";
+import calendarState from "@data/state/calendarState.json";
 import { CalEvent, ICalendarSchema, IEvent, MeetingDetials, PostEvent } from "app-calendar";
 import { CalendarProps, ChildProps } from "app-types";
 import { AppContext } from "@context/app/AppContext";

@@ -1,7 +1,8 @@
 import { GridData, MapDimensions } from "app-context";
-import { Button, Hero, uniqueId, Select, ItemDetail } from "nexious-library";
+import { Select, ItemDetail } from "nexious-library";
 import { useState } from "react";
 import { mapRoomForm } from "@data/forms.json";
+import Grid from "@components/card/Grid";
 import UpdateForm from "./forms/UpdateForm";
 
 interface IMap {
@@ -11,30 +12,6 @@ interface IMap {
   handleGrid?: (g: GridData[][]) => void;
 }
 
-interface Igrid {
-  grid: GridData[][];
-  active?: GridData;
-  setActiveCell: (d: GridData) => void;
-}
-const Grid = ({ grid, active, setActiveCell }: Igrid) => (
-  <div className="map overflow-x">
-    {grid.map((g, idx) => (
-      <div className="map-column" key={uniqueId(g.length + idx)}>
-        {g.map((d) => (
-          <div className="map-cell" key={d.id}>
-            {d.name && <span className="map-cell-name">{d.name}</span>}
-            <Button
-              theme={`btn-cell${active?.id === d.id ? " highlight" : ""}${d?.orientation ? ` ${d.orientation}` : ""}`}
-              onClick={() => setActiveCell(d)}
-            >
-              {d.data && <Hero hero={{ url: `/assets/${d.data}.png`, alt: d.data }} theme="btn-cell-img" />}
-            </Button>
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-);
 const Map = ({ grid, dimensions, readonly, handleGrid }: IMap) => {
   const [activeCell, setActiveCell] = useState<GridData>();
   const [activeRoom, setActiveRoom] = useState<GridData>();

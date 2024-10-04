@@ -1,0 +1,42 @@
+.tictactoe {
+  width: 100%;
+  max-width: 75vw;
+  max-height: 75vh;
+}
+.tictactoe-map-column {
+  display: flex;
+}
+.tictactoe-map-cell {
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  max-height: 25vh;
+  border: 2px solid #7d4141;
+  position: relative;
+}
+.tictactoe-exes {
+  background: var(--exes) no-repeat center;
+  background-size: contain;
+}
+.tictactoe-circle {
+  background: var(--circle) no-repeat center;
+  background-size: contain;
+}
+.tictactoe-exes:has(.tictactoe-exes),
+.tictactoe-circle:has(.tictactoe-circle) {
+  cursor: not-allowed;
+}
+
+.player1:not(.tictactoe-exes):not(.tictactoe-circle):hover,
+.player1:not(.tictactoe-exes):not(.tictactoe-circle):hover {
+  background: var(--circleGray) no-repeat center;
+  background-size: contain;
+}
+.player1:not(.tictactoe-exes):not(.tictactoe-circle):hover {
+  background: var(--exesGray) no-repeat center;
+  background-size: contain;
+}
+.player2:not(.tictactoe-exes):not(.tictactoe-circle):hover,
+.player2:not(.tictactoe-exes):not(.tictactoe-circle):hover {
+  background: var(--circleGray) no-repeat center;
+  background-size: contain;
+}

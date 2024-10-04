@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "@context/app/AppContext";
 import { AdminContext } from "@context/admin/AdminContext";
 import MediaContainer from "@components/app/containers/MediaContainer";
-// import PagesContainer from "@components/app/containers/PagesContainer";
-// import PageDialog from "@components/app/dialog/PageDialog";
 import MediaDialog from "@components/app/dialog/MediaDialog";
 import { AppDialogProps, DialogShowProps, DialogStatusProps } from "app-types";
 import StoreDialog from "@components/app/dialog/StoreDialog";

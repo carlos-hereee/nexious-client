@@ -1,7 +1,7 @@
 import { ChildProps } from "app-types";
 import { createContext, useCallback, useContext, useMemo, useReducer } from "react";
 import { DUser, IUserSchema } from "user-context";
-import userState from "@data/userState.json";
+import userState from "@data/state/userState.json";
 import { AuthContext } from "@context/auth/AuthContext";
 import { USER_ACTIONS } from "@actions/UserActions";
 import { UserSchema } from "auth-context";

@@ -1,5 +1,5 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
-import checkoutState from "@data/checkoutState.json";
+import checkoutState from "@data/state/checkoutState.json";
 import { ChildProps } from "app-types";
 import { CheckoutSchema, CheckoutValues } from "checkout-context";
 import { CartProps, MerchProps, OrderSchema } from "store-context";

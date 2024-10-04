@@ -4,6 +4,10 @@ declare module "app-types" {
   import { OrderSchema, MerchProps } from "store-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
+  export interface CardData {
+    name: string;
+    uid: string;
+  }
   export interface ChildProps {
     children: React.ReactNode;
   }

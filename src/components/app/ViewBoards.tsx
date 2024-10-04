@@ -3,6 +3,7 @@ import { homeUrl, serverUrl } from "@config";
 import { Boards } from "task-board-context";
 import { useContext } from "react";
 import { UserContext } from "@context/user/UserContext";
+import EmptyContainer from "@components/containers/EmptyContainer";
 import LoadData from "./LoadData";
 
 interface P {
@@ -17,12 +18,7 @@ interface P {
 const ViewBoards = ({ onAddClick, loadFunction, onEditClick, onBoardClick, onViewClick, taskBoards, inviteLink }: P) => {
   const { user } = useContext(UserContext);
   if (taskBoards.length === 0) {
-    return (
-      <div className="container">
-        <h2 className="heading">Create your first task board</h2>
-        <Button label="Create new board" onClick={onAddClick} />
-      </div>
-    );
+    return <EmptyContainer heading="Create your first task board" onClick={onAddClick} btn={{ label: "Create new board" }} />;
   }
   if (typeof taskBoards[0] === "string") return <LoadData loadFunction={loadFunction} />;
   return (

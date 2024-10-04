@@ -1,0 +1,18 @@
+{
+  "isLoading": false,
+  "games": [],
+  "oponents": [],
+  "map": [],
+  "players": [],
+  "gameStatus": { "turn": "", "turnCount": 0, "title": "", "location": "", "message": "", "rematch": "", "leftGame": [] },
+  "oponent": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
+  "player": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
+  "game": {
+    "name": "",
+    "label": "",
+    "uid": "",
+    "isMultiplayer": false,
+    "map": [],
+    "dimensions": { "width": 3, "length": 3 }
+  }
+}

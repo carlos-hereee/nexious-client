@@ -5,12 +5,15 @@ interface P {
     avatar: string;
     name: string;
   };
+  theme?: string;
+  children?: React.ReactNode;
 }
-const AvatarCard = ({ user }: P) => {
+const AvatarCard = ({ user, theme, children }: P) => {
   return (
-    <div className="user-avatar-container">
+    <div className={theme || "user-avatar-container"}>
       <Hero hero={{ url: user.avatar, alt: "user-avatar" }} theme="avatar-sm" />
       {user.name && <p> {user.name}</p>}
+      {children}
     </div>
   );
 };

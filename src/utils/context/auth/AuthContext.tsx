@@ -1,6 +1,6 @@
 import { createContext, useReducer, useMemo, useCallback, useEffect, useContext } from "react";
 import { ChildProps } from "app-types";
-import authState from "@data/authState.json";
+import authState from "@data/state/authState.json";
 import { AuthSchema, CustomerSub, ISubscription, UserSchema } from "auth-context";
 import { EmailParam, ForgotPasswordValues, LoginValues, RegisterFormProps } from "app-forms";
 import { A_ACTIONS } from "@actions/AuthActions";

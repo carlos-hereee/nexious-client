@@ -1,7 +1,7 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import { ChildProps } from "app-types";
 import { LogMessage, LogSchema, PageType } from "log-context";
-import logState from "@data/logState.json";
+import logState from "@data/state/logState.json";
 import { LOG_ACTIONS } from "@actions/LogActions";
 import { reducer } from "./LogReducer";
 import { addToLog } from "./disptach/addToLog";

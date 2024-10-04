@@ -1,0 +1,48 @@
+@import "./tictactoe.css";
+.game-players {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.game-card {
+  background-color: aliceblue;
+  min-width: 200px;
+  max-width: 350px;
+  max-height: 250px;
+  border-radius: 0.5rem;
+  aspect-ratio: 1/2;
+  padding: 1rem;
+}
+.game-avatar-card {
+  max-width: 450px;
+  width: 100%;
+  padding: 1rem;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+}
+.game-avatar-card-active {
+  background-color: var(--active-color);
+  justify-content: flex-start;
+}
+.avatar-thinking {
+  /* position: absolute; */
+  /* display: flex; */
+  /* gap: 0.25rem; */
+  /* top: 60%;
+  left: 29%; */
+}
+/* .icon-avatar-thinking-dot2 {
+  position: absolute;
+  top: 60%;
+  left: 30%;
+}
+.icon-avatar-thinking-dot3 {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+} */
