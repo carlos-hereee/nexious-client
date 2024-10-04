@@ -4,8 +4,7 @@
   "oponents": [],
   "map": [],
   "players": [],
-  "result": { "title": "", "message": "", "rematch": false, "leftGame": [] },
-  "gameStatus": { "turn": "" },
+  "gameStatus": { "turn": "", "turnCount": 0, "title": "", "location": "", "message": "", "rematch": "", "leftGame": [] },
   "oponent": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
   "player": { "name": "", "level": "", "avatar": "", "uid": "", "isBot": false },
   "game": {

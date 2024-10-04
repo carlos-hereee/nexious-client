@@ -19,8 +19,6 @@ export const reducer = (state: GameState, action: GameActionProps): GameState =>
       return { ...state, map: action.payload };
     case GAME_ACTIONS.SET_GAME_STATUS:
       return { ...state, gameStatus: action.payload };
-    case GAME_ACTIONS.SET_GAME_RESULT:
-      return { ...state, result: action.payload };
     case GAME_ACTIONS.SET_OPONENTS:
       return { ...state, oponents: action.payload };
     default:

@@ -17,17 +17,16 @@ declare module "game-context" {
     isBot: boolean;
     level: string;
   }
-  export interface GameResult {
-    title: string;
-    message: string;
-    rematch: boolean;
-    leftGame: string[];
-  }
+
   export interface GameStatus {
     turn: string;
-    // message: string;
-    // rematch: boolean;
-    // leftGame: string[];
+    turnCount: number;
+    title?: string;
+    message?: string;
+    location?: string;
+    isGameOver?: boolean;
+    rematch?: string;
+    leftGame?: string[];
   }
   export interface GameState {
     isLoading: boolean;
@@ -38,7 +37,6 @@ declare module "game-context" {
     player: Oponent;
     oponents: Oponent[];
     oponent?: Oponent;
-    result: GameResult;
     map: GridData[][];
   }
   export interface GameSchema extends GameState {
@@ -50,7 +48,6 @@ declare module "game-context" {
     setPlayers: (data: Oponent[]) => void;
     setPlayer: (data: Oponent) => void;
     setOponent: (data?: Oponent) => void;
-    setGameResult: (data: GameResult) => void;
     setGameStatus: (data: GameStatus) => void;
   }
   export interface GameDispatchProps {
@@ -64,7 +61,6 @@ declare module "game-context" {
     | { type: GAME_ACTIONS.SET_PLAYER; payload: Oponent }
     | { type: GAME_ACTIONS.SET_GAMES; payload: GameData[] }
     | { type: GAME_ACTIONS.SET_GAME_MAP; payload: GridData[][] }
-    | { type: GAME_ACTIONS.SET_GAME_RESULT; payload: GameResult }
     | { type: GAME_ACTIONS.SET_GAME_STATUS; payload: GameStatus }
     | { type: GAME_ACTIONS.SET_GAME; payload: GameData };
 }

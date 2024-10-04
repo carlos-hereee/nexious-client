@@ -9,12 +9,18 @@ import { initGames, initOponents } from "../games/initGames";
 const GameRoute = () => {
   const { accessToken } = useContext(AuthContext);
   const { updateActiveAppData } = useContext(AppContext);
-  const { games, setGames, setGame, setOponents } = useContext(GameContext);
+  const { games, setGames, setGame, setOponents, oponent, map, game } = useContext(GameContext);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
+  // useEffect(() => {
+  // }, [oponent, game]);
   useEffect(() => {
     const gameName = pathname.split("/")[2];
+    const location = pathname.split("/")[3];
+    if (location === "play") {
+      if (!oponent || !oponent.uid || map.length === 0) navigate(`/games/${game.name}/lobby`);
+      if (!game.name) navigate("/games");
+    }
     const menu = accessToken ? nexiousAuthMenu : nexiousMenu;
     updateActiveAppData({ appName: nexiousName, logo: nexiousLogo, media: nexiousMedia, menu, appId: nexiousAppId });
     const oponents = initOponents();

@@ -2,7 +2,7 @@ import { createContext, useCallback, useMemo, useReducer } from "react";
 import { ChildProps } from "app-types";
 import gameState from "@data/state/gameState.json";
 import { GAME_ACTIONS } from "@actions/GameActions";
-import { GameData, GameResult, GameSchema, GameStatus, Oponent } from "game-context";
+import { GameData, GameSchema, GameStatus, Oponent } from "game-context";
 import { GridData } from "app-context";
 import { reducer } from "./GameReducer";
 
@@ -14,7 +14,6 @@ export const GameState = ({ children }: ChildProps) => {
   const setLoading = useCallback((data: boolean) => dispatch({ type: GAME_ACTIONS.IS_LOADING, payload: data }), []);
   const setGame = useCallback((data: GameData) => dispatch({ type: GAME_ACTIONS.SET_GAME, payload: data }), []);
   const setGameStatus = useCallback((data: GameStatus) => dispatch({ type: GAME_ACTIONS.SET_GAME_STATUS, payload: data }), []);
-  const setGameResult = useCallback((data: GameResult) => dispatch({ type: GAME_ACTIONS.SET_GAME_RESULT, payload: data }), []);
   const setGameMap = useCallback((data: GridData[][]) => dispatch({ type: GAME_ACTIONS.SET_GAME_MAP, payload: data }), []);
   const setGames = useCallback((data: GameData[]) => dispatch({ type: GAME_ACTIONS.SET_GAMES, payload: data }), []);
   const setOponent = useCallback((data?: Oponent) => dispatch({ type: GAME_ACTIONS.SET_OPONENT, payload: data }), []);
@@ -32,7 +31,6 @@ export const GameState = ({ children }: ChildProps) => {
       player: state.player,
       oponents: state.oponents,
       oponent: state.oponent,
-      result: state.result,
       gameStatus: state.gameStatus,
       setLoading,
       setGame,
@@ -40,7 +38,6 @@ export const GameState = ({ children }: ChildProps) => {
       setOponent,
       setOponents,
       setGameMap,
-      setGameResult,
       setGameStatus,
       setPlayers,
       setPlayer,
@@ -52,7 +49,6 @@ export const GameState = ({ children }: ChildProps) => {
     state.oponent,
     state.oponents,
     state.map,
-    state.result,
     state.gameStatus,
     state.players,
     state.player,

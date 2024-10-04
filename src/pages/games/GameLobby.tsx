@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Oponent } from "game-context";
 import { UserContext } from "@context/user/UserContext";
 import { generateUserDummyData } from "@app/generateName";
+import { initGame } from "@utils/games/initGames";
 
 const GameLobby = () => {
   const { game, oponents, setOponent, oponent, setGameMap, setPlayers, setGameStatus, setPlayer } = useContext(GameContext);
@@ -18,15 +19,16 @@ const GameLobby = () => {
     return setOponent(op);
   };
   const handlePlayClick = () => {
+    let player: Oponent = { avatar: "", level: "", name: "", uid: "", isBot: false };
     if (oponent) {
-      let player: Oponent = { avatar: "", level: "", name: "", uid: "", isBot: false };
       if (!user.userId) player = generateUserDummyData();
       else player = { avatar: user.avatar || "", level: "1", uid: user.userId, name: user.name || "", isBot: false };
-      setPlayers([player, oponent]);
-      setGameMap(game.map);
+      const g = initGame("tictactoe");
+      if (g) setGameMap(g);
       setPlayer(player);
+      setPlayers([player, oponent]);
       // TODO: PLAY ROCK PLAYER SIZORS TO DETERMINE WHO GOES FIRST
-      setGameStatus({ turn: player.uid });
+      setGameStatus({ turn: player.uid, turnCount: 0, isGameOver: false });
       navigate(`/games/${game.name}/play`);
     }
   };
