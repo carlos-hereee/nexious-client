@@ -5,8 +5,22 @@
   --accent: #f4ce14;
   --active-color: #eccf3c;
   --max-card-width: 450px;
+  /* tictactoe */
   --exes: url("../assets/exes.svg");
   --circle: url("../assets/circle.svg");
   --exesGray: url("../assets/exes-gray.svg");
   --circleGray: url("../assets/circle-gray.svg");
+  /* chess */
+  --chessPawnBlack: url("../assets/chess/pawn-black.svg");
+  --chessPawnWhite: url("../assets/chess/pawn-white.svg");
+  --chessRookBlack: url("../assets/chess/rook-black.svg");
+  --chessRookWhite: url("../assets/chess/rook-white.svg");
+  --chessBishopBlack: url("../assets/chess/bishop-black.svg");
+  --chessBishopWhite: url("../assets/chess/bishop-white.svg");
+  --chessKnightBlack: url("../assets/chess/knight-black.svg");
+  --chessKnightWhite: url("../assets/chess/knight-white.svg");
+  --chessQueenBlack: url("../assets/chess/queen-black.svg");
+  --chessQueenWhite: url("../assets/chess/queen-white.svg");
+  --chessKingBlack: url("../assets/chess/king-black.svg");
+  --chessKingWhite: url("../assets/chess/king-white.svg");
 }

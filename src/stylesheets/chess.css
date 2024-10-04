@@ -9,8 +9,55 @@
 }
 .chess-map-cell {
   aspect-ratio: 1/1;
-  /* max-width: 100px; */
-  /* max-height: 25vh; */
   border: 2px solid #7d4141;
   position: relative;
+  padding: 10px;
+}
+.chess-white-pawn {
+  background: var(--chessPawnWhite) no-repeat center;
+  background-size: 45%;
+}
+.chess-black-pawn {
+  background: var(--chessPawnBlack) no-repeat center;
+  background-size: 45%;
+}
+.chess-white-rook {
+  background: var(--chessRookWhite) no-repeat center;
+  background-size: 45%;
+}
+.chess-black-rook {
+  background: var(--chessRookBlack) no-repeat center;
+  background-size: 45%;
+}
+.chess-white-bishop {
+  background: var(--chessBishopWhite) no-repeat center;
+  background-size: 35%;
+}
+.chess-black-bishop {
+  background: var(--chessBishopBlack) no-repeat center;
+  background-size: 35%;
+}
+.chess-white-knight {
+  background: var(--chessKnightWhite) no-repeat center;
+  background-size: 45%;
+}
+.chess-black-knight {
+  background: var(--chessKnightBlack) no-repeat center;
+  background-size: 45%;
+}
+.chess-white-queen {
+  background: var(--chessQueenWhite) no-repeat center;
+  background-size: 45%;
+}
+.chess-black-queen {
+  background: var(--chessQueenBlack) no-repeat center;
+  background-size: 45%;
+}
+.chess-white-king {
+  background: var(--chessKingWhite) no-repeat center;
+  background-size: 45%;
+}
+.chess-black-king {
+  background: var(--chessKingBlack) no-repeat center;
+  background-size: 45%;
 }

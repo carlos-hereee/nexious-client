@@ -23,7 +23,7 @@ const GameRoute = () => {
       setPage("games");
       if (!oponent || !oponent.uid || map.length === 0) navigate(`/games/${game.name}/lobby`);
       if (!game.name) navigate("/games");
-    }
+    } else setPage("public");
     const menu = accessToken ? nexiousAuthMenu : nexiousMenu;
     updateActiveAppData({ appName: nexiousName, logo: nexiousLogo, media: nexiousMedia, menu, appId: nexiousAppId });
     const oponents = initOponents();
