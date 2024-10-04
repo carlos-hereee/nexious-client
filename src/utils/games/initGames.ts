@@ -10,6 +10,7 @@ export const initGames = () => {
 };
 export const initGame = (name: string) => {
   if (name === "tictactoe") return createGrid({ length: 3, width: 3 });
+  if (name === "chess") return createGrid({ length: 8, width: 8 });
   return [];
 };
 export const initOponents = () => {

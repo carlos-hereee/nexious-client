@@ -7,7 +7,9 @@ import { generateBotMove, updateGameMove } from "@utils/games/gameMove";
 import { initGame } from "@utils/games/initGames";
 import { GridData } from "app-context";
 import { checkWinCondition } from "@utils/games/winCondition";
-import TicTacToe from "./TicTacToe";
+// import TicTacToe from "./TicTacToe";
+import Grid from "@components/card/Grid";
+import Chess from "./Chess";
 
 const GamePlay = () => {
   const { game, oponent, map, players, gameStatus, setGameStatus, player, setGameMap } = useContext(GameContext);
@@ -66,13 +68,16 @@ const GamePlay = () => {
     navigate(`/games/${game.name}/lobby`);
     return setGameStatus({ ...gameStatus, message: `${player.name} left`, rematch: "" });
   };
-  return (
-    <div className="container">
-      <HeaderContent data={{ title: game.label }} />
 
-      <div className="split-container">
-        {game.name === "tictactoe" && <TicTacToe handleGameClick={handleGameClick} isPlayer1={isPlayer1} />}
-        <div className="game-players">
+  return (
+    <div className="split-container">
+      {game.name === "tictactoe" && (
+        <Grid grid={map} onCellClick={handleGameClick} theme="tictactoe" cellTheme={isPlayer1 ? "player1" : "player2"} />
+      )}
+      {game.name === "chess" && <Chess />}
+      <div className="container">
+        <HeaderContent data={{ title: game.label }} theme="hide-on-mobile" />
+        <div className="flex-w">
           {players.map((p) => (
             <AvatarCard
               user={p}
@@ -88,17 +93,21 @@ const GamePlay = () => {
               )}
             </AvatarCard>
           ))}
-          {gameStatus.isGameOver && (
-            <div>
-              {gameStatus.title && <h2 className="heading text-center">{gameStatus.title}</h2>}
-              {gameStatus.message && <p className="text-max text-center">{gameStatus.message}</p>}
-              <div className="flex-center">
-                <Button label={gameStatus.rematch === oponent?.uid ? "Accept" : "Request rematch"} onClick={handleRematch} />
-                <Button label="Leave" theme="btn-main btn-cancel" onClick={handleLeave} />
-              </div>
-            </div>
-          )}
         </div>
+        {gameStatus.isGameOver ? (
+          <div>
+            {gameStatus.title && <h2 className="heading text-center">{gameStatus.title}</h2>}
+            {gameStatus.message && <p className="text-max text-center">{gameStatus.message}</p>}
+            <div className="flex-center">
+              <Button label={gameStatus.rematch === oponent?.uid ? "Accept" : "Request rematch"} onClick={handleRematch} />
+              <Button label="Leave" theme="btn-main btn-cancel" onClick={handleLeave} />
+            </div>
+          </div>
+        ) : (
+          <div className="flex-center">
+            <Button label="Leave" theme="btn-main btn-cancel" onClick={handleLeave} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -5,6 +5,9 @@
   align-items: start;
   justify-content: flex-start;
 }
+.m-1 {
+  margin: 1rem;
+}
 .app-body {
   min-height: 60vh;
 }

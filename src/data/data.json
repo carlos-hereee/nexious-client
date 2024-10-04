@@ -19,6 +19,13 @@
       "isMultiplayer": false,
       "map": [],
       "dimensions": { "width": 3, "length": 3 }
+    },
+    {
+      "name": "chess",
+      "label": "CHESS",
+      "isMultiplayer": false,
+      "map": [],
+      "dimensions": { "width": 8, "length": 8 }
     }
   ],
   "dashboardMenu": {

@@ -1,4 +1,5 @@
 @import "./tictactoe.css";
+@import "./chess.css";
 .game-players {
   display: flex;
   flex-direction: column;

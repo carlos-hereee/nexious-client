@@ -7,19 +7,20 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { nexiousName } from "@data/nexious.json";
 import ErrorPage from "@pages/public/ErrorPage";
 import { serverIsOffline } from "@data/messages.json";
-// import { LogContext } from "@context/log/LogContext";
+import { LogContext } from "@context/log/LogContext";
 import UserMenu from "@components/app/UserMenu";
 
 const App = ({ children }: ChildProps) => {
   const { isLoading, theme, setTheme, authErrors, resetStranded } = useContext(AuthContext);
   const { activeLogo, activeMenu, activeAppName, activeMedia, themeList, isLoading: loadingApp } = useContext(AppContext);
-  // const { page } = useContext(LogContext);
+  const { page } = useContext(LogContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   if (authErrors && authErrors.offline) return <ErrorPage message={serverIsOffline} onClick={resetStranded} />;
   if (isLoading) return <Loading message="Fetching user assets.." />;
   if (loadingApp) return <Loading message="Fetching app data.." />;
+  if (page === "games") return <div className="elbow-space m-1"> {children}</div>;
 
   const handleLogoClick = () => {
     if (activeAppName === nexiousName) {

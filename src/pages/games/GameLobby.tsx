@@ -23,7 +23,7 @@ const GameLobby = () => {
     if (oponent) {
       if (!user.userId) player = generateUserDummyData();
       else player = { avatar: user.avatar || "", level: "1", uid: user.userId, name: user.name || "", isBot: false };
-      const g = initGame("tictactoe");
+      const g = initGame(game.name);
       if (g) setGameMap(g);
       setPlayer(player);
       setPlayers([player, oponent]);
