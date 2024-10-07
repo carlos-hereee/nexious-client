@@ -25,6 +25,7 @@ declare module "game-context" {
     message?: string;
     location?: string;
     isGameOver?: boolean;
+    isPlayer1?: string;
     rematch?: string;
     leftGame?: string[];
   }

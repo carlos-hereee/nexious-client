@@ -4,6 +4,7 @@ declare module "app-types" {
   import { OrderSchema, MerchProps } from "store-context";
   import { FormProps, AppValues, SectionEntryOganizer } from "app-forms";
 
+  export type IRPS = "rock" | "paper" | "scissors" | "";
   export interface CardData {
     name: string;
     uid: string;

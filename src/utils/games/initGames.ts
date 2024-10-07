@@ -35,7 +35,7 @@ export const initGames = () => {
   });
 };
 export const initGame = (name: string): GridData[] => {
-  // if (name === "tictactoe") return createGrid({ length: 3, width: 3 });
+  if (name === "tictactoe") return createGameGrid({ length: 3, width: 3 });
   if (name === "chess") return createGameGrid({ length: 8, width: 8, config: initChessRow });
   return [];
 };

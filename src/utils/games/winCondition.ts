@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { GridData } from "app-context";
+import { IRPS } from "app-types";
 import { GameStatus } from "game-context";
 
 interface ICondition {
@@ -36,6 +37,15 @@ const conditionChecker = (winCon: IWinCon, x: number, y: number) => {
   }
 };
 const checkWinner = (winCon: IWinCon) => Object.keys(winCon).filter((key) => winCon[key] === 3)[0];
+
+export const checkRPSWinConditin = (opt1: IRPS, opt2: IRPS): "win" | "lose" | "tie" => {
+  const winConfig = {
+    paper: { paper: "tie", rock: "win", scissors: "lose" },
+    rock: { paper: "lose", rock: "tie", scissors: "win" },
+    scissors: { paper: "win", rock: "lose", scissors: "tie" },
+  };
+  return winConfig[opt1][opt2];
+};
 export const ticTacToeWinCondition = ({ map, gameStatus }: ITicTacToeCondition) => {
   // keep track of exes
   const winConX = { x1: 0, x2: 0, x0: 0, y1: 0, y2: 0, y0: 0, d1: 0, d2: 0 };
