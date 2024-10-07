@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, HeaderContent, Icon } from "nexious-library";
 import AvatarCard from "@components/card/AvatarCard";
-import { generateBotMove, updateGameMove } from "@utils/games/gameMove";
+import { generateBotMove } from "@utils/games/gameMove";
 import { initGame } from "@utils/games/initGames";
 import { GridData } from "app-context";
 import { checkWinCondition } from "@utils/games/winCondition";
@@ -14,7 +14,7 @@ import Chess from "./Chess";
 const GamePlay = () => {
   const { game, oponent, map, players, gameStatus, setGameStatus, player, setGameMap } = useContext(GameContext);
   const navigate = useNavigate();
-  const isPlayer1 = players[0]?.uid === player.uid;
+  const isPlayer1 = gameStatus.isPlayer1 === player.uid;
 
   // update turns
   const toggleTurns = () => {
@@ -27,7 +27,7 @@ const GamePlay = () => {
     // update map
     setGameMap(updatedMap);
     // check win condition
-    const condition = checkWinCondition({ map: updatedMap, name: "tictactoe", gameStatus });
+    const condition = checkWinCondition({ map: updatedMap, name: game.name, gameStatus });
     if (condition) {
       const title = condition.message === "Tie" ? "Tie" : player.uid === gameStatus.turn ? "Congratulations" : "Game over";
       setGameStatus({ ...gameStatus, ...condition, isGameOver: true, title });
@@ -37,7 +37,7 @@ const GamePlay = () => {
   useEffect(() => {
     if (oponent && oponent.isBot) {
       if (!gameStatus.isGameOver && oponent.uid === gameStatus.turn) {
-        const botMove = generateBotMove({ map, isPlayer1: !isPlayer1, bot: oponent });
+        const botMove = generateBotMove({ map, isPlayer1: !isPlayer1, bot: oponent, name: game.name });
         handleGameUpdate(botMove);
       }
       if (gameStatus.isGameOver && gameStatus.rematch !== oponent.uid) {
@@ -49,12 +49,12 @@ const GamePlay = () => {
     }
   }, [gameStatus]);
 
-  const handleGameClick = (data: GridData) => {
-    // verify player turn
-    if (gameStatus.turn !== player.uid) return;
-    const updatedMap = updateGameMove({ map, data, isPlayer1 });
-    handleGameUpdate(updatedMap);
-  };
+  // const handleGameClick = (data: GridData) => {
+  //   // verify player turn
+  //   if (gameStatus.turn !== player.uid) return;
+  //   const updatedMap = updateGameMove({ map, data, isPlayer1 });
+  //   handleGameUpdate(updatedMap);
+  // };
   const handleRematch = () => {
     if (gameStatus.rematch === player.uid) return null;
     if (gameStatus.rematch) {
@@ -74,7 +74,7 @@ const GamePlay = () => {
       {/* {game.name === "tictactoe" && (
         <Grid grid={map} onCellClick={handleGameClick} theme="tictactoe" cellTheme={isPlayer1 ? "player1" : "player2"} />
       )} */}
-      {game.name === "chess" && <Chess />}
+      {game.name === "chess" && <Chess updateGame={handleGameUpdate} />}
       <div className="container">
         <HeaderContent data={{ title: game.label }} theme="hide-on-mobile" />
         <div className="flex-w">

@@ -4,12 +4,12 @@ import { IRPS } from "app-types";
 import { GameStatus } from "game-context";
 
 interface ICondition {
-  map: GridData[][];
+  map: GridData[];
   name: string;
   gameStatus: GameStatus;
 }
 interface ITicTacToeCondition {
-  map: GridData[][];
+  map: GridData[];
   gameStatus: GameStatus;
 }
 interface IWinCon {
@@ -51,12 +51,10 @@ export const ticTacToeWinCondition = ({ map, gameStatus }: ITicTacToeCondition) 
   const winConX = { x1: 0, x2: 0, x0: 0, y1: 0, y2: 0, y0: 0, d1: 0, d2: 0 };
   // keep track of circles
   const winConO = { x1: 0, x2: 0, x0: 0, y1: 0, y2: 0, y0: 0, d1: 0, d2: 0 };
-  map.forEach((col) =>
-    col.forEach(({ data, x, y }) => {
-      if (data === "exes") conditionChecker(winConX, x, y);
-      if (data === "circle") conditionChecker(winConO, x, y);
-    })
-  );
+  map.forEach(({ data, x, y }) => {
+    if (data === "exes") conditionChecker(winConX, x, y);
+    if (data === "circle") conditionChecker(winConO, x, y);
+  });
   // check if x won
   const checkX = checkWinner(winConX);
   if (checkX) return { message: "X won", location: checkX };

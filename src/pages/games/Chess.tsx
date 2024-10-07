@@ -4,7 +4,10 @@ import { findChessLegalMove } from "@utils/games/findChessLegalMove";
 import { GridData } from "app-context";
 import { useContext, useEffect, useState } from "react";
 
-const Chess = () => {
+interface P {
+  updateGame: (updatedMap: GridData[]) => void;
+}
+const Chess = ({ updateGame }: P) => {
   const { map, gameStatus, player } = useContext(GameContext);
   const [active, setActive] = useState<GridData>();
   const [previous, setPrev] = useState<GridData>();
@@ -14,11 +17,18 @@ const Chess = () => {
   useEffect(() => {
     if (active) {
       const legalMoves = findChessLegalMove({ current: active, map: chessMap, previous });
-      setPrev(active);
-      setChessMap(legalMoves);
+      if (previous && previous.data === "dot") {
+        updateGame(legalMoves);
+        setPrev(undefined);
+        setActive(undefined);
+      } else {
+        setChessMap(legalMoves);
+        setPrev(active);
+      }
     } else setChessMap(map);
-  }, [active]);
+  }, [active, map]);
 
+  console.log("gameStatus :>> ", gameStatus);
   const handleChessClick = (data: GridData) => {
     setActive(data);
   };

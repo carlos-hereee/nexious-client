@@ -19,7 +19,7 @@ export const isCellMatch = (cell1: ICell, cell2: ICell) => {
   return cell1.x === cell2.x && cell1.y === cell2.y;
 };
 
-const addPawnMoves = ({ current, isInit, player, map }: IAddMove) => {
+export const addPawnMoves = ({ current, isInit, player, map }: IAddMove) => {
   const { x, y } = current;
   const legalMoves: GridData[] = [];
   if (player === "white") {
@@ -32,12 +32,16 @@ const addPawnMoves = ({ current, isInit, player, map }: IAddMove) => {
       }
     });
   }
-  // if (player === "black") {
-  //   const jumpSqr = map[x][y + 1];
-  //   const doubleJumpSqr = map[x][y + 2];
-  //   if (!jumpSqr?.data) map[x][y + 1].data = "dot";
-  //   if (isInit && !doubleJumpSqr.data) map[x][y + 2].data = "dot";
-  // }
+  if (player === "black") {
+    map.forEach((m) => {
+      if (x === m.x) {
+        // jump if square is availible
+        if (y === m.y + 1 && !m.data) legalMoves.push(m);
+        // double jump
+        if (isInit && y === m.y + 2 && !m.data) legalMoves.push(m);
+      }
+    });
+  }
   return legalMoves;
 };
 

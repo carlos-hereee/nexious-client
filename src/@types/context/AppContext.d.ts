@@ -53,6 +53,7 @@ declare module "app-context" {
     roomType: string;
     name?: string;
     orientation?: string;
+    canMove?: boolean;
     x: number;
     y: number;
   }
