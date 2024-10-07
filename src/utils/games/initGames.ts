@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { uniqueId } from "nexious-library";
 import { games } from "@data/data.json";
-import { createGameGrid, createGrid } from "@app/createGrid";
+import { createGameGrid } from "@app/createGrid";
 import { GridData } from "app-context";
 
 const initChessRow = (cell: GridData) => {
@@ -30,7 +30,7 @@ const initChessRow = (cell: GridData) => {
 };
 export const initGames = () => {
   return games.map((game) => {
-    const map = createGrid(game.dimensions);
+    const map = createGameGrid(game.dimensions);
     return { ...game, uid: uniqueId(), map };
   });
 };

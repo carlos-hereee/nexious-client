@@ -8,7 +8,7 @@ import { initGame } from "@utils/games/initGames";
 import { GridData } from "app-context";
 import { checkWinCondition } from "@utils/games/winCondition";
 // import TicTacToe from "./TicTacToe";
-import Grid from "@components/card/Grid";
+// import Grid from "@components/card/Grid";
 import Chess from "./Chess";
 
 const GamePlay = () => {
@@ -22,7 +22,7 @@ const GamePlay = () => {
     if (target.uid) setGameStatus({ ...gameStatus, turn: target.uid, turnCount: gameStatus.turnCount + 1 });
   };
 
-  const handleGameUpdate = (updatedMap: GridData[][]) => {
+  const handleGameUpdate = (updatedMap: GridData[]) => {
     if (gameStatus.isGameOver) return;
     // update map
     setGameMap(updatedMap);
@@ -71,9 +71,9 @@ const GamePlay = () => {
 
   return (
     <div className="split-container">
-      {game.name === "tictactoe" && (
+      {/* {game.name === "tictactoe" && (
         <Grid grid={map} onCellClick={handleGameClick} theme="tictactoe" cellTheme={isPlayer1 ? "player1" : "player2"} />
-      )}
+      )} */}
       {game.name === "chess" && <Chess />}
       <div className="container">
         <HeaderContent data={{ title: game.label }} theme="hide-on-mobile" />

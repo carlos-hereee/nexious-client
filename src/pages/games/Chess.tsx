@@ -5,27 +5,28 @@ import { GridData } from "app-context";
 import { useContext, useEffect, useState } from "react";
 
 const Chess = () => {
-  const { map } = useContext(GameContext);
+  const { map, gameStatus, player } = useContext(GameContext);
   const [active, setActive] = useState<GridData>();
+  const [previous, setPrev] = useState<GridData>();
   const [chessMap, setChessMap] = useState(map);
+  const isPlayer1 = player.uid === gameStatus.isPlayer1;
 
   useEffect(() => {
     if (active) {
-      const legalMoves = findChessLegalMove({ current: active, map: chessMap });
+      const legalMoves = findChessLegalMove({ current: active, map: chessMap, previous });
+      setPrev(active);
       setChessMap(legalMoves);
     } else setChessMap(map);
   }, [active]);
 
   const handleChessClick = (data: GridData) => {
-    if (data === active) setActive(undefined);
-    else setActive(data);
+    setActive(data);
   };
   return (
     <GameBoard
       map={chessMap}
       onCellClick={handleChessClick}
-      theme="chess"
-      active={active}
+      theme={`${isPlayer1 ? "chess-player-1" : "chess-player-2"} chess`}
       // cellTheme={isPlayer1 ? "chess-player-white" : "chess-player-black"}
     />
   );

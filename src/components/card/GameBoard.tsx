@@ -1,14 +1,13 @@
 import { GridData } from "app-context";
-import { Button, Hero, uniqueId } from "nexious-library";
+import { Button } from "nexious-library";
 
 interface Igrid {
   map: GridData[];
-  active?: GridData;
   theme?: string;
   cellTheme?: string;
   onCellClick?: (d: GridData) => void;
 }
-const GameBoard = ({ map, active, theme, cellTheme, onCellClick }: Igrid) => (
+const GameBoard = ({ map, theme, cellTheme, onCellClick }: Igrid) => (
   <div className={theme || "map"}>
     {map.map((cell) => (
       <Button
@@ -16,7 +15,7 @@ const GameBoard = ({ map, active, theme, cellTheme, onCellClick }: Igrid) => (
         theme={`x-${cell.x} y-${cell.y}${theme ? ` ${theme}-map-cell` : " map-cell"}${
           cell.data ? ` ${theme}-${cell.data}` : ""
         }${`${cellTheme ? ` ${cellTheme}` : ""}`}`}
-        onCellClick={() => onCellClick && onCellClick(cell)}
+        onClick={() => onCellClick && onCellClick(cell)}
       />
       // <div className={`${theme ? `${theme}-map-column` : "map-column"}`} key={uniqueId(g.length + idx)}>
       //   {g.map((d) =>

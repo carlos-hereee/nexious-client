@@ -2,24 +2,24 @@ import { GridData } from "app-context";
 import { Oponent } from "game-context";
 
 interface IMove {
-  map: GridData[][];
+  map: GridData[];
   data: GridData;
   isPlayer1: boolean;
 }
 interface IBotMove {
-  map: GridData[][];
+  map: GridData[];
   isPlayer1: boolean;
   bot: Oponent;
   moves?: GridData[];
 }
 // find legal move
-export const findLegalMoves = (map: GridData[][]) => {
+export const findLegalMoves = (map: GridData[]) => {
   const moves: GridData[] = [];
-  map.forEach((column) =>
-    column.forEach((cell) => {
-      if (!cell.data) moves.push(cell);
-    })
-  );
+  // map.forEach((column) =>
+  //   column.forEach((cell) => {
+  //     if (!cell.data) moves.push(cell);
+  //   })
+  // );
   return moves;
 };
 export const updateGameMove = ({ map, data, isPlayer1 }: IMove) => {
