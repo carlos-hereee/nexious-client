@@ -7,7 +7,7 @@ declare module "game-context" {
     label: string;
     isMultiplayer: boolean;
     uid: string;
-    map: GridData[][];
+    map: GridData[];
     dimensions: MapDimensions;
   }
   export interface Oponent {
@@ -37,13 +37,13 @@ declare module "game-context" {
     player: Oponent;
     oponents: Oponent[];
     oponent?: Oponent;
-    map: GridData[][];
+    map: GridData[];
   }
   export interface GameSchema extends GameState {
     setLoading: (data: boolean) => void;
     setGame: (data: GameData) => void;
     setGames: (data: GameData[]) => void;
-    setGameMap: (map: GridData[][]) => void;
+    setGameMap: (map: GridData[]) => void;
     setOponents: (data: Oponent[]) => void;
     setPlayers: (data: Oponent[]) => void;
     setPlayer: (data: Oponent) => void;
@@ -60,7 +60,7 @@ declare module "game-context" {
     | { type: GAME_ACTIONS.SET_OPONENT; payload: Oponent | undefined }
     | { type: GAME_ACTIONS.SET_PLAYER; payload: Oponent }
     | { type: GAME_ACTIONS.SET_GAMES; payload: GameData[] }
-    | { type: GAME_ACTIONS.SET_GAME_MAP; payload: GridData[][] }
+    | { type: GAME_ACTIONS.SET_GAME_MAP; payload: GridData[] }
     | { type: GAME_ACTIONS.SET_GAME_STATUS; payload: GameStatus }
     | { type: GAME_ACTIONS.SET_GAME; payload: GameData };
 }

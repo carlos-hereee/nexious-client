@@ -1,55 +1,56 @@
+/* eslint-disable no-param-reassign */
 import { GridData } from "app-context";
 
 interface ILegalMove {
   current: GridData;
-  map: GridData[][];
+  map: GridData[];
 }
 interface ICell {
   x: number;
   y: number;
 }
 interface IAddMove {
+  map: GridData[];
   current: ICell;
-  length: number;
-  direction: "up" | "down";
-  legalMoves: ICell[];
+  player: "white" | "black";
+  isInit?: boolean;
 }
 export const isCellMatch = (cell1: ICell, cell2: ICell) => {
   return cell1.x === cell2.x && cell1.y === cell2.y;
 };
-const addPawnMoves = ({ current, legalMoves, length, direction }: IAddMove) => {
-  const target = current.y + length;
-  if (direction === "down") {
-    for (let i = target; i < current.y; i += 1) {
-      legalMoves.push({ x: current.x, y: i });
-    }
+
+const addPawnMoves = ({ current, isInit, player, map }: IAddMove) => {
+  const { x, y } = current;
+  if (player === "white") {
+    const target = { jump: y - 1, doubleJump: y - 2 };
+    console.log("target :>> ", target);
+    return map.map((m) => {
+      if (x === m.x) {
+        console.log("target :>> ", m);
+      }
+      return m;
+    });
+    // console.log("jumpSqr :>> ", jumpSqr);
+    // if (!jumpSqr?.data) map[x][y - 1].data = "dot";
+    // if (isInit && !doubleJumpSqr?.data) map[x][y - 2].data = "dot";
   }
-  if (direction === "up") {
-    for (let i = current.y; i < target + 1; i += 1) {
-      legalMoves.push({ x: current.x, y: i });
-    }
-  }
+  // if (player === "black") {
+  //   const jumpSqr = map[x][y + 1];
+  //   const doubleJumpSqr = map[x][y + 2];
+  //   if (!jumpSqr?.data) map[x][y + 1].data = "dot";
+  //   if (isInit && !doubleJumpSqr.data) map[x][y + 2].data = "dot";
+  // }
+  return map;
 };
 
 export const findChessLegalMove = ({ current, map }: ILegalMove) => {
-  const legalMoves: ICell[] = [];
-  // white pawn
   if (current.data.includes("white-pawn")) {
     // its in starting sqaure
-    if (current.y === 6) addPawnMoves({ current, legalMoves, length: -2, direction: "down" });
-    else addPawnMoves({ current, legalMoves, length: -1, direction: "down" });
+    addPawnMoves({ current, map, player: "white", isInit: current.y === 6 });
   }
   // black pawn
   if (current.data.includes("black-pawn")) {
-    // its in starting sqaure
-    if (current.y === 1) addPawnMoves({ current, legalMoves, length: 2, direction: "up" });
-    else addPawnMoves({ current, legalMoves, length: 1, direction: "up" });
+    addPawnMoves({ current, map, player: "black", isInit: current.y === 1 });
   }
-  return map.map((m) => {
-    return m.map((cell) => {
-      const isMatch = legalMoves.some((lMove) => isCellMatch(lMove, cell));
-      if (isMatch && !cell.data) return { ...cell, data: "dot" };
-      return cell;
-    });
-  });
+  return map;
 };
