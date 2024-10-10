@@ -9,10 +9,12 @@ const initChessRow = (cell: GridData) => {
   //  pawns
   if (y === 1) {
     cell.data = "white-pawn";
+    cell.roomType = "pawn";
     cell.canMove = true;
   }
   if (y === 6) {
     cell.data = "black-pawn";
+    cell.roomType = "pawn";
     cell.canMove = true;
   }
   //  white
@@ -20,22 +22,27 @@ const initChessRow = (cell: GridData) => {
     //  rooks
     if (x === 0 || x === 7) {
       cell.data = "white-rook";
+      cell.roomType = "rook";
       cell.canMove = false;
     }
     if (x === 1 || x === 6) {
       cell.data = "white-knight";
+      cell.roomType = "knight";
       cell.canMove = true;
     }
     if (x === 2 || x === 5) {
       cell.data = "white-bishop";
+      cell.roomType = "bishop";
       cell.canMove = false;
     }
     if (x === 3) {
       cell.data = "white-king";
+      cell.roomType = "king";
       cell.canMove = false;
     }
     if (x === 4) {
       cell.data = "white-queen";
+      cell.roomType = "queen";
       cell.canMove = false;
     }
   }
@@ -43,22 +50,27 @@ const initChessRow = (cell: GridData) => {
     // black rooks
     if (x === 0 || x === 7) {
       cell.data = "black-rook";
+      cell.roomType = "rook";
       cell.canMove = false;
     }
     if (x === 1 || x === 6) {
       cell.data = "black-knight";
+      cell.roomType = "knight";
       cell.canMove = true;
     }
     if (x === 2 || x === 5) {
       cell.data = "black-bishop";
+      cell.roomType = "bishop";
       cell.canMove = false;
     }
     if (x === 3) {
       cell.data = "black-queen";
+      cell.roomType = "queen";
       cell.canMove = false;
     }
     if (x === 4) {
       cell.data = "black-king";
+      cell.roomType = "king";
       cell.canMove = false;
     }
   }

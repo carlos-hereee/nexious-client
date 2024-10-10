@@ -8,68 +8,86 @@ interface ILegalMove {
 interface ICell {
   x: number;
   y: number;
+  data?: string;
 }
 interface IAddMove {
   map: GridData[];
-  current: ICell;
-  player: "white" | "black";
-  isInit?: boolean;
+  legalMoves: GridData[];
+  current: GridData;
 }
 export const isCellMatch = (cell1: ICell, cell2: ICell) => {
   return cell1.x === cell2.x && cell1.y === cell2.y;
 };
 
-export const addPawnMoves = ({ current, isInit, player, map }: IAddMove) => {
-  const { x, y } = current;
-  const legalMoves: GridData[] = [];
-  if (player === "white") {
-    map.forEach((m) => {
-      if (x === m.x) {
+export const addPawnMoves = ({ current, map, legalMoves }: IAddMove) => {
+  const { x, y, data } = current;
+  // white pawn
+  if (data.includes("white-pawn")) {
+    map.forEach((cell) => {
+      if (x === cell.x) {
         // jump if square is availible
-        if (y === m.y - 1 && !m.data) legalMoves.push(m);
+        if (y === cell.y - 1 && !cell.data) legalMoves.push(cell);
         // double jump
-        if (isInit && y === m.y - 2 && !m.data) legalMoves.push(m);
+        if (y === 1 && y === cell.y - 2 && !cell.data) legalMoves.push(cell);
+      }
+      // attacking square
+      if (x + 1 === cell.x && y + 1 === cell.y && cell.data.includes("black")) {
+        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
+      }
+      // attacking square
+      if (x - 1 === cell.x && y + 1 === cell.y && cell.data.includes("black")) {
+        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
       }
     });
   }
-  if (player === "black") {
-    map.forEach((m) => {
-      if (x === m.x) {
+  // black pawn
+  if (data.includes("black-pawn")) {
+    map.forEach((cell) => {
+      if (x === cell.x) {
         // jump if square is availible
-        if (y === m.y + 1 && !m.data) legalMoves.push(m);
+        if (y === cell.y + 1 && !cell.data) legalMoves.push(cell);
         // double jump
-        if (isInit && y === m.y + 2 && !m.data) legalMoves.push(m);
+        if (y === 6 && y === cell.y + 2 && !cell.data) legalMoves.push(cell);
+      }
+      // attacking square
+      if (x + 1 === cell.x && y - 1 === cell.y && cell.data.includes("white")) {
+        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
+      }
+      // attacking square
+      if (x + 1 === cell.x && y + 1 === cell.y && cell.data.includes("white")) {
+        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
       }
     });
   }
   return legalMoves;
 };
-
-export const findChessLegalMove = ({ current, map, previous }: ILegalMove) => {
-  let legalMoves: GridData[] = [];
-  if (previous && current.data === "dot") {
-    return map.map((m) => {
-      if (m.id === current.id) return { ...m, data: previous.data };
-      if (m.id === previous.id) return { ...m, data: "" };
-      if (m.data === "dot") return { ...m, data: "" };
-      return m;
-    });
-  }
-  if (current.data.includes("white-pawn")) {
-    // its in starting sqaure
-    legalMoves = addPawnMoves({ current, map, player: "white", isInit: current.y === 1 });
-  }
-  // black pawn
-  if (current.data.includes("black-pawn")) {
-    legalMoves = addPawnMoves({ current, map, player: "black", isInit: current.y === 2 });
-  }
-
+export const updateChessMove = ({ current, map, previous }: ILegalMove) => {
+  if (!previous) return map;
   return map.map((m) => {
-    const isMatch = legalMoves.some((i) => i === m);
-    if (isMatch) {
-      return { ...m, data: "dot" };
+    if (m.id === current.id) return { ...m, data: previous.data, roomType: previous.roomType };
+    if (m.id === previous.id) return { ...m, data: "", roomType: "" };
+    if (m.data.includes("dot")) return { ...m, data: "", roomType: "" };
+    return m;
+  });
+};
+
+export const findChessLegalMove = ({ current, map }: ILegalMove) => {
+  const legalMoves: GridData[] = [];
+  if (current.roomType === "pawn") addPawnMoves({ current, map, legalMoves });
+  if (legalMoves.length === 0) return map;
+  return map.map((m) => {
+    const target = legalMoves.filter((i) => i.id === m.id)[0];
+    if (target) {
+      return { ...m, data: target.data.includes("can-capture") ? target.data : "dot" };
     }
     // reset previous dot valus
-    return { ...m, data: m.data === "dot" ? "" : m.data };
+    return {
+      ...m,
+      data: m.data.includes("dot")
+        ? m.data.includes("can-capture")
+          ? m.data.replace("can-capture", "")
+          : `${m.data ? ` ${m.data}` : ""}`
+        : m.data,
+    };
   });
 };

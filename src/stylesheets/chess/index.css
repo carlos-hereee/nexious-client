@@ -18,3 +18,9 @@
   padding: 10px;
   min-width: 100%;
 }
+.can-capture {
+  /* background-color: aliceblue; */
+  border: 5px solid rgb(13, 45, 82);
+  /* background: var(--chessDot) no-repeat center;
+  background-size: 20%; */
+}

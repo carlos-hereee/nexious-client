@@ -1,34 +1,32 @@
 import GameBoard from "@components/card/GameBoard";
 import { GameContext } from "@utils/context/games/GameContext";
-import { findChessLegalMove } from "@utils/games/findChessLegalMove";
+import { findChessLegalMove, updateChessMove } from "@utils/games/findChessLegalMove";
+import { useGameUpdate } from "@utils/hooks/useGameUpdate";
 import { GridData } from "app-context";
 import { useContext, useEffect, useState } from "react";
 
-interface P {
-  updateGame: (updatedMap: GridData[]) => void;
-}
-const Chess = ({ updateGame }: P) => {
-  const { map, gameStatus, player } = useContext(GameContext);
+const Chess = () => {
+  const { map } = useContext(GameContext);
   const [active, setActive] = useState<GridData>();
   const [previous, setPrev] = useState<GridData>();
   const [chessMap, setChessMap] = useState(map);
-  const isPlayer1 = player.uid === gameStatus.isPlayer1;
+  const { isPlayer1, checkWinCon } = useGameUpdate();
 
   useEffect(() => {
     if (active) {
-      const legalMoves = findChessLegalMove({ current: active, map: chessMap, previous });
-      if (previous && previous.data === "dot") {
-        updateGame(legalMoves);
+      if ((previous && previous.id !== active.id && active.data === "dot") || active.data.includes("can-capture")) {
+        const updatedMap = updateChessMove({ previous, current: active, map });
         setPrev(undefined);
         setActive(undefined);
+        checkWinCon(updatedMap);
       } else {
+        const legalMoves = findChessLegalMove({ current: active, map: chessMap });
         setChessMap(legalMoves);
         setPrev(active);
       }
     } else setChessMap(map);
   }, [active, map]);
 
-  console.log("gameStatus :>> ", gameStatus);
   const handleChessClick = (data: GridData) => {
     setActive(data);
   };

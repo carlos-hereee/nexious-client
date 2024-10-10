@@ -15,17 +15,8 @@ interface IBotMove {
   bot: Oponent;
   moves?: GridData[];
 }
-// find legal move
-export const findLegalMoves = (map: GridData[]) => {
-  const moves: GridData[] = [];
-  // map.forEach((column) =>
-  //   column.forEach((cell) => {
-  //     if (!cell.data) moves.push(cell);
-  //   })
-  // );
-  return moves;
-};
-export const updateGameMove = ({ map, data, isPlayer1 }: IMove) => {
+
+export const updateGameMove = ({ map, data }: IMove) => {
   if (!data) return map;
   return map.map((column) => {
     console.log("column :>> ", column);
@@ -36,19 +27,17 @@ export const updateGameMove = ({ map, data, isPlayer1 }: IMove) => {
   });
 };
 export const updateChessMove = ({ map, data }: IMove) => {
-  let legalMoves: GridData[] = [];
-  if (data.data.includes("white-pawn")) legalMoves = addPawnMoves({ current: data, map, player: "white", isInit: data.y === 1 });
-  // // black pawn
-  if (data.data.includes("black-pawn")) legalMoves = addPawnMoves({ current: data, map, player: "black", isInit: data.y === 6 });
+  const legalMoves: GridData[] = [];
+  if (data.roomType === "pawn") addPawnMoves({ current: data, map, legalMoves });
   const target = selectRandom(legalMoves);
-  // console.log("target :>> ", target);
   if (!target) return map;
-  return map.map((column) => {
+
+  return map.map((m) => {
     // update move
-    if (column.id === target.id) return { ...column, data: data.data };
+    if (m.id === target.id) return { ...m, data: data.data };
     // reset precious square
-    if (column.id === data.id) return { ...column, data: "" };
-    return column;
+    if (m.id === data.id) return { ...m, data: "" };
+    return m;
   });
 };
 export const botLevel3Move = ({ map, isPlayer1, bot, moves }) => {
@@ -66,10 +55,11 @@ export const generateBotMove = ({ map, isPlayer1, bot, name }: IBotMove) => {
     const legalMoves = chessLegalMove(map, isPlayer1 ? "white" : "black");
     if (bot.level === "1") return updateChessMove({ map, data: selectRandom(legalMoves) });
   }
+  return map;
   // keep track of open moves
-  const moves = findLegalMoves(map);
+  // const moves = findLegalMoves(map);
   // level two move randomly
-  if (bot.level === "2") return updateGameMove({ map, isPlayer1, data: selectRandom(moves) });
-  // else make first legal move
-  return updateGameMove({ map, data: moves[0], isPlayer1 });
+  // if (bot.level === "2") return updateGameMove({ map, isPlayer1, data: selectRandom(moves) });
+  // // else make first legal move
+  // return updateGameMove({ map, data: moves[0], isPlayer1 });
 };
