@@ -28,6 +28,7 @@ export const updateGameMove = ({ map, data }: IMove) => {
 };
 export const updateChessMove = ({ map, data }: IMove) => {
   const legalMoves: GridData[] = [];
+  if (!data.roomType) return map;
   if (data.roomType === "pawn") addPawnMoves({ current: data, map, legalMoves });
   const target = selectRandom(legalMoves);
   if (!target) return map;
