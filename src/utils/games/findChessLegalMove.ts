@@ -50,40 +50,59 @@ const findOpenSqr = ({ current, map, locations, player, origin, dir }: IOpenSqar
   }
 };
 
+// interface P {
+//   cell1: GridData;
+//   cell2: GridData;
+//   legalMoves: GridData[];
+//   target: string;
+//   dir: number;
+//   isInit?: boolean;
+// }
+// const addPawn = ({ cell1, cell2, legalMoves, target, dir, isInit }: P) => {
+//   if (cell2.x === cell1.x) {
+//     // jump if square is availible
+//     if (cell2.y === cell1.y + dir && !cell1.data) captureAttack(cell1, target, legalMoves);
+//     // double jump
+//     if (isInit && cell2.y === cell1.y + dir && !cell1.data) captureAttack(cell1, target, legalMoves);
+//   }
+//   // attacking square
+//   if (cell2.x + 1 === cell1.x && cell2.y + 1 === cell1.y && canAttack(cell1, target)) captureAttack(cell1, target, legalMoves);
+//   // attacking square
+//   if (cell2.x - 1 === cell1.x && cell2.y + 1 === cell1.y && canAttack(cell1, target)) captureAttack(cell1, target, legalMoves);
+// };
 export const addPawnMoves = ({ current, map, legalMoves }: IAddMove) => {
-  const { x, y, data } = current;
+  const { x, y } = current;
   // white pawn
-  if (data.includes("white-pawn")) {
+  if (current.data.includes("white-pawn")) {
+    // if(x===)
     map.forEach((cell) => {
+      // addPawn(cell, current, legalMoves, "black", -1);
       if (x === cell.x) {
         // jump if square is availible
-        if (y === cell.y - 1 && !cell.data) legalMoves.push(cell);
+        if (y === cell.y - 1 && !cell.data) captureAttack(cell, "black", legalMoves);
         // double jump
-        if (y === 1 && y === cell.y - 2 && !cell.data) legalMoves.push(cell);
+        if (y === 1 && y === cell.y - 2 && !cell.data) captureAttack(cell, "black", legalMoves);
       }
       // attacking square
-      if (x + 1 === cell.x && y + 1 === cell.y) captureAttack(cell, "black", legalMoves);
+      if (x + 1 === cell.x && y + 1 === cell.y && canAttack(cell, "black")) captureAttack(cell, "black", legalMoves);
       // attacking square
-      if (x - 1 === cell.x && y + 1 === cell.y) captureAttack(cell, "black", legalMoves);
+      if (x - 1 === cell.x && y + 1 === cell.y && canAttack(cell, "black")) captureAttack(cell, "black", legalMoves);
     });
   }
   // black pawn
-  if (data.includes("black-pawn")) {
+  if (current.data.includes("black-pawn")) {
     map.forEach((cell) => {
+      // addPawn(cell, current, legalMoves, "white", 1);
       if (x === cell.x) {
         // jump if square is availible
-        if (y === cell.y + 1 && !cell.data) legalMoves.push(cell);
+        if (y === cell.y + 1 && !cell.data) captureAttack(cell, "white", legalMoves);
         // double jump
-        if (y === 6 && y === cell.y + 2 && !cell.data) legalMoves.push(cell);
+        if (y === 6 && y === cell.y + 2 && !cell.data) captureAttack(cell, "white", legalMoves);
       }
       // attacking square
-      if (x + 1 === cell.x && y - 1 === cell.y && cell.data.includes("white")) {
-        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
-      }
+      if (x + 1 === cell.x && y - 1 === cell.y && canAttack(cell, "white")) captureAttack(cell, "white", legalMoves);
       // attacking square
-      if (x + 1 === cell.x && y + 1 === cell.y && cell.data.includes("white")) {
-        legalMoves.push({ ...cell, data: `${cell.data} can-capture` });
-      }
+      if (x + 1 === cell.x && y + 1 === cell.y && canAttack(cell, "white")) captureAttack(cell, "white", legalMoves);
     });
   }
   return legalMoves;
@@ -104,25 +123,6 @@ export const addKnightMoves = ({ current, map, legalMoves, player }: IAddMove) =
       if (cell.y === current.y - 1) captureAttack(cell, player, legalMoves);
     }
   });
-  // if (current.data.includes("white")) {
-  // }
-  // if (current.data.includes("black")) {
-  //   map.forEach((cell) => {
-  //     if (cell.x === current.x + 1 || cell.x === current.x - 1) {
-  //       // top inner left
-  //       if (cell.y === current.y + 2) canAttack(cell, "white", legalMoves);
-  //       // bottom inner left
-  //       if (cell.y === current.y - 2) canAttack(cell, "white", legalMoves);
-  //     }
-
-  //     if (cell.x === current.x + 2 || cell.x === current.x - 2) {
-  //       // top inner left
-  //       if (cell.y === current.y + 1) canAttack(cell, "white", legalMoves);
-  //       // bottom inner left
-  //       if (cell.y === current.y - 1) canAttack(cell, "white", legalMoves);
-  //     }
-  //   });
-  // }
 };
 export const addBishopMoves = ({ current, map, legalMoves, player }: IAddMove) => {
   // to top right
@@ -144,10 +144,11 @@ export const addRookMoves = ({ current, map, legalMoves, player }: IAddMove) => 
 export const updateChessMove = ({ current, map, previous }: ILegalMove) => {
   if (!previous) return map;
   return map.map((m) => {
-    if (m.canMove) return { ...m, canMove: false };
-    if (m.canCapture) return { ...m, canCapture: false };
-    if (m.id === previous.id) return { ...m, data: "", roomType: "" };
-    if (m.id === current.id) return { ...m, data: previous.data, roomType: previous.roomType };
+    if (m.id === previous.id) return { ...m, data: "", roomType: "", canMove: false, canCapture: false };
+    if (m.id === current.id) {
+      return { ...m, data: previous.data, roomType: previous.roomType || "", canCapture: false, canMove: false };
+    }
+
     return m;
   });
 };
@@ -168,10 +169,9 @@ export const findChessLegalMove = ({ current, map }: ILegalMove) => {
   if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves, player });
   if (current.roomType === "rook") addRookMoves({ current, map, legalMoves, player });
   if (legalMoves.length === 0) return resetBoard(map);
-
   return map.map((m) => {
     const target = legalMoves.filter((i) => i.id === m.id)[0];
     if (target) return target;
-    return m;
+    return { ...m, canCapture: false, canMove: false };
   });
 };

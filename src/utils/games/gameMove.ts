@@ -1,11 +1,11 @@
 import { GridData } from "app-context";
 import { Oponent } from "game-context";
 import { selectRandom } from "./selectRandom";
-import { addPawnMoves } from "./findChessLegalMove";
+import { addBishopMoves, addKnightMoves, addPawnMoves, addRookMoves } from "./findChessLegalMove";
 
 interface IMove {
   map: GridData[];
-  data: GridData;
+  current: GridData;
   isPlayer1?: boolean;
 }
 interface IBotMove {
@@ -16,28 +16,24 @@ interface IBotMove {
   moves?: GridData[];
 }
 
-export const updateGameMove = ({ map, data }: IMove) => {
-  if (!data) return map;
-  return map.map((column) => {
-    console.log("column :>> ", column);
-    // find cell column
-    // if (column[data.x] && column[data.x].x === data.x) {
-    // }
-    return column;
-  });
-};
-export const updateChessMove = ({ map, data }: IMove) => {
+export const updateChessMove = ({ map, current, isPlayer1 }: IMove) => {
   const legalMoves: GridData[] = [];
-  if (!data.roomType) return map;
-  if (data.roomType === "pawn") addPawnMoves({ current: data, map, legalMoves });
+  const player = isPlayer1 ? "white" : "black";
+
+  if (!current.roomType) return map;
+  if (current.roomType === "pawn") addPawnMoves({ current, map, legalMoves, player });
+  if (current.roomType === "knight") addKnightMoves({ current, map, legalMoves, player });
+  if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves, player });
+  if (current.roomType === "rook") addRookMoves({ current, map, legalMoves, player });
+
   const target = selectRandom(legalMoves);
   if (!target) return map;
 
   return map.map((m) => {
     // update move
-    if (m.id === target.id) return { ...m, data: data.data };
+    if (m.id === target.id) return { ...m, data: current.data };
     // reset precious square
-    if (m.id === data.id) return { ...m, data: "" };
+    if (m.id === current.id) return { ...m, data: "" };
     return m;
   });
 };
@@ -47,14 +43,26 @@ export const botLevel3Move = ({ map, isPlayer1, bot, moves }) => {
   console.log("bot :>> ", bot);
   console.log("moves :>> ", moves);
 };
-export const chessLegalMove = (map: GridData[], player: string) => {
-  return map.filter((m) => m.canMove && m.data.includes(player));
+export const chessBotLegalMove = (map: GridData[], player: string) => {
+  const legalMoves: GridData[] = [];
+  map.forEach((current) => {
+    if (current.data.includes(player) && current.roomType) {
+      let moves = [];
+      if (current.roomType === "pawn") addPawnMoves({ current, map, legalMoves: moves, player });
+      if (current.roomType === "knight") addKnightMoves({ current, map, legalMoves: moves, player });
+      if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves: moves, player });
+      if (current.roomType === "rook") addRookMoves({ current, map, legalMoves: moves, player });
+      if (moves.length > 0) legalMoves.push(current);
+      moves = [];
+    }
+  });
+  return legalMoves;
 };
 // TODO CREATE WINING ALGORITHM
 export const generateBotMove = ({ map, isPlayer1, bot, name }: IBotMove) => {
   if (name === "chess") {
-    const legalMoves = chessLegalMove(map, isPlayer1 ? "white" : "black");
-    if (bot.level === "1") return updateChessMove({ map, data: selectRandom(legalMoves) });
+    const legalMoves = chessBotLegalMove(map, isPlayer1 ? "white" : "black");
+    if (bot.level === "1") return updateChessMove({ map, current: selectRandom(legalMoves), isPlayer1 });
   }
   return map;
   // keep track of open moves
