@@ -14,7 +14,9 @@ const GameBoard = ({ map, theme, cellTheme, onCellClick }: Igrid) => (
         key={cell.id}
         theme={`x-${cell.x} y-${cell.y}${theme ? ` ${theme}-map-cell` : " map-cell"}${
           cell.data ? ` ${theme}-${cell.data}` : ""
-        }${`${cellTheme ? ` ${cellTheme}` : ""}`}`}
+        }${`${cellTheme ? ` ${cellTheme}` : ""}`}${cell.canCapture ? ` ${theme}-can-capture` : ""}${
+          cell.canMove ? ` ${theme}-dot` : ""
+        }`}
         onClick={() => onCellClick && onCellClick(cell)}
       />
       // <div className={`${theme ? `${theme}-map-column` : "map-column"}`} key={uniqueId(g.length + idx)}>

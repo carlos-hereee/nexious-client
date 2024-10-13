@@ -12,20 +12,6 @@ const GamePlay = () => {
   const { game, oponent, players, gameStatus, setGameStatus, player, setGameMap } = useContext(GameContext);
   const navigate = useNavigate();
 
-  // const handleGameUpdate = (updatedMap: GridData[]) => {
-  //   if (gameStatus.isGameOver) return;
-  //   // update map
-  //   setGameMap(updatedMap);
-  //   // check win condition
-  // };
-  // eslint-disable-next-line consistent-return
-
-  // const handleGameClick = (data: GridData) => {
-  //   // verify player turn
-  //   if (gameStatus.turn !== player.uid) return;
-  //   const updatedMap = updateGameMove({ map, data, isPlayer1 });
-  //   handleGameUpdate(updatedMap);
-  // };
   const handleRematch = () => {
     if (gameStatus.rematch === player.uid) return null;
     if (gameStatus.rematch) {

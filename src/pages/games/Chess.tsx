@@ -14,11 +14,17 @@ const Chess = () => {
 
   useEffect(() => {
     if (active) {
-      if ((previous && previous.id !== active.id && active.data === "dot") || active.data.includes("can-capture")) {
-        const updatedMap = updateChessMove({ previous, current: active, map });
-        setPrev(undefined);
-        setActive(undefined);
-        checkWinCon(updatedMap);
+      if (previous) {
+        if ((previous.id !== active.id && active.data === "dot") || active.data.includes("can-capture")) {
+          const updatedMap = updateChessMove({ previous, current: active, map });
+          setPrev(undefined);
+          setActive(undefined);
+          checkWinCon(updatedMap);
+        } else {
+          const legalMoves = findChessLegalMove({ current: active, map: chessMap });
+          setChessMap(legalMoves);
+          setPrev(active);
+        }
       } else {
         const legalMoves = findChessLegalMove({ current: active, map: chessMap });
         setChessMap(legalMoves);

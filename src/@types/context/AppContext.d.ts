@@ -54,6 +54,7 @@ declare module "app-context" {
     name?: string;
     orientation?: string;
     canMove?: boolean;
+    canCapture?: boolean;
     x: number;
     y: number;
   }
