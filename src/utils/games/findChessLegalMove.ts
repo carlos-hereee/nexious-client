@@ -141,6 +141,10 @@ export const addRookMoves = ({ current, map, legalMoves, player }: IAddMove) => 
   // to right
   findOpenSqr({ map, locations: legalMoves, player, origin: current, dir: { x: 1, y: 0 } });
 };
+export const addQueenMoves = ({ current, map, legalMoves, player }: IAddMove) => {
+  addRookMoves({ current, map, legalMoves, player });
+  addBishopMoves({ current, map, legalMoves, player });
+};
 export const updateChessMove = ({ current, map, previous }: ILegalMove) => {
   if (!previous) return map;
   return map.map((m) => {
@@ -168,6 +172,7 @@ export const findChessLegalMove = ({ current, map }: ILegalMove) => {
   if (current.roomType === "knight") addKnightMoves({ current, map, legalMoves, player });
   if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves, player });
   if (current.roomType === "rook") addRookMoves({ current, map, legalMoves, player });
+  if (current.roomType === "queen") addQueenMoves({ current, map, legalMoves, player });
   if (legalMoves.length === 0) return resetBoard(map);
   return map.map((m) => {
     const target = legalMoves.filter((i) => i.id === m.id)[0];
