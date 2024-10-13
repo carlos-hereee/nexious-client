@@ -15,7 +15,7 @@ const Chess = () => {
   useEffect(() => {
     if (active) {
       if (previous) {
-        if ((previous.id !== active.id && active.canMove) || active.canCapture) {
+        if (previous.id !== active.id && (active.canMove || active.canCapture)) {
           const updatedMap = updateChessMove({ previous, current: active, map });
           setPrev(undefined);
           setActive(undefined);

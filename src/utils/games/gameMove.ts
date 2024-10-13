@@ -1,7 +1,7 @@
 import { GridData } from "app-context";
 import { Oponent } from "game-context";
 import { selectRandom } from "./selectRandom";
-import { addBishopMoves, addKnightMoves, addPawnMoves, addRookMoves } from "./findChessLegalMove";
+import { addBishopMoves, addKnightMoves, addPawnMoves, addQueenMoves, addRookMoves } from "./findChessLegalMove";
 
 interface IMove {
   map: GridData[];
@@ -52,6 +52,8 @@ export const chessBotLegalMove = (map: GridData[], player: string) => {
       if (current.roomType === "knight") addKnightMoves({ current, map, legalMoves: moves, player });
       if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves: moves, player });
       if (current.roomType === "rook") addRookMoves({ current, map, legalMoves: moves, player });
+      if (current.roomType === "queen") addQueenMoves({ current, map, legalMoves, player });
+
       if (moves.length > 0) legalMoves.push(current);
       moves = [];
     }

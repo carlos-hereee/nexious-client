@@ -35,9 +35,9 @@ export const captureAttack = (cell1: GridData, target: string, legalMoves: GridD
 };
 export const canAttack = (cell1: GridData, target: string) => cell1.data.includes(target);
 export const isSquareOpen = (cell1: GridData) => !cell1.data;
-export const isCellMatch = (cell1: ICell, cell2: ICell) => {
-  return cell1.x === cell2.x && cell1.y === cell2.y;
-};
+export const isCellMatch = (cell1: ICell, cell2: ICell) => cell1.x === cell2.x && cell1.y === cell2.y;
+
+const isOpen = (map: GridData[], current: GridData) => map.filter((m) => isCellMatch(m, current))[0];
 
 const findOpenSqr = ({ current, map, locations, player, origin, dir }: IOpenSqare) => {
   if (!current) current = { ...origin, y: origin.y + dir.y, x: origin.x + dir.x };
@@ -49,27 +49,6 @@ const findOpenSqr = ({ current, map, locations, player, origin, dir }: IOpenSqar
     }
   }
 };
-
-// interface P {
-//   cell1: GridData;
-//   cell2: GridData;
-//   legalMoves: GridData[];
-//   target: string;
-//   dir: number;
-//   isInit?: boolean;
-// }
-// const addPawn = ({ cell1, cell2, legalMoves, target, dir, isInit }: P) => {
-//   if (cell2.x === cell1.x) {
-//     // jump if square is availible
-//     if (cell2.y === cell1.y + dir && !cell1.data) captureAttack(cell1, target, legalMoves);
-//     // double jump
-//     if (isInit && cell2.y === cell1.y + dir && !cell1.data) captureAttack(cell1, target, legalMoves);
-//   }
-//   // attacking square
-//   if (cell2.x + 1 === cell1.x && cell2.y + 1 === cell1.y && canAttack(cell1, target)) captureAttack(cell1, target, legalMoves);
-//   // attacking square
-//   if (cell2.x - 1 === cell1.x && cell2.y + 1 === cell1.y && canAttack(cell1, target)) captureAttack(cell1, target, legalMoves);
-// };
 export const addPawnMoves = ({ current, map, legalMoves }: IAddMove) => {
   const { x, y } = current;
   // white pawn
@@ -145,6 +124,26 @@ export const addQueenMoves = ({ current, map, legalMoves, player }: IAddMove) =>
   addRookMoves({ current, map, legalMoves, player });
   addBishopMoves({ current, map, legalMoves, player });
 };
+export const addKingMoves = ({ current, map, legalMoves, player }: IAddMove) => {
+  const { x, y } = current;
+  // top
+  if (isOpen(map, { ...current, x: x + 1 })) captureAttack({ ...current, x: x + 1 }, player, legalMoves);
+  //  bottom
+  if (isOpen(map, { ...current, x: x - 1 })) captureAttack({ ...current, x: x - 1 }, player, legalMoves);
+  //  left
+  if (isOpen(map, { ...current, y: y + 1 })) captureAttack({ ...current, y: y + 1 }, player, legalMoves);
+  //  right
+  if (isOpen(map, { ...current, y: y - 1 })) captureAttack({ ...current, y: y - 1 }, player, legalMoves);
+
+  // top left
+  if (isOpen(map, { ...current, x: x + 1, y: y + 1 })) captureAttack({ ...current, x: x + 1, y: y + 1 }, player, legalMoves);
+  // top right
+  if (isOpen(map, { ...current, x: x + 1, y: y - 1 })) captureAttack({ ...current, x: x + 1, y: y - 1 }, player, legalMoves);
+  //  bottom left
+  if (isOpen(map, { ...current, x: x - 1, y: y + 1 })) captureAttack({ ...current, x: x - 1, y: y + 1 }, player, legalMoves);
+  //  bottom right
+  if (isOpen(map, { ...current, x: x - 1, y: y - 1 })) captureAttack({ ...current, x: x - 1, y: y - 1 }, player, legalMoves);
+};
 export const updateChessMove = ({ current, map, previous }: ILegalMove) => {
   if (!previous) return map;
   return map.map((m) => {
@@ -173,6 +172,8 @@ export const findChessLegalMove = ({ current, map }: ILegalMove) => {
   if (current.roomType === "bishop") addBishopMoves({ current, map, legalMoves, player });
   if (current.roomType === "rook") addRookMoves({ current, map, legalMoves, player });
   if (current.roomType === "queen") addQueenMoves({ current, map, legalMoves, player });
+  if (current.roomType === "king") addKingMoves({ current, map, legalMoves, player });
+  console.log("legalMoves :>> ", legalMoves);
   if (legalMoves.length === 0) return resetBoard(map);
   return map.map((m) => {
     const target = legalMoves.filter((i) => i.id === m.id)[0];
